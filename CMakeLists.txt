@@ -26,3 +26,8 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${SDL2_INCLUDE_DIRS})
 target_include_directories(${PROJECT_NAME} PRIVATE ${OPENGL_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES})
+
+add_executable(GraphTest src/tests/GraphTest.c src/Graph.c)
+
+enable_testing()
+add_test(NAME GraphTest COMMAND GraphTest)
