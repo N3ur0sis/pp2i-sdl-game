@@ -13,8 +13,7 @@ to get better stuff to beat stronger enemy to earn better junk.
 - C compiler (gcc)
 - CMake  (to write makefile faster)
 - SDL2
-
-We'll add OpenGL very soon.
+- GLAD (OpenGL API)
 
 First check you have all the dependencies
 
