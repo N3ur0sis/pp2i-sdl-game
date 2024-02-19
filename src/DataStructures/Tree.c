@@ -2,20 +2,10 @@
 // Created by Victor Davillé on 17/02/2024.
 //
 
-#include "Graph.h"
-
-void printData(union Data data) {
-    if (data.i) {
-        printf("%d\n", data.i);
-    } else if (data.f) {
-        printf("%f\n", data.f);
-    } else {
-        printf("%s\n", data.str);
-    }
-}
+#include "Tree.h"
 
 Node* createNode(int i) {
-    Node* newNode = malloc(sizeof(Node));
+    Node* newNode = (Node*) malloc(sizeof(Node));
     newNode->content.i = i;
     newNode->children = NULL;
     newNode->childCount = 0;
@@ -75,4 +65,16 @@ void BFS(Node* parent) {
         queueIndex++;
     }
     free(queue);
+}
+
+int search(Node* parent, int i) {
+    if (parent->content.i == i) {
+        return 1;
+    }
+    for (int j = 0; j < parent->childCount; j++) {
+        if (search(parent->children[j], i)) {
+            return 1;
+        }
+    }
+    return 0;
 }

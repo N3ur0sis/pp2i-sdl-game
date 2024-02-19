@@ -27,7 +27,9 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${OPENGL_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES})
 
-add_executable(GraphTest src/tests/GraphTest.c src/Graph.c)
+add_executable(GraphTest src/DataStructures/tests/TreeTest.c src/DataStructures/Tree.c src/DataStructures/Data.c)
+add_executable(VectorTest src/DataStructures/tests/VectorTest.c src/DataStructures/Vector.c src/DataStructures/Data.c)
 
 enable_testing()
 add_test(NAME GraphTest COMMAND GraphTest)
+add_test(NAME VectorTest COMMAND VectorTest)

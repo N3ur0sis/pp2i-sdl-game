@@ -2,7 +2,7 @@
 // Created by Victor Davillé on 17/02/2024.
 //
 
-#include "../Graph.h"
+#include "../Tree.h"
 #include <assert.h>
 #include <string.h>
 #include <unistd.h>
@@ -54,6 +54,10 @@ int main(void) {
     assert(height(child8) == 0);
 
     BFS(root);
+
+    assert(search(root, 10));
+    assert(search(root, 1));
+    assert(search(root, 12) == 0);
 
     return 0;
 }

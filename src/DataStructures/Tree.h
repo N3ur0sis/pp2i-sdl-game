@@ -7,14 +7,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-
-union Data {
-    int i;
-    float f;
-    char str[20];
-};
-
-void printData(union Data data);
+#include "Data.h"
 
 typedef struct Node Node;
 
@@ -35,5 +28,7 @@ int depth(Node* root, Node* node);
 int height(Node* root);
 
 void BFS(Node* parent);
+
+int search(Node* parent, int i);
 
 #endif //PP2I_GRAPH_H
