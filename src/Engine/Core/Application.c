@@ -40,8 +40,6 @@ int main(){
     //main loop
     while(!done) {
 
-        Uint64 start = SDL_GetPerformanceCounter();
-
         glViewport(0, 0, screen_width, screen_height);
 
         SDL_Event event;
