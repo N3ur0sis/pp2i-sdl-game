@@ -4,9 +4,11 @@
 
 #include "../Graph.h"
 #include <assert.h>
+#include <string.h>
+#include <unistd.h>
 
 int main(void) {
-    Node* root = createNode(0);
+    Node* root = createNode(10);
     Node* child1 = createNode(1);
     Node* child2 = createNode(2);
     addChild(root, child1);
@@ -32,8 +34,26 @@ int main(void) {
     assert(childCount(child6) == 0);
     assert(childCount(child7) == 0);
     assert(childCount(child8) == 0);
-    printf("Depth of root: %d\n", depth(root, root));
-    printf("Height of root: %d\n", height(root));
+    assert(depth(root, root) == 0);
+    assert(depth(root, child1) == 1);
+    assert(depth(root, child2) == 1);
+    assert(depth(root, child3) == 2);
+    assert(depth(root, child4) == 2);
+    assert(depth(root, child5) == 2);
+    assert(depth(root, child6) == 2);
+    assert(depth(root, child7) == 3);
+    assert(depth(root, child8) == 3);
+    assert(height(root) == 3);
+    assert(height(child1) == 2);
+    assert(height(child2) == 1);
+    assert(height(child3) == 1);
+    assert(height(child4) == 0);
+    assert(height(child5) == 0);
+    assert(height(child6) == 0);
+    assert(height(child7) == 0);
+    assert(height(child8) == 0);
+
     BFS(root);
+
     return 0;
 }
