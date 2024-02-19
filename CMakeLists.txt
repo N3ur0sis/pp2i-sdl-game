@@ -30,3 +30,11 @@ target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES})
 
 add_subdirectory(glad/)
 target_link_libraries(${PROJECT_NAME} glad)
+
+
+add_executable(GraphTest src/DataStructures/tests/TreeTest.c src/DataStructures/Tree.c src/DataStructures/Data.c)
+add_executable(VectorTest src/DataStructures/tests/VectorTest.c src/DataStructures/Vector.c src/DataStructures/Data.c)
+
+enable_testing()
+add_test(NAME GraphTest COMMAND GraphTest)
+add_test(NAME VectorTest COMMAND VectorTest)
