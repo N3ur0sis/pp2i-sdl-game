@@ -22,7 +22,13 @@ int main()
     SDL_Window *window = SDL_CreateWindow("OpenGL Renderer",
                          SDL_WINDOWPOS_CENTERED, 
                          SDL_WINDOWPOS_CENTERED, 
-                         SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL);
+                         SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+
+    if(window == NULL)
+    {
+        printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+        return 1;
+    }
 
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
