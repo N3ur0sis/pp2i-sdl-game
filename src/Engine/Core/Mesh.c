@@ -1,9 +1,9 @@
-#include "Mesh.h"
+#include <Mesh.h>
 #include <SDL2/SDL.h>
 #include <stdio.h>
 
     Mesh* init(){
-
+    
     Mesh *mesh = malloc(sizeof(Mesh));
 
     glGenVertexArrays(1, &mesh->VertexArrayID);
