@@ -4,9 +4,9 @@
 
 #include "Tree.h"
 
-Node* createNode(int i) {
+Node* createNode(Data data) {
     Node* newNode = (Node*) malloc(sizeof(Node));
-    newNode->content.i = i;
+    newNode->content = data;
     newNode->children = NULL;
     newNode->childCount = 0;
     return newNode;

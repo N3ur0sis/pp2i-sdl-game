@@ -10,7 +10,7 @@
 #include "Vector.h"
 
 typedef struct Node Node;
-typedef union _Data Data;
+typedef struct _Data Data;
 
 struct Node {
     Data content;
@@ -18,7 +18,7 @@ struct Node {
     int childCount;
 };
 
-Node* createNode(int i);
+Node* createNode(Data data);
 
 void addChild(Node* parent, Node* child);
 
@@ -30,6 +30,6 @@ int height(Node* root);
 
 void BFS(Node* parent);
 
-int search(Node* parent, int i);
+int search(Node* parent, Data data);
 
 #endif //PP2I_GRAPH_H

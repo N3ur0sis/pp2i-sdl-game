@@ -17,7 +17,7 @@ bool ModelLoader(char* path, Vector** vertices, Vector** normals, Vector** uvs, 
             reserve(vertex, 3);
             float x, y, z;
             sscanf(line, "v %f %f %f", &x, &y, &z);
-            union Data data;
+            Data data;
             data.f = x;
             push_back(vertex, data);
             data.f = y;

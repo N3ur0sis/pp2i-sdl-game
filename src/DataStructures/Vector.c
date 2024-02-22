@@ -4,19 +4,20 @@
 
 #include "Vector.h"
 
-Vector* createVector() {
+Vector* createVector(Type type) {
     Vector* vector = (Vector*) malloc(sizeof(Vector));
     if (vector == NULL) {
         printf("Memory allocation failed\n");
         exit(1);
     }
-    vector->data = (Data*) malloc(10 * sizeof(Data));
+    vector->data = (Data**) malloc(10 * sizeof(Data*));
     if (vector->data == NULL) {
         printf("Memory allocation failed\n");
         exit(1);
     }
     vector->size = 0;
     vector->capacity = 10;
+    vector->type = type;
     return vector;
 }
 
@@ -28,7 +29,7 @@ int capacity(Vector* vector) {
     return vector->capacity;
 }
 
-void resize(Vector* vector, int size, Data data) {
+void resize(Vector* vector, int size, Data* data) {
     if (size > vector->capacity) {
         reserve(vector, size);
         if (vector->data == NULL) {
@@ -51,7 +52,7 @@ bool empty(Vector* vector) {
 
 void reserve(Vector* vector, int capacity) {
     if (capacity > vector->capacity) {
-        vector->data = (Data*) realloc(vector->data, capacity * sizeof(Data));
+        vector->data = (Data**) realloc(vector->data, capacity * sizeof(Data*));
         if (vector->data == NULL) {
             printf("Memory allocation failed\n");
             exit(1);
@@ -61,11 +62,11 @@ void reserve(Vector* vector, int capacity) {
 }
 
 void shrink_to_fit(Vector* vector) {
-    vector->data = (Data*) realloc(vector->data, vector->size * sizeof(Data));
+    vector->data = (Data**) realloc(vector->data, vector->size * sizeof(Data*));
     vector->capacity = vector->size;
 }
 
-Data operator_index(Vector* vector, int index) {
+Data* operator_index(Vector* vector, int index) {
     if (index < 0 || index >= vector->size) {
         printf("Index out of range\n");
         exit(1);
@@ -73,9 +74,14 @@ Data operator_index(Vector* vector, int index) {
     return vector->data[index];
 }
 
-void push_back(Vector* vector, Data data) {
+void push_back(Vector* vector, Data* data) {
     if (vector == NULL) {
-        vector = createVector();
+        printf("Vector is NULL\n");
+        exit(1);
+    }
+    if (vector->type != data->type) {
+        printf("Invalid type\n");
+        exit(1);
     }
     if (vector->size == vector->capacity) {
         reserve(vector, vector->capacity * 2);
@@ -92,7 +98,15 @@ void pop_back(Vector* vector) {
     vector->size--;
 }
 
-void insert(Vector* vector, int index, Data data) {
+void insert(Vector* vector, int index, Data* data) {
+    if (vector == NULL) {
+        printf("Vector is NULL\n");
+        exit(1);
+    }
+    if (vector->type != data->type) {
+        printf("Invalid type\n");
+        exit(1);
+    }
     if (vector->size == vector->capacity) {
         reserve(vector, vector->capacity * 2);
     }
@@ -100,7 +114,7 @@ void insert(Vector* vector, int index, Data data) {
         index = 0;
     }
     if (index > vector->size) {
-        resize(vector, index + 1, (Data) {0});
+        resize(vector, index + 1, NULL);
         vector->data[index] = data;
     } else {
         for (int i = vector->size; i > index; i--) {
@@ -130,6 +144,7 @@ void printVector(Vector* vector) {
     for (int i = 0; i < vector->size; i++) {
         printData(vector->data[i]);
     }
+    printf("\n");
 }
 
 void destroyVector(Vector* vector) {

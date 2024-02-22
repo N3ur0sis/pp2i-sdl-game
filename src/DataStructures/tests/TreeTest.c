@@ -52,9 +52,6 @@ int main(void) {
     assert(height(child6) == 0);
     assert(height(child7) == 0);
     assert(height(child8) == 0);
-
-    BFS(root);
-
     assert(search(root, 10));
     assert(search(root, 1));
     assert(search(root, 12) == 0);
