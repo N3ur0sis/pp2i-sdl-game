@@ -6,7 +6,15 @@
 
 Vector* createVector() {
     Vector* vector = (Vector*) malloc(sizeof(Vector));
+    if (vector == NULL) {
+        printf("Memory allocation failed\n");
+        exit(1);
+    }
     vector->data = (Data*) malloc(10 * sizeof(Data));
+    if (vector->data == NULL) {
+        printf("Memory allocation failed\n");
+        exit(1);
+    }
     vector->size = 0;
     vector->capacity = 10;
     return vector;
@@ -23,6 +31,10 @@ int capacity(Vector* vector) {
 void resize(Vector* vector, int size, Data data) {
     if (size > vector->capacity) {
         reserve(vector, size);
+        if (vector->data == NULL) {
+            printf("Memory allocation failed\n");
+            exit(1);
+        }
     }
     for (int i = vector->size; i < size; i++) {
         vector->data[i] = data;
@@ -31,6 +43,9 @@ void resize(Vector* vector, int size, Data data) {
 }
 
 bool empty(Vector* vector) {
+    if (vector == NULL) {
+        return true;
+    }
     return vector->size == 0;
 }
 
@@ -38,7 +53,8 @@ void reserve(Vector* vector, int capacity) {
     if (capacity > vector->capacity) {
         vector->data = (Data*) realloc(vector->data, capacity * sizeof(Data));
         if (vector->data == NULL) {
-            printf("Alaid\n");
+            printf("Memory allocation failed\n");
+            exit(1);
         }
         vector->capacity = capacity;
     }
@@ -46,9 +62,6 @@ void reserve(Vector* vector, int capacity) {
 
 void shrink_to_fit(Vector* vector) {
     vector->data = (Data*) realloc(vector->data, vector->size * sizeof(Data));
-    if (vector->data == NULL) {
-        printf("Alaid\n");
-    }
     vector->capacity = vector->size;
 }
 
@@ -61,6 +74,9 @@ Data operator_index(Vector* vector, int index) {
 }
 
 void push_back(Vector* vector, Data data) {
+    if (vector == NULL) {
+        vector = createVector();
+    }
     if (vector->size == vector->capacity) {
         reserve(vector, vector->capacity * 2);
     }
@@ -69,6 +85,10 @@ void push_back(Vector* vector, Data data) {
 }
 
 void pop_back(Vector* vector) {
+    if (vector == NULL || vector->size == 0) {
+        printf("Vector is empty\n");
+        return;
+    }
     vector->size--;
 }
 
@@ -113,6 +133,10 @@ void printVector(Vector* vector) {
 }
 
 void destroyVector(Vector* vector) {
+    if (vector == NULL) {
+        return;
+    }
     free(vector->data);
+    vector->data = NULL;
     free(vector);
 }
