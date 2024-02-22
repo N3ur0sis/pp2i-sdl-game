@@ -9,7 +9,7 @@ project(pp2i)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/sdl2)
 
 # Add all c source files under the src directory
-file(GLOB SOURCES "src/Engine/Core/*.c")
+file(GLOB_RECURSE SOURCES "src/Engine/*.c")
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Add all headers files under the include directory
