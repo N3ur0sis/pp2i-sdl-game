@@ -7,13 +7,18 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include "Vector.h"
 
-union Data {
+typedef union _Data Data;
+typedef struct _Vector Vector;
+
+union _Data {
     int i;
     float f;
     char str[20];
+    Vector* vector;
 };
 
-void printData(union Data data);
+void printData(Data data);
 
 #endif //PP2I_DATA_H

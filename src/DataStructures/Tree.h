@@ -7,12 +7,13 @@
 
 #include <stdlib.h>
 #include <stdio.h>
-#include "Data.h"
+#include "Vector.h"
 
 typedef struct Node Node;
+typedef union _Data Data;
 
 struct Node {
-    union Data content;
+    Data content;
     Node** children;
     int childCount;
 };

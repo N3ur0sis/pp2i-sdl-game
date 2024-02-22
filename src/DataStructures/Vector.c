@@ -6,7 +6,7 @@
 
 Vector* createVector() {
     Vector* vector = (Vector*) malloc(sizeof(Vector));
-    vector->data = (union Data*) malloc(10 * sizeof(union Data));
+    vector->data = (Data*) malloc(10 * sizeof(Data));
     vector->size = 0;
     vector->capacity = 10;
     return vector;
@@ -20,7 +20,7 @@ int capacity(Vector* vector) {
     return vector->capacity;
 }
 
-void resize(Vector* vector, int size, union Data data) {
+void resize(Vector* vector, int size, Data data) {
     if (size > vector->capacity) {
         reserve(vector, size);
     }
@@ -36,17 +36,23 @@ bool empty(Vector* vector) {
 
 void reserve(Vector* vector, int capacity) {
     if (capacity > vector->capacity) {
-        vector->data = (union Data*) realloc(vector->data, capacity * sizeof(union Data));
+        vector->data = (Data*) realloc(vector->data, capacity * sizeof(Data));
+        if (vector->data == NULL) {
+            printf("Alaid\n");
+        }
         vector->capacity = capacity;
     }
 }
 
 void shrink_to_fit(Vector* vector) {
-    vector->data = (union Data*) realloc(vector->data, vector->size * sizeof(union Data));
+    vector->data = (Data*) realloc(vector->data, vector->size * sizeof(Data));
+    if (vector->data == NULL) {
+        printf("Alaid\n");
+    }
     vector->capacity = vector->size;
 }
 
-union Data operator_index(Vector* vector, int index) {
+Data operator_index(Vector* vector, int index) {
     if (index < 0 || index >= vector->size) {
         printf("Index out of range\n");
         exit(1);
@@ -54,7 +60,7 @@ union Data operator_index(Vector* vector, int index) {
     return vector->data[index];
 }
 
-void push_back(Vector* vector, union Data data) {
+void push_back(Vector* vector, Data data) {
     if (vector->size == vector->capacity) {
         reserve(vector, vector->capacity * 2);
     }
@@ -66,7 +72,7 @@ void pop_back(Vector* vector) {
     vector->size--;
 }
 
-void insert(Vector* vector, int index, union Data data) {
+void insert(Vector* vector, int index, Data data) {
     if (vector->size == vector->capacity) {
         reserve(vector, vector->capacity * 2);
     }
@@ -74,7 +80,7 @@ void insert(Vector* vector, int index, union Data data) {
         index = 0;
     }
     if (index > vector->size) {
-        resize(vector, index + 1, (union Data) {0});
+        resize(vector, index + 1, (Data) {0});
         vector->data[index] = data;
     } else {
         for (int i = vector->size; i > index; i--) {

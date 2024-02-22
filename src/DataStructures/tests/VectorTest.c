@@ -14,7 +14,7 @@ void createVectorTest() {
 void sizeTest() {
     Vector* vector = createVector();
     assert(size(vector) == 0);
-    union Data data;
+    Data data;
     data.i = 1;
     push_back(vector, data);
     assert(size(vector) == 1);
@@ -24,7 +24,7 @@ void sizeTest() {
 void capacityTest() {
     Vector* vector = createVector();
     assert(capacity(vector) == 10);
-    union Data data;
+    Data data;
     data.i = 1;
     push_back(vector, data);
     assert(capacity(vector) == 10);
@@ -37,7 +37,7 @@ void capacityTest() {
 
 void resizeTest() {
     Vector* vector = createVector();
-    union Data data;
+    Data data;
     data.i = 1;
     resize(vector, 5, data);
     assert(size(vector) == 5);
@@ -48,7 +48,7 @@ void resizeTest() {
 void emptyTest() {
     Vector* vector = createVector();
     assert(empty(vector));
-    union Data data;
+    Data data;
     data.i = 1;
     push_back(vector, data);
     assert(!empty(vector));
@@ -64,7 +64,7 @@ void reserveTest() {
 
 void shrink_to_fitTest() {
     Vector* vector = createVector();
-    union Data data;
+    Data data;
     data.i = 1;
     push_back(vector, data);
     reserve(vector, 20);
@@ -75,7 +75,7 @@ void shrink_to_fitTest() {
 
 void operator_indexTest() {
     Vector* vector = createVector();
-    union Data data;
+    Data data;
     data.i = 1;
     push_back(vector, data);
     assert(operator_index(vector, 0).i == 1);
@@ -84,7 +84,7 @@ void operator_indexTest() {
 
 void push_backTest() {
     Vector* vector = createVector();
-    union Data data;
+    Data data;
     data.i = 1;
     push_back(vector, data);
     assert(size(vector) == 1);
@@ -94,7 +94,7 @@ void push_backTest() {
 
 void pop_backTest() {
     Vector* vector = createVector();
-    union Data data;
+    Data data;
     data.i = 1;
     push_back(vector, data);
     pop_back(vector);
@@ -104,7 +104,7 @@ void pop_backTest() {
 
 void insertTest() {
     Vector* vector = createVector();
-    union Data data;
+    Data data;
     data.i = 1;
     insert(vector, 0, data);
     assert(size(vector) == 1);
@@ -124,7 +124,7 @@ void insertTest() {
 
 void eraseTest() {
     Vector* vector = createVector();
-    union Data data;
+    Data data;
     data.i = 1;
     for (int i = 0; i < 10; i++) {
         push_back(vector, data);
@@ -137,7 +137,7 @@ void eraseTest() {
 
 void clearTest() {
     Vector* vector = createVector();
-    union Data data;
+    Data data;
     data.i = 1;
     for (int i = 0; i < 10; i++) {
         push_back(vector, data);
