@@ -1,5 +1,4 @@
-#ifndef LOAD_SHADER_H
-#define LOAD_SHADER_H
+#pragma once
 
 #include <glad/glad.h>
 #include <stdio.h>
@@ -9,5 +8,3 @@
 char* get_shader_content(const char* fileName);
 GLuint LoadShaders(const char * vertex_file_path, const char * fragment_file_path);
 
-
-#endif // LOAD_SHADER_H

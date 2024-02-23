@@ -1,4 +1,4 @@
-# Set the cmake minimum version to 3.5.1
+# Set the cmake minimum version to 3.22.1
 cmake_minimum_required(VERSION 3.22.1)
 
 # Set the name of the project
@@ -9,7 +9,7 @@ project(pp2i)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/sdl2)
 
 # Add all c source files under the src directory
-file(GLOB SOURCES "src/Engine/Core/*.c")
+file(GLOB_RECURSE SOURCES "src/Engine/*.c")
 add_executable(${PROJECT_NAME} ${SOURCES})
 
 # Add all headers files under the include directory
@@ -30,7 +30,6 @@ target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES})
 
 add_subdirectory(glad/)
 target_link_libraries(${PROJECT_NAME} glad)
-
 
 add_executable(TreeTest src/DataStructures/tests/TreeTest.c src/DataStructures/Tree.c src/DataStructures/Data.c src/DataStructures/Vector.c)
 target_compile_options(TreeTest PRIVATE -Wall -Wextra -pedantic -Werror -g)

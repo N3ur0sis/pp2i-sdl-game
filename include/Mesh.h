@@ -1,20 +1,29 @@
-#ifndef MESH_H
-#define MESH_H
-
+#pragma once
 #include <glad/glad.h>
 
 typedef struct _Mesh {
-    GLuint VertexArrayID;
-    GLuint VertexBuffer;
-    GLuint  ElementBuffer;
-    GLuint vertex_size;
+	GLuint VAO;	// VERTEX ARRAY OBJECT
+	GLuint VBO;	// VERTEX BUFFER OBJECT
+	GLuint EBO;	// ELEMENT BUFFER OBJECT
+	unsigned int vertexCount;
+	unsigned int indexCount;
 } Mesh;
 
 
-Mesh* init();
-void draw(Mesh*);
+/* How mesh works :
+ * GENEARATE VAO
+ * GENERATE BUFFERS
+ * BIND THE VAO
+ * BIND EACH BUFFER
+ * SEND DATA FOR THE CURRENTLY BOUND BUFFER
+ * DEFINE PARAMETERS OF EACH ATTRIBUTE
+ * UNBIND VAO
+ */
 
 
-
-
-#endif
+//Private Methods :
+void mesh_init(Mesh*);
+void mesh_load(Mesh* model, GLfloat *vertices, GLuint *indices);
+//Pulbic Methods :
+Mesh*       mesh_create(GLfloat *vertices, GLuint *indices, unsigned int vertexCount, unsigned int indexCount);
+void        mesh_draw(Mesh* model);
