@@ -10,7 +10,8 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/sdl2)
 
 # Add all c source files under the src directory
 file(GLOB_RECURSE SOURCES "src/Engine/*.c")
-add_executable(${PROJECT_NAME} ${SOURCES})
+file(GLOB DATA "src/DataStructures/*.c")
+add_executable(${PROJECT_NAME} ${SOURCES} ${DATA})
 
 # Add all headers files under the include directory
 target_include_directories(${PROJECT_NAME} PRIVATE include)
