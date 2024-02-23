@@ -7,13 +7,37 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
+#include "Vector.h"
+#include "Type.h"
 
-union Data {
-    int i;
-    float f;
-    char str[20];
+typedef struct _Data Data;
+typedef struct _Vector Vector;
+
+struct _Data {
+    Type type;
+    union {
+        int i;
+        float f;
+        char str[20];
+        Vector* vector;
+    } value;
 };
 
-void printData(union Data data);
+Data* createIntData(int value);
+
+Data* createFloatData(float value);
+
+Data* createStringData(char* value);
+
+Data* createVectorData(Vector* value);
+
+bool equalsData(Data* data1, Data* data2);
+
+void printData(Data* data);
+
+void* getValue(Data* data);
+
+Type type(Data* data);
 
 #endif //PP2I_DATA_H

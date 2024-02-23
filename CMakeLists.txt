@@ -10,7 +10,8 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/sdl2)
 
 # Add all c source files under the src directory
 file(GLOB_RECURSE SOURCES "src/Engine/*.c")
-add_executable(${PROJECT_NAME} ${SOURCES})
+file(GLOB DATA "src/DataStructures/*.c")
+add_executable(${PROJECT_NAME} ${SOURCES} ${DATA})
 
 # Add all headers files under the include directory
 target_include_directories(${PROJECT_NAME} PRIVATE include)
@@ -31,10 +32,12 @@ target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES})
 add_subdirectory(glad/)
 target_link_libraries(${PROJECT_NAME} glad)
 
+add_executable(TreeTest src/DataStructures/tests/TreeTest.c src/DataStructures/Tree.c src/DataStructures/Data.c src/DataStructures/Vector.c)
+target_compile_options(TreeTest PRIVATE -Wall -Wextra -pedantic -Werror -g)
 
-#add_executable(GraphTest src/DataStructures/tests/TreeTest.c src/DataStructures/Tree.c src/DataStructures/Data.c)
-#add_executable(VectorTest src/DataStructures/tests/VectorTest.c src/DataStructures/Vector.c src/DataStructures/Data.c)
+add_executable(VectorTest src/DataStructures/tests/VectorTest.c src/DataStructures/Vector.c src/DataStructures/Data.c)
+target_compile_options(VectorTest PRIVATE -Wall -Wextra -pedantic -Werror -g)
 
-#enable_testing()
-#add_test(NAME GraphTest COMMAND GraphTest)
-#add_test(NAME VectorTest COMMAND VectorTest)
+enable_testing()
+add_test(NAME TreeTest COMMAND TreeTest)
+add_test(NAME VectorTest COMMAND VectorTest)

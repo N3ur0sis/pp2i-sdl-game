@@ -4,11 +4,20 @@
 
 #include "Vector.h"
 
-Vector* createVector() {
+Vector* createVector(Type type) {
     Vector* vector = (Vector*) malloc(sizeof(Vector));
-    vector->data = (union Data*) malloc(10 * sizeof(union Data));
+    if (vector == NULL) {
+        printf("Memory allocation failed\n");
+        exit(1);
+    }
+    vector->data = (Data**) malloc(10 * sizeof(Data*));
+    if (vector->data == NULL) {
+        printf("Memory allocation failed\n");
+        exit(1);
+    }
     vector->size = 0;
     vector->capacity = 10;
+    vector->type = type;
     return vector;
 }
 
@@ -20,9 +29,13 @@ int capacity(Vector* vector) {
     return vector->capacity;
 }
 
-void resize(Vector* vector, int size, union Data data) {
+void resize(Vector* vector, int size, Data* data) {
     if (size > vector->capacity) {
         reserve(vector, size);
+        if (vector->data == NULL) {
+            printf("Memory allocation failed\n");
+            exit(1);
+        }
     }
     for (int i = vector->size; i < size; i++) {
         vector->data[i] = data;
@@ -31,22 +44,29 @@ void resize(Vector* vector, int size, union Data data) {
 }
 
 bool empty(Vector* vector) {
+    if (vector == NULL) {
+        return true;
+    }
     return vector->size == 0;
 }
 
 void reserve(Vector* vector, int capacity) {
     if (capacity > vector->capacity) {
-        vector->data = (union Data*) realloc(vector->data, capacity * sizeof(union Data));
+        vector->data = (Data**) realloc(vector->data, capacity * sizeof(Data*));
+        if (vector->data == NULL) {
+            printf("Memory allocation failed\n");
+            exit(1);
+        }
         vector->capacity = capacity;
     }
 }
 
 void shrink_to_fit(Vector* vector) {
-    vector->data = (union Data*) realloc(vector->data, vector->size * sizeof(union Data));
+    vector->data = (Data**) realloc(vector->data, vector->size * sizeof(Data*));
     vector->capacity = vector->size;
 }
 
-union Data operator_index(Vector* vector, int index) {
+Data* operator_index(Vector* vector, int index) {
     if (index < 0 || index >= vector->size) {
         printf("Index out of range\n");
         exit(1);
@@ -54,7 +74,15 @@ union Data operator_index(Vector* vector, int index) {
     return vector->data[index];
 }
 
-void push_back(Vector* vector, union Data data) {
+void push_back(Vector* vector, Data* data) {
+    if (vector == NULL) {
+        printf("Vector is NULL\n");
+        exit(1);
+    }
+    if (vector->type != data->type) {
+        printf("Invalid type\n");
+        exit(1);
+    }
     if (vector->size == vector->capacity) {
         reserve(vector, vector->capacity * 2);
     }
@@ -63,10 +91,22 @@ void push_back(Vector* vector, union Data data) {
 }
 
 void pop_back(Vector* vector) {
+    if (vector == NULL || vector->size == 0) {
+        printf("Vector is empty\n");
+        return;
+    }
     vector->size--;
 }
 
-void insert(Vector* vector, int index, union Data data) {
+void insert(Vector* vector, int index, Data* data) {
+    if (vector == NULL) {
+        printf("Vector is NULL\n");
+        exit(1);
+    }
+    if (vector->type != data->type) {
+        printf("Invalid type\n");
+        exit(1);
+    }
     if (vector->size == vector->capacity) {
         reserve(vector, vector->capacity * 2);
     }
@@ -74,7 +114,7 @@ void insert(Vector* vector, int index, union Data data) {
         index = 0;
     }
     if (index > vector->size) {
-        resize(vector, index + 1, (union Data) {0});
+        resize(vector, index + 1, NULL);
         vector->data[index] = data;
     } else {
         for (int i = vector->size; i > index; i--) {
@@ -100,13 +140,30 @@ void clear(Vector* vector) {
     vector->size = 0;
 }
 
+bool equalsVector(Vector* vector1, Vector* vector2) {
+    if (vector1->size != vector2->size) {
+        return false;
+    }
+    for (int i = 0; i < vector1->size; i++) {
+        if (!equalsData(vector1->data[i], vector2->data[i])) {
+            return false;
+        }
+    }
+    return true;
+}
+
 void printVector(Vector* vector) {
     for (int i = 0; i < vector->size; i++) {
         printData(vector->data[i]);
     }
+    printf("\n");
 }
 
 void destroyVector(Vector* vector) {
+    if (vector == NULL) {
+        return;
+    }
     free(vector->data);
+    vector->data = NULL;
     free(vector);
 }

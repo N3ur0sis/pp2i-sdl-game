@@ -9,20 +9,25 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "Data.h"
+#include "Type.h"
 
-typedef struct {
-    union Data* data;
+typedef struct _Vector Vector;
+typedef struct _Data Data;
+
+struct _Vector {
+    Data** data;
     int size;
     int capacity;
-} Vector;
+    Type type;
+};
 
-Vector* createVector();
+Vector* createVector(Type type);
 
 int size(Vector* vector);
 
 int capacity(Vector* vector);
 
-void resize(Vector* vector, int size, union Data data);
+void resize(Vector* vector, int size, Data* data);
 
 bool empty(Vector* vector);
 
@@ -30,17 +35,19 @@ void reserve(Vector* vector, int capacity);
 
 void shrink_to_fit(Vector* vector);
 
-union Data operator_index(Vector* vector, int index);
+Data* operator_index(Vector* vector, int index);
 
-void push_back(Vector* vector, union Data data);
+void push_back(Vector* vector, Data* data);
 
 void pop_back(Vector* vector);
 
-void insert(Vector* vector, int index, union Data data);
+void insert(Vector* vector, int index, Data* data);
 
 void erase(Vector* vector, int index);
 
 void clear(Vector* vector);
+
+bool equalsVector(Vector* vector1, Vector* vector2);
 
 void printVector(Vector* vector);
 

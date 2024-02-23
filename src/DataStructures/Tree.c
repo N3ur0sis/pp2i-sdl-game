@@ -4,9 +4,9 @@
 
 #include "Tree.h"
 
-Node* createNode(int i) {
+Node* createNode(Data* data) {
     Node* newNode = (Node*) malloc(sizeof(Node));
-    newNode->content.i = i;
+    newNode->content = data;
     newNode->children = NULL;
     newNode->childCount = 0;
     return newNode;
@@ -67,12 +67,12 @@ void BFS(Node* parent) {
     free(queue);
 }
 
-int search(Node* parent, int i) {
-    if (parent->content.i == i) {
+int search(Node* parent, Data* data) {
+    if (equalsData(parent->content, data)) {
         return 1;
     }
     for (int j = 0; j < parent->childCount; j++) {
-        if (search(parent->children[j], i)) {
+        if (search(parent->children[j], data)) {
             return 1;
         }
     }
