@@ -32,6 +32,8 @@ Data* createStringData(char* value);
 
 Data* createVectorData(Vector* value);
 
+bool equalsData(Data* data1, Data* data2);
+
 void printData(Data* data);
 
 void* getValue(Data* data);

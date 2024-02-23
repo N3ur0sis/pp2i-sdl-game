@@ -13,12 +13,12 @@ typedef struct Node Node;
 typedef struct _Data Data;
 
 struct Node {
-    Data content;
+    Data* content;
     Node** children;
     int childCount;
 };
 
-Node* createNode(Data data);
+Node* createNode(Data* data);
 
 void addChild(Node* parent, Node* child);
 
@@ -30,6 +30,6 @@ int height(Node* root);
 
 void BFS(Node* parent);
 
-int search(Node* parent, Data data);
+int search(Node* parent, Data* data);
 
 #endif //PP2I_GRAPH_H

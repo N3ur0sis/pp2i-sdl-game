@@ -8,22 +8,22 @@
 #include <unistd.h>
 
 int main(void) {
-    Node* root = createNode(10);
-    Node* child1 = createNode(1);
-    Node* child2 = createNode(2);
+    Node* root = createNode(createIntData(10));
+    Node* child1 = createNode(createIntData(1));
+    Node* child2 = createNode(createIntData(12));
     addChild(root, child1);
     addChild(root, child2);
-    Node* child3 = createNode(3);
+    Node* child3 = createNode(createIntData(2));
     addChild(child1, child3);
-    Node* child4 = createNode(4);
+    Node* child4 = createNode(createIntData(3));
     addChild(child1, child4);
-    Node* child5 = createNode(5);
+    Node* child5 = createNode(createIntData(4));
     addChild(child2, child5);
-    Node* child6 = createNode(6);
+    Node* child6 = createNode(createIntData(5));
     addChild(child2, child6);
-    Node* child7 = createNode(7);
+    Node* child7 = createNode(createIntData(6));
     addChild(child3, child7);
-    Node* child8 = createNode(8);
+    Node* child8 = createNode(createIntData(7));
     addChild(child3, child8);
     assert(childCount(root) == 2);
     assert(childCount(child1) == 2);
@@ -52,9 +52,9 @@ int main(void) {
     assert(height(child6) == 0);
     assert(height(child7) == 0);
     assert(height(child8) == 0);
-    assert(search(root, 10));
-    assert(search(root, 1));
-    assert(search(root, 12) == 0);
+    assert(search(root, createIntData(1)));
+    assert(search(root, createIntData(12)));
+    assert(search(root, createIntData(2)));
 
     return 0;
 }

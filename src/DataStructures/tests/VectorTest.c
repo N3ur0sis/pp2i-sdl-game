@@ -167,6 +167,35 @@ void printVectorTest() {
     destroyVector(vector);
 }
 
+void equalsVectorTest() {
+    Vector* vector1 = createVector(INT);
+    Vector* vector2 = createVector(INT);
+    assert(equalsVector(vector1, vector2));
+    Data* data = createIntData(1);
+    push_back(vector1, data);
+    assert(!equalsVector(vector1, vector2));
+    push_back(vector2, data);
+    assert(equalsVector(vector1, vector2));
+    destroyVector(vector1);
+    destroyVector(vector2);
+
+    vector1 = createVector(VECTOR);
+    vector2 = createVector(VECTOR);
+    Vector *vector3 = createVector(INT);
+    Vector *vector4 = createVector(INT);
+    push_back(vector3, createIntData(1));
+    push_back(vector3, createIntData(2));
+    push_back(vector4, createIntData(3));
+    push_back(vector4, createIntData(4));
+    push_back(vector1, createVectorData(vector3));
+    push_back(vector1, createVectorData(vector4));
+    push_back(vector2, createVectorData(vector3));
+    push_back(vector2, createVectorData(vector4));
+    assert(equalsVector(vector1, vector2));
+    destroyVector(vector1);
+    destroyVector(vector2);
+}
+
 int main(void) {
     createVectorTest();
     sizeTest();

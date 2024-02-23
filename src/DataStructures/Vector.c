@@ -140,6 +140,18 @@ void clear(Vector* vector) {
     vector->size = 0;
 }
 
+bool equalsVector(Vector* vector1, Vector* vector2) {
+    if (vector1->size != vector2->size) {
+        return false;
+    }
+    for (int i = 0; i < vector1->size; i++) {
+        if (!equalsData(vector1->data[i], vector2->data[i])) {
+            return false;
+        }
+    }
+    return true;
+}
+
 void printVector(Vector* vector) {
     for (int i = 0; i < vector->size; i++) {
         printData(vector->data[i]);

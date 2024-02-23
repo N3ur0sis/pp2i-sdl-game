@@ -32,8 +32,8 @@ add_subdirectory(glad/)
 target_link_libraries(${PROJECT_NAME} glad)
 
 
-#add_executable(TreeTest src/DataStructures/tests/TreeTest.c src/DataStructures/Tree.c src/DataStructures/Data.c src/DataStructures/Vector.c)
-#target_compile_options(TreeTest PRIVATE -Wall -Wextra -pedantic -Werror -g)
+add_executable(TreeTest src/DataStructures/tests/TreeTest.c src/DataStructures/Tree.c src/DataStructures/Data.c src/DataStructures/Vector.c)
+target_compile_options(TreeTest PRIVATE -Wall -Wextra -pedantic -Werror -g)
 
 add_executable(VectorTest src/DataStructures/tests/VectorTest.c src/DataStructures/Vector.c src/DataStructures/Data.c)
 target_compile_options(VectorTest PRIVATE -Wall -Wextra -pedantic -Werror -g)

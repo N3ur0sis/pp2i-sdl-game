@@ -48,6 +48,23 @@ Data* createVectorData(Vector* value) {
     return data;
 }
 
+bool equalsData(Data* data1, Data* data2) {
+    if (data1->type != data2->type) {
+        return false;
+    }
+    if (data1->type == INT) {
+        return data1->value.i == data2->value.i;
+    } else if (data1->type == FLOAT) {
+        return data1->value.f == data2->value.f;
+    } else if (data1->type == STRING) {
+        return strcmp(data1->value.str, data2->value.str) == 0;
+    } else if (data1->type == VECTOR) {
+        return equalsVector(data1->value.vector, data2->value.vector);
+    } else {
+        return false;
+    }
+}
+
 void printData(Data* data) {
     if (data->type == INT) {
         printf("%d ", data->value.i);

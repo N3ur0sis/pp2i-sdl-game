@@ -47,6 +47,8 @@ void erase(Vector* vector, int index);
 
 void clear(Vector* vector);
 
+bool equalsVector(Vector* vector1, Vector* vector2);
+
 void printVector(Vector* vector);
 
 void destroyVector(Vector* vector);
