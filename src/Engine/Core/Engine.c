@@ -6,7 +6,8 @@ void initOpenGL() {
 	glFrontFace(GL_CW);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_FRONT);
-	printf("GL version: %s\n", glGetString(GL_VERSION));
+	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	//printf("GL version: %s\n", glGetString(GL_VERSION));
 }
 
 void engine_quit() {
