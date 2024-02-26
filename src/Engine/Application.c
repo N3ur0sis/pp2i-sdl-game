@@ -2,6 +2,7 @@
 #include "Engine.h"
 #include "Shader.h"
 #include "Mesh.h"
+#include "ModelLoader.h"
 #include <stdbool.h>
 
 
@@ -16,16 +17,15 @@ int main(){
     GLuint shaderProgram = LoadShaders("vertex.glsl", "fragment.glsl");
     glUseProgram(shaderProgram);
     /*******************TEMPORARY***********************/
-    GLfloat vertices[] = {
-        0.5f, -0.5f, 0.5f,
-        -0.5f, -0.5f, 0.5f,
-        0.5f, 0.5f, 0.5f,
-        -0.5f, 0.5f, 0.5f
-    };
-    GLuint indices[] = {0, 2, 3, 0, 3, 1};
     /***************************************************/
 
-    Mesh* rectangle = mesh_create(vertices, indices, 4, 6);
+    Vector* vertices1 = createVector(VECTOR);
+    Vector* normals1 = createVector(VECTOR);
+    Vector* uvs1 = createVector(VECTOR);
+    Vector* indices1 = createVector(VECTOR);
+    ModelLoader("../ressources/teapot.obj", &vertices1, &normals1, &uvs1, &indices1);
+
+    Mesh* rectangle = mesh_create(toVertices(vertices1), toIndices(indices1), vertices1->size, numElements(indices1));
 
     SDL_Event event;
 
