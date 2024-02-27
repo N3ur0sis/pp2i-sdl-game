@@ -32,8 +32,6 @@ Only for Debian based/Ubuntu user (for macOS, i guess it's similar)
 # Clone this repo
 git clone https://github.com/N3ur0sis/pp2i-sdl-game
 cd pp2i-sdl-game
-git submodule init
-git submodule update
 
 # Go to build folder
 cd build
