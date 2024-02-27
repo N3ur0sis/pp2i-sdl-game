@@ -36,7 +36,13 @@ bool equalsData(Data* data1, Data* data2);
 
 void printData(Data* data);
 
-void* getValue(Data* data);
+float getFloatValue(Data* data);
+
+int getIntValue(Data* data);
+
+char* getStringValue(Data* data);
+
+Vector* getVectorValue(Data* data);
 
 Type type(Data* data);
 

@@ -74,7 +74,7 @@ int main(){
         glm_rotate(model, glm_rad(50.0f)*dT, rotAxis);
         mat4 view;
         glm_mat4_identity(view);
-        vec3 transAxis = {-1.0f, -1.0f, -5.0f};
+        vec3 transAxis = {-1.0f, -1.0f, -6.0f};
         glm_translate(view, transAxis);
         mat4 projection;
         glm_perspective(glm_rad(60.0f), (float)(WIDTH)/(float)HEIGHT, 0.1f, 100.0f, projection);

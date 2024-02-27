@@ -80,19 +80,36 @@ void printData(Data* data) {
     }
 }
 
-void* getValue(Data* data) {
-    if (data->type == INT) {
-        return &data->value.i;
-    } else if (data->type == FLOAT) {
-        return &data->value.f;
-    } else if (data->type == STRING) {
-        return data->value.str;
-    } else if (data->type == VECTOR) {
-        return data->value.vector;
-    } else {
+float getFloatValue(Data* data) {
+    if (data->type != FLOAT) {
         printf("Invalid type\n");
-        return NULL;
+        exit(1);
     }
+    return data->value.f;
+}
+
+int getIntValue(Data* data) {
+    if (data->type != INT) {
+        printf("Invalid type\n");
+        exit(1);
+    }
+    return data->value.i;
+}
+
+char* getStringValue(Data* data) {
+    if (data->type != STRING) {
+        printf("Invalid type\n");
+        exit(1);
+    }
+    return data->value.str;
+}
+
+Vector* getVectorValue(Data* data) {
+    if (data->type != VECTOR) {
+        printf("Invalid type\n");
+        exit(1);
+    }
+    return data->value.vector;
 }
 
 Type type(Data* data) {

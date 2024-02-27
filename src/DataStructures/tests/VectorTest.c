@@ -72,7 +72,7 @@ void operator_indexTest() {
     Vector* vector = createVector(INT);
     Data* data = createIntData(1);
     push_back(vector, data);
-    assert(*((int*) getValue(operator_index(vector, 0))) == 1);
+    assert(getIntValue(operator_index(vector, 0)) == 1);
     destroyVector(vector);
 }
 
@@ -81,7 +81,7 @@ void push_backTest() {
     Data* data = createIntData(1);
     push_back(vector, data);
     assert(size(vector) == 1);
-    assert(*((int*) getValue(operator_index(vector, 0))) == 1);
+    assert(getIntValue(operator_index(vector, 0)) == 1);
     destroyVector(vector);
 }
 
@@ -99,16 +99,16 @@ void insertTest() {
     Data* data = createIntData(1);
     insert(vector, 0, data);
     assert(size(vector) == 1);
-    assert(*((int*) getValue(operator_index(vector, 0))) == 1);
+    assert(getIntValue(operator_index(vector, 0)) == 1);
     data = createIntData(2);
     insert(vector, 0, data);
     assert(size(vector) == 2);
-    assert(*((int*) getValue(operator_index(vector, 0))) == 2);
-    assert(*((int*) getValue(operator_index(vector, 1))) == 1);
+    assert(getIntValue(operator_index(vector, 0)) == 2);
+    assert(getIntValue(operator_index(vector, 1)) == 1);
     data = createIntData(3);
     insert(vector, 20, data);
     assert(size(vector) == 21);
-    assert(*((int*) getValue(operator_index(vector, 20))) == 3);
+    assert(getIntValue(operator_index(vector, 20)) == 3);
     destroyVector(vector);
 }
 
@@ -120,7 +120,7 @@ void eraseTest() {
     }
     erase(vector, 0);
     assert(size(vector) == 9);
-    assert(*((int*) getValue(operator_index(vector, 0))) == 1);
+    assert(getIntValue(operator_index(vector, 0)) == 1);
     destroyVector(vector);
 }
 

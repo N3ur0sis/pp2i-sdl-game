@@ -6,6 +6,7 @@
 #define PP2I_MODELLOADER_H
 
 #include <stdbool.h>
+#include <math.h>
 #include "../src/DataStructures/Vector.h"
 
 bool ModelLoader(char* path, Vector** vertices, Vector** normals, Vector** uvs, Vector** indices);
