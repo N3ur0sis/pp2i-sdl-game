@@ -29,8 +29,11 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${OPENGL_INCLUDE_DIR})
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES})
 
-add_subdirectory(glad/)
+add_subdirectory(dependencies/glad/)
 target_link_libraries(${PROJECT_NAME} glad)
+
+add_subdirectory(dependencies/cglm/)
+target_link_libraries(${PROJECT_NAME} -lm cglm_headers)
 
 add_executable(TreeTest src/DataStructures/tests/TreeTest.c src/DataStructures/Tree.c src/DataStructures/Data.c src/DataStructures/Vector.c)
 target_compile_options(TreeTest PRIVATE -Wall -Wextra -pedantic -Werror -g)
