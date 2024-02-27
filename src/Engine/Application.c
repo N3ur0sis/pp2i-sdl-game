@@ -24,7 +24,7 @@ int main(){
     Shader* shader = LoadShaders("vertex.glsl", "fragment.glsl");
     useShaders(shader->program);
     //Create and Initialize scene Camera
-    Camera* camera = camera_create(0.0f, 0.0f, 10.0f, WIDTH, HEIGHT);
+    Camera* camera = camera_create(0.0f, 1.0f, 5.0f, WIDTH, HEIGHT);
 
     /*******************DEMONSTRATION***********************/
     GLfloat vertices[] = {
@@ -55,10 +55,6 @@ int main(){
     Mesh* teapot = mesh_create(toVertices(vertices1), toIndices(indices1), vertices1->size, numElements(indices1));
     /***************************************************/
 
-    Mesh* rectangle = mesh_create(vertices, indices, 24, 36);
-    Mesh* teapot = mesh_create(toVertices(vertices1), toIndices(indices1), vertices1->size, numElements(indices1));
-    /***************************************************/
-
     SDL_Event e;
     //Game Loop
     bool done = false;
@@ -81,12 +77,13 @@ int main(){
 
         //Rendering
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-        mesh_draw(rectangle, shader, camera);
+        mesh_draw(teapot, shader, camera);
         glBindVertexArray(0);
         SDL_GL_SwapWindow(window);
     }
 
     //CleanUp
+    free(teapot);
     free(rectangle);
     free(camera);
     free(shader);
