@@ -1,13 +1,17 @@
 #include "Engine.h"
 
-void initOpenGL() {
+void initOpenGL(float width, float height) {
     gladLoadGLLoader(SDL_GL_GetProcAddress);
+    glViewport(0, 0, width, height);
+	glClearColor(.08f,.08f,.08f,0);
+
 	glEnable(GL_DEPTH_TEST);
-	glFrontFace(GL_CW);
 	glEnable(GL_CULL_FACE);
+
+	glFrontFace(GL_CW);
 	glCullFace(GL_FRONT);
+
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-	//printf("GL version: %s\n", glGetString(GL_VERSION));
 }
 
 void engine_quit() {

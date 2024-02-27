@@ -2,7 +2,7 @@
 #include "ReadShader.h"
 
 
-GLuint LoadShaders(const char * vertex_file_path,const char * fragment_file_path){
+Shader* LoadShaders(const char * vertex_file_path,const char * fragment_file_path){
 
     const char *vertexShaderSource = get_shader_content(vertex_file_path);
     const char *fragmentShaderSource = get_shader_content(fragment_file_path);
@@ -25,6 +25,18 @@ GLuint LoadShaders(const char * vertex_file_path,const char * fragment_file_path
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
+    Shader *shader = (Shader*)malloc(sizeof(Shader));
+    shader->program = shaderProgram;
+    GLuint viewLoc = glGetUniformLocation(shaderProgram, "view");
+    GLuint projectionLoc = glGetUniformLocation(shaderProgram, "projection");
+    GLuint modelLoc = glGetUniformLocation(shader->program, "model");
+    shader->locations.Model = modelLoc;
+    shader->locations.View = viewLoc;
+    shader->locations.Projection = projectionLoc;
+    
+    return shader;
+}
 
-    return shaderProgram;
+void useShaders(GLuint program){
+    glUseProgram(program);
 }

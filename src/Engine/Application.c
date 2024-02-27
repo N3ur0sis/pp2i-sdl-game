@@ -3,21 +3,28 @@
 #include "Shader.h"
 #include "Mesh.h"
 #include <math.h>
+#include <Camera.h>
 #include <stdbool.h>
-#include <cglm/cglm.h>   /* for inline */
-#include <cglm/call.h>   /* for library call (this also includes cglm.h) */
+#include <cglm/cglm.h>
+#include <cglm/call.h>
 
-
+//GLOBAL VARIABLES
 #define WIDTH 800
 #define HEIGHT 600
 
 
 int main(){
 
+    //Initialize SDL and Create window
     SDL_Window* window = window_create(WIDTH, HEIGHT, "Game");
-    initOpenGL();
-    GLuint shaderProgram = LoadShaders("vertex.glsl", "fragment.glsl");
-    glUseProgram(shaderProgram);
+    //Initialize OpenGL and create ViewPort
+    initOpenGL(WIDTH, HEIGHT);
+    //Load and Compile Shaders into OpenGL
+    Shader* shader = LoadShaders("vertex.glsl", "fragment.glsl");
+    useShaders(shader->program);
+    //Create and Initialize scene Camera
+    Camera* camera = camera_create(0.0f, 0.0f, 10.0f, WIDTH, HEIGHT);
+
     /*******************TEMPORARY***********************/
     GLfloat vertices[] = {
         0.5f, -0.5f, 0.5f,
@@ -37,18 +44,22 @@ int main(){
                           4, 6, 2, 4, 2, 0};
     /***************************************************/
 
+    //Create and initialize a cube
     Mesh* rectangle = mesh_create(vertices, indices, 24, 36);
 
-    SDL_Event event;
-
+    SDL_Event e;
     //Game Loop    
     bool done = false;
     Uint32 lastUpdate = SDL_GetTicks();
     while(!done) {
+        //Time logic
         Uint32 current = SDL_GetTicks();
+        float dT = (current - lastUpdate) / 1000.0f;
+        (void)dT;
+
         //Input Handling
-        while(SDL_PollEvent(&event)){
-            if(event.type == SDL_QUIT) {
+        while(SDL_PollEvent(&e)){
+            if(e.type == SDL_QUIT) {
                 done = true;
             }
         }
@@ -57,33 +68,17 @@ int main(){
         //...
 
         //Rendering
-        glViewport(0, 0, WIDTH, HEIGHT);
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-        float dT = (current - lastUpdate) / 1000.0f;
-        mat4 model;
-        glm_mat4_identity(model);
-        vec3 rotAxis = {0.5f, 1.0f, 0.0f};
-        glm_rotate(model, glm_rad(50.0f)*dT, rotAxis);
-        mat4 view;
-        glm_mat4_identity(view);
-        vec3 transAxis = {0.0f, 0.0f, -3.0f};
-        glm_translate(view, transAxis);
-        mat4 projection;
-        glm_perspective(glm_rad(60.0f), (float)(WIDTH)/(float)HEIGHT, 0.1f, 100.0f, projection);
-
-        int modelLoc = glGetUniformLocation(shaderProgram, "model");
-        glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (float*)model);
-        int viewLoc = glGetUniformLocation(shaderProgram, "view");
-        glUniformMatrix4fv(viewLoc, 1, GL_FALSE, (float*)view);
-        int projectionLoc = glGetUniformLocation(shaderProgram, "projection");
-        glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, (float*)projection);
-
-        glClearColor(.08f,.08f,.08f,0);
-        mesh_draw(rectangle);
+        mesh_draw(rectangle, shader, camera);
         glBindVertexArray(0);
         SDL_GL_SwapWindow(window);
     }
+    
     //CleanUp
+    free(rectangle);
+    free(camera);
+    free(shader);
     SDL_DestroyWindow(window);
     SDL_Quit();
+    return 0;
 }
