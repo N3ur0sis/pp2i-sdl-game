@@ -2,6 +2,9 @@
 #include <glad/glad.h>
 #include <Shader.h>
 #include <Camera.h>
+#include <SDL2/SDL.h>
+#include <Time.h>
+#include <stdio.h>
 
 typedef struct _Mesh {
 	GLuint VAO;	// VERTEX ARRAY OBJECT
@@ -28,4 +31,4 @@ void mesh_init(Mesh*);
 void mesh_load(Mesh* model, GLfloat *vertices, GLuint *indices);
 //Pulbic Methods :
 Mesh*       mesh_create(GLfloat *vertices, GLuint *indices, unsigned int vertexCount, unsigned int indexCount);
-void        mesh_draw(Mesh* model, Shader* s, Camera* c);
+void        mesh_draw(Mesh* model, Shader* s, Camera* c, Time* time);

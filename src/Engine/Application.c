@@ -3,6 +3,8 @@
 #include "Shader.h"
 #include "Mesh.h"
 #include "ModelLoader.h"
+#include <Time.h>
+#include <Controls.h>
 #include <math.h>
 #include <Camera.h>
 #include <stdbool.h>
@@ -25,7 +27,7 @@ int main(){
     useShaders(shader->program);
     //Create and Initialize scene Camera
     Camera* camera = camera_create(0.0f, 1.0f, 5.0f, WIDTH, HEIGHT);
-
+    Time* time = (Time*)malloc(sizeof(Time));
     /*******************DEMONSTRATION***********************/
     GLfloat vertices[] = {
         0.5f, -0.5f, 0.5f,
@@ -58,26 +60,23 @@ int main(){
     SDL_Event e;
     //Game Loop
     bool done = false;
-    Uint32 lastUpdate = SDL_GetTicks();
+    time->lastUpdate = SDL_GetTicks();
     while(!done) {
-        //Time logic
-        Uint32 current = SDL_GetTicks();
-        float dT = (current - lastUpdate) / 1000.0f;
-        (void)dT;
+
+        //Per-frame time logic
+        time->currentUpdate = SDL_GetTicks();
+        time->deltaTime = (time->currentUpdate - time->lastUpdate) / 1000.0f;
 
         //Input Handling
         while(SDL_PollEvent(&e)){
-            if(e.type == SDL_QUIT) {
-                done = true;
-            }
+        processInput(&e, &done, camera, time);
         }
-
         //Game Logic
         //...
 
         //Rendering
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-        mesh_draw(teapot, shader, camera);
+        mesh_draw(teapot, shader, camera, time);
         glBindVertexArray(0);
         SDL_GL_SwapWindow(window);
     }

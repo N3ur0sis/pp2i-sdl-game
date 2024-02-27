@@ -12,6 +12,7 @@ void initOpenGL(float width, float height) {
 	glCullFace(GL_FRONT);
 
 	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
 }
 
 void engine_quit() {

@@ -2,7 +2,12 @@
 #include <cglm/cglm.h>
 #include <cglm/call.h>
 
-
+typedef enum  {
+    FORWARD,
+    BACKWARD,
+    LEFT,
+    RIGHT
+}Camera_Movement;
 
 typedef struct{
     vec3 Position;
@@ -22,3 +27,5 @@ typedef struct{
 Camera* camera_create(float posX, float posY, float posZ, float width, float height);
 void getViewMatrix(Camera* camera, vec4* view);
 void updateCameraVectors(Camera* camera );
+void panCamera(Camera* camera,float xrel, float yrel);
+void ProcessKeyboard(Camera* camera, Camera_Movement direction, float deltaTime);
