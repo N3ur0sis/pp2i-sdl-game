@@ -6,7 +6,6 @@
 #include <Time.h>
 #include <Controls.h>
 #include <math.h>
-#include <Camera.h>
 #include <stdbool.h>
 #include <cglm/cglm.h>
 #include <cglm/call.h>
@@ -16,7 +15,7 @@
 #define HEIGHT 600
 
 
-int main(){
+int main(void){
 
     //Initialize SDL and Create window
     SDL_Window* window = window_create(WIDTH, HEIGHT, "Game");
