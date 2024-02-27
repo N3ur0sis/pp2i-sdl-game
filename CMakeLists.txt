@@ -37,10 +37,20 @@ target_link_libraries(${PROJECT_NAME} -lm cglm_headers)
 
 add_executable(TreeTest src/DataStructures/tests/TreeTest.c src/DataStructures/Tree.c src/DataStructures/Data.c src/DataStructures/Vector.c)
 target_compile_options(TreeTest PRIVATE -Wall -Wextra -pedantic -Werror -g)
+target_link_libraries(TreeTest glad)
+target_include_directories(TreeTest PRIVATE include)
 
 add_executable(VectorTest src/DataStructures/tests/VectorTest.c src/DataStructures/Vector.c src/DataStructures/Data.c)
 target_compile_options(VectorTest PRIVATE -Wall -Wextra -pedantic -Werror -g)
+target_link_libraries(VectorTest glad)
+target_include_directories(VectorTest PRIVATE include)
+
+add_executable(ModelLoaderTest src/Tests/ModelLoaderTest.c src/Engine/Loader/ModelLoader.c src/DataStructures/Vector.c src/DataStructures/Data.c)
+target_compile_options(ModelLoaderTest PRIVATE -Wall -Wextra -pedantic -Werror -g)
+target_link_libraries(ModelLoaderTest glad)
+target_include_directories(ModelLoaderTest PRIVATE include)
 
 enable_testing()
 add_test(NAME TreeTest COMMAND TreeTest)
 add_test(NAME VectorTest COMMAND VectorTest)
+add_test(NAME ModelLoaderTest COMMAND ModelLoaderTest)
