@@ -27,7 +27,7 @@ void mesh_load(Mesh* model, GLfloat *vertices, GLuint *indices){
 
 Mesh* mesh_create(GLfloat* vertices, GLuint* indices, unsigned int vertexCount, unsigned int indexCount){
 
-    Mesh* model = (Mesh*)malloc(sizeof(model));
+    Mesh* model = (Mesh*)malloc(sizeof(Mesh));
 
 	mesh_init(model);
 	model->vertexCount = vertexCount;

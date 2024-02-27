@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdbool.h>
+#include <glad/glad.h>
 #include "Data.h"
 #include "Type.h"
 
@@ -48,6 +49,12 @@ void erase(Vector* vector, int index);
 void clear(Vector* vector);
 
 bool equalsVector(Vector* vector1, Vector* vector2);
+
+int numElements(Vector* vector);
+
+GLfloat* toVertices(Vector* vector);
+
+GLuint* toIndices(Vector* vector);
 
 void printVector(Vector* vector);
 

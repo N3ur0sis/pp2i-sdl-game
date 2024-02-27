@@ -2,6 +2,7 @@
 #include "Engine.h"
 #include "Shader.h"
 #include "Mesh.h"
+#include "ModelLoader.h"
 #include <math.h>
 #include <stdbool.h>
 #include <cglm/cglm.h>   /* for inline */
@@ -18,7 +19,7 @@ int main(){
     initOpenGL();
     GLuint shaderProgram = LoadShaders("vertex.glsl", "fragment.glsl");
     glUseProgram(shaderProgram);
-    /*******************TEMPORARY***********************/
+    /*******************DEMONSTRATION***********************/
     GLfloat vertices[] = {
         0.5f, -0.5f, 0.5f,
         -0.5f, -0.5f, 0.5f,
@@ -35,13 +36,20 @@ int main(){
                           4, 0, 1, 4, 1, 5,
                           1, 3, 7, 1, 7, 5,
                           4, 6, 2, 4, 2, 0};
-    /***************************************************/
+
+    Vector* vertices1 = createVector(VECTOR);
+    Vector* normals1 = createVector(VECTOR);
+    Vector* uvs1 = createVector(VECTOR);
+    Vector* indices1 = createVector(VECTOR);
+    ModelLoader("../ressources/teapot.obj", &vertices1, &normals1, &uvs1, &indices1);
 
     Mesh* rectangle = mesh_create(vertices, indices, 24, 36);
+    Mesh* teapot = mesh_create(toVertices(vertices1), toIndices(indices1), vertices1->size, numElements(indices1));
+    /***************************************************/
 
     SDL_Event event;
 
-    //Game Loop    
+    //Game Loop
     bool done = false;
     Uint32 lastUpdate = SDL_GetTicks();
     while(!done) {
@@ -66,10 +74,11 @@ int main(){
         glm_rotate(model, glm_rad(50.0f)*dT, rotAxis);
         mat4 view;
         glm_mat4_identity(view);
-        vec3 transAxis = {0.0f, 0.0f, -3.0f};
+        vec3 transAxis = {-1.0f, -1.0f, -5.0f};
         glm_translate(view, transAxis);
         mat4 projection;
         glm_perspective(glm_rad(60.0f), (float)(WIDTH)/(float)HEIGHT, 0.1f, 100.0f, projection);
+
 
         int modelLoc = glGetUniformLocation(shaderProgram, "model");
         glUniformMatrix4fv(modelLoc, 1, GL_FALSE, (float*)model);
@@ -79,7 +88,8 @@ int main(){
         glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, (float*)projection);
 
         glClearColor(.08f,.08f,.08f,0);
-        mesh_draw(rectangle);
+        (void) rectangle;
+        mesh_draw(teapot);
         glBindVertexArray(0);
         SDL_GL_SwapWindow(window);
     }

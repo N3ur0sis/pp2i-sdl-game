@@ -159,6 +159,49 @@ void printVector(Vector* vector) {
     printf("\n");
 }
 
+int numElements(Vector* vector) {
+    if (vector->type != VECTOR) {
+        return vector->size;
+    }
+    int sum = 0;
+    for (int i = 0; i < vector->size; i++) {
+        sum += numElements(vector->data[i]->value.vector);
+    }
+    return sum;
+}
+
+GLfloat* toVertices(Vector* vector) {
+if (vector->type != VECTOR) {
+        return NULL;
+    }
+    GLfloat* vertices = (GLfloat*) malloc(numElements(vector) * sizeof(GLfloat));
+    int index = 0;
+    for (int i = 0; i < vector->size; i++) {
+        Vector* vertex = vector->data[i]->value.vector;
+        for (int j = 0; j < vertex->size; j++) {
+            vertices[index] = (GLfloat) vertex->data[j]->value.f;
+            index++;
+        }
+    }
+    return vertices;
+}
+
+GLuint* toIndices(Vector* vector) {
+    if (vector->type != VECTOR) {
+        return NULL;
+    }
+    GLuint* indices = (GLuint*) malloc(numElements(vector) * sizeof(GLuint));
+    int index = 0;
+    for (int i = 0; i < vector->size; i++) {
+        Vector* vertexIndex = vector->data[i]->value.vector;
+        for (int j = 0; j < vertexIndex->size; j++) {
+            indices[index] = (GLuint) vertexIndex->data[j]->value.i;
+            index++;
+        }
+    }
+    return indices;
+}
+
 void destroyVector(Vector* vector) {
     if (vector == NULL) {
         return;

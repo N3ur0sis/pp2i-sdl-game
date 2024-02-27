@@ -163,6 +163,7 @@ void printVectorTest() {
     push_back(vector, createVectorData(vector2));
     push_back(vector, createVectorData(vector3));
     printVector(vector);
+    printf("numElements: %d\n", numElements(vector));
 
     destroyVector(vector);
 }
