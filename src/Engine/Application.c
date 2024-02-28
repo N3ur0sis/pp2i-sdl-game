@@ -26,7 +26,9 @@ int main(void){
     useShaders(shader->program);
     //Create and Initialize scene Camera
     Camera* camera = camera_create(0.0f, 1.0f, 5.0f, WIDTH, HEIGHT);
+    //Initialize Engine Components
     Time* time = (Time*)malloc(sizeof(Time));
+    SDL_Event e;
     /*******************DEMONSTRATION***********************/
     GLfloat vertices[] = {
         0.5f, -0.5f, 0.5f,
@@ -56,7 +58,7 @@ int main(void){
     Mesh* teapot = mesh_create(toVertices(vertices1), toIndices(indices1), vertices1->size, numElements(indices1));
     /***************************************************/
 
-    SDL_Event e;
+
     //Game Loop
     bool done = false;
     time->lastUpdate = SDL_GetTicks();
@@ -68,12 +70,13 @@ int main(void){
 
         //Input Handling
         while(SDL_PollEvent(&e)){
-        processInput(&e, &done, camera, time);
+            processInput(&e, &done);
         }
         //Game Logic
         //...
 
         //Rendering
+        cameraControl(camera);
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
         mesh_draw(teapot, shader, camera, time);
         glBindVertexArray(0);

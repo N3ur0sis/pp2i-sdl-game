@@ -1,14 +1,10 @@
 #pragma once
+
 #include <cglm/cglm.h>
 #include <cglm/call.h>
+#include <Controls.h>
 
-typedef enum  {
-    FORWARD,
-    BACKWARD,
-    LEFT,
-    RIGHT
-}Camera_Movement;
-
+//Camera Object
 typedef struct{
     vec3 Position;
     vec3 Front;
@@ -27,5 +23,5 @@ typedef struct{
 Camera* camera_create(float posX, float posY, float posZ, float width, float height);
 void getViewMatrix(Camera* camera, vec4* view);
 void updateCameraVectors(Camera* camera );
-void panCamera(Camera* camera,float xrel, float yrel);
-void ProcessKeyboard(Camera* camera, Camera_Movement direction, float deltaTime);
+void panCamera(Camera* camera);
+void cameraControl(Camera* camera);

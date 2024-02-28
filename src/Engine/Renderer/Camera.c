@@ -1,5 +1,9 @@
 #include <Camera.h>
 
+bool firstLook = true;
+bool firstMove = true;
+
+//Camera constructor
 Camera* camera_create(float posX, float posY, float posZ, float width, float height){
     Camera* camera = (Camera*)malloc(sizeof(Camera));
     camera->Position[0] = posX;
@@ -10,13 +14,14 @@ Camera* camera_create(float posX, float posY, float posZ, float width, float hei
     camera->WorldUp[2] = 0.0f;
     camera->Yaw = -90.0f;
     camera->Pitch = 0.0f;
-    camera->MouseSensitivity = 0.2f;
+    camera->MouseSensitivity = 0.1f;
     camera->MovementSpeed = 2.5f;
-    camera->Zoom = 45.0f;
+    camera->Zoom = 60.0f;
     updateCameraVectors(camera);
     glm_perspective(glm_rad(60.0f), (float)(width)/(float)height, 0.1f, 100.0f, camera->projectionMatrix);
     return camera;
 }
+
 
 void getViewMatrix(Camera* camera, vec4* view){
     vec3 center;
@@ -47,12 +52,25 @@ void updateCameraVectors(Camera* camera){
 
 }
 
-void panCamera(Camera* camera, float xrel, float yrel){
-        xrel *= camera->MouseSensitivity;
-        yrel *= camera->MouseSensitivity;
-        camera->Yaw   += xrel;
-        camera->Pitch -= yrel;
-
+void cameraControl(Camera* camera){
+    //Tilt camere
+    if(getMouseButtonState(SDL_BUTTON_RIGHT) == true){
+        float xpos = getMousePosition(0);
+        float ypos = getMousePosition(1);
+        if (firstLook)
+        {
+            setMousePosition(2, xpos);
+            setMousePosition(3, ypos);
+            firstLook = false;
+        }
+        float xoffset = xpos - getMousePosition(2);
+        float yoffset = getMousePosition(3) - ypos; // reversed since y-coordinates go from bottom to top
+        setMousePosition(2, xpos);
+        setMousePosition(3, ypos);
+        xoffset *= camera->MouseSensitivity;
+        yoffset *= camera->MouseSensitivity;
+        camera->Yaw   += xoffset;
+        camera->Pitch += yoffset;
         // make sure that when pitch is out of bounds, screen doesn't get flipped
         if (true)
         {
@@ -61,36 +79,45 @@ void panCamera(Camera* camera, float xrel, float yrel){
             if (camera->Pitch < -89.0f)
                 camera->Pitch = -89.0f;
         }
-
-        // update Front, Right and Up Vectors using the updated Euler angles
+                // update Front, Right and Up Vectors using the updated Euler angles
         updateCameraVectors(camera);
-}
+    }else{
+        firstLook = true;
+    }
+    //Pan camera
+    if(getMouseButtonState(SDL_BUTTON_MIDDLE) == SDL_PRESSED){
+            float xpos = getMousePosition(0);
+            float ypos = getMousePosition(1);
 
-void ProcessKeyboard(Camera* camera, Camera_Movement direction, float deltaTime)
-{
-    (void)deltaTime;
-    float velocity = camera->MovementSpeed * 0.03f;
-    if (direction == FORWARD){
-        vec3 temp;
-        glm_vec3_scale(camera->Front, velocity, temp);
-        glm_vec3_add(camera->Position, temp, camera->Position);
-    }
-        if (direction == BACKWARD){
-        vec3 temp;
-        glm_vec3_scale(camera->Front, velocity, temp);
-        glm_vec3_sub(camera->Position, temp, camera->Position);
-    }
-        if (direction == LEFT){
-        vec3 temp;
-        glm_vec3_scale(camera->Right, velocity, temp);
-        glm_vec3_sub(camera->Position, temp, camera->Position);
-    }
-        if (direction == RIGHT){
-        vec3 temp;
-        glm_vec3_scale(camera->Right, velocity, temp);
-        glm_vec3_add(camera->Position, temp, camera->Position);
-    }
+            if (firstMove)
+            {
+                setMousePosition(2, xpos);
+                setMousePosition(3, ypos);
+                firstMove = false;
+            }
+            float xoffset = xpos - getMousePosition(2);
+            float yoffset = getMousePosition(3) - ypos; // reversed since y-coordinates go from bottom to top
 
-
+            setMousePosition(2, xpos);
+            setMousePosition(3, ypos);
+            vec3 velocityY;
+            glm_vec3_scale(camera->Up, yoffset*0.01f, velocityY);
+            glm_vec3_sub(camera->Position, velocityY, camera->Position);
+            vec3 velocityX;
+            glm_vec3_scale(camera->Right, xoffset*0.01f, velocityX);
+            glm_vec3_sub(camera->Position, velocityX, camera->Position);
+            updateCameraVectors(camera);
+    }else{
+            setMousePosition(2, getMousePosition(0));
+            setMousePosition(3, getMousePosition(1));
+    }
+    //Zoom Camera
+    float zpos = getMousePosition(4);
+    float zoffset = zpos - getMousePosition(5);
+    setMousePosition(5, zpos);
+    vec3 velocityZ;
+    glm_vec3_scale(camera->Front, zoffset*1.5f, velocityZ);
+    glm_vec3_add(camera->Position, velocityZ, camera->Position);
     updateCameraVectors(camera);
 }
+

@@ -2,6 +2,8 @@
     "files.associations": {
         "mesh.h": "c",
         "controls.h": "c",
-        "engine.h": "c"
+        "engine.h": "c",
+        "call.h": "c",
+        "stdbool.h": "c"
     }
 }
