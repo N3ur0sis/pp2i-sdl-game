@@ -9,6 +9,7 @@
 #include <stdbool.h>
 #include <cglm/cglm.h>
 #include <cglm/call.h>
+#include <objLoader.h>
 
 //GLOBAL VARIABLES
 #define WIDTH 800
@@ -47,17 +48,18 @@ int main(void){
                           1, 3, 7, 1, 7, 5,
                           4, 6, 2, 4, 2, 0};
 
-    Vector* vertices1 = createVector(VECTOR);
-    Vector* normals1 = createVector(VECTOR);
-    Vector* uvs1 = createVector(VECTOR);
-    Vector* indices1 = createVector(VECTOR);
-    ModelLoader("../ressources/teapot.obj", &vertices1, &normals1, &uvs1, &indices1);
+    //Vector* vertices1 = createVector(VECTOR);
+    //Vector* normals1 = createVector(VECTOR);
+    //Vector* uvs1 = createVector(VECTOR);
+    //Vector* indices1 = createVector(VECTOR);
+    //ModelLoader("../ressources/MaleHead.obj", &vertices1, &normals1, &uvs1, &indices1);
+    Obj obj = loadObj("../ressources/teapot.obj");
 
     //Create and initialize a cube
     Mesh* rectangle = mesh_create(vertices, indices, 24, 36);
-    Mesh* teapot = mesh_create(toVertices(vertices1), toIndices(indices1), vertices1->size, numElements(indices1));
+    Mesh* cube = mesh_create(obj.vertices, (GLuint*)obj.indices, obj.numVertices, obj.numIndices);
+    //Mesh* teapot = mesh_create(toVertices(vertices1), toIndices(indices1), vertices1->size, numElements(indices1));
     /***************************************************/
-
 
     //Game Loop
     bool done = false;
@@ -78,13 +80,14 @@ int main(void){
         //Rendering
         cameraControl(camera);
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-        mesh_draw(teapot, shader, camera, time);
+        mesh_draw(cube, shader, camera, time);
+        //mesh_draw(rectangle, shader, camera, time);
         glBindVertexArray(0);
         SDL_GL_SwapWindow(window);
     }
 
     //CleanUp
-    free(teapot);
+    free(cube);
     free(rectangle);
     free(camera);
     free(shader);

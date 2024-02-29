@@ -20,8 +20,8 @@ SDL_Window* window_create(int width, int height, const char* title) {
 	
 	SDL_ShowCursor(SDL_DISABLE);
 	SDL_SetWindowResizable(window, SDL_TRUE);
-	SDL_SetWindowGrab(window, SDL_TRUE);
-	SDL_WarpMouseInWindow(window, 0, 0);
+	//SDL_SetWindowGrab(window, SDL_TRUE);
+	//SDL_WarpMouseInWindow(window, 0, 0);
 
 	if (window == NULL) {
 		fprintf(stderr, "Could not create window: %s\n", SDL_GetError());

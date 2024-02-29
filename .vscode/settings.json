@@ -4,6 +4,7 @@
         "controls.h": "c",
         "engine.h": "c",
         "call.h": "c",
-        "stdbool.h": "c"
+        "stdbool.h": "c",
+        "objloader.h": "c"
     }
 }

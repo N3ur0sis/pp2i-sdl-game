@@ -12,6 +12,7 @@ char* get_shader_content(const char* fileName)
         printf("Error: Could not open file %s\n", fileName);
         return "";
     }
+    
     fseek(fp, 0L, SEEK_END);
     size = ftell(fp)+1;
     fclose(fp);
