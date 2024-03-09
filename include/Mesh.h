@@ -8,10 +8,11 @@
 
 typedef struct _Mesh {
 	GLuint VAO;	// VERTEX ARRAY OBJECT
-	GLuint VBO;	// VERTEX BUFFER OBJECT
+	GLuint VBO[2];	// VERTEX BUFFER OBJECT
 	GLuint EBO;	// ELEMENT BUFFER OBJECT
 	unsigned int vertexCount;
 	unsigned int indexCount;
+	unsigned int textureID;
 } Mesh;
 
 
@@ -28,7 +29,7 @@ typedef struct _Mesh {
 
 //Private Methods :
 void mesh_init(Mesh*);
-void mesh_load(Mesh* model, GLfloat *vertices, GLuint *indices);
+void mesh_load(Mesh* model, GLfloat *vertices, GLuint *indices, GLfloat* texCoord);
 //Pulbic Methods :
-Mesh*       mesh_create(GLfloat *vertices, GLuint *indices, unsigned int vertexCount, unsigned int indexCount);
+Mesh*       mesh_create(GLfloat *vertices, GLfloat* texCoord, GLuint *indices, unsigned int vertexCount, unsigned int indexCount);
 void        mesh_draw(Mesh* model, Shader* s, Camera* c, Time* time);

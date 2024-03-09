@@ -5,6 +5,7 @@
         "engine.h": "c",
         "call.h": "c",
         "stdbool.h": "c",
-        "objloader.h": "c"
+        "objloader.h": "c",
+        "cglm.h": "c"
     }
 }

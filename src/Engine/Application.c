@@ -10,6 +10,7 @@
 #include <cglm/cglm.h>
 #include <cglm/call.h>
 #include <objLoader.h>
+#include <Textures.h>
 
 //GLOBAL VARIABLES
 #define WIDTH 800
@@ -30,36 +31,14 @@ int main(void){
     //Initialize Engine Components
     Time* time = (Time*)malloc(sizeof(Time));
     SDL_Event e;
+
+
     /*******************DEMONSTRATION***********************/
-    GLfloat vertices[] = {
-        0.5f, -0.5f, 0.5f,
-        -0.5f, -0.5f, 0.5f,
-        0.5f, 0.5f, 0.5f,
-        -0.5f, 0.5f, 0.5f,
-        0.5f, -0.5f, -0.5f,
-        -0.5f, -0.5f, -0.5f,
-        0.5f, 0.5f, -0.5f,
-        -0.5f, 0.5f, -0.5f
-    };
-    GLuint indices[] = {0, 2, 3, 0, 3, 1,
-                          2, 6, 7, 2, 7, 3,
-                          6, 4, 5, 6, 5, 7,
-                          4, 0, 1, 4, 1, 5,
-                          1, 3, 7, 1, 7, 5,
-                          4, 6, 2, 4, 2, 0};
-
-    //Vector* vertices1 = createVector(VECTOR);
-    //Vector* normals1 = createVector(VECTOR);
-    //Vector* uvs1 = createVector(VECTOR);
-    //Vector* indices1 = createVector(VECTOR);
-    //ModelLoader("../ressources/MaleHead.obj", &vertices1, &normals1, &uvs1, &indices1);
-    Obj obj = loadObj("../ressources/teapot.obj");
-
-    //Create and initialize a cube
-    Mesh* rectangle = mesh_create(vertices, indices, 24, 36);
-    Mesh* cube = mesh_create(obj.vertices, (GLuint*)obj.indices, obj.numVertices, obj.numIndices);
-    //Mesh* teapot = mesh_create(toVertices(vertices1), toIndices(indices1), vertices1->size, numElements(indices1));
+    Obj obj = loadObj("../ressources/table.obj");
+    Mesh* cube = mesh_create(obj.vertices, obj.uvs, (GLuint*)obj.indices, obj.numVertices, obj.numIndices);
+    load_textures(cube,"../ressources/table.png");
     /***************************************************/
+
 
     //Game Loop
     bool done = false;
@@ -88,7 +67,6 @@ int main(void){
 
     //CleanUp
     free(cube);
-    free(rectangle);
     free(camera);
     free(shader);
     SDL_DestroyWindow(window);
