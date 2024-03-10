@@ -43,7 +43,7 @@ make
 # Run
 ./pp2i
 ```
-![Repository Map](https://github.com/N3ur0sis/pp2i-sdl-game/blob/main/image.png)
+![Repository Map](https://github.com/N3ur0sis/pp2i-sdl-game/blob/main/docs/architecture.png)
 
 This project is maintained by Aymeric, Arthur, Baptiste and Victor 
 
