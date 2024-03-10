@@ -9,6 +9,18 @@ typedef struct shaderLocations {
 	GLuint View;
     GLuint Projection;
     GLuint Model;
+	
+	GLuint ambientLightColor;
+	GLuint ambientLightIntensity;
+
+	GLuint pointLightColor;
+	GLuint pointLightPosition;
+	GLuint pointLightIntensity;
+	GLuint pointLightAttenuation;
+
+	GLuint transformationMatrix;
+	GLuint normalTransformationMatrix;
+
 } shaderLocations;
 
 typedef struct shader {

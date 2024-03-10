@@ -1,31 +1,21 @@
-#include "Window.h"
-#include "Engine.h"
-#include "Shader.h"
-#include "Mesh.h"
-#include "ModelLoader.h"
-#include <Time.h>
-#include <Controls.h>
-#include <math.h>
-#include <stdbool.h>
-#include <cglm/cglm.h>
-#include <cglm/call.h>
-#include <objLoader.h>
-#include <Textures.h>
+#include <Engine.h>
+
 
 //GLOBAL VARIABLES
 static const int WIDTH = 1280;
 static const int HEIGHT = 720;
+static const char*  title = "Game";
 
 
-//Entryp Point of the Game
+//Entry Point of the Game
 int main(void){
 
     //Initialize SDL and Create window
-    SDL_Window* window = window_create(WIDTH, HEIGHT, "Game");
+    SDL_Window* window = window_create(WIDTH, HEIGHT, title);
     //Initialize OpenGL and create ViewPort
-    initOpenGL(WIDTH, HEIGHT);
+    engine_start(WIDTH, HEIGHT);
     //Load and Compile Shaders into OpenGL
-    Shader* shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
+    Shader* shader = LoadShaders("../assets/shaders/default.vs", "../assets/shaders/default.fs");
     useShaders(shader->program);
     //Create and Initialize scene Camera
     Camera* camera = camera_create(0.0f, 1.0f, 5.0f, WIDTH, HEIGHT);
@@ -34,11 +24,21 @@ int main(void){
     SDL_Event e;
 
 
-    /*******************DEMONSTRATION***********************/
-    Obj obj = loadObj("assets/models/table.obj");
-    Mesh* cube = mesh_create(obj.vertices, obj.uvs, (GLuint*)obj.indices, obj.numVertices, obj.numIndices);
-    load_textures(cube,"assets/images/table.png");
+    /***************DEMONSTRATION SCENE*****************/
+    //Load a model
+    Obj obj = loadObj("../assets/models/table.obj");
+    Mesh* cube = mesh_create(obj.vertices, obj.uvs, obj.normals, (GLuint*)obj.indices, obj.numVertices, obj.numIndices);
+    load_textures(cube,"../assets/images/table.png");
+    
+    //Creating scene light
+    
+	vec3 color = {1.0f, 1.0f, 1.0f};
+	light_setAmbientLight(shader, color, 0.2f);
+    vec3 pointColor = {1.0f, 1.0f, 1.0f};
+    vec3 pointPosition = {10.0f, 5.0f, -2.0f};
+	pointLight *point = light_createPointLight(shader, pointColor, pointPosition, 5.0f, 0.6f);
     /***************************************************/
+
 
 
     //Game Loop
@@ -58,11 +58,12 @@ int main(void){
         //...
 
         //Rendering
+		//point->position[0] = 5*sinf(time->deltaTime);
+        light_updatePointLight(shader, point);
         cameraControl(camera);
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
         mesh_draw(cube, shader, camera, time);
         //mesh_draw(rectangle, shader, camera, time);
-        glBindVertexArray(0);
         SDL_GL_SwapWindow(window);
     }
 
@@ -71,6 +72,5 @@ int main(void){
     free(camera);
     free(shader);
     SDL_DestroyWindow(window);
-    SDL_Quit();
-    return 0;
+    engine_quit();
 }

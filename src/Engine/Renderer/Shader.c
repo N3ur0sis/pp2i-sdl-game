@@ -62,10 +62,19 @@ Shader* LoadShaders(const char * vertex_file_path,const char * fragment_file_pat
     shader->program = shaderProgram;
     GLuint viewLoc = glGetUniformLocation(shaderProgram, "view");
     GLuint projectionLoc = glGetUniformLocation(shaderProgram, "projection");
-    GLuint modelLoc = glGetUniformLocation(shader->program, "model");
+    GLuint modelLoc = glGetUniformLocation(shaderProgram, "model");
     shader->locations.Model = modelLoc;
     shader->locations.View = viewLoc;
     shader->locations.Projection = projectionLoc;
+    
+	shader->locations.ambientLightColor = glGetUniformLocation(shaderProgram, "ambientLightColor");
+	shader->locations.ambientLightIntensity = glGetUniformLocation(shaderProgram, "ambientLightIntensity");
+	shader->locations.pointLightColor = glGetUniformLocation(shaderProgram, "pointLightColor");
+	shader->locations.pointLightPosition = glGetUniformLocation(shaderProgram, "pointLightPosition");
+	shader->locations.pointLightIntensity = glGetUniformLocation(shaderProgram, "pointLightIntensity");
+	shader->locations.pointLightAttenuation = glGetUniformLocation(shaderProgram, "pointLightAttenuation");
+	shader->locations.transformationMatrix = glGetUniformLocation(shaderProgram, "transformationMatrix");
+	shader->locations.normalTransformationMatrix = glGetUniformLocation(shaderProgram, "normalTransformationMatrix");
     
     return shader;
 }

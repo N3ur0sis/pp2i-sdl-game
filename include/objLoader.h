@@ -7,10 +7,12 @@
 typedef struct {
     float *vertices;
     float *uvs;
+    float *normals;
     int *indices;
     int numVertices;
     int numIndices;
     int numUvs;
+    int numNorm;
 } Obj;
 
 Obj loadObj(const char *filename);
