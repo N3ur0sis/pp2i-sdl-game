@@ -1,7 +1,0 @@
-{
-    "files.associations": {
-        "mesh.h": "c",
-        "controls.h": "c",
-        "engine.h": "c"
-    }
-}

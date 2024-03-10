@@ -11,7 +11,7 @@ void initOpenGL(float width, float height) {
 	glFrontFace(GL_CW);
 	glCullFace(GL_FRONT);
 
-	glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 }
 
