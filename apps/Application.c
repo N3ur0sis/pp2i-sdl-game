@@ -1,4 +1,5 @@
 #include <Engine.h>
+#include <Player.h>
 
 
 //GLOBAL VARIABLES
@@ -29,6 +30,10 @@ int main(void){
     Obj obj = loadObj("../assets/models/table.obj");
     Mesh* cube = mesh_create(obj.vertices, obj.uvs, obj.normals, (GLuint*)obj.indices, obj.numVertices, obj.numIndices);
     load_textures(cube,"../assets/images/table.png");
+
+    //Load a player
+    (void) cube;
+    Player* player = player_create("../assets/models/table.obj", "../assets/images/table.png", camera, (vec3){0.0f, 0.0f, 0.0f}, (vec3){0.0f, 0.0f, 0.0f}, (vec3){1.0f, 1.0f, 1.0f}, 5.0f, 5.0f);
     
     //Creating scene light
     
@@ -62,7 +67,7 @@ int main(void){
         light_updatePointLight(shader, point);
         cameraControl(camera);
         glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-        mesh_draw(cube, shader, camera, time);
+        mesh_draw(player->model, shader, player->camera, time);
         //mesh_draw(rectangle, shader, camera, time);
         SDL_GL_SwapWindow(window);
     }

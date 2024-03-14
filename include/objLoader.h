@@ -1,3 +1,6 @@
+#ifndef PP2I_OBJLOADER_H
+#define PP2I_OBJLOADER_H
+
 #include <glad/glad.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -16,3 +19,5 @@ typedef struct {
 } Obj;
 
 Obj loadObj(const char *filename);
+
+#endif //PP2I_OBJLOADER_H
