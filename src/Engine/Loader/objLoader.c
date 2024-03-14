@@ -88,7 +88,7 @@ Obj loadObj(const char *filename) {
         mesh.normals[i * 3 + 2] = (GLfloat)normals[normIndices[i] * 3 + 2];
     }
 
-
+    (void) numUvs;
 
 
     free(vertices);
