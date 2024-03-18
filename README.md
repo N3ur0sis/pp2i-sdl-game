@@ -35,6 +35,20 @@ cd pp2i-sdl-game
 #Run scripts, check and install missing deps, build with cmake and run the game
 ./scripts/run.sh
 ```
+
+## TODO List
+
+- [ ] Basic player movement
+- [ ] Map creation (Blender) + Level design (in-engine)
+- [ ] Dungeons procedural Generation
+- [x] Light system (fixes needed) 
+- [ ] Import + Render animation
+- [ ] Basic Combat system
+- [ ] Menu (Main + Options)
+- [ ] GUI
+- [ ] Inventory system
+
+
 ![Repository Map](https://github.com/N3ur0sis/pp2i-sdl-game/blob/main/docs/architecture.png)
 
 This project is maintained by Aymeric, Arthur, Baptiste, Victor and Mathis 
