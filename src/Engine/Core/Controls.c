@@ -7,10 +7,10 @@ float mousePos[6] = {0}; // 0->posX 1->posY 2->lastX 3->lastY 4->wheely ->5 last
 char mouseState[5] = { 0 }; // mouse button state
 
 
-void processInput(SDL_Event* e,  bool* done){
+void processInput(SDL_Event* e,  bool* running){
 	switch (e->type){
 		case SDL_QUIT:
-			*done = true;
+			*running = false;
 			break;
 		case SDL_KEYDOWN:
 			handleKeyBoardEvent(*e);

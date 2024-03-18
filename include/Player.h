@@ -14,6 +14,9 @@
 #include "Time.h"
 #include "objLoader.h"
 #include <cglm/cglm.h>
+#include "Game.h"
+
+typedef struct Game Game;
 
 typedef struct Player {
     Mesh* model;
@@ -26,5 +29,9 @@ typedef struct Player {
 } Player;
 
 Player* player_create(char* objPath, char* texturePath, Camera* camera, vec3 position, vec3 rotation, vec3 scale, float speed, float rotationSpeed);
+
+void player_update(Player* player, Time* time, Game* game);
+
+void player_render(Player* player, Game* game);
 
 #endif //PP2I_PLAYER_H

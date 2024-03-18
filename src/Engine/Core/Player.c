@@ -19,3 +19,13 @@ Player* player_create(char* objPath, char* texturePath, Camera* camera, vec3 pos
     player->rotationSpeed = rotationSpeed;
     return player;
 }
+
+void player_update(Player* player, Time* time, Game* game) {
+    (void)game;
+    (void)time;
+    (void)player;
+}
+
+void player_render(Player* player, Game* game) {
+    mesh_draw(player->model, game->shader, player->camera, game->time);
+}
