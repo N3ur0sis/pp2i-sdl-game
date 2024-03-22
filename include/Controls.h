@@ -1,7 +1,10 @@
 #pragma once
 #include <stdbool.h>
 #include <Time.h>
-#include "Game.h"
+// #include <Game.h>
+#include <SDL2/SDL.h>
+
+typedef struct _Game Game;
 
 
 void processInput(Game* game);

@@ -5,7 +5,7 @@
 #include <Controls.h>
 
 //Camera Object
-typedef struct{
+typedef struct _Camera{
     vec3 Position;
     vec3 Front;
     vec3 Up;

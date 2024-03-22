@@ -1,4 +1,5 @@
 #include <Controls.h>
+#include <Game.h>
 
 
 //State of Mouse and keyboard input

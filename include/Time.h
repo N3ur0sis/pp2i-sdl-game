@@ -2,7 +2,7 @@
 #include <SDL2/SDL.h>
 
 typedef struct {
-    Uint32 lastUpdate;
-    Uint32 currentUpdate;
+    uint32_t lastUpdate;
+    uint32_t currentUpdate;
     float deltaTime;
 } Time;

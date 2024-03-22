@@ -1,4 +1,4 @@
-#include "Engine.h"
+#include <Engine.h>
 
 void engine_start(float width, float height){
 
@@ -17,7 +17,7 @@ void engine_start(float width, float height){
 
 }
 
-void engine_quit() {
+void engine_quit(void) {
 	SDL_Quit();
 	exit(EXIT_SUCCESS);
 }

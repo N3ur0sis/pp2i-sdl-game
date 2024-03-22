@@ -1,6 +1,8 @@
 #pragma once
+
+#include <cglm/cglm.h>
 #include <Shader.h>
-#include <Camera.h>
+
 
 typedef struct transformationMatrices {
 	mat4 rotate;
@@ -19,6 +21,11 @@ typedef struct _Mesh {
 
 	meshTransformationMatrices matrices;
 } Mesh;
+
+#include <Camera.h>
+#include <Time.h>
+
+typedef struct _Camera Camera;
 
 
 /* How mesh works :

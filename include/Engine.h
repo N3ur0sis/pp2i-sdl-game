@@ -1,5 +1,4 @@
 #pragma once
-
 #include <Window.h>
 #include <Shader.h>
 #include <objLoader.h>
@@ -13,5 +12,5 @@
 
 
 void engine_start(float width, float height);
-void engine_quit();
+void engine_quit(void);
 

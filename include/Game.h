@@ -2,15 +2,16 @@
 // Created by Victor Davillé on 17/03/2024.
 //
 
-#ifndef PP2I_GAME_H
-#define PP2I_GAME_H
+// #ifndef PP2I_GAME_H
+// #define PP2I_GAME_H
 
-#include "Player.h"
-#include "Engine.h"
+#pragma once
+#include <Engine.h>
+#include <Light.h>
 
-typedef struct Player Player;
+typedef struct _Player Player;
 
-typedef struct Game {
+typedef struct _Game {
     Time* time;
     SDL_Window* window;
     Shader* shader;
@@ -22,7 +23,7 @@ typedef struct Game {
     char* title;
 
     pointLight* point;
-    Player* player;
+    struct _Player* player;
 } Game;
 
 Game* game_create(int width, int height, char* title);
@@ -35,4 +36,7 @@ void game_render(Game* game);
 
 void game_destroy(Game* game);
 
-#endif //PP2I_GAME_H
+#include <Player.h>
+
+
+// #endif //PP2I_GAME_H
