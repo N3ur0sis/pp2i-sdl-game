@@ -1,10 +1,6 @@
 #pragma once
-#include <glad/glad.h>
 #include <Shader.h>
 #include <Camera.h>
-#include <SDL2/SDL.h>
-#include <Time.h>
-#include <stdio.h>
 
 typedef struct transformationMatrices {
 	mat4 rotate;

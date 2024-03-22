@@ -7,29 +7,29 @@ float mousePos[6] = {0}; // 0->posX 1->posY 2->lastX 3->lastY 4->wheely ->5 last
 char mouseState[5] = { 0 }; // mouse button state
 
 
-void processInput(SDL_Event* e,  bool* running){
-	switch (e->type){
+void processInput(Game* game){
+	switch (game->event.type) {
 		case SDL_QUIT:
-			*running = false;
+			game->isRunning = false;
 			break;
 		case SDL_KEYDOWN:
-			handleKeyBoardEvent(*e);
+			handleKeyBoardEvent(game->event);
 			break;
 		case SDL_KEYUP:
-			handleKeyBoardEvent(*e);
+			handleKeyBoardEvent(game->event);
 			break;
 		case SDL_MOUSEMOTION:
-			mousePos[0] = e->motion.x;
-			mousePos[1] = e->motion.y;
+			mousePos[0] = game->event.motion.x;
+			mousePos[1] = game->event.motion.y;
 			break;
 		case SDL_MOUSEBUTTONDOWN:
-			handleMouseButtonEvent(*e);
+			handleMouseButtonEvent(game->event);
             break;
 		case SDL_MOUSEBUTTONUP:
-			handleMouseButtonEvent(*e);
+			handleMouseButtonEvent(game->event);
 			break;
 		case SDL_MOUSEWHEEL:
-			handleMouseWheelEvent(*e);
+			handleMouseWheelEvent(game->event);
 	}
 }
 

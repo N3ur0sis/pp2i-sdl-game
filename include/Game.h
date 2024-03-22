@@ -5,16 +5,8 @@
 #ifndef PP2I_GAME_H
 #define PP2I_GAME_H
 
-#include "Time.h"
-#include "Shader.h"
-#include <SDL2/SDL.h>
-#include <stdbool.h>
 #include "Player.h"
-#include "Window.h"
 #include "Engine.h"
-#include "Light.h"
-#include "Controls.h"
-#include "Player.h"
 
 typedef struct Player Player;
 

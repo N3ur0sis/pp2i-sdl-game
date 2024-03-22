@@ -5,16 +5,13 @@
 #ifndef PP2I_PLAYER_H
 #define PP2I_PLAYER_H
 
-#include "Mesh.h"
 #include "Textures.h"
 #include "ReadShader.h"
-#include "Shader.h"
 #include "Light.h"
-#include "Camera.h"
-#include "Time.h"
 #include "objLoader.h"
-#include <cglm/cglm.h>
 #include "Game.h"
+#include "Camera.h"
+#include "Mesh.h"
 
 typedef struct Game Game;
 

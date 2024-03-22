@@ -26,7 +26,7 @@ void game_update(Game* game) {
     game->time->currentUpdate = SDL_GetTicks();
     game->time->deltaTime = (game->time->currentUpdate - game->time->lastUpdate) / 1000.0f;
     while(SDL_PollEvent(&game->event)){
-        processInput(&game->event, &game->isRunning);
+        processInput(game);
     }
     light_updatePointLight(game->shader, game->point);
     cameraControl(game->player->camera);

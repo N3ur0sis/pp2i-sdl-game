@@ -1,12 +1,10 @@
 #pragma once
-#include <SDL2/SDL.h>
 #include <stdbool.h>
-#include <Camera.h>
 #include <Time.h>
+#include "Game.h"
 
 
-
-void processInput(SDL_Event* e, bool* done);
+void processInput(Game* game);
 void handleKeyBoardEvent(SDL_Event e);
 void handleMouseButtonEvent(SDL_Event e);
 bool getKeyState(SDL_KeyCode code);
