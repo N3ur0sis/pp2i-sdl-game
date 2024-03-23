@@ -15,7 +15,7 @@ to get better stuff to beat stronger enemy to earn better junk.
 - SDL2
 - GLAD (OpenGL API)
 
-First check you have all the dependencies
+First check you have all the dependencies but this will be checked by the script anyway (see below).
 
 ```sh
 sudo apt install git build-essential pkg-config cmake cmake-data libsdl2-dev libsdl2-gfx-dev
@@ -33,15 +33,8 @@ Only for Debian based/Ubuntu user (for macOS, i guess it's similar)
 git clone https://github.com/N3ur0sis/pp2i-sdl-game
 cd pp2i-sdl-game
 
-# Go to build folder
-cd build
-
-# Build
-cmake ..
-make
-
-# Run
-./pp2i
+# Run scripts : it install deps, cmake, make, and run
+./scripts/run.sh
 ```
 ![Repository Map](https://github.com/N3ur0sis/pp2i-sdl-game/blob/main/docs/architecture.png)
 
