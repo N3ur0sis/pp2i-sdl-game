@@ -1,11 +1,14 @@
 #include <Shader.h>
-#include <ReadShader.h>
-
 
 Shader* LoadShaders(const char * vertex_file_path,const char * fragment_file_path){
 
+    
+    Shader *shader = (Shader*)malloc(sizeof(Shader));
+
+    //Read Shader Content
     const char *vertexShaderSource = get_shader_content(vertex_file_path);
     const char *fragmentShaderSource = get_shader_content(fragment_file_path);
+
     // Compile vertex shader
     unsigned int vertexShader = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
@@ -49,36 +52,41 @@ Shader* LoadShaders(const char * vertex_file_path,const char * fragment_file_pat
         return 0;
     }
 
-    // link shaders
+    // Link shaders
     unsigned int shaderProgram = glCreateProgram();
     glAttachShader(shaderProgram, vertexShader);
     glAttachShader(shaderProgram, fragmentShader);
     glLinkProgram(shaderProgram);
+    shader->m_program = shaderProgram;
 
+    //Cleanup  shaders
     glDeleteShader(vertexShader);
     glDeleteShader(fragmentShader);
 
-    Shader *shader = (Shader*)malloc(sizeof(Shader));
-    shader->program = shaderProgram;
-    GLuint viewLoc = glGetUniformLocation(shaderProgram, "view");
-    GLuint projectionLoc = glGetUniformLocation(shaderProgram, "projection");
-    GLuint modelLoc = glGetUniformLocation(shaderProgram, "model");
-    shader->locations.Model = modelLoc;
-    shader->locations.View = viewLoc;
-    shader->locations.Projection = projectionLoc;
-    
-	shader->locations.ambientLightColor = glGetUniformLocation(shaderProgram, "ambientLightColor");
-	shader->locations.ambientLightIntensity = glGetUniformLocation(shaderProgram, "ambientLightIntensity");
-	shader->locations.pointLightColor = glGetUniformLocation(shaderProgram, "pointLightColor");
-	shader->locations.pointLightPosition = glGetUniformLocation(shaderProgram, "pointLightPosition");
-	shader->locations.pointLightIntensity = glGetUniformLocation(shaderProgram, "pointLightIntensity");
-	shader->locations.pointLightAttenuation = glGetUniformLocation(shaderProgram, "pointLightAttenuation");
-	shader->locations.transformationMatrix = glGetUniformLocation(shaderProgram, "transformationMatrix");
-	shader->locations.normalTransformationMatrix = glGetUniformLocation(shaderProgram, "normalTransformationMatrix");
+
+
+    //Setting shader locations
+    shader->m_locations.Model = glGetUniformLocation(shaderProgram, "model");
+    shader->m_locations.View = glGetUniformLocation(shaderProgram, "view");
+    shader->m_locations.Projection = glGetUniformLocation(shaderProgram, "projection");    
+	shader->m_locations.ambientLightColor = glGetUniformLocation(shaderProgram, "ambientLightColor");
+	shader->m_locations.ambientLightIntensity = glGetUniformLocation(shaderProgram, "ambientLightIntensity");
+	shader->m_locations.pointLightColor = glGetUniformLocation(shaderProgram, "pointLightColor");
+	shader->m_locations.pointLightPosition = glGetUniformLocation(shaderProgram, "pointLightPosition");
+	shader->m_locations.pointLightIntensity = glGetUniformLocation(shaderProgram, "pointLightIntensity");
+	shader->m_locations.pointLightAttenuation = glGetUniformLocation(shaderProgram, "pointLightAttenuation");
+	shader->m_locations.transformationMatrix = glGetUniformLocation(shaderProgram, "transformationMatrix");
+	shader->m_locations.normalTransformationMatrix = glGetUniformLocation(shaderProgram, "normalTransformationMatrix");
     
     return shader;
 }
 
-void useShaders(GLuint program){
-    glUseProgram(program);
+
+void UseShaders(Shader* shader){
+    glUseProgram(shader->m_program);
+}
+
+void DeleteShaders(Shader* shader){
+    glDeleteProgram(shader->m_program);
+    free(shader);
 }

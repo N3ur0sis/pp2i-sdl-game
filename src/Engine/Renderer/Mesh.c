@@ -1,5 +1,7 @@
 #include <Mesh.h>
 
+#include <Mesh.h>
+
 
 
 void mesh_init(Mesh* model) {
@@ -62,10 +64,9 @@ void mesh_draw(Mesh* model, Shader* shader, Camera* camera, Time* time) {
     glm_mat4_identity(modelMatrix);
     vec3 rotAxis = {0.0f, 1.0f, 0.0f};
     glm_rotate(modelMatrix, glm_rad(0.0f), rotAxis);
-    glUniformMatrix4fv(shader->locations.Model, 1, GL_FALSE, (float*)modelMatrix);
-    glUniformMatrix4fv(shader->locations.View, 1, GL_FALSE, (float*)camera->viewMatrix);
-    glUniformMatrix4fv(shader->locations.Projection, 1, GL_FALSE, (float*)camera->projectionMatrix);
+    glUniformMatrix4fv(shader->m_locations.Model, 1, GL_FALSE, (float*)modelMatrix);
+    glUniformMatrix4fv(shader->m_locations.View, 1, GL_FALSE, (float*)camera->viewMatrix);
+    glUniformMatrix4fv(shader->m_locations.Projection, 1, GL_FALSE, (float*)camera->projectionMatrix);
 	glBindVertexArray(model->VAO);
 	glDrawArrays(GL_TRIANGLES, 0, model->indexCount);
 }
-

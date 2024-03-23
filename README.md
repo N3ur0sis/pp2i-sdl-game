@@ -18,9 +18,16 @@ to get better stuff to beat stronger enemy to earn better junk.
 First check you have all the dependencies
 
 ```sh
-sudo apt install git build-essential pkg-config cmake cmake-data libsdl2-dev libsdl2-gfx-dev
+sudo apt install git build-essential pkg-config cmake cmake-data libsdl2-dev libsdl2-gfx-dev assimp-utils libassimp-dev libassimp5
 ```
+**WARNING** 
+Update your Version of Opengl to 4.6
+On ubuntu : 
 
+```sh
+sudo add-apt-repository ppa:kisak/kisak-mesa -y
+sudo apt update && sudo apt upgrade
+```
 ## Build instructions
 
 Only for Debian based/Ubuntu user (for macOS, i guess it's similar)

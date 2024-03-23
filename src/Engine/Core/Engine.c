@@ -1,23 +1,21 @@
 #include "Engine.h"
 
-void engine_start(float width, float height){
+void GL_Init(void){
 
 	//Init Glad and configure basic rendering properties.
     gladLoadGLLoader(SDL_GL_GetProcAddress);
-    glViewport(0, 0, width, height);
-	glClearColor(.08f,.08f,.08f,0);
-	//Enable 3D
-	glEnable(GL_DEPTH_TEST);
-	//Enable face culling
-	glEnable(GL_CULL_FACE);
-	glFrontFace(GL_CW);
-	glCullFace(GL_FRONT);
-	//Change to GL_LINE to render in wireframe mode
-	glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
+	// Set up initial GL attributes
+    glClearColor(0.2f, 0.2f, 0.2f, 0.2f); // Set the cleared back buffer to dark gray
+    glCullFace(GL_BACK);                  // Set back-face culling
+    glEnable(GL_CULL_FACE);               // Enable use of back/front face culling
+    glEnable(GL_DEPTH_TEST);              // Enable use of depth testing
+    glDisable(GL_STENCIL_TEST);           // Disable stencil test for speed
+    printf("OpenGL version supported by this platform (%s): \n",
+        glGetString(GL_VERSION));
 }
 
-void engine_quit() {
+void GL_Quit(void) {
 	SDL_Quit();
 	exit(EXIT_SUCCESS);
 }

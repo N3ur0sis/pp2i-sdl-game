@@ -1,24 +1,37 @@
+#include <Window.h>
 #include <Engine.h>
-
+#include <Shader.h>
+#include <Camera.h>
+#include <Light.h>
+#include <Mesh.h>
+#include <objLoader.h>
+#include <Textures.h>
 
 //GLOBAL VARIABLES
-static const int WIDTH = 1280;
-static const int HEIGHT = 720;
-static const char*  title = "Game";
-
+static const int g_WindowWidth = 1280;
+static const int g_WindowHeight = 720;
+static const char* g_WindowTitle = "Game";
+ // Init to 0
 
 //Entry Point of the Game
 int main(void){
 
     //Initialize SDL and Create window
-    SDL_Window* window = window_create(WIDTH, HEIGHT, title);
-    //Initialize OpenGL and create ViewPort
-    engine_start(WIDTH, HEIGHT);
+    Window* window = WindowInit(g_WindowWidth, g_WindowHeight, g_WindowTitle);
+    if(window == NULL){
+        return 1;
+    }
+    
+    //Initialize OpenGL
+    GL_Init();
+
     //Load and Compile Shaders into OpenGL
-    Shader* shader = LoadShaders("../assets/shaders/default.vs", "../assets/shaders/default.fs");
-    useShaders(shader->program);
+    Shader* shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
+    UseShaders(shader);
+
     //Create and Initialize scene Camera
-    Camera* camera = camera_create(0.0f, 1.0f, 5.0f, WIDTH, HEIGHT);
+    Camera* camera = camera_create(0.0f, 1.0f, 5.0f, g_WindowWidth, g_WindowHeight);
+
     //Initialize Engine Components
     Time* time = (Time*)malloc(sizeof(Time));
     SDL_Event e;
@@ -29,7 +42,6 @@ int main(void){
     Obj obj = loadObj("../assets/models/table.obj");
     Mesh* cube = mesh_create(obj.vertices, obj.uvs, obj.normals, (GLuint*)obj.indices, obj.numVertices, obj.numIndices);
     load_textures(cube,"../assets/images/table.png");
-    
     //Creating scene light
     
 	vec3 color = {1.0f, 1.0f, 1.0f};
@@ -61,16 +73,16 @@ int main(void){
 		//point->position[0] = 5*sinf(time->deltaTime);
         light_updatePointLight(shader, point);
         cameraControl(camera);
-        glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
+        // Clear the render output and depth buffer
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         mesh_draw(cube, shader, camera, time);
         //mesh_draw(rectangle, shader, camera, time);
-        SDL_GL_SwapWindow(window);
+        SDL_GL_SwapWindow(window->m_window);
     }
 
     //CleanUp
-    free(cube);
     free(camera);
-    free(shader);
-    SDL_DestroyWindow(window);
-    engine_quit();
+    DeleteShaders(shader);
+    WindowDestroy(window);
+    GL_Quit();
 }

@@ -3,8 +3,8 @@
 #include <stdio.h>
 
 void light_setAmbientLight(Shader *S, vec3 color, float intensity) {
-	glUniform3fv(S->locations.ambientLightColor, 1, (GLfloat*)color);
-	glUniform1f(S->locations.ambientLightIntensity, intensity);
+	glUniform3fv(S->m_locations.ambientLightColor, 1, (GLfloat*)color);
+	glUniform1f(S->m_locations.ambientLightIntensity, intensity);
 }
 
 pointLight* light_createPointLight(Shader *S, vec3 color, vec3 position, float intensity, float attenuation) {
@@ -22,8 +22,8 @@ pointLight* light_createPointLight(Shader *S, vec3 color, vec3 position, float i
 }
 
 void light_updatePointLight(Shader *S, pointLight *point) {
-	glUniform3fv(S->locations.pointLightColor,1, (GLfloat*)point->color);
-	glUniform3fv(S->locations.pointLightPosition, 1, (GLfloat*)point->position);
-	glUniform1f(S->locations.pointLightIntensity, point->intensity);
-	glUniform1f(S->locations.pointLightAttenuation, point->attenuation);
+	glUniform3fv(S->m_locations.pointLightColor,1, (GLfloat*)point->color);
+	glUniform3fv(S->m_locations.pointLightPosition, 1, (GLfloat*)point->position);
+	glUniform1f(S->m_locations.pointLightIntensity, point->intensity);
+	glUniform1f(S->m_locations.pointLightAttenuation, point->attenuation);
 }

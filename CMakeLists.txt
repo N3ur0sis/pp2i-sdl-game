@@ -26,9 +26,10 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${OPENGL_INCLUDE_DIR})
 target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -Werror)
 
 
-# Add SDL2 library
+# Add libraries
 find_package(SDL2 REQUIRED)
 find_package(OpenGL REQUIRED)
+find_package(assimp REQUIRED)
 
 add_subdirectory(libs/glad/)
 add_subdirectory(libs/cglm/)
@@ -36,6 +37,7 @@ add_subdirectory(libs/cglm/)
 
 
 target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} assimp)
 target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} glad)
 target_link_libraries(${PROJECT_NAME} -lm cglm_headers)
