@@ -6,7 +6,7 @@ void GL_Init(void){
     gladLoadGLLoader(SDL_GL_GetProcAddress);
 
 	// Set up initial GL attributes
-    glClearColor(0.2f, 0.2f, 0.2f, 0.2f); // Set the cleared back buffer to dark gray
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f); // Set the cleared back buffer to dark gray
     glCullFace(GL_BACK);                  // Set back-face culling
     glEnable(GL_CULL_FACE);               // Enable use of back/front face culling
     glEnable(GL_DEPTH_TEST);              // Enable use of depth testing

@@ -39,18 +39,18 @@ int main(void){
 
 
     /***************DEMONSTRATION SCENE*****************/
-    Model* model = ModelCreate("assets/models/table.obj");
-    (void) model;
+    Model* model = ModelCreate("assets/models/backpack.obj");
+    Model* model2 = ModelCreate("assets/models/table.obj");
+    
     //Load a model
     //Obj obj = loadObj("../assets/models/table.obj");
     //Mesh* cube = mesh_create(obj.vertices, obj.uvs, obj.normals, (GLuint*)obj.indices, obj.numVertices, obj.numIndices);
-    load_textures(model,"../assets/images/table.png");
     //Creating scene light
     
-	vec3 color = {1.0f, 1.0f, 1.0f};
-	light_setAmbientLight(shader, color, 0.2f);
-    vec3 pointColor = {1.0f, 1.0f, 1.0f};
-    vec3 pointPosition = {10.0f, 5.0f, -2.0f};
+	vec3 color = {1.0f, 0.8f, 1.0f};
+	light_setAmbientLight(shader, color, 0.1f);
+    vec3 pointColor = {1.0f, 0.7f, 1.0f};
+    vec3 pointPosition = {10.0f, 5.0f, 2.0f};
 	pointLight *point = light_createPointLight(shader, pointColor, pointPosition, 5.0f, 0.6f);
     /***************************************************/
 
@@ -87,6 +87,7 @@ int main(void){
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         //mesh_draw(cube, shader, camera, time);
         ModelDraw(model, shader, camera);
+        ModelDraw(model2, shader, camera);
         //mesh_draw(rectangle, shader, camera, time);
         SDL_GL_SwapWindow(window->m_window);
     }

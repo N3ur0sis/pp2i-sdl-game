@@ -6,6 +6,7 @@
 #include <Shader.h>
 #include <SDL2/SDL.h>
 #include <Camera.h>
+#include <Textures.h>
 
 typedef struct _Vertex {
     vec3 Position;
@@ -30,6 +31,7 @@ typedef struct _Model{
     GLuint* materials;
     size_t meshCount;
     size_t matCount;
+    char* directory;
 } Model;
 
 

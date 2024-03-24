@@ -18,13 +18,21 @@ Model* ModelCreate(char* path){
 
     size_t meshCount = scene->mNumMeshes;
     size_t matCount = scene->mNumMaterials;
-
     //Setup the Model
     Model* model = calloc(1, sizeof(Model));
     model->meshes = calloc(meshCount, sizeof(MeshData));
     model->materials = calloc(matCount, sizeof(GLuint));
     model->meshCount = meshCount;
     model->matCount = matCount; 
+
+    model->directory = (char *)malloc(255);
+    *model->directory = '\0';
+    unsigned uiPathLength = 0;
+    const char * p_cDirSlash = strrchr(path, '/');
+    if (p_cDirSlash != NULL) {
+        uiPathLength = (unsigned)(p_cDirSlash - path) + 1;;
+        strncat(model->directory, path, uiPathLength);
+    }
 
     for(size_t meshIDX = 0; meshIDX < meshCount; meshIDX++){
 
@@ -55,7 +63,6 @@ Model* ModelCreate(char* path){
             if(ai_mesh->mTextureCoords[0]){
                 mesh.vertices[i].TexCoords[0] = ai_mesh->mTextureCoords[0][i].x;
                 mesh.vertices[i].TexCoords[1] = ai_mesh->mTextureCoords[0][i].y;
-                mesh.vertices[i].TexCoords[2] = ai_mesh->mTextureCoords[0][i].z;
             }
         }
 
@@ -101,6 +108,22 @@ Model* ModelCreate(char* path){
 
         glBindVertexArray(0);
         model->meshes[meshIDX] = mesh;
+    }
+
+        for(size_t m_idx = 0; m_idx < matCount; ++m_idx) {
+        struct aiString ai_str;
+        if(aiGetMaterialTexture(scene->mMaterials[m_idx], aiTextureType_DIFFUSE, 0, &ai_str,
+                    NULL, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS) {
+            char* tex_path = calloc(strlen(model->directory)+strlen(ai_str.data)+1, sizeof(char));
+            strcpy(tex_path, model->directory);
+            strcat(tex_path, ai_str.data);
+            model->materials[m_idx] = load_textures(tex_path);
+            printf("%s, %ld, %ld\n", tex_path, matCount, m_idx);
+            free(tex_path);
+        }
+        else{
+            printf("unable to get material textures\n");
+        }
     }
     aiReleaseImport(scene);
     return model;
