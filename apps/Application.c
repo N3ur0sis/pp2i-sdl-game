@@ -56,10 +56,17 @@ int main(void){
     //Game Loop
     bool done = false;
     time->lastUpdate = SDL_GetTicks();
+    int nbFrames = 0;
     while(!done) {
 
         //Per-frame time logic
         time->currentUpdate = SDL_GetTicks();
+        nbFrames++;
+        if( time->currentUpdate - time->lastUpdate >= 1000.0f){
+            printf("%d fps\n", nbFrames);
+            nbFrames = 0;
+            time->lastUpdate += 1000.0f;
+        }
         time->deltaTime = (time->currentUpdate - time->lastUpdate) / 1000.0f;
 
         //Input Handling

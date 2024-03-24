@@ -2,7 +2,7 @@
 // Created by Victor Davillé on 19/02/2024.
 //
 
-#include "Data.h"
+#include <Data.h>
 
 Data* createIntData(int value) {
     Data* data = (Data*) malloc(sizeof(Data));

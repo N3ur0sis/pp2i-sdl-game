@@ -20,7 +20,9 @@ char* get_shader_content(const char* fileName)
     /* Read File for Content */
     fp = fopen(fileName, "r");
     shaderContent = memset(malloc(size), '\0', size);
-    fread(shaderContent, 1, size-1, fp);
+    if( (fread(shaderContent, 1, size-1, fp)) <= 0){
+        return NULL;
+    };
     fclose(fp);
     return shaderContent;
 }

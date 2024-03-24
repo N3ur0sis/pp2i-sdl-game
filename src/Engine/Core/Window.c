@@ -38,7 +38,7 @@ Window* WindowInit(int width, int height, const char* title) {
     }
 
 	// Enable VSync with the OpenGL context
-    SDL_GL_SetSwapInterval(-1);
+    SDL_GL_SetSwapInterval(0);
 
 	return window;
 }

@@ -2,7 +2,7 @@
 // Created by Victor Davillé on 17/02/2024.
 //
 
-#include "Tree.h"
+#include <Tree.h>
 
 Node* createNode(Data* data) {
     Node* newNode = (Node*) malloc(sizeof(Node));

@@ -2,7 +2,7 @@
 // Created by Victor Davillé on 19/02/2024.
 //
 
-#include "Graph.h"
+#include <Graph.h>
 
 Graph* createGraph(Type type) {
     Graph* graph = (Graph*) malloc(sizeof(Graph));

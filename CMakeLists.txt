@@ -23,8 +23,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${SDL2_INCLUDE_DIRS})
 target_include_directories(${PROJECT_NAME} PRIVATE ${OPENGL_INCLUDE_DIR})
 
 # Add compiler errors/warnings flags
-target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -Werror)
-
+target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -Werror -O1)
 
 # Add libraries
 find_package(SDL2 REQUIRED)
@@ -36,8 +35,8 @@ add_subdirectory(libs/cglm/)
 
 
 
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
-target_link_libraries(${PROJECT_NAME} assimp)
-target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES})
-target_link_libraries(${PROJECT_NAME} glad)
-target_link_libraries(${PROJECT_NAME} -lm cglm_headers)
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} -fsanitize=address )
+target_link_libraries(${PROJECT_NAME} assimp -fsanitize=address)
+target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} -fsanitize=address)
+target_link_libraries(${PROJECT_NAME} glad -fsanitize=address)
+target_link_libraries(${PROJECT_NAME} -lm cglm_headers -fsanitize=address)

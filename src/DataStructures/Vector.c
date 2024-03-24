@@ -2,7 +2,7 @@
 // Created by Victor Davillé on 19/02/2024.
 //
 
-#include "Vector.h"
+#include <Vector.h>
 
 Vector* createVector(Type type) {
     Vector* vector = (Vector*) malloc(sizeof(Vector));
