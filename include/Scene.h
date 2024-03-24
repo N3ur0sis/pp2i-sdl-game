@@ -5,6 +5,7 @@
 #include <cglm/cglm.h>
 #include <Shader.h>
 #include <SDL2/SDL.h>
+#include <Camera.h>
 
 typedef struct _Vertex {
     vec3 Position;
@@ -20,24 +21,24 @@ typedef struct _Texture {
 typedef struct _MeshData {
     Vertex*       vertices;
     unsigned int* indices;
-    Texture*      textures;
-    unsigned int VAO, VBO, EBO;
+    size_t vertexCount, indiceCount, matID;
+    GLuint VAO, VBO, EBO;
 } MeshData;  
 
 typedef struct _Model{
     MeshData* meshes;
-    char* directory;
-
-
+    GLuint* materials;
+    size_t meshCount;
+    size_t matCount;
 } Model;
 
 
 MeshData* MeshCreate(Vertex* vertices, unsigned int* indices, Texture* textures);
-void MeshDraw(Shader* shader);
+void MeshDraw(MeshData* mesh, Shader* shader, Camera* camera);
 void MeshSetup(MeshData* mesh);
 
 Model* ModelCreate(char* path);
-void ModelDraw(Shader* shader, MeshData* meshes);
+void ModelDraw(Model* model, Shader* shader, Camera* camera);
 void processNode(struct aiNode * node, const struct aiScene *scene, Model* model);
 MeshData processMesh(struct aiMesh *mesh, const struct aiScene *scene);
 Texture* loadMaterialTextures(struct aiMaterial *mat, enum aiTextureType type, char* typeName);

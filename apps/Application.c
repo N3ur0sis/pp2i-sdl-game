@@ -6,6 +6,7 @@
 #include <Mesh.h>
 #include <objLoader.h>
 #include <Textures.h>
+#include <Scene.h>
 
 //GLOBAL VARIABLES
 static const int g_WindowWidth = 1280;
@@ -38,10 +39,12 @@ int main(void){
 
 
     /***************DEMONSTRATION SCENE*****************/
+    Model* model = ModelCreate("assets/models/table.obj");
+    (void) model;
     //Load a model
-    Obj obj = loadObj("../assets/models/table.obj");
-    Mesh* cube = mesh_create(obj.vertices, obj.uvs, obj.normals, (GLuint*)obj.indices, obj.numVertices, obj.numIndices);
-    load_textures(cube,"../assets/images/table.png");
+    //Obj obj = loadObj("../assets/models/table.obj");
+    //Mesh* cube = mesh_create(obj.vertices, obj.uvs, obj.normals, (GLuint*)obj.indices, obj.numVertices, obj.numIndices);
+    load_textures(model,"../assets/images/table.png");
     //Creating scene light
     
 	vec3 color = {1.0f, 1.0f, 1.0f};
@@ -82,7 +85,8 @@ int main(void){
         cameraControl(camera);
         // Clear the render output and depth buffer
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        mesh_draw(cube, shader, camera, time);
+        //mesh_draw(cube, shader, camera, time);
+        ModelDraw(model, shader, camera);
         //mesh_draw(rectangle, shader, camera, time);
         SDL_GL_SwapWindow(window->m_window);
     }

@@ -1,4 +1,4 @@
 #pragma once
-#include "Mesh.h"
+#include <Scene.h>
 
-void load_textures(Mesh* model, const char* texturePath);
+void load_textures(Model* model, const char* texturePath);
