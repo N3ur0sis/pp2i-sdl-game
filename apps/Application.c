@@ -37,7 +37,7 @@ int main(void){
 
 
     /***************DEMONSTRATION SCENE*****************/
-    Model* model = ModelCreate("assets/models/table/table.obj");
+    Model* model = ModelCreate("assets/models/vampire/dancing_vampire.dae");
     
     
 	vec3 color = {1.0f, 0.8f, 1.0f};
