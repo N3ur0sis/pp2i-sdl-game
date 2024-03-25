@@ -28,7 +28,7 @@ typedef struct _MeshData {
 
 typedef struct _Model{
     MeshData* meshes;
-    GLuint* materials;
+    Texture* materials;
     size_t meshCount;
     size_t matCount;
     char* directory;

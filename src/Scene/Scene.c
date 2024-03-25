@@ -21,7 +21,7 @@ Model* ModelCreate(char* path){
     //Setup the Model
     Model* model = calloc(1, sizeof(Model));
     model->meshes = calloc(meshCount, sizeof(MeshData));
-    model->materials = calloc(matCount, sizeof(GLuint));
+    model->materials = calloc(matCount, sizeof(Texture));
     model->meshCount = meshCount;
     model->matCount = matCount; 
 
@@ -117,7 +117,7 @@ Model* ModelCreate(char* path){
             char* tex_path = calloc(strlen(model->directory)+strlen(ai_str.data)+1, sizeof(char));
             strcpy(tex_path, model->directory);
             strcat(tex_path, ai_str.data);
-            model->materials[m_idx] = load_textures(tex_path);
+            model->materials[m_idx].id = load_textures(tex_path);
             printf("%s, %ld, %ld\n", tex_path, matCount, m_idx);
             free(tex_path);
         }
@@ -145,7 +145,7 @@ void MeshDraw(MeshData* mesh, Shader* shader, Camera* camera) {
 
 void ModelDraw(Model* model, Shader* shader, Camera* camera) {
     for(size_t i=0; i<model->meshCount; ++i) {
-        glBindTexture(GL_TEXTURE_2D, model->materials[model->meshes[i].matID]);
+        glBindTexture(GL_TEXTURE_2D, model->materials[model->meshes[i].matID].id);
         MeshDraw(&model->meshes[i], shader, camera);
         glBindTexture(GL_TEXTURE_2D, 0);
     }

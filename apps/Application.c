@@ -3,7 +3,6 @@
 #include <Shader.h>
 #include <Camera.h>
 #include <Light.h>
-#include <Mesh.h>
 #include <objLoader.h>
 #include <Textures.h>
 #include <Scene.h>
@@ -12,7 +11,6 @@
 static const int g_WindowWidth = 1280;
 static const int g_WindowHeight = 720;
 static const char* g_WindowTitle = "Game";
- // Init to 0
 
 //Entry Point of the Game
 int main(void){
@@ -31,7 +29,7 @@ int main(void){
     UseShaders(shader);
 
     //Create and Initialize scene Camera
-    Camera* camera = camera_create(0.0f, 1.0f, 5.0f, g_WindowWidth, g_WindowHeight);
+    Camera* camera = camera_create(0.0f, 8.0f, 5.0f, g_WindowWidth, g_WindowHeight);
 
     //Initialize Engine Components
     Time* time = (Time*)malloc(sizeof(Time));
@@ -39,16 +37,11 @@ int main(void){
 
 
     /***************DEMONSTRATION SCENE*****************/
-    Model* model = ModelCreate("assets/models/backpack.obj");
-    Model* model2 = ModelCreate("assets/models/table.obj");
+    Model* model = ModelCreate("assets/models/table/table.obj");
     
-    //Load a model
-    //Obj obj = loadObj("../assets/models/table.obj");
-    //Mesh* cube = mesh_create(obj.vertices, obj.uvs, obj.normals, (GLuint*)obj.indices, obj.numVertices, obj.numIndices);
-    //Creating scene light
     
 	vec3 color = {1.0f, 0.8f, 1.0f};
-	light_setAmbientLight(shader, color, 0.1f);
+	light_setAmbientLight(shader, color, 0.3f);
     vec3 pointColor = {1.0f, 0.7f, 1.0f};
     vec3 pointPosition = {10.0f, 5.0f, 2.0f};
 	pointLight *point = light_createPointLight(shader, pointColor, pointPosition, 5.0f, 0.6f);
@@ -76,19 +69,13 @@ int main(void){
         while(SDL_PollEvent(&e)){
             processInput(&e, &done);
         }
-        //Game Logic
-        //...
-
+        
         //Rendering
-		//point->position[0] = 5*sinf(time->deltaTime);
         light_updatePointLight(shader, point);
         cameraControl(camera);
         // Clear the render output and depth buffer
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        //mesh_draw(cube, shader, camera, time);
         ModelDraw(model, shader, camera);
-        ModelDraw(model2, shader, camera);
-        //mesh_draw(rectangle, shader, camera, time);
         SDL_GL_SwapWindow(window->m_window);
     }
 
