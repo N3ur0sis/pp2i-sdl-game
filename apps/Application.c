@@ -3,9 +3,8 @@
 #include <Shader.h>
 #include <Camera.h>
 #include <Light.h>
-#include <objLoader.h>
 #include <Textures.h>
-#include <Scene.h>
+#include <Model.h>
 
 //GLOBAL VARIABLES
 static const int g_WindowWidth = 1280;
@@ -37,7 +36,7 @@ int main(void){
 
 
     /***************DEMONSTRATION SCENE*****************/
-    Model* model = ModelCreate("assets/models/rock/scene.gltf");
+    Model* model = ModelCreate("assets/models/backpack/backpack.obj");
     
     
 	vec3 color = {1.0f, 0.8f, 1.0f};

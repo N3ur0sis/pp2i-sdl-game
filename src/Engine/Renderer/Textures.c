@@ -1,12 +1,13 @@
 #include "Textures.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
+#include <stdbool.h>
 
 GLuint load_textures(const char* texturePath){
     GLuint id;
     glGenTextures(1, &id);
     int width, height, nrChannels;
-    stbi_set_flip_vertically_on_load(true);
+    stbi_set_flip_vertically_on_load(false);
     unsigned char *data = stbi_load(texturePath, &width, &height, &nrChannels, 0); 
     glBindTexture(GL_TEXTURE_2D, id);  
     // set the texture wrapping/filtering options (on the currently bound texture object)
