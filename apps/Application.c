@@ -37,7 +37,7 @@ int main(void){
 
 
     /***************DEMONSTRATION SCENE*****************/
-    Model* model = ModelCreate("assets/models/vampire/dancing_vampire.dae");
+    Model* model = ModelCreate("assets/models/rock/scene.gltf");
     
     
 	vec3 color = {1.0f, 0.8f, 1.0f};
@@ -73,6 +73,7 @@ int main(void){
         // Clear the render output and depth buffer
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
         ModelDraw(model, shader, camera);
+
         SDL_GL_SwapWindow(window->m_window);
     }
 

@@ -24,6 +24,9 @@ Model* ModelCreate(char* path){
     model->materials = calloc(matCount, sizeof(Texture));
     model->meshCount = meshCount;
     model->matCount = matCount; 
+    glm_vec3_copy((vec3){0.0f,0.0f,0.0f}, model->posiiton); 
+    glm_vec3_copy((vec3){0.0f,0.0f,0.0f}, model->rotation); 
+    glm_vec3_copy((vec3){1.0f,1.0f,1.0f}, model->scale); 
 
     model->directory = (char *)malloc(255);
     *model->directory = '\0';
@@ -129,24 +132,43 @@ Model* ModelCreate(char* path){
     return model;
 }
 
-void MeshDraw(MeshData* mesh, Shader* shader, Camera* camera) {
-    mat4 modelMatrix;
-    glm_mat4_identity(modelMatrix);
-    vec3 rotAxis = {0.0f, 1.0f, 0.0f};
-    glm_rotate(modelMatrix, glm_rad(0.0f), rotAxis);
-    glUniformMatrix4fv(shader->m_locations.Model, 1, GL_FALSE, (float*)modelMatrix);
-    glUniformMatrix4fv(shader->m_locations.View, 1, GL_FALSE, (float*)camera->viewMatrix);
-    glUniformMatrix4fv(shader->m_locations.Projection, 1, GL_FALSE, (float*)camera->projectionMatrix);
+void MeshDraw(Model* model,MeshData* mesh, Shader* shader, Camera* camera) {
+    calculateModelMatrix(model->posiiton, model->rotation, model->scale,camera,shader);
     glBindVertexArray(mesh->VAO);
     glDrawElements(GL_TRIANGLES, mesh->indiceCount, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
+}
+
+void calculateModelMatrix(vec3 position,vec3 rotation, vec3 scale, Camera* camera, Shader* shader ){
+    mat4 scaleMatrix;
+    glm_scale_make(scaleMatrix, scale);
+    mat4 translateMatrix;
+    glm_translate_make(translateMatrix, position);
+    mat4 rotationMatrix;
+    versor qx, qy, qz;
+    glm_quat(qx,rotation[0], 1.0f, 0.0f,0.0f );
+    glm_quat(qy,rotation[0], 0.0f, 1.0f,0.0f );
+    glm_quat(qz,rotation[0], 0.0f, 0.0f,1.0f );
+
+    glm_quat_mul(qx,qy,qx);
+    glm_quat_mul(qx,qz,qz);
+    glm_quat_mat4(qz,rotationMatrix);
+
+    mat4 modelMatrix;
+    glm_mat4_mul(translateMatrix,rotationMatrix,modelMatrix);
+    glm_mat4_mul(modelMatrix,scaleMatrix,modelMatrix);
+
+    glUniformMatrix4fv(shader->m_locations.Model, 1, GL_FALSE, (float*)modelMatrix);
+    glUniformMatrix4fv(shader->m_locations.View, 1, GL_FALSE, (float*)camera->viewMatrix);
+    glUniformMatrix4fv(shader->m_locations.Projection, 1, GL_FALSE, (float*)camera->projectionMatrix);
+
 }
 
 
 void ModelDraw(Model* model, Shader* shader, Camera* camera) {
     for(size_t i=0; i<model->meshCount; ++i) {
         glBindTexture(GL_TEXTURE_2D, model->materials[model->meshes[i].matID].id);
-        MeshDraw(&model->meshes[i], shader, camera);
+        MeshDraw(model, &model->meshes[i], shader, camera);
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 }
