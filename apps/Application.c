@@ -46,9 +46,6 @@ int main(void){
     vec3 pointPosition = {10.0f, 5.0f, 2.0f};
 	pointLight *point = light_createPointLight(shader, pointColor, pointPosition, 5.0f, 0.6f);
     /***************************************************/
-
-
-
     //Game Loop
     bool done = false;
     time->lastUpdate = SDL_GetTicks();
