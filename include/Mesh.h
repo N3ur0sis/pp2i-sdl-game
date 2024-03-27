@@ -1,54 +1,48 @@
 #pragma once
+#include <assimp/cimport.h>
+#include <assimp/scene.h>
+#include <assimp/postprocess.h>
+#include <cglm/cglm.h>
 #include <glad/glad.h>
-#include <Shader.h>
-#include <Camera.h>
-#include <SDL2/SDL.h>
-#include <Time.h>
-#include <stdio.h>
 
-typedef struct transformationMatrices {
-	mat4 rotate;
-	mat4 translate;
-	mat4 scale;
-	mat4 transform;
-} meshTransformationMatrices;
+/* A Custom vertex struct we pass to OpenGL */
+typedef struct _Vertex {
+    vec3 Position;          /* Posiiton of each vertex in the local space                   */
+    vec3 Normal;            /* Normal direction of each vertex for lighting calculation     */
+    vec2 TexCoords;         /* 2D coordinates in the correpsonding textures for this vertex */
+} Vertex;
 
+
+/* A Mesh class that hold data parsed from a file and converted ot OpenGL format*/
 typedef struct _Mesh {
-	GLuint VAO;	// VERTEX ARRAY OBJECT
-	GLuint VBO[3];	// VERTEX BUFFER OBJECT
-	GLuint EBO;	// ELEMENT BUFFER OBJECT
-	unsigned int vertexCount;
-	unsigned int indexCount;
-	unsigned int textureID;
+    Vertex*       vertices;           /* Arrays of vertex each contains posiiton, uvs and normals      */
+    unsigned int* indices;            /* Arrays of indices to indicate wich vertices goes in each face */
+    size_t vertexCount, indiceCount;  /* Numbers of vertex and indices of the mesh, used to know the size of the arrays */
+    size_t matID;                     /* ID of the materials for this mesh in the arrays of materials available in the model */
+    GLuint VAO, VBO, EBO;             /* GL Buffers to store vertex and indices and organise them in a VAO*/
+} Mesh;  
 
-	meshTransformationMatrices matrices;
-} Mesh;
+/**
+ * A constructor for the mesh class. It copies the data from an assimp mesh format
+ * Into our OpenGL-friendly mesh format.
+ * 
+ * @param aiMesh A mesh extracted from an assimp scene object.
+ * @return A Mesh object with all necessary data for rendering
+ * and converted into proper format.
+*/
+Mesh* MeshCreate(struct aiMesh* aiMesh);
 
+/**
+ * Auxiliary function used to GL-ize our Mesh object. Basically generate the buffers,
+ * load data into them and specifies the arrays attribute (positon, normal and uvs).
+ * @param mesh A mesh object ready to have buffers.
+ * @note More attribute can be loaded into the VBO if needed.
+*/
+void MeshSetup(Mesh* mesh);
 
-/* How mesh works :
- * GENEARATE VAO
- * GENERATE BUFFERS
- * BIND THE VAO
- * BIND EACH BUFFER
- * SEND DATA FOR THE CURRENTLY BOUND BUFFER
- * DEFINE PARAMETERS OF EACH ATTRIBUTE
- * UNBIND VAO
- */
-
-
-//Private Methods :
-void mesh_init(Mesh*);
-void mesh_load(Mesh* model, GLfloat *vertices, GLuint *indices, GLfloat* texCoord, GLfloat* normals);
-//Pulbic Methods :
-Mesh*       mesh_create(GLfloat *vertices, GLfloat* texCoord, GLfloat* normals, GLuint *indices, unsigned int vertexCount, unsigned int indexCount);
-void        mesh_draw(Mesh* model, Shader* s, Camera* c, Time* time);
-
-
-void mesh_rotate(Mesh *model, bool x, bool y, bool z, float angle);
-void mesh_resetRotation(Mesh *model);
-void mesh_translate(Mesh *model, float x, float y, float z);
-void mesh_resetTranslation(Mesh *model);
-void mesh_scale(Mesh *model, float x, float y, float z);
-void mesh_resetScaling(Mesh *model);
-
-void mesh_updateTransformationMatrix(Mesh *model);
+/**
+ * Render the corresponding mesh using glDrawElements and bind the proper texture
+ * associated with this mesh.
+ * @param mesh A mesh ready to be rendered.
+*/
+void MeshDraw(Mesh* mesh);

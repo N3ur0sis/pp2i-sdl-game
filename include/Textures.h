@@ -1,4 +1,10 @@
 #pragma once
-#include "Mesh.h"
+#include <glad/glad.h>
 
-void load_textures(Mesh* model, const char* texturePath);
+typedef struct _Texture {
+    unsigned int id;
+    char* type;
+} Texture;  
+
+
+GLuint load_textures(const char* texturePath);

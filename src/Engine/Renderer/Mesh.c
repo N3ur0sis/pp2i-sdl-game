@@ -1,71 +1,95 @@
 #include <Mesh.h>
 
+Mesh* MeshCreate(struct aiMesh* aiMesh){
 
+    /* Read data from assimp mesh */
+    const size_t vertexCount = aiMesh->mNumVertices;
+    const size_t faceCount = aiMesh->mNumFaces;
+    size_t indexCount = 0;
 
+    /* Initialize all Mesh's member */
+    Mesh *mesh = calloc(1, sizeof(Mesh));
+    mesh->vertices = calloc(vertexCount, sizeof(Vertex));
+    mesh->indices = NULL;
+    mesh->vertexCount = vertexCount;
+    mesh->indiceCount = 0;
+    mesh->matID = aiMesh->mMaterialIndex;
 
-void mesh_init(Mesh* model) {
-	glGenVertexArrays(1, &(model->VAO));
-	glGenBuffers(1, &(model->VBO[0]));
-	glGenBuffers(1, &(model->VBO[1]));
-	glGenBuffers(1, &(model->VBO[2]));
-	glGenBuffers(1, &(model->EBO));
-    glGenTextures(1, &model->textureID);
+    /* For each vertex we copy the data into our struct */
+    for(size_t i = 0; i< vertexCount; ++i){
 
-	glm_mat4_identity(model->matrices.rotate);
-	glm_mat4_identity(model->matrices.translate);
-	glm_mat4_identity(model->matrices.scale);
+        /* Posiiton always present in a mesh */
+        mesh->vertices[i].Position[0] = aiMesh->mVertices[i].x;
+        mesh->vertices[i].Position[1] = aiMesh->mVertices[i].y;
+        mesh->vertices[i].Position[2] = aiMesh->mVertices[i].z;
+        /* Check if we have textures and copy data */
+        if(aiMesh->mTextureCoords[0]){
+            mesh->vertices[i].TexCoords[0] = aiMesh->mTextureCoords[0][i].x;
+            mesh->vertices[i].TexCoords[1] = aiMesh->mTextureCoords[0][i].y;
+        }
+        /* Check if we have normals and copy data */
+        if(aiMesh->mNormals){
+            mesh->vertices[i].Normal[0] = aiMesh->mNormals[i].x;
+            mesh->vertices[i].Normal[1] = aiMesh->mNormals[i].y;
+            mesh->vertices[i].Normal[2] = aiMesh->mNormals[i].z;
+        }
+    }
+
+    /* Counting number of indices present in the mesh */
+    for(size_t i=0; i<faceCount; ++i){
+        indexCount += aiMesh->mFaces[i].mNumIndices;
+    }
+    /* Copy all indices in the right order */
+    mesh->indiceCount = indexCount;
+    mesh->indices = calloc(indexCount, sizeof(unsigned int));
+    {
+        size_t iter = 0;
+        for(size_t i=0; i<faceCount; ++i)
+            for(size_t j=0; j<aiMesh->mFaces[i].mNumIndices; ++j)
+                mesh->indices[iter++] = aiMesh->mFaces[i].mIndices[j];
+    }
+
+    /* We are ready to wrap data into GL buffers */
+    MeshSetup(mesh);
+
+    return mesh;
 }
 
-void mesh_load(Mesh* model, GLfloat *vertices, GLuint *indices, GLfloat* texCoord, GLfloat* normals){
-    glBindVertexArray(model->VAO);
-    //Configure VBO
-    glBindBuffer(GL_ARRAY_BUFFER, model->VBO[0]);
-	glBufferData(GL_ARRAY_BUFFER, 3 * model->indexCount * sizeof(GLfloat), vertices, GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
-	glEnableVertexAttribArray(0);
+void MeshSetup(Mesh* mesh){
 
-    glBindBuffer(GL_ARRAY_BUFFER, model->VBO[1]);
-	glBufferData(GL_ARRAY_BUFFER, 2 * model->indexCount * sizeof(GLfloat), texCoord, GL_STATIC_DRAW);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 2 * sizeof(GLfloat), 0);
-	glEnableVertexAttribArray(1);
+    /* Generate GL buffers */
+    glGenVertexArrays(1, &mesh->VAO);
+    glGenBuffers(1, &mesh->VBO);
+    glGenBuffers(1, &mesh->EBO);
 
-	glBindBuffer(GL_ARRAY_BUFFER, model->VBO[2]);
-	glBufferData(GL_ARRAY_BUFFER, 3 * model->indexCount * sizeof(GLfloat), normals, GL_STATIC_DRAW);
-	glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(GLfloat), 0);
-	glEnableVertexAttribArray(2);
-    //Configure EBO
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, model->EBO);
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, model->indexCount * sizeof(GLuint), indices, GL_STATIC_DRAW);
-    //Not nessecary 
-    glBindBuffer(GL_ARRAY_BUFFER, 0); 
-    glBindVertexArray(0); 
+    /* We want to bind VAO to link every buffers to this object*/
+    glBindVertexArray( mesh->VAO);
+
+    /* Processing VBO */
+    glBindBuffer(GL_ARRAY_BUFFER, mesh->VBO);
+    glBufferData(GL_ARRAY_BUFFER, mesh->vertexCount * sizeof(Vertex), mesh->vertices, GL_STATIC_DRAW);
+    /* Position attribute*/
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)0);
+
+    /* Texture Coordinates attribute*/
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, TexCoords));
+
+    /* Normals attribute */
+    glEnableVertexAttribArray(2);
+    glVertexAttribPointer(2, 3, GL_FLOAT, GL_FALSE, sizeof(Vertex), (void*)offsetof(Vertex, Normal));
+    
+    /* Processing EBO */
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, mesh->EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, mesh->indiceCount * sizeof(unsigned int), mesh->indices, GL_STATIC_DRAW);
+
+    /* Unbind our VAO to prevent the overriding of our buffers */
+    glBindVertexArray(0);
 }
 
-Mesh* mesh_create(GLfloat* vertices, GLfloat* texCoord, GLfloat* normals, GLuint* indices, unsigned int vertexCount, unsigned int indexCount){
-
-    Mesh* model = (Mesh*)malloc(sizeof(Mesh));
-
-	mesh_init(model);
-	model->vertexCount = vertexCount;
-	model->indexCount = indexCount;
-
-	mesh_load(model, vertices, indices, texCoord, normals);
-
-	return model;
-}
-
-
-
-void mesh_draw(Mesh* model, Shader* shader, Camera* camera, Time* time) {
-    (void)time;
-
-	mat4 modelMatrix;
-    glm_mat4_identity(modelMatrix);
-    vec3 rotAxis = {0.0f, 1.0f, 0.0f};
-    glm_rotate(modelMatrix, glm_rad(0.0f), rotAxis);
-    glUniformMatrix4fv(shader->m_locations.Model, 1, GL_FALSE, (float*)modelMatrix);
-    glUniformMatrix4fv(shader->m_locations.View, 1, GL_FALSE, (float*)camera->viewMatrix);
-    glUniformMatrix4fv(shader->m_locations.Projection, 1, GL_FALSE, (float*)camera->projectionMatrix);
-	glBindVertexArray(model->VAO);
-	glDrawArrays(GL_TRIANGLES, 0, model->indexCount);
+void MeshDraw(Mesh* mesh) {
+    glBindVertexArray(mesh->VAO);
+    glDrawElements(GL_TRIANGLES, mesh->indiceCount, GL_UNSIGNED_INT, 0);
+    glBindVertexArray(0);
 }

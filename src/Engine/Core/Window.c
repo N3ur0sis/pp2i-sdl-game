@@ -1,16 +1,20 @@
 #include "Window.h"
 
-Window* WindowInit(int width, int height, const char* title) {
+Window* WindowCreate(int width, int height, const char* title) {
 
-	Window* window = (Window*)malloc(sizeof(Window));
+	/* New window object intialized */
+	Window* c_window = (Window*)calloc(1,sizeof(Window));
+	c_window->m_title = title;
+	c_window->m_width = width;
+	c_window->m_height = height;
 
-	//Initialize SDL
+	/* Initialize SDL with only video subsystem of the library */
 	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
 		SDL_LogCritical(SDL_LOG_CATEGORY_APPLICATION, "Failed to initialize SDL: %s\n", SDL_GetError());
 		return NULL;
 	}
 
-	//Use OpenGL 4.3 core profile
+	/* Specifies version 4.6 Core profile pf OpenGL and some attributes */
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 6);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
@@ -18,32 +22,36 @@ Window* WindowInit(int width, int height, const char* title) {
     SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE,24);
 
 
-	//Create a SDL window
-	window->m_window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+	/* Create the actual SDL window */
+	c_window->m_window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
 	
-
-	if (window->m_window == NULL) {
+	/* Always check if window have been created properly*/
+	if (c_window->m_window == NULL) {
         SDL_LogCritical(SDL_LOG_CATEGORY_APPLICATION, "Failed to create OpenGL window: %s\n", SDL_GetError());
         SDL_Quit();
         return NULL;
 	}
 
-	// Create a OpenGL Context
-	window->m_context = SDL_GL_CreateContext(window->m_window);
-    if (window->m_context == NULL) {
+	/* Create a context a make it current to the SDL window object */
+	c_window->m_context = SDL_GL_CreateContext(c_window->m_window);
+	SDL_GL_MakeCurrent(c_window->m_window,c_window->m_context);
+    if (c_window->m_context == NULL) {
         SDL_LogCritical(SDL_LOG_CATEGORY_APPLICATION, "Failed to create OpenGL context: %s\n", SDL_GetError());
-        SDL_DestroyWindow(window->m_window);
+        SDL_DestroyWindow(c_window->m_window);
         SDL_Quit();
         return NULL;
     }
 
-	// Enable VSync with the OpenGL context
+	/* Disable VSYNC for rendering, put 1 to enable */
     SDL_GL_SetSwapInterval(0);
 
-	return window;
+	return c_window;
 }
 
-void WindowDestroy(Window* window){
+void WindowDelete(Window* window){
+
+	/* Clean up ressources allocated */
 	SDL_GL_DeleteContext(window->m_context);
     SDL_DestroyWindow(window->m_window);
+	free(window);
 }

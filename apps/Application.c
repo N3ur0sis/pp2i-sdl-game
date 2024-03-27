@@ -1,95 +1,51 @@
-#include <Window.h>
 #include <Engine.h>
 #include <Shader.h>
 #include <Camera.h>
+#include <Model.h>
 #include <Light.h>
-#include <Mesh.h>
-#include <objLoader.h>
-#include <Textures.h>
 
-//GLOBAL VARIABLES
+/* Global variable, only for things that won't change during the game */
 static const int g_WindowWidth = 1280;
 static const int g_WindowHeight = 720;
 static const char* g_WindowTitle = "Game";
- // Init to 0
 
-//Entry Point of the Game
+/* Entry point of the program */
 int main(void){
 
-    //Initialize SDL and Create window
-    Window* window = WindowInit(g_WindowWidth, g_WindowHeight, g_WindowTitle);
-    if(window == NULL){
-        return 1;
-    }
-    
-    //Initialize OpenGL
-    GL_Init();
+    /* Create a instance of the application */
+    Application* game = ApplicationCreate(g_WindowWidth, g_WindowHeight, g_WindowTitle);
 
-    //Load and Compile Shaders into OpenGL
+    /* Load and compile shaders */
     Shader* shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
+
+    /* Use current shaders */
     UseShaders(shader);
 
-    //Create and Initialize scene Camera
-    Camera* camera = camera_create(0.0f, 1.0f, 5.0f, g_WindowWidth, g_WindowHeight);
+    /* Create a scene camera */
+    Camera* camera = camera_create(0.0f, 8.0f, 5.0f, g_WindowWidth, g_WindowHeight);
 
-    //Initialize Engine Components
-    Time* time = (Time*)malloc(sizeof(Time));
-    SDL_Event e;
-
-
-    /***************DEMONSTRATION SCENE*****************/
-    //Load a model
-    Obj obj = loadObj("../assets/models/table.obj");
-    Mesh* cube = mesh_create(obj.vertices, obj.uvs, obj.normals, (GLuint*)obj.indices, obj.numVertices, obj.numIndices);
-    load_textures(cube,"../assets/images/table.png");
-    //Creating scene light
+    /* Start Function, create objects in scene */
+    Model* model = ModelCreate("assets/models/backpack/backpack.obj");
+	light_setAmbientLight(shader, (vec3){1.0f, 0.8f, 1.0f}, 0.3f);
+	pointLight *point = light_createPointLight(shader, (vec3){1.0f, 0.7f, 1.0f}, (vec3){10.0f, 5.0f, 2.0f}, 5.0f, 0.6f);
     
-	vec3 color = {1.0f, 1.0f, 1.0f};
-	light_setAmbientLight(shader, color, 0.2f);
-    vec3 pointColor = {1.0f, 1.0f, 1.0f};
-    vec3 pointPosition = {10.0f, 5.0f, -2.0f};
-	pointLight *point = light_createPointLight(shader, pointColor, pointPosition, 5.0f, 0.6f);
-    /***************************************************/
 
+    /* Game Loop */
+    while(game->running) {
+        StartFrame(game);
 
-
-    //Game Loop
-    bool done = false;
-    time->lastUpdate = SDL_GetTicks();
-    int nbFrames = 0;
-    while(!done) {
-
-        //Per-frame time logic
-        time->currentUpdate = SDL_GetTicks();
-        nbFrames++;
-        if( time->currentUpdate - time->lastUpdate >= 1000.0f){
-            printf("%d fps\n", nbFrames);
-            nbFrames = 0;
-            time->lastUpdate += 1000.0f;
-        }
-        time->deltaTime = (time->currentUpdate - time->lastUpdate) / 1000.0f;
-
-        //Input Handling
-        while(SDL_PollEvent(&e)){
-            processInput(&e, &done);
-        }
-        //Game Logic
-        //...
-
-        //Rendering
-		//point->position[0] = 5*sinf(time->deltaTime);
-        light_updatePointLight(shader, point);
+        /**Rendering**/
+        ModelDraw(model, shader, camera);
         cameraControl(camera);
-        // Clear the render output and depth buffer
-        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-        mesh_draw(cube, shader, camera, time);
-        //mesh_draw(rectangle, shader, camera, time);
-        SDL_GL_SwapWindow(window->m_window);
+        light_updatePointLight(shader, point);
+        /*************/
+
+        EndFrame(game);
     }
 
-    //CleanUp
+    /* Clean every ressources allocated */
     free(camera);
     DeleteShaders(shader);
-    WindowDestroy(window);
-    GL_Quit();
+    WindowDelete(game->window);
+    EngineQuit();
 }
