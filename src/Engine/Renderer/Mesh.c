@@ -1,6 +1,6 @@
 #include <Mesh.h>
 
-Mesh* MeshCreate(struct aiMesh* aiMesh){
+void MeshCreate(Mesh* mesh, struct aiMesh* aiMesh){
 
     /* Read data from assimp mesh */
     const size_t vertexCount = aiMesh->mNumVertices;
@@ -8,8 +8,7 @@ Mesh* MeshCreate(struct aiMesh* aiMesh){
     size_t indexCount = 0;
 
     /* Initialize all Mesh's member */
-    Mesh *mesh = calloc(1, sizeof(Mesh));
-    mesh->vertices = calloc(vertexCount, sizeof(Vertex));
+    mesh->vertices = (Vertex*)calloc(vertexCount, sizeof(Vertex));
     mesh->indices = NULL;
     mesh->vertexCount = vertexCount;
     mesh->indiceCount = 0;
@@ -41,7 +40,7 @@ Mesh* MeshCreate(struct aiMesh* aiMesh){
     }
     /* Copy all indices in the right order */
     mesh->indiceCount = indexCount;
-    mesh->indices = calloc(indexCount, sizeof(unsigned int));
+    mesh->indices = (unsigned int*)calloc(indexCount, sizeof(unsigned int));
     {
         size_t iter = 0;
         for(size_t i=0; i<faceCount; ++i)
@@ -51,8 +50,6 @@ Mesh* MeshCreate(struct aiMesh* aiMesh){
 
     /* We are ready to wrap data into GL buffers */
     MeshSetup(mesh);
-
-    return mesh;
 }
 
 void MeshSetup(Mesh* mesh){
@@ -92,4 +89,14 @@ void MeshDraw(Mesh* mesh) {
     glBindVertexArray(mesh->VAO);
     glDrawElements(GL_TRIANGLES, mesh->indiceCount, GL_UNSIGNED_INT, 0);
     glBindVertexArray(0);
+}
+
+
+
+void MeshClean(Mesh* mesh) {
+    free(mesh->vertices);
+    free(mesh->indices);
+    glDeleteVertexArrays(1, &mesh->VAO);
+    glDeleteBuffers(1, &mesh->VBO);
+    glDeleteBuffers(1, &mesh->EBO);
 }

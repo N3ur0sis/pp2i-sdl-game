@@ -12,8 +12,10 @@ Camera* camera_create(float posX, float posY, float posZ, float width, float hei
     camera->WorldUp[0] = 0.0f;
     camera->WorldUp[1] = 0.1f;
     camera->WorldUp[2] = 0.0f;
-    camera->Yaw = -60.0f;
-    camera->Pitch = -60.0f;
+    camera->Yaw = -90.0f;
+    camera->Pitch = 0.0f;
+    //problem with roll : can't roll anymore the camera
+    camera->Roll = -10.0f;
     camera->MouseSensitivity = 0.1f;
     camera->MovementSpeed = 2.5f;
     camera->Zoom = 60.0f;
@@ -33,9 +35,16 @@ void getViewMatrix(Camera* camera, vec4* view){
 void updateCameraVectors(Camera* camera){
         // calculate the new Front vector
         vec3 front;
+        //problem with roll : can't roll anymore the camera
         front[0] = cos(glm_rad(camera->Yaw)) * cos(glm_rad(camera->Pitch));
+        front[0] = cos(glm_rad(camera->Yaw)) * sin(glm_rad(camera->Roll));
+
         front[1] = sin(glm_rad(camera->Pitch));
+        front[1] = sin(glm_rad(camera->Roll));
+
         front[2] = sin(glm_rad(camera->Yaw)) * cos(glm_rad(camera->Pitch));
+        front[2] = sin(glm_rad(camera->Yaw)) * sin(glm_rad(camera->Roll));
+
         glm_normalize(front);
         camera->Front[0] = front[0];
         camera->Front[1] = front[1];

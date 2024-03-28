@@ -80,3 +80,16 @@ int getMousePosition(int coord){
 void setMousePosition(int coord, float value){
 	mousePos[coord] = value;
 }
+
+
+// void treatMovingInput(float (*)[3], SDL_Event* e) {
+// 	switch (e->key.keysym.sym)
+// 	{
+// 	case SDLK_z:
+// 		// model->position[2] += 0.1f;
+// 		break;
+	
+// 	default:
+// 		break;
+// 	}
+// }

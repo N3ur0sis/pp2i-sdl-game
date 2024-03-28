@@ -19,3 +19,4 @@ void handleMouseWheelEvent(SDL_Event e);
 
 
 #define NB_KEYS 257
+// void treatMovingInput(float (*)[3], SDL_Event* e);

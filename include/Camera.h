@@ -13,6 +13,7 @@ typedef struct{
     vec3 WorldUp;
     float Yaw;
     float Pitch;
+    float Roll;
     float MovementSpeed;
     float MouseSensitivity;
     float Zoom;
