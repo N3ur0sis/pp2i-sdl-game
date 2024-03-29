@@ -7,7 +7,7 @@ GLuint load_textures(const char* texturePath){
     GLuint id;
     glGenTextures(1, &id);
     int width, height, nrChannels;
-    stbi_set_flip_vertically_on_load(false);
+    stbi_set_flip_vertically_on_load(true);
     unsigned char *data = stbi_load(texturePath, &width, &height, &nrChannels, 0); 
     glBindTexture(GL_TEXTURE_2D, id);  
     // set the texture wrapping/filtering options (on the currently bound texture object)

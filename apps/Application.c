@@ -21,14 +21,18 @@ int main(void){
     /* Use current shaders */
     UseShaders(shader);
 
-    /* Create a scene camera */
-    Camera* camera = camera_create(0.0f, 8.0f, 5.0f, g_WindowWidth, g_WindowHeight);
-
     /* Start Function, create objects in scene */
-    Model* model = ModelCreate("assets/models/backpack/backpack.obj");
+    Model* model = (Model*)calloc(1, sizeof(Model));
+    ModelCreate(model, "assets/models/LoPotitChat/LoPotitChat.obj");
+    printf("Model coordinates: %f %f %f\n", model->position[0], model->position[1], model->position[2]);
+    printf("Model orientation: %f %f %f\n", model->rotation[0], model->rotation[1], model->rotation[2]);
 	light_setAmbientLight(shader, (vec3){1.0f, 0.8f, 1.0f}, 0.3f);
 	pointLight *point = light_createPointLight(shader, (vec3){1.0f, 0.7f, 1.0f}, (vec3){10.0f, 5.0f, 2.0f}, 5.0f, 0.6f);
     
+    /* Create a scene camera */
+    Camera* camera = camera_create(model->position[0], model->position[1]+7.5f, model->position[2]-7.5f, g_WindowWidth, g_WindowHeight);
+
+
 
     /* Game Loop */
     while(game->running) {
@@ -39,12 +43,13 @@ int main(void){
         cameraControl(camera);
         light_updatePointLight(shader, point);
         /*************/
-
+        treatMovingInput(model->position, model->rotation);
         EndFrame(game);
     }
 
     /* Clean every ressources allocated */
     free(camera);
+    ModelFree(model);
     DeleteShaders(shader);
     WindowDelete(game->window);
     EngineQuit();

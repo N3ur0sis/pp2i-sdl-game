@@ -14,7 +14,7 @@ typedef struct _Model{
     size_t   meshCount;     /* Number of meshes within the model  */
     size_t   matCount;      /* Nmmber of materials in the model   */
     char*    directory;     /* Path to the folder of the model    */
-    vec3     posiiton;      /* Posiiton of the model in the scene */
+    vec3     position;      /* Position of the model in the scene */
     vec3     rotation;      /* Rotation of the model in the scene */
     vec3     scale;         /* Scale of the model in the scene    */
 } Model;
@@ -39,7 +39,7 @@ const struct aiScene* ModelLoad(char* path);
  * @return A Model struct in usable format for OpenGL.
  * @note Animation should be load here as well as other texture type like Specular or Normal.
 */
-Model* ModelCreate(char* path);
+void ModelCreate(Model* model, char* path);
 
 /**
  * Render the Model with DrawElement using VAO and EBO. 
@@ -64,3 +64,6 @@ void ModelDraw(Model* model, Shader* shader, Camera* camera);
  * 
 */
 void ModelMatrixCalculate(vec3 position,vec3 rotation, vec3 scale , Camera* camera, Shader* sahder);
+
+
+void ModelFree(Model* model);

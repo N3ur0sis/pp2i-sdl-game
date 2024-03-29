@@ -30,7 +30,7 @@ typedef struct _Mesh {
  * @return A Mesh object with all necessary data for rendering
  * and converted into proper format.
 */
-Mesh* MeshCreate(struct aiMesh* aiMesh);
+void MeshCreate(Mesh* mesh, struct aiMesh* aiMesh);
 
 /**
  * Auxiliary function used to GL-ize our Mesh object. Basically generate the buffers,
@@ -46,3 +46,9 @@ void MeshSetup(Mesh* mesh);
  * @param mesh A mesh ready to be rendered.
 */
 void MeshDraw(Mesh* mesh);
+
+
+
+void MeshClean(Mesh* mesh);
+
+vec3* treatMeshToVec(Mesh* mesh);

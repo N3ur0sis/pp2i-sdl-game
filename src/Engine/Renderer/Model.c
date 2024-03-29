@@ -18,7 +18,7 @@ const struct aiScene* ModelLoad(char* path){
     return c_scene;
 }
 
-Model* ModelCreate(char* path){
+void ModelCreate(Model* model, char* path){
 
     /* Retreive data imported in assimp's format */
     const struct aiScene * scene = ModelLoad(path);
@@ -28,12 +28,11 @@ Model* ModelCreate(char* path){
     size_t materialsCount = scene->mNumMaterials;
 
     /* Initialize the Model's member */
-    Model* model = calloc(1, sizeof(Model));
-    model->meshes = calloc(meshesCount, sizeof(Mesh));
-    model->materials = calloc(materialsCount, sizeof(Texture));
+    model->meshes = (Mesh*)calloc(meshesCount, sizeof(Mesh));
+    model->materials = (Texture*)calloc(materialsCount, sizeof(Texture));
     model->meshCount = meshesCount;
     model->matCount = materialsCount; 
-    glm_vec3_copy((vec3){0.0f,0.0f,0.0f}, model->posiiton); /* Position set to 0 by default */
+    glm_vec3_copy((vec3){0.0f,0.0f,0.0f}, model->position); /* Position set to 0 by default */
     glm_vec3_copy((vec3){0.0f,0.0f,0.0f}, model->rotation); /* Rotation set to 0 by default */
     glm_vec3_copy((vec3){1.0f,1.0f,1.0f}, model->scale);    /* Scale    set to 1 by default*/
     model->directory = (char *)malloc(255);
@@ -46,8 +45,10 @@ Model* ModelCreate(char* path){
     }
     /* For each mesh present in the model we want to load data into GL buffers */
     for(size_t meshIndex = 0; meshIndex < meshesCount; meshIndex++){
-        Mesh* mesh = MeshCreate(scene->mMeshes[meshIndex]);
+        Mesh* mesh = (Mesh *)calloc(1, sizeof(Mesh));
+        MeshCreate(mesh, scene->mMeshes[meshIndex]);
         model->meshes[meshIndex] = *mesh;
+        free(mesh);
     }
 
     /* For each material present in the model we want to load the corresponding textures*/
@@ -57,7 +58,7 @@ Model* ModelCreate(char* path){
         struct aiString diffuseTex;
         if(aiGetMaterialTexture(scene->mMaterials[materialIndex], aiTextureType_DIFFUSE, 0, &diffuseTex, NULL, NULL, NULL, NULL, NULL, NULL) == AI_SUCCESS) {
 
-            char* diffusePath = calloc(strlen(model->directory)+strlen(diffuseTex.data)+1, sizeof(char));
+            char* diffusePath = (char*)calloc(strlen(model->directory)+strlen(diffuseTex.data)+1, sizeof(char));
             strcpy(diffusePath, model->directory);
             strcat(diffusePath, diffuseTex.data);
 
@@ -70,13 +71,12 @@ Model* ModelCreate(char* path){
 
     /* When the model is fully loaded we can release the data imported */
     aiReleaseImport(scene);
-    return model;
 }
 
 void ModelDraw(Model* model, Shader* shader, Camera* camera) {
 
     /* Before each render of our object we need to pass the model matrix on the shader */
-    ModelMatrixCalculate(model->posiiton, model->rotation, model->scale,camera,shader);
+    ModelMatrixCalculate(model->position, model->rotation, model->scale,camera,shader);
 
     /* We need to draw each mesh present in the model */
     for(size_t i=0; i<model->meshCount; ++i) {
@@ -101,8 +101,8 @@ void ModelMatrixCalculate(vec3 position,vec3 rotation, vec3 scale, Camera* camer
     /* Represent rotation with quaternion, one for each axis */
     versor qx, qy, qz;
     glm_quat(qx,rotation[0], 1.0f, 0.0f,0.0f );
-    glm_quat(qy,rotation[0], 0.0f, 1.0f,0.0f );
-    glm_quat(qz,rotation[0], 0.0f, 0.0f,1.0f );
+    glm_quat(qy,rotation[1], 0.0f, 1.0f,0.0f );
+    glm_quat(qz,rotation[2], 0.0f, 0.0f,1.0f );
 
     /* Each quaternion quaternion are multiplied, rotation are applmied around  z,y and then x */
     glm_quat_mul(qx,qy,qx);
@@ -125,3 +125,13 @@ void ModelMatrixCalculate(vec3 position,vec3 rotation, vec3 scale, Camera* camer
     glUniformMatrix4fv(shader->m_locations.Projection, 1, GL_FALSE, (float*)camera->projectionMatrix);
 
 }
+
+
+void ModelFree(Model* model) {
+    for(size_t i=0; i<model->meshCount; ++i)
+        MeshClean(&model->meshes[i]);
+    free(model->meshes);
+    free(model->materials);
+    free(model->directory);
+    free(model);
+    }
