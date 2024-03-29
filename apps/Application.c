@@ -22,8 +22,8 @@ int main(void){
     UseShaders(shader);
 
     /* Start Function, create objects in scene */
-    Model* model = ModelCreate("assets/models/backpack/backpack.obj");
-    printf("%ld\n", model->meshCount);
+    Model* model = (Model*)calloc(1, sizeof(Model));
+    ModelCreate(model, "assets/models/backpack/backpack.obj");
     printf("Model coordinates: %f %f %f\n", model->position[0], model->position[1], model->position[2]);
     // Model* personnage = ModelCreate("assets/models/LoPotitChat/LoPotitChat.obj");
 	light_setAmbientLight(shader, (vec3){1.0f, 0.8f, 1.0f}, 0.3f);

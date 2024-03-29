@@ -39,7 +39,7 @@ const struct aiScene* ModelLoad(char* path);
  * @return A Model struct in usable format for OpenGL.
  * @note Animation should be load here as well as other texture type like Specular or Normal.
 */
-Model* ModelCreate(char* path);
+void ModelCreate(Model* model, char* path);
 
 /**
  * Render the Model with DrawElement using VAO and EBO. 

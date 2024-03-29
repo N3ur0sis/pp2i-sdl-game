@@ -18,7 +18,7 @@ const struct aiScene* ModelLoad(char* path){
     return c_scene;
 }
 
-Model* ModelCreate(char* path){
+void ModelCreate(Model* model, char* path){
 
     /* Retreive data imported in assimp's format */
     const struct aiScene * scene = ModelLoad(path);
@@ -28,7 +28,6 @@ Model* ModelCreate(char* path){
     size_t materialsCount = scene->mNumMaterials;
 
     /* Initialize the Model's member */
-    Model* model = (Model*)calloc(1, sizeof(Model));
     model->meshes = (Mesh*)calloc(meshesCount, sizeof(Mesh));
     model->materials = (Texture*)calloc(materialsCount, sizeof(Texture));
     model->meshCount = meshesCount;
@@ -72,7 +71,6 @@ Model* ModelCreate(char* path){
 
     /* When the model is fully loaded we can release the data imported */
     aiReleaseImport(scene);
-    return model;
 }
 
 void ModelDraw(Model* model, Shader* shader, Camera* camera) {
@@ -134,5 +132,6 @@ void ModelFree(Model* model) {
         MeshClean(&model->meshes[i]);
     free(model->meshes);
     free(model->materials);
+    free(model->directory);
     free(model);
-}
+    }
