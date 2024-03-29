@@ -23,4 +23,4 @@ void handleMouseWheelEvent(SDL_Event e);
 
 
 // vec3 treatModelToMoving
-void treatMovingInput(vec3 vec);
+void treatMovingInput(vec3 position, vec3 rotation);

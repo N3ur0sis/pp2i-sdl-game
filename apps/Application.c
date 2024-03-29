@@ -25,6 +25,7 @@ int main(void){
     Model* model = (Model*)calloc(1, sizeof(Model));
     ModelCreate(model, "assets/models/backpack/backpack.obj");
     printf("Model coordinates: %f %f %f\n", model->position[0], model->position[1], model->position[2]);
+    printf("Model orientation: %f %f %f\n", model->rotation[0], model->rotation[1], model->rotation[2]);
     // Model* personnage = ModelCreate("assets/models/LoPotitChat/LoPotitChat.obj");
 	light_setAmbientLight(shader, (vec3){1.0f, 0.8f, 1.0f}, 0.3f);
 	pointLight *point = light_createPointLight(shader, (vec3){1.0f, 0.7f, 1.0f}, (vec3){10.0f, 5.0f, 2.0f}, 5.0f, 0.6f);
@@ -43,7 +44,7 @@ int main(void){
         cameraControl(camera);
         light_updatePointLight(shader, point);
         /*************/
-        treatMovingInput(model->position);
+        treatMovingInput(model->position, model->rotation);
         EndFrame(game);
     }
 
