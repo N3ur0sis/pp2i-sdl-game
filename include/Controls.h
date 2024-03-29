@@ -19,4 +19,8 @@ void handleMouseWheelEvent(SDL_Event e);
 
 
 #define NB_KEYS 257
-// void treatMovingInput(float (*)[3], SDL_Event* e);
+#define SHIFT 255
+
+
+// vec3 treatModelToMoving
+void treatMovingInput(vec3 vec);

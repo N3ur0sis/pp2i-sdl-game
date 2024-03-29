@@ -12,8 +12,8 @@ Camera* camera_create(float posX, float posY, float posZ, float width, float hei
     camera->WorldUp[0] = 0.0f;
     camera->WorldUp[1] = 0.1f;
     camera->WorldUp[2] = 0.0f;
-    camera->Yaw = -60.0f;
-    camera->Pitch = -60.0f;
+    camera->Yaw = 90.0f;
+    camera->Pitch = -50.0f;
     camera->MouseSensitivity = 0.1f;
     camera->MovementSpeed = 2.5f;
     camera->Zoom = 60.0f;

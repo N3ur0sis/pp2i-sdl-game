@@ -50,3 +50,5 @@ void MeshDraw(Mesh* mesh);
 
 
 void MeshClean(Mesh* mesh);
+
+vec3* treatMeshToVec(Mesh* mesh);

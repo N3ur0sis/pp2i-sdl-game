@@ -43,7 +43,7 @@ int main(void){
         cameraControl(camera);
         light_updatePointLight(shader, point);
         /*************/
-        // treatMovingInput(model->position, game->event);
+        treatMovingInput(model->position);
         EndFrame(game);
     }
 
