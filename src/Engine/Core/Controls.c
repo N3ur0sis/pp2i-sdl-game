@@ -110,7 +110,7 @@ void treatMovingInput(vec3 position, vec3 rotation){
 		z -= realSpeedDiag;
 		x += realSpeedDiag;
 	}
-	if ((getKeyState(SDLK_z)) && (getKeyState(SHIFT))){
+	else if ((getKeyState(SDLK_z)) && (getKeyState(SHIFT))){
 		z += realSpeed;
 	}
 	else if ((getKeyState(SDLK_s)) && (getKeyState(SHIFT))){

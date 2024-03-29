@@ -23,7 +23,7 @@ int main(void){
 
     /* Start Function, create objects in scene */
     Model* model = (Model*)calloc(1, sizeof(Model));
-    ModelCreate(model, "assets/models/backpack/backpack.obj");
+    ModelCreate(model, "assets/models/LoPotitChat/LoPotitChat.obj");
     printf("Model coordinates: %f %f %f\n", model->position[0], model->position[1], model->position[2]);
     printf("Model orientation: %f %f %f\n", model->rotation[0], model->rotation[1], model->rotation[2]);
     // Model* personnage = ModelCreate("assets/models/LoPotitChat/LoPotitChat.obj");
