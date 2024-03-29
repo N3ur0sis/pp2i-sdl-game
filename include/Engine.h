@@ -2,9 +2,7 @@
 #include <glad/glad.h>
 #include <SDL2/SDL.h>
 #include <Window.h>
-#include <Time.h>
 #include <Controls.h>
-#include <stdbool.h>
 
 typedef struct _Application{
     Window* window;

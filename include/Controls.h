@@ -24,3 +24,4 @@ void handleMouseWheelEvent(SDL_Event e);
 
 // vec3 treatModelToMoving
 void treatMovingInput(vec3 position, vec3 rotation);
+# define    PI	    3.141592

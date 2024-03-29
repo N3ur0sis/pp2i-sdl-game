@@ -101,8 +101,8 @@ void ModelMatrixCalculate(vec3 position,vec3 rotation, vec3 scale, Camera* camer
     /* Represent rotation with quaternion, one for each axis */
     versor qx, qy, qz;
     glm_quat(qx,rotation[0], 1.0f, 0.0f,0.0f );
-    glm_quat(qy,rotation[0], 0.0f, 1.0f,0.0f );
-    glm_quat(qz,rotation[0], 0.0f, 0.0f,1.0f );
+    glm_quat(qy,rotation[1], 0.0f, 1.0f,0.0f );
+    glm_quat(qz,rotation[2], 0.0f, 0.0f,1.0f );
 
     /* Each quaternion quaternion are multiplied, rotation are applmied around  z,y and then x */
     glm_quat_mul(qx,qy,qx);
