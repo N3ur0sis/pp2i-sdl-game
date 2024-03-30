@@ -23,7 +23,7 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 	else if (yRot < 0) {
 		yRot += 2 * PI;
 	}
-	float turningSpeed = 0.0075;
+	float turningSpeed = 8.0f * deltaTime;
 	// printf("yRot: %f\n", yRot);
 
 
@@ -191,7 +191,7 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 
 void moveCameraPlayer(Camera* camera, vec3 position) {
 	camera->Position[0] = position[0];
-	camera->Position[1] = position[1] + 7.5f;
-	camera->Position[2] = position[2] - 7.5f;
+	camera->Position[1] = position[1] + 25.0f;
+	camera->Position[2] = position[2] - 25.0f;
 	updateCameraVectors(camera);
 }
