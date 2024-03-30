@@ -2,7 +2,7 @@
 
 
 
-void treatMovingInput(vec3 position, vec3 rotation, float deltaTime){
+void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* camera){
     float speed = 6.0f * deltaTime;
     float speedDiag = speed / sqrt(2);
 
@@ -39,10 +39,12 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime){
 		if (getKeyState(SHIFT)){
 			z += realSpeedDiag;
 			x -= realSpeedDiag;
+			moveCameraPlayer(camera, (vec3){x, y, z});
 		}
 		else{
 			z += speedDiag;
 			x -= speedDiag;
+			moveCameraPlayer(camera, (vec3){x, y, z});
 		}
 	}
 	else if ((getKeyState(SDLK_s)) && (getKeyState(SDLK_q))) {
@@ -56,10 +58,12 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime){
 		if (getKeyState(SHIFT)){
 			z -= realSpeedDiag;
 			x += realSpeedDiag;
+			moveCameraPlayer(camera, (vec3){x, y, z});
 		}
 		else{
 			z -= speedDiag;
 			x += speedDiag;
+			moveCameraPlayer(camera, (vec3){x, y, z});
 		}
 	}
 	else if ((getKeyState(SDLK_z)) && (getKeyState(SDLK_q))) {
@@ -74,10 +78,12 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime){
 		if (getKeyState(SHIFT)){
 			z += realSpeedDiag;
 			x += realSpeedDiag;
+			moveCameraPlayer(camera, (vec3){x, y, z});
 		}
 		else{
 			z += speedDiag;
 			x += speedDiag;
+			moveCameraPlayer(camera, (vec3){x, y, z});
 		}
 	}
 	else if ((getKeyState(SDLK_s)) && (getKeyState(SDLK_d))) {
@@ -92,10 +98,12 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime){
 		if (getKeyState(SHIFT)){
 			z -= realSpeedDiag;
 			x -= realSpeedDiag;
+			moveCameraPlayer(camera, (vec3){x, y, z});
 		}
 		else{
 			z -= speedDiag;
 			x -= speedDiag;
+			moveCameraPlayer(camera, (vec3){x, y, z});
 		}
 	}
     else if (getKeyState(SDLK_z)) {
@@ -109,9 +117,11 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime){
 		}
 		if (getKeyState(SHIFT)){
 			z += realSpeed;
+			moveCameraPlayer(camera, (vec3){x, y, z});
 		}
 		else{
 			z += speed;
+			moveCameraPlayer(camera, (vec3){x, y, z});
 		}
 	}
 	else if (getKeyState(SDLK_s)) {
@@ -124,9 +134,11 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime){
 		}
 		if (getKeyState(SHIFT)){
 			z -= realSpeed;
+			moveCameraPlayer(camera, (vec3){x, y, z});
 		}
 		else{
 			z -= speed;
+			moveCameraPlayer(camera, (vec3){x, y, z});
 		}
 	}
 	else if (getKeyState(SDLK_q)) {
@@ -139,9 +151,11 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime){
 		}
         if (getKeyState(SHIFT)){
             x += realSpeed;
+			moveCameraPlayer(camera, (vec3){x, y, z});
         }
         else{
             x += speed;
+			moveCameraPlayer(camera, (vec3){x, y, z});
         }
     }
     else if (getKeyState(SDLK_d)) {
@@ -154,9 +168,11 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime){
 		}
         if (getKeyState(SHIFT)){
             x -= realSpeed;
+			moveCameraPlayer(camera, (vec3){x, y, z});
         }
         else{
             x -= speed;
+			moveCameraPlayer(camera, (vec3){x, y, z});
         }   
     }
 
@@ -169,4 +185,13 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime){
     rotation[0] = xRot;
     rotation[1] = yRot;
     rotation[2] = zRot;
+}
+
+
+
+void moveCameraPlayer(Camera* camera, vec3 position) {
+	camera->Position[0] = position[0];
+	camera->Position[1] = position[1] + 7.5f;
+	camera->Position[2] = position[2] - 7.5f;
+	updateCameraVectors(camera);
 }

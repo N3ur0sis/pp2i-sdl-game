@@ -52,7 +52,7 @@ int main(void){
         Uint32 currentTime = SDL_GetTicks();
         deltaTime = (currentTime - lastTime) / 1000.0f;
         lastTime = currentTime;
-        treatMovingInput(model->position, model->rotation, deltaTime);
+        treatMovingInput(model->position, model->rotation, deltaTime, camera);
         EndFrame(game);
     }
 

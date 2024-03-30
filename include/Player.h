@@ -5,4 +5,5 @@
 #include <Model.h>
 
 
-void treatMovingInput(vec3 position, vec3 rotation, float deltaTime);
+void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* camera);
+void moveCameraPlayer(Camera* camera, vec3 position);
