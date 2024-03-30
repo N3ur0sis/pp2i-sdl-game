@@ -3,6 +3,7 @@
 #include <SDL2/SDL.h>
 #include <Window.h>
 #include <Controls.h>
+#include <Player.h>
 
 typedef struct _Application{
     Window* window;
