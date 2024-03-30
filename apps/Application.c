@@ -4,6 +4,7 @@
 #include <Model.h>
 #include <Light.h>
 
+
 /* Global variable, only for things that won't change during the game */
 static const int g_WindowWidth = 1280;
 static const int g_WindowHeight = 720;
@@ -24,6 +25,8 @@ int main(void){
     /* Start Function, create objects in scene */
     Model* model = (Model*)calloc(1, sizeof(Model));
     ModelCreate(model, "assets/models/LoPotitChat/LoPotitChat.obj");
+    Model* backpack = (Model*)calloc(1, sizeof(Model));
+    ModelCreate(backpack, "assets/models/backpack/backpack.obj");
     printf("Model coordinates: %f %f %f\n", model->position[0], model->position[1], model->position[2]);
     printf("Model orientation: %f %f %f\n", model->rotation[0], model->rotation[1], model->rotation[2]);
 	light_setAmbientLight(shader, (vec3){1.0f, 0.8f, 1.0f}, 0.3f);
@@ -32,7 +35,8 @@ int main(void){
     /* Create a scene camera */
     Camera* camera = camera_create(model->position[0], model->position[1]+7.5f, model->position[2]-7.5f, g_WindowWidth, g_WindowHeight);
 
-
+    Uint32 lastTime = SDL_GetTicks();
+    float deltaTime = 0.0f;
 
     /* Game Loop */
     while(game->running) {
@@ -40,16 +44,22 @@ int main(void){
 
         /**Rendering**/
         ModelDraw(model, shader, camera);
+        ModelDraw(backpack, shader, camera);
         cameraControl(camera);
         light_updatePointLight(shader, point);
         /*************/
-        treatMovingInput(model->position, model->rotation);
+
+        Uint32 currentTime = SDL_GetTicks();
+        deltaTime = (currentTime - lastTime) / 1000.0f;
+        lastTime = currentTime;
+        treatMovingInput(model->position, model->rotation, deltaTime);
         EndFrame(game);
     }
 
     /* Clean every ressources allocated */
     free(camera);
     ModelFree(model);
+    ModelFree(backpack);
     DeleteShaders(shader);
     WindowDelete(game->window);
     EngineQuit();
