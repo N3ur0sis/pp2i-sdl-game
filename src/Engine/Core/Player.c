@@ -191,7 +191,7 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 
 void moveCameraPlayer(Camera* camera, vec3 position) {
 	camera->Position[0] = position[0];
-	camera->Position[1] = position[1] + 7.5f;
-	camera->Position[2] = position[2] - 7.5f;
+	camera->Position[1] = position[1] + 17.5f;
+	camera->Position[2] = position[2] - 17.5f;
 	updateCameraVectors(camera);
 }

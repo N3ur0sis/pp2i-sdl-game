@@ -3,6 +3,8 @@
 #include <Camera.h>
 #include <Model.h>
 #include <Light.h>
+#include <Textures.h>
+#include <Skybox.h>
 
 
 /* Global variable, only for things that won't change during the game */
@@ -19,21 +21,21 @@ int main(void){
     /* Load and compile shaders */
     Shader* shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
 
-    /* Use current shaders */
-    UseShaders(shader);
-
     /* Start Function, create objects in scene */
-    Model* model = (Model*)calloc(1, sizeof(Model));
-    ModelCreate(model, "assets/models/LoPotitChat/LoPotitChat.obj");
-    Model* backpack = (Model*)calloc(1, sizeof(Model));
-    ModelCreate(backpack, "assets/models/backpack/backpack.obj");
-    printf("Model coordinates: %f %f %f\n", model->position[0], model->position[1], model->position[2]);
-    printf("Model orientation: %f %f %f\n", model->rotation[0], model->rotation[1], model->rotation[2]);
-	light_setAmbientLight(shader, (vec3){1.0f, 0.8f, 1.0f}, 0.3f);
-	pointLight *point = light_createPointLight(shader, (vec3){1.0f, 0.7f, 1.0f}, (vec3){10.0f, 5.0f, 2.0f}, 5.0f, 0.6f);
+    Model* player = (Model*)calloc(1, sizeof(Model));
+    ModelCreate(player, "assets/models/LoPotitChat/LoPotitChat.obj");
+    player->position[1] += 2.0f;
+    glm_vec3_copy((vec3){0.5f,0.5f,0.5f},player->scale);
+    Model* map = (Model*)calloc(1, sizeof(Model));
+    ModelCreate(map, "assets/models/map/map.obj");
+	light_setAmbientLight(shader, (vec3){0.8f, 0.8f, 1.0f}, 0.6f);
+	pointLight *point = light_createPointLight(shader, (vec3){0.9f, 0.9f, 1.0f}, (vec3){20.0f, 30.0f, -20.0f}, 10.0f, 0.6f);
     
     /* Create a scene camera */
-    Camera* camera = camera_create(model->position[0], model->position[1]+7.5f, model->position[2]-7.5f, g_WindowWidth, g_WindowHeight);
+    Camera* camera = camera_create(player->position[0], player->position[1]+17.5f, player->position[2]-17.5f, g_WindowWidth, g_WindowHeight);
+
+    /* Create a skybox */
+    Skybox* skybox = SkyboxCreate();
 
     Uint32 lastTime = SDL_GetTicks();
     float deltaTime = 0.0f;
@@ -42,25 +44,36 @@ int main(void){
     while(game->running) {
         StartFrame(game);
 
-        /**Rendering**/
-        ModelDraw(model, shader, camera);
-        ModelDraw(backpack, shader, camera);
-        cameraControl(camera);
-        light_updatePointLight(shader, point);
-        /*************/
 
+        
         Uint32 currentTime = SDL_GetTicks();
         deltaTime = (currentTime - lastTime) / 1000.0f;
         lastTime = currentTime;
-        treatMovingInput(model->position, model->rotation, deltaTime, camera);
+        treatMovingInput(player->position, player->rotation, deltaTime, camera);
+
+
+
+        /* Rendering Scene */
+        UseShaders(shader);
+        ModelDraw(player, shader, camera);
+        ModelDraw(map, shader, camera);
+        glBindVertexArray(0);
+        cameraControl(camera);
+        light_updatePointLight(shader, point);
+
+        /* Rendering SkyBox */
+        SkyboxDraw(skybox,camera);
+
+
         EndFrame(game);
     }
 
     /* Clean every ressources allocated */
+    ModelFree(player);
+    ModelFree(map);
     free(camera);
-    ModelFree(model);
-    ModelFree(backpack);
     DeleteShaders(shader);
+    SkyboxDelete(skybox);
     WindowDelete(game->window);
     EngineQuit();
 }
