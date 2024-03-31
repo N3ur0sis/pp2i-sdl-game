@@ -51,7 +51,7 @@ int main(void){
         cameraControl(camera);
         light_updatePointLight(shader, point);
         /*************/
-        printf("Model coordinates: %f %f %f, orientation : %f\n", model->position[0], model->position[1], model->position[2], model->rotation[1]);
+        // printf("Model coordinates: %f %f %f, orientation : %f\n", model->position[0], model->position[1], model->position[2], model->rotation[1]);
         Uint32 currentTime = SDL_GetTicks();
         deltaTime = (currentTime - lastTime) / 1000.0f;
         lastTime = currentTime;

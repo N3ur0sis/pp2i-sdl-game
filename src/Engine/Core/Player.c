@@ -191,22 +191,20 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 void moveCameraPlayer(Camera* camera, vec3 position, float deltaTime) {
 	if (position[0] < -25.0f) {
 		if (camera->Yaw != 180.0f) {
-			camera->Yaw = 180.0f;
+			float oldYaw = camera->Yaw;
+			float newYaw = 180.0f;
+			vec3 oldPosition;
+			glm_vec3_copy(camera->Position, oldPosition);
+			vec3 newPosition = {position[0] + 25.0f, position[1] + 25.0f, position[2]};
+			lerp_camera(camera, oldPosition, newPosition, oldYaw, newYaw, 100);
+
+
 		}
+		deltaTime++;
 
-		// vec3 old_camera_vect;
-		// vec3 new_camera_vect;
-		// glm_vec3_copy(camera->Position, old_camera_vect);
-		// glm_vec3_copy(camera->Position, new_camera_vect);
-		// new_camera_vect[0] = position[0] + 25.0f;
-		// new_camera_vect[1] = position[1] + 25.0f;
-		// new_camera_vect[2] = position[2];
-		deltaTime ++;
-		// changeCameraSmoothly(camera, old_camera_vect, new_camera_vect, 1.0f, deltaTime);
-
-		camera->Position[0] = position[0] + 25.0f;
-		camera->Position[1] = position[1] + 25.0f;
-		camera->Position[2] = position[2];
+		// camera->Position[0] = position[0] + 25.0f;
+		// camera->Position[1] = position[1] + 25.0f;
+		// camera->Position[2] = position[2];
 	} else {
 		if (camera->Yaw != 90.0f) {
 			camera->Yaw = 90.0f;
@@ -219,29 +217,28 @@ void moveCameraPlayer(Camera* camera, vec3 position, float deltaTime) {
 }
 
 
-// void changeCameraSmoothly(Camera* camera, vec3 old_camera, vec3 new_camera, float transitionTime, float deltaTime) {
-// 	float elapsedTime = 0.0f;
+void lerp_vec3(vec3 a, vec3 b, vec3 res, float t) {
+    res[0] = a[0] + (b[0] - a[0]) * t;
+    res[1] = a[1] + (b[1] - a[1]) * t;
+    res[2] = a[2] + (b[2] - a[2]) * t;
+}
+
+float lerp_float(float a, float b, float t) {
+    return a + (b - a) * t;
+}
 
 
-//     vec3 direction = new_camera - old_camera;
-// 	glm_normalize(direction);
+void lerp_camera(Camera* camera, vec3 old_pos, vec3 new_pos, float old_yaw, float new_yaw, int steps) {
+    for (int i = 0; i <= steps; ++i) {
+        float t = (float)i / steps;
+		vec3 interpolated_pos;
+        lerp_vec3(old_pos, new_pos, interpolated_pos, t);
+        float interpolated_yaw = lerp_float(old_yaw, new_yaw, t);
 
-//     // float distance = glm_distance(old_camera, new_camera);
-
-    
-//     while (elapsedTime < transitionTime) {
-//         float t = elapsedTime / transitionTime;
-
-//         vec3 newPosition = glm_mix(old_camera, new_camera, t);
-// 		glm_vec3_copy(newPosition, old_camera);
-
-//         updateCameraVectors(camera);
-
-
-//         elapsedTime += deltaTime;
-//     }
-
-// 	old_camera[0] = new_camera[0];
-// 	old_camera[1] = new_camera[1];
-// 	old_camera[2] = new_camera[2];
-// }
+        camera->Position[0] = interpolated_pos[0];
+		camera->Position[1] = interpolated_pos[1];
+		camera->Position[2] = interpolated_pos[2];
+		camera->Yaw = interpolated_yaw;
+		updateCameraVectors(camera);
+    }
+}
