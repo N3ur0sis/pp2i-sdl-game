@@ -3,6 +3,13 @@
 
 
 void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* camera){
+
+	vec3 front;
+	vec3 right;
+
+	glm_vec3_copy(camera->Front, front);
+	glm_vec3_copy(camera->Right, right);
+
     float speed = 6.0f * deltaTime;
     float speedDiag = speed / sqrt(2);
 
@@ -23,7 +30,7 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 	else if (yRot < 0) {
 		yRot += 2 * PI;
 	}
-	float turningSpeed = 0.0075;
+	float turningSpeed = 8.0f * deltaTime;
 	// printf("yRot: %f\n", yRot);
 
 
@@ -37,14 +44,12 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 			}
 		}
 		if (getKeyState(SHIFT)){
-			z += realSpeedDiag;
-			x -= realSpeedDiag;
-			moveCameraPlayer(camera, (vec3){x, y, z});
+			x +=  front[0] * realSpeedDiag + right[0] * realSpeedDiag;
+        	z += front[2] * realSpeedDiag + right[2] * realSpeedDiag;
 		}
 		else{
-			z += speedDiag;
-			x -= speedDiag;
-			moveCameraPlayer(camera, (vec3){x, y, z});
+			x +=  front[0] * speedDiag + right[0] * speedDiag;
+        	z += front[2] * speedDiag + right[2] * speedDiag;
 		}
 	}
 	else if ((getKeyState(SDLK_s)) && (getKeyState(SDLK_q))) {
@@ -56,14 +61,12 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 			}
 		}
 		if (getKeyState(SHIFT)){
-			z -= realSpeedDiag;
-			x += realSpeedDiag;
-			moveCameraPlayer(camera, (vec3){x, y, z});
+			x -=  front[0] * realSpeedDiag + right[0] * realSpeedDiag;
+        	z -= front[2] * realSpeedDiag + right[2] * realSpeedDiag;
 		}
 		else{
-			z -= speedDiag;
-			x += speedDiag;
-			moveCameraPlayer(camera, (vec3){x, y, z});
+			x -=  front[0] * speedDiag + right[0] * speedDiag;
+        	z -= front[2] * speedDiag + right[2] * speedDiag;
 		}
 	}
 	else if ((getKeyState(SDLK_z)) && (getKeyState(SDLK_q))) {
@@ -76,14 +79,12 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 			}
 		}
 		if (getKeyState(SHIFT)){
-			z += realSpeedDiag;
-			x += realSpeedDiag;
-			moveCameraPlayer(camera, (vec3){x, y, z});
+			x +=  front[0] * realSpeedDiag - right[0] * realSpeedDiag;
+        	z += front[2] * realSpeedDiag - right[2] * realSpeedDiag;
 		}
 		else{
-			z += speedDiag;
-			x += speedDiag;
-			moveCameraPlayer(camera, (vec3){x, y, z});
+			x +=  front[0] * speedDiag - right[0] * speedDiag;
+        	z += front[2] * speedDiag - right[2] * speedDiag;
 		}
 	}
 	else if ((getKeyState(SDLK_s)) && (getKeyState(SDLK_d))) {
@@ -96,14 +97,12 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 			}
 		}
 		if (getKeyState(SHIFT)){
-			z -= realSpeedDiag;
-			x -= realSpeedDiag;
-			moveCameraPlayer(camera, (vec3){x, y, z});
+			x -=  front[0] * realSpeedDiag - right[0] * realSpeedDiag;
+        	z -= front[2] * realSpeedDiag - right[2] * realSpeedDiag;
 		}
 		else{
-			z -= speedDiag;
-			x -= speedDiag;
-			moveCameraPlayer(camera, (vec3){x, y, z});
+			x -=  front[0] * speedDiag - right[0] * speedDiag;
+        	z -= front[2] * speedDiag - right[2] * speedDiag;
 		}
 	}
     else if (getKeyState(SDLK_z)) {
@@ -116,12 +115,12 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 			}
 		}
 		if (getKeyState(SHIFT)){
-			z += realSpeed;
-			moveCameraPlayer(camera, (vec3){x, y, z});
+			x += front[0] * realSpeed;
+        	z += front[2] * realSpeed;
 		}
 		else{
-			z += speed;
-			moveCameraPlayer(camera, (vec3){x, y, z});
+			x += front[0] * speed;
+        	z += front[2] * speed;
 		}
 	}
 	else if (getKeyState(SDLK_s)) {
@@ -133,12 +132,12 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 			}
 		}
 		if (getKeyState(SHIFT)){
-			z -= realSpeed;
-			moveCameraPlayer(camera, (vec3){x, y, z});
+			x -= front[0] * realSpeed;
+        	z -= front[2] * realSpeed;
 		}
 		else{
-			z -= speed;
-			moveCameraPlayer(camera, (vec3){x, y, z});
+			x -= front[0] * speed;
+        	z -= front[2] * speed;
 		}
 	}
 	else if (getKeyState(SDLK_q)) {
@@ -150,12 +149,12 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 			}
 		}
         if (getKeyState(SHIFT)){
-            x += realSpeed;
-			moveCameraPlayer(camera, (vec3){x, y, z});
+            x -= right[0] * realSpeed;
+        	z -= right[2] * realSpeed;
         }
         else{
-            x += speed;
-			moveCameraPlayer(camera, (vec3){x, y, z});
+            x -= right[0] * speed;
+        	z -= right[2] * speed;
         }
     }
     else if (getKeyState(SDLK_d)) {
@@ -167,15 +166,15 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 			}
 		}
         if (getKeyState(SHIFT)){
-            x -= realSpeed;
-			moveCameraPlayer(camera, (vec3){x, y, z});
+            x += right[0] * realSpeed;
+        	z += right[2] * realSpeed;
         }
         else{
-            x -= speed;
-			moveCameraPlayer(camera, (vec3){x, y, z});
+            x += right[0] * speed;
+        	z += right[2] * speed;
         }   
     }
-
+	moveCameraPlayer(camera, (vec3){x, y, z}, deltaTime);
     // Calcul de la différence d'angle entre la rotation actuelle et la rotation souhaitée
 	
 
@@ -189,9 +188,57 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 
 
 
-void moveCameraPlayer(Camera* camera, vec3 position) {
-	camera->Position[0] = position[0];
-	camera->Position[1] = position[1] + 17.5f;
-	camera->Position[2] = position[2] - 17.5f;
+void moveCameraPlayer(Camera* camera, vec3 position, float deltaTime) {
+	if (position[0] < -25.0f) {
+		if (camera->Yaw != 180.0f) {
+			float oldYaw = camera->Yaw;
+			float newYaw = 180.0f;
+			vec3 oldPosition;
+			glm_vec3_copy(camera->Position, oldPosition);
+			vec3 newPosition = {position[0] + 25.0f, position[1] + 25.0f, position[2]};
+			lerp_camera(camera, oldPosition, newPosition, oldYaw, newYaw, 100);
+
+
+		}
+		deltaTime++;
+
+		// camera->Position[0] = position[0] + 25.0f;
+		// camera->Position[1] = position[1] + 25.0f;
+		// camera->Position[2] = position[2];
+	} else {
+		if (camera->Yaw != 90.0f) {
+			camera->Yaw = 90.0f;
+		}
+		camera->Position[0] = position[0];
+		camera->Position[1] = position[1] + 25.0f;
+		camera->Position[2] = position[2] - 25.0f;
+	}
 	updateCameraVectors(camera);
+}
+
+
+void lerp_vec3(vec3 a, vec3 b, vec3 res, float t) {
+    res[0] = a[0] + (b[0] - a[0]) * t;
+    res[1] = a[1] + (b[1] - a[1]) * t;
+    res[2] = a[2] + (b[2] - a[2]) * t;
+}
+
+float lerp_float(float a, float b, float t) {
+    return a + (b - a) * t;
+}
+
+
+void lerp_camera(Camera* camera, vec3 old_pos, vec3 new_pos, float old_yaw, float new_yaw, int steps) {
+    for (int i = 0; i <= steps; ++i) {
+        float t = (float)i / steps;
+		vec3 interpolated_pos;
+        lerp_vec3(old_pos, new_pos, interpolated_pos, t);
+        float interpolated_yaw = lerp_float(old_yaw, new_yaw, t);
+
+        camera->Position[0] = interpolated_pos[0];
+		camera->Position[1] = interpolated_pos[1];
+		camera->Position[2] = interpolated_pos[2];
+		camera->Yaw = interpolated_yaw;
+		updateCameraVectors(camera);
+    }
 }
