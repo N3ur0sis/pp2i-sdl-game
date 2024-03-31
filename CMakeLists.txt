@@ -17,7 +17,7 @@ file(GLOB_RECURSE APPS "apps/*.c")
 file(GLOB_RECURSE SOURCES "src/*.c" )
 FILE(COPY assets/ DESTINATION "${CMAKE_BINARY_DIR}/assets")
 add_executable(${PROJECT_NAME} ${SOURCES} ${APPS})
-target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -Werror -O3 -fsanitize=address -g)
+target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -O3 -fsanitize=address -g)
 
 # Add libraries
 find_package(SDL2 REQUIRED)

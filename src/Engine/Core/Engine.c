@@ -32,7 +32,7 @@ void EngineInit(void){
 	/* Basic renderign properties */
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f); /* Set the cleared back buffer to black */
     glCullFace(GL_BACK);                  /* Set back-face culling */
-    glDisable(GL_CULL_FACE);               /* Enable use of back/front face culling */
+    glEnable(GL_CULL_FACE);               /* Enable use of back/front face culling */
     glEnable(GL_DEPTH_TEST);              /* Enable use of depth testing */
     glDisable(GL_STENCIL_TEST);           /* Disable stencil test for speed */
 
@@ -54,9 +54,9 @@ void StartFrame(Application* game){
     game->time->currentUpdate = SDL_GetTicks();
     game->time->nbFrames++;
     if( game->time->currentUpdate - game->time->lastUpdate >= 1000.0f){
-        printf("%d fps\n", game->time->nbFrames);
-        game->time->nbFrames = 0;
-        game->time->lastUpdate += 1000.0f;
+        //printf("%d fps\n", game->time->nbFrames);
+        //game->time->nbFrames = 0;
+        //game->time->lastUpdate += 1000.0f;
     }
     game->time->deltaTime = (game->time->currentUpdate - game->time->lastUpdate) / 1000.0f;
     /* Input Handling */

@@ -4,8 +4,23 @@
 #include <Shader.h>
 #include <Camera.h>
 #include <Textures.h>
+#include <linmath.h>
 
-
+typedef struct sogv_skel_node {
+    char name[64];
+    struct sogv_skel_node* children[MAX_BONES];
+    vec3* pos_keys;
+    quat* rot_keys;
+    vec3* sca_keys;
+    float* pos_key_times;
+    float* rot_key_times;
+    float* sca_key_times;
+    size_t pos_keys_count;
+    size_t rot_keys_count;
+    size_t sca_keys_count;
+    size_t child_count;
+    int bone_idx;
+} sogv_skel_node;
 
 /* A Model class to represent a 3D object in the scene */
 typedef struct _Model{
@@ -17,7 +32,22 @@ typedef struct _Model{
     vec3     position;      /* Position of the model in the scene */
     vec3     rotation;      /* Rotation of the model in the scene */
     vec3     scale;         /* Scale of the model in the scene    */
+    mat4x4 bones[MAX_BONES];
+    char bone_names[MAX_BONES][64];
+    sogv_skel_node* root_node;
+    float anim_dur;
+    float anim_ticks;
+    size_t bone_count;
 } Model;
+
+
+
+typedef struct sogv_skel_anim {
+    sogv_skel_node* node;
+    mat4 parent_mat;
+    mat4* bone_mats;
+    mat4* bone_anim_mats;
+} sogv_skel_anim;
 
 
 /**
@@ -67,3 +97,8 @@ void ModelMatrixCalculate(vec3 position,vec3 rotation, vec3 scale , Camera* came
 
 
 void ModelFree(Model* model);
+
+sogv_skel_node* sogv_skel_node_find(sogv_skel_node* root, const char* name);
+int sogv_skel_node_import(const struct aiNode* ai_node, sogv_skel_node** skel_node, size_t bone_count, char bone_names[][64]);
+void sogv_skel_animate(sogv_skel_node* node, float anim_time, mat4x4 parent_mat, mat4x4* bones,mat4x4* bone_anim_mats);
+void sogv_skel_node_clean(sogv_skel_node* node);

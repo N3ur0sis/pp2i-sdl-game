@@ -3,14 +3,13 @@
 #include <cglm/cglm.h>
 #include <Shader.h>
 
-typedef struct pointLight {
-	vec3 color;
-	vec3 position;
-	float intensity;
-	float attenuation;
-} pointLight;
+typedef struct _Light {
+    vec4 position;
+    vec3 intensity; //a.k.a. the color of the light
+    float attenuation;
+    float ambientCoefficient;
+} Light;
 
-void light_setAmbientLight(Shader *S, vec3 color, float intensity);
 
-pointLight* light_createPointLight(Shader *S, vec3 color, vec3 position, float intensity, float attenuation);
-void light_updatePointLight(Shader *S, pointLight *point);
+Light* LightCreate(Shader *S, vec4 position, vec3 intensity, float attenuation, float ambientCoef);
+void LightUpdate(Shader *S, Light *point);
