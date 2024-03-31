@@ -8,3 +8,4 @@ typedef struct _Texture {
 
 
 GLuint load_textures(const char* texturePath);
+GLuint loadCubemap(char** faces);
