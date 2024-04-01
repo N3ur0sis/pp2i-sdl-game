@@ -13,7 +13,7 @@ Skybox* SkyboxCreate(void){
     "assets/images/skybox/front.png",
     "assets/images/skybox/back.png"
     };
-    skybox->cubemapTexture = loadCubemap(faces);  
+    skybox->cubemapTexture = CubeMapLoad(faces);  
 
     float skyboxVertices[] = {
     // positions          

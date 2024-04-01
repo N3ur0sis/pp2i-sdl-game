@@ -255,10 +255,18 @@ void ModelCreate(Model* model, char* path){
             strcat(diffusePath, diffuseTex.data);
 
             /* Load a image file and bind it to a texture ID */
-            model->materials[materialIndex].id = load_textures(diffusePath);
+            model->materials[materialIndex].id = TextureLoad(diffusePath);
             free(diffusePath);
         }
         /* Note: Sometimes assimp will load more materials than necessary hence the check for AI_SUCCESS */
+        struct aiColor4D color = {0.f,0.f,0.f, 0.f};
+        if(aiGetMaterialColor(scene->mMaterials[materialIndex],AI_MATKEY_COLOR_SPECULAR,&color) == AI_SUCCESS){
+            printf("Specular : %f,%f,%f,%f\n", color.r, color.g, color.b,color.a);
+
+        }else{
+            printf("yo bitvh");
+        }
+
     }
 
     /* When the model is fully loaded we can release the data imported */
