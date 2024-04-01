@@ -4,13 +4,12 @@
 #include <Shader.h>
 #include <Camera.h>
 #include <Textures.h>
-#include <linmath.h>
 
-typedef struct sogv_skel_node {
+typedef struct _Node {
     char name[64];
-    struct sogv_skel_node* children[MAX_BONES];
+    struct _Node* children[MAX_BONES];
     vec3* pos_keys;
-    quat* rot_keys;
+    versor* rot_keys;
     vec3* sca_keys;
     float* pos_key_times;
     float* rot_key_times;
@@ -20,7 +19,7 @@ typedef struct sogv_skel_node {
     size_t sca_keys_count;
     size_t child_count;
     int bone_idx;
-} sogv_skel_node;
+} Node;
 
 /* A Model class to represent a 3D object in the scene */
 typedef struct _Model{
@@ -32,9 +31,9 @@ typedef struct _Model{
     vec3     position;      /* Position of the model in the scene */
     vec3     rotation;      /* Rotation of the model in the scene */
     vec3     scale;         /* Scale of the model in the scene    */
-    mat4x4 bones[MAX_BONES];
+    mat4 bones[MAX_BONES];
     char bone_names[MAX_BONES][64];
-    sogv_skel_node* root_node;
+    Node* root_node;
     float anim_dur;
     float anim_ticks;
     size_t bone_count;
@@ -42,12 +41,12 @@ typedef struct _Model{
 
 
 
-typedef struct sogv_skel_anim {
-    sogv_skel_node* node;
+typedef struct Animation {
+    Node* node;
     mat4 parent_mat;
     mat4* bone_mats;
     mat4* bone_anim_mats;
-} sogv_skel_anim;
+} Animation;
 
 
 /**
@@ -98,7 +97,7 @@ void ModelMatrixCalculate(vec3 position,vec3 rotation, vec3 scale , Camera* came
 
 void ModelFree(Model* model);
 
-sogv_skel_node* sogv_skel_node_find(sogv_skel_node* root, const char* name);
-int sogv_skel_node_import(const struct aiNode* ai_node, sogv_skel_node** skel_node, size_t bone_count, char bone_names[][64]);
-void sogv_skel_animate(sogv_skel_node* node, float anim_time, mat4x4 parent_mat, mat4x4* bones,mat4x4* bone_anim_mats);
-void sogv_skel_node_clean(sogv_skel_node* node);
+Node* NodeFind(Node* root, const char* name);
+int NodeImport(const struct aiNode* ai_node, Node** skel_node, size_t bone_count, char bone_names[][64]);
+void ModelAnimate(Node* node, float anim_time, mat4 parent_mat, mat4* bones,mat4* bone_anim_mats);
+void NodeDelete(Node* node);

@@ -1,24 +1,15 @@
 #include <Model.h>
 
-static void sogv_vec3_lerp(vec3 from, vec3 to, float t, vec3 dest) {
-    vec3 s, v;
-    s[0] = s[1] = s[2] = t;
-    vec3_sub(v, to, from);
-    v[0] = s[0]*v[0];
-    v[1] = s[1]*v[1];
-    v[2] = s[2]*v[2];
-    vec3_add(dest, from, v);
-}
 
 static void sogv_vec4_lerp(vec4 from, vec4 to, float t, vec4 dest) {
     vec4 s, v;
     s[0] = s[1] = s[2] = s[3] = t;
-    vec4_sub(v, to, from);
+    glm_vec4_sub(to, from,v);
     v[0] = s[0]*v[0];
     v[1] = s[1]*v[1];
     v[2] = s[2]*v[2];
     v[3] = s[3]*v[3];
-    vec4_add(dest, from, v);
+    glm_vec4_add(from, v, dest);
 }
 
 static void sogv_vec4_copy(vec4 from, vec4 to) {
@@ -28,7 +19,7 @@ static void sogv_vec4_copy(vec4 from, vec4 to) {
     to[3] = from[3];
 }
 
-static void sogv_quat_slerp(quat from, quat to, float t, quat dest) {
+static void sogv_quat_slerp(versor from, versor to, float t, versor dest) {
     vec4 q1, q2;
     float cos_theta, sin_theta, angle;
 
@@ -55,10 +46,10 @@ static void sogv_quat_slerp(quat from, quat to, float t, quat dest) {
     }
 
     angle = acosf(cos_theta);
-    vec4_scale(q1, q1, sinf((1.0f-t)*angle));
-    vec4_scale(q2, to, sinf(t*angle));
-    vec4_add(q1, q1, q2);
-    vec4_scale(dest, q1, 1.0f/sin_theta);
+    glm_vec4_scale(q1, sinf((1.0f-t)*angle),q1);
+    glm_vec4_scale(to, sinf(t*angle), q2);
+    glm_vec4_add(q1, q2, q1);
+    glm_vec4_scale(q1, 1.0f/sin_theta, dest);
 }
 
 static void sogv_assimp_vec3(vec3 vec, struct aiVector3D ai_vec) {
@@ -67,19 +58,15 @@ static void sogv_assimp_vec3(vec3 vec, struct aiVector3D ai_vec) {
     vec[2] = ai_vec.z;
 }
 
-static void sogv_assimp_vec2(vec2 vec, struct aiVector3D ai_vec) {
-    vec[0] = ai_vec.x;
-    vec[1] = ai_vec.y;
-}
 
-static void sogv_assimp_quat(quat q, struct aiQuaternion ai_q) {
+static void sogv_assimp_quat(versor q, struct aiQuaternion ai_q) {
     q[0] = ai_q.x;
     q[1] = ai_q.y;
     q[2] = ai_q.z;
     q[3] = ai_q.w;
 }
 
-static void sogv_assimp_mat4x4(mat4x4 mat, struct aiMatrix4x4 ai_mat) {
+static void sogv_assimp_mat4x4(mat4 mat, struct aiMatrix4x4 ai_mat) {
     mat[0][0] = ai_mat.a1;
     mat[0][1] = ai_mat.b1;
     mat[0][2] = ai_mat.c1;
@@ -157,7 +144,7 @@ void ModelCreate(Model* model, char* path){
             // if we dont have the name: add; if we have - skip.
             for(size_t i=0; i<ai_bone_count; ++i) {
                 const struct aiBone* ai_bone = scene->mMeshes[meshIndex]->mBones[i];
-                strncpy(bone_names[i], ai_bone->mName.data, 63);
+                memcpy(bone_names[i], ai_bone->mName.data, 63);
 
                 bool exists = false;
                 for(size_t j=0; j<MAX_BONES; ++j)
@@ -168,7 +155,7 @@ void ModelCreate(Model* model, char* path){
 
                 if(!exists) {
                     sogv_assimp_mat4x4(model->bones[i], ai_bone->mOffsetMatrix);
-                    strncpy(model->bone_names[i], bone_names[i], 63);
+                    memcpy(model->bone_names[i], bone_names[i], 63);
                     model->bone_count++;
                 }
 
@@ -198,29 +185,29 @@ void ModelCreate(Model* model, char* path){
 
     // Setup skeleton nodes
     const struct aiNode* ai_node = scene->mRootNode;
-    if(sogv_skel_node_import(ai_node, &model->root_node, model->bone_count, model->bone_names)==1)
+    if(NodeImport(ai_node, &model->root_node, model->bone_count, model->bone_names)==1)
         printf("No skeleton found inside the model\n");
 
     // Setup first animation
-    printf("Number of animation : %d\n", scene->mNumAnimations);
+    //printf("Number of animation : %d\n", scene->mNumAnimations);
     if(scene->mNumAnimations > 0) {
         const struct aiAnimation* anim = scene->mAnimations[0];
-        printf("animation has a name: %s\n", anim->mName.data);
-        printf("animation has %u nodechannels\n", anim->mNumChannels);
-        printf("animation has %u meshchannels\n", anim->mNumMeshChannels);
-        printf("animation is %f long\n", anim->mDuration);
-        printf("animation has %f ticks per second\n", anim->mTicksPerSecond);
+        //printf("animation has a name: %s\n", anim->mName.data);
+        //printf("animation has %u nodechannels\n", anim->mNumChannels);
+        //printf("animation has %u meshchannels\n", anim->mNumMeshChannels);
+        //printf("animation is %f long\n", anim->mDuration);
+        //printf("animation has %f ticks per second\n", anim->mTicksPerSecond);
         model->anim_dur = anim->mDuration;
         model->anim_ticks = anim->mTicksPerSecond;
 
         for(size_t i=0; i<anim->mNumChannels; ++i) {
             const struct aiNodeAnim* channel = anim->mChannels[i];
-            sogv_skel_node* node = sogv_skel_node_find(model->root_node, channel->mNodeName.data);
+            Node* node = NodeFind(model->root_node, channel->mNodeName.data);
             node->pos_keys_count = channel->mNumPositionKeys;
             node->rot_keys_count = channel->mNumRotationKeys;
             node->sca_keys_count = channel->mNumScalingKeys;
             node->pos_keys = calloc(node->pos_keys_count, sizeof(vec3));
-            node->rot_keys = calloc(node->rot_keys_count, sizeof(quat));
+            node->rot_keys = calloc(node->rot_keys_count, sizeof(versor));
             node->sca_keys = calloc(node->sca_keys_count, sizeof(vec3));
             node->pos_key_times = calloc(node->pos_keys_count, sizeof(float));
             node->rot_key_times = calloc(node->rot_keys_count, sizeof(float));
@@ -259,14 +246,6 @@ void ModelCreate(Model* model, char* path){
             free(diffusePath);
         }
         /* Note: Sometimes assimp will load more materials than necessary hence the check for AI_SUCCESS */
-        struct aiColor4D color = {0.f,0.f,0.f, 0.f};
-        if(aiGetMaterialColor(scene->mMaterials[materialIndex],AI_MATKEY_COLOR_SPECULAR,&color) == AI_SUCCESS){
-            printf("Specular : %f,%f,%f,%f\n", color.r, color.g, color.b,color.a);
-
-        }else{
-            printf("yo bitvh");
-        }
-
     }
 
     /* When the model is fully loaded we can release the data imported */
@@ -338,12 +317,12 @@ void ModelFree(Model* model) {
     }
 
 
-sogv_skel_node* sogv_skel_node_find(sogv_skel_node* root, const char* name) {
+Node* NodeFind(Node* root, const char* name) {
     if(strcmp(name, root->name)==0)
         return root;
 
     for(size_t i=0; i<root->child_count; ++i) {
-        sogv_skel_node* child = sogv_skel_node_find(root->children[i], name);
+        Node* child = NodeFind(root->children[i], name);
         if(child) return child;
     }
 
@@ -351,9 +330,9 @@ sogv_skel_node* sogv_skel_node_find(sogv_skel_node* root, const char* name) {
 }
 
 
-int sogv_skel_node_import(const struct aiNode* ai_node, sogv_skel_node** skel_node,
+int NodeImport(const struct aiNode* ai_node, Node** skel_node,
                         size_t bone_count, char bone_names[][64]) {
-    sogv_skel_node* t_node = calloc(1, sizeof(sogv_skel_node));
+    Node* t_node = calloc(1, sizeof(Node));
     t_node->bone_idx = -1;
     t_node->child_count = 0;
     t_node->pos_keys = NULL;
@@ -365,9 +344,9 @@ int sogv_skel_node_import(const struct aiNode* ai_node, sogv_skel_node** skel_no
     t_node->pos_key_times = NULL;
     t_node->rot_key_times = NULL;
     t_node->sca_key_times = NULL;
-    strncpy(t_node->name, ai_node->mName.data, 63);
-    printf("node name: %s\n", t_node->name);
-    printf("ai_node has %u children\n", ai_node->mNumChildren);
+    memcpy(t_node->name, ai_node->mName.data, 63);
+    //printf("node name: %s\n", t_node->name);
+    //printf("ai_node has %u children\n", ai_node->mNumChildren);
     
     for(size_t i=0; i<MAX_BONES; ++i)
         t_node->children[i] = NULL;
@@ -375,20 +354,20 @@ int sogv_skel_node_import(const struct aiNode* ai_node, sogv_skel_node** skel_no
     bool has_bone = false;
     for(size_t i=0; i<bone_count; ++i)
         if(strcmp(bone_names[i], t_node->name)==0) {
-            printf("node will use bone %zu : %s\n", i, t_node->name);
+            //printf("node will use bone %zu : %s\n", i, t_node->name);
             t_node->bone_idx = i;
             has_bone = true;
             break;
         }
-    if(!has_bone) printf("no bones found\n");
+    //if(!has_bone) printf("no bones found\n");
 
     bool has_usable_child = false;
     for(size_t i=0; i<ai_node->mNumChildren; ++i) {
-        if(sogv_skel_node_import(ai_node->mChildren[i],
+        if(NodeImport(ai_node->mChildren[i],
                     &t_node->children[t_node->child_count], bone_count, bone_names)==0) {
             has_usable_child = true;
             t_node->child_count++;
-        } else printf("non-usable child node thrown away\n");
+        } //else printf("non-usable child node thrown away\n");
     }
     if(has_usable_child || has_bone) {
         *skel_node = t_node;
@@ -400,7 +379,7 @@ int sogv_skel_node_import(const struct aiNode* ai_node, sogv_skel_node** skel_no
     return 1;
 }
 
-void sogv_skel_node_clean(sogv_skel_node* node) {
+void NodeDelete(Node* node) {
     if(node->pos_keys) free(node->pos_keys);
     if(node->rot_keys) free(node->rot_keys);
     if(node->sca_keys) free(node->sca_keys);
@@ -408,19 +387,19 @@ void sogv_skel_node_clean(sogv_skel_node* node) {
     if(node->rot_key_times) free(node->rot_key_times);
     if(node->sca_key_times) free(node->sca_key_times);
     for(size_t i=0; i<node->child_count; ++i)
-        sogv_skel_node_clean(node->children[i]);
+        NodeDelete(node->children[i]);
 }
 
 
-void sogv_skel_animate(sogv_skel_node* node, float anim_time, mat4x4 parent_mat, mat4x4* bones,
-        mat4x4* bone_anim_mats) {
-// our -> base animation; local -> matrix that moves;
-    mat4x4 our_mat, local_anim_mat;
-    mat4x4_dup(our_mat, parent_mat);
-    mat4x4_identity(local_anim_mat);
+void ModelAnimate(Node* node, float anim_time, mat4 parent_mat, mat4* bones,
+        mat4* bone_anim_mats) {
+    // our -> base animation; local -> matrix that moves;
+    mat4 our_mat, local_anim_mat;
+    glm_mat4_dup(parent_mat,our_mat);
+    glm_mat4_identity(local_anim_mat);
 
-    mat4x4 t_node;
-    mat4x4_identity(t_node);
+    mat4 t_node;
+    glm_mat4_identity(t_node);
     if(node->pos_keys_count>0) {
         size_t p_key = 0;
         size_t n_key = 0;
@@ -432,13 +411,13 @@ void sogv_skel_animate(sogv_skel_node* node, float anim_time, mat4x4 parent_mat,
         float t_tot = node->pos_key_times[n_key] - node->pos_key_times[p_key];
         float t = (anim_time - node->pos_key_times[p_key]) / t_tot;
         vec3 vi, vf;
-        vec3_dup(vi, node->pos_keys[p_key]);
-        vec3_dup(vf, node->pos_keys[n_key]);
+        glm_vec3_dup(node->pos_keys[p_key],vi );
+        glm_vec3_dup(node->pos_keys[n_key],vf );
         vec3 lerp0, lerp1, lerp;
-        vec3_scale(lerp0, vi, 1.0f-t);
-        vec3_scale(lerp1, vf, t);
-        vec3_add(lerp, lerp0, lerp1);
-        mat4x4_translate_in_place(t_node, lerp[0], lerp[1], lerp[2]);
+        glm_vec3_scale(vi, 1.0f-t,lerp0);
+        glm_vec3_scale(vf,t,lerp1);
+        glm_vec3_add(lerp0, lerp1,lerp);
+        glm_translate(t_node, (vec3){lerp[0], lerp[1], lerp[2]});
     }
 
     /*mat4x4 s_node;
@@ -463,8 +442,8 @@ void sogv_skel_animate(sogv_skel_node* node, float anim_time, mat4x4 parent_mat,
         mat4x4_translate_in_place(t_node, lerp[0], lerp[1], lerp[2]);
     }*/
 
-    mat4x4 r_node;
-    mat4x4_identity(r_node);
+    mat4 r_node;
+    glm_mat4_identity(r_node);
     if(node->rot_keys_count>0) {
         size_t p_key = 0;
         size_t n_key = 0;
@@ -475,26 +454,26 @@ void sogv_skel_animate(sogv_skel_node* node, float anim_time, mat4x4 parent_mat,
         }
         float t_tot = node->rot_key_times[n_key] - node->rot_key_times[p_key];
         float t = (anim_time - node->rot_key_times[p_key]) / t_tot;
-        quat vi, vf;
-        vec4_dup(vi, node->rot_keys[p_key]);
-        vec4_dup(vf, node->rot_keys[n_key]);
-        quat lerp;
+        versor vi, vf;
+        glm_vec4_dup(node->rot_keys[p_key],vi);
+        glm_vec4_dup(node->rot_keys[n_key],vf);
+        versor lerp;
         sogv_quat_slerp(vi, vf, t, lerp);
-        mat4x4_from_quat(r_node, lerp);
+        glm_quat_mat4(lerp,r_node);
     }
 
-    mat4x4_mul(local_anim_mat, t_node, r_node);
+    glm_mat4_mul(t_node, r_node,local_anim_mat);
     // mat4x4_mul(local_anim_mat, local_anim_mat, s_node);
 
     int bone_i = node->bone_idx;
     if(bone_i > -1) {
-        mat4x4 bone_offset;
-        mat4x4_dup(bone_offset, bones[bone_i]);
-        mat4x4_mul(our_mat, parent_mat, local_anim_mat);
-        mat4x4 whatsthis;
-        mat4x4_mul(whatsthis, our_mat, bone_offset);
-        mat4x4_dup(bone_anim_mats[bone_i], whatsthis);
+        mat4 bone_offset;
+        glm_mat4_dup(bones[bone_i], bone_offset);
+        glm_mat4_mul(parent_mat, local_anim_mat, our_mat);
+        mat4 whatsthis;
+        glm_mat4_mul(our_mat, bone_offset, whatsthis);
+        glm_mat4_dup(whatsthis,bone_anim_mats[bone_i]);
     }
     for(size_t i=0; i<node->child_count; ++i)
-        sogv_skel_animate(node->children[i], anim_time, our_mat, bones, bone_anim_mats);
+        ModelAnimate(node->children[i], anim_time, our_mat, bones, bone_anim_mats);
 }

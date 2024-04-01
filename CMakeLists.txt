@@ -20,7 +20,7 @@ FILE(COPY assets/ DESTINATION "${CMAKE_BINARY_DIR}/assets")
 
 # Create the executable fromt he source file and specify compilation opeitons
 add_executable(${PROJECT_NAME} ${SOURCES} ${APPS})
-target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -pedantic -O3 -fsanitize=address -g)
+target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Werror -pedantic -O3 -fsanitize=address -g)
 
 # Add libraries
 find_package(SDL2 REQUIRED)

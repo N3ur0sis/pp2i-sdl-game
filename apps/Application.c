@@ -45,9 +45,9 @@ int main(void){
 
     Uint32 lastTime = SDL_GetTicks();
     float deltaTime = 0.0f;
-    mat4x4 anim[MAX_BONES];
+    mat4 anim[MAX_BONES];
     for(size_t i=0; i<MAX_BONES; ++i){
-        mat4x4_identity(anim[i]);
+        glm_mat4_identity(anim[i]);
     }
     float anim_time = 0.0f;
     /* Game Loop */
@@ -64,19 +64,19 @@ int main(void){
 
         /* Rendering Scene */
         UseShaders(shader);
-        mat4x4 bones;
-        mat4x4_identity(bones);
+        mat4 bones;
+        glm_mat4_identity(bones);
         char name[64];
         for(size_t i=0; i<MAX_BONES; ++i) {
             sprintf(name, "bones_mat[%zu]", i);
             glUniformMatrix4fv(glGetUniformLocation(shader->m_program, name), 1, GL_FALSE, (float*)bones);
         }
 
-        mat4x4 test;
-        mat4x4_identity(test);
+        mat4 test;
+        glm_mat4_identity(test);
         anim_time += deltaTime*player->anim_ticks;
         if(anim_time>=player->anim_dur) anim_time -= player->anim_dur;
-        sogv_skel_animate(player->root_node, anim_time, test, player->bones, anim);
+        ModelAnimate(player->root_node, anim_time, test, player->bones, anim);
         for(size_t i=0; i<player->bone_count; ++i) {
             sprintf(name, "bones_mat[%zu]", i);
             glUniformMatrix4fv(glGetUniformLocation(shader->m_program, name), 1, GL_FALSE, (float*)anim[i]);
