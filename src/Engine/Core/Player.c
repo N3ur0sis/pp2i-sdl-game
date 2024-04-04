@@ -174,7 +174,7 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
         	z += right[2] * speed;
         }   
     }
-	moveCameraPlayer(camera, (vec3){x, y, z}, deltaTime);
+	moveCameraPlayer(camera, (vec3){x, y, z});
     // Calcul de la différence d'angle entre la rotation actuelle et la rotation souhaitée
 	
 
@@ -188,7 +188,7 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 
 
 
-void moveCameraPlayer(Camera* camera, vec3 position, float deltaTime) {
+void moveCameraPlayer(Camera* camera, vec3 position) {
 	if (position[0] < -25.0f) {
 		if (camera->Yaw != 180.0f) {
 			float oldYaw = camera->Yaw;
@@ -196,11 +196,10 @@ void moveCameraPlayer(Camera* camera, vec3 position, float deltaTime) {
 			vec3 oldPosition;
 			glm_vec3_copy(camera->Position, oldPosition);
 			vec3 newPosition = {position[0] + 25.0f, position[1] + 25.0f, position[2]};
-			lerp_camera(camera, oldPosition, newPosition, oldYaw, newYaw, 100);
+			lerp_camera(camera, oldPosition, newPosition, oldYaw, newYaw, 10, 1.0f);
 
 
 		}
-		deltaTime++;
 
 		// camera->Position[0] = position[0] + 25.0f;
 		// camera->Position[1] = position[1] + 25.0f;
@@ -213,7 +212,7 @@ void moveCameraPlayer(Camera* camera, vec3 position, float deltaTime) {
 		camera->Position[1] = position[1] + 25.0f;
 		camera->Position[2] = position[2] - 25.0f;
 	}
-	updateCameraVectors(camera);
+	// updateCameraVectors(camera);
 }
 
 
@@ -228,7 +227,8 @@ float lerp_float(float a, float b, float t) {
 }
 
 
-void lerp_camera(Camera* camera, vec3 old_pos, vec3 new_pos, float old_yaw, float new_yaw, int steps) {
+void lerp_camera(Camera* camera, vec3 old_pos, vec3 new_pos, float old_yaw, float new_yaw, int steps, float duration) {
+	duration *= 1000;
     for (int i = 0; i <= steps; ++i) {
         float t = (float)i / steps;
 		vec3 interpolated_pos;
@@ -239,6 +239,7 @@ void lerp_camera(Camera* camera, vec3 old_pos, vec3 new_pos, float old_yaw, floa
 		camera->Position[1] = interpolated_pos[1];
 		camera->Position[2] = interpolated_pos[2];
 		camera->Yaw = interpolated_yaw;
+		
 		updateCameraVectors(camera);
     }
 }
