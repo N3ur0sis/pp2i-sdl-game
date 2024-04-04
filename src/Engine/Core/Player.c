@@ -188,30 +188,54 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 
 
 void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float deltaTime) {
+	targetPosition++;
 	if (position[0] < -25.0f) {
 		if (camera->Yaw != 180.0f) {
 			float oldYaw = camera->Yaw;
 			float newYaw = 180.0f;
 			camera->Yaw = glm_lerp(oldYaw, newYaw, deltaTime*2);
+			vec3 old_camera;
+			glm_vec3_copy(camera->Position, old_camera);
+			vec3 new_camera = {position[0]+25.0f, position[1]+25.0f, position[2]};
+			vec3 copy;
+			glm_vec3_lerp(old_camera, new_camera, deltaTime*2, copy);
+			camera->Position[0] = copy[0];
+			camera->Position[1] = copy[1];
+			camera->Position[2] = copy[2];
 		}
+		vec3 old_camera;
+		glm_vec3_copy(camera->Position, old_camera);
+		vec3 new_camera = {position[0]+25.0f, position[1]+25.0f, position[2]};
 		vec3 copy;
-		glm_vec3_lerp(position, targetPosition, deltaTime, copy);
-		camera->Position[0] = copy[0]+25.0f;
-		camera->Position[1] = copy[1]+25.0f;
+		glm_vec3_lerp(old_camera, new_camera, deltaTime*2, copy);
+		camera->Position[0] = copy[0];
+		camera->Position[1] = copy[1];
 		camera->Position[2] = copy[2];
+
+		
 	} else {
 		if (camera->Yaw != 90.0f) {
 			float oldYaw = camera->Yaw;	
 			float newYaw = 90.0f;
 			camera->Yaw = glm_lerp(oldYaw, newYaw, deltaTime*2);
+			vec3 old_camera;
+			glm_vec3_copy(camera->Position, old_camera);
+			vec3 new_camera = {position[0], position[1] + 25.0f, position[2] - 25.0f};
+			vec3 copy;
+			glm_vec3_lerp(old_camera, new_camera, deltaTime*2, copy);
+			camera->Position[0] = copy[0];
+			camera->Position[1] = copy[1];
+			camera->Position[2] = copy[2];
 		}
+		vec3 old_camera;
+		glm_vec3_copy(camera->Position, old_camera);
+		vec3 new_camera = {position[0], position[1] + 25.0f, position[2] - 25.0f};
 		vec3 copy;
-		glm_vec3_lerp(position, targetPosition, deltaTime, copy);
+		glm_vec3_lerp(old_camera, new_camera, deltaTime*2, copy);
 		camera->Position[0] = copy[0];
-		camera->Position[1] = copy[1]+25.0f;
-		camera->Position[2] = copy[2]-25.0f;
+		camera->Position[1] = copy[1];
+		camera->Position[2] = copy[2];
 	}
-	// glm_vec3_copy(camera->Position, position);
 
 	updateCameraVectors(camera);
 }
