@@ -193,7 +193,7 @@ void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float 
 		if (camera->Yaw != 180.0f) {
 			float oldYaw = camera->Yaw;
 			float newYaw = 180.0f;
-			camera->Yaw = glm_lerp(oldYaw, newYaw, deltaTime*2);
+			camera->Yaw = glm_lerp(oldYaw, newYaw, deltaTime*3);
 			vec3 old_camera;
 			glm_vec3_copy(camera->Position, old_camera);
 			vec3 new_camera = {position[0]+25.0f, position[1]+25.0f, position[2]};
@@ -217,7 +217,7 @@ void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float 
 		if (camera->Yaw != 90.0f) {
 			float oldYaw = camera->Yaw;	
 			float newYaw = 90.0f;
-			camera->Yaw = glm_lerp(oldYaw, newYaw, deltaTime*2);
+			camera->Yaw = glm_lerp(oldYaw, newYaw, deltaTime*3);
 			vec3 old_camera;
 			glm_vec3_copy(camera->Position, old_camera);
 			vec3 new_camera = {position[0], position[1] + 25.0f, position[2] - 25.0f};
