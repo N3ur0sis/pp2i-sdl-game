@@ -5,11 +5,16 @@
 #include <cglm/cglm.h>
 #include <glad/glad.h>
 
+#define MAX_BONES 50
+#define MAX_BONE_INFLUENCE 4
+
 /* A Custom vertex struct we pass to OpenGL */
 typedef struct _Vertex {
     vec3 Position;          /* Posiiton of each vertex in the local space                   */
     vec3 Normal;            /* Normal direction of each vertex for lighting calculation     */
     vec2 TexCoords;         /* 2D coordinates in the correpsonding textures for this vertex */
+    GLuint BoneInfo[MAX_BONE_INFLUENCE];
+    float Weights[MAX_BONE_INFLUENCE];
 } Vertex;
 
 
@@ -51,4 +56,4 @@ void MeshDraw(Mesh* mesh);
 
 void MeshClean(Mesh* mesh);
 
-vec3* treatMeshToVec(Mesh* mesh);
+

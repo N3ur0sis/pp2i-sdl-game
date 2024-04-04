@@ -71,14 +71,11 @@ Shader* LoadShaders(const char * vertex_file_path,const char * fragment_file_pat
     shader->m_locations.Model = glGetUniformLocation(shaderProgram, "model");
     shader->m_locations.View = glGetUniformLocation(shaderProgram, "view");
     shader->m_locations.Projection = glGetUniformLocation(shaderProgram, "projection");    
-	shader->m_locations.ambientLightColor = glGetUniformLocation(shaderProgram, "ambientLightColor");
-	shader->m_locations.ambientLightIntensity = glGetUniformLocation(shaderProgram, "ambientLightIntensity");
-	shader->m_locations.pointLightColor = glGetUniformLocation(shaderProgram, "pointLightColor");
-	shader->m_locations.pointLightPosition = glGetUniformLocation(shaderProgram, "pointLightPosition");
-	shader->m_locations.pointLightIntensity = glGetUniformLocation(shaderProgram, "pointLightIntensity");
-	shader->m_locations.pointLightAttenuation = glGetUniformLocation(shaderProgram, "pointLightAttenuation");
-	shader->m_locations.transformationMatrix = glGetUniformLocation(shaderProgram, "transformationMatrix");
-	shader->m_locations.normalTransformationMatrix = glGetUniformLocation(shaderProgram, "normalTransformationMatrix");
+    shader->m_locations.lightPosition = glGetUniformLocation(shaderProgram, "allLights.position");    
+    shader->m_locations.lightIntensity = glGetUniformLocation(shaderProgram, "allLights.intensities");    
+    shader->m_locations.lightAttenuation = glGetUniformLocation(shaderProgram, "allLights.attenuation");    
+    shader->m_locations.lightAmbienbtCoef = glGetUniformLocation(shaderProgram, "allLights.ambientCoefficient");   
+    shader->m_locations.cameraPosition = glGetUniformLocation(shaderProgram, "cameraPosition");   
     
     return shader;
 }

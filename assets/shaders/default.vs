@@ -8,13 +8,14 @@ uniform mat4 model;
 uniform mat4 view;
 uniform mat4 projection;
 
-out vec3 fragPosition;
-out vec2 fragTexture;
+out vec3 fragVert;
+out vec2 fragTexCoord;
 out vec3 fragNormal;
 
 void main() {
-    fragPosition = vec3(model * vec4(position, 1.0));
     gl_Position = projection * view * model * vec4(position, 1.0);
-    fragTexture = texture;
-    fragNormal = normal;
+    // Pass some variables to the fragment shader
+    fragTexCoord = texture;
+    fragNormal =  normal;
+    fragVert = position;
 }
