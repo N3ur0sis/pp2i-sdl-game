@@ -2,28 +2,25 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void light_setAmbientLight(Shader *S, vec3 color, float intensity) {
-	glUniform3fv(S->m_locations.ambientLightColor, 1, (GLfloat*)color);
-	glUniform1f(S->m_locations.ambientLightIntensity, intensity);
+
+
+Light* LightCreate(Shader *S, vec4 position, vec3 intensity, float attenuation, float ambientCoef) {
+	Light *light = (Light*)malloc(sizeof(Light));
+
+	glm_vec3_copy(position,light->position);
+	glm_vec3_copy(intensity, light->intensity);
+	light->attenuation = attenuation;
+	light->ambientCoefficient = ambientCoef;
+
+	LightUpdate(S, light);
+
+	return light;
 }
 
-pointLight* light_createPointLight(Shader *S, vec3 color, vec3 position, float intensity, float attenuation) {
-	pointLight *point = (pointLight*)malloc(sizeof(pointLight));
+void LightUpdate(Shader *S, Light *light) {
 
-	glm_vec3_copy(color,point->color);
-	glm_vec3_copy(position, point->position);
-
-	point->intensity = intensity;
-	point->attenuation = attenuation;
-
-	light_updatePointLight(S, point);
-
-	return point;
-}
-
-void light_updatePointLight(Shader *S, pointLight *point) {
-	glUniform3fv(S->m_locations.pointLightColor,1, (GLfloat*)point->color);
-	glUniform3fv(S->m_locations.pointLightPosition, 1, (GLfloat*)point->position);
-	glUniform1f(S->m_locations.pointLightIntensity, point->intensity);
-	glUniform1f(S->m_locations.pointLightAttenuation, point->attenuation);
+	glUniform4fv(S->m_locations.lightPosition,1, (GLfloat*)light->position);
+	glUniform3fv(S->m_locations.lightIntensity, 1, (GLfloat*)light->intensity);
+	glUniform1f(S->m_locations.lightAttenuation, light->attenuation);
+	glUniform1f(S->m_locations.lightAmbienbtCoef, light->ambientCoefficient);
 }

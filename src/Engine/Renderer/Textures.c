@@ -1,14 +1,14 @@
-#include "Textures.h"
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
-#include <stdbool.h>
+#include "Textures.h"
 
-GLuint load_textures(const char* texturePath){
+GLuint TextureLoad(const char* texturePath){
     GLuint id;
     glGenTextures(1, &id);
     int width, height, nrChannels;
-    stbi_set_flip_vertically_on_load(true);
+    stbi_set_flip_vertically_on_load(1);
     unsigned char *data = stbi_load(texturePath, &width, &height, &nrChannels, 0); 
+    glActiveTexture(GL_TEXTURE0);
     glBindTexture(GL_TEXTURE_2D, id);  
     // set the texture wrapping/filtering options (on the currently bound texture object)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	
@@ -36,12 +36,12 @@ GLuint load_textures(const char* texturePath){
     return id;
 }
 
-GLuint loadCubemap(char** faces)
+GLuint CubeMapLoad(char** faces)
 {
     unsigned int textureID;
     glGenTextures(1, &textureID);
     glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
-    stbi_set_flip_vertically_on_load(false);
+    stbi_set_flip_vertically_on_load(0);
     int width, height, nrChannels;
     for (unsigned int i = 0; i < 6; i++)
     {

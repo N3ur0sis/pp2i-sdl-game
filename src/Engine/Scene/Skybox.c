@@ -13,7 +13,7 @@ Skybox* SkyboxCreate(void){
     "assets/images/skybox/front.png",
     "assets/images/skybox/back.png"
     };
-    skybox->cubemapTexture = loadCubemap(faces);  
+    skybox->cubemapTexture = CubeMapLoad(faces);  
 
     float skyboxVertices[] = {
     // positions          
@@ -76,6 +76,7 @@ Skybox* SkyboxCreate(void){
 
 void    SkyboxDraw(Skybox* skybox, Camera* camera){
         glDepthFunc(GL_LEQUAL);
+        glDisable(GL_CULL_FACE);
         UseShaders(skybox->shader);
         mat4 cameraView;
         getViewMatrix(camera, cameraView); 
@@ -91,6 +92,7 @@ void    SkyboxDraw(Skybox* skybox, Camera* camera){
         glBindTexture(GL_TEXTURE_CUBE_MAP, skybox->cubemapTexture);
         glDrawArrays(GL_TRIANGLES, 0, 36);
         glBindVertexArray(0);
+        glEnable(GL_CULL_FACE);
         glDepthFunc(GL_LESS);
 }
 void    SkyboxDelete(Skybox* skybox){

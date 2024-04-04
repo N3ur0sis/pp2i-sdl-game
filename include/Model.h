@@ -4,7 +4,24 @@
 #include <Shader.h>
 #include <Camera.h>
 #include <Textures.h>
+#include <Algebra.h>
 
+
+typedef struct _Node {
+    char name[64];
+    struct _Node* children[MAX_BONES];
+    vec3* pos_keys;
+    versor* rot_keys;
+    vec3* sca_keys;
+    float* pos_key_times;
+    float* rot_key_times;
+    float* sca_key_times;
+    size_t pos_keys_count;
+    size_t rot_keys_count;
+    size_t sca_keys_count;
+    size_t child_count;
+    int bone_idx;
+} Node;
 
 
 /* A Model class to represent a 3D object in the scene */
@@ -17,7 +34,11 @@ typedef struct _Model{
     vec3     position;      /* Position of the model in the scene */
     vec3     rotation;      /* Rotation of the model in the scene */
     vec3     scale;         /* Scale of the model in the scene    */
+    mat4 bones[MAX_BONES];
+    char bone_names[MAX_BONES][64];
+    size_t bone_count;
 } Model;
+
 
 
 /**
@@ -67,3 +88,6 @@ void ModelMatrixCalculate(vec3 position,vec3 rotation, vec3 scale , Camera* came
 
 
 void ModelFree(Model* model);
+
+
+void ModelAnimate(Node* node, float anim_time, mat4 parent_mat, mat4* bones,mat4* bone_anim_mats);

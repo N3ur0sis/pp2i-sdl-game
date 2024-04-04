@@ -1,36 +1,62 @@
-#version 330 core
+#version 330
 
+uniform mat4 model;
+uniform vec3 cameraPosition;
 
-in vec3 fragPosition;
-in vec2 fragTexture;
+uniform sampler2D materialTex;
+float materialShininess = 250;
+vec3 materialSpecularColor = vec3(0.5);
+
+uniform struct Light {
+   vec4 position;
+   vec3 intensities; //a.k.a the color of the light
+   float attenuation;
+   float ambientCoefficient;
+} allLights;
+
+in vec2 fragTexCoord;
 in vec3 fragNormal;
+in vec3 fragVert;
 
-out vec4 fragColor;
+out vec4 finalColor;
 
-uniform sampler2D sampler;
+vec3 ApplyLight(Light light, vec3 surfaceColor, vec3 normal, vec3 surfacePos, vec3 surfaceToCamera) {
+    vec3 surfaceToLight;
+    float attenuation = 1.0;
+    if(light.position.w == 0.0) {
+        //directional light
+        surfaceToLight = normalize(light.position.xyz);
+        attenuation = 1.0; //no attenuation for directional lights
+    }
 
-uniform mat4 transformationMatrix;
-uniform mat4 normalTransformationMatrix;
+    //ambient
+    vec3 ambient = light.ambientCoefficient * surfaceColor.rgb * light.intensities;
 
-uniform vec3 ambientLightColor;
-uniform float ambientLightIntensity;
+    //diffuse
+    float diffuseCoefficient = max(dot(normal, surfaceToLight), 0.0);
+    vec3 diffuse = diffuseCoefficient * surfaceColor.rgb * light.intensities;
+    
+    //specular
+    float specularCoefficient = 0.0;
+    if(diffuseCoefficient > 0.0)
+        specularCoefficient = pow(max(0.0, dot(surfaceToCamera, reflect(-surfaceToLight, normal))), materialShininess);
+    vec3 specular = specularCoefficient * materialSpecularColor * light.intensities;
 
-uniform vec3 pointLightColor;
-uniform vec3 pointLightPosition;
-uniform float pointLightIntensity;
-uniform float pointLightAttenuation;
+    //linear color (color before gamma correction)
+    return ambient + attenuation*(diffuse + specular);
+}
 
 void main() {
-    // ambient
-    vec3 ambient = ambientLightIntensity * ambientLightColor;
-  	
-    // diffuse 
-    vec3 norm = normalize(fragNormal);
-    vec3 lightDir = normalize(pointLightPosition - fragPosition);
-    float diff = max(dot(norm, lightDir), 0.0);
-    vec3 diffuse = diff * pointLightColor;
-            
-    vec3 result = (ambient + diffuse);
-	vec4 surfaceColor = texture(sampler, fragTexture);
-    fragColor = vec4(result * surfaceColor.rgb, surfaceColor.a);
+    vec3 normal = normalize(transpose(inverse(mat3(model))) *fragNormal);
+    vec3 surfacePos = vec3(model * vec4(fragVert, 1.0));
+    vec4 surfaceColor = texture(materialTex, fragTexCoord);
+    vec3 surfaceToCamera = normalize(cameraPosition - surfacePos);
+
+    //combine color from all the lights
+    vec3 linearColor = vec3(0);
+    linearColor += ApplyLight(allLights, surfaceColor.rgb, normal, surfacePos, surfaceToCamera);
+    
+    //final color (after gamma correction)
+    vec3 gamma = vec3(1.0/2.2);
+    finalColor = vec4(pow(linearColor, gamma), surfaceColor.a);
 }
