@@ -174,8 +174,7 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
         	z += right[2] * speed;
         }   
     }
-	moveCameraPlayer(camera, (vec3){x, y, z});
-    // Calcul de la différence d'angle entre la rotation actuelle et la rotation souhaitée
+	moveCameraPlayer(camera, position, (vec3){x, y, z}, deltaTime);
 	
 
     position[0] = x;
@@ -188,31 +187,33 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 
 
 
-void moveCameraPlayer(Camera* camera, vec3 position) {
+void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float deltaTime) {
 	if (position[0] < -25.0f) {
 		if (camera->Yaw != 180.0f) {
 			float oldYaw = camera->Yaw;
 			float newYaw = 180.0f;
-			vec3 oldPosition;
-			glm_vec3_copy(camera->Position, oldPosition);
-			vec3 newPosition = {position[0] + 25.0f, position[1] + 25.0f, position[2]};
-			lerp_camera(camera, oldPosition, newPosition, oldYaw, newYaw, 10, 1.0f);
-
-
+			camera->Yaw = glm_lerp(oldYaw, newYaw, deltaTime*2);
 		}
-
-		// camera->Position[0] = position[0] + 25.0f;
-		// camera->Position[1] = position[1] + 25.0f;
-		// camera->Position[2] = position[2];
+		vec3 copy;
+		glm_vec3_lerp(position, targetPosition, deltaTime, copy);
+		camera->Position[0] = copy[0]+25.0f;
+		camera->Position[1] = copy[1]+25.0f;
+		camera->Position[2] = copy[2];
 	} else {
 		if (camera->Yaw != 90.0f) {
-			camera->Yaw = 90.0f;
+			float oldYaw = camera->Yaw;	
+			float newYaw = 90.0f;
+			camera->Yaw = glm_lerp(oldYaw, newYaw, deltaTime*2);
 		}
-		camera->Position[0] = position[0];
-		camera->Position[1] = position[1] + 25.0f;
-		camera->Position[2] = position[2] - 25.0f;
+		vec3 copy;
+		glm_vec3_lerp(position, targetPosition, deltaTime, copy);
+		camera->Position[0] = copy[0];
+		camera->Position[1] = copy[1]+25.0f;
+		camera->Position[2] = copy[2]-25.0f;
 	}
-	// updateCameraVectors(camera);
+	// glm_vec3_copy(camera->Position, position);
+
+	updateCameraVectors(camera);
 }
 
 
@@ -239,7 +240,7 @@ void lerp_camera(Camera* camera, vec3 old_pos, vec3 new_pos, float old_yaw, floa
 		camera->Position[1] = interpolated_pos[1];
 		camera->Position[2] = interpolated_pos[2];
 		camera->Yaw = interpolated_yaw;
-		
+
 		updateCameraVectors(camera);
     }
 }
