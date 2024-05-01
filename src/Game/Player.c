@@ -2,7 +2,7 @@
 
 
 
-void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* camera){
+void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* camera, vec3 playerbb[2], vec3 playerbbo[2], vec3 treebb[2], Model* map){
 
 	vec3 front;
 	vec3 right;
@@ -175,7 +175,28 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
         }   
     }
 	moveCameraPlayer(camera, position, (vec3){x, y, z}, deltaTime);
+
+	mat4 id;
+    glm_translate_make(id,(vec3){x,y,z});
+    glm_aabb_transform(playerbbo,id,playerbb);
+
+	for (size_t i = 30; i < map->meshCount; i++)
+	{
+		
+		vec3 treebb[2] = {
+        {map->meshes[i].aabb.mMin.x,
+        map->meshes[i].aabb.mMin.y,
+        map->meshes[i].aabb.mMin.z},
+        {map->meshes[i].aabb.mMax.x,
+        map->meshes[i].aabb.mMax.y,
+        map->meshes[i].aabb.mMax.z}
+    };
+	if(glm_aabb_aabb(playerbb,treebb)){
+
+	}
+	}
 	
+	(void)treebb;
 
     position[0] = x;
     position[1] = y;

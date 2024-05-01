@@ -6,6 +6,7 @@
 #include <Textures.h>
 #include <Skybox.h>
 #include <Animator.h>
+#include <Controls.h>
 /* Global variable, only for things that won't change during the game */
 static const int g_WindowWidth = 1280;
 static const int g_WindowHeight = 720;
@@ -25,13 +26,29 @@ int main(void){
     Model* player = (Model*)calloc(1, sizeof(Model));
     ModelCreate(player, "assets/models/LoPotitChat/Walking.dae");
     glm_vec3_copy((vec3){0.5f,0.5f,0.5f},player->scale);
+    glm_vec3_copy((vec3){0.5f,10.0f,-4.5f},player->position);
 
     Animation* walkingAnimation = AnimationCreate("assets/models/LoPotitChat/Walking.dae", player);
     Animator* playerAnimator = AnimatorCreate(walkingAnimation);
     Model* map = (Model*)calloc(1, sizeof(Model));
-    ModelCreate(map, "assets/models/map/map.obj");
-
-	Light *light = LightCreate(shader2, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.5,0.4,0.2},1.0f, 0.9f);
+    ModelCreate(map, "assets/models/start/start.obj");
+    Model* tree = (Model*)calloc(1, sizeof(Model));
+    ModelCreate(tree, "assets/models/tree/tree.obj");
+    
+    glm_vec3_copy((vec3){28.0f,0.0f,5.0f},player->position);
+        
+        vec3 treebb[2] = {
+        {tree->meshes[0].aabb.mMin.x,
+        tree->meshes[0].aabb.mMin.y,
+        tree->meshes[0].aabb.mMin.z},
+        {tree->meshes[0].aabb.mMax.x,
+        tree->meshes[0].aabb.mMax.y,
+        tree->meshes[0].aabb.mMax.z}
+    };
+    mat4 id;
+    glm_translate_make(id,(vec3){0.0f,1.0f,10.0f});
+    glm_aabb_transform(treebb,id,treebb);
+	Light *light = LightCreate(shader2, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.4,0.4,0.2},1.0f, 0.9f);
     Light *light2 = LightCreate(shader, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.5,0.4,0.2},1.0f, 0.9f);
     
     /* Create a scene camera */
@@ -46,17 +63,42 @@ int main(void){
     float deltaTime = 0.0f;
     
     float anim_time = 0.0f;
+
+    vec3 playerbbo[2] = {
+        {player->meshes[0].aabb.mMin.x,
+        player->meshes[0].aabb.mMin.y,
+        player->meshes[0].aabb.mMin.z},
+        {player->meshes[0].aabb.mMax.x,
+        player->meshes[0].aabb.mMax.y,
+        player->meshes[0].aabb.mMax.z}
+    };
+
+        vec3 playerbb[2] = {
+        {player->meshes[0].aabb.mMin.x,
+        player->meshes[0].aabb.mMin.y,
+        player->meshes[0].aabb.mMin.z},
+        {player->meshes[0].aabb.mMax.x,
+        player->meshes[0].aabb.mMax.y,
+        player->meshes[0].aabb.mMax.z}
+    };
+
+    glm_scale_make(id,(vec3){0.5f,0.5f,0.5f});
+    glm_aabb_transform(playerbb,id,playerbb);
+    glm_aabb_transform(playerbbo,id,playerbbo);
+
+
+
+
     /* Game Loop */
     while(game->running) {
         StartFrame(game);
 
-
         Uint32 currentTime = SDL_GetTicks();
         deltaTime = (currentTime - lastTime) / 1000.0f;
         lastTime = currentTime;
-        treatMovingInput(player->position, player->rotation, deltaTime, camera);
+        treatMovingInput(player->position, player->rotation, deltaTime, camera, playerbb,playerbbo, treebb, map);
 
-
+        printf("%f,%f,%f\n", player->position[0],player->position[1], player->position[2]);
 
         /* Rendering Scene */
         UseShaders(shader);
@@ -67,10 +109,15 @@ int main(void){
             sprintf(name, "bones_mat[%zu]", i);
             glUniformMatrix4fv(glGetUniformLocation(shader->m_program, name), 1, GL_FALSE, (float*)bones);
         }
+        
+        if(getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)){
+            anim_time += deltaTime*walkingAnimation->anim_ticks;
+        }else{
+            anim_time = 0.0f;
+        }
 
         mat4 identity;
         glm_mat4_identity(identity);
-        anim_time += deltaTime*walkingAnimation->anim_ticks;
         if(anim_time>=walkingAnimation->anim_dur) anim_time -= walkingAnimation->anim_dur;
         CalculateBoneTransformation(playerAnimator->currentAnimation->root_node, anim_time, identity, player->bones, walkingAnimation->bone_anim_mats);
         for(size_t i=0; i<player->bone_count; ++i) {
@@ -83,6 +130,7 @@ int main(void){
 
         UseShaders(shader2);
         ModelDraw(map, shader2, camera);
+        ModelDraw(tree, shader2, camera);
         glBindVertexArray(0);
         cameraControl(camera);
         LightUpdate(shader2, light);

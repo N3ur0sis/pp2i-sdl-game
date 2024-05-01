@@ -25,6 +25,7 @@ typedef struct _Mesh {
     size_t vertexCount, indiceCount;  /* Numbers of vertex and indices of the mesh, used to know the size of the arrays */
     size_t matID;                     /* ID of the materials for this mesh in the arrays of materials available in the model */
     GLuint VAO, VBO, EBO;             /* GL Buffers to store vertex and indices and organise them in a VAO*/
+    struct aiAABB aabb;
 } Mesh;  
 
 /**

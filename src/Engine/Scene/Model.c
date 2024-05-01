@@ -10,7 +10,8 @@ const struct aiScene* ModelLoad(char* path){
     aiProcess_CalcTangentSpace |
     aiProcess_Triangulate |
     aiProcess_ImproveCacheLocality |
-    aiProcess_SortByPType);
+    aiProcess_SortByPType |
+    aiProcess_GenBoundingBoxes);
 
     /* Always check if importation succeeded and if data is complete */
     if (!c_scene  || c_scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !c_scene->mRootNode) {
