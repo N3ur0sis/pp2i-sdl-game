@@ -26,9 +26,11 @@ target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Werror -pedantic -
 find_package(SDL2 REQUIRED)
 find_package(OpenGL REQUIRED)
 add_library(cglm SHARED IMPORTED GLOBAL)
+add_library(ccd SHARED IMPORTED GLOBAL)
 add_library(glad STATIC IMPORTED GLOBAL)
 add_library(assimp SHARED IMPORTED GLOBAL)
 set_target_properties(cglm PROPERTIES  IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/cglm/libcglm.so)
+set_target_properties(ccd PROPERTIES  IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/ccd/libccd.so)
 set_target_properties(glad PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/glad/libglad.a)
 set_target_properties(assimp PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/assimp/libassimp.so)
 
@@ -38,6 +40,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${SDL2_INCLUDE_DIRS})
 target_include_directories(${PROJECT_NAME} PRIVATE ${OPENGL_INCLUDE_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE ${ASSIMP_INCLUDE_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE libs/cglm/include )
+target_include_directories(${PROJECT_NAME} PRIVATE libs/ccd/include )
 target_include_directories(${PROJECT_NAME} PRIVATE libs/glad/include)
 target_include_directories(${PROJECT_NAME} PRIVATE libs/assimp/include)
 
@@ -46,6 +49,7 @@ target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} -fsanitize=address )
 target_link_libraries(${PROJECT_NAME} assimp -fsanitize=address)
 target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} -fsanitize=address)
 target_link_libraries(${PROJECT_NAME} cglm -lm  -fsanitize=address)
+target_link_libraries(${PROJECT_NAME} ccd -fsanitize=address)
 target_link_libraries(${PROJECT_NAME} glad -fsanitize=address)
 
 

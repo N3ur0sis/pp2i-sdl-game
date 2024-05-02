@@ -10,7 +10,8 @@ const struct aiScene* ModelLoad(char* path){
     aiProcess_CalcTangentSpace |
     aiProcess_Triangulate |
     aiProcess_ImproveCacheLocality |
-    aiProcess_SortByPType);
+    aiProcess_SortByPType |
+    aiProcess_GenBoundingBoxes);
 
     /* Always check if importation succeeded and if data is complete */
     if (!c_scene  || c_scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !c_scene->mRootNode) {
@@ -126,7 +127,7 @@ void ModelCreate(Model* model, char* path){
 void ModelDraw(Model* model, Shader* shader, Camera* camera) {
 
     /* Before each render of our object we need to pass the model matrix on the shader */
-    ModelMatrixCalculate(model->position, model->rotation, model->scale,camera,shader);
+    ModelMatrixCalculate(model->position, model->rotation, model->scale,camera,shader, model->modelMatrix);
 
     /* We need to draw each mesh present in the model */
     for(size_t i=0; i<model->meshCount; ++i) {
@@ -138,7 +139,7 @@ void ModelDraw(Model* model, Shader* shader, Camera* camera) {
     }
 }
 
-void ModelMatrixCalculate(vec3 position,vec3 rotation, vec3 scale, Camera* camera, Shader* shader ){
+void ModelMatrixCalculate(vec3 position,vec3 rotation, vec3 scale, Camera* camera, Shader* shader, mat4 modelMatrix ){
 
     /* Create a Scale matrix used to scale the model */
     mat4 scaleMatrix;
@@ -165,7 +166,6 @@ void ModelMatrixCalculate(vec3 position,vec3 rotation, vec3 scale, Camera* camer
     /** The model matrix, commbination of Translation, Rotation and Scaling.
      * Transform are applied in the order, scale, rotation and translate 
      */
-    mat4 modelMatrix;
     glm_mat4_mul(translateMatrix,rotationMatrix,modelMatrix);
     glm_mat4_mul(modelMatrix,scaleMatrix,modelMatrix);
 

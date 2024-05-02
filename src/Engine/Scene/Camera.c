@@ -18,7 +18,7 @@ Camera* camera_create(float posX, float posY, float posZ, float width, float hei
     camera->MovementSpeed = 2.5f;
     camera->Zoom = 60.0f;
     updateCameraVectors(camera);
-    glm_perspective(glm_rad(60.0f), (float)(width)/(float)height, 0.1f, 100.0f, camera->projectionMatrix);
+    glm_perspective(glm_rad(60.0f), (float)(width)/(float)height, 0.1f, 500.0f, camera->projectionMatrix);
     return camera;
 }
 

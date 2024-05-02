@@ -13,7 +13,7 @@ void MeshCreate(Mesh* mesh, struct aiMesh* aiMesh){
     mesh->vertexCount = vertexCount;
     mesh->indiceCount = 0;
     mesh->matID = aiMesh->mMaterialIndex;
-
+    mesh->aabb = aiMesh->mAABB;
     /* For each vertex we copy the data into our struct */
     for(size_t i = 0; i< vertexCount; ++i){
 

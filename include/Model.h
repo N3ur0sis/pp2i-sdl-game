@@ -34,6 +34,7 @@ typedef struct _Model{
     vec3     position;      /* Position of the model in the scene */
     vec3     rotation;      /* Rotation of the model in the scene */
     vec3     scale;         /* Scale of the model in the scene    */
+    mat4     modelMatrix;
     mat4 bones[MAX_BONES];
     char bone_names[MAX_BONES][64];
     size_t bone_count;
@@ -84,7 +85,7 @@ void ModelDraw(Model* model, Shader* shader, Camera* camera);
  * @note The Projection and View matrices should not be send from here since it does not nessecary change on every frame.
  * 
 */
-void ModelMatrixCalculate(vec3 position,vec3 rotation, vec3 scale , Camera* camera, Shader* sahder);
+void ModelMatrixCalculate(vec3 position,vec3 rotation, vec3 scale , Camera* camera, Shader* sahder, mat4 modelMatrix);
 
 
 void ModelFree(Model* model);
