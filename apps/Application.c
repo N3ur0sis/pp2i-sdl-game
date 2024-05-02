@@ -98,7 +98,7 @@ int main(void){
         lastTime = currentTime;
         treatMovingInput(player->position, player->rotation, deltaTime, camera, playerbb,playerbbo, treebb, map);
 
-        printf("%f,%f,%f\n", player->position[0],player->position[1], player->position[2]);
+        //printf("%f,%f,%f\n", player->position[0],player->position[1], player->position[2]);
 
         /* Rendering Scene */
         UseShaders(shader);

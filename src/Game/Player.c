@@ -4,180 +4,66 @@
 
 void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* camera, vec3 playerbb[2], vec3 playerbbo[2], vec3 treebb[2], Model* map){
 
-	vec3 front;
-	vec3 right;
 
-	glm_vec3_copy(camera->Front, front);
-	glm_vec3_copy(camera->Right, right);
+    float speed = 6.0f;
+	float horizontalInput = 0.0f;
+	float verticalInput = .0f;
 
-    float speed = 6.0f * deltaTime;
-    float speedDiag = speed / sqrt(2);
+	if ((getKeyState(SDLK_d))) {
+		horizontalInput = -1.0f;
+	}
+	if (getKeyState(SDLK_q)) {
+		horizontalInput = 1.0f;
+	}
+		
+    if (getKeyState(SDLK_z)) {
+		verticalInput = 1.0f;
+	}
+	if (getKeyState(SDLK_s)) {
+		verticalInput = -1.0f;
+	}
+	vec3 xDir;
+	glm_vec3_scale(camera->Right,-horizontalInput, xDir);
+	vec3 yDir;
+	glm_vec3_scale(camera->Front,verticalInput, yDir);
+	vec3 movementDirection;
+	glm_vec3_add(xDir,yDir,movementDirection);
+	movementDirection[1] = 0.0f;
+	glm_vec3_normalize(movementDirection);
+	//sometimes my genius is almost frithening
+	if(movementDirection[0] != .0f || movementDirection[1] != .0f || movementDirection[2] != .0f){
+	float omega = acos(glm_dot((vec3){0,0,1},movementDirection));
+	if (movementDirection[0] < 0) {
+		omega = -omega;
+	}
+	float currentAngleDeg = glm_deg(rotation[1]);
+    float targetAngleDeg = glm_deg(omega);
 
-    float realSpeed = 8.0f * deltaTime;
-    float realSpeedDiag = realSpeed / sqrt(2);
-
-
-    float x = position[0];
-    float y = position[1];
-    float z = position[2];
-    float xRot = rotation[0];
-    float yRot = rotation[1];
-    float zRot = rotation[2];
-
-	if (yRot > 2 * PI) {
-		yRot -= 2 * PI;
-	}
-	else if (yRot < 0) {
-		yRot += 2 * PI;
-	}
-	float turningSpeed = 8.0f * deltaTime;
-	// printf("yRot: %f\n", yRot);
-
-
-	if ((getKeyState(SDLK_z)) && (getKeyState(SDLK_d))) {
-		if (yRot != 1.75 * PI) {
-			if ((yRot >= 0.75 * PI) && (yRot < 1.75 * PI)) {
-				yRot += turningSpeed;
-			}
-			else {
-				yRot += -turningSpeed;
-			}
-		}
-		if (getKeyState(SHIFT)){
-			x +=  front[0] * realSpeedDiag + right[0] * realSpeedDiag;
-        	z += front[2] * realSpeedDiag + right[2] * realSpeedDiag;
-		}
-		else{
-			x +=  front[0] * speedDiag + right[0] * speedDiag;
-        	z += front[2] * speedDiag + right[2] * speedDiag;
-		}
-	}
-	else if ((getKeyState(SDLK_s)) && (getKeyState(SDLK_q))) {
-		if (yRot != 0.75 * PI) {
-			if (!((yRot > 0.75 * PI) && (yRot <= 1.75 * PI))) {
-				yRot += turningSpeed;
-			} else {
-				yRot += -turningSpeed;
-			}
-		}
-		if (getKeyState(SHIFT)){
-			x -=  front[0] * realSpeedDiag + right[0] * realSpeedDiag;
-        	z -= front[2] * realSpeedDiag + right[2] * realSpeedDiag;
-		}
-		else{
-			x -=  front[0] * speedDiag + right[0] * speedDiag;
-        	z -= front[2] * speedDiag + right[2] * speedDiag;
-		}
-	}
-	else if ((getKeyState(SDLK_z)) && (getKeyState(SDLK_q))) {
-		if (yRot != 0.25 * PI) {
-			if (!((yRot > 0.25 * PI) && (yRot <= 1.25 * PI))) {
-				yRot += turningSpeed;
-			}
-			else {
-				yRot += -turningSpeed;
-			}
-		}
-		if (getKeyState(SHIFT)){
-			x +=  front[0] * realSpeedDiag - right[0] * realSpeedDiag;
-        	z += front[2] * realSpeedDiag - right[2] * realSpeedDiag;
-		}
-		else{
-			x +=  front[0] * speedDiag - right[0] * speedDiag;
-        	z += front[2] * speedDiag - right[2] * speedDiag;
-		}
-	}
-	else if ((getKeyState(SDLK_s)) && (getKeyState(SDLK_d))) {
-		if (yRot != 1.25 * PI) {
-			if ((yRot >= 0.25 * PI) && (yRot < 1.25 * PI)) {
-				yRot += turningSpeed;
-			}
-			else {
-				yRot += -turningSpeed;
-			}
-		}
-		if (getKeyState(SHIFT)){
-			x -=  front[0] * realSpeedDiag - right[0] * realSpeedDiag;
-        	z -= front[2] * realSpeedDiag - right[2] * realSpeedDiag;
-		}
-		else{
-			x -=  front[0] * speedDiag - right[0] * speedDiag;
-        	z -= front[2] * speedDiag - right[2] * speedDiag;
-		}
-	}
-    else if (getKeyState(SDLK_z)) {
-		if (yRot != 0.0f) {
-			if (yRot > PI) {
-				yRot += turningSpeed;
-			}
-			else {
-				yRot += -turningSpeed;
-			}
-		}
-		if (getKeyState(SHIFT)){
-			x += front[0] * realSpeed;
-        	z += front[2] * realSpeed;
-		}
-		else{
-			x += front[0] * speed;
-        	z += front[2] * speed;
-		}
-	}
-	else if (getKeyState(SDLK_s)) {
-		if (yRot != PI) {
-			if (yRot < PI) {
-				yRot += turningSpeed;
-			} else {
-				yRot += -turningSpeed;
-			}
-		}
-		if (getKeyState(SHIFT)){
-			x -= front[0] * realSpeed;
-        	z -= front[2] * realSpeed;
-		}
-		else{
-			x -= front[0] * speed;
-        	z -= front[2] * speed;
-		}
-	}
-	else if (getKeyState(SDLK_q)) {
-        if (yRot != 0.5 * PI) {
-			if (!((yRot > 0.5 * PI) && (yRot <= 1.5 * PI))) {
-				yRot += turningSpeed;
-			} else {
-				yRot += -turningSpeed;
-			}
-		}
-        if (getKeyState(SHIFT)){
-            x -= right[0] * realSpeed;
-        	z -= right[2] * realSpeed;
-        }
-        else{
-            x -= right[0] * speed;
-        	z -= right[2] * speed;
-        }
+    // Ensure the that the fucking target angle is within the range of -180 to 180 degrees (i spent three fucking hours just to realize the angles wasn't normalized , fuck me!)
+    while (targetAngleDeg - currentAngleDeg > 180) {
+        targetAngleDeg -= 360;
     }
-    else if (getKeyState(SDLK_d)) {
-        if (yRot != 0.5 * PI) {
-			if (((yRot > 0.5 * PI) && (yRot <= 1.5 * PI))) {
-				yRot += turningSpeed;
-			} else {
-				yRot += -turningSpeed;
-			}
-		}
-        if (getKeyState(SHIFT)){
-            x += right[0] * realSpeed;
-        	z += right[2] * realSpeed;
-        }
-        else{
-            x += right[0] * speed;
-        	z += right[2] * speed;
-        }   
+    while (targetAngleDeg - currentAngleDeg < -180) {
+        targetAngleDeg += 360;
     }
-	moveCameraPlayer(camera, position, (vec3){x, y, z}, deltaTime);
+
+    // Perform linear interpolation
+    float rotTarget = glm_lerp(currentAngleDeg, targetAngleDeg, 0.1f);
+
+    printf("%f\n", rotTarget);
+    rotation[1] = glm_rad(rotTarget);
+	printf("%f\n", glm_deg(omega));
+	}
+	printf("%f,%f,%f\n", movementDirection[0], movementDirection[1], movementDirection[2]);
+	//fuck this, because of this shit i didn't prepare anything to eat. Im just gonna order some junk food.  
+
+	glm_vec3_scale(movementDirection,speed*deltaTime,movementDirection);
+	glm_vec3_add(position,movementDirection,position);
+
+	moveCameraPlayer(camera, position, (vec3){position[0], position[1], position[2]}, deltaTime);
 
 	mat4 id;
-    glm_translate_make(id,(vec3){x,y,z});
+    //glm_translate_make(id,(vec3){x,y,z});
     glm_aabb_transform(playerbbo,id,playerbb);
 
 	for (size_t i = 30; i < map->meshCount; i++)
@@ -195,15 +81,9 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 
 	}
 	}
-	
+	(void)camera;
+	(void)rotation;
 	(void)treebb;
-
-    position[0] = x;
-    position[1] = y;
-    position[2] = z;
-    rotation[0] = xRot;
-    rotation[1] = yRot;
-    rotation[2] = zRot;
 }
 
 
