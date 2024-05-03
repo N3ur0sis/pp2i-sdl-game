@@ -50,23 +50,18 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
     // Perform linear interpolation
     float rotTarget = glm_lerp(currentAngleDeg, targetAngleDeg, 0.1f);
 
-    printf("%f\n", rotTarget);
-    rotation[1] = glm_rad(rotTarget);
-	printf("%f\n", glm_deg(omega));
-	}
-	printf("%f,%f,%f\n", movementDirection[0], movementDirection[1], movementDirection[2]);
-	//fuck this, because of this shit i didn't prepare anything to eat. Im just gonna order some junk food.  
-
+    //printf("%f\n", rotTarget);
 	glm_vec3_scale(movementDirection,speed*deltaTime,movementDirection);
-	glm_vec3_add(position,movementDirection,position);
-
-	moveCameraPlayer(camera, position, (vec3){position[0], position[1], position[2]}, deltaTime);
+    vec3 newPos;
+	glm_vec3_add(position,movementDirection,newPos);
+	//moveCameraPlayer(camera, position, (vec3){position[0], position[1], position[2]}, deltaTime);
+	rotation[1] = glm_rad(rotTarget);
 
 	mat4 id;
-    //glm_translate_make(id,(vec3){x,y,z});
+    glm_translate_make(id,newPos);
     glm_aabb_transform(playerbbo,id,playerbb);
 
-	for (size_t i = 30; i < map->meshCount; i++)
+	for (size_t i = 0; i < map->meshCount; i++)
 	{
 		
 		vec3 treebb[2] = {
@@ -77,10 +72,21 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
         map->meshes[i].aabb.mMax.y,
         map->meshes[i].aabb.mMax.z}
     };
+	mat4 id;
+	glm_translate_make(id,(vec3){0.0f,-0.5f,0.0f});
+    glm_aabb_transform(treebb,id,treebb);
 	if(glm_aabb_aabb(playerbb,treebb)){
+		printf("collision with %ld", i);
+		return;
+	}
+	}
+	glm_vec3_copy(newPos, position);
+	//printf("%f\n", glm_deg(omega));
+	}
+	//printf("%f,%f,%f\n", movementDirection[0], movementDirection[1], movementDirection[2]);
+	//fuck this, because of this shit i didn't prepare anything to eat. Im just gonna order some junk food.  
 
-	}
-	}
+
 	(void)camera;
 	(void)rotation;
 	(void)treebb;

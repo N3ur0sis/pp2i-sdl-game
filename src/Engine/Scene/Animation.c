@@ -9,7 +9,7 @@ Animation* AnimationCreate(char* path, Model* model){
     const struct aiNode* ai_node = scene->mRootNode;
     if(NodeImport(ai_node, &anim->root_node, model->bone_count, model->bone_names)==1)
         printf("No skeleton found inside the model\n");
-
+    
     // Setup first animation
     //printf("Number of animation : %d\n", scene->mNumAnimations);
     if(scene->mNumAnimations > 0) {
@@ -69,7 +69,7 @@ Node* NodeFind(Node* root, const char* name) {
 }
 
 
-int NodeImport(const struct aiNode* ai_node, Node** skel_node, size_t bone_count, char bone_names[][64]) {
+int NodeImport(const struct aiNode* ai_node, Node** skel_node, size_t bone_count, char bone_names[][128]) {
     Node* t_node = calloc(1, sizeof(Node));
     t_node->bone_idx = -1;
     t_node->child_count = 0;
@@ -82,7 +82,7 @@ int NodeImport(const struct aiNode* ai_node, Node** skel_node, size_t bone_count
     t_node->pos_key_times = NULL;
     t_node->rot_key_times = NULL;
     t_node->sca_key_times = NULL;
-    memcpy(t_node->name, ai_node->mName.data, 63);
+    memcpy(t_node->name, ai_node->mName.data, 127);
     //printf("node name: %s\n", t_node->name);
     //printf("ai_node has %u children\n", ai_node->mNumChildren);
     
