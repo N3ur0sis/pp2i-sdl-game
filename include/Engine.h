@@ -10,6 +10,7 @@ typedef struct _Application{
     Time* time;
     SDL_Event* event;
     bool running;
+    bool isPaused;
 }Application;
 
 Application* ApplicationCreate(int width, int height, const char* title);

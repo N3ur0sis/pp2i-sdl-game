@@ -93,6 +93,26 @@ int main(void){
     while(game->running) {
         StartFrame(game);
 
+        SDL_Event event;
+        while(SDL_PollEvent(&event)) {
+            switch(event.type) {
+                case SDL_QUIT:
+                    game->running = false;
+                    break;
+                case SDL_KEYDOWN:
+                    if(event.key.keysym.sym == SDLK_ESCAPE) {
+                        game->isPaused = !game->isPaused;
+                    }
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        if (game->isPaused) {
+            continue;
+        }
+
         Uint32 currentTime = SDL_GetTicks();
         deltaTime = (currentTime - lastTime) / 1000.0f;
         lastTime = currentTime;
