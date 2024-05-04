@@ -92,3 +92,5 @@ void ModelFree(Model* model);
 
 
 void ModelAnimate(Node* node, float anim_time, mat4 parent_mat, mat4* bones,mat4* bone_anim_mats);
+
+void ModelDrawAttached(Model* model, Shader* shader, Camera* camera);

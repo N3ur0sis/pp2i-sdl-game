@@ -54,7 +54,6 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 	glm_vec3_scale(movementDirection,speed*deltaTime,movementDirection);
     vec3 newPos;
 	glm_vec3_add(position,movementDirection,newPos);
-	//moveCameraPlayer(camera, position, (vec3){position[0], position[1], position[2]}, deltaTime);
 	rotation[1] = glm_rad(rotTarget);
 
 	mat4 id;
@@ -80,6 +79,7 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 		return;
 	}
 	}
+	moveCameraPlayer(camera, position,newPos, deltaTime);
 	glm_vec3_copy(newPos, position);
 	//printf("%f\n", glm_deg(omega));
 	}

@@ -7,6 +7,8 @@
 #include <Skybox.h>
 #include <Animator.h>
 #include <Controls.h>
+
+
 /* Global variable, only for things that won't change during the game */
 static const int g_WindowWidth = 1280;
 static const int g_WindowHeight = 720;
@@ -28,12 +30,16 @@ int main(void){
     printf("%ld", goblin->bone_count);
     Animation* goblinIdleAnimation = AnimationCreate("assets/models/Goblin/Mutant Breathing Idle.dae", goblin);
     Animation* goblinWalkingAnimation = AnimationCreate("assets/models/Goblin/Mutant Walking.dae", goblin);
+    Animation* goblinPunchAnimation = AnimationCreate("assets/models/Goblin/Mutant Punch.dae", goblin);
     Model* player = (Model*)calloc(1, sizeof(Model));
     ModelCreate(player, "assets/models/LoPotitChat/Walking.dae");
+    Model* sword = (Model*)calloc(1, sizeof(Model));
+    ModelCreate(sword, "assets/models/LoPotitChat/sword.obj");
     glm_vec3_copy((vec3){0.5f,0.5f,0.5f},player->scale);
     //glm_vec3_copy((vec3){0.5f,10.0f,-4.5f},player->position);
 
     Animation* walkingAnimation = AnimationCreate("assets/models/LoPotitChat/Walking.dae", player);
+    Animation* attackAnimation = AnimationCreate("assets/models/LoPotitChat/Sword And Shield Attack.dae", player);
     Animator* playerAnimator = AnimatorCreate(walkingAnimation);
     Model* map = (Model*)calloc(1, sizeof(Model));
     Model* tree = (Model*)calloc(1, sizeof(Model));
@@ -41,10 +47,11 @@ int main(void){
     ModelCreate(tree, "assets/models/start/col.obj");
     Animator* goblinAnimator = AnimatorCreate(goblinIdleAnimation);
     
-    glm_vec3_copy((vec3){0.0f,0.1f,0.0f},player->position);
+    glm_vec3_copy((vec3){28.0f,0.1f,7.0f},player->position);
     glm_vec3_copy((vec3){2.0f,0.0f,-10.0f},goblin->position);
     glm_vec3_copy((vec3){0.0f,-0.5f,0.0f},tree->position);
     mat4 id;
+
 
     
 	Light *light = LightCreate(shader2, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.4,0.4,0.2},1.0f, 0.9f);
@@ -80,28 +87,50 @@ int main(void){
 
     Uint32 lastTime = SDL_GetTicks();
     float deltaTime = 0.0f;
-    
-    float anim_time = 0.0f;
-    float anim_time2 = 0.0f;
+
+    bool enemyIsAttacking = false;
+    bool playerIsAttacking = false;
+    float playerHealth = 100.0f;
+
+
 
     /* Game Loop */
     while(game->running) {
+
         StartFrame(game);
+        Uint32 currentTime = SDL_GetTicks();
+        deltaTime = (currentTime - lastTime) / 1000.0f;
+        lastTime = currentTime;
 
 
+
+
+        float rotTarget= 0.0f;
         vec3 enemyDir;
         glm_vec3_sub(player->position, goblin->position, enemyDir);
+        float enemyDist = glm_vec3_norm(enemyDir);
         glm_vec3_normalize(enemyDir);
         if(enemyDir[0] != .0f || enemyDir[1] != .0f || enemyDir[2] != .0f){
-        goblinAnimator->currentAnimation = goblinWalkingAnimation;
-	    float omega = acos(glm_dot((vec3){0,0,1},enemyDir));
+	        float omega = acos(glm_dot((vec3){0,0,1},enemyDir));
 	    if (enemyDir[0] < 0) {
 	    	omega = -omega;
 	    }
+
+        if(getMouseButtonState(1) && !playerIsAttacking){
+                playerIsAttacking = true;
+                playerAnimator->currentAnimation = attackAnimation;
+                playerAnimator->playTime = 0.0f;
+        }else if(!playerIsAttacking){
+            playerAnimator->currentAnimation = walkingAnimation;
+        }
+        if(playerAnimator->playTime > playerAnimator->currentAnimation->anim_dur - 10 && playerIsAttacking){
+                playerIsAttacking = false;
+                playerAnimator->playTime = 0.0f;
+            }
+
 	    float currentAngleDeg = glm_deg(goblin->rotation[1]);
         float targetAngleDeg = glm_deg(omega);
 
-        // Ensure the that the fucking target angle is within the range of -180 to 180 degrees (i spent three fucking hours just to realize the angles wasn't normalized , fuck me!)
         while (targetAngleDeg - currentAngleDeg > 180) {
             targetAngleDeg -= 360;
         }
@@ -109,67 +138,64 @@ int main(void){
             targetAngleDeg += 360;
         }
 
-        // Perform linear interpolation
-        float rotTarget = glm_lerp(currentAngleDeg, targetAngleDeg, 0.1f);
-        goblin->rotation[1] = glm_rad(rotTarget);
+        rotTarget = glm_lerp(currentAngleDeg, targetAngleDeg, 0.1f);
         }
+        if( enemyDist < 3.0f){
+            if(!enemyIsAttacking){
+                enemyIsAttacking = true;
+                goblinAnimator->playTime = 0.0f;
+                goblinAnimator->currentAnimation = goblinPunchAnimation;
+            }
+            if(goblinAnimator->playTime > goblinAnimator->currentAnimation->anim_dur - 10){
+                    playerHealth -= 10.0f;
+                    goblinAnimator->playTime = 0.0f;
+                    enemyIsAttacking = false;
+            }
+                    goblin->rotation[1] = glm_rad(rotTarget);
+
+        }else if(enemyDist < 15.0f){
+        goblin->rotation[1] = glm_rad(rotTarget);
+        enemyIsAttacking = false;
+        goblinAnimator->currentAnimation = goblinWalkingAnimation;
         glm_vec3_scale(enemyDir,2*deltaTime,enemyDir);
 	    glm_vec3_add(goblin->position,enemyDir,goblin->position);
+        }else{
+        enemyIsAttacking = false;
+        goblinAnimator->currentAnimation = goblinIdleAnimation;
+        }
 
-        Uint32 currentTime = SDL_GetTicks();
-        deltaTime = (currentTime - lastTime) / 1000.0f;
-        lastTime = currentTime;
         treatMovingInput(player->position, player->rotation, deltaTime, camera, playerbb,playerbbo, treebb, tree);
 
-        printf("%f,%f,%f\n", player->position[0],player->position[1], player->position[2]);
 
-        /* Rendering Scene */
+
+
+    
         UseShaders(shader);
-        mat4 bones;
-        glm_mat4_identity(bones);
-        char name[64];
-        for(size_t i=0; i<MAX_BONES; ++i) {
-            sprintf(name, "bones_mat[%zu]", i);
-            glUniformMatrix4fv(glGetUniformLocation(shader->m_program, name), 1, GL_FALSE, (float*)bones);
-        }
-        
-        if(getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)){
-            anim_time += deltaTime*walkingAnimation->anim_ticks;
+        if((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == attackAnimation){
+            AnimatorOnUpdate(playerAnimator,player,shader,deltaTime);
+        }else if(playerAnimator->currentAnimation == attackAnimation){
+            AnimatorOnUpdate(playerAnimator,player,shader,deltaTime);
         }else{
-            anim_time = 0.0f;
-        }
-
-        mat4 identity;
-        glm_mat4_identity(identity);
-        if(anim_time>=walkingAnimation->anim_dur) anim_time -= walkingAnimation->anim_dur;
-        CalculateBoneTransformation(playerAnimator->currentAnimation->root_node, anim_time, identity, player->bones, walkingAnimation->bone_anim_mats);
-        for(size_t i=0; i<player->bone_count; ++i) {
-            sprintf(name, "bones_mat[%zu]", i);
-            glUniformMatrix4fv(glGetUniformLocation(shader->m_program, name), 1, GL_FALSE, (float*)walkingAnimation->bone_anim_mats[i]);
+            AnimatorOnUpdate(playerAnimator,player,shader,deltaTime);
+            playerAnimator->playTime = 0.0f;
         }
         ModelDraw(player, shader, camera);
 
-        glm_mat4_identity(bones);
-        for(size_t i=0; i<MAX_BONES; ++i) {
-            sprintf(name, "bones_mat[%zu]", i);
-            glUniformMatrix4fv(glGetUniformLocation(shader->m_program, name), 1, GL_FALSE, (float*)bones);
-        }
-        glm_mat4_identity(identity);
-        anim_time2 += deltaTime*goblinAnimator->currentAnimation->anim_ticks;
-        if(anim_time2>=goblinAnimator->currentAnimation->anim_dur) anim_time2 -= goblinAnimator->currentAnimation->anim_dur;
-        CalculateBoneTransformation(goblinAnimator->currentAnimation->root_node, anim_time2, identity, goblin->bones, goblinAnimator->currentAnimation->bone_anim_mats);
-        for(size_t i=0; i<goblin->bone_count; ++i) {
-            sprintf(name, "bones_mat[%zu]", i);
-            glUniformMatrix4fv(glGetUniformLocation(shader->m_program, name), 1, GL_FALSE, (float*)goblinAnimator->currentAnimation->bone_anim_mats[i]);
-        }
-        //ModelDraw(goblin, shader, camera);
-        (void)goblinAnimator;
-        (void)goblinIdleAnimation;
-        (void)anim_time2;
+        AnimatorOnUpdate(goblinAnimator,goblin,shader,deltaTime);
+        ModelDraw(goblin, shader, camera);
+
+
 
 
         UseShaders(shader2);
         ModelDraw(map, shader2, camera);
+        glm_mat4_dup(player->modelMatrix, sword->modelMatrix);
+        mat4 offsetMatrix;
+        glm_translate_make(offsetMatrix,(vec3){-1.3f,-0.7f,0.3f});
+        glm_mat4_mul(sword->modelMatrix,walkingAnimation->bone_anim_mats[21],sword->modelMatrix);
+        glm_mat4_mul(sword->modelMatrix,offsetMatrix,sword->modelMatrix);
+        glUniformMatrix4fv(shader2->m_locations.Model, 1, GL_FALSE, (float*)sword->modelMatrix);
+        ModelDrawAttached(sword, shader2, camera);
         //ModelDraw(tree, shader2, camera);
         glBindVertexArray(0);
         cameraControl(camera);

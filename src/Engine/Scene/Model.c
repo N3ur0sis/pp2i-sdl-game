@@ -139,6 +139,24 @@ void ModelDraw(Model* model, Shader* shader, Camera* camera) {
     }
 }
 
+void ModelDrawAttached(Model* model, Shader* shader, Camera* camera) {
+
+    /* Before each render of our object we need to pass the model matrix on the shader */
+    //ModelMatrixCalculate(model->position, model->rotation, model->scale,camera,shader, model->modelMatrix);
+    glUniformMatrix4fv(shader->m_locations.View, 1, GL_FALSE, (float*)camera->viewMatrix);
+    glUniformMatrix4fv(shader->m_locations.Projection, 1, GL_FALSE, (float*)camera->projectionMatrix);
+    glUniform3fv(shader->m_locations.cameraPosition,1,camera->Position);
+
+    /* We need to draw each mesh present in the model */
+    for(size_t i=0; i<model->meshCount; ++i) {
+        
+        /* Each mesh is a part of the model but can use different texture for rendering*/
+        glBindTexture(GL_TEXTURE_2D, model->materials[model->meshes[i].matID].id);
+        MeshDraw(&model->meshes[i]);
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
+}
+
 void ModelMatrixCalculate(vec3 position,vec3 rotation, vec3 scale, Camera* camera, Shader* shader, mat4 modelMatrix ){
 
     /* Create a Scale matrix used to scale the model */
