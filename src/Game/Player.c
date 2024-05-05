@@ -155,6 +155,7 @@ float lerp_float(float a, float b, float t) {
 
 void lerp_camera(Camera* camera, vec3 old_pos, vec3 new_pos, float old_yaw, float new_yaw, int steps, float duration) {
 	duration *= 1000;
+    (void) duration;
     for (int i = 0; i <= steps; ++i) {
         float t = (float)i / steps;
 		vec3 interpolated_pos;

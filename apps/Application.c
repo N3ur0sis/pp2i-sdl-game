@@ -7,6 +7,7 @@
 #include <Skybox.h>
 #include <Animator.h>
 #include <Controls.h>
+#include <Menu.h>
 /* Global variable, only for things that won't change during the game */
 static const int g_WindowWidth = 1280;
 static const int g_WindowHeight = 720;
