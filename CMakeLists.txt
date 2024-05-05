@@ -15,6 +15,8 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/sdl2)
 file(GLOB_RECURSE APPS "apps/*.c")
 file(GLOB_RECURSE SOURCES "src/*.c" )
 
+include_directories(libs/glad/include)
+
 # Copy the assets folder inside the build folder
 FILE(COPY assets/ DESTINATION "${CMAKE_BINARY_DIR}/assets")
 
@@ -28,17 +30,17 @@ find_package(SDL2_ttf REQUIRED)
 find_package(OpenGL REQUIRED)
 add_library(cglm SHARED IMPORTED GLOBAL)
 add_library(ccd SHARED IMPORTED GLOBAL)
-add_library(glad STATIC IMPORTED GLOBAL)
+#add_library(glad STATIC IMPORTED GLOBAL)
 add_library(assimp SHARED IMPORTED GLOBAL)
 if (${CMAKE_SYSTEM_NAME} MATCHES "Linux")
     set_target_properties(cglm PROPERTIES  IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/cglm/libcglm.so)
     set_target_properties(ccd PROPERTIES  IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/ccd/libccd.so)
-    set_target_properties(glad PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/glad/libglad.a)
+  #  set_target_properties(glad PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/glad/libglad.a)
     set_target_properties(assimp PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/assimp/libassimp.so)
     elseif (${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
     set_target_properties(cglm PROPERTIES  IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/cglm/libcglm.dylib)
     set_target_properties(ccd PROPERTIES  IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/ccd/libccd.dylib)
-    set_target_properties(glad PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/glad/libglad.a)
+  #  set_target_properties(glad PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/glad/libglad.a)
     set_target_properties(assimp PROPERTIES IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/libs/assimp/libassimp.dylib)
 endif()
 
@@ -50,7 +52,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE ${OPENGL_INCLUDE_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE ${ASSIMP_INCLUDE_DIR})
 target_include_directories(${PROJECT_NAME} PRIVATE libs/cglm/include )
 target_include_directories(${PROJECT_NAME} PRIVATE libs/ccd/include )
-target_include_directories(${PROJECT_NAME} PRIVATE libs/glad/include)
+#target_include_directories(${PROJECT_NAME} PRIVATE libs/glad/include)
 target_include_directories(${PROJECT_NAME} PRIVATE libs/assimp/include)
 
 # Link libraries and add compiler errors/warnings flags
@@ -60,6 +62,6 @@ target_link_libraries(${PROJECT_NAME} assimp -fsanitize=address)
 target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} -fsanitize=address)
 target_link_libraries(${PROJECT_NAME} cglm -lm  -fsanitize=address)
 target_link_libraries(${PROJECT_NAME} ccd -fsanitize=address)
-target_link_libraries(${PROJECT_NAME} glad -fsanitize=address)
+#target_link_libraries(${PROJECT_NAME} glad -fsanitize=address)
 
 
