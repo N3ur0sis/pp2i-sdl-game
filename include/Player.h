@@ -3,16 +3,22 @@
 #include <math.h>
 #include <stdbool.h>
 #include <Model.h>
+#include <Animator.h>
 #include<unistd.h>
 
 typedef struct _Player{
-    float Health;
-    float Speed;
-    vec3 position;
-    vec4 rotation;
+    Model* playerModel;
+    Animator* playerAnimator;
+    float health;
+    float speed;
+    vec3 boundingBox[2];
+    vec3 boundingBoxReference[2];
 } Player;
 
-void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* camera, vec3 playerbb[2], vec3 playerbbo[2], vec3 treebb[2], Model* map);
+Player* playerCreate(char* modelPath);
+
+ void lerp_vec3(vec3 a, vec3 b, vec3 res, float t);
+void playerMovement(Player* player, float deltaTime, Camera* camera, Model* map, Model* enemy);
 void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float deltaTime);
-void lerp_vec3(vec3 a, vec3 b, vec3 res, float t);
+float lerp_float(float a, float b, float t);
 void lerp_camera(Camera* camera, vec3 old_pos, vec3 new_pos, float old_yaw, float new_yaw, int steps, float duration);

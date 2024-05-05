@@ -9,7 +9,8 @@ layout(location = 4) in vec4 weights;
 uniform mat4 projection;
 uniform mat4 view;
 uniform mat4 model;
-	
+uniform mat4 depthMVP;
+
 const int MAX_BONES = 50;
 const int MAX_BONE_INFLUENCE = 4;
 uniform mat4 bones_mat[MAX_BONES];
@@ -17,6 +18,7 @@ uniform mat4 bones_mat[MAX_BONES];
 out vec3 fragVert;
 out vec2 fragTexCoord;
 out vec3 fragNormal;
+out vec4 fragPosLight;
 	
 void main()
 {
@@ -37,8 +39,10 @@ void main()
     }
 		
     mat4 viewModel = view * model;
+    vec3 currentPos = vec3(model * vec4(pos, 1.0f));
     gl_Position =  projection * viewModel * totalPosition;
     fragTexCoord = tex;
     fragNormal =  norm;
     fragVert = pos;
+    fragPosLight = depthMVP * vec4(currentPos, 1.0f);
 }

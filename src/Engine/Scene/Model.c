@@ -131,8 +131,8 @@ void ModelDraw(Model* model, Shader* shader, Camera* camera) {
 
     /* We need to draw each mesh present in the model */
     for(size_t i=0; i<model->meshCount; ++i) {
-        
         /* Each mesh is a part of the model but can use different texture for rendering*/
+        glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, model->materials[model->meshes[i].matID].id);
         MeshDraw(&model->meshes[i]);
         glBindTexture(GL_TEXTURE_2D, 0);
@@ -151,6 +151,7 @@ void ModelDrawAttached(Model* model, Shader* shader, Camera* camera) {
     for(size_t i=0; i<model->meshCount; ++i) {
         
         /* Each mesh is a part of the model but can use different texture for rendering*/
+        glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, model->materials[model->meshes[i].matID].id);
         MeshDraw(&model->meshes[i]);
         glBindTexture(GL_TEXTURE_2D, 0);
