@@ -212,7 +212,7 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
 
         ModelDraw(player->playerModel, shader, camera);
         AnimatorOnUpdate(golemAnimator,golem,shader,deltaTime);
-        //ModelDraw(golem, shader, camera);
+        ModelDraw(golem, shader, camera);
 
         /* Scene Rendering */
         UseShaders(shader2);
