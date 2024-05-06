@@ -7,30 +7,19 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "Data.h"
-#include "Vector.h"
 
-typedef struct _Graph Graph;
-typedef struct _Data Data;
+typedef struct _Graph {
+    int V;
+    int E;
+    int **adj;
+} Graph;
 
-struct _Graph {
-    Vector** adjacencyList;
-    int size;
-    Type type;
-    Vector* data;
-};
+Graph* create_graph(int V);
 
+void add_edge(Graph* G, int u, int v);
 
-Graph* createGraph(Type type);
+void remove_edge(Graph* G, int u, int v);
 
-int sizeGraph(Graph* graph);
-
-void addVertex(Graph* graph, Data* data);
-
-void addEdge(Graph* graph, int vertex1, int vertex2);
-
-bool emptyGraph(Graph* graph);
-
-void destroyGraph(Graph* graph);
+void destroy_graph(Graph* G);
 
 #endif //PP2I_GRAPH_H
