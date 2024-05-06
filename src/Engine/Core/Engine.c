@@ -36,7 +36,7 @@ void EngineInit(void){
     glEnable(GL_DEPTH_TEST);              /* Enable use of depth testing */
     glDisable(GL_STENCIL_TEST);           /* Disable stencil test for speed */
     glEnable(GL_MULTISAMPLE);  
-
+    printf("%s", glGetString(GL_VERSION));
 }
 
 void EngineQuit(void) {
