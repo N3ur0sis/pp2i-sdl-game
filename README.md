@@ -1,4 +1,4 @@
-# PP2I Game in C
+# Simple Game in C
 
 About the porject:
 
@@ -16,12 +16,9 @@ Gameplay inspired by zelda.
 - SDL2
 - GLAD (OpenGL API)
 - [CGLM](https://github.com/recp/cglm)
+- Assimp
 
-You can install all the deps by running the following command (but the run script will do it automatically, see below)
 
-```sh
-sudo apt install git build-essential pkg-config cmake cmake-data libsdl2-dev libsdl2-gfx-dev assimp-utils libassimp-dev libassimp5
-```
 **WARNING** 
 Update your Version of Opengl to 4.6
 On ubuntu : 
@@ -32,7 +29,9 @@ sudo apt update && sudo apt upgrade
 ```
 ## Build instructions
 
-Only for Debian based/Ubuntu user (for macOS, i guess it's similar)
+Only for Debian based/Ubuntu user
+
+**It will ask for sudo password if you have som dependencies to install (don't worry it doesn't install some fancy shit )**
 
 ```bash
 # Clone this repo
@@ -43,22 +42,29 @@ cd pp2i-sdl-game
 ./scripts/run.sh
 ```
 
+If you have MacOS :  get a linux
 ## TODO List
 
-- [ ] Basic player movement
-- [ ] Map creation (Blender) + Level design (in-engine)
+- [X] not abandon the project
+- [ ] remove some memory leaks (just kidding, i'll never do that)
+- [x] Basic player movement
+- [x] Map creation (Blender) + Level design (in-engine)
 - [ ] Dungeons procedural Generation
-- [x] Light system (fixes needed) 
-- [ ] Import + Render animation
-- [ ] Basic Combat system
-- [ ] Menu (Main + Options)
+- [x] Lights
+- [x] Basic Shadow Mapping
+- [x] Import + Render animation
+- [x] Basic Combat system
+- [ ] Menu (Main & Pause )
 - [ ] GUI
 - [ ] Inventory system
+- [ ] Trading System
+- [ ] Scene Manager
+- [ ] Entity Component System
+- [ ] Finish the game
+- [ ] Find a name for the game
 
 
-![Repository Map](https://github.com/N3ur0sis/pp2i-sdl-game/blob/main/docs/architecture.png)
-
-This project is maintained by Aymeric, Arthur, Baptiste, Victor and Mathis 
+This project is mainly done for fun and partly done because we have to do it if we want to pass the year.
 
 
 

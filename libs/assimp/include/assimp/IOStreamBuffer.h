@@ -2,7 +2,7 @@
 Open Asset Import Library (assimp)
 ----------------------------------------------------------------------
 
-Copyright (c) 2006-2024, assimp team
+Copyright (c) 2006-2022, assimp team
 
 All rights reserved.
 
@@ -141,7 +141,9 @@ AI_FORCE_INLINE IOStreamBuffer<T>::IOStreamBuffer(size_t cache) :
 }
 
 template <class T>
-AI_FORCE_INLINE IOStreamBuffer<T>::~IOStreamBuffer() = default;
+AI_FORCE_INLINE IOStreamBuffer<T>::~IOStreamBuffer() {
+    // empty
+}
 
 template <class T>
 AI_FORCE_INLINE bool IOStreamBuffer<T>::open(IOStream *stream) {
@@ -287,7 +289,7 @@ static AI_FORCE_INLINE bool isEndOfCache(size_t pos, size_t cacheSize) {
 template <class T>
 AI_FORCE_INLINE bool IOStreamBuffer<T>::getNextLine(std::vector<T> &buffer) {
     buffer.resize(m_cacheSize);
-    if (m_cachePos >= m_cacheSize || 0 == m_filePos) {
+    if (isEndOfCache(m_cachePos, m_cacheSize) || 0 == m_filePos) {
         if (!readNextBlock()) {
             return false;
         }
@@ -323,9 +325,7 @@ AI_FORCE_INLINE bool IOStreamBuffer<T>::getNextLine(std::vector<T> &buffer) {
         }
     }
     buffer[i] = '\n';
-    while (m_cachePos < m_cacheSize && (m_cache[m_cachePos] == '\r' || m_cache[m_cachePos] == '\n')) {
-        ++m_cachePos;
-    }
+    ++m_cachePos;
 
     return true;
 }

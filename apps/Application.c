@@ -7,12 +7,19 @@
 #include <Skybox.h>
 #include <Animator.h>
 #include <Controls.h>
+#include <SceneManager.h>
 
 
 /* Global variable, only for things that won't change during the game or used for intitialization */
 static const int g_WindowWidth = 1280;
 static const int g_WindowHeight = 720;
 static const char* g_WindowTitle = "Game";
+
+void StartSceneUpdate();
+void StartSceneLoad();
+void StartSceneUnload();
+void StartSceneRender(Scene scene, Shader* shader, Camera* camera);
+
 
 /* Entry point of the program */
 int main(void){
@@ -24,6 +31,12 @@ int main(void){
     Shader* shader = LoadShaders("assets/shaders/anim.vs", "assets/shaders/default.fs");
     Shader* shader2 = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
     Shader* shader3 = LoadShaders("assets/shaders/shadowMap.vs", "assets/shaders/shadowMap.fs");
+    
+
+    SceneManager* sceneManager = (SceneManager*)calloc(1, sizeof(SceneManager));
+
+    Scene startScene = {.modelComponents = NULL,.entities=0,.loadScene=StartSceneLoad,.unloadScene=StartSceneUnload,.updateScene=StartSceneUpdate,.renderScene=StartSceneRender};
+    ModelCreate(&startScene.modelComponents[startScene.entities++], "assets/models/LoPotitChat/sword.obj");
 
     /* Start Function, create objects in scene */
     /* Enemy */
@@ -36,9 +49,9 @@ int main(void){
     glm_vec3_copy((vec3){2.0f,0.0f,-10.0f},golem->position);
 
     /* Player*/
-    Player* player = playerCreate("assets/models/LoPotitChat/Walking.dae");
-    Animation* attackAnimation = AnimationCreate("assets/models/LoPotitChat/Sword And Shield Attack.dae", player->playerModel);
-    Animation* walkingAnimation = AnimationCreate("assets/models/LoPotitChat/Walking.dae", player->playerModel);
+    Player* player = playerCreate("assets/models/LoPotitChat/PlayerWalk.dae");
+    Animation* attackAnimation = AnimationCreate("assets/models/LoPotitChat/PlayerAttack.dae", player->playerModel);
+    Animation* walkingAnimation = AnimationCreate("assets/models/LoPotitChat/PlayerWalk.dae", player->playerModel);
     Animator* playerAnimator = AnimatorCreate(walkingAnimation);
     player->playerAnimator = playerAnimator;
     glm_vec3_copy((vec3){0.5f,0.5f,0.5f},player->playerModel->scale);
@@ -122,6 +135,7 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
         lastTime = currentTime;
 
 
+
         glEnable(GL_DEPTH_TEST);
         glViewport(0,0,2048,2048);
         glBindFramebuffer(GL_FRAMEBUFFER,FramebufferName);
@@ -194,6 +208,8 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
         playerMovement(player,deltaTime,camera,tree, golem);
         cameraControl(camera);
 
+        startScene.updateScene();
+        startScene.renderScene(startScene,shader2,camera);
 
         /* Entity Rendering */    
         UseShaders(shader);
@@ -255,3 +271,21 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
     EngineQuit();
 }
 
+
+
+void StartSceneUpdate(){
+    //printf("Update Start Scene");
+}
+void StartSceneLoad(){
+    //printf("Load Start Scene");
+    
+}
+void StartSceneUnload(){
+    //printf("Unload Start Scene");
+
+}
+void StartSceneRender(Scene scene, Shader* shader, Camera* camera){
+    //printf("Render Start Scene");
+    UseShaders(shader);
+    ModelDraw(&scene.modelComponents[0], shader,camera );
+}
