@@ -1,6 +1,6 @@
 # Simple Game in C
 
-About the porject:
+About the project:
 
 The game is meant to be a 3D isometric game with simple yet clean graphics (inspired by tunic)
 Consists of exploring a map, entering dungeons, beating enemy, winning junk, buying/trading the junk we've earned
@@ -21,7 +21,7 @@ Gameplay inspired by zelda.
 
 **WARNING** 
 Update your Version of Opengl to 4.6
-On ubuntu : 
+On Ubuntu: 
 
 ```sh
 sudo add-apt-repository ppa:kisak/kisak-mesa -y
@@ -31,7 +31,7 @@ sudo apt update && sudo apt upgrade
 
 Only for Debian based/Ubuntu user
 
-**It will ask for sudo password if you have som dependencies to install (don't worry it doesn't install some fancy shit )**
+**It will ask for sudo password if you have some dependencies to install (don't worry it doesn't install some fancy shit)**
 
 ```bash
 # Clone this repo
@@ -42,7 +42,7 @@ cd pp2i-sdl-game
 ./scripts/run.sh
 ```
 
-If you have MacOS :  get a linux
+If you're on MacOS: get on Linux.
 ## TODO List
 
 - [X] not abandon the project
