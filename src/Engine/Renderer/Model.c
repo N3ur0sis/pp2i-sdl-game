@@ -36,6 +36,7 @@ void ModelCreate(Model* model, char* path){
     model->meshCount = meshesCount;
     model->matCount = materialsCount; 
     model->bone_count = 0;
+    model->isAnimated = false;
     glm_vec3_copy((vec3){0.0f,0.0f,0.0f}, model->position); /* Position set to 0 by default */
     glm_vec3_copy((vec3){0.0f,0.0f,0.0f}, model->rotation); /* Rotation set to 0 by default */
     glm_vec3_copy((vec3){1.0f,1.0f,1.0f}, model->scale);    /* Scale    set to 1 by default*/
@@ -59,6 +60,7 @@ void ModelCreate(Model* model, char* path){
         /* If the mesh have a rig we also want to load bone information of the model */
         const size_t boneCount = scene->mMeshes[meshIndex]->mNumBones;
         if(boneCount>0) {
+            model->isAnimated = true;
             char boneNames[MAX_BONES][64];
             /* For each bone we check if we already have it on the model, otherwise we name it */
             for(size_t i=0; i<boneCount; ++i) {

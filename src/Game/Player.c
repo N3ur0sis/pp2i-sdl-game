@@ -43,6 +43,8 @@ void playerMovement(Player* player, float deltaTime, Camera* camera, Model* map,
 	if (getKeyState(SDLK_s)) {
 		verticalInput = -1.0f;
 	}
+
+	
 	vec3 xDir;
 	glm_vec3_scale(camera->Right,-horizontalInput, xDir);
 	vec3 yDir;
@@ -115,7 +117,6 @@ void playerMovement(Player* player, float deltaTime, Camera* camera, Model* map,
 
 	moveCameraPlayer(camera, player->playerModel->position,newPos, deltaTime);
 	glm_vec3_copy(newPos, player->playerModel->position);
-
 	}
 }
 

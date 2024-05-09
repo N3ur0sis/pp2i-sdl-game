@@ -11,9 +11,8 @@ Light* LightCreate(Shader *S, vec4 position, vec3 intensity, float attenuation, 
 	glm_vec3_copy(intensity, light->intensity);
 	light->attenuation = attenuation;
 	light->ambientCoefficient = ambientCoef;
-
+	light->shadowMap = ShadowMapCreate(position, S);
 	LightUpdate(S, light);
-
 	return light;
 }
 
