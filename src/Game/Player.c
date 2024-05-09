@@ -26,6 +26,12 @@ Player* playerCreate(char* modelPath){
 
 void playerMovement(Player* player, float deltaTime, Camera* camera, Model* map, Model* enemy){
 
+	if (getKeyState(SHIFT)) {
+		player->speed = 8.0f;
+	} else {
+		player->speed = 5.0f;
+	}
+
 
 	float horizontalInput = 0.0f;
 	float verticalInput = .0f;
