@@ -6,25 +6,15 @@ Player* playerCreate(char* modelPath){
 	ModelCreate(player->playerModel,modelPath);
 	player->speed = 6.0f;
 	player->health = 100.0f;
-
-	glm_vec3_copy((vec3){player->playerModel->meshes[0].aabb.mMin.x,
-        				 player->playerModel->meshes[0].aabb.mMin.y,
-        				 player->playerModel->meshes[0].aabb.mMin.z},  player->boundingBoxReference[0]);
-    glm_vec3_copy((vec3){player->playerModel->meshes[0].aabb.mMax.x,
-        				 player->playerModel->meshes[0].aabb.mMax.y,
-        				 player->playerModel->meshes[0].aabb.mMax.z}, player->boundingBoxReference[1]);
-	glm_vec3_copy(player->boundingBoxReference[0], player->boundingBox[0]);
-	glm_vec3_copy(player->boundingBoxReference[1], player->boundingBox[1]);
-	mat4 id;
-    glm_scale_make(id,(vec3){0.5f,0.5f,0.5f});
-    glm_aabb_transform(player->boundingBox,id,player->boundingBox);
-    glm_aabb_transform(player->boundingBoxReference,id,player->boundingBoxReference);
+	player->collider = ColliderCreate(modelPath);
+    glm_scale_make(player->collider->transformMatrix,(vec3){0.5f,0.5f,0.5f});
+	UpdateCollider(player->collider);
 	return player;
 }
 
 
 
-void playerMovement(Player* player, float deltaTime, Camera* camera, Model* map, Model* enemy){
+void playerMovement(Player* player, float deltaTime, Camera* camera, Model* enemy){
 
 
 	float horizontalInput = 0.0f;
@@ -90,33 +80,12 @@ void playerMovement(Player* player, float deltaTime, Camera* camera, Model* map,
     vec3 newPos;
 	glm_vec3_add(player->playerModel->position,movementDirection,newPos);
 	player->playerModel->rotation[1] = glm_rad(rotTarget);
-
-	mat4 id;
-    glm_translate_make(id,newPos);
-    glm_aabb_transform(player->boundingBoxReference,id,player->boundingBox);
-
-	for (size_t i = 0; i < map->meshCount; i++)
-	{
-		
-		vec3 treebb[2] = {
-        {map->meshes[i].aabb.mMin.x,
-        map->meshes[i].aabb.mMin.y,
-        map->meshes[i].aabb.mMin.z},
-        {map->meshes[i].aabb.mMax.x,
-        map->meshes[i].aabb.mMax.y,
-        map->meshes[i].aabb.mMax.z}
-    };
-	mat4 id;
-	glm_translate_make(id,(vec3){0.0f,-0.5f,0.0f});
-    glm_aabb_transform(treebb,id,treebb);
-	if(glm_aabb_aabb(player->boundingBox,treebb)){
-		printf("collision with %ld", i);
-		return;
-	}
-	}
-
+	
 	moveCameraPlayer(camera, player->playerModel->position,newPos, deltaTime);
-	glm_vec3_copy(newPos, player->playerModel->position);
+	glm_vec3_copy(newPos, player->velocity);
+	mat4 id;
+    glm_translate_make(id,player->velocity);
+    glm_aabb_transform(player->collider->boundingBoxReference,id,player->collider->boundingBox);
 	}
 }
 

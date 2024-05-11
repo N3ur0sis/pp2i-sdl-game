@@ -31,7 +31,7 @@ ShadowMap* ShadowMapCreate(vec3 position, Shader* shader){
     glUniformMatrix4fv(glGetUniformLocation(shader->m_program,"depthMVP"), 1, GL_FALSE,(float*)shadowMap->depthMatrix);
     UseShaders(shadowMap->shadowMapShader);
     glUniformMatrix4fv(glGetUniformLocation(shadowMap->shadowMapShader->m_program,"depthMVP"), 1, GL_FALSE,(float*)shadowMap->depthMatrix);
-
+    
 
     return shadowMap;
 }
