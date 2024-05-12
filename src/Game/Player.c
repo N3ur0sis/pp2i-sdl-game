@@ -179,14 +179,3 @@ void lerp_camera(Camera* camera, vec3 old_pos, vec3 new_pos, float old_yaw, floa
 }
 }
 
-
-void lerp_vec3(vec3 a, vec3 b, vec3 res, float t){
-    res[0] = a[0] + (b[0] - a[0]) * t;
-    res[1] = a[1] + (b[1] - a[1]) * t;
-    res[2] = a[2] + (b[2] - a[2]) * t;
-}
-
-float lerp_float(float a, float b, float t) {
-    return a + (b - a) * t;
-}
-
