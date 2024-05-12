@@ -3,7 +3,9 @@
 Open Asset Import Library (assimp)
 ---------------------------------------------------------------------------
 
-Copyright (c) 2006-2024, assimp team
+Copyright (c) 2006-2022, assimp team
+
+
 
 All rights reserved.
 
@@ -66,7 +68,8 @@ namespace Assimp {
  */
 // --------------------------------------------------------------------------------------------
 template <bool SwapEndianess = false, bool RuntimeSwitch = false>
-class StreamWriter {
+class StreamWriter
+{
     enum {
         INITIAL_CAPACITY = 1024
     };

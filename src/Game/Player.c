@@ -1,11 +1,28 @@
 #include <Player.h>
 
+Player* playerCreate(char* modelPath){
+	Player* player = malloc(sizeof(Player));
+	player->playerModel = (Model*)malloc(sizeof(Model));
+	ModelCreate(player->playerModel,modelPath);
+	player->speed = 6.0f;
+	player->health = 100.0f;
+	player->collider = ColliderCreate(modelPath);
+    glm_scale_make(player->collider->transformMatrix,(vec3){0.5f,0.5f,0.5f});
+	UpdateCollider(player->collider);
+	return player;
+}
 
 
-void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* camera, vec3 playerbb[2], vec3 playerbbo[2], vec3 treebb[2], Model* map){
+
+void playerMovement(Player* player, float deltaTime, Camera* camera, Model* enemy){
+
+	if (getKeyState(SHIFT)) {
+		player->speed = 8.0f;
+	} else {
+		player->speed = 5.0f;
+	}
 
 
-    float speed = 6.0f;
 	float horizontalInput = 0.0f;
 	float verticalInput = .0f;
 
@@ -22,6 +39,8 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 	if (getKeyState(SDLK_s)) {
 		verticalInput = -1.0f;
 	}
+
+
 	vec3 xDir;
 	glm_vec3_scale(camera->Right,-horizontalInput, xDir);
 	vec3 yDir;
@@ -30,13 +49,25 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 	glm_vec3_add(xDir,yDir,movementDirection);
 	movementDirection[1] = 0.0f;
 	glm_vec3_normalize(movementDirection);
+
 	//sometimes my genius is almost frithening
+	vec3 rotationDirection;
+	vec3 enemyDir;
+    glm_vec3_sub(enemy->position,player->playerModel->position,  enemyDir);
+    float enemyDist = glm_vec3_norm(enemyDir);
+	        glm_vec3_normalize(enemyDir);
+	if( enemyDist < 10.0f){
+		glm_vec3_copy(enemyDir, rotationDirection);
+	}else{
+		glm_vec3_copy(movementDirection, rotationDirection);
+
+	}
 	if(movementDirection[0] != .0f || movementDirection[1] != .0f || movementDirection[2] != .0f){
-	float omega = acos(glm_dot((vec3){0,0,1},movementDirection));
-	if (movementDirection[0] < 0) {
+	float omega = acos(glm_dot((vec3){0,0,1},rotationDirection));
+	if (rotationDirection[0] < 0) {
 		omega = -omega;
 	}
-	float currentAngleDeg = glm_deg(rotation[1]);
+	float currentAngleDeg = glm_deg(player->playerModel->rotation[1]);
     float targetAngleDeg = glm_deg(omega);
 
     // Ensure the that the fucking target angle is within the range of -180 to 180 degrees (i spent three fucking hours just to realize the angles wasn't normalized , fuck me!)
@@ -47,45 +78,22 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
         targetAngleDeg += 360;
     }
 
-    // Perform linear interpolation
+    // Perform linear interpolation²
     float rotTarget = glm_lerp(currentAngleDeg, targetAngleDeg, 0.1f);
 
-    printf("%f\n", rotTarget);
-    rotation[1] = glm_rad(rotTarget);
-	printf("%f\n", glm_deg(omega));
-	}
-	printf("%f,%f,%f\n", movementDirection[0], movementDirection[1], movementDirection[2]);
-	//fuck this, because of this shit i didn't prepare anything to eat. Im just gonna order some junk food.  
+    //printf("%f\n", rotTarget);
+	glm_vec3_scale(movementDirection,player->speed*deltaTime,movementDirection);
+    vec3 newPos;
+	glm_vec3_add(player->playerModel->position,movementDirection,newPos);
+	player->playerModel->rotation[1] = glm_rad(rotTarget);
 
-	glm_vec3_scale(movementDirection,speed*deltaTime,movementDirection);
-	glm_vec3_add(position,movementDirection,position);
-
-	moveCameraPlayer(camera, position, (vec3){position[0], position[1], position[2]}, deltaTime);
-
+	moveCameraPlayer(camera, player->playerModel->position,newPos, deltaTime);
+	glm_vec3_copy(newPos, player->velocity);
 	mat4 id;
-    //glm_translate_make(id,(vec3){x,y,z});
-    glm_aabb_transform(playerbbo,id,playerbb);
-
-	for (size_t i = 30; i < map->meshCount; i++)
-	{
-		
-		vec3 treebb[2] = {
-        {map->meshes[i].aabb.mMin.x,
-        map->meshes[i].aabb.mMin.y,
-        map->meshes[i].aabb.mMin.z},
-        {map->meshes[i].aabb.mMax.x,
-        map->meshes[i].aabb.mMax.y,
-        map->meshes[i].aabb.mMax.z}
-    };
-	if(glm_aabb_aabb(playerbb,treebb)){
-
+    glm_translate_make(id,player->velocity);
+    glm_aabb_transform(player->collider->boundingBoxReference,id,player->collider->boundingBox);
 	}
-	}
-	(void)camera;
-	(void)rotation;
-	(void)treebb;
 }
-
 
 
 void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float deltaTime) {
@@ -168,5 +176,17 @@ void lerp_camera(Camera* camera, vec3 old_pos, vec3 new_pos, float old_yaw, floa
 		camera->Yaw = interpolated_yaw;
 
 		updateCameraVectors(camera);
-    }
 }
+}
+
+
+void lerp_vec3(vec3 a, vec3 b, vec3 res, float t){
+    res[0] = a[0] + (b[0] - a[0]) * t;
+    res[1] = a[1] + (b[1] - a[1]) * t;
+    res[2] = a[2] + (b[2] - a[2]) * t;
+}
+
+float lerp_float(float a, float b, float t) {
+    return a + (b - a) * t;
+}
+
