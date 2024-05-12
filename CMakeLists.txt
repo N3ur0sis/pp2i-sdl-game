@@ -43,7 +43,7 @@ endif()
 
 # Create the executable fromt he source file and specify compilation opeitons
 add_executable(${PROJECT_NAME} ${SOURCES} ${APPS})
-target_compile_options(${PROJECT_NAME} PRIVATE -O3 -fsanitize=address -g -Wno-newline-eof -Wno-unused-variable -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-value -Wno-unused-result -Wno-unused-label -Wno-unused-label -Wno-unused-local-typedefs -Wno-unused-const-variable -Wno-unused-macros)
+target_compile_options(${PROJECT_NAME} PRIVATE -Wall -Wextra -Werror -pedantic -O3 -fsanitize=address -g -Wno-newline-eof -Wno-unused-variable -Wno-unused-parameter -Wno-unused-function -Wno-unused-but-set-variable -Wno-unused-value -Wno-unused-result -Wno-unused-label -Wno-unused-label -Wno-unused-local-typedefs -Wno-unused-const-variable -Wno-unused-macros)
 
 
 # Add all headers files under the include directory and libraries includes.
