@@ -4,7 +4,6 @@ uniform mat4 model;
 uniform vec3 cameraPosition;
 
 uniform sampler2D materialTex;
-uniform sampler2D shadowMap;
 float materialShininess = 250;
 vec3 materialSpecularColor = vec3(0.5);
 
@@ -18,7 +17,6 @@ uniform struct Light {
 in vec2 fragTexCoord;
 in vec3 fragNormal;
 in vec3 fragVert;
-in vec4 fragPosLight;
 
 out vec4 finalColor;
 
@@ -44,37 +42,8 @@ vec3 ApplyLight(Light light, vec3 surfaceColor, vec3 normal, vec3 surfacePos, ve
         specularCoefficient = pow(max(0.0, dot(surfaceToCamera, reflect(-surfaceToLight, normal))), materialShininess);
     vec3 specular = specularCoefficient * materialSpecularColor * light.intensities;
 
-    float shadow = 0.0;
-    float bias = 0.0005;  
-    vec3 lightCoord = fragPosLight.xyz / fragPosLight.w;
-    if(lightCoord.z <= 1.0f){
-        lightCoord = (lightCoord + 1.0f) / 2.0f;
-        float closestDepth = texture(shadowMap, lightCoord.xy).r;
-        float currenDepth = lightCoord.z;
-
-        //if(currenDepth - bias > closestDepth)
-          //  shadow = 1.0f;
-
-        
-        vec2 texelSize = 1.0 / textureSize(shadowMap, 0);
-        for(int x = -1; x <= 1; ++x)
-        {
-            for(int y = -1; y <= 1; ++y)
-            {
-                float pcfDepth = texture(shadowMap, lightCoord.xy + vec2(x, y) * texelSize).r; 
-                shadow += currenDepth - bias > pcfDepth  ? 1.0 : 0.0;        
-            }    
-        }
-        shadow /= 9.0;
-    
-        // keep the shadow at 0.0 when outside the far_plane region of the light's frustum.
-        if(lightCoord.z > 1.0)
-            shadow = 0.0;
-        }
-
-
     //linear color (color before gamma correction)
-    return ambient + attenuation*(diffuse * (1.0f - shadow) + specular);
+    return ambient + attenuation*(diffuse + specular);
 }
 
 void main() {

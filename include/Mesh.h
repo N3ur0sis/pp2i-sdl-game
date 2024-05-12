@@ -5,8 +5,8 @@
 #include <cglm/cglm.h>
 #include <glad/glad.h>
 
-#define MAX_BONES 100
-#define MAX_BONE_INFLUENCE 8
+#define MAX_BONES 50
+#define MAX_BONE_INFLUENCE 4
 
 /* A Custom vertex struct we pass to OpenGL */
 typedef struct _Vertex {

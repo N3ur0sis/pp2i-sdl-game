@@ -1,6 +1,6 @@
-# Simple Game in C
+# PP2I Game in C
 
-About the project:
+About the porject:
 
 The game is meant to be a 3D isometric game with simple yet clean graphics (inspired by tunic)
 Consists of exploring a map, entering dungeons, beating enemy, winning junk, buying/trading the junk we've earned
@@ -16,12 +16,15 @@ Gameplay inspired by zelda.
 - SDL2
 - GLAD (OpenGL API)
 - [CGLM](https://github.com/recp/cglm)
-- Assimp
 
+You can install all the deps by running the following command (but the run script will do it automatically, see below)
 
+```sh
+sudo apt install git build-essential pkg-config cmake cmake-data libsdl2-dev libsdl2-gfx-dev assimp-utils libassimp-dev libassimp5
+```
 **WARNING** 
 Update your Version of Opengl to 4.6
-On Ubuntu: 
+On ubuntu : 
 
 ```sh
 sudo add-apt-repository ppa:kisak/kisak-mesa -y
@@ -29,9 +32,7 @@ sudo apt update && sudo apt upgrade
 ```
 ## Build instructions
 
-Only for Debian based/Ubuntu user
-
-**It will ask for sudo password if you have some dependencies to install (don't worry it doesn't install some fancy shit)**
+Only for Debian based/Ubuntu user (for macOS, i guess it's similar)
 
 ```bash
 # Clone this repo
@@ -42,29 +43,22 @@ cd pp2i-sdl-game
 ./scripts/run.sh
 ```
 
-If you're on MacOS: get on Linux.
 ## TODO List
 
-- [X] not abandon the project
-- [ ] remove some memory leaks (just kidding, i'll never do that)
-- [x] Basic player movement
-- [x] Map creation (Blender) + Level design (in-engine)
+- [ ] Basic player movement
+- [ ] Map creation (Blender) + Level design (in-engine)
 - [ ] Dungeons procedural Generation
-- [x] Lights
-- [x] Basic Shadow Mapping
-- [x] Import + Render animation
-- [x] Basic Combat system
-- [ ] Menu (Main & Pause )
+- [x] Light system (fixes needed) 
+- [ ] Import + Render animation
+- [ ] Basic Combat system
+- [ ] Menu (Main + Options)
 - [ ] GUI
 - [ ] Inventory system
-- [ ] Trading System
-- [ ] Scene Manager
-- [ ] Entity Component System
-- [ ] Finish the game
-- [ ] Find a name for the game
 
 
-This project is mainly done for fun and partly done because we have to do it if we want to pass the year.
+![Repository Map](https://github.com/N3ur0sis/pp2i-sdl-game/blob/main/docs/architecture.png)
+
+This project is maintained by Aymeric, Arthur, Baptiste, Victor and Mathis 
 
 
 
