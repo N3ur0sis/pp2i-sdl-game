@@ -11,7 +11,7 @@ project(
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake/sdl2)
 
 # Add all c source files under the src and app directory
-file(GLOB_RECURSE APPS "apps/*.c")
+file(GLOB_RECURSE APPS "apps/Donjon.c")
 file(GLOB_RECURSE SOURCES "src/*.c" )
 
 # Copy the assets folder inside the build folder

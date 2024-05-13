@@ -55,7 +55,7 @@ void StartFrame(Application* game){
     game->time->currentUpdate = SDL_GetTicks();
     game->time->nbFrames++;
     if( game->time->currentUpdate - game->time->lastUpdate >= 1000.0f){
-        printf("%d fps\n", game->time->nbFrames);
+        //printf("%d fps\n", game->time->nbFrames);
         game->time->nbFrames = 0;
         game->time->lastUpdate += 1000.0f;
     }

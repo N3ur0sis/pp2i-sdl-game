@@ -108,8 +108,8 @@ void playerMovement(Player* player, float deltaTime, Camera* camera, Model* map,
 	glm_translate_make(id,(vec3){0.0f,-0.5f,0.0f});
     glm_aabb_transform(treebb,id,treebb);
 	if(glm_aabb_aabb(player->boundingBox,treebb)){
-		printf("collision with %ld", i);
-		return;
+		//printf("collision with %ld", i);
+		//return;
 	}
 	}
 
@@ -202,3 +202,6 @@ float lerp_float(float a, float b, float t) {
     return a + (b - a) * t;
 }
 
+bool playerInteract(){
+	return getKeyState(SDLK_e);
+}
