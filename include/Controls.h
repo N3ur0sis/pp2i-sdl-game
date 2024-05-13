@@ -6,7 +6,7 @@
 
 
 
-void processInput(SDL_Event* e, bool* running);
+void processInput(SDL_Event* e, bool* running, bool* isPaused);
 void handleKeyBoardEventDown(SDL_Event e);
 void handleKeyBoardEventUp(SDL_Event e);
 void handleMouseButtonEvent(SDL_Event e);

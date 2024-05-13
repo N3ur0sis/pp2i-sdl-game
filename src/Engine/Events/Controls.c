@@ -8,7 +8,7 @@ float mousePos[6] = {0}; // 0->posX 1->posY 2->lastX 3->lastY 4->wheely ->5 last
 char mouseState[5] = { 0 }; // mouse button state
 
 
-void processInput(SDL_Event* e,  bool* running){
+void processInput(SDL_Event* e,  bool* running, bool* isPaused){
 
 	
 	switch (e->type){
@@ -16,7 +16,11 @@ void processInput(SDL_Event* e,  bool* running){
 			*running = false;
 			break;
 		case SDL_KEYDOWN:
-			handleKeyBoardEventDown(*e);
+            if (e->key.keysym.sym == SDLK_ESCAPE){
+                *isPaused = !*isPaused;
+            } else {
+                handleKeyBoardEventDown(*e);
+            }
 			break;
 		case SDL_KEYUP:
 			handleKeyBoardEventUp(*e);

@@ -62,7 +62,7 @@ void StartFrame(Application* game){
     game->time->deltaTime = (game->time->currentUpdate - game->time->lastUpdate) / 1000.0f;
     /* Input Handling */
     while(SDL_PollEvent(game->event)){
-        processInput(game->event, &game->running);
+        processInput(game->event, &game->running, &game->isPaused);
     }
 }
 
