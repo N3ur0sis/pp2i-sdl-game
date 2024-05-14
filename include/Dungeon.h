@@ -12,7 +12,8 @@
 #define NB_ROOM_MIN 10
 #define MIN_DOOR 1
 #define MAX_DOOR 4
-
+#define NB_MODEL_SALLE 8
+#define ChangeTime 2000.0f
 typedef struct _Dungeon Dungeon;
 struct  _Dungeon
 {
@@ -23,11 +24,15 @@ struct  _Dungeon
     int current_room;
     bool change;
     bool state;
+    L_Room* type_room;
+    float lastRoomChangeTime;
+
     
 };
 
 Dungeon* dj_create();
 void freeDungeon(Dungeon *dj);
+void freeTypeRooms(Dungeon* dj);
 void initialize(Dungeon *dj);
 void initializeAdjacencyList(Dungeon *dj);
 void freeAdjacencyList(Dungeon *dj);
@@ -40,7 +45,7 @@ int max(int a, int b);
 void depthFirstSearch(Dungeon *dj, int room, int depth, int *depths, int *visited);
 int *profondeur(Dungeon *dj);
 void printDepth(int *depths, int nb_rooms) ;
-void LoadRoom(Model** map, Model** tree, Player* player, Dungeon* dj);
+void LoadRoom(Player* player, Dungeon* dj);
 void LoadRoom1C(Model* map,Model* col, Player* player,Dungeon *dj);
 void LoadRoom2C(Model* map,Model* col, Player* player,Dungeon *dj);
 void LoadRoom3C(Model* map,Model* col, Player* player,Dungeon *dj);
@@ -57,3 +62,4 @@ void LogicRoom2L (Dungeon* dj, Player * player);
 void LogicRoom2I (Dungeon* dj, Player * player);
 void LogicRoom3T (Dungeon* dj, Player * player);
 void LogicRoomB (Dungeon* dj, Player * player);
+void initializeLRooms(Dungeon *dj);

@@ -5,8 +5,11 @@
 
 void freeRoom(Room* room){
     if (room==NULL){return;}
-    free(room->col);
-    free(room->model);
 }
 
 
+void freeLRoom(L_Room* l){
+    if (l==NULL){return;}
+    ModelFree(l->col);
+    ModelFree(l->model);
+}

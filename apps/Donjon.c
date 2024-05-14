@@ -9,7 +9,7 @@
 #include <Controls.h>
 #include <SceneManager.h>
 #include <Dungeon.h>
-
+ 
 /* Global variable, only for things that won't change during the game or used for intitialization */
 static const int g_WindowWidth = 1280;
 static const int g_WindowHeight = 720;
@@ -19,6 +19,11 @@ void StartSceneUpdate();
 void StartSceneLoad();
 void StartSceneUnload();
 void StartSceneRender(Scene scene, Shader* shader, Camera* camera);
+
+struct Glyph {
+    Model model;
+    float advance;
+};
 
 
 /* Entry point of the program */
@@ -67,14 +72,11 @@ int main(void){
     /* Map */
     Model* map = (Model*)calloc(1, sizeof(Model));
     ModelCreate(map, "assets/models/start/start.obj");
-    //ModelCreate(map, "assets/models/Room/Room4C.obj");
 
     /* Collision*/
     Model* tree = (Model*)calloc(1, sizeof(Model));
     ModelCreate(tree, "assets/models/start/col.obj");
-    //ModelCreate(tree, "assets/models/Room/ColC.obj");
     glm_vec3_copy((vec3){0.0f,-0.5f,0.0f},tree->position);
-    //LoadRoom(&map,&tree, player,dj);
 
     /* Lights*/
 	Light *light = LightCreate(shader2, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.4,0.4,0.2},1.0f, 0.9f);
@@ -148,9 +150,8 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
         glClear(GL_DEPTH_BUFFER_BIT);
         UseShaders(shader3);
         glUniformMatrix4fv(glGetUniformLocation(shader3->m_program,"depthMVP"), 1, GL_FALSE,(float*)lighProj);
-        ModelDraw(map,shader3,camera);
-        ModelDraw(player->playerModel,shader3,camera);
-        ModelDraw(golem,shader3,camera);
+         ModelDraw(player->playerModel,shader3,camera);
+        //ModelDraw(golem,shader3,camera);
         glBindFramebuffer(GL_FRAMEBUFFER,0);
 
 
@@ -217,6 +218,9 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
         printf("x = %f,y = %f\n",player->playerModel->position[0],player->playerModel->position[2]);
     }
         if (dj->state){
+        if (getKeyState(SDLK_b)){
+            printf("La direction d'ou on vient est %c, et %d et l id est %d\n",dj->direction,dj->current_room,dj->rooms[dj->current_room].id);
+        }
         switch(dj->rooms[dj->current_room].id){
             case 0:
             LogicRoom1C(dj,player );
@@ -244,13 +248,15 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
             break;
         }
         if (dj->change){
-                LoadRoom(&map,&tree, player,dj);
+                dj->lastRoomChangeTime = SDL_GetTicks();
+                LoadRoom(player,dj);
                 dj->change = false;
             }
         }
+    
         if (!dj->state && getKeyState(SDLK_h)){
             dj->state = true;
-            LoadRoom(&map,&tree, player,dj);
+            LoadRoom(player,dj);
             printf("On entre dans le donjon\n");
         }
         startScene.updateScene();
@@ -280,7 +286,10 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
         glActiveTexture(GL_TEXTURE0 + 6);
         glBindTexture(GL_TEXTURE_2D, depthTexture);
         glUniform1i(glGetUniformLocation(shader2->m_program, "shadowMap"), 6);
-        ModelDraw(map, shader2, camera);
+        if (!dj->state){
+            ModelDraw(map, shader2, camera);
+        }
+        else{ModelDraw(dj->type_room[dj->rooms[dj->current_room].id].model, shader2, camera);}
         glm_mat4_dup(player->playerModel->modelMatrix, sword->modelMatrix);
         mat4 offsetMatrix;
         glm_translate_make(offsetMatrix,(vec3){-1.3f,-0.7f,0.3f});

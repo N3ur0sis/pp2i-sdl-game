@@ -3,10 +3,10 @@
 #include <stdbool.h>
 
 
-typedef struct _Chest Chest
+typedef struct _Chest 
 {
-    Model model;
+    Model* model;
     int contenu;
     bool state;
 
-};
+}Chest;
