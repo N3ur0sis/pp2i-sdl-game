@@ -86,7 +86,7 @@ void playerMovement(Player* player, float deltaTime, Camera* camera, Model* enem
     vec3 newPos;
 	glm_vec3_add(player->playerModel->position,movementDirection,newPos);
 	player->playerModel->rotation[1] = glm_rad(rotTarget);
-	
+
 	moveCameraPlayer(camera, player->playerModel->position,newPos, deltaTime);
 	glm_vec3_copy(newPos, player->velocity);
 	mat4 id;
@@ -178,3 +178,6 @@ float lerp_float(float a, float b, float t) {
     return a + (b - a) * t;
 }
 
+bool playerInteract(){
+	return getKeyState(SDLK_e);
+}

@@ -9,7 +9,7 @@ Graph* createGraph(Type type) {
     if (graph == NULL) {
         printf("Memory allocation failed\n");
         exit(1);
-    }
+    } 
     graph->adjacencyList = (Vector**) malloc(10 * sizeof(Vector*));
     if (graph->adjacencyList == NULL) {
         printf("Memory allocation failed\n");
