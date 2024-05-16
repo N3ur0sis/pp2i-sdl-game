@@ -272,12 +272,10 @@ void initializeRooms(Dungeon *dj){
             case 2:
                 dj->rooms[i].id = 2;//2I
                 break;
-            }
-            
+            }      
             }
             else{
                 dj->rooms[i].id = 3;//2L
-
             }
             break;
         case 3:
@@ -940,7 +938,6 @@ void LogicRoom3T(Dungeon*dj,Player* player){
     char d3;
     char d4;
     if (!dir_used[0]){
-        //printf("ok\n");
         glmc_vec3_copy((vec3){0.2f,0.0f,-7.4f},Door1Position);//s
         glmc_vec3_copy((vec3){-7.5f,0.0f,-0.3f},Door2Position);//E
         glmc_vec3_copy((vec3){7.5f,0.0f,-0.3f},Door3Position);//w
@@ -948,16 +945,12 @@ void LogicRoom3T(Dungeon*dj,Player* player){
 
     }
     else if (!dir_used[1]){
-                //printf("oe\n");
-
         glmc_vec3_copy((vec3){0.0f,0.0f,7.5f},Door1Position);//N
         glmc_vec3_copy((vec3){4.5f,0.0f,0.0f},Door2Position);//W
         glmc_vec3_copy((vec3){-7.6f,0.0f,-0.25f},Door3Position);//E
         d1 = 'N';d2 = 'S';d3 = 'E';d4 = 'W';
     }
     else if (!dir_used[2]){
-                //printf("ek\n");
-
         glmc_vec3_copy((vec3){-7.4f,0.0f,-0.5f},Door1Position);//E
         glmc_vec3_copy((vec3){0.0f,0.0f,7.5f},Door2Position);//N
         glmc_vec3_copy((vec3){0.20f,0.0f,-7.5f},Door3Position);//S
@@ -965,8 +958,6 @@ void LogicRoom3T(Dungeon*dj,Player* player){
 
     }
     else{
-                //printf("k\n");
-
         glmc_vec3_copy((vec3){7.5f,0.0f,0.0f},Door1Position);//W
         glmc_vec3_copy((vec3){0.0f,0.0f,-7.5f},Door2Position);//S
         glmc_vec3_copy((vec3){0.0f,0.0f,7.5f},Door3Position);//N
@@ -1029,7 +1020,7 @@ void LogicRoom2L(Dungeon*dj,Player* player){
             }
         }
     }
-    
+
     vec3 Door1Position;
     vec3 Door2Position;
     vec3 Door1Dir;

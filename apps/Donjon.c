@@ -9,6 +9,7 @@
 #include <Controls.h>
 #include <SceneManager.h>
 #include <Dungeon.h>
+#include <SDL_mixer.h>
  
 /* Global variable, only for things that won't change during the game or used for intitialization */
 static const int g_WindowWidth = 1280;
@@ -35,8 +36,34 @@ int main(void){
     Shader* shader = LoadShaders("assets/shaders/anim.vs", "assets/shaders/default.fs");
     Shader* shader2 = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
     Shader* shader3 = LoadShaders("assets/shaders/shadowMap.vs", "assets/shaders/shadowMap.fs");
-    
+    //Music
+    if (SDL_Init(SDL_INIT_AUDIO) < 0) {
+    fprintf(stderr, "Failed to initialize SDL audio: %s\n", SDL_GetError());
+    return -1;
+    }
 
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+        fprintf(stderr, "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+        return -1;
+    }
+    Mix_Music *bgm = Mix_LoadMUS("assets/music/my-little-garden-of-eden-112845.mp3");
+    if (bgm == NULL) {
+    fprintf(stderr, "Failed to load background music: %s\n", Mix_GetError());
+    return -1;
+    }
+
+    if (Mix_PlayMusic(bgm, -1) == -1) {  
+    fprintf(stderr, "SDL_mixer could not play music! SDL_mixer Error: %s\n", Mix_GetError());
+    return -1;
+    }
+    Mix_VolumeMusic(10); // 64=50% du volume
+
+    //Sound 
+    Mix_Chunk *attackSound = Mix_LoadWAV("assets/sound/swing.wav");
+    if (attackSound == NULL) {
+        fprintf(stderr, "Failed to load attack sound: %s\n", Mix_GetError());
+        return -1;
+    }
     SceneManager* sceneManager = (SceneManager*)calloc(1, sizeof(SceneManager));
 
     Scene startScene = {.modelComponents = NULL,.entities=0,.loadScene=StartSceneLoad,.unloadScene=StartSceneUnload,.updateScene=StartSceneUpdate,.renderScene=StartSceneRender};
@@ -69,6 +96,7 @@ int main(void){
     initialize(dj);
     initializeRooms(dj);
     Affiche(dj);
+    float lastopen =0.0f;
     /* Map */
     Model* map = (Model*)calloc(1, sizeof(Model));
     ModelCreate(map, "assets/models/start/start.obj");
@@ -77,7 +105,17 @@ int main(void){
     Model* tree = (Model*)calloc(1, sizeof(Model));
     ModelCreate(tree, "assets/models/start/col.obj");
     glm_vec3_copy((vec3){0.0f,-0.5f,0.0f},tree->position);
-
+    Model* chest = (Model*)calloc(1, sizeof(Model));
+    ModelCreate(chest, "assets/models/Objet/Chest/ChestFermeSerrure.obj");
+    bool isOpen = false;
+    glm_vec3_copy((vec3){0.0f,0.0f,0.0f},chest->position);
+    glm_vec3_copy((vec3){0.75f,0.75f,0.75f},chest->scale);
+    chest->rotation[1] = glm_rad(180.0f);
+    Model* chest2 = (Model*)calloc(1, sizeof(Model));
+    ModelCreate(chest2,"assets/models/Objet/Chest/ChestOuvert.obj");
+    glm_vec3_copy((vec3){0.0f,0.0f,0.0f},chest2->position);
+    glm_vec3_copy((vec3){0.75f,0.75f,0.75f},chest2->scale);
+    chest2->rotation[1] = glm_rad(180.0f);
     /* Lights*/
 	Light *light = LightCreate(shader2, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.4,0.4,0.2},1.0f, 0.9f);
     Light *light2 = LightCreate(shader, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.5,0.4,0.2},1.0f, 0.9f);
@@ -95,6 +133,7 @@ int main(void){
     bool enemyIsAttacking = false;
     bool playerIsAttacking = false;
     float playerHealth = 100.0f;
+    float ennmyHealth = 100.0f;
 
 
     /* Shadow Impl test*/
@@ -150,8 +189,8 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
         glClear(GL_DEPTH_BUFFER_BIT);
         UseShaders(shader3);
         glUniformMatrix4fv(glGetUniformLocation(shader3->m_program,"depthMVP"), 1, GL_FALSE,(float*)lighProj);
-         ModelDraw(player->playerModel,shader3,camera);
-        //ModelDraw(golem,shader3,camera);
+        ModelDraw(player->playerModel,shader3,camera);
+        ModelDraw(golem,shader,camera);
         glBindFramebuffer(GL_FRAMEBUFFER,0);
 
 
@@ -170,8 +209,15 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
 	    }
         if(getMouseButtonState(1) && !playerIsAttacking){
                 playerIsAttacking = true;
+                Mix_PlayChannel(-1, attackSound, 0);
                 player->playerAnimator->currentAnimation = attackAnimation;
                 player->playerAnimator->playTime = 0.0f;
+                if (10>enemyDist){
+                    ennemyHealth-=50.0f;
+                }
+                if (ennmyHealth<=0){
+                    printf("Golem is dead\n");
+                }
         }else if(!playerIsAttacking){
             player->playerAnimator->currentAnimation = walkingAnimation;
         }
@@ -221,7 +267,16 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
         if (getKeyState(SDLK_b)){
             printf("La direction d'ou on vient est %c, et %d et l id est %d\n",dj->direction,dj->current_room,dj->rooms[dj->current_room].id);
         }
+        vec3 ChestDir;
+            glm_vec3_sub(player->playerModel->position, chest->position, ChestDir);
+            float ChestDist = glm_vec3_norm(ChestDir);
+            if (ChestDist<1.0f&&playerInteract()&&(SDL_GetTicks()-lastopen)>=1000.0f&&!isOpen ){
+                lastopen = SDL_GetTicks();
+                isOpen = true;
+                printf("le joueur ouvre le coffre !\n");
+            }
         switch(dj->rooms[dj->current_room].id){
+            
             case 0:
             LogicRoom1C(dj,player );
             break;
@@ -278,7 +333,7 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
 
         ModelDraw(player->playerModel, shader, camera);
         AnimatorOnUpdate(golemAnimator,golem,shader,deltaTime);
-        //ModelDraw(golem, shader, camera);
+        ModelDraw(golem, shader, camera);
 
         /* Scene Rendering */
         UseShaders(shader2);
@@ -289,7 +344,11 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
         if (!dj->state){
             ModelDraw(map, shader2, camera);
         }
-        else{ModelDraw(dj->type_room[dj->rooms[dj->current_room].id].model, shader2, camera);}
+        else{ModelDraw(dj->type_room[dj->rooms[dj->current_room].id].model, shader2, camera);
+            if (!isOpen){
+            ModelDraw(chest,shader2,camera);}
+            else{ModelDraw(chest2,shader2,camera);};
+}
         glm_mat4_dup(player->playerModel->modelMatrix, sword->modelMatrix);
         mat4 offsetMatrix;
         glm_translate_make(offsetMatrix,(vec3){-1.3f,-0.7f,0.3f});
@@ -318,8 +377,16 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
     ModelFree(player->playerModel);
     ModelFree(map);
     ModelFree(tree);
+    ModelFree(chest);
+    ModelFree(chest2);
+    ModelFree(golem);
     freeDungeon(dj);
     free(camera);
+    Mix_FreeMusic(bgm);
+    Mix_FreeChunk(attackSound);
+    bgm = NULL;
+
+    Mix_CloseAudio();
     DeleteShaders(shader);
     SkyboxDelete(skybox);
     WindowDelete(game->window);
