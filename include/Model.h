@@ -38,6 +38,7 @@ typedef struct _Model{
     mat4 bones[MAX_BONES];
     char bone_names[MAX_BONES][128];
     size_t bone_count;
+    bool isAnimated;
 } Model;
 
 

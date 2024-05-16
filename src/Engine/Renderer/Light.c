@@ -11,9 +11,12 @@ Light* LightCreate(Shader *S, vec4 position, vec3 intensity, float attenuation, 
 	glm_vec3_copy(intensity, light->intensity);
 	light->attenuation = attenuation;
 	light->ambientCoefficient = ambientCoef;
-
+	light->shadowMap = ShadowMapCreate(position, S);
 	LightUpdate(S, light);
-
+	UseShaders(S);
+    glActiveTexture(GL_TEXTURE0 + 2);
+    glBindTexture(GL_TEXTURE_2D, light->shadowMap->depthMap);
+    glUniform1i(glGetUniformLocation(S->m_program, "shadowMap"), 2);
 	return light;
 }
 
