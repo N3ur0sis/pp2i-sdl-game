@@ -1,25 +1,12 @@
 #include <Player.h>
 
-Player* playerCreate(char* modelPath){
-	Player* player = malloc(sizeof(Player));
-	player->playerModel = (Model*)malloc(sizeof(Model));
-	ModelCreate(player->playerModel,modelPath);
-	player->speed = 6.0f;
-	player->health = 100.0f;
-	player->collider = ColliderCreate(modelPath);
-    glm_scale_make(player->collider->transformMatrix,(vec3){0.5f,0.5f,0.5f});
-	UpdateCollider(player->collider);
-	return player;
-}
 
-
-
-void playerMovement(Player* player, float deltaTime, Camera* camera, Model* enemy){
+void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enemy){
 
 	if (getKeyState(SHIFT)) {
-		player->speed = 8.0f;
+		((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->speed = 8.0f;
 	} else {
-		player->speed = 5.0f;
+		((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->speed = 5.0f;
 	}
 
 
@@ -53,7 +40,7 @@ void playerMovement(Player* player, float deltaTime, Camera* camera, Model* enem
 	//sometimes my genius is almost frithening
 	vec3 rotationDirection;
 	vec3 enemyDir;
-    glm_vec3_sub(enemy->position,player->playerModel->position,  enemyDir);
+    glm_vec3_sub(enemy->position,((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,  enemyDir);
     float enemyDist = glm_vec3_norm(enemyDir);
 	        glm_vec3_normalize(enemyDir);
 	if( enemyDist < 10.0f){
@@ -67,7 +54,7 @@ void playerMovement(Player* player, float deltaTime, Camera* camera, Model* enem
 	if (rotationDirection[0] < 0) {
 		omega = -omega;
 	}
-	float currentAngleDeg = glm_deg(player->playerModel->rotation[1]);
+	float currentAngleDeg = glm_deg(((Model*)getComponent(player, COMPONENT_RENDERABLE))->rotation[1]);
     float targetAngleDeg = glm_deg(omega);
 
     // Ensure the that the fucking target angle is within the range of -180 to 180 degrees (i spent three fucking hours just to realize the angles wasn't normalized , fuck me!)
@@ -82,16 +69,16 @@ void playerMovement(Player* player, float deltaTime, Camera* camera, Model* enem
     float rotTarget = glm_lerp(currentAngleDeg, targetAngleDeg, 0.1f);
 
     //printf("%f\n", rotTarget);
-	glm_vec3_scale(movementDirection,player->speed*deltaTime,movementDirection);
+	glm_vec3_scale(movementDirection,((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->speed*deltaTime,movementDirection);
     vec3 newPos;
-	glm_vec3_add(player->playerModel->position,movementDirection,newPos);
-	player->playerModel->rotation[1] = glm_rad(rotTarget);
+	glm_vec3_add(((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,movementDirection,newPos);
+	((Model*)getComponent(player, COMPONENT_RENDERABLE))->rotation[1] = glm_rad(rotTarget);
 
-	moveCameraPlayer(camera, player->playerModel->position,newPos, deltaTime);
-	glm_vec3_copy(newPos, player->velocity);
+	moveCameraPlayer(camera, ((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,newPos, deltaTime);
+	glm_vec3_copy(newPos, ((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->velocity);
 	mat4 id;
-    glm_translate_make(id,player->velocity);
-    glm_aabb_transform(player->collider->boundingBoxReference,id,player->collider->boundingBox);
+    glm_translate_make(id,((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->velocity);
+    glm_aabb_transform(((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBoxReference,id,((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBox);
 	}
 }
 

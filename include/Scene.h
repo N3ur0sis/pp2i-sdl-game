@@ -14,6 +14,8 @@ typedef struct _Scene {
     Entity entities[MAX_ENTITIES];
     int numEntities;
     float deltaTime;
+    void (*start)(struct Scene* scene);
+    void (*update)(struct Scene* scene);
 } Scene;
 
 Entity* createEntity(Scene* scene);

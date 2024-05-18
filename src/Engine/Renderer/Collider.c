@@ -3,6 +3,7 @@
 Collider* ColliderCreate(const char* path){
     Collider* collider = (Collider*)malloc(sizeof(Collider));
     collider->numCollider = 0;
+    glm_mat4_identity(collider->transformMatrix);
     struct aiScene* scene = ModelLoad(path);
     for (int i = 0; i < scene->mNumMeshes; i++)
     {

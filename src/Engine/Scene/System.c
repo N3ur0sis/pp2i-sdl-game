@@ -70,3 +70,34 @@ void renderSystem(Scene* scene) {
         }
     }
 }
+
+
+void physicsSystem(Scene* scene) {
+    for (int i = 0; i < scene->numEntities; ++i) {
+        Entity* entity = &scene->entities[i];
+        Collider* collider = (Collider*)getComponent(entity, COMPONENT_COLLIDER);
+        RigidBody* rigidBody = (RigidBody*)getComponent(entity, COMPONENT_RIGIDBODY);
+        if (collider && rigidBody) {
+            // Handle collisions with other entities
+            for (int j = 0; j < scene->numEntities; ++j) {
+                if (i == j) continue;
+                Entity* otherEntity = &scene->entities[j];
+                Collider* otherCollider = (Collider*)getComponent(otherEntity, COMPONENT_COLLIDER);
+                if (otherCollider) {
+                    for (int k = 0; k < collider->numCollider; ++k) {
+                        for (int l = 0; l < otherCollider->numCollider; ++l) {
+                            if (glm_aabb_aabb(collider->boundingBox[k], otherCollider->boundingBox[l])) {
+                                // Handle collision response here
+                                // Example: Simple resolution by resetting velocity
+                                glm_vec3_copy(((Model*)getComponent(entity,COMPONENT_RENDERABLE))->position,rigidBody->velocity );
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
+            // Update position based on velocity
+            glm_vec3_copy(rigidBody->velocity, ((Model*)getComponent(entity,COMPONENT_RENDERABLE))->position);
+        }
+    }
+}
