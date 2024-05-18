@@ -7,7 +7,6 @@
 #include <Skybox.h>
 #include <Animator.h>
 #include <Controls.h>
-#include <SceneManager.h>
 #include <Dungeon.h>
 #include <SDL_mixer.h>
  
@@ -19,7 +18,6 @@ static const char* g_WindowTitle = "Game";
 void StartSceneUpdate();
 void StartSceneLoad();
 void StartSceneUnload();
-void StartSceneRender(Scene scene, Shader* shader, Camera* camera);
 
 struct Glyph {
     Model model;
@@ -64,10 +62,7 @@ int main(void){
         fprintf(stderr, "Failed to load attack sound: %s\n", Mix_GetError());
         return -1;
     }
-    SceneManager* sceneManager = (SceneManager*)calloc(1, sizeof(SceneManager));
 
-    Scene startScene = {.modelComponents = NULL,.entities=0,.loadScene=StartSceneLoad,.unloadScene=StartSceneUnload,.updateScene=StartSceneUpdate,.renderScene=StartSceneRender};
-    ModelCreate(&startScene.modelComponents[startScene.entities++], "assets/models/LoPotitChat/sword.obj");
 
     /* Start Function, create objects in scene */
     /* Enemy */
@@ -213,7 +208,7 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
                 player->playerAnimator->currentAnimation = attackAnimation;
                 player->playerAnimator->playTime = 0.0f;
                 if (10>enemyDist){
-                    ennemyHealth-=50.0f;
+                    ennmyHealth-=50.0f;
                 }
                 if (ennmyHealth<=0){
                     printf("Golem is dead\n");
@@ -258,7 +253,7 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
         golemAnimator->currentAnimation = golemIdleAnimation;
         }
 
-        playerMovement(player,deltaTime,camera,tree, golem);
+        playerMovement(player,deltaTime,camera, golem);
         cameraControl(camera);
         if (getKeyState(SDLK_p)){
         printf("x = %f,y = %f\n",player->playerModel->position[0],player->playerModel->position[2]);
@@ -314,8 +309,6 @@ glm_mat4_mul(orthoProj,lightView,lighProj);
             LoadRoom(player,dj);
             printf("On entre dans le donjon\n");
         }
-        startScene.updateScene();
-        startScene.renderScene(startScene,shader2,camera);
         /* Entity Rendering */    
         UseShaders(shader);
         glUniformMatrix4fv(glGetUniformLocation(shader->m_program,"depthMVP"), 1, GL_FALSE,(float*)lighProj);
@@ -405,9 +398,4 @@ void StartSceneLoad(){
 void StartSceneUnload(){
     //printf("Unload Start Scene");
 
-}
-void StartSceneRender(Scene scene, Shader* shader, Camera* camera){
-    //printf("Render Start Scene");
-    UseShaders(shader);
-    ModelDraw(&scene.modelComponents[0], shader,camera );
 }

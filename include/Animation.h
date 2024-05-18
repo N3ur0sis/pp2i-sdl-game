@@ -8,9 +8,10 @@ typedef struct Animation {
     mat4* bone_anim_mats;
     float anim_dur;
     float anim_ticks;
+    char * name;
 } Animation;
 
-Animation* AnimationCreate(char* path, Model* model);
+Animation* AnimationCreate(char* path, Model* model, char* name);
 void CalculateBoneTransformation(Node* node, float anim_time, mat4 parent_mat, mat4* bones,mat4* bone_anim_mats);
 
 Node* NodeFind(Node* root, const char* name);

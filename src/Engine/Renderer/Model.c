@@ -126,10 +126,19 @@ void ModelCreate(Model* model, char* path){
     aiReleaseImport(scene);
 }
 
-void ModelDraw(Model* model, Shader* shader, Camera* camera) {
+void ModelDraw(Model* model, Shader* shader, Camera* camera, mat4 customModelMatrix) {
 
-    /* Before each render of our object we need to pass the model matrix on the shader */
-    ModelMatrixCalculate(model->position, model->rotation, model->scale,camera,shader, model->modelMatrix);
+        if (customModelMatrix) {
+        glm_mat4_copy(customModelMatrix, model->modelMatrix);
+        glUniformMatrix4fv(shader->m_locations.Model, 1, GL_FALSE, (float*)customModelMatrix);
+        glUniformMatrix4fv(shader->m_locations.View, 1, GL_FALSE, (float*)camera->viewMatrix);
+        glUniformMatrix4fv(shader->m_locations.Projection, 1, GL_FALSE, (float*)camera->projectionMatrix);
+        glUniform3fv(shader->m_locations.cameraPosition,1,camera->Position);
+    } else {
+        /* Before each render of our object we need to pass the model matrix on the shader */
+        ModelMatrixCalculate(model->position, model->rotation, model->scale,camera,shader, model->modelMatrix);
+    }
+
 
     /* We need to draw each mesh present in the model */
     for(size_t i=0; i<model->meshCount; ++i) {

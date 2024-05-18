@@ -73,7 +73,7 @@ void ModelCreate(Model* model, char* path);
  * @param camera The camera that will show the model.
  * @return Nothing, act on the render pipeline.
 */
-void ModelDraw(Model* model, Shader* shader, Camera* camera);
+void ModelDraw(Model* model, Shader* shader, Camera* camera, mat4 customModelMatrix);
 
 /**
  * Auxiliar function of the rendering process. It calculates based on a positon
