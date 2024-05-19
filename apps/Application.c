@@ -59,34 +59,30 @@ int main(void){
     while (game->running) {
         StartFrame(game);
         Uint32 currentTime = SDL_GetTicks();
+        mainScene->deltaTime = (currentTime - lastTime) / 1000.0f;
+        lastTime = currentTime;
 
-        
-        switch (current_scene)
+
+        physicsSystem(mainScene);
+
+
+        SceneManagerUpdateCurrentScene(&sceneManager);
+
+
+        cameraControl(mainScene->camera);
+
+        renderSystem(mainScene);
+
+        /* Example of rendering text and Image*/
+        RenderText("Press E to pick up", (SDL_Color){255, 255, 255, 0}, 640, 360, 12, 1280, 720, textShader->m_program);
+        for (int i = 0; i < 10; i++)
         {
-        case 0:
-            StartFrame(game);
-            mainScene->deltaTime = (currentTime - lastTime) / 1000.0f;
-            lastTime = currentTime;
-            physicsSystem(mainScene);
-            SceneManagerUpdateCurrentScene(&sceneManager);
-            cameraControl(mainScene->camera);
-            renderSystem(mainScene);
-            EndFrame(game);
-            break;
-        case 1:
-            StartFrame(game);
-            dungeonScene->deltaTime = (currentTime - lastTime) / 1000.0f;
-            lastTime = currentTime;
-            SceneManagerUpdateCurrentScene(&sceneManager);
-            physicsSystem(dungeonScene);
-            cameraControl(dungeonScene->camera);
-            renderSystem(dungeonScene);
-            EndFrame(game);
-        default:
-            break;
+            
+            RenderImage("assets/images/heart.png", (SDL_Color){255, 255, 255, 0}, 1280 - i*20, 10, 20, 1280, 720, textShader->m_program);
         }
         
-        
+
+        EndFrame(game);
     }
 
     /* Clean every resource allocated */
