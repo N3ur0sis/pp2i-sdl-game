@@ -5,6 +5,8 @@
 #include <System.h>
 #include <StartScene.h>
 #include <SDL_mixer.h>
+#include "SDL2/SDL.h"
+#include <Renderer.h>
 
 
 /* Entry point of the program */
@@ -13,12 +15,15 @@ int main(void){
     SceneManager sceneManager;
     SceneManagerInit(&sceneManager);
 
-    
+            SDL_Color color = {255, 0, 0, 0}; // Red
 
     /* Create an instance of the application */
     Application* game = ApplicationCreate(sceneManager.gameState.g_WindowWidth,sceneManager.gameState.g_WindowHeight,sceneManager.gameState.g_WindowTitle);
 
-        if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);  
+
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
         fprintf(stderr, "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
         return -1;
     }
@@ -41,6 +46,13 @@ int main(void){
     SceneManagerSetCurrentScene(&sceneManager, 0);
 
 
+    Shader* textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
+
+    if (TTF_Init() == -1) {
+        printf("TTF could not initialize! TTF_Error: %s\n", TTF_GetError());
+        SDL_Quit();
+        return 1;
+    }
 
     /* Game Loop */
     Uint32 lastTime = SDL_GetTicks();
@@ -60,6 +72,15 @@ int main(void){
         cameraControl(mainScene->camera);
 
         renderSystem(mainScene);
+
+        /* Example of rendering text and Image*/
+        RenderText("Press E to pick up", (SDL_Color){255, 255, 255, 0}, 640, 360, 12, 1280, 720, textShader->m_program);
+        for (int i = 0; i < 10; i++)
+        {
+            
+            RenderImage("assets/images/heart.png", (SDL_Color){255, 255, 255, 0}, 1280 - i*20, 10, 20, 1280, 720, textShader->m_program);
+        }
+        
 
         EndFrame(game);
     }

@@ -56,7 +56,7 @@ target_include_directories(${PROJECT_NAME} PRIVATE libs/glad/include)
 target_include_directories(${PROJECT_NAME} PRIVATE libs/assimp/include)
 
 # Link libraries and add compiler errors/warnings flags
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} -fsanitize=address)
+target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} -fsanitize=address -lSDL2_ttf -lSDL2_image)
 target_link_libraries(${PROJECT_NAME} ${SDL2_MIXER_LIBRARIES} -fsanitize=address)
 target_link_libraries(${PROJECT_NAME} assimp -fsanitize=address)
 target_link_libraries(${PROJECT_NAME} ${OPENGL_LIBRARIES} -fsanitize=address)
