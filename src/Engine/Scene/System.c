@@ -38,7 +38,12 @@ void renderSystem(Scene* scene) {
     for (int i = 0; i < scene->numEntities; ++i) {
         Entity* entity = &scene->entities[i];
         Model* model = (Model*)getComponent(entity, COMPONENT_RENDERABLE);
-        if (model) {
+        Dungeon* dj = (Dungeon*)getComponent(entity, COMPONENT_DUNGEON);
+        if (dj) {  
+            glUniform1i(glGetUniformLocation(scene->shader->m_program, "isAnimated"), dj->type_room[dj->rooms[dj->current_room].id].model->isAnimated);
+            ModelDraw(dj->type_room[dj->rooms[dj->current_room].id].model, scene->shader, scene->camera, NULL);
+        }
+        else if (model) {
             Animator* animator = (Animator*)getComponent(entity, COMPONENT_ANIMATOR);
             if (animator) {
                 AnimatorOnUpdate(animator, model, scene->shader, scene->deltaTime);
@@ -59,6 +64,8 @@ void renderSystem(Scene* scene) {
                 ModelDraw(model, scene->shader, scene->camera, NULL);
             }
         }
+        
+        
     }
 
     // Render lights
@@ -77,12 +84,20 @@ void physicsSystem(Scene* scene) {
         Entity* entity = &scene->entities[i];
         RigidBody* rigidBody = (RigidBody*)getComponent(entity, COMPONENT_RIGIDBODY);
         Collider* collider = (Collider*)getComponent(entity, COMPONENT_COLLIDER);
+
         if (collider && rigidBody) {
             // Handle collisions with other entities
             for (int j = 0; j < scene->numEntities; ++j) {
                 if (i == j) continue;
                 Entity* otherEntity = &scene->entities[j];
-                Collider* otherCollider = (Collider*)getComponent(otherEntity, COMPONENT_COLLIDER);
+                Dungeon* dj = (Dungeon*)getComponent(otherEntity, COMPONENT_DUNGEON);
+                Collider* otherCollider;
+                if (dj) {  
+                    otherCollider = dj->type_room[dj->rooms[dj->current_room].id].col;
+                }
+                else{
+                    otherCollider = (Collider*)getComponent(otherEntity, COMPONENT_COLLIDER);
+                }
                 if (otherCollider) {
                     for (int k = 0; k < collider->numCollider; ++k) {
                         for (int l = 0; l < otherCollider->numCollider; ++l) {
