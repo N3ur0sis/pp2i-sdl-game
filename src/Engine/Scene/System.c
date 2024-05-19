@@ -27,7 +27,7 @@ void renderSystem(Scene* scene) {
     }
 
     // Reset viewport
-    glViewport(0, 0, g_WindowWidth, g_WindowHeight);
+    glViewport(0, 0, 1280, 720);
 
     // Render skybox
     SkyboxDraw(scene->skybox, scene->camera);
@@ -73,10 +73,10 @@ void renderSystem(Scene* scene) {
 
 
 void physicsSystem(Scene* scene) {
-    for (int i = 0; i < scene->numEntities; ++i) {
+    for (int i = 0; i < scene->numEntities; i++) {
         Entity* entity = &scene->entities[i];
-        Collider* collider = (Collider*)getComponent(entity, COMPONENT_COLLIDER);
         RigidBody* rigidBody = (RigidBody*)getComponent(entity, COMPONENT_RIGIDBODY);
+        Collider* collider = (Collider*)getComponent(entity, COMPONENT_COLLIDER);
         if (collider && rigidBody) {
             // Handle collisions with other entities
             for (int j = 0; j < scene->numEntities; ++j) {

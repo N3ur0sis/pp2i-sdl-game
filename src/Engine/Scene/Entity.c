@@ -1,7 +1,7 @@
 #include <Entity.h>
 
-void addComponent(Entity* entity, ComponentType type, void* data) {
-    if (entity->componentCount >= MAX_COMPONENTS) {
+void addComponent(Entity* entity, uint32_t type, void* data) {
+    if (entity->componentCount > MAX_COMPONENTS) {
         return; // Maximum components reached
     }
     entity->components[entity->componentCount].type = type;
@@ -14,6 +14,7 @@ void* getComponent(Entity* entity, ComponentType type) {
         if (entity->components[i].type == type) {
             return entity->components[i].data;
         }
+    printf("%d, %d\n", entity->components[i].type, type);
     }
     return NULL;
 }

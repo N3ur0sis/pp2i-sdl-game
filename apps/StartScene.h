@@ -2,6 +2,8 @@
 #include <Scene.h>
 #include <Player.h>
 #include <GameState.h>
+#include <cglm/cglm.h>
+
 
 void startMainScene(Scene* scene, GameState* gameState) {
     /* Load and compile shaders */
@@ -41,6 +43,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         glm_vec3_copy((vec3){0.5f, 0.5f, 0.5f}, playerModel->scale);
         RigidBody* playerRigidBody = (RigidBody*)calloc(1,sizeof(RigidBody));
         glm_vec3_copy((vec3){28.0f, 0.1f, 7.0f}, playerRigidBody->velocity);
+        playerRigidBody->speed = .0f;
         Collider* playerCollider = ColliderCreate("assets/models/LoPotitChat/PlayerWalk.dae");
         glm_scale_make(playerCollider->transformMatrix, (vec3){0.5f, 0.5f, 0.5f});
         UpdateCollider(playerCollider);
@@ -49,8 +52,8 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(playerEntity, COMPONENT_ANIMATION, attackAnimation);
         addComponent(playerEntity, COMPONENT_ANIMATION, walkingAnimation);
         addComponent(playerEntity, COMPONENT_ANIMATOR, playerAnimator);
-        addComponent(playerEntity, COMPONENT_RIGIDBODY, playerRigidBody);
         addComponent(playerEntity, COMPONENT_COLLIDER, playerCollider);
+        addComponent(playerEntity, COMPONENT_RIGIDBODY, playerRigidBody);
     }
 
     /* Sword Entity */
@@ -106,10 +109,11 @@ void updateMainScene(Scene* scene, GameState* gameState) {
         Model* enemyModel = (Model*)getComponent(enemy, COMPONENT_RENDERABLE);
         Animator* enemyAnimator = (Animator*)getComponent(enemy, COMPONENT_ANIMATOR);
 
+
         /* Game Logic */
         float rotTarget = 0.0f;
         vec3 enemyDir;
-        glm_vec3_sub(playerModel->position, ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->position, enemyDir);
+        glm_vec3_sub(playerModel->position, enemyModel->position, enemyDir);
         float enemyDist = glm_vec3_norm(enemyDir);
         glm_vec3_normalize(enemyDir);
         if (enemyDir[0] != .0f || enemyDir[1] != .0f || enemyDir[2] != .0f) {

@@ -2,7 +2,7 @@
 #include <Component.h>
 #include <stdlib.h>
 
-#define MAX_COMPONENTS 10
+#define MAX_COMPONENTS 20
 
 typedef struct _Entity {
     int id;

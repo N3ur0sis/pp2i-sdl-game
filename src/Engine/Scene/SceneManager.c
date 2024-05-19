@@ -24,12 +24,12 @@ void SceneManagerAddScene(SceneManager* manager, Scene* scene, void (*start)(Sce
 void SceneManagerSetCurrentScene(SceneManager* manager, int index) {
     if (index >= 0 && index < manager->numScenes) {
         manager->currentSceneIndex = index;
-        manager->scenes[index]->start(manager->scenes[index]);
+        manager->scenes[index]->start(manager->scenes[index], &manager->gameState);
     }
 }
 
-void SceneManagerUpdateCurrentScene(SceneManager* manager, GameState* ) {
+void SceneManagerUpdateCurrentScene(SceneManager* manager) {
     if (manager->currentSceneIndex >= 0 && manager->currentSceneIndex < manager->numScenes) {
-        manager->scenes[manager->currentSceneIndex]->update(manager->scenes[manager->currentSceneIndex]);
+        manager->scenes[manager->currentSceneIndex]->update(manager->scenes[manager->currentSceneIndex], &manager->gameState);
     }
 }
