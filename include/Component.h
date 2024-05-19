@@ -12,8 +12,7 @@ typedef enum {
     COMPONENT_COLLIDER,
     COMPONENT_LIGHT,
     COMPONENT_ATTACHMENT,
-    COMPONENT_RIGIDBODY,
-    COMPONENT_DUNGEON
+    COMPONENT_RIGIDBODY
 } ComponentType;
 
 typedef struct _Component{

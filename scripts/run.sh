@@ -1,6 +1,6 @@
 #!/bin/bash
 
-pkgs='git build-essential pkg-config cmake cmake-data libsdl2-dev libsdl2-gfx-dev assimp-utils libassimp-dev libassimp5 libfreetype6-dev libsdl2-mixer-dev libsdl2-image-dev'
+pkgs='git build-essential pkg-config cmake cmake-data libsdl2-dev libsdl2-gfx-dev assimp-utils libassimp-dev libassimp5 libfreetype6-dev libsdl2-mixer-dev'
 install=false
 for pkg in $pkgs; do
   status="$(dpkg-query -W --showformat='${db:Status-Status}' "$pkg" 2>&1)"
