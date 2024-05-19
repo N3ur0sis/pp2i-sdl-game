@@ -328,7 +328,7 @@ void initializeLRooms(Dungeon *dj) {
     dj->type_room[3].col = ColliderCreate("assets/models/Room/ColL.obj");
 }
 
-void LoadRoom(Model* player, Dungeon* dj,RigidBody* body, Collider* collider) {
+void LoadRoom(Model* player, Dungeon* dj,RigidBody* body, Collider* collider,GameState* gameState) {
     printf("Changement de salle du type : %d\n",dj->rooms[dj->current_room].id);
     printf("On vient du %c\n",dj->direction);
 
@@ -362,7 +362,8 @@ void LoadRoom(Model* player, Dungeon* dj,RigidBody* body, Collider* collider) {
     if (dj->current_room==0&&dj->direction=='N'){
         printf("On quitte le donjon\n");
         dj->direction = 'S';
-
+        gameState->change = true;
+        gameState->nextSceneIndex = 2;
         return;
     }
     printf("Nous sommes dans la salle %d  (id = %d) depuis le %c\n",dj->current_room,dj->rooms[dj->current_room].id,dj->direction);
@@ -731,7 +732,7 @@ void LogicRoom1C(Dungeon*dj,RigidBody* body ){
     }
     glm_vec3_sub( body->velocity, DoorPosition, DoorDir);
     float DoorDist = glm_vec3_norm(DoorDir);
-    if (DoorDist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
+    if (DoorDist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]!='O'){
                 dj->current_room = i;
@@ -780,7 +781,7 @@ void LogicRoom2C(Dungeon*dj,RigidBody* body){
 
     float Door1Dist = glm_vec3_norm(Door1Dir);
     float Door2Dist = glm_vec3_norm(Door2Dir);
-    if (Door1Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
+    if (Door1Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d1){
                 dj->current_room = i;
@@ -790,7 +791,7 @@ void LogicRoom2C(Dungeon*dj,RigidBody* body){
         }
         dj->change = true;
     }
-    if (Door2Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
+    if (Door2Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d2){
                 dj->current_room = i;
@@ -840,7 +841,7 @@ void LogicRoom3C(Dungeon*dj,RigidBody* body ){
     if (getKeyState(SDLK_o)){
         printf("S : %f, N : %f, E : %f, W : %f\n",Door1Dist,Door2Dist,Door3Dist,Door4Dist);
     }
-    if (Door1Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime&&dir_used[1] ){
+    if (Door1Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime&&dir_used[1] ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='S'){
                 dj->current_room = i;
@@ -851,7 +852,7 @@ void LogicRoom3C(Dungeon*dj,RigidBody* body ){
 
         dj->change = true;
     }
-    else if (Door2Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime&&dir_used[0] ){
+    else if (Door2Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime&&dir_used[0] ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='N'){
                 dj->current_room = i;
@@ -860,7 +861,7 @@ void LogicRoom3C(Dungeon*dj,RigidBody* body ){
             }
         }
         dj->change = true;
-    }else if (Door3Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime&&dir_used[3] ){
+    }else if (Door3Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime&&dir_used[3] ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='E'){
                 dj->current_room = i;
@@ -870,7 +871,7 @@ void LogicRoom3C(Dungeon*dj,RigidBody* body ){
         }
         dj->change = true;
     }
-    else if (Door4Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime&&dir_used[2]){
+    else if (Door4Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime&&dir_used[2]){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='W'){
                 dj->current_room = i;
@@ -910,7 +911,7 @@ void LogicRoom4C(Dungeon*dj,RigidBody* body){
     if (getKeyState(SDLK_o)){
         printf("S : %f, N : %f, E : %f, W : %f\n",Door1Dist,Door2Dist,Door3Dist,Door4Dist);
     }
-    if (Door1Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
+    if (Door1Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='S'){
                 dj->current_room = i;
@@ -921,7 +922,7 @@ void LogicRoom4C(Dungeon*dj,RigidBody* body){
 
         dj->change = true;
     }
-    else if (Door2Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
+    else if (Door2Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='N'){
                 dj->current_room = i;
@@ -930,7 +931,7 @@ void LogicRoom4C(Dungeon*dj,RigidBody* body){
             }
         }
         dj->change = true;
-    }else if (Door3Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
+    }else if (Door3Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='E'){
                 dj->current_room = i;
@@ -940,7 +941,7 @@ void LogicRoom4C(Dungeon*dj,RigidBody* body){
         }
         dj->change = true;
     }
-    else if (Door4Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
+    else if (Door4Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='W'){
                 dj->current_room = i;
@@ -1017,7 +1018,7 @@ void LogicRoom3T(Dungeon*dj,RigidBody* body){
     if (getKeyState(SDLK_f)){
         printf("D1 : %c, D2 : %c, D3 : %c,D4 : %c\n",d1,d2,d3,d4);
     }
-    if (Door1Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
+    if (Door1Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d1){
                 dj->current_room = i;
@@ -1028,7 +1029,7 @@ void LogicRoom3T(Dungeon*dj,RigidBody* body){
 
         dj->change = true;
     }
-    else if (Door2Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
+    else if (Door2Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d3){
                 dj->current_room = i;
@@ -1037,7 +1038,7 @@ void LogicRoom3T(Dungeon*dj,RigidBody* body){
             }
         }
         dj->change = true;
-    }else if (Door3Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
+    }else if (Door3Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d4){
                 dj->current_room = i;
@@ -1104,7 +1105,7 @@ void LogicRoom2L(Dungeon*dj,RigidBody* body){
     if (getKeyState(SDLK_o)){
         printf("D1 : %f, D2 : %f\n",Door1Dist,Door2Dist);
     }
-    if (Door1Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
+    if (Door1Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='S'||dj->adj[dj->current_room][i]=='N'){
                 dj->current_room = i;
@@ -1114,7 +1115,7 @@ void LogicRoom2L(Dungeon*dj,RigidBody* body){
         }
         dj->change = true;
     }
-    if (Door2Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
+    if (Door2Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='E'||dj->adj[dj->current_room][i]=='W'){
                 dj->current_room = i;
@@ -1161,7 +1162,7 @@ void LogicRoom2I(Dungeon*dj,RigidBody* body){
         }
     float Door1Dist = glm_vec3_norm(Door1Dir);
     float Door2Dist = glm_vec3_norm(Door2Dir);
-    if (Door1Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
+    if (Door1Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d1){
                 dj->current_room = i;
@@ -1171,7 +1172,7 @@ void LogicRoom2I(Dungeon*dj,RigidBody* body){
         }
         dj->change = true;
     }
-    if (Door2Dist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
+    if (Door2Dist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d2){
                 dj->current_room = i;
@@ -1209,7 +1210,7 @@ void LogicRoomB(Dungeon*dj,RigidBody* body ){
     }
     glm_vec3_sub( body->velocity, DoorPosition, DoorDir);
     float DoorDist = glm_vec3_norm(DoorDir);
-    if (DoorDist<1.0f&&playerInteract()&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
+    if (DoorDist<1.0f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]!='O'){
                 dj->current_room = i;

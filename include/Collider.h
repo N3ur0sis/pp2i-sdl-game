@@ -11,3 +11,5 @@ typedef struct _Collider{
 Collider* ColliderCreate(const char* path);
 
 void UpdateCollider(Collider* collider);
+
+void FreeCollider(Collider* collider);

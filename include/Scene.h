@@ -17,9 +17,11 @@ typedef struct _Scene {
     float deltaTime;
     void (*start)(struct Scene* scene, GameState* gameState);
     void (*update)(struct Scene* scene, GameState* gameState);
+    bool change;
+    int index_next_scene;
 } Scene;
 
 Entity* createEntity(Scene* scene);
 
-void freeDungeonScene(Scene* scene);
-void* freeEntity(Entity* e); //To do
+void freeScene(Scene* scene);
+void* freeEntity(Entity* e); 

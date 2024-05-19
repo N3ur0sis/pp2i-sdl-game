@@ -10,6 +10,6 @@ void freeRoom(Room* room){
 
 void freeLRoom(L_Room* l){
     if (l==NULL){return;}
-    ModelFree(l->col);
+    FreeCollider(l->col);
     ModelFree(l->model);
 }

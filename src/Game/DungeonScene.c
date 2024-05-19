@@ -147,9 +147,8 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
         break;
     }
     if (dj->change){
-            printf("jsuis passe par la\n");
             dj->lastRoomChangeTime = SDL_GetTicks();
-            LoadRoom(playerModel,dj,body, playerCollider);
+            LoadRoom(playerModel,dj,body, playerCollider,gameState);
             dj->change = false;
         }
 

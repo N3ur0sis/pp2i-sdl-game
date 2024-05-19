@@ -11,6 +11,8 @@ void SceneManagerInit(SceneManager* manager) {
      manager->gameState.g_WindowWidth = 1280;
      manager->gameState.g_WindowHeight = 720;
      manager->gameState.g_WindowTitle = "Game";
+     manager->gameState.change = false;
+     manager->gameState.nextSceneIndex = -1;
 }
 
 void SceneManagerAddScene(SceneManager* manager, Scene* scene, void (*start)(Scene*), void (*update)(Scene*)) {
@@ -32,4 +34,16 @@ void SceneManagerUpdateCurrentScene(SceneManager* manager) {
     if (manager->currentSceneIndex >= 0 && manager->currentSceneIndex < manager->numScenes) {
         manager->scenes[manager->currentSceneIndex]->update(manager->scenes[manager->currentSceneIndex], &manager->gameState);
     }
+}
+void freeSceneManager(SceneManager* manager) {
+    if (manager == NULL) return;
+
+    // Free all scenes
+    for (int i = 0; i < manager->numScenes; i++) {
+        if (manager->scenes[i] != NULL) {
+            freeScene(manager->scenes[i]);
+        }
+    }    
+
+    // Free the SceneManager itself
 }

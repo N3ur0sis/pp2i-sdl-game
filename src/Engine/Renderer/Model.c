@@ -209,12 +209,15 @@ void ModelMatrixCalculate(vec3 position,vec3 rotation, vec3 scale, Camera* camer
 
 
 void ModelFree(Model* model) {
+    if (model){
+
     for(size_t i=0; i<model->meshCount; ++i)
         MeshClean(&model->meshes[i]);
     free(model->meshes);
     free(model->materials);
     free(model->directory);
     free(model);
+    }
     }
 
 

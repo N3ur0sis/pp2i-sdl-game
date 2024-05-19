@@ -19,3 +19,10 @@ void AnimatorOnUpdate(Animator* animator, Model* model,Shader* shader, float del
             glUniformMatrix4fv(glGetUniformLocation(shader->m_program, name), 1, GL_FALSE, (float*)animator->currentAnimation->bone_anim_mats[i]);
         }
 }
+
+void FreeAnimator(Animator* animator){
+    if (animator){
+    //AnimationDelete(animator->currentAnimation);
+    free(animator);
+    }
+}

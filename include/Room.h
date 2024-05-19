@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <Model.h>
-#include <Player.h>
+#include <Component.h>
 typedef struct _Room Room;
 
 struct  _Room

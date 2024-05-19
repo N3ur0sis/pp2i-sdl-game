@@ -35,3 +35,7 @@ void UpdateCollider(Collider* collider){
     glm_aabb_transform(collider->boundingBoxReference[i],collider->transformMatrix,collider->boundingBoxReference[i]);
     }
 }
+
+void FreeCollider(Collider* collider){
+    free(collider);
+}

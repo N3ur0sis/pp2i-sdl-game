@@ -6,19 +6,19 @@
 #include <StartScene.h>
 #include <DungeonScene.h>
 #include <SDL_mixer.h>
-
+#include <ForestScene.h>
 
 /* Entry point of the program */
 int main(void){
 
+    /*Create the Scene Manager*/
     SceneManager sceneManager;
     SceneManagerInit(&sceneManager);
-
-    
 
     /* Create an instance of the application */
     Application* game = ApplicationCreate(sceneManager.gameState.g_WindowWidth,sceneManager.gameState.g_WindowHeight,sceneManager.gameState.g_WindowTitle);
 
+    /* Music Player*/
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
     fprintf(stderr, "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
     return -1;
@@ -33,20 +33,27 @@ int main(void){
     fprintf(stderr, "SDL_mixer could not play music! SDL_mixer Error: %s\n", Mix_GetError());
     return -1;
     }
-    Mix_VolumeMusic(10); // 64=50% du volume
+    Mix_VolumeMusic(0); // 64=50% du volume
     
     /* Init of Start Scene*/
     Scene* mainScene = (Scene*)calloc(1,sizeof(Scene));
     mainScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, mainScene, startMainScene, updateMainScene);
     
+    
     /* Init of Dungeon Scene*/
     Scene* dungeonScene = (Scene*)calloc(1,sizeof(Scene));
     dungeonScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, dungeonScene, DungeonMainScene, updateDungeonScene);
     
-    int current_scene = 1;
-    SceneManagerSetCurrentScene(&sceneManager, current_scene);
+    /* Init of Forest Scene*/
+    Scene* forestScene = (Scene*)calloc(1,sizeof(Scene));
+    forestScene->numEntities = 0;
+    SceneManagerAddScene(&sceneManager, forestScene, ForestMainScene, updateForestScene);
+    
+    /* Set Current Scene*/
+    sceneManager.currentSceneIndex = 2;
+    SceneManagerSetCurrentScene(&sceneManager, sceneManager.currentSceneIndex);
 
     
 
@@ -54,42 +61,34 @@ int main(void){
     Uint32 lastTime = SDL_GetTicks();
     while (game->running) {
         Uint32 currentTime = SDL_GetTicks();
-
+        StartFrame(game);
         
-        switch (current_scene)
-        {
-        case 0:
-            StartFrame(game);
-            mainScene->deltaTime = (currentTime - lastTime) / 1000.0f;
-            lastTime = currentTime;
-            physicsSystem(mainScene);
-            SceneManagerUpdateCurrentScene(&sceneManager);
-            cameraControl(mainScene->camera);
-            renderSystem(mainScene);
-            EndFrame(game);
-            break;
-        case 1:
-            StartFrame(game);
-            dungeonScene->deltaTime = (currentTime - lastTime) / 1000.0f;
-            lastTime = currentTime;
-            physicsSystem(dungeonScene);
-            SceneManagerUpdateCurrentScene(&sceneManager);
-            cameraControl(dungeonScene->camera);
-            renderSystem(dungeonScene);
-            EndFrame(game);
-        default:
-            break;
+        sceneManager.scenes[sceneManager.currentSceneIndex]->deltaTime = (currentTime - lastTime) / 1000.0f;
+        physicsSystem(sceneManager.scenes[sceneManager.currentSceneIndex]);
+        SceneManagerUpdateCurrentScene(&sceneManager);
+        cameraControl(sceneManager.scenes[sceneManager.currentSceneIndex]->camera);
+        renderSystem(sceneManager.scenes[sceneManager.currentSceneIndex]);
+        /*Changement de scene*/
+        if (sceneManager.gameState.change){
+            //Unload current scene
+
+            //Load the next one
+            sceneManager.currentSceneIndex = sceneManager.gameState.nextSceneIndex;
+            SceneManagerSetCurrentScene(&sceneManager, sceneManager.currentSceneIndex);
+            sceneManager.gameState.change = false;
+            sceneManager.gameState.nextSceneIndex = -1;
+
         }
+        lastTime = currentTime;
+        EndFrame(game);
         
         
     }
-
+ 
     /* Clean every resource allocated */
-    ModelFree((Model*)getComponent(&mainScene->entities[1], COMPONENT_RENDERABLE));
-    ModelFree((Model*)getComponent(&mainScene->entities[3], COMPONENT_RENDERABLE));
-    free(mainScene->camera);
-    DeleteShaders(mainScene->shader);
-    SkyboxDelete(mainScene->skybox);
+    //freeScene(mainScene);
+    //freeSceneManager(&sceneManager);
+    Mix_FreeMusic(bgm);
     WindowDelete(game->window);
     EngineQuit();
 }
