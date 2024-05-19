@@ -44,7 +44,7 @@ int max(int a, int b);
 void depthFirstSearch(Dungeon *dj, int room, int depth, int *depths, int *visited);
 int *profondeur(Dungeon *dj);
 void printDepth(int *depths, int nb_rooms) ;
-void LoadRoom(Model* player, Dungeon* dj,RigidBody* body);
+void LoadRoom(Model* player, Dungeon* dj,RigidBody* body, Collider* collider);
 void LoadRoom1C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
 void LoadRoom2C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
 void LoadRoom3C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);

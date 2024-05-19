@@ -72,8 +72,8 @@ int main(void){
             StartFrame(game);
             dungeonScene->deltaTime = (currentTime - lastTime) / 1000.0f;
             lastTime = currentTime;
-            SceneManagerUpdateCurrentScene(&sceneManager);
             physicsSystem(dungeonScene);
+            SceneManagerUpdateCurrentScene(&sceneManager);
             cameraControl(dungeonScene->camera);
             renderSystem(dungeonScene);
             EndFrame(game);

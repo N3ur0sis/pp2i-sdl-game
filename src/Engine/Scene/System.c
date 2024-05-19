@@ -84,6 +84,7 @@ void physicsSystem(Scene* scene) {
         Entity* entity = &scene->entities[i];
         RigidBody* rigidBody = (RigidBody*)getComponent(entity, COMPONENT_RIGIDBODY);
         Collider* collider = (Collider*)getComponent(entity, COMPONENT_COLLIDER);
+
         if (collider && rigidBody) {
             // Handle collisions with other entities
             for (int j = 0; j < scene->numEntities; ++j) {
