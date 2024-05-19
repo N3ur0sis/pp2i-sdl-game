@@ -108,6 +108,7 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
     RigidBody* body = (Model*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
     Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
     Collider* playerCollider = (Collider*)getComponent(playerEntity, COMPONENT_COLLIDER);
+
     Model* enemyModel = (Model*)getComponent(enemy, COMPONENT_RENDERABLE);
     Animator* enemyAnimator = (Animator*)getComponent(enemy, COMPONENT_ANIMATOR);
     if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation"))){
@@ -149,7 +150,7 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
     if (dj->change){
             printf("jsuis passe par la\n");
             dj->lastRoomChangeTime = SDL_GetTicks();
-            LoadRoom(playerModel,dj,body, playerCollider);
+            LoadRoom(playerModel,dj,body);
             dj->change = false;
         }
 

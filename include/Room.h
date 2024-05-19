@@ -14,7 +14,7 @@ struct  _Room
 };
 typedef struct _L_Room {
     Model* model;
-    Collider* col;
+    Model* col;
 }L_Room;
 void freeRoom(Room* room);
 void freeLRoom(L_Room* l);
