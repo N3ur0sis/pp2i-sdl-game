@@ -13,8 +13,7 @@ void SceneManagerInit(SceneManager* manager) {
     manager->gameState.g_WindowTitle = "Game";
     manager->gameState.change = false;
     manager->gameState.nextSceneIndex = -1;
-    manager->gameState.previousSceneIndex = -1;
-    manager->gameState.isForestDungeonDone = false;
+    manager->gameState.isForestDungeonDone = true;
 }
 void SceneManagerAddScene(SceneManager* manager, Scene* scene, void (*start)(Scene*), void (*update)(Scene*),void (*unload)(Scene*)) {
     if (manager->numScenes < MAX_SCENES) {
