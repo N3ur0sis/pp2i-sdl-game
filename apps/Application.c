@@ -5,8 +5,6 @@
 #include <System.h>
 #include <StartScene.h>
 #include <SDL_mixer.h>
-#include "SDL2/SDL.h"
-#include <Renderer.h>
 
 
 /* Entry point of the program */
@@ -15,7 +13,7 @@ int main(void){
     SceneManager sceneManager;
     SceneManagerInit(&sceneManager);
 
-            SDL_Color color = {255, 0, 0, 0}; // Red
+    
 
     /* Create an instance of the application */
     Application* game = ApplicationCreate(sceneManager.gameState.g_WindowWidth,sceneManager.gameState.g_WindowHeight,sceneManager.gameState.g_WindowTitle);
