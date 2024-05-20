@@ -2,7 +2,7 @@
 
 void RenderText(const char* message, SDL_Color color, int x, int y, int size, int windowWidth, int windowHeight, GLuint shaderProgram) {
 
-    TTF_Font* font = TTF_OpenFont("assets/fonts/arial.ttf", size);
+    TTF_Font* font = TTF_OpenFont("assets/fonts/Monocraft.ttf", size);
     if (!font) {
         printf("Failed to load font: %s\n", TTF_GetError());
         return;
@@ -25,13 +25,13 @@ void RenderText(const char* message, SDL_Color color, int x, int y, int size, in
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     GLfloat vertices[6][4] = {
-        { x, y + sFont->h, 0.0f, 0.0f },
-        { x, y, 0.0f, 1.0f },
-        { x + sFont->w, y, 1.0f, 1.0f },
+        { x - sFont->w / 2, y + sFont->h / 2, 0.0f, 0.0f },
+        { x - sFont->w / 2, y - sFont->h / 2, 0.0f, 1.0f },
+        { x + sFont->w/2, y - sFont->h / 2, 1.0f, 1.0f },
 
-        { x, y + sFont->h, 0.0f, 0.0f },
-        { x + sFont->w, y, 1.0f, 1.0f },
-        { x + sFont->w, y + sFont->h, 1.0f, 0.0f }
+        { x - sFont->w / 2, y + sFont->h / 2, 0.0f, 0.0f },
+        { x + sFont->w/2, y - sFont->h / 2, 1.0f, 1.0f },
+        { x + sFont->w/2, y + sFont->h / 2, 1.0f, 0.0f }
     };
 
     GLuint VAO, VBO;
@@ -90,13 +90,13 @@ void RenderImage(const char* path, SDL_Color color, int x, int y, int size, int 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
     GLfloat vertices[6][4] = {
-        { x, y + sFont->h, 0.0f, 0.0f },
-        { x, y, 0.0f, 1.0f },
-        { x + sFont->w, y, 1.0f, 1.0f },
+        { x - sFont->w / 2, y + sFont->h, 0.0f, 0.0f },
+        { x - sFont->w / 2, y, 0.0f, 1.0f },
+        { x + sFont->w/2, y, 1.0f, 1.0f },
 
-        { x, y + sFont->h, 0.0f, 0.0f },
-        { x + sFont->w, y, 1.0f, 1.0f },
-        { x + sFont->w, y + sFont->h, 1.0f, 0.0f }
+        { x - sFont->w / 2, y + sFont->h, 0.0f, 0.0f },
+        { x + sFont->w/2, y, 1.0f, 1.0f },
+        { x + sFont->w/2, y + sFont->h, 1.0f, 0.0f }
     };
 
     GLuint VAO, VBO;

@@ -36,7 +36,7 @@ int main(void){
     fprintf(stderr, "SDL_mixer could not play music! SDL_mixer Error: %s\n", Mix_GetError());
     return -1;
     }
-    Mix_VolumeMusic(10); // 64=50% du volume
+    Mix_VolumeMusic(0); // 64=50% du volume
 
      Scene* mainScene = (Scene*)calloc(1,sizeof(Scene));
     mainScene->numEntities = 0;
@@ -70,9 +70,9 @@ int main(void){
             mainScene->deltaTime = (currentTime - lastTime) / 1000.0f;
             lastTime = currentTime;
             physicsSystem(mainScene);
+            renderSystem(mainScene, &sceneManager.gameState);
             SceneManagerUpdateCurrentScene(&sceneManager);
             cameraControl(mainScene->camera);
-            renderSystem(mainScene);
             EndFrame(game);
             break;
         case 1:
@@ -82,7 +82,7 @@ int main(void){
             physicsSystem(dungeonScene);
             SceneManagerUpdateCurrentScene(&sceneManager);
             cameraControl(dungeonScene->camera);
-            renderSystem(dungeonScene);
+            renderSystem(dungeonScene, &sceneManager.gameState);
             EndFrame(game);
         default:
             break;

@@ -4,10 +4,9 @@
 #include <GameState.h>
 #include <cglm/cglm.h>
 
-
-bool isReadingPanel = false;
-
-
+bool checkpoint_sword = false;
+int click_counter = 0 ;
+bool is_clicking = false;
 
 void startMainScene(Scene* scene, GameState* gameState) {
     /* Load and compile shaders */
@@ -111,6 +110,11 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     Entity* enemy = &scene->entities[0];
     Entity* mapEntity = &scene->entities[3];
 
+    bool isBusy = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy;
+    float x = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[0];
+    float y = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[2];
+
+
     if (playerEntity && enemy) {
         Model* playerModel = (Model*)getComponent(playerEntity, COMPONENT_RENDERABLE);
         Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
@@ -178,24 +182,69 @@ void updateMainScene(Scene* scene, GameState* gameState) {
         if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation"))){
             playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
         }
-        float x = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[0];
-        float y = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[2];
-        SDL_Color color = {255, 0, 0, 0};
-        if ((x < 8.0f) && x > 3.5f && (y < 10.0f) && y > 5.5f && !isReadingPanel) {            
-            RenderText("Press E to interact", color, 640, 360, 20, 1280, 720, scene->textShader->m_program);
+        SDL_Color color_black = {0, 0, 0, 0};
+        SDL_Color color_white = {255, 255, 255, 0};
+        if ((x < 8.0f) && x > 3.5f && (y < 10.0f) && y > 5.5f && !isBusy) {            
+            RenderText("Press E to interact", color_black, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 2, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
             if (getKeyState(SDLK_e)) {
-                isReadingPanel = true;     
+                isBusy = true;     
                 ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy = true;
             }
-        } else if ((x < 8.0f) && x > 3.5f && (y < 10.0f) && y > 5.5f && isReadingPanel) {
+        } else if ((x < 8.0f) && x > 3.5f && (y < 10.0f) && y > 5.5f && isBusy) {
+            switch (click_counter) {
+                case 0:
+                    RenderText("Bienvenue jeune aventurier !", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 6, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    RenderText("Profite bien de cette superbe aventure !", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 8, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    RenderText("Panneau etrange", color_white, 350, 215, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    RenderImage("assets/images/dialog-box.png", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    if (getMouseButtonState(1) && !is_clicking) {
+                        click_counter++;
+                        is_clicking = true;
+                    }
+                    if (!getMouseButtonState(1)) {
+                        is_clicking = false;
+                    }
+                    break;
+                case 1:
+                    RenderText("Il semblerait que tu sois dans un donjon", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 6, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    RenderText("Tu devrais trouver une arme pour te defendre", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 8, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    RenderText("Panneau etrange", color_white, 350, 215, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    RenderImage("assets/images/dialog-box.png", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    if (getMouseButtonState(1) && !is_clicking) {
+                        click_counter++;
+                        is_clicking = true;
+                    }
+                    if (!getMouseButtonState(1)) {
+                        is_clicking = false;
+                    }
+                    break;
+                case 2:
+                    RenderText("Je devrais trouver une arme pour me defendre", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 6, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    if (getMouseButtonState(1) && !is_clicking) {
+                        click_counter = 0;
+                        isBusy = false;
+                        ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy = false;
+                        is_clicking = true;
+
+                    }
+                    if (!getMouseButtonState(1)) {
+                        is_clicking = false;
+                    }
+            }
             playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
-            RenderText("Bienvenue jeune aventurier !", color, 640, 360, 40, 1280, 720, scene->textShader->m_program);
+            // RenderText("Bienvenue jeune aventurier !", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 6, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+            // RenderText("Profite bien de cette superbe aventure !", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 8, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+            // RenderText("Panneau etrange", color_white, 350, 215, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+            // RenderImage("assets/images/dialog-box.png", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
             if (getKeyState(ESCAPE)) {
-                isReadingPanel = false;
-                ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy = false;
             }
         }
-        if (!(((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy)) {
+        if (y < -29.25f) {
+            ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 1.1f;
+        } else {
+            ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 0.1f;
+        }
+        if (!isBusy) {
             playerMovement(playerEntity, scene->deltaTime, scene->camera, (Model*)getComponent(enemy, COMPONENT_RENDERABLE));
         }
     }
