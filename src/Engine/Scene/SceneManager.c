@@ -13,7 +13,7 @@ void SceneManagerInit(SceneManager* manager) {
      manager->gameState.g_WindowTitle = "Game";
 }
 
-void SceneManagerAddScene(SceneManager* manager, Scene* scene, void (*start)(Scene*), void (*update)(Scene*)) {
+void SceneManagerAddScene(SceneManager* manager, Scene* scene, void (*start)(Scene*, GameState* gameState), void (*update)(Scene*, GameState* gameState)) {
     if (manager->numScenes < MAX_SCENES) {
         scene->start = start;
         scene->update = update;

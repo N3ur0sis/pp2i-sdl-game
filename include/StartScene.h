@@ -99,15 +99,12 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     // Game Logic
     Entity* playerEntity = &scene->entities[1];
     Entity* enemy = &scene->entities[0];
-    Entity* mapEntity = &scene->entities[3];
 
     if (playerEntity && enemy) {
         Model* playerModel = (Model*)getComponent(playerEntity, COMPONENT_RENDERABLE);
         Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
-        Collider* playerCollider = (Collider*)getComponent(playerEntity, COMPONENT_COLLIDER);
 
         Model* enemyModel = (Model*)getComponent(enemy, COMPONENT_RENDERABLE);
-        Animator* enemyAnimator = (Animator*)getComponent(enemy, COMPONENT_ANIMATOR);
 
 
         /* Game Logic */

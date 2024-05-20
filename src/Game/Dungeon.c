@@ -369,7 +369,7 @@ void LoadRoom(Model* player, Dungeon* dj,RigidBody* body, Collider* collider) {
 
     mat4 id;
     glm_translate_make(id,body->velocity);
-    glm_aabb_transform(collider->boundingBoxReference,id,collider->boundingBox);
+    glm_aabb_transform(collider->boundingBoxReference[0],id,collider->boundingBox[0]);
 }
 
 
@@ -386,27 +386,27 @@ void LoadRoom1C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* b
     case 'S':
         map->rotation[1] = glm_rad(180.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(180.0f),(vec3){0.0f,1.0f,0.0f});
-             for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+             for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         glm_vec3_copy((vec3){-2.0f,0.0f,-3.5f}, body->velocity);
         break;
     case 'N':
         map->rotation[1] = glm_rad(0.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(0.0f),(vec3){0.0f,1.0f,0.0f});
-             for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+             for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         glm_vec3_copy((vec3){2.0f,0.0f,3.0f},  body->velocity);
         player->rotation[1] =glm_rad(180.0f);
         break;
     case 'E':
         map->rotation[1] = glm_rad(-90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(-90.0f),(vec3){0.0f,1.0f,0.0f});
-             for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+             for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         glm_vec3_copy((vec3){-3.8f,0.0f,2.0f},  body->velocity);
         player->rotation[1] =glm_rad(90.0f);
         break;
     case 'W':
         map->rotation[1] = glm_rad(90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(90.0f),(vec3){0.0f,1.0f,0.0f});
-             for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+             for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         glm_vec3_copy((vec3){3.8f,0.0f,-2.8f},  body->velocity);
         player->rotation[1] =glm_rad(-90.0f);
         break;
@@ -420,27 +420,27 @@ void LoadRoomB(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* bo
     case 'S':
         map->rotation[1] = glm_rad(180.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(180.0f),(vec3){0.0f,1.0f,0.0f});
-             for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+             for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         glm_vec3_copy((vec3){0.0f,0.0f,-11.0f},  body->velocity);    
         break;
     case 'N':
         map->rotation[1] = glm_rad(0.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(0.0f),(vec3){0.0f,1.0f,0.0f});
-             for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+             for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         glm_vec3_copy((vec3){0.0f,0.0f,11.0f},  body->velocity);
         player->rotation[1] =glm_rad(180.0f);
         break;
     case 'E':
         map->rotation[1] = glm_rad(-90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(-90.0f),(vec3){0.0f,1.0f,0.0f});
-            for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+            for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         glm_vec3_copy((vec3){-11.0f,0.0f,0.0f},  body->velocity);
         player->rotation[1] =glm_rad(90.0f);
         break;
     case 'W':
         map->rotation[1] = glm_rad(90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(90.0f),(vec3){0.0f,1.0f,0.0f});
-             for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+             for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         glm_vec3_copy((vec3){11.0f,0.0f,0.0f},  body->velocity);
         player->rotation[1] =glm_rad(-90.0f);
         break;
@@ -454,27 +454,27 @@ void LoadRoom2C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* b
     case 'S':
         map->rotation[1] = glm_rad(0.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(0.0f),(vec3){0.0f,1.0f,0.0f});
-             for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+             for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         glm_vec3_copy((vec3){-2.0f,0.0f,-3.0f},  body->velocity);
         player->rotation[1] =glm_rad(180.0f);
         break;
     case 'N':
         map->rotation[1] = glm_rad(0.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(0.0f),(vec3){0.0f,1.0f,0.0f});
-             for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+             for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         glm_vec3_copy((vec3){2.0f,0.0f,3.0},  body->velocity);
         break;
     case 'E':
         map->rotation[1] = glm_rad(90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(90.0f),(vec3){0.0f,1.0f,0.0f});
-             for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+             for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         glm_vec3_copy((vec3){-3.8f,0.0f,2.0f},  body->velocity);
         player->rotation[1] =glm_rad(90.0f);
         break;
     case 'W':
         map->rotation[1] = glm_rad(90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(90.0f),(vec3){0.0f,1.0f,0.0f});
-           for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+           for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         glm_vec3_copy((vec3){3.8f,0.0f,-2.8f},  body->velocity);
         player->rotation[1] =glm_rad(-90.0f);
         break;
@@ -498,22 +498,22 @@ void LoadRoom3C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* b
     if (!(dir_used[0])){
         map->rotation[1] = glm_rad(90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(90.0f),(vec3){0.0f,1.0f,0.0f});
-              for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+              for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
     }
     else if (!(dir_used[1])){
         map->rotation[1] = glm_rad(-90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(-90.0f),(vec3){0.0f,1.0f,0.0f});
-              for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+              for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
     }
     else if (!(dir_used[2])){
         map->rotation[1] = glm_rad(180.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(180.0f),(vec3){0.0f,1.0f,0.0f});
-              for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+              for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
     }
     else{
         map->rotation[1] = glm_rad(0.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(0.0f),(vec3){0.0f,1.0f,0.0f});
-              for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+              for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
     }
     switch (dj->direction)
     {
@@ -562,27 +562,27 @@ void LoadRoom2I(Model* map,Collider* col, Model* player,Dungeon * dj,RigidBody* 
     case 'S':
         map->rotation[1] = glm_rad(0.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(0.0f),(vec3){0.0f,1.0f,0.0f});
-             for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+             for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         glm_vec3_copy((vec3){0.0f,0.0f,-4.0f},  body->velocity);
         break;
     case 'N':
         map->rotation[1] = glm_rad(0.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(0.0f),(vec3){0.0f,1.0f,0.0f});
-             for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+             for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         glm_vec3_copy((vec3){0.0f,0.0f,4.0f},  body->velocity);
         player->rotation[1] =glm_rad(180.0f);
         break;
     case 'E':
         map->rotation[1] = glm_rad(90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(90.0f),(vec3){0.0f,1.0f,0.0f});
-             for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+             for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         glm_vec3_copy((vec3){-4.0f,0.0f,0.0f},  body->velocity);
         player->rotation[1] =glm_rad(90.0f);
         break;
     case 'W':
         map->rotation[1] = glm_rad(90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(90.0f),(vec3){0.0f,1.0f,0.0f});
-            for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+            for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         glm_vec3_copy((vec3){4.0f,0.0f,0.0f},  body->velocity);
         player->rotation[1] =glm_rad(-90.0f);
         break;
@@ -607,22 +607,22 @@ void LoadRoom3T(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* b
     if (!dir_used[0]){
         map->rotation[1] = glm_rad(90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(90.0f),(vec3){0.0f,1.0f,0.0f});
-              for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+              for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
     }
     else if (!dir_used[1]){
         map->rotation[1] = glm_rad(-90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(-90.0f),(vec3){0.0f,1.0f,0.0f});
-              for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+              for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
     }
     else if (!dir_used[2]){
         map->rotation[1] = glm_rad(180.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(180.0f),(vec3){0.0f,1.0f,0.0f});
-              for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+              for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
     }
     else{
         map->rotation[1] = glm_rad(0.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(0.0f),(vec3){0.0f,1.0f,0.0f});
-              for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+              for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
     }
     switch (dj->direction)
     {
@@ -659,22 +659,22 @@ void LoadRoom2L(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* b
     if (dir_used[1]&&dir_used[2]){        
         map->rotation[1] = glm_rad(90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(90.0f),(vec3){0.0f,1.0f,0.0f});
-              for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+              for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
     }
     else if (dir_used[1]&&dir_used[3]){        
         map->rotation[1] = glm_rad(180.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(180.0f),(vec3){0.0f,1.0f,0.0f});
-              for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+              for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
         
     }else if (dir_used[0]&&dir_used[3]){        
         map->rotation[1] = glm_rad(-90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(-90.0f),(vec3){0.0f,1.0f,0.0f});
-              for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+              for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
     }
     else{
         map->rotation[1] = glm_rad(0.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(0.0f),(vec3){0.0f,1.0f,0.0f});
-              for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+              for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
     }
     switch (dj->direction)
     {

@@ -1,11 +1,11 @@
 #include <Collider.h>
 
-Collider* ColliderCreate(const char* path){
+Collider* ColliderCreate(char* path){
     Collider* collider = (Collider*)malloc(sizeof(Collider));
     collider->numCollider = 0;
     glm_mat4_identity(collider->transformMatrix);
-    struct aiScene* scene = ModelLoad(path);
-    for (int i = 0; i < scene->mNumMeshes; i++)
+    const struct aiScene* scene = ModelLoad(path);
+    for (unsigned int i = 0; i < scene->mNumMeshes; i++)
     {
         if(i>=100){
             break;
@@ -29,7 +29,7 @@ Collider* ColliderCreate(const char* path){
 
 
 void UpdateCollider(Collider* collider){
-    for (size_t i = 0; i < collider->numCollider; i++)
+    for (int i = 0; i < collider->numCollider; i++)
     {
     glm_aabb_transform(collider->boundingBox[i],collider->transformMatrix,collider->boundingBox[i]);
     glm_aabb_transform(collider->boundingBoxReference[i],collider->transformMatrix,collider->boundingBoxReference[i]);

@@ -78,7 +78,7 @@ void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enem
 	glm_vec3_copy(newPos, ((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->velocity);
 	mat4 id;
     glm_translate_make(id,((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->velocity);
-    glm_aabb_transform(((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBoxReference,id,((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBox);
+    glm_aabb_transform(((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBoxReference[0],id,((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBox[0]);
 	}
 }
 
