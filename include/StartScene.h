@@ -19,6 +19,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
     if (enemy != NULL) {
         Model* golem = (Model*)calloc(1, sizeof(Model));
         ModelCreate(golem, "assets/models/Golem/Mutant Breathing Idle.dae");
+        golem->isRenderable = false;
         addComponent(enemy, COMPONENT_RENDERABLE, golem);
 
         Animation* golemIdleAnimation = AnimationCreate("assets/models/Golem/Mutant Breathing Idle.dae", golem, "golemIdleAnimation");
@@ -30,6 +31,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(enemy, COMPONENT_ANIMATION, golemPunchAnimation);
         addComponent(enemy, COMPONENT_ANIMATOR, golemAnimator);
         glm_vec3_copy((vec3){2.0f, 0.0f, -10.0f}, golem->position);
+
     }
 
     /* Player Entity */

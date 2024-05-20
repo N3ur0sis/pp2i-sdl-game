@@ -37,6 +37,7 @@ void ModelCreate(Model* model, char* path){
     model->matCount = materialsCount; 
     model->bone_count = 0;
     model->isAnimated = false;
+    model->isRenderable = true;
     glm_vec3_copy((vec3){0.0f,0.0f,0.0f}, model->position); /* Position set to 0 by default */
     glm_vec3_copy((vec3){0.0f,0.0f,0.0f}, model->rotation); /* Rotation set to 0 by default */
     glm_vec3_copy((vec3){1.0f,1.0f,1.0f}, model->scale);    /* Scale    set to 1 by default*/
