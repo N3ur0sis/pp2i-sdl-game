@@ -41,6 +41,7 @@ typedef struct _Model{
     size_t bone_count;
     bool isAnimated;
     bool isRenderable;
+    bool isBusy;
 } Model;
 
 

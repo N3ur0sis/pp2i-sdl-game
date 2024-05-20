@@ -20,6 +20,7 @@ void handleMouseWheelEvent(SDL_Event e);
 
 #define NB_KEYS 257
 #define SHIFT 255
+#define ESCAPE 256
 
 
 // vec3 treatModelToMoving

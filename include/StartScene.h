@@ -5,9 +5,15 @@
 #include <cglm/cglm.h>
 
 
+bool isReadingPanel = false;
+
+
+
 void startMainScene(Scene* scene, GameState* gameState) {
     /* Load and compile shaders */
     scene->shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
+    /* Load and compile textShader */
+    scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
     /* Create a scene camera */
     scene->camera = camera_create(28, 5, 10, gameState->g_WindowWidth, gameState->g_WindowHeight);
     glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
@@ -41,6 +47,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         ModelCreate(playerModel, "assets/models/LoPotitChat/PlayerWalk.dae");
         Animation* attackAnimation = AnimationCreate("assets/models/LoPotitChat/PlayerAttack.dae", playerModel, "playerAttackAnimation");
         Animation* walkingAnimation = AnimationCreate("assets/models/LoPotitChat/PlayerWalk.dae", playerModel, "playerWalkingAnimation");
+        Animation* iddleAnimation = AnimationCreate("assets/models/LoPotitChat/PlayerIdle.dae", playerModel, "playerIdleAnimation");
         Animator* playerAnimator = AnimatorCreate(walkingAnimation);
         glm_vec3_copy((vec3){0.5f, 0.5f, 0.5f}, playerModel->scale);
         RigidBody* playerRigidBody = (RigidBody*)calloc(1,sizeof(RigidBody));
@@ -53,6 +60,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(playerEntity, COMPONENT_RENDERABLE, playerModel);
         addComponent(playerEntity, COMPONENT_ANIMATION, attackAnimation);
         addComponent(playerEntity, COMPONENT_ANIMATION, walkingAnimation);
+        addComponent(playerEntity, COMPONENT_ANIMATION, iddleAnimation);
         addComponent(playerEntity, COMPONENT_ANIMATOR, playerAnimator);
         addComponent(playerEntity, COMPONENT_COLLIDER, playerCollider);
         addComponent(playerEntity, COMPONENT_RIGIDBODY, playerRigidBody);
@@ -168,9 +176,28 @@ void updateMainScene(Scene* scene, GameState* gameState) {
         }
 
         if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation"))){
-            playerAnimator->playTime = 0.0f;
+            playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
         }
-        playerMovement(playerEntity, scene->deltaTime, scene->camera, (Model*)getComponent(enemy, COMPONENT_RENDERABLE));
+        float x = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[0];
+        float y = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[2];
+        SDL_Color color = {255, 0, 0, 0};
+        if ((x < 8.0f) && x > 3.5f && (y < 10.0f) && y > 5.5f && !isReadingPanel) {            
+            RenderText("Press E to interact", color, 640, 360, 20, 1280, 720, scene->textShader->m_program);
+            if (getKeyState(SDLK_e)) {
+                isReadingPanel = true;     
+                ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy = true;
+            }
+        } else if ((x < 8.0f) && x > 3.5f && (y < 10.0f) && y > 5.5f && isReadingPanel) {
+            playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
+            RenderText("Bienvenue jeune aventurier !", color, 640, 360, 40, 1280, 720, scene->textShader->m_program);
+            if (getKeyState(ESCAPE)) {
+                isReadingPanel = false;
+                ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy = false;
+            }
+        }
+        if (!(((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy)) {
+            playerMovement(playerEntity, scene->deltaTime, scene->camera, (Model*)getComponent(enemy, COMPONENT_RENDERABLE));
+        }
     }
 }
 

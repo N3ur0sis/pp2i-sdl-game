@@ -41,6 +41,8 @@ void handleKeyBoardEventDown(SDL_Event e){
 		keyState[255] = 1;
 	} else if (e.key.keysym.scancode == SDL_SCANCODE_TAB) {
 		keyState[256] = 1;
+	} else if (e.key.keysym.sym == SDLK_ESCAPE) {
+		keyState[256] = 1;
 	} else if (e.key.keysym.sym < 255) {
 		keyState[e.key.keysym.sym] = e.key.state;
 	}
@@ -50,6 +52,8 @@ void handleKeyBoardEventUp(SDL_Event e){
 	if (e.key.keysym.scancode == SDL_SCANCODE_LSHIFT || e.key.keysym.scancode == SDL_SCANCODE_RSHIFT){ 
 		keyState[255] = 0;
 	} else if (e.key.keysym.scancode == SDL_SCANCODE_TAB) {
+		keyState[256] = 0;
+	} else if (e.key.keysym.sym == SDLK_ESCAPE) {
 		keyState[256] = 0;
 	} else if (e.key.keysym.sym < 255) {
 		keyState[e.key.keysym.sym] = e.key.state;

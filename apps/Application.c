@@ -47,17 +47,17 @@ int main(void){
     dungeonScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, dungeonScene, DungeonMainScene, updateDungeonScene);
     
-    int current_scene = 1;
+    int current_scene = 0;
     SceneManagerSetCurrentScene(&sceneManager, current_scene);
 
 
     Shader* textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
 
-    // if (TTF_Init() == -1) {
-    //     printf("TTF could not initialize! TTF_Error: %s\n", TTF_GetError());
-    //     SDL_Quit();
-    //     return 1;
-    // }
+    if (TTF_Init() == -1) {
+        printf("TTF could not initialize! TTF_Error: %s\n", TTF_GetError());
+        SDL_Quit();
+        return 1;
+    }
     TTF_Init();
     /* Game Loop */
     Uint32 lastTime = SDL_GetTicks();
