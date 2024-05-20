@@ -66,7 +66,7 @@ int main(void){
         switch (current_scene)
         {
         case 0:
-            StartFrame(game);
+            StartFrame(game, &sceneManager.gameState);
             mainScene->deltaTime = (currentTime - lastTime) / 1000.0f;
             lastTime = currentTime;
             physicsSystem(mainScene);
@@ -76,7 +76,7 @@ int main(void){
             EndFrame(game);
             break;
         case 1:
-            StartFrame(game);
+            StartFrame(game, &sceneManager.gameState);
             dungeonScene->deltaTime = (currentTime - lastTime) / 1000.0f;
             lastTime = currentTime;
             physicsSystem(dungeonScene);

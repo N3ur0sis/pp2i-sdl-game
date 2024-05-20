@@ -8,7 +8,7 @@ void RenderText(const char* message, SDL_Color color, int x, int y, int size, in
         return;
     }
 
-    SDL_Surface* sFont = TTF_RenderText_Blended(font, message, color);
+    SDL_Surface* sFont = TTF_RenderUTF8_Blended(font, message, color);
     if (!sFont) {
         printf("Failed to create text surface: %s\n", TTF_GetError());
         TTF_CloseFont(font);

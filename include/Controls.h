@@ -3,10 +3,11 @@
 #include <stdbool.h>
 #include <Camera.h>
 #include <Time.h>
+#include <GameState.h>
 
 
 
-void processInput(SDL_Event* e, bool* running);
+void processInput(SDL_Event* e, bool* running, GameState* gameState);
 void handleKeyBoardEventDown(SDL_Event e);
 void handleKeyBoardEventUp(SDL_Event e);
 void handleMouseButtonEvent(SDL_Event e);

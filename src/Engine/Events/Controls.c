@@ -1,14 +1,13 @@
 #include <Controls.h>
 #include <math.h>
 
-
 //State of Mouse and keyboard input
 char keyState[NB_KEYS] = { 0 };
 float mousePos[6] = {0}; // 0->posX 1->posY 2->lastX 3->lastY 4->wheely ->5 lastWheelY
 char mouseState[5] = { 0 }; // mouse button state
 
 
-void processInput(SDL_Event* e,  bool* running){
+void processInput(SDL_Event* e,  bool* running, GameState* gameState){
 
 	
 	switch (e->type){
@@ -33,6 +32,13 @@ void processInput(SDL_Event* e,  bool* running){
 			break;
 		case SDL_MOUSEWHEEL:
 			handleMouseWheelEvent(*e);
+		case SDL_WINDOWEVENT:
+        	if (e->window.event == SDL_WINDOWEVENT_RESIZED) {
+            	printf("MESSAGE:Resizing window...\n");
+            	gameState->g_WindowWidth = e->window.data1;
+				gameState->g_WindowHeight = e->window.data2;
+        		}
+        break;
 	}
 }
 

@@ -4,6 +4,7 @@
 #include <Window.h>
 #include <Controls.h>
 #include <Player.h>
+#include <GameState.h>
 
 typedef struct _Application{
     Window* window;
@@ -13,7 +14,7 @@ typedef struct _Application{
 }Application;
 
 Application* ApplicationCreate(int width, int height, const char* title);
-void StartFrame(Application* game);
+void StartFrame(Application* game, GameState* gameState);
 void EndFrame(Application* game);
 
 void EngineInit(void);
