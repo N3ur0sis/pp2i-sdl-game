@@ -43,7 +43,7 @@ void renderSystem(Scene* scene) {
             glUniform1i(glGetUniformLocation(scene->shader->m_program, "isAnimated"), dj->type_room[dj->rooms[dj->current_room].id].model->isAnimated);
             ModelDraw(dj->type_room[dj->rooms[dj->current_room].id].model, scene->shader, scene->camera, NULL);
         }
-        else if (model) {
+        else if (model && model->isRenderable) {
             Animator* animator = (Animator*)getComponent(entity, COMPONENT_ANIMATOR);
             if (animator) {
                 AnimatorOnUpdate(animator, model, scene->shader, scene->deltaTime);

@@ -16,10 +16,30 @@ Entity of this scene (order of their index):
 
 
 void ForestMainScene(Scene* scene, GameState* gameState){
+    float x;
+    float y;
+    float z;
+    float rot;
+    switch (gameState->previousSceneIndex){
+        case(1) ://from dungeon
+            x = -6.0;
+            y = 10.1;
+            z = 168.0;
+            rot = glm_rad(180.0f);
+            break;
+        default :
+            x = 1.0;
+            y = 10.1;
+            z = 3.0;
+            rot = 0;
+            break;
+    }
     /* Load and compile shaders */
     scene->shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
+    /* Load and compile textShader */
+    scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
     /* Create a scene camera */
-    scene->camera = camera_create(28, 5, 10, gameState->g_WindowWidth, gameState->g_WindowHeight);
+    scene->camera = camera_create(x, y+5, z, gameState->g_WindowWidth, gameState->g_WindowHeight);
     glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
     /* Create a skybox */
     scene->skybox = SkyboxCreate();
@@ -35,17 +55,19 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     Entity* mapEntity = createEntity(scene);
     if (mapEntity != NULL) {
         Model* map = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(map, "assets/models/Foret/forest.obj");
+        ModelCreate(map,"assets/models/Foret/foret.obj");
         addComponent(mapEntity, COMPONENT_RENDERABLE, map);
 
-        Collider* mapCollision = ColliderCreate("assets/models/start/col.obj");//Create a .obj file for this scene
+        Collider* mapCollision = ColliderCreate("assets/models/Foret/col.obj");//Create a .obj file for this scene
         glm_translate_make(mapCollision->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
         UpdateCollider(mapCollision);
         addComponent(mapEntity, COMPONENT_COLLIDER, mapCollision);
     }
 
     /* Player Entity */
-    Entity* playerEntity = create_player(scene,1.0f,10.0f,3.0f);
+    Entity* playerEntity = create_player(scene,x,y,z);
+    Model* playerModel = getComponent(playerEntity,COMPONENT_RENDERABLE);
+    playerModel->rotation[1] = rot;
 
     /* Sword Entity */
     Entity* swordEntity = createEntity(scene);
@@ -73,6 +95,9 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     if (flame1){
         Model* flame = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame, "assets/models/Foret/Flame.obj");
+        if (!gameState->isForestDungeonDone){
+        flame->isRenderable = false;
+         }  
         glm_vec3_copy((vec3){50.5f,9.8f,112.0f},flame->position);
         addComponent(flame1, COMPONENT_RENDERABLE, flame);
         
@@ -81,6 +106,9 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     if (flame2){
         Model* flame_2 = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame_2, "assets/models/Foret/Flame.obj");
+        if (!gameState->isForestDungeonDone){
+        flame_2->isRenderable = false;
+         }  
         glm_vec3_copy((vec3){62.3f,9.8f,156.0f},flame_2->position);
         addComponent(flame2, COMPONENT_RENDERABLE, flame_2);
         
@@ -89,6 +117,9 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     if (flame3){
         Model* flame_3 = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame_3, "assets/models/Foret/Flame.obj");
+        if (!gameState->isForestDungeonDone){
+        flame_3->isRenderable = false;
+         }  
         glm_vec3_copy((vec3){-59.0f,9.8f,146.50f},flame_3->position);
         addComponent(flame3, COMPONENT_RENDERABLE, flame_3);
         
@@ -97,15 +128,20 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     if (flame4){
         Model* flame_4 = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame_4, "assets/models/Foret/Flame.obj");
+        if (!gameState->isForestDungeonDone){
+        flame_4->isRenderable = false;
+         }   
         glm_vec3_copy((vec3){-64.7f,9.8f,72.0f},flame_4->position);
         addComponent(flame4, COMPONENT_RENDERABLE, flame_4);
         
     }
     
+    
 
 }
 void updateForestScene(Scene* scene, GameState* gameState){
     // Game Logic
+    bool isClicking = false;
     Entity* playerEntity = &scene->entities[2];
     Entity* enemy = &scene->entities[4];
     Entity* mapEntity = &scene->entities[1];
@@ -177,18 +213,85 @@ void updateForestScene(Scene* scene, GameState* gameState){
         if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation"))){
             playerAnimator->playTime = 0.0f;
         }
-        playerMovement(playerEntity, scene->deltaTime, scene->camera, (Model*)getComponent(enemy, COMPONENT_RENDERABLE));
+        if (!playerModel->isBusy){
+            playerMovement(playerEntity, scene->deltaTime, scene->camera, (Model*)getComponent(enemy, COMPONENT_RENDERABLE));
+        }
     }
     if (getKeyState(SDLK_p)){
         printf("Player Position : %f %f\n",playerModel->position[0],playerModel->position[2]);
+    }
+    /*Four flames logic */
+    SDL_Color color_black = {0, 0, 0, 0};
+    Entity* flame1 = &scene->entities[5];
+    Model* flame1Model = (Model*)getComponent(flame1, COMPONENT_RENDERABLE);
+    Entity* flame2 = &scene->entities[6];
+    Model* flame2Model = (Model*)getComponent(flame2, COMPONENT_RENDERABLE);
+    Entity* flame3 = &scene->entities[7];
+    Model* flame3Model = (Model*)getComponent(flame3, COMPONENT_RENDERABLE);
+    Entity* flame4 = &scene->entities[8];
+    Model* flame4Model = (Model*)getComponent(flame4, COMPONENT_RENDERABLE);
+    if (!flame1Model->isRenderable){
+        float d1 = getDist(playerModel,flame1Model);
+        if ((d1<FLAMEDIST&&getKeyState(SDLK_e))){
+            flame1Model->isRenderable = true;
+            playerModel->isBusy = true;
+            
+        }
+    }
+    if (!flame2Model->isRenderable){
+        float d2 = getDist(playerModel,flame2Model);
+        if ((d2<FLAMEDIST&&getKeyState(SDLK_e))){
+            flame2Model->isRenderable = true;
+            playerModel->isBusy = true;  
+        }
+        
+    }
+    if (!flame3Model->isRenderable){
+        float d3 = getDist(playerModel,flame3Model);
+        if ((d3<FLAMEDIST&&getKeyState(SDLK_e))){
+            flame3Model->isRenderable = true;
+            playerModel->isBusy = true;
+            
+        }
+    }
+    if (!flame4Model->isRenderable){
+         float d4 = getDist(playerModel,flame4Model);
+         if ((d4<FLAMEDIST&&getKeyState(SDLK_e))){
+            flame4Model->isRenderable = true;
+            playerModel->isBusy = true;
+            
+        }
+    }
+    if (playerModel->isBusy ){
+        RenderText("Vous entendez un bruit sourd au loin", color_black, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 100, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        if (getMouseButtonState(1)){
+            playerModel->isBusy = false;
+        }
     }
     vec3 DonjonPosition ;
     vec3 DonjonDir;
     glmc_vec3_copy((vec3){-7.4f,10.0f, 168.69f},DonjonPosition);
     glm_vec3_sub( playerModel->position, DonjonPosition, DonjonDir);
     float DonjonDist = glm_vec3_norm(DonjonDir);
-    if (DonjonDist<1.0f&&getKeyState(SDLK_e)){
+    if (DonjonDist<1.0f&&getKeyState(SDLK_e) &&flame1Model->isRenderable&&flame2Model->isRenderable&&flame3Model->isRenderable&&flame4Model->isRenderable){
         gameState->change = true;
         gameState ->nextSceneIndex = 1;
+        gameState->previousSceneIndex = 2;
     }
+
+}
+
+void unloadForestScene(Scene* scene){
+    DeleteShaders(scene->shader);
+    SkyboxDelete(scene->skybox);
+
+    if (scene->camera) {
+        free(scene->camera);
+    }
+
+    for (int i = 0; i < scene->numEntities; i++) {
+        freeEntity(&scene->entities[i]);
+    }
+    scene->numEntities = 0;
 }

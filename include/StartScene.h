@@ -9,6 +9,8 @@
 void startMainScene(Scene* scene, GameState* gameState) {
     /* Load and compile shaders */
     scene->shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
+    /* Load and compile textShader */
+    scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
     /* Create a scene camera */
     scene->camera = camera_create(28, 5, 10, gameState->g_WindowWidth, gameState->g_WindowHeight);
     glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
@@ -137,3 +139,16 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     }
 }
 
+void unloadStartScene(Scene* scene){
+    DeleteShaders(scene->shader);
+    SkyboxDelete(scene->skybox);
+
+    if (scene->camera) {
+        free(scene->camera);
+    }
+
+    for (int i = 0; i < scene->numEntities; i++) {
+        freeEntity(&scene->entities[i]);
+    }
+    scene->numEntities = 0;
+}

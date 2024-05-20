@@ -364,6 +364,7 @@ void LoadRoom(Model* player, Dungeon* dj,RigidBody* body, Collider* collider,Gam
         dj->direction = 'S';
         gameState->change = true;
         gameState->nextSceneIndex = 2;
+        gameState->previousSceneIndex = 1;
         return;
     }
     printf("Nous sommes dans la salle %d  (id = %d) depuis le %c\n",dj->current_room,dj->rooms[dj->current_room].id,dj->direction);

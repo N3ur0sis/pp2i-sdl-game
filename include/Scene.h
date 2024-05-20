@@ -6,10 +6,12 @@
 #include <Entity.h>
 #include <GameState.h>
 #include <Dungeon.h>
+
 #define MAX_ENTITIES 100
 
 typedef struct _Scene {
     Shader* shader;
+    Shader* textShader;
     Skybox* skybox;
     Camera* camera;
     Entity entities[MAX_ENTITIES];
@@ -17,8 +19,7 @@ typedef struct _Scene {
     float deltaTime;
     void (*start)(struct Scene* scene, GameState* gameState);
     void (*update)(struct Scene* scene, GameState* gameState);
-    bool change;
-    int index_next_scene;
+    void (*unload)(struct Scene* scene);
 } Scene;
 
 Entity* createEntity(Scene* scene);

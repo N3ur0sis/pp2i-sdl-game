@@ -14,6 +14,7 @@ void* getComponent(Entity* entity, ComponentType type) {
         if (entity->components[i].type == type) {
             return entity->components[i].data;
         }
+    // printf("%d, %d\n", entity->components[i].type, type);
     }
     return NULL;
 }
@@ -29,4 +30,10 @@ Animation* getAnimationComponent(Entity* entity, const char* animationName) {
     }
     return NULL; // Animation not found
     printf("Animation not found\n");
+}
+
+float getDist(Model* object1, Model* object2){
+    vec3 Dir;
+    glm_vec3_sub( object1->position, object2->position, Dir);
+    return glm_vec3_norm(Dir); 
 }

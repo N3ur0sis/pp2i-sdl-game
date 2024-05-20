@@ -7,6 +7,7 @@
 #include <DungeonScene.h>
 #include <SDL_mixer.h>
 #include <ForestScene.h>
+#include <Renderer.h>
 
 /* Entry point of the program */
 int main(void){
@@ -20,8 +21,8 @@ int main(void){
 
     /* Music Player*/
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-    fprintf(stderr, "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
-    return -1;
+        fprintf(stderr, "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+        return -1;
     }
     Mix_Music *bgm = Mix_LoadMUS("assets/music/my-little-garden-of-eden-112845.mp3");
     if (bgm == NULL) {
@@ -33,60 +34,63 @@ int main(void){
     fprintf(stderr, "SDL_mixer could not play music! SDL_mixer Error: %s\n", Mix_GetError());
     return -1;
     }
-    Mix_VolumeMusic(0); // 64=50% du volume
+    Mix_VolumeMusic(10); // 64=50% du volume
     
     /* Init of Start Scene*/
     Scene* mainScene = (Scene*)calloc(1,sizeof(Scene));
     mainScene->numEntities = 0;
-    SceneManagerAddScene(&sceneManager, mainScene, startMainScene, updateMainScene);
+    SceneManagerAddScene(&sceneManager, mainScene, startMainScene, updateMainScene,unloadStartScene);
     
     
     /* Init of Dungeon Scene*/
     Scene* dungeonScene = (Scene*)calloc(1,sizeof(Scene));
     dungeonScene->numEntities = 0;
-    SceneManagerAddScene(&sceneManager, dungeonScene, DungeonMainScene, updateDungeonScene);
+    SceneManagerAddScene(&sceneManager, dungeonScene, DungeonMainScene, updateDungeonScene,unloadDungeonScene);
     
-    /* Init of Forest Scene*/
+     /* Init of Dungeon Scene*/
     Scene* forestScene = (Scene*)calloc(1,sizeof(Scene));
     forestScene->numEntities = 0;
-    SceneManagerAddScene(&sceneManager, forestScene, ForestMainScene, updateForestScene);
-    
-    /* Set Current Scene*/
-    sceneManager.currentSceneIndex = 2;
-    SceneManagerSetCurrentScene(&sceneManager, sceneManager.currentSceneIndex);
+    SceneManagerAddScene(&sceneManager, forestScene, ForestMainScene, updateForestScene,unloadStartScene);
 
-    
+    int current_scene = 2;
+    SceneManagerSetCurrentScene(&sceneManager, current_scene);
+
+    TTF_Init();
 
     /* Game Loop */
     Uint32 lastTime = SDL_GetTicks();
     while (game->running) {
-        Uint32 currentTime = SDL_GetTicks();
-        StartFrame(game);
-        
-        sceneManager.scenes[sceneManager.currentSceneIndex]->deltaTime = (currentTime - lastTime) / 1000.0f;
-        physicsSystem(sceneManager.scenes[sceneManager.currentSceneIndex]);
-        SceneManagerUpdateCurrentScene(&sceneManager);
-        cameraControl(sceneManager.scenes[sceneManager.currentSceneIndex]->camera);
-        renderSystem(sceneManager.scenes[sceneManager.currentSceneIndex]);
         /*Changement de scene*/
         if (sceneManager.gameState.change){
             //Unload current scene
-
+            SceneManagerUnloadCurrentScene(&sceneManager, sceneManager.currentSceneIndex);
             //Load the next one
             sceneManager.currentSceneIndex = sceneManager.gameState.nextSceneIndex;
+            printf(" next scene = %d\n", sceneManager.currentSceneIndex);
             SceneManagerSetCurrentScene(&sceneManager, sceneManager.currentSceneIndex);
+            printf("on a fini de charger\n");
             sceneManager.gameState.change = false;
             sceneManager.gameState.nextSceneIndex = -1;
-
         }
-        lastTime = currentTime;
-        EndFrame(game);
+        else {
+            Uint32 currentTime = SDL_GetTicks();
+            StartFrame(game);
+            
+            sceneManager.scenes[sceneManager.currentSceneIndex]->deltaTime = (currentTime - lastTime) / 1000.0f;
+            physicsSystem(sceneManager.scenes[sceneManager.currentSceneIndex]);
+            SceneManagerUpdateCurrentScene(&sceneManager);
+            cameraControl(sceneManager.scenes[sceneManager.currentSceneIndex]->camera);
+            renderSystem(sceneManager.scenes[sceneManager.currentSceneIndex]);
+            lastTime = currentTime;
+            EndFrame(game);
+        }
         
         
+
     }
- 
+
     /* Clean every resource allocated */
-    //freeScene(mainScene);
+    freeScene(mainScene);
     //freeSceneManager(&sceneManager);
     Mix_FreeMusic(bgm);
     WindowDelete(game->window);

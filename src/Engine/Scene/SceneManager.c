@@ -5,20 +5,22 @@ void SceneManagerInit(SceneManager* manager) {
     manager->numScenes = 0;
 
         // Initialize the game state
-     manager->gameState.enemyIsAttacking = false;
-     manager->gameState.playerIsAttacking = false; 
-     manager->gameState.playerHealth = 100.0f;
-     manager->gameState.g_WindowWidth = 1280;
-     manager->gameState.g_WindowHeight = 720;
-     manager->gameState.g_WindowTitle = "Game";
-     manager->gameState.change = false;
-     manager->gameState.nextSceneIndex = -1;
+    manager->gameState.enemyIsAttacking = false;
+    manager->gameState.playerIsAttacking = false; 
+    manager->gameState.playerHealth = 100.0f;
+    manager->gameState.g_WindowWidth = 1280;
+    manager->gameState.g_WindowHeight = 720;
+    manager->gameState.g_WindowTitle = "Game";
+    manager->gameState.change = false;
+    manager->gameState.nextSceneIndex = -1;
+    manager->gameState.previousSceneIndex = -1;
+    manager->gameState.isForestDungeonDone = false;
 }
-
-void SceneManagerAddScene(SceneManager* manager, Scene* scene, void (*start)(Scene*), void (*update)(Scene*)) {
+void SceneManagerAddScene(SceneManager* manager, Scene* scene, void (*start)(Scene*), void (*update)(Scene*),void (*unload)(Scene*)) {
     if (manager->numScenes < MAX_SCENES) {
         scene->start = start;
         scene->update = update;
+        scene->unload = unload;
         manager->scenes[manager->numScenes++] = scene;
     }
 }
@@ -45,5 +47,10 @@ void freeSceneManager(SceneManager* manager) {
         }
     }    
 
-    // Free the SceneManager itself
+}
+
+void SceneManagerUnloadCurrentScene(SceneManager* manager, int index) {
+    if (manager->currentSceneIndex >= 0 && manager->currentSceneIndex < manager->numScenes) {
+        manager->scenes[manager->currentSceneIndex]->unload(manager->scenes[manager->currentSceneIndex]);
+    }
 }

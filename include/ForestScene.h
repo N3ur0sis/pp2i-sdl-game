@@ -4,7 +4,8 @@
 #include <GameState.h>
 #include <cglm/cglm.h>
 
-
+#define FLAMEDIST 2.0f
 
 void ForestMainScene(Scene* scene, GameState* gameState);
 void updateForestScene(Scene* scene, GameState* gameState);
+void unloadForestScene(Scene* scene);

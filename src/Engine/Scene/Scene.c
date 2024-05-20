@@ -1,4 +1,5 @@
 #include <Scene.h>
+
 Entity* createEntity(Scene* scene) {
     if (scene->numEntities >= MAX_ENTITIES) {
         return NULL; // Maximum entities reached
@@ -8,6 +9,7 @@ Entity* createEntity(Scene* scene) {
     entity->componentCount = 0;
     return entity;
 }
+
 
 void freeScene(Scene* scene) {
     if (scene == NULL) return;

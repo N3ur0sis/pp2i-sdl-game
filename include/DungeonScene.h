@@ -7,3 +7,4 @@
 
 void DungeonMainScene(Scene* scene, GameState* gameState);
 void updateDungeonScene(Scene* scene, GameState* gameState);
+void unloadDungeonScene(Scene* scene);

@@ -7,7 +7,7 @@ Collider* ColliderCreate(const char* path){
     struct aiScene* scene = ModelLoad(path);
     for (int i = 0; i < scene->mNumMeshes; i++)
     {
-        if(i>=100){
+        if(i>=MAXCOLLIDER){
             break;
         }
 
