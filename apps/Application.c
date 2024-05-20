@@ -6,7 +6,7 @@
 #include <StartScene.h>
 #include <SDL_mixer.h>
 #include <Renderer.h>
-
+#include <DungeonScene.h>
 
 /* Entry point of the program */
 int main(void){
@@ -38,11 +38,17 @@ int main(void){
     }
     Mix_VolumeMusic(10); // 64=50% du volume
 
-    Scene* mainScene = (Scene*)calloc(1,sizeof(Scene));
+     Scene* mainScene = (Scene*)calloc(1,sizeof(Scene));
     mainScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, mainScene, startMainScene, updateMainScene);
-
-    SceneManagerSetCurrentScene(&sceneManager, 0);
+    
+    /* Init of Dungeon Scene*/
+    Scene* dungeonScene = (Scene*)calloc(1,sizeof(Scene));
+    dungeonScene->numEntities = 0;
+    SceneManagerAddScene(&sceneManager, dungeonScene, DungeonMainScene, updateDungeonScene);
+    
+    int current_scene = 1;
+    SceneManagerSetCurrentScene(&sceneManager, current_scene);
 
 
     Shader* textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
@@ -56,40 +62,39 @@ int main(void){
     /* Game Loop */
     Uint32 lastTime = SDL_GetTicks();
     while (game->running) {
-        StartFrame(game);
         Uint32 currentTime = SDL_GetTicks();
-        mainScene->deltaTime = (currentTime - lastTime) / 1000.0f;
-        lastTime = currentTime;
-
-
-        physicsSystem(mainScene);
-
-
-        SceneManagerUpdateCurrentScene(&sceneManager);
-
-
-        cameraControl(mainScene->camera);
-
-        renderSystem(mainScene);
-
-        /* Example of rendering text and Image*/
-        RenderText("Press E to pick up", (SDL_Color){255, 255, 255, 0}, 640, 360, 12, 1280, 720, textShader->m_program);
-        for (int i = 0; i < 10; i++)
+        switch (current_scene)
         {
-            
-            RenderImage("assets/images/heart.png", (SDL_Color){255, 255, 255, 0}, 1280 - i*20, 10, 20, 1280, 720, textShader->m_program);
+        case 0:
+            StartFrame(game);
+            mainScene->deltaTime = (currentTime - lastTime) / 1000.0f;
+            lastTime = currentTime;
+            physicsSystem(mainScene);
+            SceneManagerUpdateCurrentScene(&sceneManager);
+            cameraControl(mainScene->camera);
+            renderSystem(mainScene);
+            EndFrame(game);
+            break;
+        case 1:
+            StartFrame(game);
+            dungeonScene->deltaTime = (currentTime - lastTime) / 1000.0f;
+            lastTime = currentTime;
+            physicsSystem(dungeonScene);
+            SceneManagerUpdateCurrentScene(&sceneManager);
+            cameraControl(dungeonScene->camera);
+            renderSystem(dungeonScene);
+            EndFrame(game);
+        default:
+            break;
         }
-        
-
-        EndFrame(game);
     }
 
     /* Clean every resource allocated */
-    ModelFree((Model*)getComponent(&mainScene->entities[1], COMPONENT_RENDERABLE));
-    ModelFree((Model*)getComponent(&mainScene->entities[3], COMPONENT_RENDERABLE));
+    // ModelFree((Model*)getComponent(&mainScene->entities[1], COMPONENT_RENDERABLE));
+    // ModelFree((Model*)getComponent(&mainScene->entities[3], COMPONENT_RENDERABLE));
     free(mainScene->camera);
-    DeleteShaders(mainScene->shader);
-    SkyboxDelete(mainScene->skybox);
+    // DeleteShaders(mainScene->shader);
+    // SkyboxDelete(mainScene->skybox);
     WindowDelete(game->window);
     EngineQuit();
 }
