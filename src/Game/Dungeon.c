@@ -682,7 +682,7 @@ void LoadRoom2L(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* b
     {
     case 'S':
         if (dir_used[3]){
-        glm_vec3_copy((vec3){-0.5f,0.0f,-4.25f},  body->velocity);
+        glm_vec3_copy((vec3){-0.5f,0.0f,-3.5f},  body->velocity);
         }
         else {glm_vec3_copy((vec3){-7.3f,0.0f,-11.5f},  body->velocity);}
         break;

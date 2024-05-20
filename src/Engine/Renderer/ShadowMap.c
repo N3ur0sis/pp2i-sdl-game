@@ -23,7 +23,7 @@ ShadowMap* ShadowMapCreate(vec3 position, Shader* shader){
     mat4 orthoProj, lightView;
     vec3 lighPos;
     glm_vec3_scale(position, 30.0f, lighPos);
-    glm_ortho(-100.0f, 100.0f, -100.0f, 100.0f, 0.1f, 500.0f,orthoProj);
+    glm_ortho(-100.0f, 100.0f, -100.0f, 100.0f, 0.1f, 100.0f,orthoProj);
     glm_lookat( lighPos, (vec3){0.0f,0.0f,0.0f},(vec3){0.0f,1.0f,0.0f}, lightView);
     glm_mat4_mul(orthoProj,lightView,shadowMap->depthMatrix);
 

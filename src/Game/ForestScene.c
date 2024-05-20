@@ -47,7 +47,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     /* Light Entity */
     Entity* lightEntity = createEntity(scene);
     if (lightEntity != NULL) {
-        Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f);
+        Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, 1.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f);
         addComponent(lightEntity, COMPONENT_LIGHT, light);
     }
 
@@ -55,7 +55,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     Entity* mapEntity = createEntity(scene);
     if (mapEntity != NULL) {
         Model* map = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(map,"assets/models/Foret/foret.obj");
+        ModelCreate(map,"assets/models/Foret/forest.obj");
         addComponent(mapEntity, COMPONENT_RENDERABLE, map);
 
         Collider* mapCollision = ColliderCreate("assets/models/Foret/col.obj");//Create a .obj file for this scene
