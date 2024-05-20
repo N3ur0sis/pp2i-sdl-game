@@ -5,6 +5,7 @@
 #include <System.h>
 #include <StartScene.h>
 #include <SDL_mixer.h>
+#include <Renderer.h>
 
 
 /* Entry point of the program */
@@ -46,12 +47,12 @@ int main(void){
 
     Shader* textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
 
-    if (TTF_Init() == -1) {
-        printf("TTF could not initialize! TTF_Error: %s\n", TTF_GetError());
-        SDL_Quit();
-        return 1;
-    }
-
+    // if (TTF_Init() == -1) {
+    //     printf("TTF could not initialize! TTF_Error: %s\n", TTF_GetError());
+    //     SDL_Quit();
+    //     return 1;
+    // }
+    TTF_Init();
     /* Game Loop */
     Uint32 lastTime = SDL_GetTicks();
     while (game->running) {
