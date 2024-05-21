@@ -72,7 +72,7 @@ int main(void){
             physicsSystem(mainScene);
             renderSystem(mainScene, &sceneManager.gameState);
             SceneManagerUpdateCurrentScene(&sceneManager);
-            cameraControl(mainScene->camera);
+            cameraControl(mainScene->camera, &sceneManager.gameState);
             EndFrame(game);
             break;
         case 1:
@@ -81,7 +81,7 @@ int main(void){
             lastTime = currentTime;
             physicsSystem(dungeonScene);
             SceneManagerUpdateCurrentScene(&sceneManager);
-            cameraControl(dungeonScene->camera);
+            cameraControl(dungeonScene->camera, &sceneManager.gameState);
             renderSystem(dungeonScene, &sceneManager.gameState);
             EndFrame(game);
         default:

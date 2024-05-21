@@ -130,6 +130,8 @@ void startMainScene(Scene* scene, GameState* gameState) {
 }
 
 void updateMainScene(Scene* scene, GameState* gameState) {
+
+    
     // Game Logic
     Entity* enemy = &scene->entities[0];
     Entity* playerEntity = &scene->entities[1];
