@@ -16,7 +16,7 @@ void renderSystem(Scene* scene, GameState* gamestate) {
             for (int j = 0; j < scene->numEntities; ++j) {
                 Entity* entity = &scene->entities[j];
                 Model* model = (Model*)getComponent(entity, COMPONENT_RENDERABLE);
-                if (model) {
+                if (model && model->isRenderable) {
                     glUniform1i(glGetUniformLocation(light->shadowMap->shadowMapShader->m_program, "isAnimated"), model->isAnimated);
                     ModelDraw(model, light->shadowMap->shadowMapShader, scene->camera, NULL);
                 }
