@@ -7,7 +7,7 @@ Entity* create_golem(Scene* scene){
         Model* golem = (Model*)calloc(1, sizeof(Model));
         ModelCreate(golem, "assets/models/Golem/Mutant Breathing Idle.dae");
         addComponent(enemy, COMPONENT_RENDERABLE, golem);
-
+        golem->isRenderable = false;
         Animation* golemIdleAnimation = AnimationCreate("assets/models/Golem/Mutant Breathing Idle.dae", golem, "golemIdleAnimation");
         Animation* golemWalkingAnimation = AnimationCreate("assets/models/Golem/Mutant Walking.dae", golem, "golemWalkingAnimation");
         Animation* golemPunchAnimation = AnimationCreate("assets/models/Golem/Mutant Punch.dae", golem, "golemPunchAnimation");
