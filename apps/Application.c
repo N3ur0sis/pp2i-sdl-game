@@ -38,7 +38,7 @@ int main(void){
     }
     Mix_VolumeMusic(10); // 64=50% du volume
 
-     Scene* mainScene = (Scene*)calloc(1,sizeof(Scene));
+    Scene* mainScene = (Scene*)calloc(1,sizeof(Scene));
     mainScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, mainScene, startMainScene, updateMainScene);
     

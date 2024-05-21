@@ -7,5 +7,6 @@ typedef struct GameState {
     int g_WindowWidth;
     int g_WindowHeight;
     char* g_WindowTitle;
+    bool isPlayerDead;
     // Add other game state variables as needed
 } GameState;

@@ -11,6 +11,7 @@ void SceneManagerInit(SceneManager* manager) {
      manager->gameState.g_WindowWidth = 1280;
      manager->gameState.g_WindowHeight = 720;
      manager->gameState.g_WindowTitle = "Game";
+     manager->gameState.isPlayerDead = false;
 }
 
 void SceneManagerAddScene(SceneManager* manager, Scene* scene, void (*start)(Scene*, GameState* gameState), void (*update)(Scene*, GameState* gameState)) {

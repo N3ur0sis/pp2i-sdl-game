@@ -12,3 +12,5 @@ void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float 
 float lerp_float(float a, float b, float t);
 void lerp_camera(Camera* camera, vec3 old_pos, vec3 new_pos, float old_yaw, float new_yaw, int steps, float duration);
 bool playerInteract();
+void checkDead(GameState* gamestate);
+void damagePlayer(GameState* gamestate, int damage);

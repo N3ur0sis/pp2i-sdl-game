@@ -13,7 +13,8 @@ typedef enum {
     COMPONENT_LIGHT,
     COMPONENT_ATTACHMENT,
     COMPONENT_RIGIDBODY,
-    COMPONENT_DUNGEON
+    COMPONENT_DUNGEON,
+    COMPONENT_HEALTH
 } ComponentType;
 
 typedef struct _Component{
@@ -34,3 +35,10 @@ typedef struct {
     vec3 velocity;
     float speed; 
 } RigidBody;
+
+
+typedef struct {
+    int health;
+    int maxHealth;
+    bool isAlive;
+} Health;

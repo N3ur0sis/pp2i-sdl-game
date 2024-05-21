@@ -6,6 +6,7 @@ typedef struct _Collider{
     vec3 boundingBox[100][2];
     mat4 transformMatrix;
     int numCollider;
+    bool isCollidable;
 } Collider;
 
 Collider* ColliderCreate(char* path);

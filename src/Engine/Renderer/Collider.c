@@ -24,6 +24,7 @@ Collider* ColliderCreate(char* path){
     }
     
     aiReleaseImport(scene);
+    collider->isCollidable = true;
     return collider;
 }
 

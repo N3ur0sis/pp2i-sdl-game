@@ -7,8 +7,9 @@
 
 
 bool checkpoint_sword = false;
-int click_counter = 0 ;
 bool is_clicking = false;
+bool isBarrierDestroyed = false;
+int click_counter = 0 ;
 
 void startMainScene(Scene* scene, GameState* gameState) {
     /* Load and compile shaders */
@@ -38,6 +39,11 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(enemy, COMPONENT_ANIMATION, golemPunchAnimation);
         addComponent(enemy, COMPONENT_ANIMATOR, golemAnimator);
         glm_vec3_copy((vec3){2.0f, 0.0f, -10.0f}, golem->position);
+        Health* enemyHealth = (Health*)calloc(1, sizeof(Health));
+        enemyHealth->health = 100.0f;
+        enemyHealth->maxHealth = 100.0f;
+        enemyHealth->isAlive = true;
+        addComponent(enemy, COMPONENT_HEALTH, enemyHealth);
 
     }
 
@@ -129,11 +135,32 @@ void startMainScene(Scene* scene, GameState* gameState) {
         chestOpen->isRenderable = false;
         addComponent(chestOpenEntity, COMPONENT_RENDERABLE, chestOpen);
     }
+
+
+    // StartBarrier Entity
+    Entity* startBarrierEntity = createEntity(scene);
+    if (startBarrierEntity != NULL) {
+        Model* startBarrier = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(startBarrier, "assets/models/Objet/StartBarrier/StartBarrier.obj");
+        startBarrier->isRenderable = true;
+        addComponent(startBarrierEntity, COMPONENT_RENDERABLE, startBarrier);
+
+        ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->position[0] = -40.0f;
+        ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->position[1] = 0.0f;
+        ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->position[2] = -14.0f;
+
+        Collider* startBarrierCollision = ColliderCreate("assets/models/Objet/StartBarrier/StartBarrier.obj");
+        glm_translate_make(startBarrierCollision->transformMatrix, (vec3){-40.0f, 0.0f, -14.0f});
+        UpdateCollider(startBarrierCollision);
+        addComponent(startBarrierEntity, COMPONENT_COLLIDER, startBarrierCollision);
+
+    }
+
 }
 
 void updateMainScene(Scene* scene, GameState* gameState) {
 
-    
+
     // Game Logic
     Entity* enemy = &scene->entities[0];
 
@@ -142,13 +169,44 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     // Entity* mapEntity = &scene->entities[3];
     Entity* chestEntity = &scene->entities[5];
     Entity* chestOpenEntity = &scene->entities[6];
+    Entity* startBarrierEntity = &scene->entities[7];
 
     bool isBusy = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy;
     float x = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[0];
     float y = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[2];
     // float z = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1];
-    printf("%f,%f,%f\n", scene->camera->Yaw,scene->camera->Pitch,scene->camera->Position[2]);
+    // printf("%f,%f,%f\n", scene->camera->Yaw,scene->camera->Pitch,scene->camera->Position[2]);
+    printf("%f\n", gameState->playerHealth);
+    checkDead(gameState);
 
+    if (gameState->isPlayerDead) {
+        ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy = true;
+        isBusy = true;
+        RenderText("Vous êtes mort", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderText("Appuyez sur r pour recommencer", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2 - 50, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        if (getKeyState(SDLK_r)) {
+            gameState->isPlayerDead = false;
+            gameState->playerHealth = 100.0f;
+            ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy = false;
+            isBusy = false;
+            glm_vec3_copy((vec3){28.0f, 0.1f, 7.0f}, ((RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY))->velocity);
+            glm_translate_make(((Collider*)getComponent(playerEntity, COMPONENT_COLLIDER))->transformMatrix, ((RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY))->velocity);
+            glm_aabb_transform(((Collider*)getComponent(playerEntity, COMPONENT_COLLIDER))->boundingBoxReference[0],((Collider*)getComponent(playerEntity, COMPONENT_COLLIDER))->transformMatrix,((Collider*)getComponent(playerEntity, COMPONENT_COLLIDER))->boundingBox[0]);
+            ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->isRenderable = false;
+            glm_vec3_copy((vec3){2.0f, 0.0f, -10.0f},((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->position);
+            ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))->isRenderable = false;
+            glm_vec3_copy((vec3){28.0f, 5.0f, 10.0f}, scene->camera->Position);
+            ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->isRenderable = true;
+            glm_translate_make(((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->transformMatrix, (vec3){-40.0f, 0.0f, -14.0f});
+            for(int k = 0; k < ((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->numCollider; k++){
+                glm_aabb_transform(((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBoxReference[k],((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->transformMatrix,((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBox[k]);
+            }
+            scene->camera->Yaw = 28.0f;
+            scene->camera->Pitch = 5.0f;
+            isBarrierDestroyed = false;
+            checkpoint_sword = false;
+        }
+    }
 
 
     if (playerEntity && enemy) {
@@ -209,7 +267,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
                 ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemPunchAnimation");
             }
             if (((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->playTime > ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->currentAnimation->anim_dur - 10) {
-                gameState->playerHealth -= 10.0f;
+                damagePlayer(gameState, 10);
                 ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->playTime = 0.0f;
                 gameState->enemyIsAttacking = false;
             }
@@ -223,6 +281,19 @@ void updateMainScene(Scene* scene, GameState* gameState) {
         } else {
             gameState->enemyIsAttacking = false;
             ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemIdleAnimation");
+        }
+
+
+        if (x < -37.25 && y <-13.85 && y > -17.5 && !isBarrierDestroyed) {
+            if (getMouseButtonState(1)) {
+                ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->isRenderable = false;
+                glm_translate_make(((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->transformMatrix, (vec3){1000.0f, 1000.0f, 1000.0f});
+                for(int k = 0; k < ((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->numCollider; k++){
+                    glm_aabb_transform(((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBoxReference[k],((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->transformMatrix,((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBox[k]);
+                }
+                // glm_aabb_transform(((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBoxReference[0],((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->transformMatrix,((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBox[0]);
+                isBarrierDestroyed = true;
+            }
         }
 
         if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation"))){
