@@ -140,7 +140,6 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
     (void)gameState;
     Entity* playerEntity = &scene->entities[2];
     Entity* dungeon = &scene->entities[1];
-    Entity* enemy = &scene->entities[5];
     Dungeon* dj = (Dungeon*)getComponent(dungeon, COMPONENT_DUNGEON);
     Model* playerModel = (Model*)getComponent(playerEntity, COMPONENT_RENDERABLE);
     RigidBody* body = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
@@ -150,7 +149,7 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
             playerAnimator->playTime = 0.0f;
         }
         if (!playerModel->isBusy){
-        playerMovement(playerEntity, scene->deltaTime, scene->camera, (Model*)getComponent(enemy, COMPONENT_RENDERABLE));}
+        playerMovement(playerEntity, scene->deltaTime, scene->camera, NULL);}
     if (getKeyState(SDLK_b)){
         printf("La direction d'ou on vient est %c, et %d et l id est %d\n",dj->direction,dj->current_room,dj->rooms[dj->current_room].id);
     }
@@ -176,6 +175,7 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
             playerModel->isBusy = false;
         }
         }
+    //displayMiniMap(scene,dj,gameState);
     switch(dj->rooms[dj->current_room].id){
         case 0:
         LogicRoom1C(scene,gameState,dj,body);

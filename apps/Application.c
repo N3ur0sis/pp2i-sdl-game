@@ -47,12 +47,12 @@ int main(void){
     dungeonScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, dungeonScene, DungeonMainScene, updateDungeonScene,unloadDungeonScene);
     
-     /* Init of Dungeon Scene*/
+     /* Init of Forest Scene*/
     Scene* forestScene = (Scene*)calloc(1,sizeof(Scene));
     forestScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, forestScene, ForestMainScene, updateForestScene,unloadStartScene);
 
-    int current_scene = 0;
+    int current_scene = 1;
     SceneManagerSetCurrentScene(&sceneManager, current_scene);
 
     TTF_Init();
@@ -82,9 +82,6 @@ int main(void){
             lastTime = currentTime;
             EndFrame(game);
         }
-        
-        
-
     }
 
     /* Clean every resource allocated */

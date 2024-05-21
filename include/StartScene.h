@@ -14,6 +14,7 @@ bool is_clicking = false;
 void startMainScene(Scene* scene, GameState* gameState) {
     /* Load and compile shaders */
     scene->shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
+    UseShaders(scene->shader);
     /* Load and compile textShader */
     scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
     /* Create a scene camera */
@@ -88,10 +89,26 @@ void startMainScene(Scene* scene, GameState* gameState) {
         chestOpen->isRenderable = false;
         addComponent(chestOpenEntity, COMPONENT_RENDERABLE, chestOpen);
     }
+    Entity* startBarrierEntity = createEntity(scene);
+    if (startBarrierEntity != NULL) {
+        Model* startBarrier = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(startBarrier, "assets/models/Objet/StartBarrier/StartBarrier.obj");
+        startBarrier->isRenderable = true;
+        addComponent(startBarrierEntity, COMPONENT_RENDERABLE, startBarrier);
+
+        ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->position[0] = -40.0f;
+        ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->position[1] = 0.0f;
+        ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->position[2] = -14.0f;
+
+        Collider* startBarrierCollision = ColliderCreate("assets/models/Objet/StartBarrier/StartBarrier.obj");
+        glm_translate_make(startBarrierCollision->transformMatrix, (vec3){-40.0f, 0.0f, -14.0f});
+        UpdateCollider(startBarrierCollision);
+        addComponent(startBarrierEntity, COMPONENT_COLLIDER, startBarrierCollision);
+
+    }
 }
  
 void updateMainScene(Scene* scene, GameState* gameState) {
-
     
     // Game Logic
     Entity* enemy = &scene->entities[0];
@@ -321,6 +338,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
 
 void unloadStartScene(Scene* scene){
     DeleteShaders(scene->shader);
+    DeleteShaders(scene->textShader);
     SkyboxDelete(scene->skybox);
 
     if (scene->camera) {

@@ -89,7 +89,6 @@ void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enem
 
 
 void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float deltaTime) {
-	printf("each frame \n");
 	targetPosition++;
 	if (position[0] < -25.0f) {
 		if (camera->Yaw != 180.0f) {
@@ -190,7 +189,7 @@ Entity* create_player(Scene*  scene,float x,float y,float z){
         Animator* playerAnimator = AnimatorCreate(walkingAnimation);
         glm_vec3_copy((vec3){0.5f, 0.5f, 0.5f}, playerModel->scale);
         RigidBody* playerRigidBody = (RigidBody*)calloc(1,sizeof(RigidBody));
-        glm_vec3_copy((vec3){28.0f, 0.1f, 7.0f}, playerRigidBody->velocity);
+        glm_vec3_copy((vec3){x,y,z}, playerRigidBody->velocity);
         playerRigidBody->speed = .0f;
         Collider* playerCollider = ColliderCreate("assets/models/LoPotitChat/PlayerWalk.dae");
         glm_scale_make(playerCollider->transformMatrix, (vec3){0.5f, 0.5f, 0.5f});

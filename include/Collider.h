@@ -1,6 +1,6 @@
 #pragma once
 #include <Model.h>
-#define MAXCOLLIDER 1000
+#define MAXCOLLIDER 2000
 typedef struct _Collider{
     vec3 boundingBoxReference[MAXCOLLIDER][2];
     vec3 boundingBox[MAXCOLLIDER][2];

@@ -29,6 +29,7 @@ struct  _Dungeon
     int current_room;
     bool change;
     bool hasKey;
+    bool quit;
     float lastRoomChangeTime;
 
     
@@ -68,3 +69,4 @@ void LogicRoom3T (Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body )
 void LogicRoomB (Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body );
 void initializeLRooms(Dungeon *dj);
 void setTypeRoom(Dungeon* dj);
+void displayMiniMap(Scene* scene, Dungeon* dj,GameState* gameState);
