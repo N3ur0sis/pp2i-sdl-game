@@ -7,5 +7,9 @@ typedef struct GameState {
     int g_WindowWidth;
     int g_WindowHeight;
     char* g_WindowTitle;
+    int nextSceneIndex;
+    int previousSceneIndex;
+    bool change;
+    bool isForestDungeonDone;
     // Add other game state variables as needed
 } GameState;

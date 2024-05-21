@@ -118,16 +118,6 @@ int NodeImport(const struct aiNode* ai_node, Node** skel_node, size_t bone_count
     return 1;
 }
 
-void NodeDelete(Node* node) {
-    if(node->pos_keys) free(node->pos_keys);
-    if(node->rot_keys) free(node->rot_keys);
-    if(node->sca_keys) free(node->sca_keys);
-    if(node->pos_key_times) free(node->pos_key_times);
-    if(node->rot_key_times) free(node->rot_key_times);
-    if(node->sca_key_times) free(node->sca_key_times);
-    for(size_t i=0; i<node->child_count; ++i)
-        NodeDelete(node->children[i]);
-}
 
 void CalculateBoneTransformation(Node* node, float anim_time, mat4 parent_mat, mat4* bones,mat4* bone_anim_mats){
     
@@ -217,4 +207,25 @@ void CalculateBoneTransformation(Node* node, float anim_time, mat4 parent_mat, m
     }
     for(size_t i=0; i<node->child_count; ++i)
         ModelAnimate(node->children[i], anim_time, our_mat, bones, bone_anim_mats);
+}
+
+void NodeDelete(Node* node) {
+    if (node->pos_keys) free(node->pos_keys);
+    if (node->rot_keys) free(node->rot_keys);
+    if (node->sca_keys) free(node->sca_keys);
+    if (node->pos_key_times) free(node->pos_key_times);
+    if (node->rot_key_times) free(node->rot_key_times);
+    if (node->sca_key_times) free(node->sca_key_times);
+    for (size_t i = 0; i < node->child_count; ++i) {
+        NodeDelete(node->children[i]);
+    }
+    //free(node->children);
+    free(node);
+}
+
+void AnimationDelete(Animation* animation) {
+    NodeDelete(animation->root_node);
+    free(animation->bone_mats);
+    free(animation->bone_anim_mats);
+    free(animation);
 }

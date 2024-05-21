@@ -86,6 +86,9 @@ void UseShaders(Shader* shader){
 }
 
 void DeleteShaders(Shader* shader){
+    if (shader){
     glDeleteProgram(shader->m_program);
     free(shader);
+    }
 }
+        

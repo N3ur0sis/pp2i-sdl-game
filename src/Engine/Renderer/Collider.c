@@ -7,7 +7,7 @@ Collider* ColliderCreate(char* path){
     const struct aiScene* scene = ModelLoad(path);
     for (unsigned int i = 0; i < scene->mNumMeshes; i++)
     {
-        if(i>=100){
+        if(i>=MAXCOLLIDER){
             break;
         }
 
@@ -34,4 +34,8 @@ void UpdateCollider(Collider* collider){
     glm_aabb_transform(collider->boundingBox[i],collider->transformMatrix,collider->boundingBox[i]);
     glm_aabb_transform(collider->boundingBoxReference[i],collider->transformMatrix,collider->boundingBoxReference[i]);
     }
+}
+
+void FreeCollider(Collider* collider){
+    free(collider);
 }

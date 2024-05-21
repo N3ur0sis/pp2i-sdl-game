@@ -177,3 +177,35 @@ float lerp_float(float a, float b, float t) {
 bool playerInteract(){
 	return getKeyState(SDLK_e);
 }
+
+Entity* create_player(Scene*  scene,float x,float y,float z){
+	Entity* playerEntity = createEntity(scene);
+    if (playerEntity != NULL) {
+        Model* playerModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(playerModel, "assets/models/LoPotitChat/PlayerWalk.dae");
+        Animation* attackAnimation = AnimationCreate("assets/models/LoPotitChat/PlayerAttack.dae", playerModel, "playerAttackAnimation");
+        Animation* walkingAnimation = AnimationCreate("assets/models/LoPotitChat/PlayerWalk.dae", playerModel, "playerWalkingAnimation");
+        Animation* iddleAnimation = AnimationCreate("assets/models/LoPotitChat/PlayerIdle.dae", playerModel, "playerIdleAnimation");
+        Animation* runningAnimation = AnimationCreate("assets/models/LoPotitChat/PlayerRunning.dae", playerModel, "playerRunningAnimation");
+        Animator* playerAnimator = AnimatorCreate(walkingAnimation);
+        glm_vec3_copy((vec3){0.5f, 0.5f, 0.5f}, playerModel->scale);
+        RigidBody* playerRigidBody = (RigidBody*)calloc(1,sizeof(RigidBody));
+        glm_vec3_copy((vec3){28.0f, 0.1f, 7.0f}, playerRigidBody->velocity);
+        playerRigidBody->speed = .0f;
+        Collider* playerCollider = ColliderCreate("assets/models/LoPotitChat/PlayerWalk.dae");
+        glm_scale_make(playerCollider->transformMatrix, (vec3){0.5f, 0.5f, 0.5f});
+        UpdateCollider(playerCollider);
+
+        addComponent(playerEntity, COMPONENT_RENDERABLE, playerModel);
+        addComponent(playerEntity, COMPONENT_ANIMATION, attackAnimation);
+        addComponent(playerEntity, COMPONENT_ANIMATION, walkingAnimation);
+        addComponent(playerEntity, COMPONENT_ANIMATION, iddleAnimation);
+        addComponent(playerEntity, COMPONENT_ANIMATION, runningAnimation);
+        addComponent(playerEntity, COMPONENT_ANIMATOR, playerAnimator);
+        addComponent(playerEntity, COMPONENT_COLLIDER, playerCollider);
+        addComponent(playerEntity, COMPONENT_RIGIDBODY, playerRigidBody);
+    }
+
+	return playerEntity;
+}
+

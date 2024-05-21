@@ -3,6 +3,7 @@
 #include <Player.h>
 #include <GameState.h>
 #include <cglm/cglm.h>
+#include "Ennemy.h"
 #include <Renderer.h>
 
 
@@ -22,52 +23,10 @@ void startMainScene(Scene* scene, GameState* gameState) {
     scene->skybox = SkyboxCreate();
 
     /* Enemy Entity */
-    Entity* enemy = createEntity(scene);
-    if (enemy != NULL) {
-        Model* golem = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(golem, "assets/models/Golem/Mutant Breathing Idle.dae");
-        golem->isRenderable = false;
-        addComponent(enemy, COMPONENT_RENDERABLE, golem);
-
-        Animation* golemIdleAnimation = AnimationCreate("assets/models/Golem/Mutant Breathing Idle.dae", golem, "golemIdleAnimation");
-        Animation* golemWalkingAnimation = AnimationCreate("assets/models/Golem/Mutant Walking.dae", golem, "golemWalkingAnimation");
-        Animation* golemPunchAnimation = AnimationCreate("assets/models/Golem/Mutant Punch.dae", golem, "golemPunchAnimation");
-        Animator* golemAnimator = AnimatorCreate(golemIdleAnimation);
-        addComponent(enemy, COMPONENT_ANIMATION, golemIdleAnimation);
-        addComponent(enemy, COMPONENT_ANIMATION, golemWalkingAnimation);
-        addComponent(enemy, COMPONENT_ANIMATION, golemPunchAnimation);
-        addComponent(enemy, COMPONENT_ANIMATOR, golemAnimator);
-        glm_vec3_copy((vec3){2.0f, 0.0f, -10.0f}, golem->position);
-
-    }
+    Entity* golem = create_golem(scene);
 
     /* Player Entity */
-    Entity* playerEntity = createEntity(scene);
-    if (playerEntity != NULL) {
-        Model* playerModel = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(playerModel, "assets/models/LoPotitChat/PlayerWalk.dae");
-        Animation* attackAnimation = AnimationCreate("assets/models/LoPotitChat/PlayerAttack.dae", playerModel, "playerAttackAnimation");
-        Animation* walkingAnimation = AnimationCreate("assets/models/LoPotitChat/PlayerWalk.dae", playerModel, "playerWalkingAnimation");
-        Animation* iddleAnimation = AnimationCreate("assets/models/LoPotitChat/PlayerIdle.dae", playerModel, "playerIdleAnimation");
-        Animation* runningAnimation = AnimationCreate("assets/models/LoPotitChat/PlayerRunning.dae", playerModel, "playerRunningAnimation");
-        Animator* playerAnimator = AnimatorCreate(walkingAnimation);
-        glm_vec3_copy((vec3){0.5f, 0.5f, 0.5f}, playerModel->scale);
-        RigidBody* playerRigidBody = (RigidBody*)calloc(1,sizeof(RigidBody));
-        glm_vec3_copy((vec3){28.0f, 0.1f, 7.0f}, playerRigidBody->velocity);
-        playerRigidBody->speed = .0f;
-        Collider* playerCollider = ColliderCreate("assets/models/LoPotitChat/PlayerWalk.dae");
-        glm_scale_make(playerCollider->transformMatrix, (vec3){0.5f, 0.5f, 0.5f});
-        UpdateCollider(playerCollider);
-
-        addComponent(playerEntity, COMPONENT_RENDERABLE, playerModel);
-        addComponent(playerEntity, COMPONENT_ANIMATION, attackAnimation);
-        addComponent(playerEntity, COMPONENT_ANIMATION, walkingAnimation);
-        addComponent(playerEntity, COMPONENT_ANIMATION, iddleAnimation);
-        addComponent(playerEntity, COMPONENT_ANIMATION, runningAnimation);
-        addComponent(playerEntity, COMPONENT_ANIMATOR, playerAnimator);
-        addComponent(playerEntity, COMPONENT_COLLIDER, playerCollider);
-        addComponent(playerEntity, COMPONENT_RIGIDBODY, playerRigidBody);
-    }
+    Entity* playerEntity = create_player(scene,28.0f,0.1f,7.0f);
 
     /* Sword Entity */
     Entity* swordEntity = createEntity(scene);
@@ -130,7 +89,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(chestOpenEntity, COMPONENT_RENDERABLE, chestOpen);
     }
 }
-
+ 
 void updateMainScene(Scene* scene, GameState* gameState) {
 
     
@@ -360,3 +319,16 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     }
 }
 
+void unloadStartScene(Scene* scene){
+    DeleteShaders(scene->shader);
+    SkyboxDelete(scene->skybox);
+
+    if (scene->camera) {
+        free(scene->camera);
+    }
+
+    for (int i = 0; i < scene->numEntities; i++) {
+        freeEntity(&scene->entities[i]);
+    }
+    scene->numEntities = 0;
+}

@@ -34,3 +34,6 @@ typedef struct {
     vec3 velocity;
     float speed; 
 } RigidBody;
+
+void FreeAttachementComponent(AttachmentComponent* AttachmentComponent);
+void FreeRigidBody(RigidBody* rb);

@@ -38,6 +38,15 @@ void renderSystem(Scene* scene, GameState* gamestate) {
     for (int i = 0; i < scene->numEntities; ++i) {
         Entity* entity = &scene->entities[i];
         Model* model = (Model*)getComponent(entity, COMPONENT_RENDERABLE);
+        if (model) {
+        if (!model->isRenderable){
+            for (int j = 0;j<entity->componentCount;j++){
+                if (entity->components[j].type == COMPONENT_RENDERABLE &&((Model*)entity->components[j].data)->isRenderable){
+                model = ((Model*)entity->components[j].data);
+                break;
+            }
+            }
+      }}
         Dungeon* dj = (Dungeon*)getComponent(entity, COMPONENT_DUNGEON);
         if (dj) {  
             glUniform1i(glGetUniformLocation(scene->shader->m_program, "isAnimated"), dj->type_room[dj->rooms[dj->current_room].id].model->isAnimated);
