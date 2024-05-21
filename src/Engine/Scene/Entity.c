@@ -19,6 +19,7 @@ void* getComponent(Entity* entity, ComponentType type) {
     return NULL;
 }
 
+
 Animation* getAnimationComponent(Entity* entity, const char* animationName) {
     for (int i = 0; i < entity->componentCount; ++i) {
         if (entity->components[i].type == COMPONENT_ANIMATION) {

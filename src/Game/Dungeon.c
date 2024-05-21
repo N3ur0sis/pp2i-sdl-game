@@ -1,4 +1,5 @@
 #include "Dungeon.h"
+
 Dungeon* dj_create(){
     Dungeon *dj = malloc(sizeof(Dungeon)); 
     if (dj == NULL) {
@@ -767,10 +768,16 @@ void LoadRoom2L(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* b
         break;
     }
 }
-void LogicRoom1C(Dungeon*dj,RigidBody* body ){  
+void LogicRoom1C(Scene* scene,Dungeon*dj,RigidBody* body ){  
     vec3 DoorPosition={0.0f,0.0f,0.0f};
     vec3 DoorDir;
     char d1 = dj->direction;
+    bool isKeyRoom = false;
+    if (dj->rooms[dj->current_room].type==1){
+        Entity* keyBossChest = &scene->entities[4];
+        Model* keyBossChestModel = (Model*)keyBossChest->components[0].data;
+        Model* keyBossChestOuvertModel = (Model*)keyBossChest->components[1].data;
+    }
     switch (dj->direction){
         case 'S': 
             glm_vec3_copy((vec3){-2.15f,0.0f,-4.15f},DoorPosition);
@@ -806,7 +813,7 @@ void LogicRoom1C(Dungeon*dj,RigidBody* body ){
     }
 
 }
-void LogicRoom2C(Dungeon*dj,RigidBody* body){
+void LogicRoom2C(Scene* scene,Dungeon*dj,RigidBody* body ){
     vec3 Door1Position;
     vec3 Door2Position;
     vec3 Door1Dir;
@@ -865,7 +872,7 @@ void LogicRoom2C(Dungeon*dj,RigidBody* body){
     }
 
 }
-void LogicRoom3C(Dungeon*dj,RigidBody* body ){
+void LogicRoom3C(Scene* scene,Dungeon*dj,RigidBody* body ){
     char *l = "NSWE";
     bool dir_used[4] = {false,false,false,false};
     for (int k=0;k<dj->nb_rooms;k++){
@@ -946,7 +953,7 @@ void LogicRoom3C(Dungeon*dj,RigidBody* body ){
 
 }
 
-void LogicRoom4C(Dungeon*dj,RigidBody* body){
+void LogicRoom4C(Scene* scene,Dungeon*dj,RigidBody* body ){
     vec3 Door1Position={0.0f,0.0f,0.0f};
     vec3 Door2Position={0.0f,0.0f,0.0f};
     vec3 Door3Position={0.0f,0.0f,0.0f};
@@ -1016,7 +1023,7 @@ void LogicRoom4C(Dungeon*dj,RigidBody* body){
 
 }
 
-void LogicRoom3T(Dungeon*dj,RigidBody* body){
+void LogicRoom3T(Scene* scene,Dungeon*dj,RigidBody* body ){
     char *l = "NSWE";
     bool dir_used[4] = {false,false,false,false};
     for (int k=0;k<dj->nb_rooms;k++){
@@ -1109,7 +1116,7 @@ void LogicRoom3T(Dungeon*dj,RigidBody* body){
     }
 }
 
-void LogicRoom2L(Dungeon*dj,RigidBody* body){
+void LogicRoom2L(Scene* scene,Dungeon*dj,RigidBody* body ){
     char *l = "NSWE";
     bool dir_used[4] = {false,false,false,false};
     for (int k=0;k<dj->nb_rooms;k++){
@@ -1185,7 +1192,7 @@ void LogicRoom2L(Dungeon*dj,RigidBody* body){
         dj->change = true;
     }
 }
-void LogicRoom2I(Dungeon*dj,RigidBody* body){
+void LogicRoom2I(Scene* scene,Dungeon*dj,RigidBody* body ){
     vec3 Door1Position;
     vec3 Door2Position;
     vec3 Door1Dir;
@@ -1245,7 +1252,7 @@ void LogicRoom2I(Dungeon*dj,RigidBody* body){
         printf("D1 = %f,D2 = %f\n",Door1Dist,Door2Dist);
     }
 }
-void LogicRoomB(Dungeon*dj,RigidBody* body ){
+void LogicRoomB(Scene* scene,Dungeon*dj,RigidBody* body ){
     vec3 DoorPosition={0.0f,0.0f,0.0f};
     vec3 DoorDir;
     char d1=dj->direction;

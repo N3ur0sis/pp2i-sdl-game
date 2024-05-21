@@ -7,6 +7,7 @@ Entity of this scene (order of their index):
     Dungeon
     Player
     Sword
+    KeyBossChest
     Enemy
 */
 
@@ -79,6 +80,19 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
         glm_vec3_copy((vec3){1.0f, 1.0f, 1.0f}, swordAttachment->offsetScale);
         addComponent(swordEntity, COMPONENT_ATTACHMENT, swordAttachment);
     }
+    
+
+    /*KeyBossChest Entity*/
+    Entity* keyBossChest = createEntity(scene);
+    if (keyBossChest != NULL) {
+        Model* keyBossChestModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(keyBossChestModel, "assets/models/Objet/Chest/ChestFermeSerrure.obj");
+        addComponent(keyBossChest, COMPONENT_RENDERABLE, keyBossChestModel);
+        Model* keyBossChestOuvertModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(keyBossChestOuvertModel, "assets/models/Objet/Chest/ChestFermeSerrure.obj");
+        addComponent(keyBossChest, COMPONENT_RENDERABLE, keyBossChestOuvertModel);
+        keyBossChestOuvertModel->isRenderable = false;
+    }
 
     /* Enemy Entity */
     Entity* enemy = createEntity(scene);
@@ -104,7 +118,7 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
 void updateDungeonScene(Scene* scene, GameState* gameState) {
     Entity* playerEntity = &scene->entities[2];
     Entity* dungeon = &scene->entities[1];
-    Entity* enemy = &scene->entities[4];
+    Entity* enemy = &scene->entities[5];
     Dungeon* dj = (Dungeon*)getComponent(dungeon, COMPONENT_DUNGEON);
 
     Model* playerModel = (Model*)getComponent(playerEntity, COMPONENT_RENDERABLE);
@@ -123,30 +137,41 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
     if (getKeyState(SDLK_p)){
         printf("Le joueur est en %f %f\n",playerModel->position[0],playerModel->position[2]);
     }
+    char *l = "NSWE";
+    bool dir_used[4] = {false,false,false,false};
+    for (int k=0;k<dj->nb_rooms;k++){
+        if (dj->adj[dj->current_room][k]!='O'){
+            for (int j=0;j<4;j++){
+                if (dj->adj[dj->current_room][k]==l[j]){
+                    dir_used[j]=true;
+                }
+            }
+        }
+    }
     switch(dj->rooms[dj->current_room].id){
         case 0:
-        LogicRoom1C(dj,body );
+        LogicRoom1C(scene,dj,body);
         break;
         case 1:
-        LogicRoom2C(dj,body );
+        LogicRoom2C(scene,dj,body);
         break;
         case 2:
-        LogicRoom2I(dj,body );
+        LogicRoom2I(scene,dj,body);
         break;
         case 3:
-        LogicRoom2L(dj,body );
+        LogicRoom2L(scene,dj,body);
         break;
         case 4:
-        LogicRoom3C(dj,body );
+        LogicRoom3C(scene,dj,body);
         break;
         case 5:
-        LogicRoom3T(dj,body );
+        LogicRoom3T(scene,dj,body);
         break;
         case 6:
-        LogicRoom4C(dj,body );
+        LogicRoom4C(scene,dj,body);
         break;
         case 7:
-        LogicRoomB(dj,body);
+        LogicRoomB(scene,dj,body);
         break;
     }
     if (dj->change){

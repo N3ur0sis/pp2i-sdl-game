@@ -7,7 +7,8 @@
 #include "List.h"
 #include <stdbool.h>
 #include <string.h>
-#include <GameState.h>
+#include <GameState.h>~
+#include <Scene.h>
 
 #define NB_ROOM_MAX 15
 #define NB_ROOM_MIN 10
@@ -56,13 +57,13 @@ void LoadRoom3T(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* b
 void LoadRoom2L(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
 void LoadRoom4C(Model* player,Dungeon*dj,RigidBody* body);
 void LoadRoomB(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
-void LogicRoom1C (Dungeon* dj, RigidBody* body);
-void LogicRoom2C (Dungeon* dj, RigidBody* body);
-void LogicRoom3C (Dungeon* dj, RigidBody* body);
-void LogicRoom4C (Dungeon* dj, RigidBody* body);
-void LogicRoom2L (Dungeon* dj, RigidBody* body);
-void LogicRoom2I (Dungeon* dj, RigidBody* body);
-void LogicRoom3T (Dungeon* dj, RigidBody* body);
-void LogicRoomB (Dungeon* dj, RigidBody* body);
+void LogicRoom1C (Scene* scene,Dungeon*dj,RigidBody* body );
+void LogicRoom2C (Scene* scene,Dungeon*dj,RigidBody* body );
+void LogicRoom3C (Scene* scene,Dungeon*dj,RigidBody* body );
+void LogicRoom4C (Scene* scene,Dungeon*dj,RigidBody* body );
+void LogicRoom2L (Scene* scene,Dungeon*dj,RigidBody* body );
+void LogicRoom2I (Scene* scene,Dungeon*dj,RigidBody* body );
+void LogicRoom3T (Scene* scene,Dungeon*dj,RigidBody* body );
+void LogicRoomB (Scene* scene,Dungeon*dj,RigidBody* body );
 void initializeLRooms(Dungeon *dj);
 void setTypeRoom(Dungeon* dj);
