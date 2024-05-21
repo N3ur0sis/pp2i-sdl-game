@@ -207,7 +207,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
                 gameState->enemyIsAttacking = false;
             }
             ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->rotation[1] = glm_rad(rotTarget);
-        } else if (enemyDist < 15.0f) {
+        } else if (enemyDist < 10.0f) {
             ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->rotation[1] = glm_rad(rotTarget);
             gameState->enemyIsAttacking = false;
             ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemWalkingAnimation");
@@ -230,17 +230,27 @@ void updateMainScene(Scene* scene, GameState* gameState) {
             playerMovement(playerEntity, scene->deltaTime, scene->camera, (Model*)getComponent(enemy, COMPONENT_RENDERABLE));
         }
     }else{
-                        if(playerRigidbody->speed == 8.0f){
+        if(playerRigidbody->speed == 8.0f){
+                    if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)))){
+            playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
+        }else{
+
                 playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerRunningAnimation");
+        }
                 }else if(playerRigidbody->speed == 5.0f){
+                            if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)))){
+            playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
+        }else{
+            
                 playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerWalkingAnimation");
+        }
                 }
-                        if (y < -29.25f) {
+        if (y < -29.25f) {
             ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 1.1f;
         } else {
             ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 0.1f;
         }
-                        if (!isBusy) {
+        if (!isBusy) {
             playerMovement(playerEntity, scene->deltaTime, scene->camera, NULL);
         }
     }
@@ -256,8 +266,8 @@ void updateMainScene(Scene* scene, GameState* gameState) {
             switch (click_counter) {
                 case 0:
                     RenderText("Panneau étrange", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-                    RenderText("Bienvenue sur l'île oubliée voyageur!   ", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 140 , 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-                    RenderText("Fais attention à toi sur cette île      ", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 110, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    RenderText("Bienvenue sur l'Île Oubliée, voyageur.", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 140 , 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    RenderText("Les secrets de cette terre ancienne   ", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 110, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                     RenderText("               Cliquez pour continuer...", color_black, gameState->g_WindowWidth / 2 + 45, gameState->g_WindowHeight / 15 + 50, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                     RenderImage("assets/images/dialog-box.png", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                     if (getMouseButtonState(1) && !is_clicking) {
@@ -269,9 +279,9 @@ void updateMainScene(Scene* scene, GameState* gameState) {
                     }
                     break;
                 case 1:
-                    RenderText("Panneau etrange", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-                    RenderText("Bienvenue jeune aventurier !            ", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 140 , 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-                    RenderText("Profite bien de cette superbe aventure !", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 110, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    RenderText("Panneau étrange", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    RenderText("attendent ceux qui osent les découvrir.", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 140 , 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    RenderText("Explore les environs pour avancer.     ", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 110, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                     RenderText("               Cliquez pour continuer...", color_black, gameState->g_WindowWidth / 2 + 45, gameState->g_WindowHeight / 15 + 50, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                     RenderImage("assets/images/dialog-box.png", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                     if (getMouseButtonState(1) && !is_clicking) {
@@ -284,8 +294,8 @@ void updateMainScene(Scene* scene, GameState* gameState) {
                     break;
                 case 2:
                     RenderText("Panneau etrange", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-                    RenderText("Bienvenue jeune aventurier !            ", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 140 , 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-                    RenderText("Profite bien de cette superbe aventure !", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 110, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    RenderText("Chaque découverte est une clé.          ", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 140 , 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    RenderText("Bonne chance dans ton aventure.         ", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 110, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                     RenderText("               Cliquez pour continuer...", color_black, gameState->g_WindowWidth / 2 + 45, gameState->g_WindowHeight / 15 + 50, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                     RenderImage("assets/images/dialog-box.png", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                     if (getMouseButtonState(1) && !is_clicking) {
@@ -318,8 +328,8 @@ void updateMainScene(Scene* scene, GameState* gameState) {
             switch (click_counter) {
                 case 0:
                     RenderText("Coffre         ", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-                    RenderText("Tu as trouvé une vielle épée en bois    ", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 140 , 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-                    RenderText("Elle pourra servir dans le futur...     ", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 110, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    RenderText("Tu as trouvé une épée dans le coffre.   ", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 140 , 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                    RenderText("Elle pourrait s'avérer utile en chemin. ", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 110, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                     RenderText("               Cliquez pour continuer...", color_black, gameState->g_WindowWidth / 2 + 45, gameState->g_WindowHeight / 15 + 50, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                     RenderImage("assets/images/dialog-box.png", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                     if (getMouseButtonState(1) && !is_clicking) {

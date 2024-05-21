@@ -36,7 +36,7 @@ int main(void){
     fprintf(stderr, "SDL_mixer could not play music! SDL_mixer Error: %s\n", Mix_GetError());
     return -1;
     }
-    Mix_VolumeMusic(0); // 64=50% du volume
+    Mix_VolumeMusic(10); // 64=50% du volume
 
      Scene* mainScene = (Scene*)calloc(1,sizeof(Scene));
     mainScene->numEntities = 0;
