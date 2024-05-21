@@ -32,13 +32,16 @@ void processInput(SDL_Event* e,  bool* running, GameState* gameState){
 			break;
 		case SDL_MOUSEWHEEL:
 			handleMouseWheelEvent(*e);
+			break;
 		case SDL_WINDOWEVENT:
         	if (e->window.event == SDL_WINDOWEVENT_RESIZED) {
             	printf("MESSAGE:Resizing window...\n");
             	gameState->g_WindowWidth = e->window.data1;
 				gameState->g_WindowHeight = e->window.data2;
-        		}
+			}
         break;
+		default :
+			break;
 	}
 }
 
