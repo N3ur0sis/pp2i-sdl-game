@@ -15,6 +15,8 @@
 #define MAX_DOOR 4
 #define NB_MODEL_SALLE 8
 #define ChangeTime 2000.0f
+#define LootChance 4;
+#define FightChance 2;
 typedef struct _Dungeon Dungeon;
 struct  _Dungeon
 {
@@ -63,3 +65,4 @@ void LogicRoom2I (Dungeon* dj, RigidBody* body);
 void LogicRoom3T (Dungeon* dj, RigidBody* body);
 void LogicRoomB (Dungeon* dj, RigidBody* body);
 void initializeLRooms(Dungeon *dj);
+void setTypeRoom(Dungeon* dj);

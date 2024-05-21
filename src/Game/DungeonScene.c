@@ -34,6 +34,7 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
         Dungeon* dj = dj_create();
         initialize(dj);
         initializeRooms(dj);
+        setTypeRoom(dj);
         Affiche(dj);
         addComponent(dungeon, COMPONENT_DUNGEON, dj);
     }

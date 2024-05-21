@@ -10,6 +10,7 @@ struct  _Room
     int* data;
     int nb_door;
     int id;
+    int type;
 
 };
 typedef struct _L_Room {

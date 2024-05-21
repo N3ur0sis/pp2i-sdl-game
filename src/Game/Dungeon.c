@@ -233,6 +233,7 @@ void initializeRooms(Dungeon *dj){
             dj->adj[0][0] = 'S';
 }
         dj->rooms[i].nb_door = nb;
+        dj->rooms[i].type =-1 ;
         int nb_model;
         int val_model;
         srand(time(NULL));
@@ -379,6 +380,63 @@ void Affiche(Dungeon *dj){
     printf("\n");
     printAdjList(dj);
     printf("Nb de salle:%d\n",dj->nb_rooms);
+    int nb_boss = 0;
+    int nb_key = 0;
+    int nb_loot = 0;
+    int nb_fight = 0;
+    int id0 = 0;
+    int id1 = 0;
+    int id2 = 0;
+    int id3 = 0;
+    int id4 = 0;
+    int id5 = 0;
+    int id6 = 0;
+    int id7 = 0;
+    for (int i =0;i<dj->nb_rooms;i++){
+        if (dj->rooms[i].type==0){
+            nb_boss++;
+        }
+        else if (dj->rooms[i].type==1){
+            nb_key++;
+        }
+        else if (dj->rooms[i].type==2){
+            nb_loot++;
+        }
+        else if (dj->rooms[i].type==3){
+            nb_fight++;
+        }
+
+        if (dj->rooms[i].id==0){
+            id0++;
+        }
+        else if (dj->rooms[i].id==1){
+            id1++;
+        }
+        else if (dj->rooms[i].id==2){
+            id2++;
+        }
+        else if (dj->rooms[i].id==3){
+            id3++;
+        }
+        else if (dj->rooms[i].id==4){
+            id4++;
+        }
+        else if (dj->rooms[i].id==5){
+            id5++;
+        }
+        else if (dj->rooms[i].id==6){
+            id6++;
+        }
+        else if (dj->rooms[i].id==7){
+            id7++;
+        }
+     printf("Le type de la salle %d est %d\n",i,dj->rooms[i].type);
+
+
+    }
+    printf("Il y a %d boss, il y a %d clé, il y a %d salles de loot, il y a %d salles de fight.\n",nb_boss,nb_key,nb_loot,nb_fight);
+    printf("Il y a %d 1C,%d 2C,%d 2I,%d 2L, %d 3C,%d 3T, %d 4C, %d B\n",id0,id1,id2,id3,id4,id5,id6,id7);
+
 }
 //on doit pouvoir factoriser les LoadRoomiC mais flemme
 void LoadRoom1C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
@@ -1224,5 +1282,41 @@ void LogicRoomB(Dungeon*dj,RigidBody* body ){
     if (getKeyState(SDLK_o)){
         printf("D1 = %f\n",DoorDist);
     }
+
+}
+
+void setTypeRoom(Dungeon* dj){
+    bool hasKeyBoss = false;
+    srand(time(NULL));
+    for (int i =0 ; i<dj->nb_rooms;i++){
+        if (dj->rooms[i].id == 0 && !hasKeyBoss){
+            dj->rooms[i].type = 1;
+            hasKeyBoss = true;
+            printf("J ai mis une cle\n");
+        }
+        else if (dj->rooms[i].id == 7){
+            dj->rooms[i].type = 0;
+        }
+        else if (dj->rooms[i].id == 0 ||dj->rooms[i].id == 1 || dj->rooms[i].id ==4 || dj->rooms[i].id == 6){
+
+            int n = rand()%LootChance+1;
+            printf("N = %d (loot || fight)\n",n);
+            if (n == 1){
+                 dj->rooms[i].type = 2;
+                 }
+            else if (n==2){
+                dj->rooms[i].type = 3;
+            }
+
+        }
+        else {
+            int n = rand()%LootChance+1;
+            printf("N = %d (fight)\n",n);
+            if (n==2){
+                dj->rooms[i].type = 3;
+            }
+        }
+    }
+
 
 }
