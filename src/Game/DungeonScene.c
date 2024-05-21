@@ -8,6 +8,7 @@ Entity of this scene (order of their index):
     Player
     Sword
     KeyBossChest
+    Chest
     Enemy
 */
 
@@ -93,6 +94,26 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
         ModelCreate(keyBossChestOuvertModel, "assets/models/Objet/Chest/ChestOuvert.obj");
         addComponent(keyBossChest, COMPONENT_RENDERABLE, keyBossChestOuvertModel);
         keyBossChestOuvertModel->isRenderable = false;
+        Collider* keyBossChestCollider = ColliderCreate("assets/models/Objet/Chest/ChestOuvert.obj");
+        glm_scale_make(keyBossChestCollider->transformMatrix, (vec3){0.5f, 0.5f, 0.5f});
+        UpdateCollider(keyBossChestCollider);
+        addComponent(keyBossChest, COMPONENT_COLLIDER, keyBossChestCollider);
+    }
+    /*Chest Entity*/
+    Entity* Chest = createEntity(scene);
+    if (Chest != NULL) {
+        Model* ChestModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(ChestModel, "assets/models/Objet/Chest/ChestFermeSerrure.obj");
+        addComponent(Chest, COMPONENT_RENDERABLE, ChestModel);
+        ChestModel->isRenderable = false;
+        Model* ChestOuvertModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(ChestOuvertModel, "assets/models/Objet/Chest/ChestOuvert.obj");
+        addComponent(Chest, COMPONENT_RENDERABLE, ChestOuvertModel);
+        ChestOuvertModel->isRenderable = false;
+        Collider* ChestCollider = ColliderCreate("assets/models/Objet/Chest/ChestOuvert.obj");
+        glm_scale_make(ChestCollider->transformMatrix, (vec3){0.5f, 0.5f, 0.5f});
+        UpdateCollider(ChestCollider);
+        addComponent(Chest, COMPONENT_COLLIDER, ChestCollider);
     }
 
     /* Enemy Entity */
@@ -112,8 +133,6 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
         addComponent(enemy, COMPONENT_ANIMATOR, golemAnimator);
         glm_vec3_copy((vec3){2.0f, 0.0f, -10.0f}, golem->position);
     }
-
-    
 }
 
 void updateDungeonScene(Scene* scene, GameState* gameState) {
@@ -131,7 +150,8 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
     if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation"))){
             playerAnimator->playTime = 0.0f;
         }
-        playerMovement(playerEntity, scene->deltaTime, scene->camera, (Model*)getComponent(enemy, COMPONENT_RENDERABLE));
+        if (!playerModel->isBusy){
+        playerMovement(playerEntity, scene->deltaTime, scene->camera, (Model*)getComponent(enemy, COMPONENT_RENDERABLE));}
     if (getKeyState(SDLK_b)){
         printf("La direction d'ou on vient est %c, et %d et l id est %d\n",dj->direction,dj->current_room,dj->rooms[dj->current_room].id);
     }
@@ -149,32 +169,41 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
             }
         }
     }
+    SDL_Color color_black = {0,0,0,0};
+    if (playerModel->isBusy && !dj->hasKey ){
+        RenderText("La porte est fermée... Il me faudrait une clé pour l'ouvrir !", color_black, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 100, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        if (getMouseButtonState(1)){
+            playerModel->isBusy = false;
+        }
+        }
     switch(dj->rooms[dj->current_room].id){
         case 0:
-        LogicRoom1C(scene,dj,body);
+        LogicRoom1C(scene,gameState,dj,body);
         break;
         case 1:
-        LogicRoom2C(scene,dj,body);
+        LogicRoom2C(scene,gameState,dj,body);
         break;
         case 2:
-        LogicRoom2I(scene,dj,body);
+        LogicRoom2I(scene,gameState,dj,body);
         break;
         case 3:
-        LogicRoom2L(scene,dj,body);
+        LogicRoom2L(scene,gameState,dj,body);
         break;
         case 4:
-        LogicRoom3C(scene,dj,body);
+        LogicRoom3C(scene,gameState,dj,body);
         break;
         case 5:
-        LogicRoom3T(scene,dj,body);
+        LogicRoom3T(scene,gameState,dj,body);
         break;
         case 6:
-        LogicRoom4C(scene,dj,body);
+        LogicRoom4C(scene,gameState,dj,body);
         break;
         case 7:
-        LogicRoomB(scene,dj,body);
+        LogicRoomB(scene,gameState,dj,body);
         break;
     }
+    
     if (dj->change){
             dj->lastRoomChangeTime = SDL_GetTicks();
             LoadRoom(scene,playerModel,dj,body, playerCollider,gameState);

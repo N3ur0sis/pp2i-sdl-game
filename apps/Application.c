@@ -34,7 +34,7 @@ int main(void){
     fprintf(stderr, "SDL_mixer could not play music! SDL_mixer Error: %s\n", Mix_GetError());
     return -1;
     }
-    Mix_VolumeMusic(10); // 64=50% du volume
+    Mix_VolumeMusic(0); // 64=50% du volume
     
     /* Init of Start Scene*/
     Scene* mainScene = (Scene*)calloc(1,sizeof(Scene));
@@ -66,9 +66,7 @@ int main(void){
             SceneManagerUnloadCurrentScene(&sceneManager, sceneManager.currentSceneIndex);
             //Load the next one
             sceneManager.currentSceneIndex = sceneManager.gameState.nextSceneIndex;
-            printf(" next scene = %d\n", sceneManager.currentSceneIndex);
             SceneManagerSetCurrentScene(&sceneManager, sceneManager.currentSceneIndex);
-            printf("on a fini de charger\n");
             sceneManager.gameState.change = false;
             sceneManager.gameState.nextSceneIndex = -1;
         }
