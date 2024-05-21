@@ -93,7 +93,7 @@ void physicsSystem(Scene* scene) {
                 Dungeon* dj = (Dungeon*)getComponent(otherEntity, COMPONENT_DUNGEON);
                 Collider* otherCollider;
                 if (dj) {  
-                    otherCollider = dj->type_room[dj->rooms[dj->current_room].id].col;
+                    otherCollider = (Collider*)dj->type_room[dj->rooms[dj->current_room].id].col;
                 }
                 else{
                     otherCollider = (Collider*)getComponent(otherEntity, COMPONENT_COLLIDER);

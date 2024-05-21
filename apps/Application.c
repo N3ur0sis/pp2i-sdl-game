@@ -51,13 +51,8 @@ int main(void){
     SceneManagerSetCurrentScene(&sceneManager, current_scene);
 
 
-    Shader* textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
 
-    if (TTF_Init() == -1) {
-        printf("TTF could not initialize! TTF_Error: %s\n", TTF_GetError());
-        SDL_Quit();
-        return 1;
-    }
+
     TTF_Init();
     /* Game Loop */
     Uint32 lastTime = SDL_GetTicks();
