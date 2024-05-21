@@ -46,7 +46,7 @@ int main(void){
     Scene* dungeonScene = (Scene*)calloc(1,sizeof(Scene));
     dungeonScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, dungeonScene, DungeonMainScene, updateDungeonScene,unloadDungeonScene);
-    
+      
      /* Init of Dungeon Scene*/
     Scene* forestScene = (Scene*)calloc(1,sizeof(Scene));
     forestScene->numEntities = 0;
@@ -82,9 +82,6 @@ int main(void){
             lastTime = currentTime;
             EndFrame(game);
         }
-        
-        
-
     }
 
     /* Clean every resource allocated */

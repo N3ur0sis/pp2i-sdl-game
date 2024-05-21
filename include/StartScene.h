@@ -125,7 +125,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     Entity* chestOpenEntity = &scene->entities[6];
     Entity* startBarrierEntity = &scene->entities[7];
 
-    bool isBusy = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy;
+    bool* isBusy = &((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy;
     float x = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[0];
     float y = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[2];
     // float z = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1];
@@ -133,33 +133,46 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     printf("%f\n", gameState->playerHealth);
     checkDead(gameState);
 
+    if (getKeyState(SDLK_b)){
+        gameState->change = true;
+        gameState->nextSceneIndex = 0;
+        gameState->previousSceneIndex = 0;
+    }
+
+
     if (gameState->isPlayerDead) {
-        ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy = true;
-        isBusy = true;
+        *isBusy = true;
         RenderText("Vous êtes mort", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         RenderText("Appuyez sur r pour recommencer", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2 - 50, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         if (getKeyState(SDLK_r)) {
+            gameState->change = true;
+            gameState->nextSceneIndex = 0;
+            gameState->previousSceneIndex = 0;
             gameState->isPlayerDead = false;
-            gameState->playerHealth = 100.0f;
-            ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy = false;
-            isBusy = false;
-            glm_vec3_copy((vec3){28.0f, 0.1f, 7.0f}, ((RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY))->velocity);
-            glm_translate_make(((Collider*)getComponent(playerEntity, COMPONENT_COLLIDER))->transformMatrix, ((RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY))->velocity);
-            glm_aabb_transform(((Collider*)getComponent(playerEntity, COMPONENT_COLLIDER))->boundingBoxReference[0],((Collider*)getComponent(playerEntity, COMPONENT_COLLIDER))->transformMatrix,((Collider*)getComponent(playerEntity, COMPONENT_COLLIDER))->boundingBox[0]);
-            ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->isRenderable = false;
-            glm_vec3_copy((vec3){2.0f, 0.0f, -10.0f},((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->position);
-            ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))->isRenderable = false;
-            glm_vec3_copy((vec3){28.0f, 5.0f, 10.0f}, scene->camera->Position);
-            ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->isRenderable = true;
-            glm_translate_make(((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->transformMatrix, (vec3){-40.0f, 0.0f, -14.0f});
-            for(int k = 0; k < ((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->numCollider; k++){
-                glm_aabb_transform(((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBoxReference[k],((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->transformMatrix,((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBox[k]);
-            }
-            scene->camera->Yaw = 28.0f;
-            scene->camera->Pitch = 5.0f;
-            isBarrierDestroyed = false;
-            checkpoint_sword = false;
+            printf("Restarting...\n");
         }
+        // if (getKeyState(SDLK_r)) {
+        //     gameState->isPlayerDead = false;
+        //     gameState->playerHealth = 100.0f;
+        //     ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy = false;
+        //     isBusy = false;
+        //     glm_vec3_copy((vec3){28.0f, 0.1f, 7.0f}, ((RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY))->velocity);
+        //     glm_translate_make(((Collider*)getComponent(playerEntity, COMPONENT_COLLIDER))->transformMatrix, ((RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY))->velocity);
+        //     glm_aabb_transform(((Collider*)getComponent(playerEntity, COMPONENT_COLLIDER))->boundingBoxReference[0],((Collider*)getComponent(playerEntity, COMPONENT_COLLIDER))->transformMatrix,((Collider*)getComponent(playerEntity, COMPONENT_COLLIDER))->boundingBox[0]);
+        //     ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->isRenderable = false;
+        //     glm_vec3_copy((vec3){2.0f, 0.0f, -10.0f},((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->position);
+        //     ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))->isRenderable = false;
+        //     glm_vec3_copy((vec3){28.0f, 5.0f, 10.0f}, scene->camera->Position);
+        //     ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->isRenderable = true;
+        //     glm_translate_make(((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->transformMatrix, (vec3){-40.0f, 0.0f, -14.0f});
+        //     for(int k = 0; k < ((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->numCollider; k++){
+        //         glm_aabb_transform(((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBoxReference[k],((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->transformMatrix,((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBox[k]);
+        //     }
+        //     scene->camera->Yaw = 28.0f;
+        //     scene->camera->Pitch = 5.0f;
+        //     isBarrierDestroyed = false;
+        //     checkpoint_sword = false;
+        // }
     }
 
 
@@ -258,7 +271,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
         } else {
             ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 0.1f;
         }
-        if (!isBusy) {
+        if (!*isBusy) {
             playerMovement(playerEntity, scene->deltaTime, scene->camera, (Model*)getComponent(enemy, COMPONENT_RENDERABLE));
         }
     }else{
@@ -282,19 +295,19 @@ void updateMainScene(Scene* scene, GameState* gameState) {
         } else {
             ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 0.1f;
         }
-        if (!isBusy) {
+        if (!*isBusy) {
             playerMovement(playerEntity, scene->deltaTime, scene->camera, NULL);
         }
     }
         SDL_Color color_black = {0, 0, 0, 0};
         SDL_Color color_white = {255, 255, 255, 0};
-        if ((x < 8.0f) && x > 3.5f && (y < 10.0f) && y > 5.5f && !isBusy) {            
+        if ((x < 8.0f) && x > 3.5f && (y < 10.0f) && y > 5.5f && !*isBusy) {            
             RenderText("Appuyer sur E pour interagir", color_white, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
             if (getKeyState(SDLK_e)) {
-                isBusy = true;     
-                ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy = true;
+                *isBusy = true;     
+                // ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->*isBusy = true;
             }
-        } else if ((x < 8.0f) && x > 3.5f && (y < 10.0f) && y > 5.5f && isBusy) {
+        } else if ((x < 8.0f) && x > 3.5f && (y < 10.0f) && y > 5.5f && *isBusy) {
             switch (click_counter) {
                 case 0:
                     RenderText("Panneau étrange", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
@@ -332,8 +345,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
                     RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                     if (getMouseButtonState(1) && !is_clicking) {
                         click_counter = 0;
-                        isBusy = false;
-                        ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy = false;
+                        *isBusy = false;
                         is_clicking = true;
 
                     }
@@ -347,16 +359,15 @@ void updateMainScene(Scene* scene, GameState* gameState) {
 
 
 
-        if(y < -30.5f && y > -35.5f && x < 2.08f && x > -2.8 && !isBusy && !checkpoint_sword){
+        if(y < -30.5f && y > -35.5f && x < 2.08f && x > -2.8 && !*isBusy && !checkpoint_sword){
             RenderText("Appuyer sur E pour interagir", color_white, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
             if (getKeyState(SDLK_e)) {
-                isBusy = true;     
-                ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy = true;
+                *isBusy = true;     
                 glm_vec3_copy((vec3){-7.72,4.02,-37.04}, scene->camera->Position);
                 scene->camera->Yaw = 40.0f;
                 scene->camera->Pitch = -20.0f;
             }
-        }else if (y < -30.5f && y > -35.5f && x < 2.08f && x > -2.8 && isBusy && !checkpoint_sword) {
+        }else if (y < -30.5f && y > -35.5f && x < 2.08f && x > -2.8 && *isBusy && !checkpoint_sword) {
             switch (click_counter) {
                 case 0:
                     RenderText("Coffre         ", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
@@ -366,8 +377,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
                     RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                     if (getMouseButtonState(1) && !is_clicking) {
                         click_counter = 0;
-                        isBusy = false;
-                        ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy = false;
+                        *isBusy = false;
                         ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))->isRenderable = true;
                         ((Model*)getComponent(chestEntity, COMPONENT_RENDERABLE))->isRenderable = false;
                         ((Model*)getComponent(chestOpenEntity, COMPONENT_RENDERABLE))->isRenderable = true;
@@ -387,6 +397,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
 
 void unloadStartScene(Scene* scene){
     DeleteShaders(scene->shader);
+    DeleteShaders(scene->textShader);
     SkyboxDelete(scene->skybox);
 
     if (scene->camera) {
