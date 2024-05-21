@@ -11,7 +11,6 @@
 typedef struct _Scene {
     Shader* shader;
     Shader* textShader;
-    Shader* textShader;
     Skybox* skybox;
     Camera* camera;
     Entity entities[MAX_ENTITIES];

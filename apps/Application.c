@@ -52,7 +52,7 @@ int main(void){
     forestScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, forestScene, ForestMainScene, updateForestScene,unloadStartScene);
 
-    int current_scene = 1;
+    int current_scene = 0;
     SceneManagerSetCurrentScene(&sceneManager, current_scene);
 
     TTF_Init();
@@ -72,13 +72,13 @@ int main(void){
         }
         else {
             Uint32 currentTime = SDL_GetTicks();
-            StartFrame(game);
+            StartFrame(game,&sceneManager.gameState);
             
             sceneManager.scenes[sceneManager.currentSceneIndex]->deltaTime = (currentTime - lastTime) / 1000.0f;
             physicsSystem(sceneManager.scenes[sceneManager.currentSceneIndex]);
             SceneManagerUpdateCurrentScene(&sceneManager);
-            cameraControl(sceneManager.scenes[sceneManager.currentSceneIndex]->camera);
-            renderSystem(sceneManager.scenes[sceneManager.currentSceneIndex]);
+            cameraControl(sceneManager.scenes[sceneManager.currentSceneIndex]->camera,&sceneManager.gameState);
+            renderSystem(sceneManager.scenes[sceneManager.currentSceneIndex],&sceneManager.gameState);
             lastTime = currentTime;
             EndFrame(game);
         }
