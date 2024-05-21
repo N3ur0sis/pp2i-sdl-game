@@ -10,8 +10,8 @@
 #include <GameState.h>~
 #include <Scene.h>
 
-#define NB_ROOM_MAX 15
-#define NB_ROOM_MIN 10
+#define NB_ROOM_MAX 7
+#define NB_ROOM_MIN 5
 #define MIN_DOOR 1
 #define MAX_DOOR 4
 #define NB_MODEL_SALLE 8

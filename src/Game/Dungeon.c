@@ -875,7 +875,7 @@ void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         Model* chestModel;
         vec3 ChestPosition;   
         if (dj->rooms[dj->current_room].isCompleted){
-
+            
         }
         else{
             chestModel = (Model*)Chest->components[0].data;
@@ -1427,8 +1427,8 @@ void setTypeRoom(Dungeon* dj){
         else if (dj->rooms[i].id == 7){
             dj->rooms[i].type = 0;
         }
-        else if (dj->rooms[i].id == 0 ||dj->rooms[i].id == 1 || dj->rooms[i].id ==4 || dj->rooms[i].id == 6){
-
+        //else if (dj->rooms[i].id == 0 ||dj->rooms[i].id == 1 || dj->rooms[i].id ==4 || dj->rooms[i].id == 6){
+        else if (dj->rooms[i].id == 0){
             int n = rand()%LootChance+1;
             printf("N = %d (loot || fight)\n",n);
             if (n == 1 || n==0){
