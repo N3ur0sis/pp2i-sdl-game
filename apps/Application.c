@@ -95,6 +95,7 @@ int main(void){
         StartFrame(game);
 
         if (game->isPaused) {
+            MenuDraw(game);
             continue;
         }
 
