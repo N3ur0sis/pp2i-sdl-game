@@ -2,7 +2,7 @@
 
 void RenderText(const char* message, SDL_Color color, int x, int y, int size, int windowWidth, int windowHeight, GLuint shaderProgram) {
 
-    TTF_Font* font = TTF_OpenFont("assets/fonts/arial.ttf", size);
+    TTF_Font* font = TTF_OpenFont("assets/fonts/Monocraft.ttf", size);
     if (!font) {
         printf("Failed to load font: %s\n", TTF_GetError());
         return;

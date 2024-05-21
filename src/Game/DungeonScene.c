@@ -121,6 +121,7 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
     if (enemy != NULL) {
         Model* golem = (Model*)calloc(1, sizeof(Model));
         ModelCreate(golem, "assets/models/Golem/Mutant Breathing Idle.dae");
+        golem->isRenderable = false;
         addComponent(enemy, COMPONENT_RENDERABLE, golem);
 
         Animation* golemIdleAnimation = AnimationCreate("assets/models/Golem/Mutant Breathing Idle.dae", golem, "golemIdleAnimation");
@@ -136,17 +137,15 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
 }
 
 void updateDungeonScene(Scene* scene, GameState* gameState) {
+    (void)gameState;
     Entity* playerEntity = &scene->entities[2];
     Entity* dungeon = &scene->entities[1];
     Entity* enemy = &scene->entities[5];
     Dungeon* dj = (Dungeon*)getComponent(dungeon, COMPONENT_DUNGEON);
-
     Model* playerModel = (Model*)getComponent(playerEntity, COMPONENT_RENDERABLE);
-    RigidBody* body = (Model*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
+    RigidBody* body = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
     Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
     Collider* playerCollider = (Collider*)getComponent(playerEntity, COMPONENT_COLLIDER);
-    Model* enemyModel = (Model*)getComponent(enemy, COMPONENT_RENDERABLE);
-    Animator* enemyAnimator = (Animator*)getComponent(enemy, COMPONENT_ANIMATOR);
     if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation"))){
             playerAnimator->playTime = 0.0f;
         }

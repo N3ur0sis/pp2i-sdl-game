@@ -8,7 +8,7 @@ typedef struct _Collider{
     int numCollider;
 } Collider;
 
-Collider* ColliderCreate(const char* path);
+Collider* ColliderCreate(char* path);
 
 void UpdateCollider(Collider* collider);
 

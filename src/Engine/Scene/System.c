@@ -1,6 +1,6 @@
 #include <System.h>
 
-void renderSystem(Scene* scene) {
+void renderSystem(Scene* scene, GameState* gamestate) {
     glEnable(GL_DEPTH_TEST);
 
     // Render shadow maps for each light
@@ -27,7 +27,7 @@ void renderSystem(Scene* scene) {
     }
 
     // Reset viewport
-    glViewport(0, 0, 1280, 720);
+    glViewport(0, 0, gamestate->g_WindowWidth, gamestate->g_WindowHeight);
 
     // Render skybox
     SkyboxDraw(scene->skybox, scene->camera);
@@ -102,7 +102,7 @@ void physicsSystem(Scene* scene) {
                 Dungeon* dj = (Dungeon*)getComponent(otherEntity, COMPONENT_DUNGEON);
                 Collider* otherCollider;
                 if (dj) {  
-                    otherCollider = dj->type_room[dj->rooms[dj->current_room].id].col;
+                    otherCollider = (Collider*)dj->type_room[dj->rooms[dj->current_room].id].col;
                 }
                 else{
                     otherCollider = (Collider*)getComponent(otherEntity, COMPONENT_COLLIDER);

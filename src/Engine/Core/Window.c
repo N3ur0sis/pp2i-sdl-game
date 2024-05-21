@@ -25,7 +25,7 @@ Window* WindowCreate(int width, int height, const char* title) {
 
 
 	/* Create the actual SDL window */
-	c_window->m_window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+	c_window->m_window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 	
 	/* Always check if window have been created properly*/
 	if (c_window->m_window == NULL) {

@@ -39,6 +39,7 @@ void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enem
 
 	//sometimes my genius is almost frithening
 	vec3 rotationDirection;
+	if(enemy != NULL){
 	vec3 enemyDir;
     glm_vec3_sub(enemy->position,((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,  enemyDir);
     float enemyDist = glm_vec3_norm(enemyDir);
@@ -49,6 +50,10 @@ void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enem
 		glm_vec3_copy(movementDirection, rotationDirection);
 
 	}
+	}else{
+				glm_vec3_copy(movementDirection, rotationDirection);
+	}
+
 	if(movementDirection[0] != .0f || movementDirection[1] != .0f || movementDirection[2] != .0f){
 	float omega = acos(glm_dot((vec3){0,0,1},rotationDirection));
 	if (rotationDirection[0] < 0) {
@@ -74,16 +79,17 @@ void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enem
 	glm_vec3_add(((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,movementDirection,newPos);
 	((Model*)getComponent(player, COMPONENT_RENDERABLE))->rotation[1] = glm_rad(rotTarget);
 
-	moveCameraPlayer(camera, ((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,newPos, deltaTime);
 	glm_vec3_copy(newPos, ((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->velocity);
 	mat4 id;
     glm_translate_make(id,((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->velocity);
-    glm_aabb_transform(((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBoxReference,id,((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBox);
+    glm_aabb_transform(((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBoxReference[0],id,((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBox[0]);
 	}
+	moveCameraPlayer(camera, ((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->velocity, deltaTime);
 }
 
 
 void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float deltaTime) {
+	printf("each frame \n");
 	targetPosition++;
 	if (position[0] < -25.0f) {
 		if (camera->Yaw != 180.0f) {
@@ -123,6 +129,9 @@ void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float 
 			camera->Position[1] = copy[1];
 			camera->Position[2] = copy[2];
 		}
+		float oldPitch = camera->Pitch;	
+		float newPitch = -50.0f;
+		camera->Pitch = glm_lerp(oldPitch, newPitch, deltaTime*3);
 		vec3 old_camera;
 		glm_vec3_copy(camera->Position, old_camera);
 		vec3 new_camera = {position[0], position[1] + 25.0f, position[2] - 25.0f};

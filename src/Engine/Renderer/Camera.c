@@ -52,7 +52,8 @@ void updateCameraVectors(Camera* camera){
 
 }
 
-void cameraControl(Camera* camera){
+void cameraControl(Camera* camera, GameState* gameState){
+    glm_perspective(glm_rad(60.0f), (float)(gameState->g_WindowWidth)/(float)gameState->g_WindowHeight, 0.1f, 500.0f, camera->projectionMatrix);  
     //Tilt camere
     if(getMouseButtonState(SDL_BUTTON_RIGHT) == true){
         float xpos = getMousePosition(0);
