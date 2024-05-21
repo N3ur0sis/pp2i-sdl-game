@@ -7,6 +7,7 @@
 #include <Algebra.h>
 
 
+
 typedef struct _Node {
     char name[128];
     struct _Node* children[MAX_BONES];
@@ -39,6 +40,8 @@ typedef struct _Model{
     char bone_names[MAX_BONES][128];
     size_t bone_count;
     bool isAnimated;
+    bool isRenderable;
+    bool isBusy;
 } Model;
 
 

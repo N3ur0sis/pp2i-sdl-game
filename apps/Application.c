@@ -47,8 +47,11 @@ int main(void){
     dungeonScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, dungeonScene, DungeonMainScene, updateDungeonScene);
     
-    int current_scene = 1;
+    int current_scene = 0;
     SceneManagerSetCurrentScene(&sceneManager, current_scene);
+
+
+
 
     TTF_Init();
     /* Game Loop */
@@ -58,23 +61,23 @@ int main(void){
         switch (current_scene)
         {
         case 0:
-            StartFrame(game);
+            StartFrame(game, &sceneManager.gameState);
             mainScene->deltaTime = (currentTime - lastTime) / 1000.0f;
             lastTime = currentTime;
             physicsSystem(mainScene);
+            renderSystem(mainScene, &sceneManager.gameState);
             SceneManagerUpdateCurrentScene(&sceneManager);
-            cameraControl(mainScene->camera);
-            renderSystem(mainScene);
+            cameraControl(mainScene->camera, &sceneManager.gameState);
             EndFrame(game);
             break;
         case 1:
-            StartFrame(game);
+            StartFrame(game, &sceneManager.gameState);
             dungeonScene->deltaTime = (currentTime - lastTime) / 1000.0f;
             lastTime = currentTime;
             physicsSystem(dungeonScene);
             SceneManagerUpdateCurrentScene(&sceneManager);
-            cameraControl(dungeonScene->camera);
-            renderSystem(dungeonScene);
+            cameraControl(dungeonScene->camera, &sceneManager.gameState);
+            renderSystem(dungeonScene, &sceneManager.gameState);
             EndFrame(game);
         default:
             break;

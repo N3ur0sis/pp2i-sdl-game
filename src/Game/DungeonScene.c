@@ -82,6 +82,7 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
     if (enemy != NULL) {
         Model* golem = (Model*)calloc(1, sizeof(Model));
         ModelCreate(golem, "assets/models/Golem/Mutant Breathing Idle.dae");
+        golem->isRenderable = false;
         addComponent(enemy, COMPONENT_RENDERABLE, golem);
 
         Animation* golemIdleAnimation = AnimationCreate("assets/models/Golem/Mutant Breathing Idle.dae", golem, "golemIdleAnimation");

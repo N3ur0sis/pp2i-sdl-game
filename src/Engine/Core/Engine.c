@@ -46,7 +46,7 @@ void EngineQuit(void) {
 
 }
 
-void StartFrame(Application* game){
+void StartFrame(Application* game, GameState* gameState){
 
     /* Clearn screen for this new frame */
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -62,7 +62,7 @@ void StartFrame(Application* game){
     //game->time->deltaTime = (game->time->currentUpdate - game->time->lastUpdate) / 1000.0f;
     /* Input Handling */
     while(SDL_PollEvent(game->event)){
-        processInput(game->event, &game->running);
+        processInput(game->event, &game->running, gameState);
     }
 }
 
