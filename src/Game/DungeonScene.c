@@ -213,6 +213,11 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
                 ((Model*)keyBossChest->components[1].data)->isRenderable = false;
                 ((Model*)keyBossChest->components[0].data)->isRenderable = false;      
             }
+            if (dj->rooms[dj->current_room].type!=2){
+                Entity* Chest = &scene->entities[5];
+                ((Model*)Chest->components[1].data)->isRenderable = false;
+                ((Model*)Chest->components[0].data)->isRenderable = false;      
+            }
         }
 
 }

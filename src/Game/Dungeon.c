@@ -472,8 +472,7 @@ void Affiche(Dungeon *dj){
 }
 //on doit pouvoir factoriser les LoadRoomiC mais flemme
 void LoadRoom1C(Scene* scene,GameState* gameState,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
-    if (dj->rooms[dj->current_room].type==1){
-        float rot;
+    float rot;
         switch (dj->direction){
         case 'S': 
             rot = glm_rad(180.0f);
@@ -488,20 +487,27 @@ void LoadRoom1C(Scene* scene,GameState* gameState,Model* map,Collider* col, Mode
             rot = glm_rad(0.0f);
             break;
           }
-        Entity* keyBossChest = &scene->entities[4];
-        ((Model*)keyBossChest->components[0].data)->rotation[1] = rot;
-        ((Model*)keyBossChest->components[1].data)->rotation[1] = rot;
-        glm_rotate_make(((Collider*)keyBossChest->components[2].data)->transformMatrix,rot,(vec3){0.0f,1.0f,0.0f});
-        for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(((Collider*)keyBossChest->components[2].data)->boundingBoxReference[i],((Collider*)keyBossChest->components[2].data)->transformMatrix,((Collider*)keyBossChest->components[2].data)->boundingBox[i]); }
-        UpdateCollider(((Collider*)keyBossChest->components[2].data));
+    int n =-1;
+    if (dj->rooms[dj->current_room].type==1){
+        n=4;
+    }
+    else if (dj->rooms[dj->current_room].type==2){   
+        n=5;
+    }
+    if (n!=-1){
+        Entity* Chest = &scene->entities[n];
+        ((Model*)Chest->components[0].data)->rotation[1] = rot;
+        ((Model*)Chest->components[1].data)->rotation[1] = rot;
+        glm_rotate_make(((Collider*)Chest->components[2].data)->transformMatrix,rot,(vec3){0.0f,1.0f,0.0f});
+        for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(((Collider*)Chest->components[2].data)->boundingBoxReference[i],((Collider*)Chest->components[2].data)->transformMatrix,((Collider*)Chest->components[2].data)->boundingBox[i]); }
+        UpdateCollider(((Collider*)Chest->components[2].data));
         if (dj->rooms[dj->current_room].isCompleted){
-        ((Model*)keyBossChest->components[1].data)->isRenderable = true;
+        ((Model*)Chest->components[1].data)->isRenderable = true;
         }
         else{
-        ((Model*)keyBossChest->components[0].data)->isRenderable = true;
+        ((Model*)Chest->components[0].data)->isRenderable = true;
         }
     }
-    
     switch (dj->direction)
     {
     case 'S':
@@ -855,7 +861,6 @@ void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
                  
             }
             }
-        }   
         if (playerModel->isBusy ){
                 RenderText("Vous venez de récupérer la clé du donjon !", color_black, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 100, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                 RenderImage("assets/images/redBossKey.png", gameState->g_WindowWidth/2, gameState->g_WindowHeight/30 , gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
@@ -863,8 +868,35 @@ void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
                 if (getMouseButtonState(1)){
                     playerModel->isBusy = false;
         }
+        }   
     }
-    
+    else if (dj->rooms[dj->current_room].type==2){
+        Entity* Chest = &scene->entities[5];
+        Model* chestModel;
+        vec3 ChestPosition;   
+        if (dj->rooms[dj->current_room].isCompleted){
+
+        }
+        else{
+            chestModel = (Model*)Chest->components[0].data;
+            vec3 ChestDir;
+            glm_vec3_sub( body->velocity, ChestPosition, ChestDir);
+            if (glm_vec3_norm(ChestDir)<1.5f && getKeyState(SDLK_e)){
+                dj->rooms[dj->current_room].isCompleted = true;
+                ((Model*)Chest->components[0].data)->isRenderable = false;
+                ((Model*)Chest->components[1].data)->isRenderable = true;
+                playerModel->isBusy = true;
+                 
+            }
+            }
+        }   
+        if (playerModel->isBusy ){
+                RenderText("Vous venez de récupérer un objet !", color_black, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 100, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                if (getMouseButtonState(1)){
+                    playerModel->isBusy = false;
+        }
+    }
     switch (dj->direction){
         case 'S': 
             glm_vec3_copy((vec3){-2.15f,0.0f,-4.15f},DoorPosition);
