@@ -4,36 +4,56 @@
 
 #include <Graph.h>
 
-Graph* create_graph(int V) {
-    Graph* G = (Graph*)malloc(sizeof(Graph));
-    G->V = V;
-    G->E = 0;
-    G->adj = (int**)malloc(V * sizeof(int*));
-    for (int i = 0; i < V; i++) {
-        G->adj[i] = (int*)malloc(V * sizeof(int));
-        for (int j = 0; j < V; j++) {
-            G->adj[i][j] = 0;
-        }
+Graph* createGraph(Type type) {
+    Graph* graph = (Graph*) malloc(sizeof(Graph));
+    if (graph == NULL) {
+        printf("Memory allocation failed\n");
+        exit(1);
+    } 
+    graph->adjacencyList = (Vector**) malloc(10 * sizeof(Vector*));
+    if (graph->adjacencyList == NULL) {
+        printf("Memory allocation failed\n");
+        exit(1);
     }
-    return G;
+    graph->size = 0;
+    graph->type = type;
+    graph->data = createVector(type);
+    return graph;
 }
 
-void add_edge(Graph* G, int u, int v) {
-    G->adj[u][v] = 1;
-    G->adj[v][u] = 1;
-    G->E++;
+int sizeGraph(Graph* graph) {
+    return graph->size;
 }
 
-void remove_edge(Graph* G, int u, int v) {
-    G->adj[u][v] = 0;
-    G->adj[v][u] = 0;
-    G->E--;
-}
-
-void destroy_graph(Graph* G) {
-    for (int i = 0; i < G->V; i++) {
-        free(G->adj[i]);
+void addVertex(Graph* graph, Data* data) {
+    if (graph->size == graph->data->capacity) {
+        reserve(graph->data, graph->size * 2);
     }
-    free(G->adj);
-    free(G);
+    push_back(graph->data, data);
+    graph->adjacencyList[graph->size] = createVector(INT);
+    graph->size++;
+}
+
+void addEdge(Graph* graph, int vertex1, int vertex2) {
+    if (vertex1 < 0 || vertex1 >= graph->size || vertex2 < 0 || vertex2 >= graph->size) {
+        printf("Invalid vertex\n");
+        return;
+    }
+    push_back(graph->adjacencyList[vertex1], createIntData(vertex2));
+    push_back(graph->adjacencyList[vertex2], createIntData(vertex1));
+}
+
+bool emptyGraph(Graph* graph) {
+    if (graph == NULL) {
+        return true;
+    }
+    return graph->size == 0;
+}
+
+void destroyGraph(Graph* graph) {
+    for (int i = 0; i < graph->size; i++) {
+        destroyVector(graph->adjacencyList[i]);
+    }
+    free(graph->adjacencyList);
+    free(graph);
 }

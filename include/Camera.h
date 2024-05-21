@@ -24,4 +24,4 @@ Camera* camera_create(float posX, float posY, float posZ, float width, float hei
 void getViewMatrix(Camera* camera, vec4* view);
 void updateCameraVectors(Camera* camera );
 void panCamera(Camera* camera);
-void cameraControl(Camera* camera);
+void cameraControl(Camera* camera, GameState* gameState);

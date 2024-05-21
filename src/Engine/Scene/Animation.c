@@ -1,9 +1,10 @@
 #include <Animation.h>
 
 
-Animation* AnimationCreate(char* path, Model* model){
+Animation* AnimationCreate(char* path, Model* model, char* name){
 
     Animation* anim = calloc(1, sizeof(Animation));
+    anim->name = name;
     const struct aiScene *scene = ModelLoad(path);
     // Setup skeleton nodes
     const struct aiNode* ai_node = scene->mRootNode;

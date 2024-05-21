@@ -36,6 +36,9 @@ void ModelCreate(Model* model, char* path){
     model->meshCount = meshesCount;
     model->matCount = materialsCount; 
     model->bone_count = 0;
+    model->isAnimated = false;
+    model->isRenderable = true;
+    model->isBusy = false;
     glm_vec3_copy((vec3){0.0f,0.0f,0.0f}, model->position); /* Position set to 0 by default */
     glm_vec3_copy((vec3){0.0f,0.0f,0.0f}, model->rotation); /* Rotation set to 0 by default */
     glm_vec3_copy((vec3){1.0f,1.0f,1.0f}, model->scale);    /* Scale    set to 1 by default*/
@@ -59,6 +62,7 @@ void ModelCreate(Model* model, char* path){
         /* If the mesh have a rig we also want to load bone information of the model */
         const size_t boneCount = scene->mMeshes[meshIndex]->mNumBones;
         if(boneCount>0) {
+            model->isAnimated = true;
             char boneNames[MAX_BONES][64];
             /* For each bone we check if we already have it on the model, otherwise we name it */
             for(size_t i=0; i<boneCount; ++i) {
@@ -124,15 +128,43 @@ void ModelCreate(Model* model, char* path){
     aiReleaseImport(scene);
 }
 
-void ModelDraw(Model* model, Shader* shader, Camera* camera) {
+void ModelDraw(Model* model, Shader* shader, Camera* camera, mat4 customModelMatrix) {
+
+        if (customModelMatrix) {
+        glm_mat4_copy(customModelMatrix, model->modelMatrix);
+        glUniformMatrix4fv(shader->m_locations.Model, 1, GL_FALSE, (float*)customModelMatrix);
+        glUniformMatrix4fv(shader->m_locations.View, 1, GL_FALSE, (float*)camera->viewMatrix);
+        glUniformMatrix4fv(shader->m_locations.Projection, 1, GL_FALSE, (float*)camera->projectionMatrix);
+        glUniform3fv(shader->m_locations.cameraPosition,1,camera->Position);
+    } else {
+        /* Before each render of our object we need to pass the model matrix on the shader */
+        ModelMatrixCalculate(model->position, model->rotation, model->scale,camera,shader, model->modelMatrix);
+    }
+
+
+    /* We need to draw each mesh present in the model */
+    for(size_t i=0; i<model->meshCount; ++i) {
+        /* Each mesh is a part of the model but can use different texture for rendering*/
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, model->materials[model->meshes[i].matID].id);
+        MeshDraw(&model->meshes[i]);
+        glBindTexture(GL_TEXTURE_2D, 0);
+    }
+}
+
+void ModelDrawAttached(Model* model, Shader* shader, Camera* camera) {
 
     /* Before each render of our object we need to pass the model matrix on the shader */
-    ModelMatrixCalculate(model->position, model->rotation, model->scale,camera,shader, model->modelMatrix);
+    //ModelMatrixCalculate(model->position, model->rotation, model->scale,camera,shader, model->modelMatrix);
+    glUniformMatrix4fv(shader->m_locations.View, 1, GL_FALSE, (float*)camera->viewMatrix);
+    glUniformMatrix4fv(shader->m_locations.Projection, 1, GL_FALSE, (float*)camera->projectionMatrix);
+    glUniform3fv(shader->m_locations.cameraPosition,1,camera->Position);
 
     /* We need to draw each mesh present in the model */
     for(size_t i=0; i<model->meshCount; ++i) {
         
         /* Each mesh is a part of the model but can use different texture for rendering*/
+        glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, model->materials[model->meshes[i].matID].id);
         MeshDraw(&model->meshes[i]);
         glBindTexture(GL_TEXTURE_2D, 0);

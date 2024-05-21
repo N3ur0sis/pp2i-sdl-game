@@ -9,7 +9,7 @@ Window* WindowCreate(int width, int height, const char* title) {
 	c_window->m_height = height;
 
 	/* Initialize SDL with only video subsystem of the library */
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) {
+	if (SDL_Init(SDL_INIT_VIDEO && SDL_INIT_AUDIO) != 0) {
 		SDL_LogCritical(SDL_LOG_CATEGORY_APPLICATION, "Failed to initialize SDL: %s\n", SDL_GetError());
 		return NULL;
 	}
@@ -25,7 +25,7 @@ Window* WindowCreate(int width, int height, const char* title) {
 
 
 	/* Create the actual SDL window */
-	c_window->m_window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+	c_window->m_window = SDL_CreateWindow(title, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, width, height, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE);
 	
 	/* Always check if window have been created properly*/
 	if (c_window->m_window == NULL) {

@@ -1,12 +1,12 @@
 #pragma once
 #include <SDL2/SDL.h>
 #include <stdbool.h>
-#include <Camera.h>
 #include <Time.h>
+#include <GameState.h>
 
 
 
-void processInput(SDL_Event* e, bool* running, bool* isPaused);
+void processInput(SDL_Event* e, bool* running, bool* isPaused, GameState* gameState);
 void handleKeyBoardEventDown(SDL_Event e);
 void handleKeyBoardEventUp(SDL_Event e);
 void handleMouseButtonEvent(SDL_Event e);
@@ -20,6 +20,7 @@ void handleMouseWheelEvent(SDL_Event e);
 
 #define NB_KEYS 257
 #define SHIFT 255
+#define ESCAPE 256
 
 
 // vec3 treatModelToMoving

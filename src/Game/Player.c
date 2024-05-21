@@ -1,11 +1,15 @@
 #include <Player.h>
 
 
+void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enemy){
 
-void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* camera, vec3 playerbb[2], vec3 playerbbo[2], vec3 treebb[2], Model* map){
+	if (getKeyState(SHIFT)) {
+		((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->speed = 8.0f;
+	} else {
+		((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->speed = 5.0f;
+	}
 
 
-    float speed = 6.0f;
 	float horizontalInput = 0.0f;
 	float verticalInput = .0f;
 
@@ -22,6 +26,8 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 	if (getKeyState(SDLK_s)) {
 		verticalInput = -1.0f;
 	}
+
+	
 	vec3 xDir;
 	glm_vec3_scale(camera->Right,-horizontalInput, xDir);
 	vec3 yDir;
@@ -30,13 +36,30 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
 	glm_vec3_add(xDir,yDir,movementDirection);
 	movementDirection[1] = 0.0f;
 	glm_vec3_normalize(movementDirection);
+
 	//sometimes my genius is almost frithening
+	vec3 rotationDirection;
+	if(enemy != NULL){
+	vec3 enemyDir;
+    glm_vec3_sub(enemy->position,((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,  enemyDir);
+    float enemyDist = glm_vec3_norm(enemyDir);
+	        glm_vec3_normalize(enemyDir);
+	if( enemyDist < 10.0f){
+		glm_vec3_copy(enemyDir, rotationDirection);
+	}else{
+		glm_vec3_copy(movementDirection, rotationDirection);
+
+	}
+	}else{
+				glm_vec3_copy(movementDirection, rotationDirection);
+	}
+
 	if(movementDirection[0] != .0f || movementDirection[1] != .0f || movementDirection[2] != .0f){
-	float omega = acos(glm_dot((vec3){0,0,1},movementDirection));
-	if (movementDirection[0] < 0) {
+	float omega = acos(glm_dot((vec3){0,0,1},rotationDirection));
+	if (rotationDirection[0] < 0) {
 		omega = -omega;
 	}
-	float currentAngleDeg = glm_deg(rotation[1]);
+	float currentAngleDeg = glm_deg(((Model*)getComponent(player, COMPONENT_RENDERABLE))->rotation[1]);
     float targetAngleDeg = glm_deg(omega);
 
     // Ensure the that the fucking target angle is within the range of -180 to 180 degrees (i spent three fucking hours just to realize the angles wasn't normalized , fuck me!)
@@ -47,48 +70,26 @@ void treatMovingInput(vec3 position, vec3 rotation, float deltaTime, Camera* cam
         targetAngleDeg += 360;
     }
 
-    // Perform linear interpolation
+    // Perform linear interpolation²
     float rotTarget = glm_lerp(currentAngleDeg, targetAngleDeg, 0.1f);
 
-    printf("%f\n", rotTarget);
-    rotation[1] = glm_rad(rotTarget);
-	printf("%f\n", glm_deg(omega));
-	}
-	printf("%f,%f,%f\n", movementDirection[0], movementDirection[1], movementDirection[2]);
-	//fuck this, because of this shit i didn't prepare anything to eat. Im just gonna order some junk food.  
+    //printf("%f\n", rotTarget);
+	glm_vec3_scale(movementDirection,((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->speed*deltaTime,movementDirection);
+    vec3 newPos;
+	glm_vec3_add(((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,movementDirection,newPos);
+	((Model*)getComponent(player, COMPONENT_RENDERABLE))->rotation[1] = glm_rad(rotTarget);
 
-	glm_vec3_scale(movementDirection,speed*deltaTime,movementDirection);
-	glm_vec3_add(position,movementDirection,position);
-
-	moveCameraPlayer(camera, position, (vec3){position[0], position[1], position[2]}, deltaTime);
-
+	glm_vec3_copy(newPos, ((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->velocity);
 	mat4 id;
-    //glm_translate_make(id,(vec3){x,y,z});
-    glm_aabb_transform(playerbbo,id,playerbb);
-
-	for (size_t i = 30; i < map->meshCount; i++)
-	{
-		
-		vec3 treebb[2] = {
-        {map->meshes[i].aabb.mMin.x,
-        map->meshes[i].aabb.mMin.y,
-        map->meshes[i].aabb.mMin.z},
-        {map->meshes[i].aabb.mMax.x,
-        map->meshes[i].aabb.mMax.y,
-        map->meshes[i].aabb.mMax.z}
-    };
-	if(glm_aabb_aabb(playerbb,treebb)){
-
+    glm_translate_make(id,((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->velocity);
+    glm_aabb_transform(((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBoxReference[0],id,((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBox[0]);
 	}
-	}
-	(void)camera;
-	(void)rotation;
-	(void)treebb;
+	moveCameraPlayer(camera, ((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->velocity, deltaTime);
 }
 
 
-
 void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float deltaTime) {
+	printf("each frame \n");
 	targetPosition++;
 	if (position[0] < -25.0f) {
 		if (camera->Yaw != 180.0f) {
@@ -128,6 +129,9 @@ void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float 
 			camera->Position[1] = copy[1];
 			camera->Position[2] = copy[2];
 		}
+		float oldPitch = camera->Pitch;	
+		float newPitch = -50.0f;
+		camera->Pitch = glm_lerp(oldPitch, newPitch, deltaTime*3);
 		vec3 old_camera;
 		glm_vec3_copy(camera->Position, old_camera);
 		vec3 new_camera = {position[0], position[1] + 25.0f, position[2] - 25.0f};
@@ -142,20 +146,8 @@ void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float 
 }
 
 
-void lerp_vec3(vec3 a, vec3 b, vec3 res, float t) {
-    res[0] = a[0] + (b[0] - a[0]) * t;
-    res[1] = a[1] + (b[1] - a[1]) * t;
-    res[2] = a[2] + (b[2] - a[2]) * t;
-}
-
-float lerp_float(float a, float b, float t) {
-    return a + (b - a) * t;
-}
-
-
 void lerp_camera(Camera* camera, vec3 old_pos, vec3 new_pos, float old_yaw, float new_yaw, int steps, float duration) {
 	duration *= 1000;
-    (void) duration;
     for (int i = 0; i <= steps; ++i) {
         float t = (float)i / steps;
 		vec3 interpolated_pos;
@@ -168,5 +160,20 @@ void lerp_camera(Camera* camera, vec3 old_pos, vec3 new_pos, float old_yaw, floa
 		camera->Yaw = interpolated_yaw;
 
 		updateCameraVectors(camera);
-    }
+}
+}
+
+
+void lerp_vec3(vec3 a, vec3 b, vec3 res, float t){
+    res[0] = a[0] + (b[0] - a[0]) * t;
+    res[1] = a[1] + (b[1] - a[1]) * t;
+    res[2] = a[2] + (b[2] - a[2]) * t;
+}
+
+float lerp_float(float a, float b, float t) {
+    return a + (b - a) * t;
+}
+
+bool playerInteract(){
+	return getKeyState(SDLK_e);
 }

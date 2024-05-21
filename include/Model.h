@@ -7,8 +7,9 @@
 #include <Algebra.h>
 
 
+
 typedef struct _Node {
-    char name[64];
+    char name[128];
     struct _Node* children[MAX_BONES];
     vec3* pos_keys;
     versor* rot_keys;
@@ -36,8 +37,11 @@ typedef struct _Model{
     vec3     scale;         /* Scale of the model in the scene    */
     mat4     modelMatrix;
     mat4 bones[MAX_BONES];
-    char bone_names[MAX_BONES][64];
+    char bone_names[MAX_BONES][128];
     size_t bone_count;
+    bool isAnimated;
+    bool isRenderable;
+    bool isBusy;
 } Model;
 
 
@@ -72,7 +76,7 @@ void ModelCreate(Model* model, char* path);
  * @param camera The camera that will show the model.
  * @return Nothing, act on the render pipeline.
 */
-void ModelDraw(Model* model, Shader* shader, Camera* camera);
+void ModelDraw(Model* model, Shader* shader, Camera* camera, mat4 customModelMatrix);
 
 /**
  * Auxiliar function of the rendering process. It calculates based on a positon
@@ -92,3 +96,5 @@ void ModelFree(Model* model);
 
 
 void ModelAnimate(Node* node, float anim_time, mat4 parent_mat, mat4* bones,mat4* bone_anim_mats);
+
+void ModelDrawAttached(Model* model, Shader* shader, Camera* camera);
