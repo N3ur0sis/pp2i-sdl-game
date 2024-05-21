@@ -68,9 +68,5 @@ void* freeEntity(Entity* e){
         FreeRigidBody((RigidBody*)component);
         printf("Body free\n");}
 
-    component = getComponent(e, COMPONENT_DUNGEON);
-    if (component){
-        freeDungeon((Dungeon*)component);
-        printf("Dungeon free\n");}
 }
 

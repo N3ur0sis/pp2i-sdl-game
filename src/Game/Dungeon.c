@@ -235,6 +235,7 @@ void initializeRooms(Dungeon *dj){
 }
         dj->rooms[i].nb_door = nb;
         dj->rooms[i].type =-1 ;
+        dj->rooms[i].isCompleted = false;
         int nb_model;
         int val_model;
         srand(time(NULL));
@@ -330,35 +331,35 @@ void initializeLRooms(Dungeon *dj) {
     dj->type_room[3].col = ColliderCreate("assets/models/Room/ColL.obj");
 }
 
-void LoadRoom(Model* player, Dungeon* dj,RigidBody* body, Collider* collider,GameState* gameState) {
+void LoadRoom(Scene* scene,Model* player, Dungeon* dj,RigidBody* body, Collider* collider,GameState* gameState) {
     printf("Changement de salle du type : %d\n",dj->rooms[dj->current_room].id);
     printf("On vient du %c\n",dj->direction);
-
+    
 
     switch (dj->rooms[dj->current_room].id) {
         case 0:
-            LoadRoom1C(dj->type_room[dj->rooms[dj->current_room].id].model,dj->type_room[dj->rooms[dj->current_room].id].col, player,dj,body);
+            LoadRoom1C(scene,dj->type_room[dj->rooms[dj->current_room].id].model,dj->type_room[dj->rooms[dj->current_room].id].col, player,dj,body);
             break;
         case 1:
-            LoadRoom2C(dj->type_room[dj->rooms[dj->current_room].id].model,dj->type_room[dj->rooms[dj->current_room].id].col,  player,dj,body);
+            LoadRoom2C(scene,dj->type_room[dj->rooms[dj->current_room].id].model,dj->type_room[dj->rooms[dj->current_room].id].col,  player,dj,body);
             break;
         case 4:
-            LoadRoom3C(dj->type_room[dj->rooms[dj->current_room].id].model,dj->type_room[dj->rooms[dj->current_room].id].col,  player, dj,body);
+            LoadRoom3C(scene,dj->type_room[dj->rooms[dj->current_room].id].model,dj->type_room[dj->rooms[dj->current_room].id].col,  player, dj,body);
             break;
         case 6:
-            LoadRoom4C(player,dj,body);
+            LoadRoom4C(scene,player,dj,body);
             break;
         case 5:
-            LoadRoom3T(dj->type_room[dj->rooms[dj->current_room].id].model,dj->type_room[dj->rooms[dj->current_room].id].col, player, dj,body);
+            LoadRoom3T(scene,dj->type_room[dj->rooms[dj->current_room].id].model,dj->type_room[dj->rooms[dj->current_room].id].col, player, dj,body);
             break;
         case 3:
-            LoadRoom2L(dj->type_room[dj->rooms[dj->current_room].id].model,dj->type_room[dj->rooms[dj->current_room].id].col,  player, dj,body);
+            LoadRoom2L(scene,dj->type_room[dj->rooms[dj->current_room].id].model,dj->type_room[dj->rooms[dj->current_room].id].col,  player, dj,body);
             break;
         case 2:
-            LoadRoom2I(dj->type_room[dj->rooms[dj->current_room].id].model,dj->type_room[dj->rooms[dj->current_room].id].col,  player,dj,body);
+            LoadRoom2I(scene,dj->type_room[dj->rooms[dj->current_room].id].model,dj->type_room[dj->rooms[dj->current_room].id].col,  player,dj,body);
             break;
         case 7:
-            LoadRoomB(dj->type_room[dj->rooms[dj->current_room].id].model,dj->type_room[dj->rooms[dj->current_room].id].col,  player,dj,body);
+            LoadRoomB(scene,dj->type_room[dj->rooms[dj->current_room].id].model,dj->type_room[dj->rooms[dj->current_room].id].col,  player,dj,body);
             break;
     }
     if (dj->current_room==0&&dj->direction=='N'){
@@ -370,7 +371,6 @@ void LoadRoom(Model* player, Dungeon* dj,RigidBody* body, Collider* collider,Gam
         return;
     }
     printf("Nous sommes dans la salle %d  (id = %d) depuis le %c\n",dj->current_room,dj->rooms[dj->current_room].id,dj->direction);
-
     mat4 id;
     glm_translate_make(id,body->velocity);
     glm_aabb_transform(collider->boundingBoxReference,id,collider->boundingBox);
@@ -440,8 +440,16 @@ void Affiche(Dungeon *dj){
 
 }
 //on doit pouvoir factoriser les LoadRoomiC mais flemme
-void LoadRoom1C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
-     
+void LoadRoom1C(Scene* scene,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
+    if (dj->rooms[dj->current_room].type==1){
+        Entity* keyBossChest = &scene->entities[4];
+        if (dj->rooms[dj->current_room].isCompleted){
+        ((Model*)keyBossChest->components[1].data)->isRenderable = true;
+        }
+        else{
+        ((Model*)keyBossChest->components[0].data)->isRenderable = true;
+        }
+    }
     switch (dj->direction)
     {
     case 'S':
@@ -474,7 +482,7 @@ void LoadRoom1C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* b
     }
     
 }
-void LoadRoomB(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
+void LoadRoomB(Scene* scene,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
      
     switch (dj->direction)
     {
@@ -508,7 +516,7 @@ void LoadRoomB(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* bo
     }
     
 }
-void LoadRoom2C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
+void LoadRoom2C(Scene* scene,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
      
     switch (dj->direction)
     {
@@ -541,7 +549,7 @@ void LoadRoom2C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* b
         break;
     }
 }
-void LoadRoom3C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
+void LoadRoom3C(Scene* scene,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
     char *l = "NSWE";
     int c =0;
     bool dir_used[4] = {false,false,false,false};
@@ -595,7 +603,7 @@ void LoadRoom3C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* b
         break;
     }
 }
-void LoadRoom4C(Model* player,Dungeon*dj,RigidBody* body){
+void LoadRoom4C(Scene* scene,Model* player,Dungeon*dj,RigidBody* body){
     switch (dj->direction)
     {
         case 'N':
@@ -616,41 +624,41 @@ void LoadRoom4C(Model* player,Dungeon*dj,RigidBody* body){
     }
 }
 
-void LoadRoom2I(Model* map,Collider* col, Model* player,Dungeon * dj,RigidBody* body) {
+void LoadRoom2I(Scene* scene,Model* map,Collider* col, Model* player,Dungeon * dj,RigidBody* body) {
      
     switch (dj->direction)
     {
     case 'S':
         map->rotation[1] = glm_rad(0.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(0.0f),(vec3){0.0f,1.0f,0.0f});
-             for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
-        glm_vec3_copy((vec3){0.0f,0.0f,-4.0f},  body->velocity);
+        for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
+        glm_vec3_copy((vec3){0.0f,0.0f,-3.5f},  body->velocity);
         break;
     case 'N':
         map->rotation[1] = glm_rad(0.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(0.0f),(vec3){0.0f,1.0f,0.0f});
              for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
-        glm_vec3_copy((vec3){0.0f,0.0f,4.0f},  body->velocity);
+        glm_vec3_copy((vec3){0.0f,0.0f,3.5f},  body->velocity);
         player->rotation[1] =glm_rad(180.0f);
         break;
     case 'E':
         map->rotation[1] = glm_rad(90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(90.0f),(vec3){0.0f,1.0f,0.0f});
              for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
-        glm_vec3_copy((vec3){-4.0f,0.0f,0.0f},  body->velocity);
+        glm_vec3_copy((vec3){-3.5f,0.0f,0.0f},  body->velocity);
         player->rotation[1] =glm_rad(90.0f);
         break;
     case 'W':
         map->rotation[1] = glm_rad(90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(90.0f),(vec3){0.0f,1.0f,0.0f});
             for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
-        glm_vec3_copy((vec3){4.0f,0.0f,0.0f},  body->velocity);
+        glm_vec3_copy((vec3){3.5f,0.0f,0.0f},  body->velocity);
         player->rotation[1] =glm_rad(-90.0f);
         break;
     }
 }
 
-void LoadRoom3T(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
+void LoadRoom3T(Scene* scene,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
     char *l = "NSWE";
     bool dir_used[4] = {false,false,false,false};
     int c=0;
@@ -705,7 +713,7 @@ void LoadRoom3T(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* b
     }
 }
 
-void LoadRoom2L(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
+void LoadRoom2L(Scene* scene,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
     char *l = "NSWE";
     bool dir_used[4] = {false,false,false,false};
     for (int k=0;k<dj->nb_rooms;k++){
@@ -775,8 +783,58 @@ void LogicRoom1C(Scene* scene,Dungeon*dj,RigidBody* body ){
     bool isKeyRoom = false;
     if (dj->rooms[dj->current_room].type==1){
         Entity* keyBossChest = &scene->entities[4];
-        Model* keyBossChestModel = (Model*)keyBossChest->components[0].data;
-        Model* keyBossChestOuvertModel = (Model*)keyBossChest->components[1].data;
+        Model* chestModel;
+        vec3 ChestPosition;
+        
+        float rot;
+        switch (dj->direction){
+        case 'S': 
+            glm_vec3_copy((vec3){0.0f,0.0f,3.5f},ChestPosition);
+            rot = glm_rad(180.0f);
+            break;
+        case 'E': 
+            glm_vec3_copy((vec3){3.5f,0.0f,0.0f},ChestPosition);
+            rot = glm_rad(-90.0f);
+            break;
+        case 'W': 
+            glm_vec3_copy((vec3){-3.5f,0.0f,0.0f},ChestPosition);
+            rot = glm_rad(90.0f);
+            break;
+        case 'N': 
+            glm_vec3_copy((vec3){0.0f,0.0f,-3.5f},ChestPosition);
+            rot = glm_rad(0.0f);
+            break;
+    }
+        if (dj->rooms[dj->current_room].isCompleted){
+            printf("finito\n");
+            chestModel= (Model*)keyBossChest->components[1].data;
+            if (((Model*)keyBossChest->components[1].data)->isRenderable && !(((Model*)keyBossChest->components[0].data)->isRenderable)){
+                printf("Ouvert printable\n");
+            }
+            else{
+                printf("Ouvert non printable\n");
+            }
+        }
+        else{
+            chestModel = (Model*)keyBossChest->components[0].data;
+            vec3 ChestDir;
+            glm_vec3_sub( body->velocity, ChestPosition, ChestDir);
+            if (glm_vec3_norm(ChestDir)<1.5f && getKeyState(SDLK_e)){
+                dj->rooms[dj->current_room].isCompleted = true;
+                glm_vec3_copy( ((Model*)keyBossChest->components[0].data),chestModel->position);
+                 ((Model*)keyBossChest->components[0].data)->rotation[1] = rot;
+                 glm_vec3_copy( ((Model*)keyBossChest->components[1].data),chestModel->position);
+                 ((Model*)keyBossChest->components[1].data)->rotation[1] = rot;
+                ((Model*)keyBossChest->components[0].data)->isRenderable = false;
+                ((Model*)keyBossChest->components[1].data)->isRenderable = true;
+                if (((Model*)keyBossChest->components[1].data)->isRenderable){
+                    printf("Ouvert maintenant printable\n");
+                }
+                printf("le coffre est ouvert\n");
+            }
+
+        }
+        
     }
     switch (dj->direction){
         case 'S': 
@@ -811,6 +869,7 @@ void LogicRoom1C(Scene* scene,Dungeon*dj,RigidBody* body ){
     if (getKeyState(SDLK_o)){
         printf("D1 = %f\n",DoorDist);
     }
+
 
 }
 void LogicRoom2C(Scene* scene,Dungeon*dj,RigidBody* body ){
@@ -1202,22 +1261,22 @@ void LogicRoom2I(Scene* scene,Dungeon*dj,RigidBody* body ){
     switch (dj->direction){
         case 'S': 
             glm_vec3_copy((vec3){0.0f,0.0f,-4.75f},Door1Position);//D1<=>S
-            glm_vec3_copy((vec3){0.0f,0.0f,5.0f},Door2Position);//D2<=>N
+            glm_vec3_copy((vec3){0.0f,0.0f,4.75f},Door2Position);//D2<=>N
             d1 = 'S';d2='N';
             break;
         case 'E': 
-            glm_vec3_copy((vec3){-5.0f,0.0f,0.0f},Door1Position);//D1<=>E
-            glm_vec3_copy((vec3){5.0f,0.0f,0.0f},Door2Position);//D2<=>W
+            glm_vec3_copy((vec3){-4.75f,0.0f,0.0f},Door1Position);//D1<=>E
+            glm_vec3_copy((vec3){4.75f,0.0f,0.0f},Door2Position);//D2<=>W
             d1 = 'E';d2='W';
             break;
         case 'W': 
-            glm_vec3_copy((vec3){-5.0f,0.0f,0.0f},Door1Position);//D1<=>E
-            glm_vec3_copy((vec3){5.0f,0.0f,0.0f},Door2Position);//D2<=>W
+            glm_vec3_copy((vec3){-4.75f,0.0f,0.0f},Door1Position);//D1<=>E
+            glm_vec3_copy((vec3){4.75f,0.0f,0.0f},Door2Position);//D2<=>W
             d1 = 'E';d2='W';
             break;
         case 'N': 
             glm_vec3_copy((vec3){0.0f,0.0f,-4.75f},Door1Position);
-            glm_vec3_copy((vec3){0.0f,0.0f,5.0f},Door2Position);
+            glm_vec3_copy((vec3){0.0f,0.0f,4.75},Door2Position);
             d1 = 'S';d2='N';
             break;
     }

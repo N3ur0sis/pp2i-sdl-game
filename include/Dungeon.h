@@ -10,8 +10,8 @@
 #include <GameState.h>~
 #include <Scene.h>
 
-#define NB_ROOM_MAX 15
-#define NB_ROOM_MIN 10
+#define NB_ROOM_MAX 7
+#define NB_ROOM_MIN 5
 #define MIN_DOOR 1
 #define MAX_DOOR 4
 #define NB_MODEL_SALLE 8
@@ -48,15 +48,15 @@ int max(int a, int b);
 void depthFirstSearch(Dungeon *dj, int room, int depth, int *depths, int *visited);
 int *profondeur(Dungeon *dj);
 void printDepth(int *depths, int nb_rooms) ;
-void LoadRoom(Model* player, Dungeon* dj,RigidBody* body, Collider* collider,GameState* gameState);
-void LoadRoom1C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
-void LoadRoom2C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
-void LoadRoom3C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
-void LoadRoom2I(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
-void LoadRoom3T(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
-void LoadRoom2L(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
-void LoadRoom4C(Model* player,Dungeon*dj,RigidBody* body);
-void LoadRoomB(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
+void LoadRoom(Scene* scene,Model* player, Dungeon* dj,RigidBody* body, Collider* collider,GameState* gameState);
+void LoadRoom1C(Scene* scene,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
+void LoadRoom2C(Scene* scene,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
+void LoadRoom3C(Scene* scene,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
+void LoadRoom2I(Scene* scene,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
+void LoadRoom3T(Scene* scene,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
+void LoadRoom2L(Scene* scene,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
+void LoadRoom4C(Scene* scene,Model* player,Dungeon*dj,RigidBody* body);
+void LoadRoomB(Scene* scene,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
 void LogicRoom1C (Scene* scene,Dungeon*dj,RigidBody* body );
 void LogicRoom2C (Scene* scene,Dungeon*dj,RigidBody* body );
 void LogicRoom3C (Scene* scene,Dungeon*dj,RigidBody* body );

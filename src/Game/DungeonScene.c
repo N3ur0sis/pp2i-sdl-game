@@ -88,8 +88,9 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
         Model* keyBossChestModel = (Model*)calloc(1, sizeof(Model));
         ModelCreate(keyBossChestModel, "assets/models/Objet/Chest/ChestFermeSerrure.obj");
         addComponent(keyBossChest, COMPONENT_RENDERABLE, keyBossChestModel);
+        keyBossChestModel->isRenderable = false;
         Model* keyBossChestOuvertModel = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(keyBossChestOuvertModel, "assets/models/Objet/Chest/ChestFermeSerrure.obj");
+        ModelCreate(keyBossChestOuvertModel, "assets/models/Objet/Chest/ChestOuvert.obj");
         addComponent(keyBossChest, COMPONENT_RENDERABLE, keyBossChestOuvertModel);
         keyBossChestOuvertModel->isRenderable = false;
     }
@@ -176,8 +177,13 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
     }
     if (dj->change){
             dj->lastRoomChangeTime = SDL_GetTicks();
-            LoadRoom(playerModel,dj,body, playerCollider,gameState);
+            LoadRoom(scene,playerModel,dj,body, playerCollider,gameState);
             dj->change = false;
+            if (dj->rooms[dj->current_room].type!=1){
+                Entity* keyBossChest = &scene->entities[4];
+                ((Model*)keyBossChest->components[1].data)->isRenderable = false;
+                ((Model*)keyBossChest->components[0].data)->isRenderable = false;      
+            }
         }
 
 }

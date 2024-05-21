@@ -11,6 +11,7 @@ struct  _Room
     int nb_door;
     int id;
     int type;
+    bool isCompleted;
 
 };
 typedef struct _L_Room {
