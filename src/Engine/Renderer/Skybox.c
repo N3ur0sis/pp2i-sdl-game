@@ -96,6 +96,9 @@ void    SkyboxDraw(Skybox* skybox, Camera* camera){
         glDepthFunc(GL_LESS);
 }
 void    SkyboxDelete(Skybox* skybox){
+    if (skybox){
+
     DeleteShaders(skybox->shader);
     free(skybox);
+    }
 }

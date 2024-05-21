@@ -8,3 +8,4 @@ typedef struct _Animator{
 
 Animator* AnimatorCreate(Animation* animation);
 void AnimatorOnUpdate(Animator* animator, Model* model,Shader* shader, float deltaTime);
+void FreeAnimator(Animator* animator);

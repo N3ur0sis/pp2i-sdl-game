@@ -42,3 +42,6 @@ typedef struct {
     int maxHealth;
     bool isAlive;
 } Health;
+
+void FreeAttachementComponent(AttachmentComponent* AttachmentComponent);
+void FreeRigidBody(RigidBody* rb);

@@ -13,3 +13,5 @@ typedef struct _Entity {
 void addComponent(Entity* entity, ComponentType type, void* data); 
 void* getComponent(Entity* entity, ComponentType type);
 Animation* getAnimationComponent(Entity* entity, const char* animationName);
+
+float getDist(Model* object1, Model* object2);

@@ -7,23 +7,28 @@
 #include "List.h"
 #include <stdbool.h>
 #include <string.h>
+#include <GameState.h>~
+#include <Scene.h>
 
-#define NB_ROOM_MAX 15
-#define NB_ROOM_MIN 10
+#define NB_ROOM_MAX 7
+#define NB_ROOM_MIN 5
 #define MIN_DOOR 1
 #define MAX_DOOR 4
 #define NB_MODEL_SALLE 8
 #define ChangeTime 2000.0f
+#define LootChance 3;
+#define FightChance 2;
 typedef struct _Dungeon Dungeon;
 struct  _Dungeon
 {
     Room* rooms;
+    L_Room* type_room;
     char **adj;
-    int nb_rooms;
     char direction;
+    int nb_rooms;
     int current_room;
     bool change;
-    L_Room* type_room;
+    bool hasKey;
     float lastRoomChangeTime;
 
     
@@ -44,21 +49,22 @@ int max(int a, int b);
 void depthFirstSearch(Dungeon *dj, int room, int depth, int *depths, int *visited);
 int *profondeur(Dungeon *dj);
 void printDepth(int *depths, int nb_rooms) ;
-void LoadRoom(Model* player, Dungeon* dj,RigidBody* body, Collider* collider);
-void LoadRoom1C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
-void LoadRoom2C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
-void LoadRoom3C(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
-void LoadRoom2I(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
-void LoadRoom3T(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
-void LoadRoom2L(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
-void LoadRoom4C(Model* player,Dungeon*dj,RigidBody* body);
-void LoadRoomB(Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
-void LogicRoom1C (Dungeon* dj, RigidBody* body);
-void LogicRoom2C (Dungeon* dj, RigidBody* body);
-void LogicRoom3C (Dungeon* dj, RigidBody* body);
-void LogicRoom4C (Dungeon* dj, RigidBody* body);
-void LogicRoom2L (Dungeon* dj, RigidBody* body);
-void LogicRoom2I (Dungeon* dj, RigidBody* body);
-void LogicRoom3T (Dungeon* dj, RigidBody* body);
-void LogicRoomB (Dungeon* dj, RigidBody* body);
+void LoadRoom(Scene* scene,Model* player, Dungeon* dj,RigidBody* body, Collider* collider,GameState* gameState);
+void LoadRoom1C(Scene* scene,GameState* gameState,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
+void LoadRoom2C(Scene* scene,GameState* gameState,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
+void LoadRoom3C(Scene* scene,GameState* gameState,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
+void LoadRoom2I(Scene* scene,GameState* gameState,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
+void LoadRoom3T(Scene* scene,GameState* gameState,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
+void LoadRoom2L(Scene* scene,GameState* gameState,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
+void LoadRoom4C(Scene* scene,GameState* gameState,Model* player,Dungeon*dj,RigidBody* body);
+void LoadRoomB(Scene* scene,GameState* gameState,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body);
+void LogicRoom1C (Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body );
+void LogicRoom2C (Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body );
+void LogicRoom3C (Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body );
+void LogicRoom4C (Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body );
+void LogicRoom2L (Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body );
+void LogicRoom2I (Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body );
+void LogicRoom3T (Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body );
+void LogicRoomB (Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body );
 void initializeLRooms(Dungeon *dj);
+void setTypeRoom(Dungeon* dj);
