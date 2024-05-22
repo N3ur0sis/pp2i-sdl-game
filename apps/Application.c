@@ -85,7 +85,7 @@ int main(void){
     }
 
     /* Clean every resource allocated */
-    freeScene(mainScene);
+    //freeScene(mainScene);
     //freeSceneManager(&sceneManager);
     Mix_FreeMusic(bgm);
     WindowDelete(game->window);

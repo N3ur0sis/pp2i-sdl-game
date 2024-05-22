@@ -208,3 +208,53 @@ Entity* create_player(Scene*  scene,float x,float y,float z){
 	return playerEntity;
 }
 
+Entity* create_sword(Scene* scene,Entity* parent){
+	Entity* swordEntity = createEntity(scene);
+    if (swordEntity != NULL) {
+        Model* sword = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(sword, "assets/models/LoPotitChat/sword.obj");
+        addComponent(swordEntity, COMPONENT_RENDERABLE, sword);
+
+        // Adding attachment component to the sword entity
+        AttachmentComponent* swordAttachment = (AttachmentComponent*)calloc(1, sizeof(AttachmentComponent));
+        swordAttachment->boneIndex = 21; // Example bone index
+        swordAttachment->parentAnimator = (Animator*)getComponent(parent, COMPONENT_ANIMATOR);
+        swordAttachment->parentModel = (Model*)getComponent(parent, COMPONENT_RENDERABLE);
+        glm_vec3_copy((vec3){-1.3f, -0.7f, 0.3f}, swordAttachment->offsetPosition);
+        glm_vec3_copy((vec3){0.0f, 0.0f, 0.0f}, swordAttachment->offsetRotation);
+        glm_vec3_copy((vec3){1.0f, 1.0f, 1.0f}, swordAttachment->offsetScale);
+        addComponent(swordEntity, COMPONENT_ATTACHMENT, swordAttachment);
+    }
+	return swordEntity;
+}
+
+void player_attack(Entity* player,Entity* ennemy,GameState* gameState){
+	Animator* playerAnimator = (Animator*)getComponent(player, COMPONENT_ANIMATOR);
+	RigidBody* playerRigidbody = (RigidBody*)getComponent(player, COMPONENT_RIGIDBODY);
+	Model* playerModel = (Model*)getComponent(player,COMPONENT_RENDERABLE);
+	
+	if (getMouseButtonState(1) && !gameState->playerIsAttacking ) {
+                gameState->playerIsAttacking = true;
+                playerAnimator->currentAnimation = (Animation*)getAnimationComponent(player, "playerAttackAnimation");
+                playerAnimator->playTime = 0.0f;
+            } else if (!gameState->playerIsAttacking) {
+                if(playerRigidbody->speed == 8.0f){
+                playerAnimator->currentAnimation = (Animation*)getAnimationComponent(player, "playerRunningAnimation");
+                }else if(playerRigidbody->speed == 5.0f){
+                playerAnimator->currentAnimation = (Animation*)getAnimationComponent(player, "playerWalkingAnimation");
+                }
+            }
+            if (playerAnimator->playTime > playerAnimator->currentAnimation->anim_dur - 10 && gameState->playerIsAttacking) {
+                gameState->playerIsAttacking = false;
+                playerAnimator->playTime = 0.0f;
+            }
+	if (ennemy){
+	Model* ennemyModel = (Model*)getComponent(ennemy,COMPONENT_RENDERABLE);
+	Health* ennemyHealth = (Health*)getComponent(ennemy,COMPONENT_HEALTH);
+	vec3 ennemyDir;
+	glm_vec3_sub( playerModel, ennemyModel, ennemyDir);
+	if (gameState->playerIsAttacking && glm_vec3_norm(ennemyDir)<1.5f){
+		ennemyHealth->health-=10;
+	}
+}
+}

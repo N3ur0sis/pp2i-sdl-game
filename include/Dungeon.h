@@ -25,8 +25,10 @@ struct  _Dungeon
     L_Room* type_room;
     char **adj;
     char direction;
+    char previous_direction;
     int nb_rooms;
     int current_room;
+    int previous_room;
     bool change;
     bool hasKey;
     bool quit;

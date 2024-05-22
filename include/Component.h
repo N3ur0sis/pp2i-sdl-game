@@ -38,8 +38,8 @@ typedef struct {
 } RigidBody;
 
 typedef struct _Health{
-    int health;
-    int maxHealth;
+    float health;
+    float maxHealth;
     bool isAlive;
 } Health;
 

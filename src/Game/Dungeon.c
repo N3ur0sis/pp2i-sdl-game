@@ -17,7 +17,9 @@ Dungeon* dj_create(){
         exit(EXIT_FAILURE);
     }
     dj->current_room = 0;
+    dj->previous_room = 0;
     dj->direction = 'S';
+    dj->previous_direction = 'S';
     dj->change = true;
     dj->hasKey = false;
     dj->quit = false;
@@ -385,7 +387,9 @@ void LoadRoom(Scene* scene, Model* player, Dungeon* dj,RigidBody* body, Collider
             if (!dj->hasKey){
                 for (int i =0;i<dj->nb_rooms;i++){
                 if (dj->adj[dj->current_room][i]!='O'){
-                    dj->current_room = i;
+                    dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
+                dj->current_room = i;
                     dj->direction = d1;
                     dj->change = true;
                     player->isBusy = true;
@@ -869,7 +873,7 @@ void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
             }
         if (playerModel->isBusy ){
                 RenderText("Coffre         ", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-                RenderText("Vous venez de récupérer la clé du donjon !", color_black, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 100, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                RenderText("Vous venez de récupérer la clé du donjon !", color_black, gameState->g_WindowWidth / 2 - 135, gameState->g_WindowHeight / 15 + 100, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                 RenderImage("assets/images/redBossKey.png", gameState->g_WindowWidth/2, gameState->g_WindowHeight/30 , gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                 RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                 if (getMouseButtonState(1)){
@@ -932,6 +936,8 @@ void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]!='O'){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d1;
                 break;
@@ -983,6 +989,8 @@ void LogicRoom2C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d1){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d2;
                 break;
@@ -994,6 +1002,8 @@ void LogicRoom2C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d2){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d1;
                 break;
@@ -1045,6 +1055,8 @@ void LogicRoom3C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='S'){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = 'N';
                 break;
@@ -1057,6 +1069,8 @@ void LogicRoom3C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='N'){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = 'S';
                 break;
@@ -1067,6 +1081,8 @@ void LogicRoom3C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='E'){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = 'W';
                 break;
@@ -1078,6 +1094,8 @@ void LogicRoom3C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='W'){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = 'E';
                 break;
@@ -1119,6 +1137,8 @@ void LogicRoom4C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='S'){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = 'N';
                 break;
@@ -1131,6 +1151,8 @@ void LogicRoom4C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='N'){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = 'S';
                 break;
@@ -1141,6 +1163,8 @@ void LogicRoom4C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='E'){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = 'W';
                 break;
@@ -1152,6 +1176,8 @@ void LogicRoom4C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='W'){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = 'E';
                 break;
@@ -1230,6 +1256,8 @@ void LogicRoom3T(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d1){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d2;
                 break;
@@ -1242,6 +1270,8 @@ void LogicRoom3T(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d3){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d4;
                 break;
@@ -1252,6 +1282,8 @@ void LogicRoom3T(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d4){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d3;
                 break;
@@ -1320,6 +1352,8 @@ void LogicRoom2L(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='S'||dj->adj[dj->current_room][i]=='N'){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d1;
                 break;
@@ -1331,6 +1365,8 @@ void LogicRoom2L(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='E'||dj->adj[dj->current_room][i]=='W'){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d2;
                 break;
@@ -1379,6 +1415,8 @@ void LogicRoom2I(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d1){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d2;
                 break;
@@ -1390,6 +1428,8 @@ void LogicRoom2I(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d2){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d1;
                 break;
@@ -1432,6 +1472,9 @@ void LogicRoomB(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]!='O'){
                 if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
+
                 dj->current_room = i;
                 dj->direction = d1;
                 break;

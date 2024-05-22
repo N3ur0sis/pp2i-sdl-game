@@ -68,5 +68,6 @@ void* freeEntity(Entity* e){
         FreeRigidBody((RigidBody*)component);
         printf("Body free\n");}
 
+
 }
 

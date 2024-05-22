@@ -9,7 +9,7 @@ Entity of this scene (order of their index):
     Sword
     KeyBossChest
     Chest
-    Enemy
+    Golem
 */
 
 void DungeonMainScene(Scene* scene, GameState* gameState) {
@@ -114,7 +114,25 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
             playerAnimator->playTime = 0.0f;
         }
         if (!playerModel->isBusy){
-        playerMovement(playerEntity, scene->deltaTime, scene->camera, NULL);}
+            Entity* ennemy = NULL;
+            if (dj->rooms[dj->current_room].type==3){  
+                for (int i =0;i<&scene->numEntities;i++){
+                     ennemy= &scene->entities[i];
+                     Health* ennemyHealth = (Health*)getComponent(ennemy,COMPONENT_HEALTH);
+                     if (ennemy&& ennemyHealth&&ennemyHealth->health>0.0f){
+                        ((Model*)getComponent(ennemy,COMPONENT_RENDERABLE))->isRenderable = true;
+                        printf("%f\n",((Health*)getComponent(ennemy,COMPONENT_HEALTH))->health);
+                        golemLogic(scene,gameState,ennemy,playerEntity);
+                        break;
+                     }
+                     ennemy = NULL;
+                }
+                if (!ennemy){
+                    dj->rooms[dj->current_room].isCompleted = true;
+                }
+            }
+        player_attack(playerEntity,ennemy,gameState);
+        playerMovement(playerEntity, scene->deltaTime, scene->camera, ennemy);}
     if (getKeyState(SDLK_b)){
         printf("La direction d'ou on vient est %c, et %d et l id est %d\n",dj->direction,dj->current_room,dj->rooms[dj->current_room].id);
     }
@@ -170,21 +188,31 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
     }
     
     if (dj->change){
-            dj->lastRoomChangeTime = SDL_GetTicks();
-            LoadRoom(scene,playerModel,dj,body, playerCollider,gameState);
-            dj->change = false;
-            if (dj->rooms[dj->current_room].type!=1){
-                Entity* keyBossChest = &scene->entities[4];
-                ((Model*)keyBossChest->components[1].data)->isRenderable = false;
-                ((Model*)keyBossChest->components[0].data)->isRenderable = false;      
+            if (dj->rooms[dj->previous_room].type==3&&!dj->rooms[dj->previous_room].isCompleted){
+                dj->change = false;
+                dj->direction = dj->previous_direction;
+                dj->current_room = dj->previous_room;
             }
-            if (dj->rooms[dj->current_room].type!=2){
-                Entity* Chest = &scene->entities[5];
-                ((Model*)Chest->components[1].data)->isRenderable = false;
-                ((Model*)Chest->components[0].data)->isRenderable = false;      
+            else{
+                dj->lastRoomChangeTime = SDL_GetTicks();
+                LoadRoom(scene,playerModel,dj,body, playerCollider,gameState);
+                dj->change = false;
+                if (dj->rooms[dj->current_room].type!=1){
+                    Entity* keyBossChest = &scene->entities[4];
+                    ((Model*)keyBossChest->components[1].data)->isRenderable = false;
+                    ((Model*)keyBossChest->components[0].data)->isRenderable = false;      
+                }
+                if (dj->rooms[dj->current_room].type!=2){
+                    Entity* Chest = &scene->entities[5];
+                    ((Model*)Chest->components[1].data)->isRenderable = false;
+                    ((Model*)Chest->components[0].data)->isRenderable = false;      
+                }
+                if (dj->rooms[dj->current_room].type!=3){
+                    Entity* golem = &scene->entities[6];
+                    (((Model*)getComponent(golem,COMPONENT_RENDERABLE)))->isRenderable = false;     
+                }
             }
         }
-
 }
 
 void unloadDungeonScene(Scene* scene){
