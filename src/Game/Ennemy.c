@@ -28,7 +28,7 @@ Entity* create_golem(Scene* scene,float x,float y,float z,float scale){
     return enemy;
 }
 
-Entity* golemLogic(Scene* scene,GameState* gameState,Entity* golem,Entity* player){
+void  golemLogic(Scene* scene,GameState* gameState,Entity* golem,Entity* player){
     float rotTarget = 0.0f;
     vec3 enemyDir;
     Model* golemModel = ((Model*)getComponent(golem, COMPONENT_RENDERABLE));
@@ -58,7 +58,7 @@ Entity* golemLogic(Scene* scene,GameState* gameState,Entity* golem,Entity* playe
         }
         rotTarget = glm_lerp(currentAngleDeg, targetAngleDeg, 0.1f);
     }
-    if (enemyDist < 3.0f) {
+    if (enemyDist < 2.0f) {
         if (!gameState->enemyIsAttacking) {
             gameState->enemyIsAttacking = true;
             golemAnimator->playTime = 0.0f;

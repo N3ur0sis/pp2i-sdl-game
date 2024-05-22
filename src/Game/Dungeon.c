@@ -22,6 +22,7 @@ Dungeon* dj_create(){
     dj->previous_direction = 'S';
     dj->change = true;
     dj->hasKey = false;
+    dj->nb_ennemy = 0;
     dj->quit = false;
     dj->lastRoomChangeTime = 0;
     initializeLRooms(dj);
@@ -240,6 +241,10 @@ void initializeRooms(Dungeon *dj){
         dj->rooms[i].nb_door = nb;
         dj->rooms[i].type =-1 ;
         dj->rooms[i].isCompleted = false;
+        dj->rooms[i].nb_ennemy = 0;
+        for (int k = 0; k < NB_ENNEMY; k++) {
+            dj->rooms[i].id_ennemy[k] = 0;
+        }
         int nb_model;
         int val_model;
         srand(time(NULL));
@@ -355,11 +360,10 @@ void LoadRoom(Scene* scene, Model* player, Dungeon* dj,RigidBody* body, Collider
             break;
     }
     if (dj->quit){
-        printf("On quitte le donjon\n");
         gameState->change = true;
         gameState->nextSceneIndex = 2;
         gameState->previousSceneIndex = 1;
-        return;
+        return;gi
     }
     switch (dj->rooms[dj->current_room].id) {
         case 0:
@@ -468,7 +472,7 @@ void Affiche(Dungeon *dj){
         else if (dj->rooms[i].id==7){
             id7++;
         }
-     printf("Le type de la salle %d est %d et son id est %d\n",i,dj->rooms[i].type,dj->rooms[i].id);
+     printf("Le type de la salle %d est %d et son id est %d et a %d ennemy : id %d et %d\n",i,dj->rooms[i].type,dj->rooms[i].id,dj->rooms[i].nb_ennemy,dj->rooms[i].id_ennemy[0],dj->rooms[i].id_ennemy[1]);
 
 
     }
@@ -859,7 +863,7 @@ void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         else{
             chestModel = (Model*)keyBossChest->components[0].data;
             vec3 ChestDir;
-            glm_vec3_sub( body->velocity, ChestPosition, ChestDir);
+            glm_vec3_sub( playerModel->position, ChestPosition, ChestDir);
             if (glm_vec3_norm(ChestDir)<1.5f){
                 RenderText("Appuyer sur E pour ouvrir", color_white, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                 if (getKeyState(SDLK_e)){
@@ -891,7 +895,7 @@ void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         else{
             chestModel = (Model*)Chest->components[0].data;
             vec3 ChestDir;
-            glm_vec3_sub( body->velocity, ChestPosition, ChestDir);
+            glm_vec3_sub( playerModel->position, ChestPosition, ChestDir);
             if (glm_vec3_norm(ChestDir)<1.5f ){
                 RenderText("Appuyer sur E pour ouvrir", color_white, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                 if (getKeyState(SDLK_e)){
@@ -1495,15 +1499,12 @@ void setTypeRoom(Dungeon* dj){
         if (dj->rooms[i].id == 0 && !hasKeyBoss){
             dj->rooms[i].type = 1;
             hasKeyBoss = true;
-            printf("J ai mis une cle\n");
         }
         else if (dj->rooms[i].id == 7){
             dj->rooms[i].type = 0;
         }
-        //else if (dj->rooms[i].id == 0 ||dj->rooms[i].id == 1 || dj->rooms[i].id ==4 || dj->rooms[i].id == 6){
         else if (dj->rooms[i].id == 0){
             int n = rand()%LootChance+1;
-            printf("N = %d (loot || fight)\n",n);
             if (n == 1 || n==0){
                  dj->rooms[i].type = 2;
                  }
@@ -1514,10 +1515,31 @@ void setTypeRoom(Dungeon* dj){
         }
         else {
             int n = rand()%LootChance+1;
-            printf("N = %d (fight)\n",n);
             if (n==2){
                 dj->rooms[i].type = 3;
-            }}}}
+                }
+            }
+        if (dj->rooms[i].type == 3){
+            if (dj->nb_ennemy<NB_ENNEMY-1){
+                dj->rooms[i].id_ennemy[0] = 6 + dj->nb_ennemy;
+                dj->rooms[i].id_ennemy[1] = 6 + (dj->nb_ennemy+1);
+                dj->nb_ennemy+=2;
+                dj->rooms[i].nb_ennemy = 2;
+                printf("id ennmy salle %d = %d %d\n",i,dj->rooms[i].id_ennemy[0],dj->rooms[i].id_ennemy[1]);
+            }
+            else if (dj->nb_ennemy<NB_ENNEMY){
+                dj->rooms[i].id_ennemy[0] = 6 + dj->nb_ennemy;
+                dj->nb_ennemy+=1;
+                dj->rooms[i].nb_ennemy = 1;
+            }
+            else{
+                dj->rooms[i].type = -1;
+            }
+        }
+        printf("id ennmy salle %d = %d %d\n",i,dj->rooms[i].id_ennemy[0],dj->rooms[i].id_ennemy[1]);
+        }
+     }
+        
 
 void displayMiniMap(Scene* scene, Dungeon* dj,GameState* gameState){
     char *l = "NSWE";

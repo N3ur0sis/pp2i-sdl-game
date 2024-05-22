@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <Model.h>
 #include <Component.h>
+#define NB_ENNEMY 5
+
 typedef struct _Room Room;
 
 struct  _Room
@@ -12,6 +14,8 @@ struct  _Room
     int id;
     int type;
     bool isCompleted;
+    int nb_ennemy;
+    int id_ennemy[NB_ENNEMY];
 
 };
 typedef struct _L_Room {

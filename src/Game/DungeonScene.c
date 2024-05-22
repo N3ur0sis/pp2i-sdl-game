@@ -9,7 +9,8 @@ Entity of this scene (order of their index):
     Sword
     KeyBossChest
     Chest
-    Golem
+    Golem *NB_ENNEMY
+    BOSS
 */
 
 void DungeonMainScene(Scene* scene, GameState* gameState) {
@@ -97,8 +98,12 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
     }
 
     /* Enemy Entity */
-    Entity* golem = create_golem(scene,0.0f,0.1f,0.0f,0.5f);
-    Entity* golem2 = create_golem(scene,2.0f,0.1f,2.0f,0.5f);
+    for (int i =0;i<NB_ENNEMY;i++){
+        if (i%2==0){create_golem(scene,2.0f,0.1f,0.0f,0.5f);}
+        else{create_golem(scene,-2.0f,0.1f,0.0f,0.5f);}
+    }
+
+    /*BOSS Entity*/
     
 }
 
@@ -117,18 +122,15 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
             Entity* entity = NULL;
             Entity* ennemy = NULL;
             if (dj->rooms[dj->current_room].type==3){  
-                for (int i =0;i<(scene->numEntities);i++){
-                     entity= &scene->entities[i];
+                for (int i =0;i<(dj->rooms[dj->current_room].nb_ennemy);i++){
+                     entity= &scene->entities[dj->rooms[dj->current_room].id_ennemy[i]];
                      if (entity){
                      Health* ennemyHealth = (Health*)getComponent(entity,COMPONENT_HEALTH);
                      if ( ennemyHealth&&ennemyHealth->isAlive){
                         ((Model*)getComponent(entity,COMPONENT_RENDERABLE))->isRenderable = true;
-                        printf("%f\n",((Health*)getComponent(entity,COMPONENT_HEALTH))->health);
                         golemLogic(scene,gameState,entity,playerEntity);
                         ennemy = entity;
-                        //break;
                      }}
-                     //ennemy = NULL;
                 }
                 if (!ennemy){
                     dj->rooms[dj->current_room].isCompleted = true;
@@ -136,9 +138,6 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
             }
         player_attack(playerEntity,ennemy,gameState);
         playerMovement(playerEntity, scene->deltaTime, scene->camera, ennemy);}
-    if (getKeyState(SDLK_b)){
-        printf("La direction d'ou on vient est %c, et %d et l id est %d\n",dj->direction,dj->current_room,dj->rooms[dj->current_room].id);
-    }
     if (getKeyState(SDLK_p)){
         printf("Le joueur est en %f %f\n",playerModel->position[0],playerModel->position[2]);
     }
