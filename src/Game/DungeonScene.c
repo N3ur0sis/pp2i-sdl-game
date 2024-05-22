@@ -16,6 +16,8 @@ Entity of this scene (order of their index):
 void DungeonMainScene(Scene* scene, GameState* gameState) {
     /* Load and compile shaders */
     scene->shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
+    glUniform1i(glGetUniformLocation(scene->shader->m_program, "materialTex"), 0);
+    glUniform1i(glGetUniformLocation(scene->shader->m_program, "shadowMap"), 1);
     /* Load and compile textShader */
     scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
     /* Create a scene camera */
@@ -219,6 +221,7 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
 
 void unloadDungeonScene(Scene* scene){
     DeleteShaders(scene->shader);
+    DeleteShaders(scene->textShader);
     SkyboxDelete(scene->skybox);
 
     if (scene->camera) {

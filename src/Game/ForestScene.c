@@ -38,6 +38,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     scene->shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
     /* Load and compile textShader */
     scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
+    UseShaders(scene->shader);
     /* Create a scene camera */
     scene->camera = camera_create(x, y+5, z, gameState->g_WindowWidth, gameState->g_WindowHeight);
     glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
@@ -284,6 +285,7 @@ void updateForestScene(Scene* scene, GameState* gameState){
 
 void unloadForestScene(Scene* scene){
     DeleteShaders(scene->shader);
+    DeleteShaders(scene->textShader);
     SkyboxDelete(scene->skybox);
 
     if (scene->camera) {

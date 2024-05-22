@@ -76,9 +76,9 @@ int main(void){
             
             sceneManager.scenes[sceneManager.currentSceneIndex]->deltaTime = (currentTime - lastTime) / 1000.0f;
             physicsSystem(sceneManager.scenes[sceneManager.currentSceneIndex]);
+            renderSystem(sceneManager.scenes[sceneManager.currentSceneIndex],&sceneManager.gameState);
             SceneManagerUpdateCurrentScene(&sceneManager);
             cameraControl(sceneManager.scenes[sceneManager.currentSceneIndex]->camera,&sceneManager.gameState);
-            renderSystem(sceneManager.scenes[sceneManager.currentSceneIndex],&sceneManager.gameState);
             lastTime = currentTime;
             EndFrame(game);
         }

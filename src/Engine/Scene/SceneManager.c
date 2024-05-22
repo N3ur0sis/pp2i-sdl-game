@@ -49,7 +49,5 @@ void freeSceneManager(SceneManager* manager) {
 }
 
 void SceneManagerUnloadCurrentScene(SceneManager* manager, int index) {
-    if (manager->currentSceneIndex >= 0 && manager->currentSceneIndex < manager->numScenes) {
         manager->scenes[manager->currentSceneIndex]->unload(manager->scenes[manager->currentSceneIndex]);
-    }
 }
