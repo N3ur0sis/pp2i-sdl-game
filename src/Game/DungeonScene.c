@@ -168,8 +168,9 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
         }
     }
     SDL_Color color_black = {0,0,0,0};
-    if (playerModel->isBusy && !dj->hasKey &&!dj->rooms[dj->current_room].type==2 ){
-        RenderText("La porte est fermée... Il me faudrait une clé pour l'ouvrir !", color_black, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 100, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+    if ((playerModel->isBusy && dj->rooms[dj->current_room].type!=1 &&dj->rooms[dj->current_room].type!=2) ){
+        RenderText("La porte est fermée... ", color_black, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 130, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderText("Il me faudrait une clé pour l'ouvrir !", color_black, gameState->g_WindowWidth / 2 - 50, gameState->g_WindowHeight / 15 + 90, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         if (getMouseButtonState(1)){
             playerModel->isBusy = false;
