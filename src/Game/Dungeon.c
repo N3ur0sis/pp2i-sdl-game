@@ -363,7 +363,7 @@ void LoadRoom(Scene* scene, Model* player, Dungeon* dj,RigidBody* body, Collider
         gameState->change = true;
         gameState->nextSceneIndex = 2;
         gameState->previousSceneIndex = 1;
-        return;gi
+        return;
     }
     switch (dj->rooms[dj->current_room].id) {
         case 0:
