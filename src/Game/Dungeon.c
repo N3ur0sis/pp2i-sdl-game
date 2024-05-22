@@ -1491,7 +1491,7 @@ void LogicRoomB(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
 void setTypeRoom(Dungeon* dj){
     bool hasKeyBoss = false;
     srand(time(NULL));
-    for (int i =0 ; i<dj->nb_rooms;i++){
+    for (int i =1 ; i<dj->nb_rooms;i++){
         if (dj->rooms[i].id == 0 && !hasKeyBoss){
             dj->rooms[i].type = 1;
             hasKeyBoss = true;

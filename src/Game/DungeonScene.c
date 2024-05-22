@@ -97,12 +97,12 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
     }
 
     /* Enemy Entity */
-    Entity* golem = create_golem(scene);
+    Entity* golem = create_golem(scene,0.0f,0.1f,0.0f,0.5f);
+    Entity* golem2 = create_golem(scene,2.0f,0.1f,2.0f,0.5f);
     
 }
 
 void updateDungeonScene(Scene* scene, GameState* gameState) {
-    (void)gameState;
     Entity* playerEntity = &scene->entities[2];
     Entity* dungeon = &scene->entities[1];
     Dungeon* dj = (Dungeon*)getComponent(dungeon, COMPONENT_DUNGEON);
@@ -114,18 +114,21 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
             playerAnimator->playTime = 0.0f;
         }
         if (!playerModel->isBusy){
+            Entity* entity = NULL;
             Entity* ennemy = NULL;
             if (dj->rooms[dj->current_room].type==3){  
-                for (int i =0;i<&scene->numEntities;i++){
-                     ennemy= &scene->entities[i];
-                     Health* ennemyHealth = (Health*)getComponent(ennemy,COMPONENT_HEALTH);
-                     if (ennemy&& ennemyHealth&&ennemyHealth->health>0.0f){
-                        ((Model*)getComponent(ennemy,COMPONENT_RENDERABLE))->isRenderable = true;
-                        printf("%f\n",((Health*)getComponent(ennemy,COMPONENT_HEALTH))->health);
-                        golemLogic(scene,gameState,ennemy,playerEntity);
-                        break;
-                     }
-                     ennemy = NULL;
+                for (int i =0;i<(scene->numEntities);i++){
+                     entity= &scene->entities[i];
+                     if (entity){
+                     Health* ennemyHealth = (Health*)getComponent(entity,COMPONENT_HEALTH);
+                     if ( ennemyHealth&&ennemyHealth->isAlive){
+                        ((Model*)getComponent(entity,COMPONENT_RENDERABLE))->isRenderable = true;
+                        printf("%f\n",((Health*)getComponent(entity,COMPONENT_HEALTH))->health);
+                        golemLogic(scene,gameState,entity,playerEntity);
+                        ennemy = entity;
+                        //break;
+                     }}
+                     //ennemy = NULL;
                 }
                 if (!ennemy){
                     dj->rooms[dj->current_room].isCompleted = true;

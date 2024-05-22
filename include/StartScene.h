@@ -24,7 +24,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
     scene->skybox = SkyboxCreate();
 
     /* Enemy Entity */
-    Entity* golem = create_golem(scene);
+    Entity* golem = create_golem(scene,0.0f,0.1f,0.0f,0.5f);
 
     /* Player Entity */
     Entity* playerEntity = create_player(scene,28.0f,0.1f,7.0f);

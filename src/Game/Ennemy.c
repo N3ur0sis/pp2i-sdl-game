@@ -1,7 +1,7 @@
 #include "Ennemy.h"
 
 
-Entity* create_golem(Scene* scene){
+Entity* create_golem(Scene* scene,float x,float y,float z,float scale){
     Entity* enemy = createEntity(scene);
     if (enemy != NULL) {
         Model* golem = (Model*)calloc(1, sizeof(Model));
@@ -17,8 +17,8 @@ Entity* create_golem(Scene* scene){
         addComponent(enemy, COMPONENT_ANIMATION, golemWalkingAnimation);
         addComponent(enemy, COMPONENT_ANIMATION, golemPunchAnimation);
         addComponent(enemy, COMPONENT_ANIMATOR, golemAnimator);
-        glm_vec3_copy((vec3){0.0f, 0.0f, 0.0f}, golem->position);
-        glm_vec3_copy((vec3){0.5f, 0.5f, 0.5f}, golem->scale);
+        glm_vec3_copy((vec3){x,y,z}, golem->position);
+        glm_vec3_copy((vec3){scale,scale,scale}, golem->scale);
         Health* enemyHealth = (Health*)calloc(1, sizeof(Health));
         enemyHealth->health = 100.0f;
         enemyHealth->maxHealth = 100.0f;
@@ -35,7 +35,7 @@ Entity* golemLogic(Scene* scene,GameState* gameState,Entity* golem,Entity* playe
     Model* playerModel = ((Model*)getComponent(player, COMPONENT_RENDERABLE));
     Animator* golemAnimator =  ((Animator*)getComponent(golem, COMPONENT_ANIMATOR));
     Health* health = (Health*)getComponent(golem,COMPONENT_HEALTH);
-    if(health->health<=0){
+    if(health->health<=0.0f){
         golemModel->isRenderable = false;
         health->isAlive = false;
         return;

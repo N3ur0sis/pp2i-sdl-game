@@ -247,14 +247,16 @@ void player_attack(Entity* player,Entity* ennemy,GameState* gameState){
             if (playerAnimator->playTime > playerAnimator->currentAnimation->anim_dur - 10 && gameState->playerIsAttacking) {
                 gameState->playerIsAttacking = false;
                 playerAnimator->playTime = 0.0f;
+				if (ennemy){
+				Model* ennemyModel = (Model*)getComponent(ennemy,COMPONENT_RENDERABLE);
+				Health* ennemyHealth = (Health*)getComponent(ennemy,COMPONENT_HEALTH);
+				vec3 ennemyDir;
+				glm_vec3_sub( playerModel->position, ennemyModel->position, ennemyDir);
+				printf(" dist gol = %f\n",glm_vec3_norm(ennemyDir));
+				if ( glm_vec3_norm(ennemyDir)<ATTACK_RANGE){
+					gameState->playerIsAttacking = false;
+					ennemyHealth->health-=DAMAGE;
+				}
             }
-	if (ennemy){
-	Model* ennemyModel = (Model*)getComponent(ennemy,COMPONENT_RENDERABLE);
-	Health* ennemyHealth = (Health*)getComponent(ennemy,COMPONENT_HEALTH);
-	vec3 ennemyDir;
-	glm_vec3_sub( playerModel, ennemyModel, ennemyDir);
-	if (gameState->playerIsAttacking && glm_vec3_norm(ennemyDir)<1.5f){
-		ennemyHealth->health-=10;
-	}
-}
+			}
 }

@@ -88,7 +88,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     }
 
     /* Enemy Entity */
-    Entity* golem = create_golem(scene);
+    Entity* golem = create_golem(scene,0.0f,0.1f,0.0f,0.5f);
 
     /*Flame Entity*/
     Entity* flame1 = createEntity(scene);
