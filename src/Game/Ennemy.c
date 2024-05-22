@@ -6,8 +6,9 @@ Entity* create_golem(Scene* scene){
     if (enemy != NULL) {
         Model* golem = (Model*)calloc(1, sizeof(Model));
         ModelCreate(golem, "assets/models/Golem/Mutant Breathing Idle.dae");
-        addComponent(enemy, COMPONENT_RENDERABLE, golem);
         golem->isRenderable = false;
+        addComponent(enemy, COMPONENT_RENDERABLE, golem);
+
         Animation* golemIdleAnimation = AnimationCreate("assets/models/Golem/Mutant Breathing Idle.dae", golem, "golemIdleAnimation");
         Animation* golemWalkingAnimation = AnimationCreate("assets/models/Golem/Mutant Walking.dae", golem, "golemWalkingAnimation");
         Animation* golemPunchAnimation = AnimationCreate("assets/models/Golem/Mutant Punch.dae", golem, "golemPunchAnimation");
@@ -17,6 +18,11 @@ Entity* create_golem(Scene* scene){
         addComponent(enemy, COMPONENT_ANIMATION, golemPunchAnimation);
         addComponent(enemy, COMPONENT_ANIMATOR, golemAnimator);
         glm_vec3_copy((vec3){2.0f, 0.0f, -10.0f}, golem->position);
+        Health* enemyHealth = (Health*)calloc(1, sizeof(Health));
+        enemyHealth->health = 100.0f;
+        enemyHealth->maxHealth = 100.0f;
+        enemyHealth->isAlive = true;
+        addComponent(enemy, COMPONENT_HEALTH, enemyHealth);
     }
     return enemy;
 }
