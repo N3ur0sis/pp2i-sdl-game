@@ -9,12 +9,15 @@ Entity of this scene (order of their index):
     Sword
     KeyBossChest
     Chest
-    Enemy
+    Golem *NB_ENNEMY
+    BOSS
 */
 
 void DungeonMainScene(Scene* scene, GameState* gameState) {
     /* Load and compile shaders */
     scene->shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
+    glUniform1i(glGetUniformLocation(scene->shader->m_program, "materialTex"), 0);
+    glUniform1i(glGetUniformLocation(scene->shader->m_program, "shadowMap"), 1);
     /* Load and compile textShader */
     scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
     /* Create a scene camera */
@@ -42,28 +45,8 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
     }
 
     /* Player Entity */
-    Entity* playerEntity = createEntity(scene);
-    if (playerEntity != NULL) {
-        Model* playerModel = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(playerModel, "assets/models/LoPotitChat/PlayerWalk.dae");
-        Animation* attackAnimation = AnimationCreate("assets/models/LoPotitChat/PlayerAttack.dae", playerModel, "playerAttackAnimation");
-        Animation* walkingAnimation = AnimationCreate("assets/models/LoPotitChat/PlayerWalk.dae", playerModel, "playerWalkingAnimation");
-        Animator* playerAnimator = AnimatorCreate(walkingAnimation);
-        glm_vec3_copy((vec3){0.5f, 0.5f, 0.5f}, playerModel->scale);
-        RigidBody* playerRigidBody = (RigidBody*)calloc(1,sizeof(RigidBody));
-        playerRigidBody->speed = .0f;
-        Collider* playerCollider = ColliderCreate("assets/models/LoPotitChat/PlayerWalk.dae");
-        glm_scale_make(playerCollider->transformMatrix, (vec3){0.5f, 0.5f, 0.5f});
-        UpdateCollider(playerCollider);
-
-        addComponent(playerEntity, COMPONENT_RENDERABLE, playerModel);
-        addComponent(playerEntity, COMPONENT_ANIMATION, attackAnimation);
-        addComponent(playerEntity, COMPONENT_ANIMATION, walkingAnimation);
-        addComponent(playerEntity, COMPONENT_ANIMATOR, playerAnimator);
-        addComponent(playerEntity, COMPONENT_COLLIDER, playerCollider);
-        addComponent(playerEntity, COMPONENT_RIGIDBODY, playerRigidBody);
-    }
-
+    
+    Entity* playerEntity = create_player(scene,0.0f,0.1f,0.0f);
     /* Sword Entity */
     Entity* swordEntity = createEntity(scene);
     if (swordEntity != NULL) {
@@ -117,30 +100,18 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
     }
 
     /* Enemy Entity */
-    Entity* enemy = createEntity(scene);
-    if (enemy != NULL) {
-        Model* golem = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(golem, "assets/models/Golem/Mutant Breathing Idle.dae");
-        golem->isRenderable = false;
-        addComponent(enemy, COMPONENT_RENDERABLE, golem);
-
-        Animation* golemIdleAnimation = AnimationCreate("assets/models/Golem/Mutant Breathing Idle.dae", golem, "golemIdleAnimation");
-        Animation* golemWalkingAnimation = AnimationCreate("assets/models/Golem/Mutant Walking.dae", golem, "golemWalkingAnimation");
-        Animation* golemPunchAnimation = AnimationCreate("assets/models/Golem/Mutant Punch.dae", golem, "golemPunchAnimation");
-        Animator* golemAnimator = AnimatorCreate(golemIdleAnimation);
-        addComponent(enemy, COMPONENT_ANIMATION, golemIdleAnimation);
-        addComponent(enemy, COMPONENT_ANIMATION, golemWalkingAnimation);
-        addComponent(enemy, COMPONENT_ANIMATION, golemPunchAnimation);
-        addComponent(enemy, COMPONENT_ANIMATOR, golemAnimator);
-        glm_vec3_copy((vec3){2.0f, 0.0f, -10.0f}, golem->position);
+    for (int i =0;i<NB_ENNEMY;i++){
+        if (i%2==0){create_golem(scene,2.0f,0.1f,0.0f,0.5f);}
+        else{create_golem(scene,-2.0f,0.1f,0.0f,0.5f);}
     }
+
+    /*BOSS Entity*/
+    
 }
 
 void updateDungeonScene(Scene* scene, GameState* gameState) {
-    (void)gameState;
     Entity* playerEntity = &scene->entities[2];
     Entity* dungeon = &scene->entities[1];
-    Entity* enemy = &scene->entities[5];
     Dungeon* dj = (Dungeon*)getComponent(dungeon, COMPONENT_DUNGEON);
     Model* playerModel = (Model*)getComponent(playerEntity, COMPONENT_RENDERABLE);
     RigidBody* body = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
@@ -150,10 +121,25 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
             playerAnimator->playTime = 0.0f;
         }
         if (!playerModel->isBusy){
-        playerMovement(playerEntity, scene->deltaTime, scene->camera, (Model*)getComponent(enemy, COMPONENT_RENDERABLE));}
-    if (getKeyState(SDLK_b)){
-        printf("La direction d'ou on vient est %c, et %d et l id est %d\n",dj->direction,dj->current_room,dj->rooms[dj->current_room].id);
-    }
+            Entity* entity = NULL;
+            Entity* ennemy = NULL;
+            if (dj->rooms[dj->current_room].type==3){  
+                for (int i =0;i<(dj->rooms[dj->current_room].nb_ennemy);i++){
+                     entity= &scene->entities[dj->rooms[dj->current_room].id_ennemy[i]];
+                     if (entity){
+                     Health* ennemyHealth = (Health*)getComponent(entity,COMPONENT_HEALTH);
+                     if ( ennemyHealth&&ennemyHealth->isAlive){
+                        ((Model*)getComponent(entity,COMPONENT_RENDERABLE))->isRenderable = true;
+                        golemLogic(scene,gameState,entity,playerEntity);
+                        ennemy = entity;
+                     }}
+                }
+                if (!ennemy){
+                    dj->rooms[dj->current_room].isCompleted = true;
+                }
+            }
+        player_attack(playerEntity,ennemy,gameState);
+        playerMovement(playerEntity, scene->deltaTime, scene->camera, ennemy);}
     if (getKeyState(SDLK_p)){
         printf("Le joueur est en %f %f\n",playerModel->position[0],playerModel->position[2]);
     }
@@ -169,13 +155,15 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
         }
     }
     SDL_Color color_black = {0,0,0,0};
-    if (playerModel->isBusy && !dj->hasKey &&!dj->rooms[dj->current_room].type==2 ){
-        RenderText("La porte est fermée... Il me faudrait une clé pour l'ouvrir !", color_black, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 100, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+    if ((playerModel->isBusy && dj->rooms[dj->current_room].type!=1 &&dj->rooms[dj->current_room].type!=2) ){
+        RenderText("La porte est fermée... ", color_black, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 130, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderText("Il me faudrait une clé pour l'ouvrir !", color_black, gameState->g_WindowWidth / 2 - 50, gameState->g_WindowHeight / 15 + 90, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         if (getMouseButtonState(1)){
             playerModel->isBusy = false;
         }
         }
+    //displayMiniMap(scene,dj,gameState);
     switch(dj->rooms[dj->current_room].id){
         case 0:
         LogicRoom1C(scene,gameState,dj,body);
@@ -204,25 +192,36 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
     }
     
     if (dj->change){
-            dj->lastRoomChangeTime = SDL_GetTicks();
-            LoadRoom(scene,playerModel,dj,body, playerCollider,gameState);
-            dj->change = false;
-            if (dj->rooms[dj->current_room].type!=1){
-                Entity* keyBossChest = &scene->entities[4];
-                ((Model*)keyBossChest->components[1].data)->isRenderable = false;
-                ((Model*)keyBossChest->components[0].data)->isRenderable = false;      
+            if (dj->rooms[dj->previous_room].type==3&&!dj->rooms[dj->previous_room].isCompleted){
+                dj->change = false;
+                dj->direction = dj->previous_direction;
+                dj->current_room = dj->previous_room;
             }
-            if (dj->rooms[dj->current_room].type!=2){
-                Entity* Chest = &scene->entities[5];
-                ((Model*)Chest->components[1].data)->isRenderable = false;
-                ((Model*)Chest->components[0].data)->isRenderable = false;      
+            else{
+                dj->lastRoomChangeTime = SDL_GetTicks();
+                LoadRoom(scene,playerModel,dj,body, playerCollider,gameState);
+                dj->change = false;
+                if (dj->rooms[dj->current_room].type!=1){
+                    Entity* keyBossChest = &scene->entities[4];
+                    ((Model*)keyBossChest->components[1].data)->isRenderable = false;
+                    ((Model*)keyBossChest->components[0].data)->isRenderable = false;      
+                }
+                if (dj->rooms[dj->current_room].type!=2){
+                    Entity* Chest = &scene->entities[5];
+                    ((Model*)Chest->components[1].data)->isRenderable = false;
+                    ((Model*)Chest->components[0].data)->isRenderable = false;      
+                }
+                if (dj->rooms[dj->current_room].type!=3){
+                    Entity* golem = &scene->entities[6];
+                    (((Model*)getComponent(golem,COMPONENT_RENDERABLE)))->isRenderable = false;     
+                }
             }
         }
-
 }
 
 void unloadDungeonScene(Scene* scene){
     DeleteShaders(scene->shader);
+    DeleteShaders(scene->textShader);
     SkyboxDelete(scene->skybox);
 
     if (scene->camera) {

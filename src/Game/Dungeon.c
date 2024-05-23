@@ -17,9 +17,13 @@ Dungeon* dj_create(){
         exit(EXIT_FAILURE);
     }
     dj->current_room = 0;
+    dj->previous_room = 0;
     dj->direction = 'S';
+    dj->previous_direction = 'S';
     dj->change = true;
     dj->hasKey = false;
+    dj->nb_ennemy = 0;
+    dj->quit = false;
     dj->lastRoomChangeTime = 0;
     initializeLRooms(dj);
     return dj;
@@ -237,6 +241,10 @@ void initializeRooms(Dungeon *dj){
         dj->rooms[i].nb_door = nb;
         dj->rooms[i].type =-1 ;
         dj->rooms[i].isCompleted = false;
+        dj->rooms[i].nb_ennemy = 0;
+        for (int k = 0; k < NB_ENNEMY; k++) {
+            dj->rooms[i].id_ennemy[k] = 0;
+        }
         int nb_model;
         int val_model;
         srand(time(NULL));
@@ -351,6 +359,12 @@ void LoadRoom(Scene* scene, Model* player, Dungeon* dj,RigidBody* body, Collider
             d1 = 'S';
             break;
     }
+    if (dj->quit){
+        gameState->change = true;
+        gameState->nextSceneIndex = 2;
+        gameState->previousSceneIndex = 1;
+        return;
+    }
     switch (dj->rooms[dj->current_room].id) {
         case 0:
             LoadRoom1C(scene,gameState,dj->type_room[dj->rooms[dj->current_room].id].model,dj->type_room[dj->rooms[dj->current_room].id].col, player,dj,body);
@@ -377,7 +391,9 @@ void LoadRoom(Scene* scene, Model* player, Dungeon* dj,RigidBody* body, Collider
             if (!dj->hasKey){
                 for (int i =0;i<dj->nb_rooms;i++){
                 if (dj->adj[dj->current_room][i]!='O'){
-                    dj->current_room = i;
+                    dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
+                dj->current_room = i;
                     dj->direction = d1;
                     dj->change = true;
                     player->isBusy = true;
@@ -390,14 +406,8 @@ void LoadRoom(Scene* scene, Model* player, Dungeon* dj,RigidBody* body, Collider
             }
             break;
     }
-    if (dj->current_room==0&&dj->direction=='N'){
-        printf("On quitte le donjon\n");
-        dj->direction = 'S';
-        gameState->change = true;
-        gameState->nextSceneIndex = 2;
-        gameState->previousSceneIndex = 1;
-        return;
-    }
+    
+
     printf("Nous sommes dans la salle %d  (id = %d) depuis le %c\n",dj->current_room,dj->rooms[dj->current_room].id,dj->direction);
     mat4 id;
     glm_translate_make(id,body->velocity);
@@ -462,7 +472,7 @@ void Affiche(Dungeon *dj){
         else if (dj->rooms[i].id==7){
             id7++;
         }
-     printf("Le type de la salle %d est %d et son id est %d\n",i,dj->rooms[i].type,dj->rooms[i].id);
+     printf("Le type de la salle %d est %d et son id est %d et a %d ennemy : id %d et %d\n",i,dj->rooms[i].type,dj->rooms[i].id,dj->rooms[i].nb_ennemy,dj->rooms[i].id_ennemy[0],dj->rooms[i].id_ennemy[1]);
 
 
     }
@@ -690,27 +700,28 @@ void LoadRoom2I(Scene* scene,GameState* gameState,Model* map,Collider* col, Mode
         map->rotation[1] = glm_rad(0.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(0.0f),(vec3){0.0f,1.0f,0.0f});
              for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
-        glm_vec3_copy((vec3){0.0f,0.0f,-4.0f},  body->velocity);
+        glm_vec3_copy((vec3){0.0f,0.0f,-3.5f},  body->velocity);
+        player->rotation[1] =glm_rad(0.0f);
         break;
     case 'N':
         map->rotation[1] = glm_rad(0.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(0.0f),(vec3){0.0f,1.0f,0.0f});
              for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
-        glm_vec3_copy((vec3){0.0f,0.0f,4.0f},  body->velocity);
+        glm_vec3_copy((vec3){0.0f,0.0f,3.5f},  body->velocity);
         player->rotation[1] =glm_rad(180.0f);
         break;
     case 'E':
         map->rotation[1] = glm_rad(90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(90.0f),(vec3){0.0f,1.0f,0.0f});
              for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
-        glm_vec3_copy((vec3){-4.0f,0.0f,0.0f},  body->velocity);
+        glm_vec3_copy((vec3){-3.5f,0.0f,0.0f},  body->velocity);
         player->rotation[1] =glm_rad(90.0f);
         break;
     case 'W':
         map->rotation[1] = glm_rad(90.0f);
         glm_rotate_make(col->transformMatrix,glm_rad(90.0f),(vec3){0.0f,1.0f,0.0f});
             for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(col->boundingBoxReference[i],col->transformMatrix,col->boundingBox[i]); }
-        glm_vec3_copy((vec3){4.0f,0.0f,0.0f},  body->velocity);
+        glm_vec3_copy((vec3){3.5f,0.0f,0.0f},  body->velocity);
         player->rotation[1] =glm_rad(-90.0f);
         break;
     }
@@ -754,7 +765,7 @@ void LoadRoom3T(Scene* scene,GameState* gameState,Model* map,Collider* col, Mode
     switch (dj->direction)
     {
     case 'S':
-        glm_vec3_copy((vec3){-0.0f,0.0f,-6.0f},  body->velocity);
+        glm_vec3_copy((vec3){-0.0f,0.0f,-5.5f},  body->velocity);
         break;
     case 'N':
         glm_vec3_copy((vec3){0.0f,0.0f,6.0f},  body->velocity);
@@ -822,7 +833,7 @@ void LoadRoom2L(Scene* scene,GameState* gameState,Model* map,Collider* col, Mode
         if (dir_used[1]){
         glm_vec3_copy((vec3){-11.1f,0.0f,7.25f},  body->velocity);
         }
-        else {glm_vec3_copy((vec3){-3.8f,0.0f,0.0f},  body->velocity);}
+        else {glm_vec3_copy((vec3){-3.5f,0.0f,0.0f},  body->velocity);}
         player->rotation[1] =glm_rad(90.0f);
         break;
     case 'W':
@@ -836,6 +847,7 @@ void LoadRoom2L(Scene* scene,GameState* gameState,Model* map,Collider* col, Mode
 }
 void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){  
     SDL_Color color_black = {0, 0, 0, 0};
+    SDL_Color color_white = {255, 255, 255, 0};
     Entity* player = &scene->entities[2];
     Model* playerModel = (Model*)getComponent(player,COMPONENT_RENDERABLE);
     vec3 DoorPosition={0.0f,0.0f,0.0f};
@@ -851,18 +863,21 @@ void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         else{
             chestModel = (Model*)keyBossChest->components[0].data;
             vec3 ChestDir;
-            glm_vec3_sub( body->velocity, ChestPosition, ChestDir);
-            if (glm_vec3_norm(ChestDir)<1.5f && getKeyState(SDLK_e)){
-                dj->rooms[dj->current_room].isCompleted = true;
-                ((Model*)keyBossChest->components[0].data)->isRenderable = false;
-                ((Model*)keyBossChest->components[1].data)->isRenderable = true;
-                playerModel->isBusy = true;
-                dj->hasKey = true;
-                 
+            glm_vec3_sub( playerModel->position, ChestPosition, ChestDir);
+            if (glm_vec3_norm(ChestDir)<1.5f){
+                RenderText("Appuyer sur E pour ouvrir", color_white, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                if (getKeyState(SDLK_e)){
+                    dj->rooms[dj->current_room].isCompleted = true;
+                    ((Model*)keyBossChest->components[0].data)->isRenderable = false;
+                    ((Model*)keyBossChest->components[1].data)->isRenderable = true;
+                    playerModel->isBusy = true;
+                    dj->hasKey = true;
+                }
             }
             }
         if (playerModel->isBusy ){
-                RenderText("Vous venez de récupérer la clé du donjon !", color_black, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 100, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                RenderText("Coffre         ", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                RenderText("Vous venez de récupérer la clé du donjon !", color_black, gameState->g_WindowWidth / 2 - 135, gameState->g_WindowHeight / 15 + 100, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                 RenderImage("assets/images/redBossKey.png", gameState->g_WindowWidth/2, gameState->g_WindowHeight/30 , gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                 RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                 if (getMouseButtonState(1)){
@@ -880,22 +895,26 @@ void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         else{
             chestModel = (Model*)Chest->components[0].data;
             vec3 ChestDir;
-            glm_vec3_sub( body->velocity, ChestPosition, ChestDir);
-            if (glm_vec3_norm(ChestDir)<1.5f && getKeyState(SDLK_e)){
-                dj->rooms[dj->current_room].isCompleted = true;
-                ((Model*)Chest->components[0].data)->isRenderable = false;
-                ((Model*)Chest->components[1].data)->isRenderable = true;
-                playerModel->isBusy = true;
+            glm_vec3_sub( playerModel->position, ChestPosition, ChestDir);
+            if (glm_vec3_norm(ChestDir)<1.5f ){
+                RenderText("Appuyer sur E pour ouvrir", color_white, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                if (getKeyState(SDLK_e)){
+                    dj->rooms[dj->current_room].isCompleted = true;
+                    ((Model*)Chest->components[0].data)->isRenderable = false;
+                    ((Model*)Chest->components[1].data)->isRenderable = true;
+                    playerModel->isBusy = true;
+                }
                  
             }
             }
-        }   
         if (playerModel->isBusy ){
-                RenderText("Vous venez de récupérer un objet !", color_black, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 100, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                RenderText("Coffre         ", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                RenderText("Vous venez de récupérer un objet !", color_black, gameState->g_WindowWidth / 2 - 135, gameState->g_WindowHeight / 15 + 100, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                 RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                 if (getMouseButtonState(1)){
                     playerModel->isBusy = false;
         }
+        }   
     }
     switch (dj->direction){
         case 'S': 
@@ -920,6 +939,9 @@ void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     if (DoorDist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]!='O'){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d1;
                 break;
@@ -970,6 +992,9 @@ void LogicRoom2C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     if (Door1Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d1){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d2;
                 break;
@@ -980,6 +1005,9 @@ void LogicRoom2C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     if (Door2Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d2){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d1;
                 break;
@@ -1030,6 +1058,9 @@ void LogicRoom3C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     if (Door1Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime&&dir_used[1] ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='S'){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = 'N';
                 break;
@@ -1041,6 +1072,9 @@ void LogicRoom3C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     else if (Door2Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime&&dir_used[0] ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='N'){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = 'S';
                 break;
@@ -1050,6 +1084,9 @@ void LogicRoom3C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     }else if (Door3Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime&&dir_used[3] ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='E'){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = 'W';
                 break;
@@ -1060,6 +1097,9 @@ void LogicRoom3C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     else if (Door4Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime&&dir_used[2]){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='W'){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = 'E';
                 break;
@@ -1100,6 +1140,9 @@ void LogicRoom4C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     if (Door1Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='S'){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = 'N';
                 break;
@@ -1111,6 +1154,9 @@ void LogicRoom4C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     else if (Door2Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='N'){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = 'S';
                 break;
@@ -1120,6 +1166,9 @@ void LogicRoom4C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     }else if (Door3Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='E'){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = 'W';
                 break;
@@ -1130,6 +1179,9 @@ void LogicRoom4C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     else if (Door4Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='W'){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = 'E';
                 break;
@@ -1207,6 +1259,9 @@ void LogicRoom3T(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     if (Door1Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d1){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d2;
                 break;
@@ -1218,6 +1273,9 @@ void LogicRoom3T(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     else if (Door2Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d3){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d4;
                 break;
@@ -1227,6 +1285,9 @@ void LogicRoom3T(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     }else if (Door3Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d4){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d3;
                 break;
@@ -1294,6 +1355,9 @@ void LogicRoom2L(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     if (Door1Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='S'||dj->adj[dj->current_room][i]=='N'){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d1;
                 break;
@@ -1304,6 +1368,9 @@ void LogicRoom2L(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     if (Door2Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='E'||dj->adj[dj->current_room][i]=='W'){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d2;
                 break;
@@ -1351,6 +1418,9 @@ void LogicRoom2I(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     if (Door1Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d1){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d2;
                 break;
@@ -1361,6 +1431,9 @@ void LogicRoom2I(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     if (Door2Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d2){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
                 dj->current_room = i;
                 dj->direction = d1;
                 break;
@@ -1402,6 +1475,10 @@ void LogicRoomB(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     if ((DoorDist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime)){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]!='O'){
+                if (i==dj->current_room){dj->quit = true;}
+                dj->previous_direction = dj->direction;
+                dj->previous_room = dj->current_room;
+
                 dj->current_room = i;
                 dj->direction = d1;
                 break;
@@ -1418,19 +1495,16 @@ void LogicRoomB(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
 void setTypeRoom(Dungeon* dj){
     bool hasKeyBoss = false;
     srand(time(NULL));
-    for (int i =0 ; i<dj->nb_rooms;i++){
+    for (int i =1 ; i<dj->nb_rooms;i++){
         if (dj->rooms[i].id == 0 && !hasKeyBoss){
             dj->rooms[i].type = 1;
             hasKeyBoss = true;
-            printf("J ai mis une cle\n");
         }
         else if (dj->rooms[i].id == 7){
             dj->rooms[i].type = 0;
         }
-        //else if (dj->rooms[i].id == 0 ||dj->rooms[i].id == 1 || dj->rooms[i].id ==4 || dj->rooms[i].id == 6){
         else if (dj->rooms[i].id == 0){
             int n = rand()%LootChance+1;
-            printf("N = %d (loot || fight)\n",n);
             if (n == 1 || n==0){
                  dj->rooms[i].type = 2;
                  }
@@ -1441,9 +1515,59 @@ void setTypeRoom(Dungeon* dj){
         }
         else {
             int n = rand()%LootChance+1;
-            printf("N = %d (fight)\n",n);
             if (n==2){
                 dj->rooms[i].type = 3;
-            }}}}
+                }
+            }
+        if (dj->rooms[i].type == 3){
+            if (dj->nb_ennemy<NB_ENNEMY-1){
+                dj->rooms[i].id_ennemy[0] = 6 + dj->nb_ennemy;
+                dj->rooms[i].id_ennemy[1] = 6 + (dj->nb_ennemy+1);
+                dj->nb_ennemy+=2;
+                dj->rooms[i].nb_ennemy = 2;
+                printf("id ennmy salle %d = %d %d\n",i,dj->rooms[i].id_ennemy[0],dj->rooms[i].id_ennemy[1]);
+            }
+            else if (dj->nb_ennemy<NB_ENNEMY){
+                dj->rooms[i].id_ennemy[0] = 6 + dj->nb_ennemy;
+                dj->nb_ennemy+=1;
+                dj->rooms[i].nb_ennemy = 1;
+            }
+            else{
+                dj->rooms[i].type = -1;
+            }
+        }
+        printf("id ennmy salle %d = %d %d\n",i,dj->rooms[i].id_ennemy[0],dj->rooms[i].id_ennemy[1]);
+        }
+     }
+        
 
-    
+void displayMiniMap(Scene* scene, Dungeon* dj,GameState* gameState){
+    char *l = "NSWE";
+    bool dir_used[4] = {false,false,false,false};
+    int c=0;
+    for (int k = 0; k < dj->nb_rooms && c < 3; k++) {
+    if (dj->adj[dj->current_room][k] != 'O') {
+        for (int j = 0; j < 4; j++) {
+            if (dj->adj[dj->current_room][k] == l[j]) {
+                dir_used[j] = true;
+                c++;
+                break;
+            }
+        }
+    }
+    }
+     RenderImage("assets/images/map.png", gameState->g_WindowWidth - 180, gameState->g_WindowHeight /15-40, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+     if (dir_used[0]){
+        RenderImage("assets/images/map.png", gameState->g_WindowWidth - 180, gameState->g_WindowHeight /15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+     }
+     if (dir_used[1]&&dj->current_room!=0){
+        RenderImage("assets/images/map.png", gameState->g_WindowWidth - 180, gameState->g_WindowHeight /15-150, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+     }
+     if (dir_used[2]){
+        RenderImage("assets/images/map.png", gameState->g_WindowWidth - 290, gameState->g_WindowHeight /15-40, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+     }
+     if (dir_used[3]){
+        RenderImage("assets/images/map.png", gameState->g_WindowWidth - 70, gameState->g_WindowHeight /15-40, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+     }
+
+}

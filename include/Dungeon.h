@@ -10,14 +10,15 @@
 #include <GameState.h>~
 #include <Scene.h>
 
-#define NB_ROOM_MAX 7
-#define NB_ROOM_MIN 5
+#define NB_ROOM_MAX 15
+#define NB_ROOM_MIN 10
 #define MIN_DOOR 1
 #define MAX_DOOR 4
 #define NB_MODEL_SALLE 8
 #define ChangeTime 2000.0f
 #define LootChance 3;
 #define FightChance 2;
+
 typedef struct _Dungeon Dungeon;
 struct  _Dungeon
 {
@@ -25,10 +26,14 @@ struct  _Dungeon
     L_Room* type_room;
     char **adj;
     char direction;
+    char previous_direction;
     int nb_rooms;
     int current_room;
+    int previous_room;
+    int nb_ennemy;
     bool change;
     bool hasKey;
+    bool quit;
     float lastRoomChangeTime;
 
     
@@ -68,3 +73,4 @@ void LogicRoom3T (Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body )
 void LogicRoomB (Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body );
 void initializeLRooms(Dungeon *dj);
 void setTypeRoom(Dungeon* dj);
+void displayMiniMap(Scene* scene, Dungeon* dj,GameState* gameState);

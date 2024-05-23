@@ -14,7 +14,7 @@ void SceneManagerInit(SceneManager* manager) {
      manager->gameState.isPlayerDead = false;
     manager->gameState.change = false;
     manager->gameState.nextSceneIndex = -1;
-    manager->gameState.isForestDungeonDone = true;
+    manager->gameState.isForestDungeonDone = false;
 }
 void SceneManagerAddScene(SceneManager* manager, Scene* scene, void (*start)(Scene*), void (*update)(Scene*),void (*unload)(Scene*)) {
     if (manager->numScenes < MAX_SCENES) {
@@ -50,7 +50,5 @@ void freeSceneManager(SceneManager* manager) {
 }
 
 void SceneManagerUnloadCurrentScene(SceneManager* manager, int index) {
-    if (manager->currentSceneIndex >= 0 && manager->currentSceneIndex < manager->numScenes) {
         manager->scenes[manager->currentSceneIndex]->unload(manager->scenes[manager->currentSceneIndex]);
-    }
 }

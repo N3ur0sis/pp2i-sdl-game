@@ -46,13 +46,13 @@ int main(void){
     Scene* dungeonScene = (Scene*)calloc(1,sizeof(Scene));
     dungeonScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, dungeonScene, DungeonMainScene, updateDungeonScene,unloadDungeonScene);
-      
-     /* Init of Dungeon Scene*/
+    
+     /* Init of Forest Scene*/
     Scene* forestScene = (Scene*)calloc(1,sizeof(Scene));
     forestScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, forestScene, ForestMainScene, updateForestScene,unloadStartScene);
 
-    int current_scene = 0;
+    int current_scene = 1;
     SceneManagerSetCurrentScene(&sceneManager, current_scene);
 
     TTF_Init();
@@ -76,16 +76,16 @@ int main(void){
             
             sceneManager.scenes[sceneManager.currentSceneIndex]->deltaTime = (currentTime - lastTime) / 1000.0f;
             physicsSystem(sceneManager.scenes[sceneManager.currentSceneIndex]);
+            renderSystem(sceneManager.scenes[sceneManager.currentSceneIndex],&sceneManager.gameState);
             SceneManagerUpdateCurrentScene(&sceneManager);
             cameraControl(sceneManager.scenes[sceneManager.currentSceneIndex]->camera,&sceneManager.gameState);
-            renderSystem(sceneManager.scenes[sceneManager.currentSceneIndex],&sceneManager.gameState);
             lastTime = currentTime;
             EndFrame(game);
         }
     }
 
     /* Clean every resource allocated */
-    freeScene(mainScene);
+    //freeScene(mainScene);
     //freeSceneManager(&sceneManager);
     Mix_FreeMusic(bgm);
     WindowDelete(game->window);

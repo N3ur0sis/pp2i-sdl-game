@@ -14,7 +14,8 @@ typedef enum {
     COMPONENT_ATTACHMENT,
     COMPONENT_RIGIDBODY,
     COMPONENT_DUNGEON,
-    COMPONENT_HEALTH
+    COMPONENT_HEALTH,
+    COMPONENT_DAMAGE,
 } ComponentType;
 
 typedef struct _Component{
@@ -36,10 +37,9 @@ typedef struct {
     float speed; 
 } RigidBody;
 
-
-typedef struct {
-    int health;
-    int maxHealth;
+typedef struct _Health{
+    float health;
+    float maxHealth;
     bool isAlive;
 } Health;
 

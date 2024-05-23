@@ -15,6 +15,7 @@ int click_counter = 0 ;
 void startMainScene(Scene* scene, GameState* gameState) {
     /* Load and compile shaders */
     scene->shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
+    UseShaders(scene->shader);
     /* Load and compile textShader */
     scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
     /* Create a scene camera */
@@ -24,7 +25,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
     scene->skybox = SkyboxCreate();
 
     /* Enemy Entity */
-    Entity* golem = create_golem(scene);
+    Entity* golem = create_golem(scene,0.0f,0.1f,0.0f,0.5f);
 
     /* Player Entity */
     Entity* playerEntity = create_player(scene,28.0f,0.1f,7.0f);
@@ -89,9 +90,6 @@ void startMainScene(Scene* scene, GameState* gameState) {
         chestOpen->isRenderable = false;
         addComponent(chestOpenEntity, COMPONENT_RENDERABLE, chestOpen);
     }
-
-
-    // StartBarrier Entity
     Entity* startBarrierEntity = createEntity(scene);
     if (startBarrierEntity != NULL) {
         Model* startBarrier = (Model*)calloc(1, sizeof(Model));
@@ -109,7 +107,6 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(startBarrierEntity, COMPONENT_COLLIDER, startBarrierCollision);
 
     }
-
 }
  
 void updateMainScene(Scene* scene, GameState* gameState) {
