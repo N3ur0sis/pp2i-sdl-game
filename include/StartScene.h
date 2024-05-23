@@ -5,14 +5,18 @@
 #include <cglm/cglm.h>
 #include "Ennemy.h"
 #include <Renderer.h>
+#include <Inventory.h>
 
-
-bool checkpoint_sword = false;
+bool checkpoint_sword;
 bool is_clicking = false;
-bool isBarrierDestroyed = false;
+bool isBarrierDestroyed;
 int click_counter = 0 ;
+Inventory* inventory;
+
 
 void startMainScene(Scene* scene, GameState* gameState) {
+    checkpoint_sword = false;
+    isBarrierDestroyed = false;
     /* Load and compile shaders */
     scene->shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
     UseShaders(scene->shader);
@@ -109,10 +113,19 @@ void startMainScene(Scene* scene, GameState* gameState) {
     }
 
     Entity* Marchant = createMarchant(scene, (vec3){-15.0f,0.1f,-10.0f}, (vec3){2.0f, 2.0f, 2.0f}, (vec3){0.0f, 3.14f, 0.0f});
+
+    
+    inventory = InventoryCreate(10);
+    for (int i = 0; i < 10 ; i++) {
+        Object* object = Object_create("Potion de vie", "Restaure 10 points de vie", 1);
+        InventoryAddObject(inventory, object);
+    }
+    InventoryPrint(inventory);
 }
  
 void updateMainScene(Scene* scene, GameState* gameState) {
     
+
 
     // Game Logic
     Entity* enemy = &scene->entities[0];

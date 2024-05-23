@@ -11,7 +11,7 @@ typedef struct _Inventory {
 
 
 Inventory* InventoryCreate(int capacity);
-void InventoryAddObject(Inventory* inventory, Object object);
+void InventoryAddObject(Inventory* inventory, Object* object);
 void InventoryRemoveObject(Inventory* inventory, Object object);
 void InventoryDestroy(Inventory* inventory);
 void InventoryPrint(Inventory* inventory);

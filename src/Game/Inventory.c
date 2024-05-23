@@ -11,9 +11,9 @@ Inventory* InventoryCreate(int capacity) {
 
 
 
-void InventoryAddObject(Inventory* inventory, Object object) {
+void InventoryAddObject(Inventory* inventory, Object* object) {
     if (inventory->size < inventory->capacity) {
-        inventory->objects[inventory->size] = object;
+        inventory->objects[inventory->size] = *object;
         inventory->size++;
     }
 }
@@ -35,9 +35,20 @@ void InventoryDestroy(Inventory* inventory) {
     free(inventory);
 }
 
+
+
+
+
 void InventoryPrint(Inventory* inventory) {
-    for (int i = 0; i < inventory->size; i++) {
-        printf("Object %d : %s\n", i, inventory->objects[i].name);
+    for (int i = 0; i < 10; i++) {
+        int nb_items = 0;
+        for (int k = 0; inventory->size-1; k++ ) {
+            printf("coucou");
+            if ((inventory->objects[k]).id == i) {
+                nb_items++;
+            }
+        printObject(i, nb_items);
+        }
     }
 }
 
