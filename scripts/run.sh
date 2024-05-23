@@ -20,5 +20,5 @@ fi
 
 cd build
 cmake ..
-make
+make -j 16
 ./PP2I

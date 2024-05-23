@@ -8,6 +8,7 @@ void SceneManagerInit(SceneManager* manager) {
     manager->gameState.enemyIsAttacking = false;
     manager->gameState.playerIsAttacking = false; 
     manager->gameState.playerHealth = 10.0f;
+    manager->gameState.inventory = InventoryCreate(500);
     manager->gameState.g_WindowWidth = 1280;
     manager->gameState.g_WindowHeight = 720;
     manager->gameState.g_WindowTitle = "Game";

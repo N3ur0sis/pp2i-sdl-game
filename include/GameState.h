@@ -1,9 +1,11 @@
 #pragma once
+#include <Inventory.h>
 
 typedef struct GameState {
     bool enemyIsAttacking;
     bool playerIsAttacking;
     float playerHealth;
+    Inventory* inventory;
     int g_WindowWidth;
     int g_WindowHeight;
     char* g_WindowTitle;
