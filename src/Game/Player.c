@@ -253,10 +253,11 @@ void player_attack(Entity* player,Entity* ennemy,GameState* gameState){
 				Health* ennemyHealth = (Health*)getComponent(ennemy,COMPONENT_HEALTH);
 				vec3 ennemyDir;
 				glm_vec3_sub( playerModel->position, ennemyModel->position, ennemyDir);
-				printf(" dist gol = %f\n",glm_vec3_norm(ennemyDir));
 				if ( glm_vec3_norm(ennemyDir)<ATTACK_RANGE){
 					gameState->playerIsAttacking = false;
 					ennemyHealth->health-=DAMAGE;
+					printf(" health = %f\n",ennemyHealth->health);
+
 				}
             }
 			}

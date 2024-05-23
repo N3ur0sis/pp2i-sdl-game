@@ -13,5 +13,5 @@ typedef struct _Light {
 } Light;
 
 
-Light* LightCreate(Shader *S, vec4 position, vec3 intensity, float attenuation, float ambientCoef);
+Light* LightCreate(Shader *S, vec4 position, vec3 intensity, float attenuation, float ambientCoef,float nearz, float farz);
 void LightUpdate(Shader *S, Light *point);
