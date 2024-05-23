@@ -308,6 +308,8 @@ void updateMainScene(Scene* scene, GameState* gameState) {
                 scene->camera->Pitch = -20.0f;
             }
         }else if (y < -30.5f && y > -35.5f && x < 2.08f && x > -2.8 && isBusy && !checkpoint_sword) {
+            ((Model*)getComponent(chestEntity, COMPONENT_RENDERABLE))->isRenderable = false;
+            ((Model*)getComponent(chestOpenEntity, COMPONENT_RENDERABLE))->isRenderable = true;
             switch (click_counter) {
                 case 0:
                     RenderText("Coffre         ", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
@@ -320,8 +322,6 @@ void updateMainScene(Scene* scene, GameState* gameState) {
                         isBusy = false;
                         ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy = false;
                         ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))->isRenderable = true;
-                        ((Model*)getComponent(chestEntity, COMPONENT_RENDERABLE))->isRenderable = false;
-                        ((Model*)getComponent(chestOpenEntity, COMPONENT_RENDERABLE))->isRenderable = true;
                         enemyModel->isRenderable = true;
                         is_clicking = true;
                         checkpoint_sword = true;

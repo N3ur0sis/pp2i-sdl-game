@@ -98,7 +98,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         Model* flame = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame, "assets/models/Foret/Flame.obj");
         if (!gameState->isForestDungeonDone){
-        flame->isRenderable = false;
+        //flame->isRenderable = false;
          }  
         glm_vec3_copy((vec3){50.5f,9.8f,112.0f},flame->position);
         addComponent(flame1, COMPONENT_RENDERABLE, flame);
@@ -109,7 +109,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         Model* flame_2 = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame_2, "assets/models/Foret/Flame.obj");
         if (!gameState->isForestDungeonDone){
-        flame_2->isRenderable = false;
+        //flame_2->isRenderable = false;
          }  
         glm_vec3_copy((vec3){62.3f,9.8f,156.0f},flame_2->position);
         addComponent(flame2, COMPONENT_RENDERABLE, flame_2);
@@ -120,7 +120,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         Model* flame_3 = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame_3, "assets/models/Foret/Flame.obj");
         if (!gameState->isForestDungeonDone){
-        flame_3->isRenderable = false;
+        //flame_3->isRenderable = false;
          }  
         glm_vec3_copy((vec3){-59.0f,9.8f,146.50f},flame_3->position);
         addComponent(flame3, COMPONENT_RENDERABLE, flame_3);
@@ -152,6 +152,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
 void updateForestScene(Scene* scene, GameState* gameState){
     // Game Logic
     bool isClicking = false;
+    Camera* camera =scene->camera; 
     Entity* playerEntity = &scene->entities[2];
     Entity* enemy = &scene->entities[4];
     Entity* mapEntity = &scene->entities[1];
@@ -273,25 +274,37 @@ void updateForestScene(Scene* scene, GameState* gameState){
             
         }
     }
-    if (playerModel->isBusy ){
-        RenderText("Vous entendez un bruit sourd au loin", color_black, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 100, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+    if (playerModel->isBusy&&dungeonDoorModel->position[1]==0.0f){
+        RenderText("Vous entendez un bruit sourd au loin", color_black, gameState->g_WindowWidth / 2 - 115, gameState->g_WindowHeight / 15 + 100, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         if (getMouseButtonState(1)){
             playerModel->isBusy = false;
         }
     }
     if (flame1Model->isRenderable&&flame2Model->isRenderable&&flame3Model->isRenderable&&flame4Model->isRenderable){
-        dungeonDoorModel->isRenderable = false;
-        vec3 DonjonPosition ;
-        vec3 DonjonDir;
-        glmc_vec3_copy((vec3){-7.4f,10.0f, 168.69f},DonjonPosition);
-        glm_vec3_sub( playerModel->position, DonjonPosition, DonjonDir);
-        float DonjonDist = glm_vec3_norm(DonjonDir);
-        if (DonjonDist<1.0f&&getKeyState(SDLK_e)){
-            gameState->change = true;
-            gameState ->nextSceneIndex = 1;
-            gameState->previousSceneIndex = 2;
-        }
+        if (dungeonDoorModel->isRenderable){
+            if (dungeonDoorModel->position[1]>10.0f){
+                dungeonDoorModel->isRenderable = false;
+                 playerModel->isBusy = false;
+            }
+            else{
+                glm_vec3_copy((vec3){-6.0f,30.0f,160.0f},camera->Position);
+                camera->Yaw = 90.0f;
+                dungeonDoorModel->position[1]+=0.01f;
+                playerModel->isBusy = true;
+            }
+        }else{
+            vec3 DonjonPosition ;
+            vec3 DonjonDir;
+            glmc_vec3_copy((vec3){-7.4f,10.0f, 168.69f},DonjonPosition);
+            glm_vec3_sub( playerModel->position, DonjonPosition, DonjonDir);
+            float DonjonDist = glm_vec3_norm(DonjonDir);
+            if (DonjonDist<1.0f&&getKeyState(SDLK_e)){
+                gameState->change = true;
+                gameState ->nextSceneIndex = 1;
+                gameState->previousSceneIndex = 2;
+        }}
+        
     }
 
 }

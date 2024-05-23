@@ -52,7 +52,7 @@ int main(void){
     forestScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, forestScene, ForestMainScene, updateForestScene,unloadStartScene);
 
-    int current_scene = 2;
+    int current_scene = 0;
     SceneManagerSetCurrentScene(&sceneManager, current_scene);
 
     TTF_Init();

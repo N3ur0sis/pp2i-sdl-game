@@ -7,7 +7,7 @@
 #include "List.h"
 #include <stdbool.h>
 #include <string.h>
-#include <GameState.h>~
+#include <GameState.h>
 #include <Scene.h>
 
 #define NB_ROOM_MAX 15
