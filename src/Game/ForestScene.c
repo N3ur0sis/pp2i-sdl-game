@@ -12,6 +12,7 @@ Entity of this scene (order of their index):
     Flame 2
     Flame 3
     Flame 4
+    Dungeon Door
 */
 
 
@@ -136,6 +137,14 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         addComponent(flame4, COMPONENT_RENDERABLE, flame_4);
         
     }
+    Entity* DungeonDoor = createEntity(scene);
+    if (DungeonDoor){
+        Model* DungeonDoorModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(DungeonDoorModel, "assets/models/Foret/DungeonForestDoor.obj");
+        //glm_vec3_copy((vec3){-6.7f,9.8f,169.0f},DungeonDoorModel->position);
+        addComponent(DungeonDoor, COMPONENT_RENDERABLE, DungeonDoorModel);
+        
+    }
     
     
 
@@ -146,7 +155,8 @@ void updateForestScene(Scene* scene, GameState* gameState){
     Entity* playerEntity = &scene->entities[2];
     Entity* enemy = &scene->entities[4];
     Entity* mapEntity = &scene->entities[1];
-
+    Entity* dungeonDoorEntity = &scene->entities[9];
+    Model* dungeonDoorModel = (Model*)getComponent(dungeonDoorEntity, COMPONENT_RENDERABLE);
     Model* playerModel = (Model*)getComponent(playerEntity, COMPONENT_RENDERABLE);
     Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
     Collider* playerCollider = (Collider*)getComponent(playerEntity, COMPONENT_COLLIDER);
@@ -270,15 +280,18 @@ void updateForestScene(Scene* scene, GameState* gameState){
             playerModel->isBusy = false;
         }
     }
-    vec3 DonjonPosition ;
-    vec3 DonjonDir;
-    glmc_vec3_copy((vec3){-7.4f,10.0f, 168.69f},DonjonPosition);
-    glm_vec3_sub( playerModel->position, DonjonPosition, DonjonDir);
-    float DonjonDist = glm_vec3_norm(DonjonDir);
-    if (DonjonDist<1.0f&&getKeyState(SDLK_e) &&flame1Model->isRenderable&&flame2Model->isRenderable&&flame3Model->isRenderable&&flame4Model->isRenderable){
-        gameState->change = true;
-        gameState ->nextSceneIndex = 1;
-        gameState->previousSceneIndex = 2;
+    if (flame1Model->isRenderable&&flame2Model->isRenderable&&flame3Model->isRenderable&&flame4Model->isRenderable){
+        dungeonDoorModel->isRenderable = false;
+        vec3 DonjonPosition ;
+        vec3 DonjonDir;
+        glmc_vec3_copy((vec3){-7.4f,10.0f, 168.69f},DonjonPosition);
+        glm_vec3_sub( playerModel->position, DonjonPosition, DonjonDir);
+        float DonjonDist = glm_vec3_norm(DonjonDir);
+        if (DonjonDist<1.0f&&getKeyState(SDLK_e)){
+            gameState->change = true;
+            gameState ->nextSceneIndex = 1;
+            gameState->previousSceneIndex = 2;
+        }
     }
 
 }
