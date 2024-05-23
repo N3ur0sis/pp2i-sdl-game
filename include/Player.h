@@ -12,6 +12,7 @@ void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float 
 float lerp_float(float a, float b, float t);
 void lerp_camera(Camera* camera, vec3 old_pos, vec3 new_pos, float old_yaw, float new_yaw, int steps, float duration);
 bool playerInteract();
-Entity* create_player(Scene*  scene,float x,float y,float z);
+void checkDead(GameState* gamestate);
+void damagePlayer(GameState* gamestate, int damage);Entity* create_player(Scene*  scene,float x,float y,float z);
 Entity* create_sword(Scene* scene,Entity* parent);
 void player_attack(Entity* player,Entity* ennemy,GameState* gameState);

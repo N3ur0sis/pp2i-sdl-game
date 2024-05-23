@@ -89,6 +89,7 @@ void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enem
 
 
 void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float deltaTime) {
+	// printf("each frame \n");
 	targetPosition++;
 	if (position[0] < -25.0f) {
 		if (camera->Yaw != 180.0f) {
@@ -260,4 +261,19 @@ void player_attack(Entity* player,Entity* ennemy,GameState* gameState){
 				}
             }
 			}
+}
+
+void checkDead(GameState* gamestate){
+	if (gamestate->playerHealth <= 0) {
+		gamestate->isPlayerDead = true;
+	}
+}
+
+
+void damagePlayer(GameState* gamestate, int damage){
+	if (gamestate->playerHealth - damage < 0) {
+		gamestate->playerHealth = 0;
+		return;
+	}
+	gamestate->playerHealth -= damage;
 }
