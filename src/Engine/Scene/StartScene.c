@@ -132,7 +132,7 @@ void startStartScene(Scene* scene, GameState* gameState) {
  
 void updateStartScene(Scene* scene, GameState* gameState) {
 
-    printf("%d, %d\n", getMousePosition(0), getMousePosition(1));
+    // printf("%d, %d\n", getMousePosition(0), getMousePosition(1));
 
     // Game Logic
     Entity* enemy = &scene->entities[0];
@@ -214,7 +214,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
         }
 
         if (inventory->isOpened) {
-            InventoryPrint(inventory, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->shader->m_program);
+            InventoryPrint(inventory, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         }
 
 
