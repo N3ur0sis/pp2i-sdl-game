@@ -1,6 +1,7 @@
 #include "Inventory.h"
 
 
+
 Inventory* InventoryCreate(int capacity) {
     Inventory* inventory = (Inventory*)calloc(1, sizeof(Inventory));
     inventory->objects = (Object*)calloc(capacity, sizeof(Object));
@@ -40,7 +41,8 @@ void InventoryDestroy(Inventory* inventory) {
 
 
 
-void InventoryPrint(Inventory* inventory) {
+void InventoryPrint(Inventory* inventory, GameState* gameState, Scene* scene) {
+    int nb_items_non_nuls = 0;
     for (int i = 0; i < 10; i++) {
         int nb_items = 0;
         for (int k = 0; k < inventory->size; k++ ) {
@@ -48,7 +50,23 @@ void InventoryPrint(Inventory* inventory) {
                 nb_items++;
             }
         }
-        printObject(i, nb_items);
+        if (!(nb_items == 0)) {
+            int lignes = nb_items_non_nuls / 3;
+            int colonnes = nb_items_non_nuls % 3;
+            char nb[12];
+            sprintf(nb, "%d", nb_items);
+            SDL_Color color_red = {255, 0, 0, 0};
+            RenderText(nb, color_red, gameState->g_WindowWidth / 2 - 56 + 69 *colonnes , gameState->g_WindowHeight / 3 + 172 - 69 * lignes, 15, gameState->g_WindowWidth,gameState->g_WindowHeight, scene->textShader->m_program);
+            if (nb_items_non_nuls % 2 == 1) {
+                RenderImage("assets/images/Heart_Orange_1.png", gameState->g_WindowWidth / 2 -70 + 69 * colonnes  , gameState->g_WindowHeight / 3 + 165 - 68 * lignes , gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+            } else {
+                RenderImage("assets/images/Heart_Blue_1.png", gameState->g_WindowWidth / 2 -70 + 69 * colonnes  , gameState->g_WindowHeight / 3 + 165 - 68 * lignes , gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+            }
+            nb_items_non_nuls++;
+        }
+        
     }
+    RenderImage("assets/images/Inventory_Example_03.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 3, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+
 }
 

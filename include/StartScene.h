@@ -113,20 +113,32 @@ void startMainScene(Scene* scene, GameState* gameState) {
 
     }
 
-    Entity* Marchant = createMarchant(scene, (vec3){-15.0f,0.1f,-10.0f}, (vec3){2.0f, 2.0f, 2.0f}, (vec3){0.0f, 3.14f, 0.0f});
+    Entity* Marchand = createMarchand(scene, (vec3){-15.0f,0.1f,-10.0f}, (vec3){2.0f, 2.0f, 2.0f}, (vec3){0.0f, 3.14f, 0.0f});
 
     
-    inventory = InventoryCreate(10);
+    inventory = InventoryCreate(500);
     for (int i = 0; i < 10 ; i++) {
         Object* object = Object_create("Potion de vie", "Restaure 10 points de vie", 1);
         InventoryAddObject(inventory, object);
     }
-    // InventoryPrint(inventory);
+    for (int i = 0; i < 11 ; i++) {
+        Object* object = Object_create("truc rigolo", "c'est un truc rigolo", 2);
+        InventoryAddObject(inventory, object);
+    }
+    for (int i = 0; i < 12 ; i++) {
+        Object* object = Object_create("machin rigolo", "c'est un machin rigolo", 3);
+        InventoryAddObject(inventory, object);
+    }
+    for (int i = 0; i < 13 ; i++) {
+        Object* object = Object_create("bidule rigolo", "c'est un bidule rigolo", 4);
+        InventoryAddObject(inventory, object);
+    }
+
 }
  
 void updateMainScene(Scene* scene, GameState* gameState) {
 
-
+    printf("%d, %d\n", getMousePosition(0), getMousePosition(1));
 
     // Game Logic
     Entity* enemy = &scene->entities[0];
@@ -189,19 +201,22 @@ void updateMainScene(Scene* scene, GameState* gameState) {
 
         /* Game Logic */
 
-            if (getKeyState(TAB) && !is_tabing) {
-                is_tabing = true;
-                if (inventory->isOpened) {
-                    inventory->isOpened = false;
-                    *isBusy = false;
-                } else {
-                    inventory->isOpened = true;
-                    *isBusy = true;
-                }
-            } else if (!getKeyState(TAB)) {
-                is_tabing = false;
+        if (getKeyState(TAB) && !is_tabing) {
+            is_tabing = true;
+            if (inventory->isOpened) {
+                inventory->isOpened = false;
+                *isBusy = false;
+            } else {
+                inventory->isOpened = true;
+                *isBusy = true;
             }
+        } else if (!getKeyState(TAB)) {
+            is_tabing = false;
+        }
 
+        if (inventory->isOpened) {
+            InventoryPrint(inventory, gameState, scene);
+        }
 
 
         float rotTarget = 0.0f;
@@ -415,7 +430,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
                 *isBusy = true;
             }
         } else if (x < -13.0f && x > -18.0f && y < -8.0f && y > -13.0f && *isBusy) {
-            talkToMarchant(gameState, scene, &click_counter, &is_clicking, isBusy);
+            talkToMarchand(gameState, scene, &click_counter, &is_clicking, isBusy);
         }
 
     }
@@ -436,5 +451,6 @@ void unloadStartScene(Scene* scene){
     for (int i = 0; i < scene->numEntities; i++) {
         freeEntity(&scene->entities[i]);
     }
+
     scene->numEntities = 0;
 }
