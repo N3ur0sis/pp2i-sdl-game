@@ -6,6 +6,7 @@ Inventory* InventoryCreate(int capacity) {
     inventory->objects = (Object*)calloc(capacity, sizeof(Object));
     inventory->size = 0;
     inventory->capacity = capacity;
+    inventory->isOpened = false;
     return inventory;
 }
 
@@ -42,13 +43,12 @@ void InventoryDestroy(Inventory* inventory) {
 void InventoryPrint(Inventory* inventory) {
     for (int i = 0; i < 10; i++) {
         int nb_items = 0;
-        for (int k = 0; inventory->size-1; k++ ) {
-            printf("coucou");
+        for (int k = 0; k < inventory->size; k++ ) {
             if ((inventory->objects[k]).id == i) {
                 nb_items++;
             }
-        printObject(i, nb_items);
         }
+        printObject(i, nb_items);
     }
 }
 

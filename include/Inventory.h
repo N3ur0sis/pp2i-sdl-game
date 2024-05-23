@@ -6,6 +6,7 @@ typedef struct _Inventory {
     Object* objects;
     int size;
     int capacity;
+    bool isOpened;
 } Inventory;
 
 

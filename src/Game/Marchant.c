@@ -30,8 +30,6 @@ Entity* createMarchant(Scene* scene, vec3 position, vec3 scale, vec3 rotation) {
 
 
 void talkToMarchant(GameState* gameState, Scene* scene, int* click_counter, bool* is_clicking, bool* isBusy) {
-    printf("click_counter : %d", *click_counter);
-
     SDL_Color color_black = {0, 0, 0, 0};
     SDL_Color color_white = {255, 255, 255, 0};
     switch (*click_counter) {

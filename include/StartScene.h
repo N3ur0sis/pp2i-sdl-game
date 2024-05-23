@@ -9,6 +9,7 @@
 
 bool checkpoint_sword;
 bool is_clicking = false;
+bool is_tabing = false;
 bool isBarrierDestroyed;
 int click_counter = 0 ;
 Inventory* inventory;
@@ -120,11 +121,11 @@ void startMainScene(Scene* scene, GameState* gameState) {
         Object* object = Object_create("Potion de vie", "Restaure 10 points de vie", 1);
         InventoryAddObject(inventory, object);
     }
-    InventoryPrint(inventory);
+    // InventoryPrint(inventory);
 }
  
 void updateMainScene(Scene* scene, GameState* gameState) {
-    
+
 
 
     // Game Logic
@@ -186,8 +187,23 @@ void updateMainScene(Scene* scene, GameState* gameState) {
 
         Model* enemyModel = (Model*)getComponent(enemy, COMPONENT_RENDERABLE);
 
-
         /* Game Logic */
+
+            if (getKeyState(TAB) && !is_tabing) {
+                is_tabing = true;
+                if (inventory->isOpened) {
+                    inventory->isOpened = false;
+                    *isBusy = false;
+                } else {
+                    inventory->isOpened = true;
+                    *isBusy = true;
+                }
+            } else if (!getKeyState(TAB)) {
+                is_tabing = false;
+            }
+
+
+
         float rotTarget = 0.0f;
         vec3 enemyDir;
         glm_vec3_sub(playerModel->position, enemyModel->position, enemyDir);
@@ -402,6 +418,9 @@ void updateMainScene(Scene* scene, GameState* gameState) {
             talkToMarchant(gameState, scene, &click_counter, &is_clicking, isBusy);
         }
 
+    }
+    if (*isBusy) {
+        ((Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR))->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
     }
 }
 
