@@ -1,9 +1,4 @@
-typedef struct _Object {
-    char* name;
-    char* description;
-    int id;
-} Object;
-
+#include <Objects.h>
 
 
 
@@ -12,3 +7,11 @@ typedef struct _Inventory {
     int size;
     int capacity;
 } Inventory;
+
+
+
+Inventory* InventoryCreate(int capacity);
+void InventoryAddObject(Inventory* inventory, Object object);
+void InventoryRemoveObject(Inventory* inventory, Object object);
+void InventoryDestroy(Inventory* inventory);
+void InventoryPrint(Inventory* inventory);

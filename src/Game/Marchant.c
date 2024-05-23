@@ -30,22 +30,51 @@ Entity* createMarchant(Scene* scene, vec3 position, vec3 scale, vec3 rotation) {
 
 
 void talkToMarchant(GameState* gameState, Scene* scene, int* click_counter, bool* is_clicking, bool* isBusy) {
-    printf("Je parle au marchant\n");
+    printf("click_counter : %d", *click_counter);
+
     SDL_Color color_black = {0, 0, 0, 0};
     SDL_Color color_white = {255, 255, 255, 0};
-    RenderText("Marchant         ", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-    RenderText("Bien le bonjour, c'est une bonne journée n'est ce pas ?", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 140 , 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-    RenderText("n'est ce pas ?", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 110, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-    RenderText("               Cliquez pour continuer...", color_black, gameState->g_WindowWidth / 2 + 45, gameState->g_WindowHeight / 15 + 50, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-    RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-    if (getMouseButtonState(1) && !*is_clicking) {
-        *click_counter = 0;
-        *isBusy = false;
-        *is_clicking = true;
-    }
-    if (!getMouseButtonState(1)) {
-        printf("click_counter: %d\n", *click_counter);
-        *is_clicking = false;
+    switch (*click_counter) {
+    case 0:
+        RenderText("   Marchant         ", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderText("Bien le bonjour, c'est une bonne journée", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 140 , 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderText("n'est ce pas ?", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 110, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderText("               Cliquez pour continuer...", color_black, gameState->g_WindowWidth / 2 + 45, gameState->g_WindowHeight / 15 + 50, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        if (getMouseButtonState(1) && !*is_clicking) {
+            (*click_counter)++;
+            *is_clicking = true;
+        }
+        if (!getMouseButtonState(1)) {
+            *is_clicking = false;
+        }
+        break;
+    case 1:
+        RenderText("   Marchant         ", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderText("Aurais tu quelques sous à m'échanger", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 140 , 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderText("contre des babioles ?", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 110, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderText("               Cliquez pour continuer...", color_black, gameState->g_WindowWidth / 2 + 45, gameState->g_WindowHeight / 15 + 50, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        if (getMouseButtonState(1) && !*is_clicking) {
+            (*click_counter)++;
+            *is_clicking = true;
+        }
+        if (!getMouseButtonState(1)) {
+            *is_clicking = false;
+        }
+        break;
+    case 2:
+        RenderImage("assets/models/start/Inventory_Example_01.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        if (getMouseButtonState(1) && !*is_clicking) {
+            (*click_counter) = 0;
+            *isBusy = false;
+            *is_clicking = true;
+
+        }
+        if (!getMouseButtonState(1)) {
+            *is_clicking = false;
+        }
+    default:
+        break;
     }
 }
-// Aurais tu quelques sous à m'échanger contre des babioles ?

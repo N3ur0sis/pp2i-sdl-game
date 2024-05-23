@@ -112,11 +112,10 @@ void startMainScene(Scene* scene, GameState* gameState) {
 }
  
 void updateMainScene(Scene* scene, GameState* gameState) {
-
+    
 
     // Game Logic
     Entity* enemy = &scene->entities[0];
-
     Entity* playerEntity = &scene->entities[1];
     Entity* swordEntity = &scene->entities[2];
     // Entity* mapEntity = &scene->entities[3];
@@ -130,7 +129,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     // float z = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1];
     // printf("%f,%f,%f\n", scene->camera->Yaw,scene->camera->Pitch,scene->camera->Position[2]);
     // printf("%f\n", gameState->playerHealth);
-    printf("%f,%f\n",x,y);
+    // printf("%f,%f\n",x,y);
     checkDead(gameState);
 
     if (getKeyState(SDLK_b)){
@@ -145,34 +144,22 @@ void updateMainScene(Scene* scene, GameState* gameState) {
         RenderText("Vous êtes mort", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         RenderText("Appuyez sur r pour recommencer", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2 - 50, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         if (getKeyState(SDLK_r)) {
+            *isBusy = false;
+            bool checkpoint_sword = false;
+            bool is_clicking = false;
+            bool isBarrierDestroyed = false;
+            int click_counter = 0 ;
+            ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))->isRenderable = false;
+            ((Model*)getComponent(chestEntity, COMPONENT_RENDERABLE))->isRenderable = true;
+            ((Model*)getComponent(chestOpenEntity, COMPONENT_RENDERABLE))->isRenderable = false;
+            ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->isRenderable = true;
+            ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->isRenderable = false;
+            gameState->playerHealth = 100.0f;
+            gameState->isPlayerDead = false;
             gameState->change = true;
             gameState->nextSceneIndex = 0;
             gameState->previousSceneIndex = 0;
-            gameState->isPlayerDead = false;
-            printf("Restarting...\n");
         }
-        // if (getKeyState(SDLK_r)) {
-        //     gameState->isPlayerDead = false;
-        //     gameState->playerHealth = 100.0f;
-        //     ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy = false;
-        //     isBusy = false;
-        //     glm_vec3_copy((vec3){28.0f, 0.1f, 7.0f}, ((RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY))->velocity);
-        //     glm_translate_make(((Collider*)getComponent(playerEntity, COMPONENT_COLLIDER))->transformMatrix, ((RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY))->velocity);
-        //     glm_aabb_transform(((Collider*)getComponent(playerEntity, COMPONENT_COLLIDER))->boundingBoxReference[0],((Collider*)getComponent(playerEntity, COMPONENT_COLLIDER))->transformMatrix,((Collider*)getComponent(playerEntity, COMPONENT_COLLIDER))->boundingBox[0]);
-        //     ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->isRenderable = false;
-        //     glm_vec3_copy((vec3){2.0f, 0.0f, -10.0f},((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->position);
-        //     ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))->isRenderable = false;
-        //     glm_vec3_copy((vec3){28.0f, 5.0f, 10.0f}, scene->camera->Position);
-        //     ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->isRenderable = true;
-        //     glm_translate_make(((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->transformMatrix, (vec3){-40.0f, 0.0f, -14.0f});
-        //     for(int k = 0; k < ((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->numCollider; k++){
-        //         glm_aabb_transform(((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBoxReference[k],((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->transformMatrix,((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBox[k]);
-        //     }
-        //     scene->camera->Yaw = 28.0f;
-        //     scene->camera->Pitch = 5.0f;
-        //     isBarrierDestroyed = false;
-        //     checkpoint_sword = false;
-        // }
     }
 
 
