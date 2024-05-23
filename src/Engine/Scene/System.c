@@ -93,21 +93,32 @@ void physicsSystem(Scene* scene) {
         Entity* entity = &scene->entities[i];
         RigidBody* rigidBody = (RigidBody*)getComponent(entity, COMPONENT_RIGIDBODY);
         Collider* collider = (Collider*)getComponent(entity, COMPONENT_COLLIDER);
-
-        if (collider && rigidBody) {
+        Model* model = (Model*)getComponent(entity, COMPONENT_RENDERABLE);
+        if (collider && rigidBody&&model->isRenderable) {
+            if (getKeyState(SDLK_c)){
+            printf("i = %d\n",i);}
             // Handle collisions with other entities
             for (int j = 0; j < scene->numEntities; ++j) {
                 if (i == j) continue;
                 Entity* otherEntity = &scene->entities[j];
                 Dungeon* dj = (Dungeon*)getComponent(otherEntity, COMPONENT_DUNGEON);
                 Collider* otherCollider;
+                Model* otherModel = NULL;
                 if (dj) {  
                     otherCollider = (Collider*)dj->type_room[dj->rooms[dj->current_room].id].col;
+                    otherModel = (Model*)dj->type_room[dj->rooms[dj->current_room].id].model;
                 }
                 else{
                     otherCollider = (Collider*)getComponent(otherEntity, COMPONENT_COLLIDER);
+                    for (int p =0;p<otherEntity->componentCount;p++){
+                    if (otherEntity->components[p].type == COMPONENT_RENDERABLE&&((Model*)otherEntity->components[p].data)->isRenderable){
+                        otherModel = ((Model*)otherEntity->components[p].data);
+                        break;
+                }}
                 }
-                if (otherCollider) {
+                
+                
+                if (otherCollider&&otherModel) {
                     for (int k = 0; k < collider->numCollider; ++k) {
                         for (int l = 0; l < otherCollider->numCollider; ++l) {
                             if (glm_aabb_aabb(collider->boundingBox[k], otherCollider->boundingBox[l])) {

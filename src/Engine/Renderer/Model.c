@@ -216,6 +216,11 @@ void ModelFree(Model* model) {
     for(size_t i=0; i<model->meshCount; ++i)
         MeshClean(&model->meshes[i]);
     free(model->meshes);
+    for (int i = 0; i < model->matCount; i++)
+    {
+        glDeleteTextures(1, &model->materials[i].id);
+    }
+    
     free(model->materials);
     free(model->directory);
     free(model);
