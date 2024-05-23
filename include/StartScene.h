@@ -107,6 +107,8 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(startBarrierEntity, COMPONENT_COLLIDER, startBarrierCollision);
 
     }
+
+    Entity* Marchant = createMarchant(scene, (vec3){-15.0f,0.1f,-10.0f}, (vec3){2.0f, 2.0f, 2.0f}, (vec3){0.0f, 3.14f, 0.0f});
 }
  
 void updateMainScene(Scene* scene, GameState* gameState) {
@@ -127,7 +129,8 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     float y = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[2];
     // float z = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1];
     // printf("%f,%f,%f\n", scene->camera->Yaw,scene->camera->Pitch,scene->camera->Position[2]);
-    printf("%f\n", gameState->playerHealth);
+    // printf("%f\n", gameState->playerHealth);
+    printf("%f,%f\n",x,y);
     checkDead(gameState);
 
     if (getKeyState(SDLK_b)){
@@ -387,6 +390,16 @@ void updateMainScene(Scene* scene, GameState* gameState) {
                     }
             }
             playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
+        }
+
+
+        if (x < -13.0f && x > -18.0f && y < -8.0f && y > -13.0f && !*isBusy) {
+            RenderText("Appuyer sur E pour interagir", color_white, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+            if (getKeyState(SDLK_e)) {
+                *isBusy = true;
+            }
+        } else if (x < -13.0f && x > -18.0f && y < -8.0f && y > -13.0f && *isBusy) {
+            talkToMarchant(gameState, scene, &click_counter, &is_clicking, isBusy);
         }
 
     }

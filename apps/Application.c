@@ -5,7 +5,7 @@
 #include <System.h>
 #include <StartScene.h>
 #include <DungeonScene.h>
-#include <SDL_mixer.h>
+#include <SDL2/SDL_mixer.h>
 #include <ForestScene.h>
 #include <Renderer.h>
 
@@ -52,7 +52,7 @@ int main(void){
     forestScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, forestScene, ForestMainScene, updateForestScene,unloadStartScene);
 
-    int current_scene = 1;
+    int current_scene = 0;
     SceneManagerSetCurrentScene(&sceneManager, current_scene);
 
     TTF_Init();
