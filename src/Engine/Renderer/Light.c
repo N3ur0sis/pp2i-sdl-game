@@ -4,14 +4,14 @@
 
 
 
-Light* LightCreate(Shader *S, vec4 position, vec3 intensity, float attenuation, float ambientCoef) {
+Light* LightCreate(Shader *S, vec4 position, vec3 intensity, float attenuation, float ambientCoef,float nearz, float farz) {
 	Light *light = (Light*)malloc(sizeof(Light));
 
 	glm_vec3_copy(position,light->position);
 	glm_vec3_copy(intensity, light->intensity);
 	light->attenuation = attenuation;
 	light->ambientCoefficient = ambientCoef;
-	light->shadowMap = ShadowMapCreate(position, S);
+	light->shadowMap = ShadowMapCreate(position, S,nearz,farz);
 	LightUpdate(S, light);
 	UseShaders(S);
     glActiveTexture(GL_TEXTURE0 + 2);
@@ -27,3 +27,4 @@ void LightUpdate(Shader *S, Light *light) {
 	glUniform1f(S->m_locations.lightAttenuation, light->attenuation);
 	glUniform1f(S->m_locations.lightAmbienbtCoef, light->ambientCoefficient);
 }
+

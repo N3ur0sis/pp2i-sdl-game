@@ -10,5 +10,4 @@ typedef struct _ShadowMap{
     Shader* shadowMapShader;
 } ShadowMap;
 
-
-ShadowMap* ShadowMapCreate(vec3 position, Shader* shader);
+ShadowMap* ShadowMapCreate(vec3 position, Shader* shader,float nearz, float farz);

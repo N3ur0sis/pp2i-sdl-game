@@ -38,3 +38,4 @@ float getDist(Model* object1, Model* object2){
     glm_vec3_sub( object1->position, object2->position, Dir);
     return glm_vec3_norm(Dir); 
 }
+
