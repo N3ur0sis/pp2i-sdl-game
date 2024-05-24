@@ -1,5 +1,5 @@
 #include <StartScene.h>
-
+#include <Controls.h>
 
 bool checkpoint_sword;
 bool is_clicking = false;
@@ -153,7 +153,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
     checkDead(gameState);
 
     if (getKeyState(SDLK_b)){
-        gameState->change = true;
+        ChangeSceneEvent(gameState->nextSceneIndex);
         gameState->nextSceneIndex = 0;
         gameState->previousSceneIndex = 0;
     }
@@ -181,7 +181,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->isRenderable = false;
             gameState->playerHealth = 100.0f;
             gameState->isPlayerDead = false;
-            gameState->change = true;
+            ChangeSceneEvent(gameState->nextSceneIndex);
             gameState->nextSceneIndex = 0;
             gameState->previousSceneIndex = 0;
         }

@@ -2,9 +2,13 @@
 #include <glad/glad.h>
 #include <SDL2/SDL.h>
 #include <Window.h>
+#include <Audio.h>
+#include <Textures.h>
+#include <Renderer.h>
+
 #include <Controls.h>
-#include <Player.h>
-#include <GameState.h>
+
+
 
 typedef struct _Application{
     Window* window;
@@ -14,7 +18,7 @@ typedef struct _Application{
 }Application;
 
 Application* ApplicationCreate(int width, int height, const char* title);
-void StartFrame(Application* game, GameState* gameState);
+void StartFrame(Application* game, GameState* gameState, SceneManager* sceneManager);
 void EndFrame(Application* game);
 
 void EngineInit(void);

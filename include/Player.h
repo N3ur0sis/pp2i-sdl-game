@@ -4,6 +4,7 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <SceneManager.h>
+#include <Controls.h>
 #define DAMAGE 50.0f
 #define ATTACK_RANGE 1.5f
 void lerp_vec3(vec3 a, vec3 b, vec3 res, float t);

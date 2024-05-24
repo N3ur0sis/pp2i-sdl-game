@@ -1,4 +1,4 @@
-#include "Engine.h"
+#include <Engine.h>
 
 Application* ApplicationCreate(int width, int height, const char* title){
 
@@ -37,6 +37,8 @@ void EngineInit(void){
     glDisable(GL_STENCIL_TEST);           /* Disable stencil test for speed */
     glEnable(GL_MULTISAMPLE);  
     printf("%s", glGetString(GL_VERSION));
+
+    TTF_Init();
 }
 
 void EngineQuit(void) {
@@ -46,26 +48,27 @@ void EngineQuit(void) {
 
 }
 
-void StartFrame(Application* game, GameState* gameState){
+void StartFrame(Application* game, GameState* gameState, SceneManager* sceneManager){
 
     /* Clearn screen for this new frame */
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     /* Per-frame time logic */
     game->time->currentUpdate = SDL_GetTicks();
+    sceneManager->scenes[sceneManager->currentSceneIndex]->deltaTime = (game->time->currentUpdate - game->time->lastUpdate) / 1000.0f;
     game->time->nbFrames++;
     if( game->time->currentUpdate - game->time->lastUpdate >= 1000.0f){
+        printf("FPS: %d", game->time->nbFrames);
         game->time->nbFrames = 0;
         game->time->lastUpdate += 1000.0f;
     }
-    //game->time->deltaTime = (game->time->currentUpdate - game->time->lastUpdate) / 1000.0f;
     /* Input Handling */
     while(SDL_PollEvent(game->event)){
-        processInput(game->event, &game->running, gameState);
+        processInput(game->event, &game->running, gameState, sceneManager);
     }
 }
 
 void EndFrame(Application* game){
-
+    game->time->lastUpdate = game->time->currentUpdate;
     SDL_GL_SwapWindow(game->window->m_window);
 }

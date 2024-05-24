@@ -7,7 +7,7 @@ float mousePos[6] = {0}; // 0->posX 1->posY 2->lastX 3->lastY 4->wheely ->5 last
 char mouseState[5] = { 0 }; // mouse button state
 
 
-void processInput(SDL_Event* e,  bool* running, GameState* gameState){
+void processInput(SDL_Event* e,  bool* running, GameState* gameState, SceneManager* sce){
 
 	
 	switch (e->type){
@@ -39,7 +39,10 @@ void processInput(SDL_Event* e,  bool* running, GameState* gameState){
             	gameState->g_WindowWidth = e->window.data1;
 				gameState->g_WindowHeight = e->window.data2;
 			}
-        break;
+			break;
+		case CHANGE_SCENE_EVENT:
+				HandleChangeScene(sce);
+				break;
 		default :
 			break;
 	}
