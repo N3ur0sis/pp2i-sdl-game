@@ -39,7 +39,7 @@ void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enem
 
 	//sometimes my genius is almost frithening
 	vec3 rotationDirection;
-	if(enemy != NULL){
+	if(enemy->isRenderable){
 	vec3 enemyDir;
     glm_vec3_sub(enemy->position,((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,  enemyDir);
     float enemyDist = glm_vec3_norm(enemyDir);
@@ -245,7 +245,7 @@ void player_attack(Entity* player,Entity* ennemy,GameState* gameState){
                 playerAnimator->currentAnimation = (Animation*)getAnimationComponent(player, "playerWalkingAnimation");
                 }
             }
-            if (playerAnimator->playTime > playerAnimator->currentAnimation->anim_dur - 10 && gameState->playerIsAttacking) {
+            if (playerAnimator->playTime > playerAnimator->currentAnimation->anim_dur - 700 && gameState->playerIsAttacking) {
                 gameState->playerIsAttacking = false;
                 playerAnimator->playTime = 0.0f;
 				if (ennemy){

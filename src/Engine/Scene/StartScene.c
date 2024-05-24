@@ -143,6 +143,8 @@ void updateStartScene(Scene* scene, GameState* gameState) {
     Entity* chestOpenEntity = &scene->entities[6];
     Entity* startBarrierEntity = &scene->entities[7];
 
+    printf("%f\n", ((Health*)getComponent(enemy,COMPONENT_HEALTH))->health);
+
     bool* isBusy = &((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy;
     float x = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[0];
     float y = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[2];
@@ -224,6 +226,12 @@ void updateStartScene(Scene* scene, GameState* gameState) {
         float enemyDist = glm_vec3_norm(enemyDir);
         glm_vec3_normalize(enemyDir);
         if(checkpoint_sword){
+            player_attack(playerEntity,enemy,gameState);
+            if (((Health*)getComponent(enemy,COMPONENT_HEALTH))->health <= 0.0f) {
+                ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->isRenderable = false;
+                ((Health*)getComponent(enemy,COMPONENT_HEALTH))->isAlive = false;
+                ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->isRenderable = false;
+            }
         if (enemyDir[0] != .0f || enemyDir[1] != .0f || enemyDir[2] != .0f) {
             float omega = acos(glm_dot((vec3){0, 0, 1}, enemyDir));
             if (enemyDir[0] < 0) {
@@ -326,7 +334,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 0.1f;
         }
         if (!*isBusy) {
-            playerMovement(playerEntity, scene->deltaTime, scene->camera, NULL);
+            playerMovement(playerEntity, scene->deltaTime, scene->camera, (Model*)getComponent(enemy, COMPONENT_RENDERABLE));
         }
     }
         SDL_Color color_black = {0, 0, 0, 0};
