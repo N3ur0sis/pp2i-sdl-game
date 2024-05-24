@@ -80,3 +80,40 @@ void talkToMarchandStart(float window_width, float window_height, GLuint shader,
         break;
     }
 }
+
+
+void talkToMarchandForest(float window_width, float window_height, GLuint shader, int* click_counter, bool* is_clicking, bool* isBusy) {
+    SDL_Color color_black = {0, 0, 0, 0};
+    SDL_Color color_white = {255, 255, 255, 0};
+    switch (*click_counter) {
+    case 0:
+        RenderText("   Marchand         ", color_white, window_width / 2 - 175, window_height / 15 + 200, 25, window_width, window_height, shader);
+        RenderText("Bien le bonjour, c'est une bonne journée", color_black, window_width / 2, window_height / 15 + 140 , 30, window_width, window_height, shader);
+        RenderText("n'est ce pas ?", color_black, window_width / 2, window_height / 15 + 110, 30, window_width, window_height, shader);
+        RenderText("               Cliquez pour continuer...", color_black, window_width / 2 + 45, window_height / 15 + 50, 25, window_width, window_height, shader);
+        RenderImage("assets/images/dialog-box.png", window_width / 2, window_height / 15, window_width, window_height, shader);
+        if (getMouseButtonState(1) && !*is_clicking) {
+            (*click_counter)++;
+            *is_clicking = true;
+        }
+        if (!getMouseButtonState(1)) {
+            *is_clicking = false;
+        }
+        break;
+    case 1:
+        RenderText("   Marchand         ", color_white, window_width / 2 - 175, window_height / 15 + 200, 25, window_width, window_height, shader);
+        RenderText("Aurais tu quelques sous à m'échanger", color_black, window_width / 2, window_height / 15 + 140 , 30, window_width, window_height, shader);
+        RenderText("contre des babioles ?", color_black, window_width / 2, window_height / 15 + 110, 30, window_width, window_height, shader);
+        RenderText("               Cliquez pour continuer...", color_black, window_width / 2 + 45, window_height / 15 + 50, 25, window_width, window_height, shader);
+        RenderImage("assets/images/dialog-box.png", window_width / 2, window_height / 15, window_width, window_height, shader);
+        if (getMouseButtonState(1) && !*is_clicking) {
+            (*click_counter)++;
+            *is_clicking = true;
+        }
+        if (!getMouseButtonState(1)) {
+            *is_clicking = false;
+        }
+        break;
+    case 2 :
+        
+}
