@@ -4,7 +4,7 @@
 
 Inventory* InventoryCreate(int capacity) {
     Inventory* inventory = (Inventory*)calloc(1, sizeof(Inventory));
-    inventory->objects = (Object*)calloc(capacity, sizeof(Object));
+    inventory->objects = (Object**)calloc(capacity, sizeof(Object));
     inventory->size = 0;
     inventory->capacity = capacity;
     inventory->isOpened = false;
@@ -35,6 +35,9 @@ void InventoryRemoveObject(Inventory* inventory, Object object) {
 void freeInventory(Inventory* inventory) {
     if (inventory != NULL) {
         // Free the array of objects
+        for (int i = 0; i < inventory->size; i++) {
+            free(inventory->objects[i]);
+        }
         free(inventory->objects);
         printf("on free un tableau d'objects\n");
         // Free the inventory itself
