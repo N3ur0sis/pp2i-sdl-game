@@ -6,7 +6,7 @@
 #include <SceneManager.h>
 #include <Controls.h>
 #define DAMAGE 50.0f
-#define ATTACK_RANGE 1.5f
+#define ATTACK_RANGE 2.5f
 void lerp_vec3(vec3 a, vec3 b, vec3 res, float t);
 void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enemy);
 void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float deltaTime);

@@ -52,6 +52,8 @@ int main(void){
         EndFrame(game);
 
         }
+    // freeInventory(sceneManager->gameState.inventory);
+    // freeInventory(sceneManager->gameState.marchantInventory);
 
     /* Clean every resource allocated */
     //freeScene(mainScene);

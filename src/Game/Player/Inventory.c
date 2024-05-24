@@ -15,14 +15,14 @@ Inventory* InventoryCreate(int capacity) {
 
 void InventoryAddObject(Inventory* inventory, Object* object) {
     if (inventory->size < inventory->capacity) {
-        inventory->objects[inventory->size] = *object;
+        inventory->objects[inventory->size] = object;
         inventory->size++;
     }
 }
 
 void InventoryRemoveObject(Inventory* inventory, Object object) {
     for (int i = 0; i < inventory->size; i++) {
-        if (inventory->objects[i].id == object.id) {
+        if (inventory->objects[i]->id == object.id) {
             for (int j = i; j < inventory->size - 1; j++) {
                 inventory->objects[j] = inventory->objects[j + 1];
             }
@@ -32,21 +32,23 @@ void InventoryRemoveObject(Inventory* inventory, Object object) {
     }
 }
 
-void InventoryDestroy(Inventory* inventory) {
-    free(inventory->objects);
-    free(inventory);
+void freeInventory(Inventory* inventory) {
+    if (inventory != NULL) {
+        // Free the array of objects
+        free(inventory->objects);
+        printf("on free un tableau d'objects\n");
+        // Free the inventory itself
+        free(inventory);
+    }
 }
 
 
-
-
-
-void InventoryPrint(Inventory* inventory, float window_width, float window_height, GLuint shader) {
+void InventoryPrint(Inventory* inventory, float window_width, float window_height, GLuint shader, float offset_x, float offset_y) {
     int nb_items_non_nuls = 0;
     for (int i = 0; i < 10; i++) {
         int nb_items = 0;
         for (int k = 0; k < inventory->size; k++ ) {
-            if ((inventory->objects[k]).id == i) {
+            if ((inventory->objects[k])->id == i) {
                 nb_items++;
             }
         }
@@ -56,17 +58,15 @@ void InventoryPrint(Inventory* inventory, float window_width, float window_heigh
             char nb[12];
             sprintf(nb, "%d", nb_items);
             SDL_Color color_red = {255, 0, 0, 0};
-            RenderText(nb, color_red, window_width / 2 - 56 + 69 *colonnes , window_height / 3 + 172 - 69 * lignes, 15, window_width,window_height, shader);
-            if (nb_items_non_nuls % 2 == 1) {
-                RenderImage("assets/images/Heart_Orange_1.png", window_width / 2 -70 + 69 * colonnes  , window_height / 3 + 165 - 68 * lignes , window_width, window_height, shader);
-            } else {
-                RenderImage("assets/images/Heart_Blue_1.png", window_width / 2 -70 + 69 * colonnes  , window_height / 3 + 165 - 68 * lignes , window_width, window_height, shader);
-            }
+            RenderText(nb, color_red, offset_x + window_width / 2 - 56 + 69 *colonnes , offset_y + window_height / 3 + 172 - 69 * lignes, 15, window_width,window_height, shader);
+            char* path = checkIdObject(i);
+            RenderImage(path, offset_x + window_width / 2 -70 + 69 * colonnes  , offset_y + window_height / 3 + 165 - 68 * lignes , window_width, window_height, shader);
+            free(path);
             nb_items_non_nuls++;
         }
         
     }
-    RenderImage("assets/images/Inventory_Example_03.png", window_width / 2, window_height / 3, window_width, window_height, shader);
+    RenderImage("assets/images/Inventory_Example_03.png", offset_x + window_width / 2, offset_y + window_height / 3, window_width, window_height, shader);
 
 }
 
