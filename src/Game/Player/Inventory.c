@@ -15,14 +15,14 @@ Inventory* InventoryCreate(int capacity) {
 
 void InventoryAddObject(Inventory* inventory, Object* object) {
     if (inventory->size < inventory->capacity) {
-        inventory->objects[inventory->size] = *object;
+        inventory->objects[inventory->size] = object;
         inventory->size++;
     }
 }
 
 void InventoryRemoveObject(Inventory* inventory, Object object) {
     for (int i = 0; i < inventory->size; i++) {
-        if (inventory->objects[i].id == object.id) {
+        if (inventory->objects[i]->id == object.id) {
             for (int j = i; j < inventory->size - 1; j++) {
                 inventory->objects[j] = inventory->objects[j + 1];
             }
@@ -32,11 +32,14 @@ void InventoryRemoveObject(Inventory* inventory, Object object) {
     }
 }
 
-
 void freeInventory(Inventory* inventory) {
-    if (inventory == NULL) return;
-    free(inventory->objects);
-    free(inventory);
+    if (inventory != NULL) {
+        // Free the array of objects
+        free(inventory->objects);
+        printf("on free un tableau d'objects\n");
+        // Free the inventory itself
+        free(inventory);
+    }
 }
 
 
@@ -45,7 +48,7 @@ void InventoryPrint(Inventory* inventory, float window_width, float window_heigh
     for (int i = 0; i < 10; i++) {
         int nb_items = 0;
         for (int k = 0; k < inventory->size; k++ ) {
-            if ((inventory->objects[k]).id == i) {
+            if ((inventory->objects[k])->id == i) {
                 nb_items++;
             }
         }

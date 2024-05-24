@@ -20,13 +20,13 @@ char* checkIdObject(int id) {
     char* path = (char*)malloc(MAX_PATH_LENGTH * sizeof(char));
 
     switch (id) {
-        case 0 :
+        case 1 :
             strcpy(path, "assets/images/Heart_Orange_1.png");
             break;
-        case 1 : 
+        case 2 : 
             strcpy(path, "assets/images/Heart_Blue_1.png");
             break;
-        case 2 :
+        case 3 :
             strcpy(path, "assets/images/heart.png");
             break;
         default :
