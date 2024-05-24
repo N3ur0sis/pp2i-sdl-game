@@ -1,4 +1,4 @@
-#include "Ennemy.h"
+#include "Enemy.h"
 
 
 Entity* create_golem(Scene* scene,float x,float y,float z,float scale){

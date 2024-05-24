@@ -48,11 +48,11 @@ void talkToMarchandStart(float window_width, float window_height, GLuint shader,
         }
         break;
     case 1:
-        RenderText("   Marchand         ", color_white, window_width / 2 - 175, window_height / 15 + 200, 25, window_width, window_height, shader);
-        RenderText("Aurais tu quelques sous à m'échanger", color_black, window_width / 2, window_height / 15 + 140 , 30, window_width, window_height, shader);
-        RenderText("contre des babioles ?", color_black, window_width / 2, window_height / 15 + 110, 30, window_width, window_height, shader);
-        RenderText("               Cliquez pour continuer...", color_black, window_width / 2 + 45, window_height / 15 + 50, 25, window_width, window_height, shader);
-        RenderImage("assets/images/dialog-box.png", window_width / 2, window_height / 15, window_width, window_height, shader);
+        RenderText("   Marchand         ", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderText("Aurais-tu quelques sous à m'échanger", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 140 , 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderText("contre des babioles ?", color_black, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 110, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderText("               Cliquez pour continuer...", color_black, gameState->g_WindowWidth / 2 + 45, gameState->g_WindowHeight / 15 + 50, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         if (getMouseButtonState(1) && !*is_clicking) {
             (*click_counter)++;
             *is_clicking = true;

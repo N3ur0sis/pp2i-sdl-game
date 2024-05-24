@@ -229,7 +229,7 @@ Entity* create_sword(Scene* scene,Entity* parent){
 	return swordEntity;
 }
 
-void player_attack(Entity* player,Entity* ennemy,GameState* gameState){
+void player_attack(Entity* player,Entity* enemy,GameState* gameState){
 	Animator* playerAnimator = (Animator*)getComponent(player, COMPONENT_ANIMATOR);
 	RigidBody* playerRigidbody = (RigidBody*)getComponent(player, COMPONENT_RIGIDBODY);
 	Model* playerModel = (Model*)getComponent(player,COMPONENT_RENDERABLE);
@@ -248,15 +248,15 @@ void player_attack(Entity* player,Entity* ennemy,GameState* gameState){
             if (playerAnimator->playTime > playerAnimator->currentAnimation->anim_dur - 700 && gameState->playerIsAttacking) {
                 gameState->playerIsAttacking = false;
                 playerAnimator->playTime = 0.0f;
-				if (ennemy){
-				Model* ennemyModel = (Model*)getComponent(ennemy,COMPONENT_RENDERABLE);
-				Health* ennemyHealth = (Health*)getComponent(ennemy,COMPONENT_HEALTH);
-				vec3 ennemyDir;
-				glm_vec3_sub( playerModel->position, ennemyModel->position, ennemyDir);
-				if ( glm_vec3_norm(ennemyDir)<ATTACK_RANGE){
+				if (enemy){
+				Model* enemyModel = (Model*)getComponent(enemy,COMPONENT_RENDERABLE);
+				Health* enemyHealth = (Health*)getComponent(enemy,COMPONENT_HEALTH);
+				vec3 enemyDir;
+				glm_vec3_sub( playerModel->position, enemyModel->position, enemyDir);
+				if ( glm_vec3_norm(enemyDir)<ATTACK_RANGE){
 					gameState->playerIsAttacking = false;
-					ennemyHealth->health-=DAMAGE;
-					printf(" health = %f\n",ennemyHealth->health);
+					enemyHealth->health-=DAMAGE;
+					printf(" health = %f\n",enemyHealth->health);
 
 				}
             }
