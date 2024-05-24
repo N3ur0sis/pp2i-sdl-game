@@ -54,7 +54,7 @@ int main(void){
         cameraControl(sceneManager->scenes[sceneManager->currentSceneIndex]->camera);
         EndFrame(game);
 
-        }
+    }
     freeInventory(sceneManager->gameState.inventory);
     freeInventory(sceneManager->gameState.marchantInventory);
 

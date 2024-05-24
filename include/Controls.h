@@ -92,6 +92,13 @@ bool getMouseButtonState(int button);
  * @param e The SDL event representing the mouse wheel action.
  */
 void handleMouseWheelEvent(SDL_Event e);
+
+/**
+ * @brief Sets the state of a specified key.
+ * 
+ * @param code The SDL key code.
+ * @param state The state to set the key to.
+ */
 void setKeyState(SDL_KeyCode code, bool state);
 
 
