@@ -4,7 +4,7 @@
 #include <GameState.h>
 #include <cglm/cglm.h>
 #include <Dungeon.h>
-#include <Ennemy.h>
+#include <Enemy.h>
 void DungeonMainScene(Scene* scene, GameState* gameState);
 void updateDungeonScene(Scene* scene, GameState* gameState);
 void unloadDungeonScene(Scene* scene);

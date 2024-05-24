@@ -30,7 +30,7 @@ struct  _Dungeon
     int nb_rooms;
     int current_room;
     int previous_room;
-    int nb_ennemy;
+    int nb_enemy;
     bool change;
     bool hasKey;
     bool quit;
