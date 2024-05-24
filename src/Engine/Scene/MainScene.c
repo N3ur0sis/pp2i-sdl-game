@@ -11,7 +11,8 @@ void startMainScene(Scene* scene, GameState* gameState) {
     /* Load and compile textShader */
     scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
     /* Create a scene camera */
-    scene->camera = camera_create(28, 5, 10, gameState->g_WindowWidth, gameState->g_WindowHeight);
+    scene->camera = camera_create(-119.46, 34.06, 93.99, gameState->g_WindowWidth, gameState->g_WindowHeight);
+    scene->camera->Yaw = 180.0f;
     glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
     /* Create a skybox */
     scene->skybox = SkyboxCreate();
@@ -93,24 +94,21 @@ void startMainScene(Scene* scene, GameState* gameState) {
         compute_center_of_volume(lakeModel);
         lakeModel->isRenderable = false;
     }
-
+    Entity* falaisestart = createEntity(scene);
+    if (falaisestart != NULL) {
+        Model* falaisestartModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(falaisestartModel, "assets/models/main/falaisestart.obj");
+        addComponent(falaisestart, COMPONENT_RENDERABLE, falaisestartModel);
+        compute_center_of_volume(falaisestartModel);
+    }
     Entity* main = createEntity(scene);
     if (main != NULL) {
         Model* mainModel = (Model*)calloc(1, sizeof(Model));
         ModelCreate(mainModel, "assets/models/main/main.obj");
         addComponent(main, COMPONENT_RENDERABLE, mainModel);
         compute_center_of_volume(mainModel);
-        mainModel->isRenderable = false;
     }
 
-    Entity* mid = createEntity(scene);
-    if (mid != NULL) {
-        Model* midModel = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(midModel, "assets/models/main/mid.obj");
-        addComponent(mid, COMPONENT_RENDERABLE, midModel);
-        compute_center_of_volume(midModel);
-        midModel->isRenderable = false;
-    }
     
     /* Light Entity */
     Entity* lightEntity = createEntity(scene);
@@ -126,9 +124,9 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     Entity* playerEntity = &scene->entities[0];
     Model* playerModel = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE));
         if (getKeyState(SDLK_p)){
-        printf("Le joueur est en %f %f\n",playerModel->position[0],playerModel->position[2]);
+        printf("Le joueur est en %f %f %f\n",scene->camera->Position[0],scene->camera->Position[1],scene->camera->Position[2]);
     }
-    for (int i = 2;i<110;i++){
+    for (int i = 2;i<NBPARTMAP+1;i++){
         Entity* map = &scene->entities[i];
         Model* mapModel = ((Model*)getComponent(map, COMPONENT_RENDERABLE));
         vec3 mapDir;
@@ -161,7 +159,6 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     }
 
     if (playerEntity) {
-        Model* playerModel = (Model*)getComponent(playerEntity, COMPONENT_RENDERABLE);
         Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
         RigidBody* playerRigidbody = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
 
