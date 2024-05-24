@@ -161,8 +161,10 @@ void updateStartScene(Scene* scene, GameState* gameState) {
 
     if (gameState->isPlayerDead) {
         *isBusy = true;
-        RenderText("Vous êtes mort", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-        RenderText("Appuyez sur r pour recommencer", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2 - 50, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        if (!gameState->restarting) {
+            RenderText("Vous êtes mort", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+            RenderText("Appuyez sur r pour recommencer", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2 - 50, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        }
         if (getKeyState(SDLK_r)) {
             *isBusy = false;
             checkpoint_sword = false;
@@ -184,6 +186,8 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             gameState->change = true;
             gameState->nextSceneIndex = 0;
             gameState->previousSceneIndex = 0;
+            gameState->restarting = false;
+            setKeyState(SDLK_r, 0);
         }
     }
 

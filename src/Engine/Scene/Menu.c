@@ -7,8 +7,8 @@ void MenuPauseDraw(Application* game, GameState* gameState, Shader* shaderProgra
     RenderText("MENU", color, gameState->g_WindowWidth / 2, 9 * gameState->g_WindowHeight / 10, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
 
     if (gameState->settingsNum < 0){
-        gameState->settingsNum = 1;
-    } else if (gameState->settingsNum > 1){
+        gameState->settingsNum = 2;
+    } else if (gameState->settingsNum > 2){
         gameState->settingsNum = 0;
     }
 
@@ -19,9 +19,15 @@ void MenuPauseDraw(Application* game, GameState* gameState, Shader* shaderProgra
     }
 
     if (gameState->settingsNum == 1){
-        RenderText("Quit", gold, gameState->g_WindowWidth / 2, 6 * gameState->g_WindowHeight / 10, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
+        RenderText("Restart", gold, gameState->g_WindowWidth / 2, 6 * gameState->g_WindowHeight / 10, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
     } else {
-        RenderText("Quit", color, gameState->g_WindowWidth / 2, 6 * gameState->g_WindowHeight / 10, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
+        RenderText("Restart", color, gameState->g_WindowWidth / 2, 6 * gameState->g_WindowHeight / 10, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
+    }
+
+    if (gameState->settingsNum == 2){
+        RenderText("Quit", gold, gameState->g_WindowWidth / 2, 5 * gameState->g_WindowHeight / 10, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
+    } else {
+        RenderText("Quit", color, gameState->g_WindowWidth / 2, 5 * gameState->g_WindowHeight / 10, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
     }
 
 
@@ -30,7 +36,9 @@ void MenuPauseDraw(Application* game, GameState* gameState, Shader* shaderProgra
     if (gameState->settingsNum == 0){
         RenderText("> ", gold, gameState->g_WindowWidth / 2 - 70, 7 * gameState->g_WindowHeight / 10, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
     } else if (gameState->settingsNum == 1){
-        RenderText("> ", gold, gameState->g_WindowWidth / 2 - 50, 6 * gameState->g_WindowHeight / 10, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
+        RenderText("> ", gold, gameState->g_WindowWidth / 2 - 80, 6 * gameState->g_WindowHeight / 10, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
+    } else if (gameState->settingsNum == 2){
+        RenderText("> ", gold, gameState->g_WindowWidth / 2 - 50, 5 * gameState->g_WindowHeight / 10, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
     }
 
 }

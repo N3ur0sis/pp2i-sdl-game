@@ -15,5 +15,6 @@ typedef struct GameState {
     bool change;
     bool isForestDungeonDone;
     int settingsNum;
+    bool restarting;
     // Add other game state variables as needed
 } GameState;

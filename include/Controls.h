@@ -16,6 +16,7 @@ void setMousePosition(int coord, float value);
 bool getMouseButtonState(int button);
 void handleMouseButtonEvent(SDL_Event e);
 void handleMouseWheelEvent(SDL_Event e);
+void setKeyState(SDL_KeyCode code, bool state);
 
 
 #define NB_KEYS 258

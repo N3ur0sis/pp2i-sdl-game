@@ -28,6 +28,11 @@ void processInput(SDL_Event* e,  bool* running, bool* isPaused, GameState* gameS
 				if (gameState->settingsNum == 0){
 					*isPaused = false;
 				} else if (gameState->settingsNum == 1){
+					gameState->isPlayerDead = true;
+					*isPaused = false;
+					keyState[SDLK_r] = 1;
+					gameState->restarting = true;
+				} else if (gameState->settingsNum == 2){
 					*running = false;
 				}
 			}
@@ -108,4 +113,8 @@ int getMousePosition(int coord){
 
 void setMousePosition(int coord, float value){
 	mousePos[coord] = value;
+}
+
+void setKeyState(SDL_KeyCode code, bool state){
+	keyState[code] = state;
 }
