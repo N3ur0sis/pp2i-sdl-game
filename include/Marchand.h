@@ -8,4 +8,5 @@
 
 
 Entity* createMarchand(Scene* scene, vec3 position, vec3 scale, vec3 rotation);
-void talkToMarchand(GameState* gameState, Scene* scene, int* click_counter, bool* is_clicking, bool* isBusy);
+void talkToMarchandStart(float window_width, float window_height, GLuint shader, int* click_counter, bool* is_clicking, bool* isBusy);
+// void talkToMarchandMain(GameState* gameState, Scene* scene, )
