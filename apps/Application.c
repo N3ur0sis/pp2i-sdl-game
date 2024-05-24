@@ -30,10 +30,17 @@ int main(void){
     /* Set Default Current Scene */
     SceneManagerSetCurrentScene(sceneManager, sceneManager->gameState.currentSceneIndex);
 
-
+    Uint32 last = SDL_GetTicks();
+    int nbframe;
     /* Game Loop */
     while (game->running) {
-        Uint64 start = SDL_GetPerformanceCounter();
+        Uint64 current = SDL_GetTicks();
+        nbframe++;
+        if(current - last >= 1000.0f){
+            printf("FPS: %d\n", nbframe);
+            nbframe = 0;
+            last += 1000.0f;
+        }
         /* Update Frame */
         StartFrame(game,&sceneManager->gameState, sceneManager);
         
@@ -44,9 +51,6 @@ int main(void){
         cameraControl(sceneManager->scenes[sceneManager->currentSceneIndex]->camera);
         EndFrame(game);
 
-        Uint64 end = SDL_GetPerformanceCounter();
-        float elapsed = (end - start) / (float)SDL_GetPerformanceFrequency();
-        printf("Current FPS : %d\n", (int)(1.0f/elapsed));
         }
 
     /* Clean every resource allocated */
