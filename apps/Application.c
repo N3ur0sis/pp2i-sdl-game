@@ -21,13 +21,13 @@ int main(void){
     /* Initialize the Audio System */
     TempAudioImpl();
     
-    /* Init of Scenes */
+    /* Initializations of Scenes */
     INIT_SCENE(startScene, sceneManager, startStartScene, updateStartScene, unloadStartScene);
     INIT_SCENE(dungeonScene, sceneManager, DungeonMainScene, updateDungeonScene, unloadDungeonScene);
     INIT_SCENE(forestScene, sceneManager, ForestMainScene, updateForestScene, unloadStartScene);
     INIT_SCENE(mainScene, sceneManager, startMainScene, updateMainScene, unloadStartScene);
 
-
+    /* Set Default Current Scene */
     SceneManagerSetCurrentScene(sceneManager, sceneManager->gameState.currentSceneIndex);
 
 
