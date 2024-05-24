@@ -39,7 +39,6 @@ void freeInventory(Inventory* inventory) {
             free(inventory->objects[i]);
         }
         free(inventory->objects);
-        printf("on free un tableau d'objects\n");
         // Free the inventory itself
         free(inventory);
     }
