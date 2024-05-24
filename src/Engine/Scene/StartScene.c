@@ -7,7 +7,8 @@ bool is_tabingStart = false;
 bool isBarrierDestroyed;
 int click_counter = 0 ;
 Inventory* inventory;
-
+Uint32 textDisplayStartTime = 0;
+const Uint32 enemyHitTextDisplayDuration = 5000; // ms
 
 void startStartScene(Scene* scene, GameState* gameState) {
     checkpoint_sword = false;
@@ -142,7 +143,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
     Entity* chestEntity = &scene->entities[5];
     Entity* chestOpenEntity = &scene->entities[6];
     Entity* startBarrierEntity = &scene->entities[7];
-
+    Uint32 currentTime = SDL_GetTicks();
     bool* isBusy = &((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy;
     float x = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[0];
     float y = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[2];
@@ -179,7 +180,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             ((Model*)getComponent(chestOpenEntity, COMPONENT_RENDERABLE))->isRenderable = false;
             ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->isRenderable = true;
             ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->isRenderable = false;
-            gameState->playerHealth = 100.0f;
+            gameState->playerHealth = 1000.0f;
             gameState->isPlayerDead = false;
             gameState->change = true;
             gameState->nextSceneIndex = 0;
@@ -257,14 +258,18 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             }
             rotTarget = glm_lerp(currentAngleDeg, targetAngleDeg, 0.1f);
         }
+        
         if (enemyDist < 3.0f) {
             if (!gameState->enemyIsAttacking) {
                 gameState->enemyIsAttacking = true;
                 ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->playTime = 0.0f;
                 ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemPunchAnimation");
+                
             }
             if (((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->playTime > ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->currentAnimation->anim_dur - 10) {
                 damagePlayer(gameState, 10);
+                printf("L'ennemi frappe\n");
+                textDisplayStartTime = SDL_GetTicks();
                 ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->playTime = 0.0f;
                 gameState->enemyIsAttacking = false;
             }
@@ -279,6 +284,13 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             gameState->enemyIsAttacking = false;
             ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemIdleAnimation");
         }
+
+        
+        Uint32 howLong = currentTime-textDisplayStartTime;
+
+                if (howLong < enemyHitTextDisplayDuration) {
+                RenderText("-10",(SDL_Color) {255,0,0,0}, gameState->g_WindowWidth / 2 - 200, gameState->g_WindowHeight / 15 , 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                }
 
 
         if (x < -37.25 && y <-13.85 && y > -17.5 && !isBarrierDestroyed) {
