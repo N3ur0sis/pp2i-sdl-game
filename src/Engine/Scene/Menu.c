@@ -1,10 +1,24 @@
+/*
+* Menu.c
+* Implementation of the pause menu.
+* Authors: VD
+*/
+
 #include <Menu.h>
 
+/**
+ * @brief Draws the pause menu.
+ * 
+ * This function draws the pause menu.
+ * 
+ * @param game Pointer to the application.
+ * @param gameState Pointer to the game state.
+ * @param shaderProgram Pointer to the shader program.
+ */
 void MenuPauseDraw(Application* game, GameState* gameState, Shader* shaderProgram){
     SDL_Color color = {0, 0, 0, 255};
     SDL_Color gold = {255, 215, 0, 255};
-
-    printf("MenuPauseDraw\n");
+    
     RenderText("MENU", color, gameState->g_WindowWidth / 2, 9 * gameState->g_WindowHeight / 10, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
 
     if (gameState->settingsNum < 0){

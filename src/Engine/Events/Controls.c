@@ -27,6 +27,7 @@ static void logSDLError(const char* msg) {
  * 
  * @param e Pointer to the SDL event.
  * @param running Pointer to the running state flag.
+ * @param isPaused Pointer to the paused state flag.
  * @param gameState Pointer to the current game state.
  * @param sceneManager Pointer to the scene manager.
  */
@@ -36,6 +37,7 @@ void processInput(SDL_Event* e, bool* running, bool* isPaused, GameState* gameSt
             *running = false;
             break;
         case SDL_KEYDOWN:
+			/*Handle pause menu input*/
 			if (e->key.keysym.sym == SDLK_ESCAPE){
 				*isPaused = !*isPaused;
 				if (*isPaused) {
@@ -205,6 +207,12 @@ void setMousePosition(int coord, float value) {
     mousePos[coord] = value;
 }
 
+/**
+ * @brief Sets the state of a specified key.
+ * 
+ * @param code The SDL key code.
+ * @param state The state to set the key to.
+ */
 void setKeyState(SDL_KeyCode code, bool state){
 	keyState[code] = state;
 }
