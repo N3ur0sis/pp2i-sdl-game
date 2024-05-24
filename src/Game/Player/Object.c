@@ -30,7 +30,7 @@ char* checkIdObject(int id) {
             strcpy(path, "assets/images/heart.png");
             break;
         default :
-            strcpy(path, "assets/images/map.png");
+            strcpy(path, "assets/images/Hearts_Blue_1.png");
             break;
     }
     return path;

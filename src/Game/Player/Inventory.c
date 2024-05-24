@@ -66,9 +66,47 @@ void InventoryPrint(Inventory* inventory, float window_width, float window_heigh
             free(path);
             nb_items_non_nuls++;
         }
+    }
+    RenderImage("assets/images/Inventory_Example_03.png", offset_x + window_width / 2, offset_y + window_height / 3, window_width, window_height, shader);
+}
+
+
+int InventoryPrintTrade(Inventory* inventory, float window_width, float window_height, GLuint shader, float offset_x, float offset_y, int mouse_x, int mouse_y) {
+    int renduId = -1;
+    int nb_items_non_nuls = 0;
+    for (int i = 0; i < 10; i++) {
+        int nb_items = 0;
+        for (int k = 0; k < inventory->size; k++ ) {
+            if ((inventory->objects[k])->id == i) {
+                nb_items++;
+            }
+        }
+        if (!(nb_items == 0)) {
+            int lignes = nb_items_non_nuls / 3;
+            int colonnes = nb_items_non_nuls % 3;
+            char nb[12];
+            sprintf(nb, "%d", nb_items);
+            SDL_Color color_red = {255, 0, 0, 0};
+            RenderText(nb, color_red, offset_x + window_width / 2 - 56 + 69 *colonnes , offset_y + window_height / 3 + 172 - 69 * lignes, 15, window_width,window_height, shader);
+            char* path = checkIdObject(i);
+            RenderImage(path, offset_x + window_width / 2 -70 + 69 * colonnes  , offset_y + window_height / 3 + 165 - 68 * lignes , window_width, window_height, shader);
+            free(path);
+            if (MouseOnCase(offset_x + window_width / 2 -70 + 69 * colonnes, window_height - (offset_y + window_height / 3 + 165 - 68 * lignes), mouse_x, mouse_y)) {
+                renduId = i;
+            }
+            // printf("%d\n", renduId);
+            nb_items_non_nuls++;
+        }
         
     }
     RenderImage("assets/images/Inventory_Example_03.png", offset_x + window_width / 2, offset_y + window_height / 3, window_width, window_height, shader);
-
+    return renduId;
 }
 
+
+bool MouseOnCase(int x_square, int y_square, int mouse_x, int mouse) {
+    if ((mouse_x > x_square - 25) && (mouse_x < x_square + 28) && (mouse > y_square - 47) && (mouse < y_square + 3)) {
+        return true;
+    }
+    return false;
+}
