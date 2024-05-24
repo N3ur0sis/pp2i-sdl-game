@@ -91,7 +91,7 @@ int InventoryPrintTrade(Inventory* inventory, float window_width, float window_h
             char* path = checkIdObject(i);
             RenderImage(path, offset_x + window_width / 2 -70 + 69 * colonnes  , offset_y + window_height / 3 + 165 - 68 * lignes , window_width, window_height, shader);
             free(path);
-            if (MouseOnCase(offset_x + window_width / 2 - 56 + 69 *colonnes, offset_y + window_height / 3 + 172 - 69 * lignes, mouse_x, mouse_y) && i == 1 ) {
+            if (MouseOnCase(offset_x + window_width / 2 -70 + 69 * colonnes, window_height - (offset_y + window_height / 3 + 165 - 68 * lignes), mouse_x, mouse_y)) {
                 renduId = i;
             }
             // printf("%d\n", renduId);
@@ -100,15 +100,13 @@ int InventoryPrintTrade(Inventory* inventory, float window_width, float window_h
         
     }
     RenderImage("assets/images/Inventory_Example_03.png", offset_x + window_width / 2, offset_y + window_height / 3, window_width, window_height, shader);
-
+    return renduId;
 }
 
 
 bool MouseOnCase(int x_square, int y_square, int mouse_x, int mouse) {
-    // if (mouse_x > x_square && mouse_x < x_square + 20 && mouse > y_square && mouse < y_square + 64) {
-    //     return true;
-    // }
-    // return false;
-    printf("%d %d %d %d %d %d\n", x_square,x_square+60, y_square, y_square - 60, mouse_x, mouse);
+    if ((mouse_x > x_square - 25) && (mouse_x < x_square + 28) && (mouse > y_square - 47) && (mouse < y_square + 3)) {
+        return true;
+    }
     return false;
 }

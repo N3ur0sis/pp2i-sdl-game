@@ -112,7 +112,7 @@ void startStartScene(Scene* scene, GameState* gameState) {
     Entity* Marchand = createMarchand(scene, (vec3){-15.0f,0.1f,-10.0f}, (vec3){2.0f, 2.0f, 2.0f}, (vec3){0.0f, 3.14f, 0.0f});
     marchantInventory = gameState->marchantInventory;
 
-    InventoryAddObject(marchantInventory, Object_create("Potion de vie", "Restaure 10 points de vie", 1));
+    InventoryAddObject(marchantInventory, Object_create("Potion de vie", "Restaure 10 points de vie", 2));
 
     InventoryAddObject(marchantInventory, Object_create("Torche", "Eclaire dans le noir", 3));
     // printf("id de l'item : %d\n", marchantInventory->objects[1].id);
@@ -124,6 +124,12 @@ void startStartScene(Scene* scene, GameState* gameState) {
     }
     for (int i = 0; i < 11 ; i++) {
         InventoryAddObject(inventory, Object_create("truc rigolo", "c'est un truc rigolo", 2));
+    }
+    for (int i = 0; i < 12 ; i++) {
+        InventoryAddObject(inventory, Object_create("Potion de vie", "Restaure 10 points de vie", 3));
+    }
+    for (int i = 0; i < 13 ; i++) {
+        InventoryAddObject(inventory, Object_create("Potion de vie", "Restaure 10 points de vie", 4));
     }
 }
  
