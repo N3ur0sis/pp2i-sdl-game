@@ -320,3 +320,28 @@ void ModelAnimate(Node* node, float anim_time, mat4 parent_mat, mat4* bones,
         ModelAnimate(node->children[i], anim_time, our_mat, bones, bone_anim_mats);
 }
 
+
+void compute_center_of_volume(Model* model) {
+    vec3 center_of_volume = {0.0f, 0.0f, 0.0f};
+    size_t total_vertex_count = 0;
+
+    for (size_t i = 0; i < model->meshCount; i++) {
+        Mesh* mesh = &model->meshes[i];
+
+        for (size_t j = 0; j < mesh->vertexCount; j++) {
+            center_of_volume[0] += mesh->vertices[j].Position[0];
+            center_of_volume[1] += mesh->vertices[j].Position[1];
+            center_of_volume[2] += mesh->vertices[j].Position[2];
+        }
+
+        total_vertex_count += mesh->vertexCount;
+    }
+
+    if (total_vertex_count > 0) {
+        center_of_volume[0] /= total_vertex_count;
+        center_of_volume[1] /= total_vertex_count;
+        center_of_volume[2] /= total_vertex_count;
+    }
+
+    glm_vec3_copy(center_of_volume,model->center);
+}
