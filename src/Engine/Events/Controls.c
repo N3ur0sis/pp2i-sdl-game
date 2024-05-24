@@ -17,6 +17,19 @@ void processInput(SDL_Event* e,  bool* running, bool* isPaused, GameState* gameS
 		case SDL_KEYDOWN:
 			if (e->key.keysym.sym == SDLK_ESCAPE){
 				*isPaused = !*isPaused;
+				if (*isPaused) {
+					gameState->settingsNum = 0;
+				}
+			} else if (e->key.keysym.sym == SDLK_DOWN && *isPaused){
+				gameState->settingsNum++;
+			} else if (e->key.keysym.sym == SDLK_UP && *isPaused){
+				gameState->settingsNum--;
+			} else if (e->key.keysym.sym == SDLK_RETURN && *isPaused){
+				if (gameState->settingsNum == 0){
+					*isPaused = false;
+				} else if (gameState->settingsNum == 1){
+					*running = false;
+				}
 			}
 			handleKeyBoardEventDown(*e);
 			break;
