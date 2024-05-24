@@ -1,6 +1,5 @@
 #pragma once 
-#include "Scene.h"
-#include <GameState.h>
+#include <Scene.h>
 
 #define MAX_SCENES 10
 
@@ -12,9 +11,10 @@ typedef struct SceneManager {
     
 } SceneManager;
 
-void SceneManagerInit(SceneManager* manager);
+SceneManager* SceneManagerInit();
 void SceneManagerAddScene(SceneManager* manager, Scene* scene, void (*start)(Scene*), void (*update)(Scene*),void (*unloadStartScene)(Scene*));
 void SceneManagerSetCurrentScene(SceneManager* manager, int index);
 void SceneManagerUpdateCurrentScene(SceneManager* manager);
 void freeSceneManager(SceneManager* manager);
 void SceneManagerUnloadCurrentScene(SceneManager* manager, int index);
+

@@ -1,10 +1,13 @@
 #include <SceneManager.h>
 
-void SceneManagerInit(SceneManager* manager) {
+
+SceneManager* SceneManagerInit() {
+    SceneManager* manager = (SceneManager*)calloc(1,sizeof(SceneManager));
+
     manager->currentSceneIndex = -1;
     manager->numScenes = 0;
 
-        // Initialize the game state
+    /* TODO: Load GameState from Save File*/
     manager->gameState.enemyIsAttacking = false;
     manager->gameState.playerIsAttacking = false; 
     manager->gameState.playerHealth = 100.0f;
@@ -12,11 +15,11 @@ void SceneManagerInit(SceneManager* manager) {
     manager->gameState.marchantInventory = InventoryCreate(500);
     manager->gameState.g_WindowWidth = 1280;
     manager->gameState.g_WindowHeight = 720;
-    manager->gameState.g_WindowTitle = "Game";
-     manager->gameState.isPlayerDead = false;
+    manager->gameState.isPlayerDead = false;
     manager->gameState.change = false;
     manager->gameState.nextSceneIndex = -1;
     manager->gameState.isForestDungeonDone = false;
+    return manager;
 }
 void SceneManagerAddScene(SceneManager* manager, Scene* scene, void (*start)(Scene*), void (*update)(Scene*),void (*unload)(Scene*)) {
     if (manager->numScenes < MAX_SCENES) {
@@ -54,3 +57,4 @@ void freeSceneManager(SceneManager* manager) {
 void SceneManagerUnloadCurrentScene(SceneManager* manager, int index) {
         manager->scenes[manager->currentSceneIndex]->unload(manager->scenes[manager->currentSceneIndex]);
 }
+
