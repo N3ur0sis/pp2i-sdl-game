@@ -7,6 +7,7 @@ bool is_tabingStart = false;
 bool isBarrierDestroyed;
 int click_counter = 0 ;
 Inventory* inventory;
+Inventory* marchantInventory;
 
 
 void startStartScene(Scene* scene, GameState* gameState) {
@@ -108,26 +109,21 @@ void startStartScene(Scene* scene, GameState* gameState) {
     }
 
     Entity* Marchand = createMarchand(scene, (vec3){-15.0f,0.1f,-10.0f}, (vec3){2.0f, 2.0f, 2.0f}, (vec3){0.0f, 3.14f, 0.0f});
+    marchantInventory = gameState->marchantInventory;
+
+    InventoryAddObject(marchantInventory, Object_create("Potion de vie", "Restaure 10 points de vie", 0));
+
+    InventoryAddObject(marchantInventory, Object_create("Torche", "Eclaire dans le noir", 2));
+    // printf("id de l'item : %d\n", marchantInventory->objects[1].id);
 
     
-    inventory = InventoryCreate(500);
+    inventory = gameState->inventory;
     for (int i = 0; i < 10 ; i++) {
-        Object* object = Object_create("Potion de vie", "Restaure 10 points de vie", 1);
-        InventoryAddObject(inventory, object);
+        InventoryAddObject(inventory, Object_create("Potion de vie", "Restaure 10 points de vie", 0));
     }
     for (int i = 0; i < 11 ; i++) {
-        Object* object = Object_create("truc rigolo", "c'est un truc rigolo", 2);
-        InventoryAddObject(inventory, object);
+        InventoryAddObject(inventory, Object_create("truc rigolo", "c'est un truc rigolo", 1));
     }
-    for (int i = 0; i < 12 ; i++) {
-        Object* object = Object_create("machin rigolo", "c'est un machin rigolo", 3);
-        InventoryAddObject(inventory, object);
-    }
-    for (int i = 0; i < 13 ; i++) {
-        Object* object = Object_create("bidule rigolo", "c'est un bidule rigolo", 4);
-        InventoryAddObject(inventory, object);
-    }
-
 }
  
 void updateStartScene(Scene* scene, GameState* gameState) {
@@ -143,7 +139,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
     Entity* chestOpenEntity = &scene->entities[6];
     Entity* startBarrierEntity = &scene->entities[7];
 
-    printf("%f\n", ((Health*)getComponent(enemy,COMPONENT_HEALTH))->health);
+    // printf("%f\n", ((Health*)getComponent(enemy,COMPONENT_HEALTH))->health);
 
     bool* isBusy = &((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy;
     float x = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[0];
@@ -216,7 +212,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
         }
 
         if (inventory->isOpened) {
-            InventoryPrint(inventory, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+            InventoryPrint(inventory, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program, 0, 0);
         }
 
 
@@ -437,7 +433,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
                 *isBusy = true;
             }
         } else if (x < -13.0f && x > -18.0f && y < -8.0f && y > -13.0f && *isBusy) {
-            talkToMarchandStart(gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program, &click_counter, &is_clicking, isBusy);
+            talkToMarchandMain(inventory, marchantInventory ,gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program, &click_counter, &is_clicking, isBusy);
         }
 
     }

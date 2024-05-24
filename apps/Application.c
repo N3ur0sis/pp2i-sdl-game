@@ -89,7 +89,7 @@ int main(void){
             EndFrame(game);
         }
     }
-
+    freeInventory(sceneManager.gameState.inventory);
     /* Clean every resource allocated */
     //freeScene(mainScene);
     //freeSceneManager(&sceneManager);

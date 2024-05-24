@@ -40,7 +40,7 @@ void freeInventory(Inventory* inventory) {
 }
 
 
-void InventoryPrint(Inventory* inventory, float window_width, float window_height, GLuint shader) {
+void InventoryPrint(Inventory* inventory, float window_width, float window_height, GLuint shader, float offset_x, float offset_y) {
     int nb_items_non_nuls = 0;
     for (int i = 0; i < 10; i++) {
         int nb_items = 0;
@@ -55,17 +55,15 @@ void InventoryPrint(Inventory* inventory, float window_width, float window_heigh
             char nb[12];
             sprintf(nb, "%d", nb_items);
             SDL_Color color_red = {255, 0, 0, 0};
-            RenderText(nb, color_red, window_width / 2 - 56 + 69 *colonnes , window_height / 3 + 172 - 69 * lignes, 15, window_width,window_height, shader);
-            if (nb_items_non_nuls % 2 == 1) {
-                RenderImage("assets/images/Heart_Orange_1.png", window_width / 2 -70 + 69 * colonnes  , window_height / 3 + 165 - 68 * lignes , window_width, window_height, shader);
-            } else {
-                RenderImage("assets/images/Heart_Blue_1.png", window_width / 2 -70 + 69 * colonnes  , window_height / 3 + 165 - 68 * lignes , window_width, window_height, shader);
-            }
+            RenderText(nb, color_red, offset_x + window_width / 2 - 56 + 69 *colonnes , offset_y + window_height / 3 + 172 - 69 * lignes, 15, window_width,window_height, shader);
+            char* path = checkIdObject(i);
+            RenderImage(path, offset_x + window_width / 2 -70 + 69 * colonnes  , offset_y + window_height / 3 + 165 - 68 * lignes , window_width, window_height, shader);
+            free(path);
             nb_items_non_nuls++;
         }
         
     }
-    RenderImage("assets/images/Inventory_Example_03.png", window_width / 2, window_height / 3, window_width, window_height, shader);
+    RenderImage("assets/images/Inventory_Example_03.png", offset_x + window_width / 2, offset_y + window_height / 3, window_width, window_height, shader);
 
 }
 

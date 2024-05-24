@@ -1,7 +1,8 @@
 #pragma once
 #include <Objects.h>
 #include <Renderer.h>
-#include <stdlib.h>
+
+
 
 
 typedef struct _Inventory {
@@ -13,8 +14,11 @@ typedef struct _Inventory {
 
 
 
+
+
+
 Inventory* InventoryCreate(int capacity);
 void InventoryAddObject(Inventory* inventory, Object* object);
 void InventoryRemoveObject(Inventory* inventory, Object object);
-void InventoryPrint(Inventory* inventory, float window_width, float window_height, GLuint shader);
+void InventoryPrint(Inventory* inventory, float window_width, float window_height, GLuint shader, float offset_x, float offset_y);
 void freeInventory(Inventory* inventory);
