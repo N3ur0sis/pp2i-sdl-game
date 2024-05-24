@@ -1,5 +1,5 @@
 #include <StartScene.h>
-#include <Controls.h>
+
 
 bool checkpoint_sword;
 bool is_clicking = false;

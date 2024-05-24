@@ -135,10 +135,11 @@ void talkToMarchandMain(Inventory* inventory, Inventory* marchantInventory, floa
 void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, float window_width, float window_height, GLuint shader,int* click_counter, bool* is_clicking, bool* isBusy) {
     SDL_Color color_black = {0, 0, 0, 0};
     SDL_Color color_white = {255, 255, 255, 0};
-    InventoryPrint(inventory, window_width, window_height, shader, -300, 150);
-    InventoryPrint(marchantInventory, window_width, window_height, shader, +300, 150);
+    InventoryPrintTrade(inventory, window_width, window_height, shader, -300, 150, getMousePosition(0), getMousePosition(1));
+    InventoryPrintTrade(marchantInventory, window_width, window_height, shader, +300, 150, getMousePosition(0), getMousePosition(1));
     RenderText("   Marchand         ", color_white, window_width / 2 - 175, window_height / 15 + 200, 25, window_width, window_height, shader);
     RenderText("Que veux tu échanger ?", color_black, window_width / 2, window_height / 15 + 140 , 30, window_width, window_height, shader);
-    RenderText("           Appuie sur échap pour quitter...", color_black, window_width / 2 + 45, window_height / 15 + 50, 25, window_width, window_height, shader);
+    RenderText("            Appuie sur echap pour quiter...", color_black, window_width / 2 + 45, window_height / 15 + 50, 25, window_width, window_height, shader);
     RenderImage("assets/images/dialog-box.png", window_width / 2, window_height / 15, window_width, window_height, shader);
+    RenderImage("assets/images/Inventory_Slot_1.png", window_width / 2, window_height / 2 + 85 , window_width, window_height, shader);
 }
