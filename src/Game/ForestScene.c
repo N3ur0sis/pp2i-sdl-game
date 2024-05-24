@@ -3,7 +3,7 @@
 
 /*
 Entity of this scene (order of their index):
-    Light
+    Moon Light 
     Map
     Player
     Sword
@@ -12,6 +12,7 @@ Entity of this scene (order of their index):
     Flame 2
     Flame 3
     Flame 4
+    Light 1 
     Dungeon Door
 */
 
@@ -49,7 +50,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     /* Light Entity */
     Entity* lightEntity = createEntity(scene);
     if (lightEntity != NULL) {
-        Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, 1.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f,-1000.0f,500.0f);
+        Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, 1.8, 0}, (vec3){ 0.3f, 0.3f, 0.4f }, 0.0001f, 0.1f,-1000.0f,500.0f);
         addComponent(lightEntity, COMPONENT_LIGHT, light);
     }
 
@@ -98,10 +99,14 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         Model* flame = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame, "assets/models/Foret/Flame.obj");
         if (!gameState->isForestDungeonDone){
-        //flame->isRenderable = false;
+        flame->isRenderable = false;
          }  
         glm_vec3_copy((vec3){50.5f,9.8f,112.0f},flame->position);
         addComponent(flame1, COMPONENT_RENDERABLE, flame);
+        /*
+        //Light* light = LightCreate(scene->shader, (vec4){50.5f,-100.8f,112.0f,0}, (vec3){1.0f, 0.8f, 0.0f }, 0.5f,  0.15f,0.1f,5.0f);
+        Light* light = LightCreate(scene->shader, (vec4){50.5f,-100.8f,112.0f,0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f, 0.1f, 500.0f);
+        addComponent(flame1, COMPONENT_LIGHT, light);*/
         
     }
     Entity* flame2 = createEntity(scene);
@@ -109,7 +114,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         Model* flame_2 = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame_2, "assets/models/Foret/Flame.obj");
         if (!gameState->isForestDungeonDone){
-        //flame_2->isRenderable = false;
+        flame_2->isRenderable = false;
          }  
         glm_vec3_copy((vec3){62.3f,9.8f,156.0f},flame_2->position);
         addComponent(flame2, COMPONENT_RENDERABLE, flame_2);
@@ -120,7 +125,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         Model* flame_3 = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame_3, "assets/models/Foret/Flame.obj");
         if (!gameState->isForestDungeonDone){
-        //flame_3->isRenderable = false;
+        flame_3->isRenderable = false;
          }  
         glm_vec3_copy((vec3){-59.0f,9.8f,146.50f},flame_3->position);
         addComponent(flame3, COMPONENT_RENDERABLE, flame_3);
@@ -145,7 +150,9 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         addComponent(DungeonDoor, COMPONENT_RENDERABLE, DungeonDoorModel);
         
     }
+   
     
+
     
 
 }
@@ -186,7 +193,6 @@ void updateForestScene(Scene* scene, GameState* gameState){
         if ((d1<FLAMEDIST&&getKeyState(SDLK_e))){
             flame1Model->isRenderable = true;
             playerModel->isBusy = true;
-            
         }
     }
     if (!flame2Model->isRenderable){

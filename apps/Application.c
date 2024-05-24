@@ -49,6 +49,7 @@ int main(void){
     SceneManagerAddScene(&sceneManager, dungeonScene, DungeonMainScene, updateDungeonScene,unloadDungeonScene);
     
      /* Init of Forest Scene*/
+
     Scene* forestScene = (Scene*)calloc(1,sizeof(Scene));
     forestScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, forestScene, ForestMainScene, updateForestScene,unloadStartScene);
@@ -58,7 +59,7 @@ int main(void){
     mainScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, mainScene, startMainScene, updateMainScene,unloadStartScene);
 
-    int current_scene = 3;
+    int current_scene = 2;
     SceneManagerSetCurrentScene(&sceneManager, current_scene);
 
     TTF_Init();
