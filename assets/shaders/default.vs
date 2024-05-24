@@ -8,10 +8,10 @@ layout(location = 4) in vec4 weights;
 	
 uniform bool isAnimated; // Flag to determine if the model is animated
 
-uniform mat4 projection;
-uniform mat4 view;
+
 uniform mat4 model;
 uniform mat4 depthMVP;
+uniform mat4 view;
 
 const int MAX_BONES = 50;
 const int MAX_BONE_INFLUENCE = 4;
@@ -41,11 +41,10 @@ void main() {
             totalPosition += localPosition * weights[i];
             vec3 localNormal = mat3(bones_mat[boneIds[i]]) * norm;
         }
-        mat4 viewModel = view * model;
-        gl_Position =  projection * viewModel * totalPosition;
+        gl_Position =  view * totalPosition;
     } else {
         // If not animated, just transform using the model matrix
-        gl_Position = projection * view * model * vec4(pos, 1.0);
+        gl_Position = view * vec4(pos, 1.0);
 
     }
 
