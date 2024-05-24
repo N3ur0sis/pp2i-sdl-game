@@ -429,7 +429,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
                 *isBusy = true;
             }
         } else if (x < -13.0f && x > -18.0f && y < -8.0f && y > -13.0f && *isBusy) {
-            talkToMarchand(gameState, scene, &click_counter, &is_clicking, isBusy);
+            talkToMarchandStart(gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program, &click_counter, &is_clicking, isBusy);
         }
 
     }

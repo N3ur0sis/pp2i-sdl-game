@@ -32,13 +32,12 @@ void InventoryRemoveObject(Inventory* inventory, Object object) {
     }
 }
 
-void InventoryDestroy(Inventory* inventory) {
+
+void freeInventory(Inventory* inventory) {
+    if (inventory == NULL) return;
     free(inventory->objects);
     free(inventory);
 }
-
-
-
 
 
 void InventoryPrint(Inventory* inventory, float window_width, float window_height, GLuint shader) {
