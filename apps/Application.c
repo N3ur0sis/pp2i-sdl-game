@@ -9,6 +9,7 @@
 #include <SDL2/SDL_mixer.h>
 #include <ForestScene.h>
 #include <Renderer.h>
+#include <Menu.h>
 
 /* Entry point of the program */
 int main(void){
@@ -66,6 +67,7 @@ int main(void){
     /* Game Loop */
     Uint32 lastTime = SDL_GetTicks();
     while (game->running) {
+
         /*Changement de scene*/
         if (sceneManager.gameState.change){
             //Unload current scene
@@ -79,6 +81,10 @@ int main(void){
         else {
             Uint32 currentTime = SDL_GetTicks();
             StartFrame(game,&sceneManager.gameState);
+
+            if (game->isPaused) {
+                MenuPauseDraw(game, &sceneManager.gameState, sceneManager.scenes[sceneManager.currentSceneIndex]->textShader);
+            }
             
             sceneManager.scenes[sceneManager.currentSceneIndex]->deltaTime = (currentTime - lastTime) / 1000.0f;
             physicsSystem(sceneManager.scenes[sceneManager.currentSceneIndex]);

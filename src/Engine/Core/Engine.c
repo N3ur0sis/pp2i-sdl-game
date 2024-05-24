@@ -18,6 +18,7 @@ Application* ApplicationCreate(int width, int height, const char* title){
     app->time = (Time*)calloc(1, sizeof(Time));
     app->event = (SDL_Event*)calloc(1, sizeof(SDL_Event));
     app->running = true;
+    app->isPaused = false;
     app->time->lastUpdate = SDL_GetTicks();
     app->time->nbFrames = 0;
 
@@ -61,7 +62,7 @@ void StartFrame(Application* game, GameState* gameState){
     //game->time->deltaTime = (game->time->currentUpdate - game->time->lastUpdate) / 1000.0f;
     /* Input Handling */
     while(SDL_PollEvent(game->event)){
-        processInput(game->event, &game->running, gameState);
+        processInput(game->event, &game->running, &game->isPaused, gameState);
     }
 }
 
