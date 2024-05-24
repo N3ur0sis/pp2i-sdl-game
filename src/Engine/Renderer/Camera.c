@@ -52,66 +52,8 @@ void updateCameraVectors(Camera* camera){
 
 }
 
-void cameraControl(Camera* camera, GameState* gameState){
-    glm_perspective(glm_rad(60.0f), (float)(gameState->g_WindowWidth)/(float)gameState->g_WindowHeight, 0.1f, 500.0f, camera->projectionMatrix);  
-    //Tilt camere
-    if(getMouseButtonState(SDL_BUTTON_RIGHT) == true){
-        float xpos = getMousePosition(0);
-        float ypos = getMousePosition(1);
-        if (firstLook)
-        {
-            setMousePosition(2, xpos);
-            setMousePosition(3, ypos);
-            firstLook = false;
-        }
-        float xoffset = xpos - getMousePosition(2);
-        float yoffset = getMousePosition(3) - ypos; // reversed since y-coordinates go from bottom to top
-        setMousePosition(2, xpos);
-        setMousePosition(3, ypos);
-        xoffset *= camera->MouseSensitivity;
-        yoffset *= camera->MouseSensitivity;
-        camera->Yaw   += xoffset;
-        camera->Pitch += yoffset;
-        // make sure that when pitch is out of bounds, screen doesn't get flipped
-        if (true)
-        {
-            if (camera->Pitch > 89.0f)
-                camera->Pitch = 89.0f;
-            if (camera->Pitch < -89.0f)
-                camera->Pitch = -89.0f;
-        }
-                // update Front, Right and Up Vectors using the updated Euler angles
-        updateCameraVectors(camera);
-    }else{
-        firstLook = true;
-    }
-    //Pan camera
-    if(getMouseButtonState(SDL_BUTTON_MIDDLE) == SDL_PRESSED){
-            float xpos = getMousePosition(0);
-            float ypos = getMousePosition(1);
-
-            if (firstMove)
-            {
-                setMousePosition(2, xpos);
-                setMousePosition(3, ypos);
-                firstMove = false;
-            }
-            float xoffset = xpos - getMousePosition(2);
-            float yoffset = getMousePosition(3) - ypos; // reversed since y-coordinates go from bottom to top
-
-            setMousePosition(2, xpos);
-            setMousePosition(3, ypos);
-            vec3 velocityY;
-            glm_vec3_scale(camera->Up, yoffset*0.01f, velocityY);
-            glm_vec3_sub(camera->Position, velocityY, camera->Position);
-            vec3 velocityX;
-            glm_vec3_scale(camera->Right, xoffset*0.01f, velocityX);
-            glm_vec3_sub(camera->Position, velocityX, camera->Position);
-            updateCameraVectors(camera);
-    }else{
-            setMousePosition(2, getMousePosition(0));
-            setMousePosition(3, getMousePosition(1));
-    }
+void cameraControl(Camera* camera){
+   
     //Zoom Camera
     float zpos = getMousePosition(4);
     float zoffset = zpos - getMousePosition(5);

@@ -95,8 +95,6 @@ void physicsSystem(Scene* scene) {
         Collider* collider = (Collider*)getComponent(entity, COMPONENT_COLLIDER);
         Model* model = (Model*)getComponent(entity, COMPONENT_RENDERABLE);
         if (collider && rigidBody&&model->isRenderable) {
-            if (getKeyState(SDLK_c)){
-            printf("i = %d\n",i);}
             // Handle collisions with other entities
             for (int j = 0; j < scene->numEntities; ++j) {
                 if (i == j) continue;

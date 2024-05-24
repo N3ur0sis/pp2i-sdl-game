@@ -22,7 +22,7 @@ Dungeon* dj_create(){
     dj->previous_direction = 'S';
     dj->change = true;
     dj->hasKey = false;
-    dj->nb_ennemy = 0;
+    dj->nb_enemy = 0;
     dj->quit = false;
     dj->lastRoomChangeTime = 0;
     initializeLRooms(dj);
@@ -241,9 +241,9 @@ void initializeRooms(Dungeon *dj){
         dj->rooms[i].nb_door = nb;
         dj->rooms[i].type =-1 ;
         dj->rooms[i].isCompleted = false;
-        dj->rooms[i].nb_ennemy = 0;
-        for (int k = 0; k < NB_ENNEMY; k++) {
-            dj->rooms[i].id_ennemy[k] = 0;
+        dj->rooms[i].nb_enemy = 0;
+        for (int k = 0; k < NB_ENEMY; k++) {
+            dj->rooms[i].id_enemy[k] = 0;
         }
         int nb_model;
         int val_model;
@@ -472,7 +472,7 @@ void Affiche(Dungeon *dj){
         else if (dj->rooms[i].id==7){
             id7++;
         }
-     printf("Le type de la salle %d est %d et son id est %d et a %d ennemy : id %d et %d\n",i,dj->rooms[i].type,dj->rooms[i].id,dj->rooms[i].nb_ennemy,dj->rooms[i].id_ennemy[0],dj->rooms[i].id_ennemy[1]);
+     printf("Le type de la salle %d est %d et son id est %d et a %d ennemis : id %d et %d\n",i,dj->rooms[i].type,dj->rooms[i].id,dj->rooms[i].nb_enemy,dj->rooms[i].id_enemy[0],dj->rooms[i].id_enemy[1]);
 
 
     }
@@ -1520,23 +1520,23 @@ void setTypeRoom(Dungeon* dj){
                 }
             }
         if (dj->rooms[i].type == 3){
-            if (dj->nb_ennemy<NB_ENNEMY-1){
-                dj->rooms[i].id_ennemy[0] = 6 + dj->nb_ennemy;
-                dj->rooms[i].id_ennemy[1] = 6 + (dj->nb_ennemy+1);
-                dj->nb_ennemy+=2;
-                dj->rooms[i].nb_ennemy = 2;
-                printf("id ennmy salle %d = %d %d\n",i,dj->rooms[i].id_ennemy[0],dj->rooms[i].id_ennemy[1]);
+            if (dj->nb_enemy<NB_ENEMY-1){
+                dj->rooms[i].id_enemy[0] = 6 + dj->nb_enemy;
+                dj->rooms[i].id_enemy[1] = 6 + (dj->nb_enemy+1);
+                dj->nb_enemy+=2;
+                dj->rooms[i].nb_enemy = 2;
+                printf("id ennemi salle %d = %d %d\n",i,dj->rooms[i].id_enemy[0],dj->rooms[i].id_enemy[1]);
             }
-            else if (dj->nb_ennemy<NB_ENNEMY){
-                dj->rooms[i].id_ennemy[0] = 6 + dj->nb_ennemy;
-                dj->nb_ennemy+=1;
-                dj->rooms[i].nb_ennemy = 1;
+            else if (dj->nb_enemy<NB_ENEMY){
+                dj->rooms[i].id_enemy[0] = 6 + dj->nb_enemy;
+                dj->nb_enemy+=1;
+                dj->rooms[i].nb_enemy = 1;
             }
             else{
                 dj->rooms[i].type = -1;
             }
         }
-        printf("id ennmy salle %d = %d %d\n",i,dj->rooms[i].id_ennemy[0],dj->rooms[i].id_ennemy[1]);
+        printf("id ennemi salle %d = %d %d\n",i,dj->rooms[i].id_enemy[0],dj->rooms[i].id_enemy[1]);
         }
      }
         

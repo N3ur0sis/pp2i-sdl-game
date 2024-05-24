@@ -1,7 +1,6 @@
 #pragma once
 
 #include <Animator.h>
-#include <Model.h>
 #include <Light.h>
 #include <Collider.h>
 

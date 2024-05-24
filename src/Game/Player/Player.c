@@ -39,7 +39,7 @@ void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enem
 
 	//sometimes my genius is almost frithening
 	vec3 rotationDirection;
-	if(enemy != NULL){
+	if(enemy->isRenderable){
 	vec3 enemyDir;
     glm_vec3_sub(enemy->position,((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,  enemyDir);
     float enemyDist = glm_vec3_norm(enemyDir);
@@ -229,7 +229,7 @@ Entity* create_sword(Scene* scene,Entity* parent){
 	return swordEntity;
 }
 
-void player_attack(Entity* player,Entity* ennemy,GameState* gameState){
+void player_attack(Entity* player,Entity* enemy,GameState* gameState){
 	Animator* playerAnimator = (Animator*)getComponent(player, COMPONENT_ANIMATOR);
 	RigidBody* playerRigidbody = (RigidBody*)getComponent(player, COMPONENT_RIGIDBODY);
 	Model* playerModel = (Model*)getComponent(player,COMPONENT_RENDERABLE);
@@ -245,18 +245,18 @@ void player_attack(Entity* player,Entity* ennemy,GameState* gameState){
                 playerAnimator->currentAnimation = (Animation*)getAnimationComponent(player, "playerWalkingAnimation");
                 }
             }
-            if (playerAnimator->playTime > playerAnimator->currentAnimation->anim_dur - 10 && gameState->playerIsAttacking) {
+            if (playerAnimator->playTime > playerAnimator->currentAnimation->anim_dur - 700 && gameState->playerIsAttacking) {
                 gameState->playerIsAttacking = false;
                 playerAnimator->playTime = 0.0f;
-				if (ennemy){
-				Model* ennemyModel = (Model*)getComponent(ennemy,COMPONENT_RENDERABLE);
-				Health* ennemyHealth = (Health*)getComponent(ennemy,COMPONENT_HEALTH);
-				vec3 ennemyDir;
-				glm_vec3_sub( playerModel->position, ennemyModel->position, ennemyDir);
-				if ( glm_vec3_norm(ennemyDir)<ATTACK_RANGE){
+				if (enemy){
+				Model* enemyModel = (Model*)getComponent(enemy,COMPONENT_RENDERABLE);
+				Health* enemyHealth = (Health*)getComponent(enemy,COMPONENT_HEALTH);
+				vec3 enemyDir;
+				glm_vec3_sub( playerModel->position, enemyModel->position, enemyDir);
+				if ( glm_vec3_norm(enemyDir)<ATTACK_RANGE){
 					gameState->playerIsAttacking = false;
-					ennemyHealth->health-=DAMAGE;
-					printf(" health = %f\n",ennemyHealth->health);
+					enemyHealth->health-=DAMAGE;
+					printf(" health = %f\n",enemyHealth->health);
 
 				}
             }

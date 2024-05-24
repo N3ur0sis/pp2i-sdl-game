@@ -11,6 +11,8 @@ Entity* createEntity(Scene* scene) {
 }
 
 
+
+
 void freeScene(Scene* scene) {
     if (scene == NULL) return;
 

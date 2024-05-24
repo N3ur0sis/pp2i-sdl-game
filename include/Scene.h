@@ -1,12 +1,17 @@
 #pragma once
 
 #include <Shader.h>
-#include <Camera.h>
 #include <Skybox.h>
 #include <Entity.h>
 #include <GameState.h>
 
 #define MAX_ENTITIES 100
+
+#define INIT_SCENE(sceneVar, sceneManager, startFunc, updateFunc, unloadFunc) \
+    Scene* sceneVar = (Scene*)calloc(1, sizeof(Scene)); \
+    sceneVar->numEntities = 0; \
+    SceneManagerAddScene(sceneManager, sceneVar, startFunc, updateFunc, unloadFunc);
+
 
 typedef struct _Scene {
     Shader* shader;

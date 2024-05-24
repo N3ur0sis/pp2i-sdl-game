@@ -4,8 +4,9 @@
 #include <stdbool.h>
 #include <unistd.h>
 #include <SceneManager.h>
+#include <Controls.h>
 #define DAMAGE 50.0f
-#define ATTACK_RANGE 1.5f
+#define ATTACK_RANGE 2.5f
 void lerp_vec3(vec3 a, vec3 b, vec3 res, float t);
 void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enemy);
 void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float deltaTime);
@@ -15,4 +16,4 @@ bool playerInteract();
 void checkDead(GameState* gamestate);
 void damagePlayer(GameState* gamestate, int damage);Entity* create_player(Scene*  scene,float x,float y,float z);
 Entity* create_sword(Scene* scene,Entity* parent);
-void player_attack(Entity* player,Entity* ennemy,GameState* gameState);
+void player_attack(Entity* player,Entity* enemy,GameState* gameState);

@@ -6,11 +6,12 @@ typedef struct GameState {
     bool playerIsAttacking;
     float playerHealth;
     Inventory* inventory;
+    Inventory* marchantInventory;
     int g_WindowWidth;
     int g_WindowHeight;
-    char* g_WindowTitle;
     bool isPlayerDead;
     int nextSceneIndex;
+    int currentSceneIndex;
     int previousSceneIndex;
     bool change;
     bool isForestDungeonDone;

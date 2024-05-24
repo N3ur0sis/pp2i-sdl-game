@@ -2,7 +2,6 @@
 
 #include <cglm/cglm.h>
 #include <cglm/call.h>
-#include <Controls.h>
 
 //Camera Object
 typedef struct{
@@ -24,4 +23,4 @@ Camera* camera_create(float posX, float posY, float posZ, float width, float hei
 void getViewMatrix(Camera* camera, vec4* view);
 void updateCameraVectors(Camera* camera );
 void panCamera(Camera* camera);
-void cameraControl(Camera* camera, GameState* gameState);
+void cameraControl(Camera* camera);

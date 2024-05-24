@@ -132,9 +132,12 @@ void ModelDraw(Model* model, Shader* shader, Camera* camera, mat4 customModelMat
 
         if (customModelMatrix) {
         glm_mat4_copy(customModelMatrix, model->modelMatrix);
+        mat4 mvp;
+        glm_mat4_mul(camera->projectionMatrix,camera->viewMatrix, mvp);
+        glm_mat4_mul(mvp,customModelMatrix,mvp);
+
         glUniformMatrix4fv(shader->m_locations.Model, 1, GL_FALSE, (float*)customModelMatrix);
-        glUniformMatrix4fv(shader->m_locations.View, 1, GL_FALSE, (float*)camera->viewMatrix);
-        glUniformMatrix4fv(shader->m_locations.Projection, 1, GL_FALSE, (float*)camera->projectionMatrix);
+        glUniformMatrix4fv(shader->m_locations.View, 1, GL_FALSE, (float*)mvp);
         glUniform3fv(shader->m_locations.cameraPosition,1,camera->Position);
     } else {
         /* Before each render of our object we need to pass the model matrix on the shader */
@@ -156,8 +159,12 @@ void ModelDrawAttached(Model* model, Shader* shader, Camera* camera) {
 
     /* Before each render of our object we need to pass the model matrix on the shader */
     //ModelMatrixCalculate(model->position, model->rotation, model->scale,camera,shader, model->modelMatrix);
-    glUniformMatrix4fv(shader->m_locations.View, 1, GL_FALSE, (float*)camera->viewMatrix);
-    glUniformMatrix4fv(shader->m_locations.Projection, 1, GL_FALSE, (float*)camera->projectionMatrix);
+    mat4 mvp;
+        glm_mat4_mul(camera->projectionMatrix,camera->viewMatrix, mvp);
+        glm_mat4_mul(mvp,model->modelMatrix,mvp);
+
+        glUniformMatrix4fv(shader->m_locations.Model, 1, GL_FALSE, (float*)model->modelMatrix);
+        glUniformMatrix4fv(shader->m_locations.View, 1, GL_FALSE, (float*)mvp);
     glUniform3fv(shader->m_locations.cameraPosition,1,camera->Position);
 
     /* We need to draw each mesh present in the model */
@@ -203,8 +210,10 @@ void ModelMatrixCalculate(vec3 position,vec3 rotation, vec3 scale, Camera* camer
 
     /* MVP matrices are sent to the shader*/
     glUniformMatrix4fv(shader->m_locations.Model, 1, GL_FALSE, (float*)modelMatrix);
-    glUniformMatrix4fv(shader->m_locations.View, 1, GL_FALSE, (float*)camera->viewMatrix);
-    glUniformMatrix4fv(shader->m_locations.Projection, 1, GL_FALSE, (float*)camera->projectionMatrix);
+    mat4 mvp;
+        glm_mat4_mul(camera->projectionMatrix,camera->viewMatrix, mvp);
+        glm_mat4_mul(mvp,modelMatrix,mvp);
+        glUniformMatrix4fv(shader->m_locations.View, 1, GL_FALSE, (float*)mvp);
     glUniform3fv(shader->m_locations.cameraPosition,1,camera->Position);
 
 }

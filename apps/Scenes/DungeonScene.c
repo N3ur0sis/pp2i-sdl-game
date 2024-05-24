@@ -9,7 +9,7 @@ Entity of this scene (order of their index):
     Sword
     KeyBossChest
     Chest
-    Golem *NB_ENNEMY
+    Golem *NB_ENEMY
     BOSS
 */
 
@@ -100,7 +100,7 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
     }
 
     /* Enemy Entity */
-    for (int i =0;i<NB_ENNEMY;i++){
+    for (int i =0;i<NB_ENEMY;i++){
         if (i%2==0){create_golem(scene,2.0f,0.1f,0.0f,0.5f);}
         else{create_golem(scene,-2.0f,0.1f,0.0f,0.5f);}
     }
@@ -122,24 +122,24 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
         }
         if (!playerModel->isBusy){
             Entity* entity = NULL;
-            Entity* ennemy = NULL;
+            Entity* enemy = NULL;
             if (dj->rooms[dj->current_room].type==3){  
-                for (int i =0;i<(dj->rooms[dj->current_room].nb_ennemy);i++){
-                     entity= &scene->entities[dj->rooms[dj->current_room].id_ennemy[i]];
+                for (int i =0;i<(dj->rooms[dj->current_room].nb_enemy);i++){
+                     entity= &scene->entities[dj->rooms[dj->current_room].id_enemy[i]];
                      if (entity){
-                     Health* ennemyHealth = (Health*)getComponent(entity,COMPONENT_HEALTH);
-                     if ( ennemyHealth&&ennemyHealth->isAlive){
+                     Health* enemyHealth = (Health*)getComponent(entity,COMPONENT_HEALTH);
+                     if ( enemyHealth&&enemyHealth->isAlive){
                         ((Model*)getComponent(entity,COMPONENT_RENDERABLE))->isRenderable = true;
                         golemLogic(scene,gameState,entity,playerEntity);
-                        ennemy = entity;
+                        enemy = entity;
                      }}
                 }
-                if (!ennemy){
+                if (!enemy){
                     dj->rooms[dj->current_room].isCompleted = true;
                 }
             }
-        player_attack(playerEntity,ennemy,gameState);
-        playerMovement(playerEntity, scene->deltaTime, scene->camera, ennemy);}
+        player_attack(playerEntity,enemy,gameState);
+        playerMovement(playerEntity, scene->deltaTime, scene->camera, enemy);}
     if (getKeyState(SDLK_p)){
         printf("Le joueur est en %f %f\n",playerModel->position[0],playerModel->position[2]);
     }
