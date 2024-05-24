@@ -16,8 +16,23 @@ void startMainScene(Scene* scene, GameState* gameState) {
     glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
     /* Create a skybox */
     scene->skybox = SkyboxCreate();
-
-    Entity* playerEntity = create_player(scene,-145.0f,9.1f,94.0f);
+    float x;float y;float z;float rot;
+    switch (gameState->previousSceneIndex){
+        case 0://Start
+            x = -145.0f; y = 6.6f; z =94.0f;rot = 90.0f;
+            break;
+        case 2://Foret
+            x = -327.0f; y = 6.6f; z =288.5f; rot = 180.0f;
+            scene->camera->Position[0] = x-20.0; scene->camera->Position[1] = y+25.0; scene->camera->Position[2] = z;
+            break;
+        default:
+            x = -145.0f; y = 6.6f; z =94.0f;rot = 90.0f;
+            break;
+            
+    }
+    Entity* playerEntity = create_player(scene,x,y,z);
+    Model* playerModel = (Model*)calloc(1, sizeof(Model));
+    playerModel->rotation[1] = glm_rad(rot);
     
     /* Sword Entity */
     Entity* swordEntity = createEntity(scene);
@@ -124,7 +139,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     Entity* playerEntity = &scene->entities[0];
     Model* playerModel = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE));
         if (getKeyState(SDLK_p)){
-        printf("Le joueur est en %f %f %f\n",scene->camera->Position[0],scene->camera->Position[1],scene->camera->Position[2]);
+        printf("Le joueur est en %f, %f, %f\n",playerModel->position[0],playerModel->position[1],playerModel->position[2]);
     }
     for (int i = 2;i<NBPARTMAP+1;i++){
         Entity* map = &scene->entities[i];
@@ -181,6 +196,24 @@ void updateMainScene(Scene* scene, GameState* gameState) {
         // }
         playerMovement(playerEntity, scene->deltaTime, scene->camera, NULL);
     }   
+
+    vec3 forestPos= {-324.09, 6.60, 301.27};
+    vec3 forestDir;
+    glm_vec3_sub(playerModel->position,forestPos,forestDir);
+    if (glm_vec3_norm(forestDir)<5.0f){
+        gameState->change = true;
+        gameState->nextSceneIndex = 2;
+        gameState->previousSceneIndex = 3;
+    }
+
+    vec3 startPos = {-139.040665, 6.600000, 94.000000};
+    vec3 startDir;
+    glm_vec3_sub(playerModel->position,startPos,startDir);
+    if (glm_vec3_norm(startDir)<3.0f){
+        gameState->change = true;
+        gameState->nextSceneIndex = 0;
+        gameState->previousSceneIndex = 3;
+    }
 }
 
 
