@@ -63,6 +63,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         Model* foret1Model = (Model*)calloc(1, sizeof(Model));
         ModelCreate(foret1Model, "assets/models/main/foret1.obj");
         addComponent(foret1, COMPONENT_RENDERABLE, foret1Model);
+        compute_center_of_volume(foret1Model);
         foret1Model->isRenderable = false;
     }
 
@@ -71,6 +72,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         Model* foret2Model = (Model*)calloc(1, sizeof(Model));
         ModelCreate(foret2Model, "assets/models/main/foret2.obj");
         addComponent(foret2, COMPONENT_RENDERABLE, foret2Model);
+        compute_center_of_volume(foret2Model);
         foret2Model->isRenderable = false;
     }
 
@@ -79,6 +81,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         Model* foret3Model = (Model*)calloc(1, sizeof(Model));
         ModelCreate(foret3Model, "assets/models/main/foret3.obj");
         addComponent(foret3, COMPONENT_RENDERABLE, foret3Model);
+        compute_center_of_volume(foret3Model);
         foret3Model->isRenderable = false;
     }
 
@@ -87,6 +90,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         Model* lakeModel = (Model*)calloc(1, sizeof(Model));
         ModelCreate(lakeModel, "assets/models/main/lake.obj");
         addComponent(lake, COMPONENT_RENDERABLE, lakeModel);
+        compute_center_of_volume(lakeModel);
         lakeModel->isRenderable = false;
     }
 
@@ -95,6 +99,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         Model* mainModel = (Model*)calloc(1, sizeof(Model));
         ModelCreate(mainModel, "assets/models/main/main.obj");
         addComponent(main, COMPONENT_RENDERABLE, mainModel);
+        compute_center_of_volume(mainModel);
         mainModel->isRenderable = false;
     }
 
@@ -103,6 +108,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         Model* midModel = (Model*)calloc(1, sizeof(Model));
         ModelCreate(midModel, "assets/models/main/mid.obj");
         addComponent(mid, COMPONENT_RENDERABLE, midModel);
+        compute_center_of_volume(midModel);
         midModel->isRenderable = false;
     }
     
