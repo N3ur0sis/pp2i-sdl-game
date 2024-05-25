@@ -19,7 +19,7 @@ SceneManager* SceneManagerInit() {
     manager->gameState.change = false;
     manager->gameState.nextSceneIndex = -1;
     manager->gameState.isForestDungeonDone = false;
-    manager->gameState.settingsNum = 0;
+    manager->gameState.pauseMenu = NULL;
     manager->gameState.restarting = false;
     
     return manager;

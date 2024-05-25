@@ -1,6 +1,8 @@
 #pragma once
 #include <Inventory.h>
 
+typedef struct _Menu Menu;
+
 typedef struct GameState {
     bool enemyIsAttacking;
     bool playerIsAttacking;
@@ -15,7 +17,7 @@ typedef struct GameState {
     int previousSceneIndex;
     bool change;
     bool isForestDungeonDone;
-    int settingsNum;
+    Menu* pauseMenu;
     bool restarting;
     // Add other game state variables as needed
 } GameState;
