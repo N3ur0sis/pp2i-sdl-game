@@ -140,6 +140,7 @@ void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, flo
     if (id_joueur != -1) {
         RenderText("VENDRE", color_black, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
         char* path = checkIdObject(id_joueur);
+        RenderSquare(window_width, window_height, 20, window_width, window_height, shader);
         RenderImage(path, window_width / 2, window_height / 2 + 105 , window_width, window_height, shader);
         free(path);
     } else if (id_marchand != -1) {
