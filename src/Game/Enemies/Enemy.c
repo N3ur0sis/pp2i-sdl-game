@@ -166,7 +166,7 @@ Entity* create_golemPurple(Scene* scene,float x,float y,float z,float scale){
         addComponent(enemy, COMPONENT_RENDERABLE, golem);
 
         Animation* golemIdleAnimation = AnimationCreate("assets/models/GolemViolet/Mutant Breathing Idle.dae", golem, "golemIdleAnimation");
-        Animation* golemWalkingAnimation = AnimationCreate("assets/models/GolemViolet/Mutant Walking.dae", golem, "golemWalkingAnimation");
+        Animation* golemWalkingAnimation = AnimationCreate("assets/models/GolemViolet/Mutant Walking copy.dae", golem, "golemWalkingAnimation");
         Animation* golemPunchAnimation = AnimationCreate("assets/models/GolemViolet/Mutant Swiping.dae", golem, "golemPunchAnimation");
         Animation* golemHitAnimation = AnimationCreate("assets/models/GolemViolet/Standing React Small From Left.dae", golem, "golemHitAnimation");
         Animation* golemDyingAnimation = AnimationCreate("assets/models/GolemViolet/Mutant Dying.dae", golem, "golemDyingAnimation");
@@ -185,6 +185,15 @@ Entity* create_golemPurple(Scene* scene,float x,float y,float z,float scale){
         enemyHealth->maxHealth = 100.0f;
         enemyHealth->isAlive = true;
         addComponent(enemy, COMPONENT_HEALTH, enemyHealth);
+        EnemyComponent* enemyComponent = (EnemyComponent*)calloc(1, sizeof(EnemyComponent));
+    glm_vec3_zero(enemyComponent->direction);
+    enemyComponent->detectionRange = 20.0f;
+    enemyComponent->attackRange = 3.0f;
+    enemyComponent->movementSpeed = 3.0f;
+    enemyComponent->attackDamage = 10.0f;
+    enemyComponent->isAttacking = false;
+    enemyComponent->isAlive = true;
+    addComponent(enemy, COMPONENT_ENEMY, enemyComponent);
     }
     return enemy;
 }
