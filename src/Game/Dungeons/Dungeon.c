@@ -391,8 +391,8 @@ void LoadRoom(Scene* scene, Model* player, Dungeon* dj,RigidBody* body, Collider
                 for (int i =0;i<dj->nb_rooms;i++){
                 if (dj->adj[dj->current_room][i]!='O'){
                     dj->previous_direction = dj->direction;
-                dj->previous_room = dj->current_room;
-                dj->current_room = i;
+                    dj->previous_room = dj->current_room;
+                    dj->current_room = i;
                     dj->direction = d1;
                     dj->change = true;
                     player->isBusy = true;

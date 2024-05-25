@@ -6,12 +6,12 @@ Skybox* SkyboxCreate(void){
     skybox->shader = LoadShaders("assets/shaders/skybox.vs", "assets/shaders/skybox.fs");
     char* faces[6] =
     {
-    "assets/images/skybox/right.png",
-    "assets/images/skybox/left.png",
-    "assets/images/skybox/top.png",
-    "assets/images/skybox/bottom.png",
-    "assets/images/skybox/front.png",
-    "assets/images/skybox/back.png"
+    "assets/images/nightbox/px.png",
+    "assets/images/nightbox/nx.png",
+    "assets/images/nightbox/py.png",
+    "assets/images/nightbox/ny.png",
+    "assets/images/nightbox/pz.png",
+    "assets/images/nightbox/nz.png"
     };
     skybox->cubemapTexture = CubeMapLoad(faces);  
 

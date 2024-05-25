@@ -3,7 +3,7 @@
 
 /*
 Entity of this scene (order of their index):
-    Light
+    Moon Light 
     Map
     Player
     Sword
@@ -12,6 +12,7 @@ Entity of this scene (order of their index):
     Flame 2
     Flame 3
     Flame 4
+    Light 1 
     Dungeon Door
 */
 
@@ -31,7 +32,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         default :
             x = 1.0;
             y = 10.1;
-            z = 3.0;
+            z = 32.0;
             rot = 0;
             break;
     }
@@ -49,7 +50,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     /* Light Entity */
     Entity* lightEntity = createEntity(scene);
     if (lightEntity != NULL) {
-        Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, 1.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f,-1000.0f,500.0f);
+        Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, 1.8, 0}, (vec3){ 0.3f, 0.3f, 0.4f }, 0.0001f, 0.1f,-1000.0f,500.0f);
         addComponent(lightEntity, COMPONENT_LIGHT, light);
     }
 
@@ -98,10 +99,14 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         Model* flame = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame, "assets/models/Foret/Flame.obj");
         if (!gameState->isForestDungeonDone){
-        //flame->isRenderable = false;
+        flame->isRenderable = false;
          }  
         glm_vec3_copy((vec3){50.5f,9.8f,112.0f},flame->position);
         addComponent(flame1, COMPONENT_RENDERABLE, flame);
+        /*
+        //Light* light = LightCreate(scene->shader, (vec4){50.5f,-100.8f,112.0f,0}, (vec3){1.0f, 0.8f, 0.0f }, 0.5f,  0.15f,0.1f,5.0f);
+        Light* light = LightCreate(scene->shader, (vec4){50.5f,-100.8f,112.0f,0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f, 0.1f, 500.0f);
+        addComponent(flame1, COMPONENT_LIGHT, light);*/
         
     }
     Entity* flame2 = createEntity(scene);
@@ -109,7 +114,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         Model* flame_2 = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame_2, "assets/models/Foret/Flame.obj");
         if (!gameState->isForestDungeonDone){
-        //flame_2->isRenderable = false;
+        flame_2->isRenderable = false;
          }  
         glm_vec3_copy((vec3){62.3f,9.8f,156.0f},flame_2->position);
         addComponent(flame2, COMPONENT_RENDERABLE, flame_2);
@@ -120,7 +125,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         Model* flame_3 = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame_3, "assets/models/Foret/Flame.obj");
         if (!gameState->isForestDungeonDone){
-        //flame_3->isRenderable = false;
+        flame_3->isRenderable = false;
          }  
         glm_vec3_copy((vec3){-59.0f,9.8f,146.50f},flame_3->position);
         addComponent(flame3, COMPONENT_RENDERABLE, flame_3);
@@ -145,7 +150,9 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         addComponent(DungeonDoor, COMPONENT_RENDERABLE, DungeonDoorModel);
         
     }
+   
     
+
     
 
 }
@@ -154,7 +161,6 @@ void updateForestScene(Scene* scene, GameState* gameState){
     bool isClicking = false;
     Camera* camera =scene->camera; 
     Entity* playerEntity = &scene->entities[2];
-    Entity* enemy = &scene->entities[4];
     Entity* mapEntity = &scene->entities[1];
     Entity* dungeonDoorEntity = &scene->entities[9];
     Model* dungeonDoorModel = (Model*)getComponent(dungeonDoorEntity, COMPONENT_RENDERABLE);
@@ -162,73 +168,13 @@ void updateForestScene(Scene* scene, GameState* gameState){
     Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
     Collider* playerCollider = (Collider*)getComponent(playerEntity, COMPONENT_COLLIDER);
 
-    Model* enemyModel = (Model*)getComponent(enemy, COMPONENT_RENDERABLE);
-    Animator* enemyAnimator = (Animator*)getComponent(enemy, COMPONENT_ANIMATOR);
-    if (playerEntity && enemy) {
-
-
-        /* Game Logic */
-        float rotTarget = 0.0f;
-        vec3 enemyDir;
-        glm_vec3_sub(playerModel->position, enemyModel->position, enemyDir);
-        float enemyDist = glm_vec3_norm(enemyDir);
-        glm_vec3_normalize(enemyDir);
-        if (enemyDir[0] != .0f || enemyDir[1] != .0f || enemyDir[2] != .0f) {
-            float omega = acos(glm_dot((vec3){0, 0, 1}, enemyDir));
-            if (enemyDir[0] < 0) {
-                omega = -omega;
-            }
-            if (getMouseButtonState(1) && !gameState->playerIsAttacking) {
-                gameState->playerIsAttacking = true;
-                playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation");
-                playerAnimator->playTime = 0.0f;
-            } else if (!gameState->playerIsAttacking) {
-                playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerWalkingAnimation");
-            }
-            if (playerAnimator->playTime > playerAnimator->currentAnimation->anim_dur - 10 && gameState->playerIsAttacking) {
-                gameState->playerIsAttacking = false;
-                playerAnimator->playTime = 0.0f;
-            }
-            float currentAngleDeg = glm_deg(((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->rotation[1]);
-            float targetAngleDeg = glm_deg(omega);
-            while (targetAngleDeg - currentAngleDeg > 180) {
-                targetAngleDeg -= 360;
-            }
-            while (targetAngleDeg - currentAngleDeg < -180) {
-                targetAngleDeg += 360;
-            }
-            rotTarget = glm_lerp(currentAngleDeg, targetAngleDeg, 0.1f);
-        }
-        if (enemyDist < 3.0f) {
-            if (!gameState->enemyIsAttacking) {
-                gameState->enemyIsAttacking = true;
-                ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->playTime = 0.0f;
-                ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemPunchAnimation");
-            }
-            if (((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->playTime > ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->currentAnimation->anim_dur - 10) {
-                gameState->playerHealth -= 10.0f;
-                ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->playTime = 0.0f;
-                gameState->enemyIsAttacking = false;
-            }
-            ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->rotation[1] = glm_rad(rotTarget);
-        } else if (enemyDist < 15.0f) {
-            ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->rotation[1] = glm_rad(rotTarget);
-            gameState->enemyIsAttacking = false;
-            ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemWalkingAnimation");
-            glm_vec3_scale(enemyDir, 2 * scene->deltaTime, enemyDir);
-            glm_vec3_add(((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->position, enemyDir, ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->position);
-        } else {
-            gameState->enemyIsAttacking = false;
-            ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemIdleAnimation");
-        }
-
-        if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation"))){
-            playerAnimator->playTime = 0.0f;
-        }
-        if (!playerModel->isBusy){
-            playerMovement(playerEntity, scene->deltaTime, scene->camera);
-        }
+    if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation"))){
+        playerAnimator->playTime = 0.0f;
     }
+    if (!playerModel->isBusy){
+        playerMovement(playerEntity, scene->deltaTime, scene->camera, NULL);
+        }
+    
     if (getKeyState(SDLK_p)){
         printf("Player Position : %f %f\n",playerModel->position[0],playerModel->position[2]);
     }
@@ -247,7 +193,6 @@ void updateForestScene(Scene* scene, GameState* gameState){
         if ((d1<FLAMEDIST&&getKeyState(SDLK_e))){
             flame1Model->isRenderable = true;
             playerModel->isBusy = true;
-            
         }
     }
     if (!flame2Model->isRenderable){
@@ -305,6 +250,14 @@ void updateForestScene(Scene* scene, GameState* gameState){
                 gameState->previousSceneIndex = 2;
         }}
         
+    }
+    vec3 mainPos= {-0.5, 10.1, 25.0};
+    vec3 mainDir;
+    glm_vec3_sub(playerModel->position,mainPos,mainDir);
+    if (glm_vec3_norm(mainDir)<3.0f){
+        gameState->change = true;
+        gameState->nextSceneIndex = 3;
+        gameState->previousSceneIndex = 2;
     }
 
 }
