@@ -1,6 +1,5 @@
 #include <Skybox.h>
-
-Skybox* SkyboxCreate(void){
+Skybox* NightSkyboxCreate(void){
 
     Skybox* skybox = (Skybox*)calloc(1,sizeof(Skybox));
     skybox->shader = LoadShaders("assets/shaders/skybox.vs", "assets/shaders/skybox.fs");
@@ -12,6 +11,79 @@ Skybox* SkyboxCreate(void){
     "assets/images/nightbox/ny.png",
     "assets/images/nightbox/pz.png",
     "assets/images/nightbox/nz.png"
+    };
+    skybox->cubemapTexture = CubeMapLoad(faces);  
+
+    float skyboxVertices[] = {
+    // positions          
+    -1.0f,  1.0f, -1.0f,
+    -1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+     1.0f,  1.0f, -1.0f,
+    -1.0f,  1.0f, -1.0f,
+
+    -1.0f, -1.0f,  1.0f,
+    -1.0f, -1.0f, -1.0f,
+    -1.0f,  1.0f, -1.0f,
+    -1.0f,  1.0f, -1.0f,
+    -1.0f,  1.0f,  1.0f,
+    -1.0f, -1.0f,  1.0f,
+
+     1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+
+    -1.0f, -1.0f,  1.0f,
+    -1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f, -1.0f,  1.0f,
+    -1.0f, -1.0f,  1.0f,
+
+    -1.0f,  1.0f, -1.0f,
+     1.0f,  1.0f, -1.0f,
+     1.0f,  1.0f,  1.0f,
+     1.0f,  1.0f,  1.0f,
+    -1.0f,  1.0f,  1.0f,
+    -1.0f,  1.0f, -1.0f,
+
+    -1.0f, -1.0f, -1.0f,
+    -1.0f, -1.0f,  1.0f,
+     1.0f, -1.0f, -1.0f,
+     1.0f, -1.0f, -1.0f,
+    -1.0f, -1.0f,  1.0f,
+     1.0f, -1.0f,  1.0f
+};
+
+
+
+
+    glGenVertexArrays(1, &skybox->skyboxVAO);
+    glGenBuffers(1, &skybox->skyboxVBO);
+    glBindVertexArray(skybox->skyboxVAO);
+    glBindBuffer(GL_ARRAY_BUFFER, skybox->skyboxVBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(skyboxVertices), &skyboxVertices, GL_STATIC_DRAW);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
+
+    return skybox;
+}
+Skybox* SkyboxCreate(void){
+
+    Skybox* skybox = (Skybox*)calloc(1,sizeof(Skybox));
+    skybox->shader = LoadShaders("assets/shaders/skybox.vs", "assets/shaders/skybox.fs");
+    char* faces[6] =
+    {
+    "assets/images/skybox/right.png",
+    "assets/images/skybox/left.png",
+    "assets/images/skybox/top.png",
+    "assets/images/skybox/bottom.png",
+    "assets/images/skybox/front.png",
+    "assets/images/skybox/back.png"
     };
     skybox->cubemapTexture = CubeMapLoad(faces);  
 

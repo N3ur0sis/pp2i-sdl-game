@@ -14,7 +14,6 @@ void* getComponent(Entity* entity, ComponentType type) {
         if (entity->components[i].type == type) {
             return entity->components[i].data;
         }
-    // printf("%d, %d\n", entity->components[i].type, type);
     }
     return NULL;
 }
