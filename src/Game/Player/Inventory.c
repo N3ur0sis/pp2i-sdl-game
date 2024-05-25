@@ -13,16 +13,25 @@ Inventory* InventoryCreate(int capacity) {
 
 
 
-void InventoryAddObject(Inventory* inventory, Object* object) {
-    if (inventory->size < inventory->capacity) {
-        inventory->objects[inventory->size] = object;
-        inventory->size++;
+void InventoryAddObjects(int nb, Inventory* inventory, Object* object) {
+    for (int i = 0; i < nb; i++) {
+        if (inventory->size < inventory->capacity) {
+            inventory->objects[inventory->size] = object;
+            inventory->size++;
+        }
     }
 }
 
-void InventoryRemoveObject(Inventory* inventory, Object object) {
+
+/* idée à implémenter : vérifier si un objet de ce type est bien présent dans l'inventaire et si c'est le cas, 
+créer un nouvel inventaire, copier dedans l'ancien inventaire sans l'objet en question et remplacer l'inventaire 
+précédent par le nouvel inventaire (ne pas oublier de free l'ancien inventaire) */
+
+
+void InventoryRemoveObject(Inventory* inventory, int id) {
     for (int i = 0; i < inventory->size; i++) {
-        if (inventory->objects[i]->id == object.id) {
+        if (inventory->objects[i]->id == id) {
+            free(inventory->objects[i]);
             for (int j = i; j < inventory->size - 1; j++) {
                 inventory->objects[j] = inventory->objects[j + 1];
             }
@@ -31,6 +40,7 @@ void InventoryRemoveObject(Inventory* inventory, Object object) {
         }
     }
 }
+
 
 void freeInventory(Inventory* inventory) {
     if (inventory != NULL) {
@@ -115,4 +125,13 @@ bool MouseOnCase(int x_square, int y_square, int mouse_x, int mouse) {
         return true;
     }
     return false;
+}
+
+
+
+void printInventorySimple(Inventory* inventory) {
+    for (int i = 0; i < inventory->size; i++) {
+        printf("Object %d : %s\n", i, inventory->objects[i]->name);
+    }
+    printf("\n");
 }

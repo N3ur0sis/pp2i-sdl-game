@@ -4,6 +4,7 @@
 int currentIdObject = -1;
 bool hasClicked = false;
 int origin = -1;
+bool clickAction = false;
 
 
 Entity* createMarchand(Scene* scene, vec3 position, vec3 scale, vec3 rotation) {
@@ -147,7 +148,7 @@ void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, flo
     int pos_y = getMousePosition(1);
 
     // printf("%f, %f, %d, %d\n", window_width / 2, window_height / 2 + 105, pos_x, pos_y);
-
+    printInventorySimple(inventory);
     int id_joueur = InventoryPrintTrade(inventory, window_width, window_height, shader, -300, 150, pos_x, pos_y, &hasClicked, isClickingMarchand);
     int id_marchand = InventoryPrintTrade(marchantInventory, window_width, window_height, shader, +300, 150, pos_x, pos_y, &hasClicked, isClickingMarchand);
     if (hasClicked) {
@@ -164,6 +165,12 @@ void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, flo
         if (origin == 0) {
             if (checkWantToTrade(pos_x, pos_y, window_width, window_height)) {
                 RenderText("VENDRE", color_yellow, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
+                if (getMouseButtonState(1) && !clickAction) {
+                    InventoryRemoveObject(inventory, currentIdObject);
+                    clickAction = true;
+                } else if (!getMouseButtonState(1)) {
+                    clickAction = false;
+                }
             } else {
                 RenderText("VENDRE", color_black, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
             }
@@ -173,6 +180,12 @@ void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, flo
         } else {
             if (checkWantToTrade(pos_x, pos_y, window_width, window_height)) {
                 RenderText("ACHETER", color_yellow, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
+                if (getMouseButtonState(1) && !clickAction) {
+                    InventoryRemoveObject(marchantInventory, currentIdObject);
+                    clickAction = true;
+                } else if (!getMouseButtonState(1)) {
+                    clickAction = false;
+                }
             } else {
                 RenderText("ACHETER", color_black, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
             }
@@ -191,7 +204,6 @@ void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, flo
 
 
 bool checkWantToTrade(int x, int y, float window_width, float window_height) {
-    printf("%d, %f, %f, %d, %f, %f\n", x, window_width / 2 - 80, window_width / 2 + 80, y, window_height - (window_height / 3 + 90  - 23), window_height - (window_height / 3 + 90  + 23));
     if (x > window_width / 2 - 80 && x < window_width / 2 + 80 && y < (window_height - (window_height / 3 + 90  - 23)) && y  > (window_height - (window_height / 3 + 90  + 23))) {
         return true;
     }
