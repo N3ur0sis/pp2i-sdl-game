@@ -40,25 +40,16 @@ void processInput(SDL_Event* e, bool* running, bool* isPaused, GameState* gameSt
 			/*Handle pause menu input*/
 			if (e->key.keysym.sym == SDLK_ESCAPE){
 				*isPaused = !*isPaused;
-				if (*isPaused) {
-					gameState->settingsNum = 0;
-				}
-			} else if (e->key.keysym.sym == SDLK_DOWN && *isPaused){
-				gameState->settingsNum++;
-			} else if (e->key.keysym.sym == SDLK_UP && *isPaused){
-				gameState->settingsNum--;
-			} else if (e->key.keysym.sym == SDLK_RETURN && *isPaused){
-				if (gameState->settingsNum == 0){
-					*isPaused = false;
-				} else if (gameState->settingsNum == 1){
-					gameState->isPlayerDead = true;
-					*isPaused = false;
-					keyState[SDLK_r] = 1;
-					gameState->restarting = true;
-				} else if (gameState->settingsNum == 2){
-					*running = false;
-				}
-			}
+                MenuPauseReset(gameState->pauseMenu);
+            } else if(*isPaused){
+                if (e->key.keysym.sym == SDLK_DOWN) {
+                    MenuPauseDown(gameState->pauseMenu);
+                } else if (e->key.keysym.sym == SDLK_UP) {
+                    MenuPauseUp(gameState->pauseMenu);
+                } else if (e->key.keysym.sym == SDLK_RETURN) {
+                    MenuPauseSelect(gameState->pauseMenu, gameState, running, isPaused);
+                }
+            }
             handleKeyBoardEventDown(*e);
             break;
         case SDL_KEYUP:
