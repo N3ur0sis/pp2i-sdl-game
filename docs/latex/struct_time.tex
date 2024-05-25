@@ -1,0 +1,57 @@
+\hypertarget{struct_time}{}\doxysection{Time Struct Reference}
+\label{struct_time}\index{Time@{Time}}
+
+
+Structure for managing time-\/related information in the application.  
+
+
+
+
+{\ttfamily \#include $<$Time.\+h$>$}
+
+\doxysubsection*{Data Fields}
+\begin{DoxyCompactItemize}
+\item 
+Uint32 \mbox{\hyperlink{struct_time_af249b39f2178f47e65457b396b1a73cb}{last\+Update}}
+\item 
+Uint32 \mbox{\hyperlink{struct_time_af41711945485814d071da54ce488ff96}{current\+Update}}
+\item 
+float \mbox{\hyperlink{struct_time_a1a61318ed6aa02b4ff346e7eb8f68891}{delta\+Time}}
+\item 
+unsigned int \mbox{\hyperlink{struct_time_a1a7aad27e2ea4c33a93edeb0a1c06f7e}{nb\+Frames}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Structure for managing time-\/related information in the application. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct_time_af41711945485814d071da54ce488ff96}\label{struct_time_af41711945485814d071da54ce488ff96}} 
+\index{Time@{Time}!currentUpdate@{currentUpdate}}
+\index{currentUpdate@{currentUpdate}!Time@{Time}}
+\doxysubsubsection{\texorpdfstring{currentUpdate}{currentUpdate}}
+{\footnotesize\ttfamily Uint32 current\+Update}
+
+The timestamp of the current update in milliseconds. \mbox{\Hypertarget{struct_time_a1a61318ed6aa02b4ff346e7eb8f68891}\label{struct_time_a1a61318ed6aa02b4ff346e7eb8f68891}} 
+\index{Time@{Time}!deltaTime@{deltaTime}}
+\index{deltaTime@{deltaTime}!Time@{Time}}
+\doxysubsubsection{\texorpdfstring{deltaTime}{deltaTime}}
+{\footnotesize\ttfamily float delta\+Time}
+
+The time difference between the last and current update in seconds. \mbox{\Hypertarget{struct_time_af249b39f2178f47e65457b396b1a73cb}\label{struct_time_af249b39f2178f47e65457b396b1a73cb}} 
+\index{Time@{Time}!lastUpdate@{lastUpdate}}
+\index{lastUpdate@{lastUpdate}!Time@{Time}}
+\doxysubsubsection{\texorpdfstring{lastUpdate}{lastUpdate}}
+{\footnotesize\ttfamily Uint32 last\+Update}
+
+The timestamp of the last update in milliseconds. \mbox{\Hypertarget{struct_time_a1a7aad27e2ea4c33a93edeb0a1c06f7e}\label{struct_time_a1a7aad27e2ea4c33a93edeb0a1c06f7e}} 
+\index{Time@{Time}!nbFrames@{nbFrames}}
+\index{nbFrames@{nbFrames}!Time@{Time}}
+\doxysubsubsection{\texorpdfstring{nbFrames}{nbFrames}}
+{\footnotesize\ttfamily unsigned int nb\+Frames}
+
+The number of frames since the last second. 
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{_time_8h}{Time.\+h}}\end{DoxyCompactItemize}

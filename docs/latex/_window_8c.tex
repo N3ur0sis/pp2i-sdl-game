@@ -1,0 +1,75 @@
+\hypertarget{_window_8c}{}\doxysection{src/\+Engine/\+Core/\+Window.c File Reference}
+\label{_window_8c}\index{src/Engine/Core/Window.c@{src/Engine/Core/Window.c}}
+
+
+Implementation of window management functions for the application.  
+
+
+{\ttfamily \#include \char`\"{}Window.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+Include dependency graph for Window.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{_window_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_window_8h_a9788f345bcc9fad5c1151094d0db3ef8}{Window}} $\ast$ \mbox{\hyperlink{_window_8c_a6c083741a6bdfd983d56522e8e2c79c8}{Window\+Create}} (int width, int height, const char $\ast$title)
+\begin{DoxyCompactList}\small\item\em Creates a new Window instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_window_8c_ab75938776df794fb02fb07f6d061dd96}{Window\+Delete}} (\mbox{\hyperlink{_window_8h_a9788f345bcc9fad5c1151094d0db3ef8}{Window}} $\ast$window)
+\begin{DoxyCompactList}\small\item\em Deletes a Window instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of window management functions for the application. 
+
+\begin{DoxyAuthor}{Author}
+Aymeric ROBERT 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_window_8c_a6c083741a6bdfd983d56522e8e2c79c8}\label{_window_8c_a6c083741a6bdfd983d56522e8e2c79c8}} 
+\index{Window.c@{Window.c}!WindowCreate@{WindowCreate}}
+\index{WindowCreate@{WindowCreate}!Window.c@{Window.c}}
+\doxysubsubsection{\texorpdfstring{WindowCreate()}{WindowCreate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_window_8h_a9788f345bcc9fad5c1151094d0db3ef8}{Window}}$\ast$ Window\+Create (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height,  }\item[{const char $\ast$}]{title }\end{DoxyParamCaption})}
+
+
+
+Creates a new Window instance. 
+
+This function initializes SDL and creates an Open\+GL context for the specified window. It also sets some attributes for the window and context.
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & Initial width of the window. \\
+\hline
+{\em height} & Initial height of the window. \\
+\hline
+{\em title} & Title of the window, displayed on the screen. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the created Window instance or NULL on failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_window_8c_ab75938776df794fb02fb07f6d061dd96}\label{_window_8c_ab75938776df794fb02fb07f6d061dd96}} 
+\index{Window.c@{Window.c}!WindowDelete@{WindowDelete}}
+\index{WindowDelete@{WindowDelete}!Window.c@{Window.c}}
+\doxysubsubsection{\texorpdfstring{WindowDelete()}{WindowDelete()}}
+{\footnotesize\ttfamily void Window\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_window_8h_a9788f345bcc9fad5c1151094d0db3ef8}{Window}} $\ast$}]{window }\end{DoxyParamCaption})}
+
+
+
+Deletes a Window instance. 
+
+This function deletes the Open\+GL context and the specified window.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & Pointer to the Window instance to delete. \\
+\hline
+\end{DoxyParams}

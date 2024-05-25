@@ -1,0 +1,13 @@
+<map id="include/Controls.h" name="include/Controls.h">
+<area shape="rect" id="node1" title="Input processing functions and definitions for the application." alt="" coords="231,5,370,32"/>
+<area shape="rect" id="node2" href="$_controls_8c.html" title="Implementation of input processing functions for the application." alt="" coords="5,80,212,107"/>
+<area shape="rect" id="node3" href="$_engine_8h.html" title="Engine initialization and management functions. Include this file to implement the engine and start c..." alt="" coords="236,80,365,107"/>
+<area shape="rect" id="node6" href="$_player_8h_source.html" title=" " alt="" coords="703,80,829,107"/>
+<area shape="rect" id="node4" href="$_engine_8c.html" title="Implementations of application functions." alt="" coords="33,155,216,181"/>
+<area shape="rect" id="node5" href="$_menu_8h_source.html" title=" " alt="" coords="240,155,361,181"/>
+<area shape="rect" id="node7" href="$_dungeon_scene_8h_source.html" title=" " alt="" coords="385,155,568,181"/>
+<area shape="rect" id="node8" href="$_forest_scene_8h_source.html" title=" " alt="" coords="592,155,756,181"/>
+<area shape="rect" id="node9" href="$_main_scene_8h_source.html" title=" " alt="" coords="780,155,936,181"/>
+<area shape="rect" id="node10" href="$_marchand_8h_source.html" title=" " alt="" coords="961,155,1110,181"/>
+<area shape="rect" id="node11" href="$_start_scene_8h_source.html" title=" " alt="" coords="1014,229,1169,256"/>
+</map>
