@@ -38,11 +38,5 @@ typedef struct {
     float speed; 
 } RigidBody;
 
-typedef struct _Health{
-    float health;
-    float maxHealth;
-    bool isAlive;
-} Health;
-
 void FreeAttachementComponent(AttachmentComponent* AttachmentComponent);
 void FreeRigidBody(RigidBody* rb);

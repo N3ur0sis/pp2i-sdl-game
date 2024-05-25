@@ -103,12 +103,7 @@ Entity* create_golem(Scene* scene,float x,float y,float z,float scale){
 
         Animator* golemAnimator = AnimatorCreate(golemIdleAnimation);
         addComponent(enemy, COMPONENT_ANIMATOR, golemAnimator);
-        
-        Health* enemyHealth = (Health*)calloc(1, sizeof(Health));
-        enemyHealth->health = 100.0f;
-        enemyHealth->maxHealth = 100.0f;
-        enemyHealth->isAlive = true;
-        addComponent(enemy, COMPONENT_HEALTH, enemyHealth);
+    
             EnemyComponent* enemyComponent = (EnemyComponent*)calloc(1, sizeof(EnemyComponent));
     glm_vec3_zero(enemyComponent->direction);
     enemyComponent->detectionRange = 20.0f;
@@ -146,12 +141,7 @@ Entity* create_golemBlue(Scene* scene,float x,float y,float z,float scale){
 
         Animator* golemAnimator = AnimatorCreate(golemIdleAnimation);
         addComponent(enemy, COMPONENT_ANIMATOR, golemAnimator);
-        
-        Health* enemyHealth = (Health*)calloc(1, sizeof(Health));
-        enemyHealth->health = 100.0f;
-        enemyHealth->maxHealth = 100.0f;
-        enemyHealth->isAlive = true;
-        addComponent(enemy, COMPONENT_HEALTH, enemyHealth);
+
     }
     return enemy;
 }
@@ -179,12 +169,6 @@ Entity* create_golemPurple(Scene* scene,float x,float y,float z,float scale){
 
         Animator* golemAnimator = AnimatorCreate(golemIdleAnimation);
         addComponent(enemy, COMPONENT_ANIMATOR, golemAnimator);
-        
-        Health* enemyHealth = (Health*)calloc(1, sizeof(Health));
-        enemyHealth->health = 100.0f;
-        enemyHealth->maxHealth = 100.0f;
-        enemyHealth->isAlive = true;
-        addComponent(enemy, COMPONENT_HEALTH, enemyHealth);
         EnemyComponent* enemyComponent = (EnemyComponent*)calloc(1, sizeof(EnemyComponent));
     glm_vec3_zero(enemyComponent->direction);
     enemyComponent->detectionRange = 20.0f;
@@ -206,12 +190,6 @@ void golemLogic(Scene* scene, GameState* gameState, Entity* golem, Entity* playe
     Model* playerModel = (Model*)getComponent(player, COMPONENT_RENDERABLE);
     Collider* playerCollider = (Collider*)getComponent(player,COMPONENT_COLLIDER);
     Animator* golemAnimator = (Animator*)getComponent(golem, COMPONENT_ANIMATOR);
-    Health* health = (Health*)getComponent(golem, COMPONENT_HEALTH);
-    if (health->health <= 0.0f) {
-        golemModel->isRenderable = false;
-        health->isAlive = false;
-        return;
-    }
     glm_vec3_sub(playerModel->position, golemModel->position, enemyDir);
     float enemyDist = glm_vec3_norm(enemyDir);
     glm_vec3_normalize(enemyDir);
@@ -280,12 +258,6 @@ Entity* create_gobelin(Scene* scene,float x,float y,float z,float scale){
         
         Animator* gobelinAnimator = AnimatorCreate(gobelinIdleAnimation);
         addComponent(enemy, COMPONENT_ANIMATOR, gobelinAnimator);
-
-        Health* enemyHealth = (Health*)calloc(1, sizeof(Health));
-        enemyHealth->health = 100.0f;
-        enemyHealth->maxHealth = 100.0f;
-        enemyHealth->isAlive = true;
-        addComponent(enemy, COMPONENT_HEALTH, enemyHealth);
     }
     return enemy;
 }
@@ -315,12 +287,6 @@ Entity* create_skeleton(Scene* scene,float x,float y,float z,float scale){
         
         Animator* skeletonAnimator = AnimatorCreate(skeletonIdleAnimation);
         addComponent(enemy, COMPONENT_ANIMATOR, skeletonAnimator);
-
-        Health* enemyHealth = (Health*)calloc(1, sizeof(Health));
-        enemyHealth->health = 100.0f;
-        enemyHealth->maxHealth = 100.0f;
-        enemyHealth->isAlive = true;
-        addComponent(enemy, COMPONENT_HEALTH, enemyHealth);
     }
     return enemy;
 }

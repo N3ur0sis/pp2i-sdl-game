@@ -222,12 +222,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             playerMovement(playerEntity, scene->deltaTime, scene->camera);
         }
 
-            //player_attack(playerEntity,enemy,gameState);
-            if (((Health*)getComponent(enemy,COMPONENT_HEALTH))->health <= 0.0f) {
-                ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->isRenderable = false;
-                ((Health*)getComponent(enemy,COMPONENT_HEALTH))->isAlive = false;
-                ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->isRenderable = false;
-            }
+            
 
         if(checkpoint_sword){
 

@@ -126,13 +126,7 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
             if (dj->rooms[dj->current_room].type==3){  
                 for (int i =0;i<(dj->rooms[dj->current_room].nb_enemy);i++){
                      entity= &scene->entities[dj->rooms[dj->current_room].id_enemy[i]];
-                     if (entity){
-                     Health* enemyHealth = (Health*)getComponent(entity,COMPONENT_HEALTH);
-                     if ( enemyHealth&&enemyHealth->isAlive){
-                        ((Model*)getComponent(entity,COMPONENT_RENDERABLE))->isRenderable = true;
-                        golemLogic(scene,gameState,entity,playerEntity);
-                        enemy = entity;
-                     }}
+                     
                 }
                 if (!enemy){
                     dj->rooms[dj->current_room].isCompleted = true;

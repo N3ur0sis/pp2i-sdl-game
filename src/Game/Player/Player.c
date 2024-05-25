@@ -296,13 +296,10 @@ void player_attack(Entity* player,Entity* enemy,GameState* gameState){
                 playerAnimator->playTime = 0.0f;
 				if (enemy){
 				Model* enemyModel = (Model*)getComponent(enemy,COMPONENT_RENDERABLE);
-				Health* enemyHealth = (Health*)getComponent(enemy,COMPONENT_HEALTH);
 				vec3 enemyDir;
 				glm_vec3_sub( playerModel->position, enemyModel->position, enemyDir);
 				if ( glm_vec3_norm(enemyDir)<ATTACK_RANGE){
 					gameState->playerIsAttacking = false;
-					enemyHealth->health-=DAMAGE;
-					printf(" health = %f\n",enemyHealth->health);
 
 				}
             }
