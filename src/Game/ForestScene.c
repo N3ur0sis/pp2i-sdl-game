@@ -45,7 +45,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     scene->camera = camera_create(x, y+5, z, gameState->g_WindowWidth, gameState->g_WindowHeight);
     glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
     /* Create a skybox */
-    scene->skybox = SkyboxCreate();
+    scene->skybox = NightSkyboxCreate();
 
     /* Light Entity */
     Entity* lightEntity = createEntity(scene);
