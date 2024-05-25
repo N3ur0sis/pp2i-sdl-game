@@ -15,6 +15,6 @@ Animation* AnimationCreate(char* path, Model* model, char* name);
 void CalculateBoneTransformation(Node* node, float anim_time, mat4 parent_mat, mat4* bones,mat4* bone_anim_mats);
 
 Node* NodeFind(Node* root, const char* name);
-int NodeImport(const struct aiNode* ai_node, Node** skel_node, size_t bone_count, char bone_names[][128]);
+int NodeImport(const struct aiNode* ai_node, Node** skel_node, size_t bone_count, char bone_names[][256]);
 void NodeDelete(Node* node);
 void AnimationDelete(Animation* animation);

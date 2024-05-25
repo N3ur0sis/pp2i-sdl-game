@@ -9,7 +9,7 @@
 
 
 typedef struct _Node {
-    char name[128];
+    char name[256];
     struct _Node* children[MAX_BONES];
     vec3* pos_keys;
     versor* rot_keys;
@@ -35,9 +35,10 @@ typedef struct _Model{
     vec3     position;      /* Position of the model in the scene */
     vec3     rotation;      /* Rotation of the model in the scene */
     vec3     scale;         /* Scale of the model in the scene    */
+    vec3     center;
     mat4     modelMatrix;
     mat4 bones[MAX_BONES];
-    char bone_names[MAX_BONES][128];
+    char bone_names[MAX_BONES][256];
     size_t bone_count;
     bool isAnimated;
     bool isRenderable;
@@ -98,3 +99,5 @@ void ModelFree(Model* model);
 void ModelAnimate(Node* node, float anim_time, mat4 parent_mat, mat4* bones,mat4* bone_anim_mats);
 
 void ModelDrawAttached(Model* model, Shader* shader, Camera* camera);
+
+void compute_center_of_volume(Model* model);

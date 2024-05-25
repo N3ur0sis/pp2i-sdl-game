@@ -47,16 +47,18 @@ int main(void){
         }
         /* Update Frame */
         StartFrame(game,&sceneManager->gameState, sceneManager);
-
+        
+        if (game->isPaused) {
+                RenderText("MENU", (SDL_Color){0,0,0,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 9 * (&sceneManager->gameState)->g_WindowHeight / 10, 50, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
+                MenuPauseDraw(game, &sceneManager->gameState, &sceneManager->scenes[sceneManager->currentSceneIndex]->textShader, sceneManager->gameState.pauseMenu);
+        }else{
         physicsSystem(sceneManager->scenes[sceneManager->currentSceneIndex]);
-        renderSystem(sceneManager->scenes[sceneManager->currentSceneIndex],&sceneManager->gameState);
         SceneManagerUpdateCurrentScene(sceneManager);
         cameraControl(sceneManager->scenes[sceneManager->currentSceneIndex]->camera);
-
-        if (game->isPaused) {
-                MenuPauseDraw(game, &sceneManager->gameState, &sceneManager->scenes[sceneManager->currentSceneIndex]->textShader, sceneManager->gameState.pauseMenu);
         }
-        
+
+        renderSystem(sceneManager->scenes[sceneManager->currentSceneIndex],&sceneManager->gameState);
+
         EndFrame(game);
 
     }
@@ -64,8 +66,7 @@ int main(void){
     freeInventory(sceneManager->gameState.marchantInventory);
 
     /* Clean every resource allocated */
-    //freeScene(mainScene);
-    //freeSceneManager(&sceneManager);
+
     WindowDelete(game->window);
     EngineQuit();
 }

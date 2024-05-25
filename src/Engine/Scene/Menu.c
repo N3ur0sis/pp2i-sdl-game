@@ -108,8 +108,8 @@ void MenuPauseSelect(Menu* menu, GameState* gameState, bool* running, bool* isPa
  * @param menu Pointer to the menu.
  */
 void MenuPauseDraw(Application* game, GameState* gameState, Shader* shaderProgram, Menu* menu){
-    SDL_Color color = {0, 0, 0, 255};
-    SDL_Color gold = {255, 215, 0, 255};
+    SDL_Color color = {0, 0, 0, 0};
+    SDL_Color gold = {255, 215, 0, 0};
     
     RenderText(menu->title, color, gameState->g_WindowWidth / 2, 9 * gameState->g_WindowHeight / 10, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
 
