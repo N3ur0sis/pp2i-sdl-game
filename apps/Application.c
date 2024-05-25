@@ -46,12 +46,15 @@ int main(void){
         
         if (game->isPaused) {
                 MenuPauseDraw(game, &sceneManager->gameState, &sceneManager->scenes[sceneManager->currentSceneIndex]->textShader);
-        }
+        }else{
 
         physicsSystem(sceneManager->scenes[sceneManager->currentSceneIndex]);
-        renderSystem(sceneManager->scenes[sceneManager->currentSceneIndex],&sceneManager->gameState);
         SceneManagerUpdateCurrentScene(sceneManager);
-        cameraControl(sceneManager->scenes[sceneManager->currentSceneIndex]->camera);
+        //cameraControl(sceneManager->scenes[sceneManager->currentSceneIndex]->camera);
+        }
+
+
+        renderSystem(sceneManager->scenes[sceneManager->currentSceneIndex],&sceneManager->gameState);
         EndFrame(game);
 
     }
@@ -59,8 +62,7 @@ int main(void){
     freeInventory(sceneManager->gameState.marchantInventory);
 
     /* Clean every resource allocated */
-    //freeScene(mainScene);
-    //freeSceneManager(&sceneManager);
+
     WindowDelete(game->window);
     EngineQuit();
 }

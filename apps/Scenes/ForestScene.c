@@ -172,7 +172,7 @@ void updateForestScene(Scene* scene, GameState* gameState){
         playerAnimator->playTime = 0.0f;
     }
     if (!playerModel->isBusy){
-        playerMovement(playerEntity, scene->deltaTime, scene->camera, NULL);
+        playerMovement(playerEntity, scene->deltaTime, scene->camera);
         }
     
     if (getKeyState(SDLK_p)){

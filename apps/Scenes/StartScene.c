@@ -1,5 +1,15 @@
 #include <StartScene.h>
 
+// Define an enum for different checkpoints
+typedef enum {
+    CHECKPOINT_START,
+    CHECKPOINT_SWORD,
+    CHECKPOINT_ENEMY,
+    CHECKPOINT_END
+} Checkpoint;
+
+Checkpoint currentCheckpoint = CHECKPOINT_START;
+
 
 bool checkpoint_sword;
 bool is_clicking = false;
@@ -135,22 +145,18 @@ void startStartScene(Scene* scene, GameState* gameState) {
  
 void updateStartScene(Scene* scene, GameState* gameState) {
 
-
     Entity* enemy = &scene->entities[0];
     Entity* playerEntity = &scene->entities[1];
     Entity* swordEntity = &scene->entities[2];
-    // Entity* mapEntity = &scene->entities[3];
     Entity* chestEntity = &scene->entities[5];
     Entity* chestOpenEntity = &scene->entities[6];
     Entity* startBarrierEntity = &scene->entities[7];
+
+
     Uint32 currentTime = SDL_GetTicks();
     bool* isBusy = &((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy;
     float x = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[0];
     float y = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[2];
-    // float z = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1];
-    // printf("%f,%f,%f\n", scene->camera->Yaw,scene->camera->Pitch,scene->camera->Position[2]);
-    // printf("%f\n", gameState->playerHealth);
-    // printf("%f,%f\n",x,y);
     checkDead(gameState);
 
 
@@ -186,14 +192,11 @@ void updateStartScene(Scene* scene, GameState* gameState) {
         }
     }
 
-
-    if (playerEntity && enemy) {
         Model* playerModel = (Model*)getComponent(playerEntity, COMPONENT_RENDERABLE);
         Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
-        // Collider* playerCollider = (Collider*)getComponent(playerEntity, COMPONENT_COLLIDER);
         RigidBody* playerRigidbody = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
         Model* enemyModel = (Model*)getComponent(enemy, COMPONENT_RENDERABLE);
-
+        PlayerComponent* playerComponent = (PlayerComponent*)getComponent(playerEntity, COMPONENT_PLAYER);
 
 
         /* Game Logic */
@@ -210,95 +213,28 @@ void updateStartScene(Scene* scene, GameState* gameState) {
         } else if (!getKeyState(TAB)) {
             is_tabingStart = false;
         }
-
         if (inventory->isOpened) {
             InventoryPrint(inventory, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program, 0, 0);
         }
+        
+        updatePlayerAnimator(playerEntity,gameState);
+        if (!*isBusy) {
+            playerMovement(playerEntity, scene->deltaTime, scene->camera);
+        }
 
-
-
-
-
-        float rotTarget = 0.0f;
-        vec3 enemyDir;
-        glm_vec3_sub(playerModel->position, enemyModel->position, enemyDir);
-        float enemyDist = glm_vec3_norm(enemyDir);
-        glm_vec3_normalize(enemyDir);
-        if(checkpoint_sword){
-            player_attack(playerEntity,enemy,gameState);
+            //player_attack(playerEntity,enemy,gameState);
             if (((Health*)getComponent(enemy,COMPONENT_HEALTH))->health <= 0.0f) {
                 ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->isRenderable = false;
                 ((Health*)getComponent(enemy,COMPONENT_HEALTH))->isAlive = false;
                 ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->isRenderable = false;
             }
-        if (enemyDir[0] != .0f || enemyDir[1] != .0f || enemyDir[2] != .0f) {
-            float omega = acos(glm_dot((vec3){0, 0, 1}, enemyDir));
-            if (enemyDir[0] < 0) {
-                omega = -omega;
-            }
 
+        if(checkpoint_sword){
 
+            updateEnemy(enemy,playerEntity,scene,gameState,scene->deltaTime);
 
-            if (getMouseButtonState(1) && !gameState->playerIsAttacking && !is_clicking) {
-                gameState->playerIsAttacking = true;
-                playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation");
-                playerAnimator->playTime = 0.0f;
-            } else if (!gameState->playerIsAttacking) {
-                updatePlayerAnimator(playerEntity,gameState);
-            }
-                        if (!getMouseButtonState(1)) {
-                        is_clicking = false;
-                    }
-            if (playerAnimator->playTime > playerAnimator->currentAnimation->anim_dur - 10 && gameState->playerIsAttacking) {
-                gameState->playerIsAttacking = false;
-                playerAnimator->playTime = 0.0f;
-            }
-
-            
-            float currentAngleDeg = glm_deg(((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->rotation[1]);
-            float targetAngleDeg = glm_deg(omega);
-            while (targetAngleDeg - currentAngleDeg > 180) {
-                targetAngleDeg -= 360;
-            }
-            while (targetAngleDeg - currentAngleDeg < -180) {
-                targetAngleDeg += 360;
-            }
-            rotTarget = glm_lerp(currentAngleDeg, targetAngleDeg, 0.1f);
         }
         
-        if (enemyDist < 3.0f) {
-            if (!gameState->enemyIsAttacking) {
-                gameState->enemyIsAttacking = true;
-                ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->playTime = 0.0f;
-                ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemPunchAnimation");
-                
-            }
-            if (((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->playTime > ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->currentAnimation->anim_dur - 10) {
-                damagePlayer(gameState, 10);
-                printf("L'ennemi frappe\n");
-                textDisplayStartTime = SDL_GetTicks();
-                ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->playTime = 0.0f;
-                gameState->enemyIsAttacking = false;
-            }
-            ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->rotation[1] = glm_rad(rotTarget);
-        } else if (enemyDist < 10.0f) {
-            ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->rotation[1] = glm_rad(rotTarget);
-            gameState->enemyIsAttacking = false;
-            ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemWalkingAnimation");
-            glm_vec3_scale(enemyDir, 2 * scene->deltaTime, enemyDir);
-            glm_vec3_add(((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->position, enemyDir, ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->position);
-        } else {
-            gameState->enemyIsAttacking = false;
-            ((Animator*)getComponent(enemy, COMPONENT_ANIMATOR))->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemIdleAnimation");
-        }
-
-        
-        Uint32 howLong = currentTime-textDisplayStartTime;
-
-                if (howLong < enemyHitTextDisplayDuration) {
-                RenderText("-10",(SDL_Color) {255,0,0,0}, gameState->g_WindowWidth / 2 - 200, gameState->g_WindowHeight / 15 , 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-                }
-
 
         if (x < -37.25 && y <-13.85 && y > -17.5 && !isBarrierDestroyed) {
             if (getMouseButtonState(1)) {
@@ -312,12 +248,6 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             }
         }
 
-        if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation"))){
-            playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
-        }
-
-    }
-        updatePlayerAnimator(playerEntity,gameState);
 
         if (y < -29.25f) {
             ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 1.1f;
@@ -325,9 +255,6 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 0.1f;
         }
         
-        if (!*isBusy) {
-            playerMovement(playerEntity, scene->deltaTime, scene->camera);
-        }
 
         SDL_Color color_black = {0, 0, 0, 0};
         SDL_Color color_white = {255, 255, 255, 0};
@@ -411,6 +338,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
                         enemyModel->isRenderable = true;
                         is_clicking = true;
                         checkpoint_sword = true;
+                        playerComponent->hasWeapon = true;
                     }
                     if (!getMouseButtonState(1)) {
                         is_clicking = false;
@@ -429,12 +357,12 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             talkToMarchandMain(inventory, marchantInventory ,gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program, &click_counter, &is_clicking, isBusy);
         }
 
-    }
-    if (*isBusy) {
-        ((Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR))->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
-    }
     
 }
+
+
+
+
 
 void unloadStartScene(Scene* scene){
     DeleteShaders(scene->shader);

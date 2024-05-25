@@ -1,7 +1,11 @@
 #include <Player.h>
 
+bool isClicking = false;
 
 void playerMovement(Entity* player, float deltaTime, Camera* camera){
+
+	Animator* playerAnimator = (Animator*)getComponent(player, COMPONENT_ANIMATOR);
+	PlayerComponent* playerComponent = (PlayerComponent*)getComponent(player, COMPONENT_PLAYER);
 
 	if (getKeyState(SHIFT)) {
 		((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->speed = 8.0f;
@@ -26,6 +30,19 @@ void playerMovement(Entity* player, float deltaTime, Camera* camera){
 	if (getKeyState(SDLK_s)) {
 		verticalInput = -1.0f;
 	}
+
+	        if (getMouseButtonState(1) && !playerComponent->isAttacking && !isClicking) {
+            playerComponent->isAttacking = true;
+            playerAnimator->playTime = 0.0f;
+            isClicking = true;
+        }
+        if (!getMouseButtonState(1)) {
+                isClicking = false;
+        }
+                    if (playerAnimator->playTime > playerAnimator->currentAnimation->anim_dur - 10 && playerComponent->isAttacking) {
+            playerComponent->isAttacking = false;
+            playerAnimator->playTime = 0.0f;
+        }
 
 	
 	vec3 xDir;
@@ -86,21 +103,28 @@ void playerMovement(Entity* player, float deltaTime, Camera* camera){
 void updatePlayerAnimator(Entity* playerEntity, GameState* gameState) {
     Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
     RigidBody* playerRigidbody = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
+	PlayerComponent* playerComponent = (PlayerComponent*)getComponent(playerEntity, COMPONENT_PLAYER);
 
-        if(playerRigidbody->speed == 8.0f){
-            if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)))){
-            	playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
-        	}else{
-		   		playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerRunningAnimation");
-        	}
-        }else if(playerRigidbody->speed == 5.0f){
-            if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)))){
-            	playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
-        	}else{
-				playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerWalkingAnimation");
-        	}
-        }
+	if(playerComponent->hasWeapon && playerComponent->isAttacking){
+		playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation");
+	}else{
 
+
+
+    if(playerRigidbody->speed == 8.0f){
+        if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)))){
+        	playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
+    	}else{
+	   		playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerRunningAnimation");
+    	}
+    }else if(playerRigidbody->speed == 5.0f){
+        if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)))){
+        	playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
+    	}else{
+			playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerWalkingAnimation");
+    	}
+    }
+	}
 }
 
 
@@ -211,6 +235,12 @@ Entity* create_player(Scene*  scene,float x,float y,float z){
         Collider* playerCollider = ColliderCreate("assets/models/LoPotitChat/PlayerWalk.dae");
         glm_scale_make(playerCollider->transformMatrix, (vec3){0.5f, 0.5f, 0.5f});
         UpdateCollider(playerCollider);
+
+		    PlayerComponent* playerComponent = (PlayerComponent*)calloc(1, sizeof(PlayerComponent));
+    playerComponent->isAttacking = false;
+    playerComponent->isAlive = true;
+    playerComponent->hasWeapon = false;
+    	addComponent(playerEntity, COMPONENT_PLAYER, playerComponent);
 
         addComponent(playerEntity, COMPONENT_RENDERABLE, playerModel);
         addComponent(playerEntity, COMPONENT_ANIMATION, attackAnimation);

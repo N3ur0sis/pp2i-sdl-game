@@ -1,6 +1,84 @@
 #include "Enemy.h"
 
 
+
+void initializeEnemyComponent(Entity* enemy, float detectionRange, float attackRange, float movementSpeed, float attackDamage) {
+    EnemyComponent* enemyComponent = (EnemyComponent*)calloc(1, sizeof(EnemyComponent));
+    glm_vec3_zero(enemyComponent->direction);
+    enemyComponent->detectionRange = detectionRange;
+    enemyComponent->attackRange = attackRange;
+    enemyComponent->movementSpeed = movementSpeed;
+    enemyComponent->attackDamage = attackDamage;
+    enemyComponent->isAttacking = false;
+    enemyComponent->isAlive = true;
+    addComponent(enemy, COMPONENT_ENEMY, enemyComponent);
+}
+
+void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameState, float deltaTime) {
+    EnemyComponent* enemyComponent = (EnemyComponent*)getComponent(enemy, COMPONENT_ENEMY);
+    Model* enemyModel = (Model*)getComponent(enemy, COMPONENT_RENDERABLE);
+    Animator* enemyAnimator = (Animator*)getComponent(enemy, COMPONENT_ANIMATOR);
+
+    if (!enemyComponent->isAlive) {
+        enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemDeathAnimation");
+        return;
+    }
+
+    vec3 playerPos;
+    glm_vec3_copy(((Model*)getComponent(player, COMPONENT_RENDERABLE))->position, playerPos);
+
+    vec3 enemyPos;
+    glm_vec3_copy(enemyModel->position, enemyPos);
+
+    glm_vec3_sub(playerPos, enemyPos, enemyComponent->direction);
+    float enemyDist = glm_vec3_norm(enemyComponent->direction);
+    glm_vec3_normalize(enemyComponent->direction);
+
+    float rotTarget = 0.0f;
+    if (enemyDist < enemyComponent->detectionRange) {
+        float omega = acos(glm_dot((vec3){0, 0, 1}, enemyComponent->direction));
+        if (enemyComponent->direction[0] < 0) {
+            omega = -omega;
+        }
+
+        float currentAngleDeg = glm_deg(enemyModel->rotation[1]);
+        float targetAngleDeg = glm_deg(omega);
+        while (targetAngleDeg - currentAngleDeg > 180) {
+            targetAngleDeg -= 360;
+        }
+        while (targetAngleDeg - currentAngleDeg < -180) {
+            targetAngleDeg += 360;
+        }
+        rotTarget = glm_lerp(currentAngleDeg, targetAngleDeg, 0.1f);
+
+        if (enemyDist < enemyComponent->attackRange) {
+            if (!enemyComponent->isAttacking) {
+                enemyComponent->isAttacking = true;
+                enemyAnimator->playTime = 0.0f;
+                enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemPunchAnimation");
+            }
+            if (enemyAnimator->playTime > enemyAnimator->currentAnimation->anim_dur - 10) {
+                damagePlayer(gameState, enemyComponent->attackDamage);
+                printf("L'ennemi frappe\n");
+                enemyAnimator->playTime = 0.0f;
+                enemyComponent->isAttacking = false;
+            }
+        } else {
+            enemyComponent->isAttacking = false;
+            enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemWalkingAnimation");
+            vec3 moveVector;
+            glm_vec3_scale(enemyComponent->direction, enemyComponent->movementSpeed * deltaTime, moveVector);
+            glm_vec3_add(enemyPos, moveVector, enemyModel->position);
+        }
+    } else {
+        enemyComponent->isAttacking = false;
+        enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemIdleAnimation");
+    }
+
+    enemyModel->rotation[1] = glm_rad(rotTarget);
+}
+
+
 Entity* create_golem(Scene* scene,float x,float y,float z,float scale){
     Entity* enemy = createEntity(scene);
     if (enemy != NULL) {
@@ -25,6 +103,15 @@ Entity* create_golem(Scene* scene,float x,float y,float z,float scale){
         enemyHealth->maxHealth = 100.0f;
         enemyHealth->isAlive = true;
         addComponent(enemy, COMPONENT_HEALTH, enemyHealth);
+            EnemyComponent* enemyComponent = (EnemyComponent*)calloc(1, sizeof(EnemyComponent));
+    glm_vec3_zero(enemyComponent->direction);
+    enemyComponent->detectionRange = 20.0f;
+    enemyComponent->attackRange = 3.0f;
+    enemyComponent->movementSpeed = 3.0f;
+    enemyComponent->attackDamage = 10.0f;
+    enemyComponent->isAttacking = false;
+    enemyComponent->isAlive = true;
+    addComponent(enemy, COMPONENT_ENEMY, enemyComponent);
     }
     return enemy;
 }

@@ -7,6 +7,13 @@
 #include <Controls.h>
 #define DAMAGE 50.0f
 #define ATTACK_RANGE 2.5f
+
+typedef struct _PlayerComponent {
+    bool isAttacking;
+    bool isAlive;
+    bool hasWeapon;
+} PlayerComponent;
+
 void lerp_vec3(vec3 a, vec3 b, vec3 res, float t);
 void playerMovement(Entity* player, float deltaTime, Camera* camera);
 void updatePlayerAnimator(Entity* playerEntity, GameState* gameState);

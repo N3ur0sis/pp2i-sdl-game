@@ -15,6 +15,8 @@ typedef enum {
     COMPONENT_DUNGEON,
     COMPONENT_HEALTH,
     COMPONENT_DAMAGE,
+    COMPONENT_ENEMY,
+    COMPONENT_PLAYER
 } ComponentType;
 
 typedef struct _Component{
