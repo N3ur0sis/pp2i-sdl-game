@@ -1,7 +1,7 @@
 #include <Player.h>
 
 
-void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enemy){
+void playerMovement(Entity* player, float deltaTime, Camera* camera){
 
 	if (getKeyState(SHIFT)) {
 		((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->speed = 8.0f;
@@ -39,20 +39,7 @@ void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enem
 
 	//sometimes my genius is almost frithening
 	vec3 rotationDirection;
-	if(enemy->isRenderable){
-	vec3 enemyDir;
-    glm_vec3_sub(enemy->position,((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,  enemyDir);
-    float enemyDist = glm_vec3_norm(enemyDir);
-	        glm_vec3_normalize(enemyDir);
-	if( enemyDist < 10.0f){
-		glm_vec3_copy(enemyDir, rotationDirection);
-	}else{
-		glm_vec3_copy(movementDirection, rotationDirection);
-
-	}
-	}else{
-				glm_vec3_copy(movementDirection, rotationDirection);
-	}
+	glm_vec3_copy(movementDirection, rotationDirection);
 
 	if(movementDirection[0] != .0f || movementDirection[1] != .0f || movementDirection[2] != .0f){
 	float omega = acos(glm_dot((vec3){0,0,1},rotationDirection));
@@ -85,6 +72,35 @@ void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enem
     glm_aabb_transform(((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBoxReference[0],id,((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBox[0]);
 	}
 	moveCameraPlayer(camera, ((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->velocity, deltaTime);
+}
+
+/**
+ * @brief Updates the player's animator based on the current state and input.
+ * 
+ * This function manages the animation state of the player entity, ensuring that the correct
+ * animation is played based on the player's actions, such as moving, attacking, or being idle.
+ * 
+ * @param playerEntity Pointer to the player entity.
+ * @param gameState Pointer to the game state.
+ */
+void updatePlayerAnimator(Entity* playerEntity, GameState* gameState) {
+    Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
+    RigidBody* playerRigidbody = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
+
+        if(playerRigidbody->speed == 8.0f){
+            if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)))){
+            	playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
+        	}else{
+		   		playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerRunningAnimation");
+        	}
+        }else if(playerRigidbody->speed == 5.0f){
+            if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)))){
+            	playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
+        	}else{
+				playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerWalkingAnimation");
+        	}
+        }
+
 }
 
 

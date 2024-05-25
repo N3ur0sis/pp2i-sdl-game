@@ -139,7 +139,7 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
                 }
             }
         player_attack(playerEntity,enemy,gameState);
-        playerMovement(playerEntity, scene->deltaTime, scene->camera, enemy);}
+        playerMovement(playerEntity, scene->deltaTime, scene->camera);}
     if (getKeyState(SDLK_p)){
         printf("Le joueur est en %f %f\n",playerModel->position[0],playerModel->position[2]);
     }

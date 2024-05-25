@@ -343,7 +343,6 @@ void initializeLRooms(Dungeon *dj) {
 void LoadRoom(Scene* scene, Model* player, Dungeon* dj,RigidBody* body, Collider* collider,GameState* gameState) {
     printf("Changement de salle du type : %d\n",dj->rooms[dj->current_room].id);
     printf("On vient du %c\n",dj->direction);
-    SDL_Color color_black = {0, 0, 0, 0};
     char d1;
     switch (dj->direction){
         case 'S': 

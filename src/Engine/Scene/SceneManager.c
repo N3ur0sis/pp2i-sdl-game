@@ -21,7 +21,7 @@ SceneManager* SceneManagerInit() {
     manager->gameState.isForestDungeonDone = false;
     return manager;
 }
-void SceneManagerAddScene(SceneManager* manager, Scene* scene, void (*start)(Scene*), void (*update)(Scene*),void (*unload)(Scene*)) {
+void SceneManagerAddScene(SceneManager* manager, Scene* scene, void (*start)(Scene*,GameState*), void (*update)(Scene*, GameState*),void (*unload)(Scene*)) {
     if (manager->numScenes < MAX_SCENES) {
         scene->start = start;
         scene->update = update;

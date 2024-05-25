@@ -129,9 +129,7 @@ void startStartScene(Scene* scene, GameState* gameState) {
  
 void updateStartScene(Scene* scene, GameState* gameState) {
 
-    // printf("%d, %d\n", getMousePosition(0), getMousePosition(1));
 
-    // Game Logic
     Entity* enemy = &scene->entities[0];
     Entity* playerEntity = &scene->entities[1];
     Entity* swordEntity = &scene->entities[2];
@@ -148,12 +146,6 @@ void updateStartScene(Scene* scene, GameState* gameState) {
     // printf("%f\n", gameState->playerHealth);
     // printf("%f,%f\n",x,y);
     checkDead(gameState);
-
-    if (getKeyState(SDLK_b)){
-        ChangeSceneEvent(gameState->nextSceneIndex);
-        gameState->nextSceneIndex = 0;
-        gameState->previousSceneIndex = 0;
-    }
 
 
     if (gameState->isPlayerDead) {
@@ -188,12 +180,11 @@ void updateStartScene(Scene* scene, GameState* gameState) {
     if (playerEntity && enemy) {
         Model* playerModel = (Model*)getComponent(playerEntity, COMPONENT_RENDERABLE);
         Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
-
         // Collider* playerCollider = (Collider*)getComponent(playerEntity, COMPONENT_COLLIDER);
         RigidBody* playerRigidbody = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
-
-
         Model* enemyModel = (Model*)getComponent(enemy, COMPONENT_RENDERABLE);
+
+
 
         /* Game Logic */
 
@@ -215,6 +206,9 @@ void updateStartScene(Scene* scene, GameState* gameState) {
         }
 
 
+
+
+
         float rotTarget = 0.0f;
         vec3 enemyDir;
         glm_vec3_sub(playerModel->position, enemyModel->position, enemyDir);
@@ -232,16 +226,15 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             if (enemyDir[0] < 0) {
                 omega = -omega;
             }
+
+
+
             if (getMouseButtonState(1) && !gameState->playerIsAttacking && !is_clicking) {
                 gameState->playerIsAttacking = true;
                 playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation");
                 playerAnimator->playTime = 0.0f;
             } else if (!gameState->playerIsAttacking) {
-                if(playerRigidbody->speed == 8.0f){
-                playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerRunningAnimation");
-                }else if(playerRigidbody->speed == 5.0f){
-                playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerWalkingAnimation");
-                }
+                updatePlayerAnimator(playerEntity,gameState);
             }
                         if (!getMouseButtonState(1)) {
                         is_clicking = false;
@@ -250,6 +243,8 @@ void updateStartScene(Scene* scene, GameState* gameState) {
                 gameState->playerIsAttacking = false;
                 playerAnimator->playTime = 0.0f;
             }
+
+            
             float currentAngleDeg = glm_deg(((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->rotation[1]);
             float targetAngleDeg = glm_deg(omega);
             while (targetAngleDeg - currentAngleDeg > 180) {
@@ -310,39 +305,20 @@ void updateStartScene(Scene* scene, GameState* gameState) {
         if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation"))){
             playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
         }
-                if (y < -29.25f) {
-            ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 1.1f;
-        } else {
-            ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 0.1f;
-        }
-        if (!*isBusy) {
-            playerMovement(playerEntity, scene->deltaTime, scene->camera, (Model*)getComponent(enemy, COMPONENT_RENDERABLE));
-        }
-    }else{
-        if(playerRigidbody->speed == 8.0f){
-                    if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)))){
-            playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
-        }else{
 
-                playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerRunningAnimation");
-        }
-                }else if(playerRigidbody->speed == 5.0f){
-                            if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)))){
-            playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
-        }else{
-            
-                playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerWalkingAnimation");
-        }
-                }
+    }
+        updatePlayerAnimator(playerEntity,gameState);
+
         if (y < -29.25f) {
             ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 1.1f;
         } else {
             ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 0.1f;
         }
+        
         if (!*isBusy) {
-            playerMovement(playerEntity, scene->deltaTime, scene->camera, (Model*)getComponent(enemy, COMPONENT_RENDERABLE));
+            playerMovement(playerEntity, scene->deltaTime, scene->camera);
         }
-    }
+
         SDL_Color color_black = {0, 0, 0, 0};
         SDL_Color color_white = {255, 255, 255, 0};
         if ((x < 8.0f) && x > 3.5f && (y < 10.0f) && y > 5.5f && !*isBusy) {            
@@ -399,9 +375,6 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             }
             playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
         }
-
-
-
 
         if(y < -30.5f && y > -35.5f && x < 2.08f && x > -2.8 && !*isBusy && !checkpoint_sword){
             RenderText("Appuyer sur E pour interagir", color_white, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);

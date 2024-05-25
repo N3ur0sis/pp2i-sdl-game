@@ -104,7 +104,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
         // if (inventory->isOpened) {
         //     InventoryPrint(inventory, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         // }
-        playerMovement(playerEntity, scene->deltaTime, scene->camera, NULL);
+        playerMovement(playerEntity, scene->deltaTime, scene->camera);
     }   
 }
 
