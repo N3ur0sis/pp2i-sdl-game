@@ -89,12 +89,12 @@ int InventoryPrintTrade(Inventory* inventory, float window_width, float window_h
             SDL_Color color_red = {255, 0, 0, 0};
             RenderText(nb, color_red, offset_x + window_width / 2 - 56 + 69 *colonnes , offset_y + window_height / 3 + 172 - 69 * lignes, 15, window_width,window_height, shader);
             char* path = checkIdObject(i);
-            RenderImage(path, offset_x + window_width / 2 -70 + 69 * colonnes  , offset_y + window_height / 3 + 165 - 68 * lignes , window_width, window_height, shader);
+            RenderImage(path, offset_x + window_width / 2 -70 + 69 * colonnes  , offset_y + window_height / 3 + 165 - 69 * lignes , window_width, window_height, shader);
             free(path);
-            if (MouseOnCase(offset_x + window_width / 2 -70 + 69 * colonnes, window_height - (offset_y + window_height / 3 + 165 - 68 * lignes), mouse_x, mouse_y)) {
+            if (MouseOnCase(offset_x + window_width / 2 -70 + 69 * colonnes, window_height - (offset_y + window_height / 3 + 165 - 69 * lignes), mouse_x, mouse_y)) {
+                RenderImage("assets/images/pixil-frame-0.png", offset_x + window_width / 2 - 69 + 69 * colonnes, offset_y + window_height / 3 + 159 - 69 * lignes , window_width, window_height, shader);
                 renduId = i;
             }
-            // printf("%d\n", renduId);
             nb_items_non_nuls++;
         }
         

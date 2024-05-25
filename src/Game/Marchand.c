@@ -140,18 +140,19 @@ void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, flo
     if (id_joueur != -1) {
         RenderText("VENDRE", color_black, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
         char* path = checkIdObject(id_joueur);
-        RenderSquare(window_width, window_height, 20, window_width, window_height, shader);
+        // RenderImage("assets/images/pixil-frame-0.png", window_width / 2, window_height / 2 + 105 , window_width, window_height, shader);
         RenderImage(path, window_width / 2, window_height / 2 + 105 , window_width, window_height, shader);
         free(path);
     } else if (id_marchand != -1) {
         RenderText("ACHETER", color_black, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
         char* path = checkIdObject(id_marchand);
+        // RenderImage("assets/images/pixil-frame-0.png", window_width / 2, window_height / 2 + 105 , window_width, window_height, shader);
         RenderImage(path, window_width / 2, window_height / 2 + 105 , window_width, window_height, shader);
         free(path);
     }
     RenderText("   Marchand         ", color_white, window_width / 2 - 175, window_height / 15 + 200, 25, window_width, window_height, shader);
     RenderText("Que veux tu échanger ?", color_black, window_width / 2, window_height / 15 + 140 , 30, window_width, window_height, shader);
-    RenderText("            Appuie sur echap pour quiter...", color_black, window_width / 2 + 45, window_height / 15 + 50, 25, window_width, window_height, shader);
+    RenderText("            Appuie sur echap pour quitter...", color_black, window_width / 2 + 45, window_height / 15 + 50, 25, window_width, window_height, shader);
     RenderImage("assets/images/dialog-box.png", window_width / 2, window_height / 15, window_width, window_height, shader);
     RenderImage("assets/images/Inventory_Slot_1.png", window_width / 2, window_height / 2 + 85 , window_width, window_height, shader);
 }
