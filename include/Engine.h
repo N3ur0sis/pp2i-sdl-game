@@ -25,6 +25,7 @@ typedef struct _Application {
     Time* time;        /**< Pointer to the time management structure. */
     SDL_Event* event;  /**< Pointer to the SDL event structure. */
     bool running;      /**< Boolean flag indicating if the application is running. */
+    bool isPaused;     /**< Boolean flag indicating if the application is paused. */
 } Application;
 
 /**

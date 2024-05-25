@@ -1,5 +1,5 @@
 #include <StartScene.h>
-#include <Controls.h>
+
 
 bool checkpoint_sword;
 bool is_clicking = false;
@@ -112,7 +112,7 @@ void startStartScene(Scene* scene, GameState* gameState) {
     Entity* Marchand = createMarchand(scene, (vec3){-15.0f,0.1f,-10.0f}, (vec3){2.0f, 2.0f, 2.0f}, (vec3){0.0f, 3.14f, 0.0f});
     marchantInventory = gameState->marchantInventory;
 
-    InventoryAddObject(marchantInventory, Object_create("Potion de vie", "Restaure 10 points de vie", 1));
+    InventoryAddObject(marchantInventory, Object_create("Potion de vie", "Restaure 10 points de vie", 2));
 
     InventoryAddObject(marchantInventory, Object_create("Torche", "Eclaire dans le noir", 3));
     // printf("id de l'item : %d\n", marchantInventory->objects[1].id);
@@ -124,6 +124,12 @@ void startStartScene(Scene* scene, GameState* gameState) {
     }
     for (int i = 0; i < 11 ; i++) {
         InventoryAddObject(inventory, Object_create("truc rigolo", "c'est un truc rigolo", 2));
+    }
+    for (int i = 0; i < 12 ; i++) {
+        InventoryAddObject(inventory, Object_create("Potion de vie", "Restaure 10 points de vie", 3));
+    }
+    for (int i = 0; i < 13 ; i++) {
+        InventoryAddObject(inventory, Object_create("Potion de vie", "Restaure 10 points de vie", 4));
     }
 }
  
@@ -150,8 +156,10 @@ void updateStartScene(Scene* scene, GameState* gameState) {
 
     if (gameState->isPlayerDead) {
         *isBusy = true;
-        RenderText("Vous êtes mort", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-        RenderText("Appuyez sur r pour recommencer", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2 - 50, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        if (!gameState->restarting) {
+            RenderText("Vous êtes mort", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+            RenderText("Appuyez sur r pour recommencer", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2 - 50, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        }
         if (getKeyState(SDLK_r)) {
             *isBusy = false;
             checkpoint_sword = false;
@@ -173,6 +181,8 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             ChangeSceneEvent(gameState->nextSceneIndex);
             gameState->nextSceneIndex = 0;
             gameState->previousSceneIndex = 0;
+            gameState->restarting = false;
+            setKeyState(SDLK_r, 0);
         }
     }
 

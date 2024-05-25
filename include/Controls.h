@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include <Time.h>
 #include <Event.h>
+#include <GameState.h>
 
 #define NB_KEYS 258 /**< Number of keys. */
 #define SHIFT 255 /**< Shift key code. */
@@ -26,10 +27,11 @@
  * 
  * @param e Pointer to the SDL event.
  * @param running Pointer to the running state flag.
+ * @param isPaused Pointer to the paused state flag.
  * @param gameState Pointer to the current game state.
  * @param sceneManager Pointer to the scene manager.
  */
-void processInput(SDL_Event* e, bool* running, GameState* gameState, SceneManager* sceneManager);
+void processInput(SDL_Event* e, bool* running, bool* isPaused, GameState* gameState, SceneManager* sceneManager);
 
 /**
  * @brief Handles keyboard key down events.
@@ -90,6 +92,14 @@ bool getMouseButtonState(int button);
  * @param e The SDL event representing the mouse wheel action.
  */
 void handleMouseWheelEvent(SDL_Event e);
+
+/**
+ * @brief Sets the state of a specified key.
+ * 
+ * @param code The SDL key code.
+ * @param state The state to set the key to.
+ */
+void setKeyState(SDL_KeyCode code, bool state);
 
 
 

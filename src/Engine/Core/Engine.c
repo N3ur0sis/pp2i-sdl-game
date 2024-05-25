@@ -50,6 +50,7 @@ Application* ApplicationCreate(int width, int height, const char* title) {
     }
     
     app->running = true;
+    app->isPaused = false;
     app->time->lastUpdate = SDL_GetTicks();
     app->time->nbFrames = 0;
 
@@ -124,9 +125,9 @@ void StartFrame(Application* game, GameState* gameState, SceneManager* sceneMana
     /* Input Handling */
     while (SDL_PollEvent(game->event)) {
         if (sceneManager){
-            processInput(game->event, &game->running, gameState, sceneManager);
+            processInput(game->event, &game->running, &game->isPaused, gameState, sceneManager);
         }else{
-            processInput(game->event, &game->running, gameState, NULL);
+            processInput(game->event, &game->running, &game->isPaused, gameState, NULL);
         }
     }
 }

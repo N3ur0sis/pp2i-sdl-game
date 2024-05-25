@@ -1,7 +1,7 @@
 /**
  * @file Controls.c
  * @brief Implementation of input processing functions for the application.
- * @authors Aymeric ROBERT, Arthur SAUNIER
+ * @authors Aymeric ROBERT, Arthur SAUNIER, VD
  */
 
 #include "Controls.h"
@@ -27,15 +27,38 @@ static void logSDLError(const char* msg) {
  * 
  * @param e Pointer to the SDL event.
  * @param running Pointer to the running state flag.
+ * @param isPaused Pointer to the paused state flag.
  * @param gameState Pointer to the current game state.
  * @param sceneManager Pointer to the scene manager.
  */
-void processInput(SDL_Event* e, bool* running, GameState* gameState, SceneManager* sceneManager) {
+void processInput(SDL_Event* e, bool* running, bool* isPaused, GameState* gameState, SceneManager* sceneManager) {
     switch (e->type) {
         case SDL_QUIT:
             *running = false;
             break;
         case SDL_KEYDOWN:
+			/*Handle pause menu input*/
+			if (e->key.keysym.sym == SDLK_ESCAPE){
+				*isPaused = !*isPaused;
+				if (*isPaused) {
+					gameState->settingsNum = 0;
+				}
+			} else if (e->key.keysym.sym == SDLK_DOWN && *isPaused){
+				gameState->settingsNum++;
+			} else if (e->key.keysym.sym == SDLK_UP && *isPaused){
+				gameState->settingsNum--;
+			} else if (e->key.keysym.sym == SDLK_RETURN && *isPaused){
+				if (gameState->settingsNum == 0){
+					*isPaused = false;
+				} else if (gameState->settingsNum == 1){
+					gameState->isPlayerDead = true;
+					*isPaused = false;
+					keyState[SDLK_r] = 1;
+					gameState->restarting = true;
+				} else if (gameState->settingsNum == 2){
+					*running = false;
+				}
+			}
             handleKeyBoardEventDown(*e);
             break;
         case SDL_KEYUP:
@@ -46,6 +69,8 @@ void processInput(SDL_Event* e, bool* running, GameState* gameState, SceneManage
             mousePos[1] = e->motion.y;
             break;
         case SDL_MOUSEBUTTONDOWN:
+			handleMouseButtonEvent(*e);
+			break;
         case SDL_MOUSEBUTTONUP:
             handleMouseButtonEvent(*e);
             break;
@@ -180,4 +205,14 @@ void setMousePosition(int coord, float value) {
         return;
     }
     mousePos[coord] = value;
+}
+
+/**
+ * @brief Sets the state of a specified key.
+ * 
+ * @param code The SDL key code.
+ * @param state The state to set the key to.
+ */
+void setKeyState(SDL_KeyCode code, bool state){
+	keyState[code] = state;
 }

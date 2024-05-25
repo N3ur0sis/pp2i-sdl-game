@@ -7,7 +7,7 @@
 #include <MainScene.h>
 #include <ForestScene.h>
 #include <DungeonScene.h>
-
+#include <Menu.h>
 
 /* Entry point of the program */
 int main(void){
@@ -44,6 +44,9 @@ int main(void){
         /* Update Frame */
         StartFrame(game,&sceneManager->gameState, sceneManager);
         
+        if (game->isPaused) {
+                MenuPauseDraw(game, &sceneManager->gameState, &sceneManager->scenes[sceneManager->currentSceneIndex]->textShader);
+        }
 
         physicsSystem(sceneManager->scenes[sceneManager->currentSceneIndex]);
         renderSystem(sceneManager->scenes[sceneManager->currentSceneIndex],&sceneManager->gameState);
@@ -51,7 +54,7 @@ int main(void){
         cameraControl(sceneManager->scenes[sceneManager->currentSceneIndex]->camera);
         EndFrame(game);
 
-        }
+    }
     freeInventory(sceneManager->gameState.inventory);
     freeInventory(sceneManager->gameState.marchantInventory);
 

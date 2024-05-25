@@ -19,6 +19,9 @@ SceneManager* SceneManagerInit() {
     manager->gameState.change = false;
     manager->gameState.nextSceneIndex = -1;
     manager->gameState.isForestDungeonDone = false;
+    manager->gameState.settingsNum = 0;
+    manager->gameState.restarting = false;
+    
     return manager;
 }
 void SceneManagerAddScene(SceneManager* manager, Scene* scene, void (*start)(Scene*,GameState*), void (*update)(Scene*, GameState*),void (*unload)(Scene*)) {
