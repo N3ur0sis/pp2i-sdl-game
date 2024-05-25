@@ -9,7 +9,7 @@
 
 
 typedef struct _Node {
-    char name[128];
+    char name[256];
     struct _Node* children[MAX_BONES];
     vec3* pos_keys;
     versor* rot_keys;
@@ -38,7 +38,7 @@ typedef struct _Model{
     vec3     center;
     mat4     modelMatrix;
     mat4 bones[MAX_BONES];
-    char bone_names[MAX_BONES][128];
+    char bone_names[MAX_BONES][256];
     size_t bone_count;
     bool isAnimated;
     bool isRenderable;

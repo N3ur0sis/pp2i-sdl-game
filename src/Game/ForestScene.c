@@ -45,7 +45,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     scene->camera = camera_create(x, y+5, z, gameState->g_WindowWidth, gameState->g_WindowHeight);
     glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
     /* Create a skybox */
-    scene->skybox = NightSkyboxCreate();
+    scene->skybox = SkyboxCreate();
 
     /* Light Entity */
     Entity* lightEntity = createEntity(scene);
@@ -61,7 +61,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         ModelCreate(map,"assets/models/Foret/forest.obj");
         addComponent(mapEntity, COMPONENT_RENDERABLE, map);
 
-        Collider* mapCollision = ColliderCreate("assets/models/Foret/col.obj");//Create a .obj file for this scene
+        Collider* mapCollision = ColliderCreate("assets/models/Foret/col.obj");
         glm_translate_make(mapCollision->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
         UpdateCollider(mapCollision);
         addComponent(mapEntity, COMPONENT_COLLIDER, mapCollision);
@@ -91,7 +91,8 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     }
 
     /* Enemy Entity */
-    Entity* golem = create_golem(scene,0.0f,0.1f,0.0f,0.5f);
+    Entity* gobelin = create_gobelin(scene,0.0f,10.1f,50.0f,0.5f);
+
 
     /*Flame Entity*/
     Entity* flame1 = createEntity(scene);
@@ -149,8 +150,55 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         //glm_vec3_copy((vec3){-6.7f,9.8f,169.0f},DungeonDoorModel->position);
         addComponent(DungeonDoor, COMPONENT_RENDERABLE, DungeonDoorModel);
         
+    }/*
+    Entity* helmethornEntity = createEntity(scene);
+    if (helmethornEntity != NULL) {
+        Model* helmet = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(helmet, "assets/models/Equipement/Hornhelmet.obj");
+        addComponent(helmethornEntity, COMPONENT_RENDERABLE, helmet);
+
+        AttachmentComponent* helmetAttachment = (AttachmentComponent*)calloc(1, sizeof(AttachmentComponent));
+        helmetAttachment->boneIndex = 7; // Example bone index
+        helmetAttachment->parentAnimator = (Animator*)getComponent(gobelin, COMPONENT_ANIMATOR);
+        helmetAttachment->parentModel = (Model*)getComponent(gobelin, COMPONENT_RENDERABLE);
+        glm_vec3_copy((vec3){-10.75f, 0.0f, -9.5f}, helmetAttachment->offsetPosition);
+        glm_vec3_copy((vec3){0.0f, 0.0f, 0.0f}, helmetAttachment->offsetRotation);
+        glm_vec3_copy((vec3){1.0f, 1.0f, 1.0f}, helmetAttachment->offsetScale);
+        addComponent(helmethornEntity, COMPONENT_ATTACHMENT, helmetAttachment);
+    }*/
+    /*
+    Entity* swordGobEntity = createEntity(scene);
+    if (swordGobEntity != NULL) {
+        Model* sword = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(sword, "assets/models/LoPotitChat/sword.obj");
+        addComponent(swordGobEntity, COMPONENT_RENDERABLE, sword);
+
+        AttachmentComponent* swordAttachment = (AttachmentComponent*)calloc(1, sizeof(AttachmentComponent));
+        swordAttachment->boneIndex = 0; // Example bone index
+        swordAttachment->parentAnimator = (Animator*)getComponent(gobelin, COMPONENT_ANIMATOR);
+        swordAttachment->parentModel = (Model*)getComponent(gobelin, COMPONENT_RENDERABLE);
+        glm_vec3_copy((vec3){-12.1f, -1.35f, -9.5f}, swordAttachment->offsetPosition);
+        glm_vec3_copy((vec3){0.0f, 0.0f, 0.0f}, swordAttachment->offsetRotation);
+        glm_vec3_copy((vec3){1.0f, 1.0f, 1.0f}, swordAttachment->offsetScale);
+        addComponent(swordGobEntity, COMPONENT_ATTACHMENT, swordAttachment);
     }
-   
+    */
+   /*
+    Entity* spearGobEntity = createEntity(scene);
+    if (spearGobEntity != NULL) {
+        Model* spear = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(spear, "assets/models/Equipement/spear.obj");
+        addComponent(spearGobEntity, COMPONENT_RENDERABLE, spear);
+
+        AttachmentComponent* spearAttachment = (AttachmentComponent*)calloc(1, sizeof(AttachmentComponent));
+        spearAttachment->boneIndex = 0; // Example bone index
+        spearAttachment->parentAnimator = (Animator*)getComponent(gobelin, COMPONENT_ANIMATOR);
+        spearAttachment->parentModel = (Model*)getComponent(gobelin, COMPONENT_RENDERABLE);
+        glm_vec3_copy((vec3){-12.1f, 0.f, -9.0f}, spearAttachment->offsetPosition);
+        glm_vec3_copy((vec3){20.0f, 40.0f, 0.0f}, spearAttachment->offsetRotation);
+        glm_vec3_copy((vec3){1.0f, 1.0f, 1.0f}, spearAttachment->offsetScale);
+        addComponent(spearGobEntity, COMPONENT_ATTACHMENT, spearAttachment);
+    }*/
     
 
     

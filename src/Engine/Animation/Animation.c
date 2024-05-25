@@ -19,6 +19,8 @@ Animation* AnimationCreate(char* path, Model* model, char* name){
         anim->anim_ticks = aiAnim->mTicksPerSecond;
         for(size_t i=0; i<aiAnim->mNumChannels; ++i) {
             const struct aiNodeAnim* channel = aiAnim->mChannels[i];
+            
+
             Node* node = NodeFind(anim->root_node, channel->mNodeName.data);
             node->pos_keys_count = channel->mNumPositionKeys;
             node->rot_keys_count = channel->mNumRotationKeys;
@@ -70,7 +72,7 @@ Node* NodeFind(Node* root, const char* name) {
 }
 
 
-int NodeImport(const struct aiNode* ai_node, Node** skel_node, size_t bone_count, char bone_names[][128]) {
+int NodeImport(const struct aiNode* ai_node, Node** skel_node, size_t bone_count, char bone_names[][256]) {
     Node* t_node = calloc(1, sizeof(Node));
     t_node->bone_idx = -1;
     t_node->child_count = 0;
@@ -83,7 +85,7 @@ int NodeImport(const struct aiNode* ai_node, Node** skel_node, size_t bone_count
     t_node->pos_key_times = NULL;
     t_node->rot_key_times = NULL;
     t_node->sca_key_times = NULL;
-    memcpy(t_node->name, ai_node->mName.data, 127);
+    memcpy(t_node->name, ai_node->mName.data, 255);
     //printf("node name: %s\n", t_node->name);
     //printf("ai_node has %u children\n", ai_node->mNumChildren);
     

@@ -59,7 +59,7 @@ int main(void){
     mainScene->numEntities = 0;
     SceneManagerAddScene(&sceneManager, mainScene, startMainScene, updateMainScene,unloadStartScene);
 
-    int current_scene = 3;
+    int current_scene = 0;
     SceneManagerSetCurrentScene(&sceneManager, current_scene);
 
     TTF_Init();
