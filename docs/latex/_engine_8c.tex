@@ -1,0 +1,122 @@
+\hypertarget{_engine_8c}{}\doxysection{src/\+Engine/\+Core/\+Engine.c File Reference}
+\label{_engine_8c}\index{src/Engine/Core/Engine.c@{src/Engine/Core/Engine.c}}
+
+
+Implementations of application functions.  
+
+
+{\ttfamily \#include $<$Engine.\+h$>$}\newline
+Include dependency graph for Engine.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_engine_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_engine_8h_a71931feb51e2f53ba9cc5bc3bd9e30d5}{Application}} $\ast$ \mbox{\hyperlink{_engine_8c_addafd98935faa0f09d72baf9d7188416}{Application\+Create}} (int width, int height, const char $\ast$title)
+\begin{DoxyCompactList}\small\item\em Creates a new Application instance. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_engine_8c_aa5046e4eb12986a391044aaf9dc5e49b}{Engine\+Init}} (void)
+\begin{DoxyCompactList}\small\item\em Initializes the game engine. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_engine_8c_a9276ff82a2316ffec9f7e9edf9a760e2}{Engine\+Quit}} (void)
+\begin{DoxyCompactList}\small\item\em Shuts down the game engine and exits the application. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_engine_8c_a373bf5cd77debc5584ff178052c769d2}{Start\+Frame}} (\mbox{\hyperlink{_engine_8h_a71931feb51e2f53ba9cc5bc3bd9e30d5}{Application}} $\ast$game, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$scene\+Manager)
+\begin{DoxyCompactList}\small\item\em Starts a new frame in the application. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_engine_8c_a90ccae96e2d586176ad0981c6f4fad3a}{End\+Frame}} (\mbox{\hyperlink{_engine_8h_a71931feb51e2f53ba9cc5bc3bd9e30d5}{Application}} $\ast$game)
+\begin{DoxyCompactList}\small\item\em Ends the current frame in the application. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementations of application functions. 
+
+\begin{DoxyAuthor}{Author}
+Aymeric ROBERT 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_engine_8c_addafd98935faa0f09d72baf9d7188416}\label{_engine_8c_addafd98935faa0f09d72baf9d7188416}} 
+\index{Engine.c@{Engine.c}!ApplicationCreate@{ApplicationCreate}}
+\index{ApplicationCreate@{ApplicationCreate}!Engine.c@{Engine.c}}
+\doxysubsubsection{\texorpdfstring{ApplicationCreate()}{ApplicationCreate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_engine_8h_a71931feb51e2f53ba9cc5bc3bd9e30d5}{Application}}$\ast$ Application\+Create (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height,  }\item[{const char $\ast$}]{title }\end{DoxyParamCaption})}
+
+
+
+Creates a new Application instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & The width of the application window. \\
+\hline
+{\em height} & The height of the application window. \\
+\hline
+{\em title} & The title of the application window. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the created Application instance or NULL on failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_engine_8c_a90ccae96e2d586176ad0981c6f4fad3a}\label{_engine_8c_a90ccae96e2d586176ad0981c6f4fad3a}} 
+\index{Engine.c@{Engine.c}!EndFrame@{EndFrame}}
+\index{EndFrame@{EndFrame}!Engine.c@{Engine.c}}
+\doxysubsubsection{\texorpdfstring{EndFrame()}{EndFrame()}}
+{\footnotesize\ttfamily void End\+Frame (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_engine_8h_a71931feb51e2f53ba9cc5bc3bd9e30d5}{Application}} $\ast$}]{game }\end{DoxyParamCaption})}
+
+
+
+Ends the current frame in the application. 
+
+This function should be called at the end of each frame to render the scene and present the frame.
+
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Pointer to the Application instance. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_engine_8c_aa5046e4eb12986a391044aaf9dc5e49b}\label{_engine_8c_aa5046e4eb12986a391044aaf9dc5e49b}} 
+\index{Engine.c@{Engine.c}!EngineInit@{EngineInit}}
+\index{EngineInit@{EngineInit}!Engine.c@{Engine.c}}
+\doxysubsubsection{\texorpdfstring{EngineInit()}{EngineInit()}}
+{\footnotesize\ttfamily bool Engine\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the game engine. 
+
+\begin{DoxyReturn}{Returns}
+true if the engine was initialized successfully, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_engine_8c_a9276ff82a2316ffec9f7e9edf9a760e2}\label{_engine_8c_a9276ff82a2316ffec9f7e9edf9a760e2}} 
+\index{Engine.c@{Engine.c}!EngineQuit@{EngineQuit}}
+\index{EngineQuit@{EngineQuit}!Engine.c@{Engine.c}}
+\doxysubsubsection{\texorpdfstring{EngineQuit()}{EngineQuit()}}
+{\footnotesize\ttfamily void Engine\+Quit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Shuts down the game engine and exits the application. 
+
+Shuts down the game engine. \mbox{\Hypertarget{_engine_8c_a373bf5cd77debc5584ff178052c769d2}\label{_engine_8c_a373bf5cd77debc5584ff178052c769d2}} 
+\index{Engine.c@{Engine.c}!StartFrame@{StartFrame}}
+\index{StartFrame@{StartFrame}!Engine.c@{Engine.c}}
+\doxysubsubsection{\texorpdfstring{StartFrame()}{StartFrame()}}
+{\footnotesize\ttfamily void Start\+Frame (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_engine_8h_a71931feb51e2f53ba9cc5bc3bd9e30d5}{Application}} $\ast$}]{game,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$}]{scene\+Manager }\end{DoxyParamCaption})}
+
+
+
+Starts a new frame in the application. 
+
+This function should be called at the beginning of each frame to process input and update the game state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Pointer to the Application instance. \\
+\hline
+{\em game\+State} & Pointer to the current game state. \\
+\hline
+{\em scene\+Manager} & Pointer to the scene manager, can be NULL. \\
+\hline
+\end{DoxyParams}

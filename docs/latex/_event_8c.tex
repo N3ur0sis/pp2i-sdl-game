@@ -1,0 +1,68 @@
+\hypertarget{_event_8c}{}\doxysection{src/\+Engine/\+Events/\+Event.c File Reference}
+\label{_event_8c}\index{src/Engine/Events/Event.c@{src/Engine/Events/Event.c}}
+
+
+Implementation of scene management event functions for the application.  
+
+
+{\ttfamily \#include $<$Event.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for Event.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_event_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_event_8c_a583617f537fb803b6613c05a36182ddf}{Handle\+Change\+Scene}} (\mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$scene\+Manager)
+\begin{DoxyCompactList}\small\item\em Handles changing the current scene in the scene manager. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_event_8c_a6b48014f8eb1cecbbed9816d757e3573}{Change\+Scene\+Event}} (int next\+Scene\+Index)
+\begin{DoxyCompactList}\small\item\em Creates and pushes a scene change event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of scene management event functions for the application. 
+
+\begin{DoxyAuthor}{Author}
+Aymeric ROBERT 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_event_8c_a6b48014f8eb1cecbbed9816d757e3573}\label{_event_8c_a6b48014f8eb1cecbbed9816d757e3573}} 
+\index{Event.c@{Event.c}!ChangeSceneEvent@{ChangeSceneEvent}}
+\index{ChangeSceneEvent@{ChangeSceneEvent}!Event.c@{Event.c}}
+\doxysubsubsection{\texorpdfstring{ChangeSceneEvent()}{ChangeSceneEvent()}}
+{\footnotesize\ttfamily void Change\+Scene\+Event (\begin{DoxyParamCaption}\item[{int}]{next\+Scene\+Index }\end{DoxyParamCaption})}
+
+
+
+Creates and pushes a scene change event. 
+
+This function creates a custom SDL event for changing scenes and pushes it to the SDL event queue. It allocates memory for the next scene index and assigns it to the event\textquotesingle{}s user data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em next\+Scene\+Index} & The index of the next scene to switch to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_event_8c_a583617f537fb803b6613c05a36182ddf}\label{_event_8c_a583617f537fb803b6613c05a36182ddf}} 
+\index{Event.c@{Event.c}!HandleChangeScene@{HandleChangeScene}}
+\index{HandleChangeScene@{HandleChangeScene}!Event.c@{Event.c}}
+\doxysubsubsection{\texorpdfstring{HandleChangeScene()}{HandleChangeScene()}}
+{\footnotesize\ttfamily void Handle\+Change\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$}]{scene\+Manager }\end{DoxyParamCaption})}
+
+
+
+Handles changing the current scene in the scene manager. 
+
+This function processes the scene change event and updates the scene manager accordingly. It unloads the current scene and sets the new scene based on the next scene index stored in the game state.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene\+Manager} & Pointer to the \mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} instance. \\
+\hline
+\end{DoxyParams}

@@ -12,7 +12,7 @@ typedef struct SceneManager {
 } SceneManager;
 
 SceneManager* SceneManagerInit();
-void SceneManagerAddScene(SceneManager* manager, Scene* scene, void (*start)(Scene*), void (*update)(Scene*),void (*unloadStartScene)(Scene*));
+void SceneManagerAddScene(SceneManager* manager, Scene* scene, void (*start)(Scene*,GameState*), void (*update)(Scene*,GameState*),void (*unloadStartScene)(Scene*));
 void SceneManagerSetCurrentScene(SceneManager* manager, int index);
 void SceneManagerUpdateCurrentScene(SceneManager* manager);
 void freeSceneManager(SceneManager* manager);

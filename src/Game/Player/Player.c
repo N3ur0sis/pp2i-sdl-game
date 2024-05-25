@@ -1,7 +1,11 @@
 #include <Player.h>
 
+bool isClicking = false;
 
-void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enemy){
+void playerMovement(Entity* player, float deltaTime, Camera* camera){
+
+	Animator* playerAnimator = (Animator*)getComponent(player, COMPONENT_ANIMATOR);
+	PlayerComponent* playerComponent = (PlayerComponent*)getComponent(player, COMPONENT_PLAYER);
 
 	if (getKeyState(SHIFT)) {
 		((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->speed = 8.0f;
@@ -27,6 +31,19 @@ void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enem
 		verticalInput = -1.0f;
 	}
 
+	        if (getMouseButtonState(1) && !playerComponent->isAttacking && !isClicking) {
+            playerComponent->isAttacking = true;
+            playerAnimator->playTime = 0.0f;
+            isClicking = true;
+        }
+        if (!getMouseButtonState(1)) {
+                isClicking = false;
+        }
+                    if (playerAnimator->playTime > playerAnimator->currentAnimation->anim_dur - 10 && playerComponent->isAttacking) {
+            playerComponent->isAttacking = false;
+            playerAnimator->playTime = 0.0f;
+        }
+
 	
 	vec3 xDir;
 	glm_vec3_scale(camera->Right,-horizontalInput, xDir);
@@ -39,20 +56,7 @@ void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enem
 
 	//sometimes my genius is almost frithening
 	vec3 rotationDirection;
-	if(enemy->isRenderable){
-	vec3 enemyDir;
-    glm_vec3_sub(enemy->position,((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,  enemyDir);
-    float enemyDist = glm_vec3_norm(enemyDir);
-	        glm_vec3_normalize(enemyDir);
-	if( enemyDist < 10.0f){
-		glm_vec3_copy(enemyDir, rotationDirection);
-	}else{
-		glm_vec3_copy(movementDirection, rotationDirection);
-
-	}
-	}else{
-				glm_vec3_copy(movementDirection, rotationDirection);
-	}
+	glm_vec3_copy(movementDirection, rotationDirection);
 
 	if(movementDirection[0] != .0f || movementDirection[1] != .0f || movementDirection[2] != .0f){
 	float omega = acos(glm_dot((vec3){0,0,1},rotationDirection));
@@ -85,6 +89,42 @@ void playerMovement(Entity* player, float deltaTime, Camera* camera, Model* enem
     glm_aabb_transform(((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBoxReference[0],id,((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBox[0]);
 	}
 	moveCameraPlayer(camera, ((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->velocity, deltaTime);
+}
+
+/**
+ * @brief Updates the player's animator based on the current state and input.
+ * 
+ * This function manages the animation state of the player entity, ensuring that the correct
+ * animation is played based on the player's actions, such as moving, attacking, or being idle.
+ * 
+ * @param playerEntity Pointer to the player entity.
+ * @param gameState Pointer to the game state.
+ */
+void updatePlayerAnimator(Entity* playerEntity, GameState* gameState) {
+    Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
+    RigidBody* playerRigidbody = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
+	PlayerComponent* playerComponent = (PlayerComponent*)getComponent(playerEntity, COMPONENT_PLAYER);
+
+	if(playerComponent->hasWeapon && playerComponent->isAttacking){
+		playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation");
+	}else{
+
+
+
+    if(playerRigidbody->speed == 8.0f){
+        if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)))){
+        	playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
+    	}else{
+	   		playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerRunningAnimation");
+    	}
+    }else if(playerRigidbody->speed == 5.0f){
+        if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)))){
+        	playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
+    	}else{
+			playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerWalkingAnimation");
+    	}
+    }
+	}
 }
 
 
@@ -141,8 +181,8 @@ void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float 
 		camera->Position[1] = copy[1];
 		camera->Position[2] = copy[2];
 	}
-
 	updateCameraVectors(camera);
+
 }
 
 
@@ -195,6 +235,17 @@ Entity* create_player(Scene*  scene,float x,float y,float z){
         Collider* playerCollider = ColliderCreate("assets/models/LoPotitChat/PlayerWalk.dae");
         glm_scale_make(playerCollider->transformMatrix, (vec3){0.5f, 0.5f, 0.5f});
         UpdateCollider(playerCollider);
+
+		    PlayerComponent* playerComponent = (PlayerComponent*)calloc(1, sizeof(PlayerComponent));
+    playerComponent->isAttacking = false;
+    playerComponent->isAlive = true;
+    playerComponent->hasWeapon = false;
+    playerComponent->maxHealth = 100.0f;
+    playerComponent->currentHealth = 100.0f;
+    playerComponent->attackDamage = 30.0f;
+    playerComponent->attackRange = 2.0f;
+
+    	addComponent(playerEntity, COMPONENT_PLAYER, playerComponent);
 
         addComponent(playerEntity, COMPONENT_RENDERABLE, playerModel);
         addComponent(playerEntity, COMPONENT_ANIMATION, attackAnimation);
@@ -250,13 +301,10 @@ void player_attack(Entity* player,Entity* enemy,GameState* gameState){
                 playerAnimator->playTime = 0.0f;
 				if (enemy){
 				Model* enemyModel = (Model*)getComponent(enemy,COMPONENT_RENDERABLE);
-				Health* enemyHealth = (Health*)getComponent(enemy,COMPONENT_HEALTH);
 				vec3 enemyDir;
 				glm_vec3_sub( playerModel->position, enemyModel->position, enemyDir);
 				if ( glm_vec3_norm(enemyDir)<ATTACK_RANGE){
 					gameState->playerIsAttacking = false;
-					enemyHealth->health-=DAMAGE;
-					printf(" health = %f\n",enemyHealth->health);
 
 				}
             }
@@ -275,5 +323,5 @@ void damagePlayer(GameState* gamestate, int damage){
 		gamestate->playerHealth = 0;
 		return;
 	}
-	gamestate->playerHealth -= damage;
+	//qgamestate->playerHealth -= damage;
 }

@@ -15,5 +15,6 @@ typedef struct _Skybox{
 
 
 Skybox* SkyboxCreate(void);
+Skybox* NightSkyboxCreate(void);
 void    SkyboxDraw(Skybox* skybox, Camera* camera);
 void    SkyboxDelete(Skybox* skybox);

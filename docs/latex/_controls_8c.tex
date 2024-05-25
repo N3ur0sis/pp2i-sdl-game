@@ -1,0 +1,222 @@
+\hypertarget{_controls_8c}{}\doxysection{src/\+Engine/\+Events/\+Controls.c File Reference}
+\label{_controls_8c}\index{src/Engine/Events/Controls.c@{src/Engine/Events/Controls.c}}
+
+
+Implementation of input processing functions for the application.  
+
+
+{\ttfamily \#include \char`\"{}Controls.\+h\char`\"{}}\newline
+Include dependency graph for Controls.\+c\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_controls_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_controls_8c_ae34fd0ab2ae34c9dc65ee44d99975ecd}{process\+Input}} (SDL\+\_\+\+Event $\ast$e, bool $\ast$running, bool $\ast$is\+Paused, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$scene\+Manager)
+\begin{DoxyCompactList}\small\item\em Processes the input events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_controls_8c_abed92d26d0453e8449f4311459befc4c}{handle\+Key\+Board\+Event\+Down}} (SDL\+\_\+\+Event e)
+\begin{DoxyCompactList}\small\item\em Handles keyboard key down events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_controls_8c_ab2550a5651689afe56a4e531dcac4523}{handle\+Key\+Board\+Event\+Up}} (SDL\+\_\+\+Event e)
+\begin{DoxyCompactList}\small\item\em Handles keyboard key up events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_controls_8c_ab9c2ce352fbdc54f21f870c3543991df}{handle\+Mouse\+Button\+Event}} (SDL\+\_\+\+Event e)
+\begin{DoxyCompactList}\small\item\em Handles mouse button events. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_controls_8c_aa9d7e0460e6224813e914d865ad09ecc}{handle\+Mouse\+Wheel\+Event}} (SDL\+\_\+\+Event e)
+\begin{DoxyCompactList}\small\item\em Handles mouse wheel events. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_controls_8c_a844ca51cf5844a18692c7873912ea32c}{get\+Key\+State}} (SDL\+\_\+\+Keycode code)
+\begin{DoxyCompactList}\small\item\em Gets the state of a specified key. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_controls_8c_a67fb3b80c5c3010378dc6edce8ab9b42}{get\+Mouse\+Button\+State}} (int button)
+\begin{DoxyCompactList}\small\item\em Gets the state of a specified mouse button. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_controls_8c_a0be19fe77955ee8df639ad555504ae2e}{get\+Mouse\+Position}} (int coord)
+\begin{DoxyCompactList}\small\item\em Gets the position of the mouse. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_controls_8c_a6ed3357a83362e495303572851f5fbc9}{set\+Mouse\+Position}} (int coord, float value)
+\begin{DoxyCompactList}\small\item\em Sets the position of the mouse. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_controls_8c_a547eac035c57abee3af0432447053e38}{set\+Key\+State}} (SDL\+\_\+\+Key\+Code code, bool state)
+\begin{DoxyCompactList}\small\item\em Sets the state of a specified key. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of input processing functions for the application. 
+
+\begin{DoxyAuthor}{Authors}
+Aymeric ROBERT, Arthur SAUNIER, VD 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_controls_8c_a844ca51cf5844a18692c7873912ea32c}\label{_controls_8c_a844ca51cf5844a18692c7873912ea32c}} 
+\index{Controls.c@{Controls.c}!getKeyState@{getKeyState}}
+\index{getKeyState@{getKeyState}!Controls.c@{Controls.c}}
+\doxysubsubsection{\texorpdfstring{getKeyState()}{getKeyState()}}
+{\footnotesize\ttfamily bool get\+Key\+State (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Keycode}]{code }\end{DoxyParamCaption})}
+
+
+
+Gets the state of a specified key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & The SDL key code. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the key is pressed, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_controls_8c_a67fb3b80c5c3010378dc6edce8ab9b42}\label{_controls_8c_a67fb3b80c5c3010378dc6edce8ab9b42}} 
+\index{Controls.c@{Controls.c}!getMouseButtonState@{getMouseButtonState}}
+\index{getMouseButtonState@{getMouseButtonState}!Controls.c@{Controls.c}}
+\doxysubsubsection{\texorpdfstring{getMouseButtonState()}{getMouseButtonState()}}
+{\footnotesize\ttfamily bool get\+Mouse\+Button\+State (\begin{DoxyParamCaption}\item[{int}]{button }\end{DoxyParamCaption})}
+
+
+
+Gets the state of a specified mouse button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em button} & The SDL mouse button code. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the button is pressed, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_controls_8c_a0be19fe77955ee8df639ad555504ae2e}\label{_controls_8c_a0be19fe77955ee8df639ad555504ae2e}} 
+\index{Controls.c@{Controls.c}!getMousePosition@{getMousePosition}}
+\index{getMousePosition@{getMousePosition}!Controls.c@{Controls.c}}
+\doxysubsubsection{\texorpdfstring{getMousePosition()}{getMousePosition()}}
+{\footnotesize\ttfamily int get\+Mouse\+Position (\begin{DoxyParamCaption}\item[{int}]{coord }\end{DoxyParamCaption})}
+
+
+
+Gets the position of the mouse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coord} & The coordinate to retrieve (0 for x, 1 for y). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The mouse position in the specified coordinate. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_controls_8c_abed92d26d0453e8449f4311459befc4c}\label{_controls_8c_abed92d26d0453e8449f4311459befc4c}} 
+\index{Controls.c@{Controls.c}!handleKeyBoardEventDown@{handleKeyBoardEventDown}}
+\index{handleKeyBoardEventDown@{handleKeyBoardEventDown}!Controls.c@{Controls.c}}
+\doxysubsubsection{\texorpdfstring{handleKeyBoardEventDown()}{handleKeyBoardEventDown()}}
+{\footnotesize\ttfamily void handle\+Key\+Board\+Event\+Down (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Event}]{e }\end{DoxyParamCaption})}
+
+
+
+Handles keyboard key down events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The SDL event representing the key down. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_controls_8c_ab2550a5651689afe56a4e531dcac4523}\label{_controls_8c_ab2550a5651689afe56a4e531dcac4523}} 
+\index{Controls.c@{Controls.c}!handleKeyBoardEventUp@{handleKeyBoardEventUp}}
+\index{handleKeyBoardEventUp@{handleKeyBoardEventUp}!Controls.c@{Controls.c}}
+\doxysubsubsection{\texorpdfstring{handleKeyBoardEventUp()}{handleKeyBoardEventUp()}}
+{\footnotesize\ttfamily void handle\+Key\+Board\+Event\+Up (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Event}]{e }\end{DoxyParamCaption})}
+
+
+
+Handles keyboard key up events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The SDL event representing the key up. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_controls_8c_ab9c2ce352fbdc54f21f870c3543991df}\label{_controls_8c_ab9c2ce352fbdc54f21f870c3543991df}} 
+\index{Controls.c@{Controls.c}!handleMouseButtonEvent@{handleMouseButtonEvent}}
+\index{handleMouseButtonEvent@{handleMouseButtonEvent}!Controls.c@{Controls.c}}
+\doxysubsubsection{\texorpdfstring{handleMouseButtonEvent()}{handleMouseButtonEvent()}}
+{\footnotesize\ttfamily void handle\+Mouse\+Button\+Event (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Event}]{e }\end{DoxyParamCaption})}
+
+
+
+Handles mouse button events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The SDL event representing the mouse button action. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_controls_8c_aa9d7e0460e6224813e914d865ad09ecc}\label{_controls_8c_aa9d7e0460e6224813e914d865ad09ecc}} 
+\index{Controls.c@{Controls.c}!handleMouseWheelEvent@{handleMouseWheelEvent}}
+\index{handleMouseWheelEvent@{handleMouseWheelEvent}!Controls.c@{Controls.c}}
+\doxysubsubsection{\texorpdfstring{handleMouseWheelEvent()}{handleMouseWheelEvent()}}
+{\footnotesize\ttfamily void handle\+Mouse\+Wheel\+Event (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Event}]{e }\end{DoxyParamCaption})}
+
+
+
+Handles mouse wheel events. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & The SDL event representing the mouse wheel action. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_controls_8c_ae34fd0ab2ae34c9dc65ee44d99975ecd}\label{_controls_8c_ae34fd0ab2ae34c9dc65ee44d99975ecd}} 
+\index{Controls.c@{Controls.c}!processInput@{processInput}}
+\index{processInput@{processInput}!Controls.c@{Controls.c}}
+\doxysubsubsection{\texorpdfstring{processInput()}{processInput()}}
+{\footnotesize\ttfamily void process\+Input (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Event $\ast$}]{e,  }\item[{bool $\ast$}]{running,  }\item[{bool $\ast$}]{is\+Paused,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$}]{scene\+Manager }\end{DoxyParamCaption})}
+
+
+
+Processes the input events. 
+
+This function processes input events, updates the running state, game state, and scene manager.
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Pointer to the SDL event. \\
+\hline
+{\em running} & Pointer to the running state flag. \\
+\hline
+{\em is\+Paused} & Pointer to the paused state flag. \\
+\hline
+{\em game\+State} & Pointer to the current game state. \\
+\hline
+{\em scene\+Manager} & Pointer to the scene manager. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_controls_8c_a547eac035c57abee3af0432447053e38}\label{_controls_8c_a547eac035c57abee3af0432447053e38}} 
+\index{Controls.c@{Controls.c}!setKeyState@{setKeyState}}
+\index{setKeyState@{setKeyState}!Controls.c@{Controls.c}}
+\doxysubsubsection{\texorpdfstring{setKeyState()}{setKeyState()}}
+{\footnotesize\ttfamily void set\+Key\+State (\begin{DoxyParamCaption}\item[{SDL\+\_\+\+Key\+Code}]{code,  }\item[{bool}]{state }\end{DoxyParamCaption})}
+
+
+
+Sets the state of a specified key. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & The SDL key code. \\
+\hline
+{\em state} & The state to set the key to. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_controls_8c_a6ed3357a83362e495303572851f5fbc9}\label{_controls_8c_a6ed3357a83362e495303572851f5fbc9}} 
+\index{Controls.c@{Controls.c}!setMousePosition@{setMousePosition}}
+\index{setMousePosition@{setMousePosition}!Controls.c@{Controls.c}}
+\doxysubsubsection{\texorpdfstring{setMousePosition()}{setMousePosition()}}
+{\footnotesize\ttfamily void set\+Mouse\+Position (\begin{DoxyParamCaption}\item[{int}]{coord,  }\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Sets the position of the mouse. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em coord} & The coordinate to set (0 for x, 1 for y). \\
+\hline
+{\em value} & The value to set the coordinate to. \\
+\hline
+\end{DoxyParams}

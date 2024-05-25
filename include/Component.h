@@ -15,6 +15,8 @@ typedef enum {
     COMPONENT_DUNGEON,
     COMPONENT_HEALTH,
     COMPONENT_DAMAGE,
+    COMPONENT_ENEMY,
+    COMPONENT_PLAYER
 } ComponentType;
 
 typedef struct _Component{
@@ -36,11 +38,16 @@ typedef struct {
     float speed; 
 } RigidBody;
 
-typedef struct _Health{
-    float health;
-    float maxHealth;
-    bool isAlive;
-} Health;
-
 void FreeAttachementComponent(AttachmentComponent* AttachmentComponent);
 void FreeRigidBody(RigidBody* rb);
+
+
+typedef struct _PlayerComponent {
+    bool isAttacking;
+    bool isAlive;
+    bool hasWeapon;
+    float currentHealth;
+    float maxHealth;
+    float attackDamage;
+    float attackRange;
+} PlayerComponent;

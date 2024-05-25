@@ -78,7 +78,10 @@ void RenderText(const char* message, SDL_Color color, int x, int y, int size, in
 void RenderImage(const char* path, int x, int y, int windowWidth, int windowHeight, GLuint shaderProgram) {
 
     SDL_Surface* sFont = IMG_Load(path);
-
+    if (!sFont) {
+        printf("Failed to load image: %s\n", IMG_GetError());
+        return;
+    }
 
 
     GLuint texture;

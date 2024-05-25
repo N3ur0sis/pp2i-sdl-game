@@ -40,25 +40,16 @@ void processInput(SDL_Event* e, bool* running, bool* isPaused, GameState* gameSt
 			/*Handle pause menu input*/
 			if (e->key.keysym.sym == SDLK_ESCAPE){
 				*isPaused = !*isPaused;
-				if (*isPaused) {
-					gameState->settingsNum = 0;
-				}
-			} else if (e->key.keysym.sym == SDLK_DOWN && *isPaused){
-				gameState->settingsNum++;
-			} else if (e->key.keysym.sym == SDLK_UP && *isPaused){
-				gameState->settingsNum--;
-			} else if (e->key.keysym.sym == SDLK_RETURN && *isPaused){
-				if (gameState->settingsNum == 0){
-					*isPaused = false;
-				} else if (gameState->settingsNum == 1){
-					gameState->isPlayerDead = true;
-					*isPaused = false;
-					keyState[SDLK_r] = 1;
-					gameState->restarting = true;
-				} else if (gameState->settingsNum == 2){
-					*running = false;
-				}
-			}
+                MenuPauseReset(gameState->pauseMenu);
+            } else if(*isPaused){
+                if (e->key.keysym.sym == SDLK_DOWN) {
+                    MenuPauseDown(gameState->pauseMenu);
+                } else if (e->key.keysym.sym == SDLK_UP) {
+                    MenuPauseUp(gameState->pauseMenu);
+                } else if (e->key.keysym.sym == SDLK_RETURN) {
+                    MenuPauseSelect(gameState->pauseMenu, gameState, running, isPaused);
+                }
+            }
             handleKeyBoardEventDown(*e);
             break;
         case SDL_KEYUP:
@@ -172,7 +163,7 @@ bool getKeyState(SDL_Keycode code) {
  * @return True if the button is pressed, false otherwise.
  */
 bool getMouseButtonState(int button) {
-    if (button < 0 || button >= sizeof(mouseState)) {
+    if (button < 0 || button >= (int)sizeof(mouseState)) {
         logSDLError("Invalid mouse button code");
         return false;
     }
@@ -186,7 +177,7 @@ bool getMouseButtonState(int button) {
  * @return The mouse position in the specified coordinate.
  */
 int getMousePosition(int coord) {
-    if (coord < 0 || coord >= sizeof(mousePos) / sizeof(mousePos[0])) {
+    if (coord < 0 || coord >= (int)(sizeof(mousePos) / sizeof(mousePos[0]))) {
         logSDLError("Invalid mouse position coordinate");
         return -1;
     }
@@ -200,7 +191,7 @@ int getMousePosition(int coord) {
  * @param value The value to set the coordinate to.
  */
 void setMousePosition(int coord, float value) {
-    if (coord < 0 || coord >= sizeof(mousePos) / sizeof(mousePos[0])) {
+    if (coord < 0 || coord >= (int)(sizeof(mousePos) / sizeof(mousePos[0]))) {
         logSDLError("Invalid mouse position coordinate");
         return;
     }
