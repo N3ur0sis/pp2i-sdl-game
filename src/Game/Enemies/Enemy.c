@@ -269,7 +269,7 @@ Entity* create_gobelin(Scene* scene,float x,float y,float z,float scale){
         Animation* gobelinHittingAnimation = AnimationCreate("assets/models/Gobelin/GobelinHitting.dae", gobelin, "gobelinHittingAnimation");
         Animation* gobelinSpearAnimation = AnimationCreate("assets/models/Gobelin/GobelinSpear.dae", gobelin, "gobelinSpearAnimation");
         Animation* gobelinSwordAnimation = AnimationCreate("assets/models/Gobelin/GobelinSword.dae", gobelin, "gobelinSwordAnimation");
-        Animation* gobelinWalkAnimation = AnimationCreate("assets/models/Gobelin/GobelinWalk.dae", gobelin, "gobelinWalkAnimation");
+        Animation* gobelinWalkAnimation = AnimationCreate("assets/models/Gobelin/Mutant Walking.dae", gobelin, "gobelinWalkAnimation");
         
         addComponent(enemy, COMPONENT_ANIMATION, gobelinIdleAnimation);
         addComponent(enemy, COMPONENT_ANIMATION, gobelinDyingAnimation);
