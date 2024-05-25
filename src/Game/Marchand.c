@@ -1,5 +1,9 @@
 #include <Marchand.h>
 
+currentIdDiplayed = -1;
+hasClicked = false;
+
+
 Entity* createMarchand(Scene* scene, vec3 position, vec3 scale, vec3 rotation) {
     Entity* marchandEntity = createEntity(scene);
     if (marchandEntity != NULL) {
@@ -135,18 +139,20 @@ void talkToMarchandMain(Inventory* inventory, Inventory* marchantInventory, floa
 void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, float window_width, float window_height, GLuint shader,int* click_counter, bool* is_clicking, bool* isBusy) {
     SDL_Color color_black = {0, 0, 0, 0};
     SDL_Color color_white = {255, 255, 255, 0};
-    int id_joueur = InventoryPrintTrade(inventory, window_width, window_height, shader, -300, 150, getMousePosition(0), getMousePosition(1));
-    int id_marchand = InventoryPrintTrade(marchantInventory, window_width, window_height, shader, +300, 150, getMousePosition(0), getMousePosition(1));
+    int id_joueur = InventoryPrintTrade(inventory, window_width, window_height, shader, -300, 150, getMousePosition(0), getMousePosition(1), &hasClicked);
+    int id_marchand = InventoryPrintTrade(marchantInventory, window_width, window_height, shader, +300, 150, getMousePosition(0), getMousePosition(1), &hasClicked);
     if (id_joueur != -1) {
-        RenderText("VENDRE", color_black, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
-        char* path = checkIdObject(id_joueur);
-        // RenderImage("assets/images/pixil-frame-0.png", window_width / 2, window_height / 2 + 105 , window_width, window_height, shader);
-        RenderImage(path, window_width / 2, window_height / 2 + 105 , window_width, window_height, shader);
-        free(path);
+        if (hasClicked) {
+            *currentIdDiplayed = id_joueur;
+            RenderText("VENDRE", color_black, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
+            char* path = checkIdObject(id_joueur);
+            RenderImage(path, window_width / 2, window_height / 2 + 105 , window_width, window_height, shader);
+            free(path);
+        }
+
     } else if (id_marchand != -1) {
         RenderText("ACHETER", color_black, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
         char* path = checkIdObject(id_marchand);
-        // RenderImage("assets/images/pixil-frame-0.png", window_width / 2, window_height / 2 + 105 , window_width, window_height, shader);
         RenderImage(path, window_width / 2, window_height / 2 + 105 , window_width, window_height, shader);
         free(path);
     }

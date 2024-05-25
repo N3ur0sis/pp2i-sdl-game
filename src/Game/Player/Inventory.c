@@ -71,7 +71,7 @@ void InventoryPrint(Inventory* inventory, float window_width, float window_heigh
 }
 
 
-int InventoryPrintTrade(Inventory* inventory, float window_width, float window_height, GLuint shader, float offset_x, float offset_y, int mouse_x, int mouse_y) {
+int InventoryPrintTrade(Inventory* inventory, float window_width, float window_height, GLuint shader, float offset_x, float offset_y, int mouse_x, int mouse_y, bool* hasClicked) {
     int renduId = -1;
     int nb_items_non_nuls = 0;
     for (int i = 0; i < 10; i++) {
@@ -93,6 +93,9 @@ int InventoryPrintTrade(Inventory* inventory, float window_width, float window_h
             free(path);
             if (MouseOnCase(offset_x + window_width / 2 -70 + 69 * colonnes, window_height - (offset_y + window_height / 3 + 165 - 69 * lignes), mouse_x, mouse_y)) {
                 RenderImage("assets/images/pixil-frame-0.png", offset_x + window_width / 2 - 69 + 69 * colonnes, offset_y + window_height / 3 + 159 - 69 * lignes , window_width, window_height, shader);
+                if (getMouseButtonState(1) && !*hasClicked) {
+                    *hasClicked = true;
+                }
                 renduId = i;
             }
             nb_items_non_nuls++;

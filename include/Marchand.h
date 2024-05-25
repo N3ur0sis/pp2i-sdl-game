@@ -6,6 +6,8 @@
 #include "Enemy.h"
 #include <Renderer.h>
 
+int currentIdDiplayed;
+bool hasClicked;
 
 Entity* createMarchand(Scene* scene, vec3 position, vec3 scale, vec3 rotation);
 void talkToMarchandStart(float window_width, float window_height, GLuint shader, int* click_counter, bool* is_clicking, bool* isBusy);
