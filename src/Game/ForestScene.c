@@ -91,7 +91,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     }
 
     /* Enemy Entity */
-    Entity* gobelin = create_gobelin(scene,0.0f,10.1f,50.0f,0.5f);
+    Entity* gobelin = create_skeleton(scene,0.0f,10.1f,50.0f,0.5f);
 
 
     /*Flame Entity*/

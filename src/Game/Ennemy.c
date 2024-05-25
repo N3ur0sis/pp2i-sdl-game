@@ -193,3 +193,38 @@ Entity* create_gobelin(Scene* scene,float x,float y,float z,float scale){
     }
     return enemy;
 }
+
+Entity* create_skeleton(Scene* scene,float x,float y,float z,float scale){
+    Entity* enemy = createEntity(scene);
+    if (enemy != NULL) {
+        Model* skeleton = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(skeleton, "assets/models/Skeleton/Breathing Idle.dae");
+        glm_vec3_copy((vec3){x,y,z}, skeleton->position);
+        glm_vec3_copy((vec3){scale,scale,scale}, skeleton->scale);
+        addComponent(enemy, COMPONENT_RENDERABLE, skeleton);
+
+        Animation* skeletonIdleAnimation = AnimationCreate("assets/models/Skeleton/Breathing Idle.dae", skeleton, "skeletonIdleAnimation");
+        Animation* skeletonDyingAnimation = AnimationCreate("assets/models/Skeleton/Dying.dae", skeleton, "skeletonDyingAnimation");
+        Animation* skeletonHittingAnimation = AnimationCreate("assets/models/Skeleton/Standing React Large From Front.dae", skeleton, "skeletonHittingAnimation");
+        Animation* skeletonSpearAnimation = AnimationCreate("assets/models/Skeleton/Bayonet Stab.dae", skeleton, "skeletonSpearAnimation");
+        Animation* skeletonSwordAnimation = AnimationCreate("assets/models/Skeleton/Sword And Shield Slash.dae", skeleton, "skeletonSwordAnimation");
+        Animation* skeletonWalkAnimation = AnimationCreate("assets/models/Skeleton/Sword And Shield Walk.dae", skeleton, "skeletonWalkAnimation");
+        
+        addComponent(enemy, COMPONENT_ANIMATION, skeletonIdleAnimation);
+        addComponent(enemy, COMPONENT_ANIMATION, skeletonDyingAnimation);
+        addComponent(enemy, COMPONENT_ANIMATION, skeletonHittingAnimation);
+        addComponent(enemy, COMPONENT_ANIMATION, skeletonSpearAnimation);
+        addComponent(enemy, COMPONENT_ANIMATION, skeletonSwordAnimation);
+        addComponent(enemy, COMPONENT_ANIMATION, skeletonWalkAnimation);
+        
+        Animator* skeletonAnimator = AnimatorCreate(skeletonIdleAnimation);
+        addComponent(enemy, COMPONENT_ANIMATOR, skeletonAnimator);
+
+        Health* enemyHealth = (Health*)calloc(1, sizeof(Health));
+        enemyHealth->health = 100.0f;
+        enemyHealth->maxHealth = 100.0f;
+        enemyHealth->isAlive = true;
+        addComponent(enemy, COMPONENT_HEALTH, enemyHealth);
+    }
+    return enemy;
+}
