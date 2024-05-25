@@ -1,0 +1,12 @@
+<map id="AttachmentComponent" name="AttachmentComponent">
+<area shape="rect" id="node1" title=" " alt="" coords="41,363,214,389"/>
+<area shape="rect" id="node2" href="$struct___animator.html" title=" " alt="" coords="12,273,101,300"/>
+<area shape="rect" id="node3" href="$struct_animation.html" title=" " alt="" coords="5,184,95,211"/>
+<area shape="rect" id="node4" href="$struct_node.html" title=" " alt="" coords="9,95,65,121"/>
+<area shape="rect" id="node5" href="$struct___data.html" title=" " alt="" coords="112,5,172,32"/>
+<area shape="rect" id="node6" href="$struct___vector.html" title=" " alt="" coords="171,95,241,121"/>
+<area shape="rect" id="node7" href="$struct___model.html" title=" " alt="" coords="167,273,237,300"/>
+<area shape="rect" id="node8" href="$struct___texture.html" title=" " alt="" coords="163,184,241,211"/>
+<area shape="rect" id="node9" href="$struct___mesh.html" title=" " alt="" coords="269,184,333,211"/>
+<area shape="rect" id="node10" href="$struct___vertex.html" title=" " alt="" coords="265,95,336,121"/>
+</map>
