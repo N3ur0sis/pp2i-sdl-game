@@ -240,6 +240,11 @@ Entity* create_player(Scene*  scene,float x,float y,float z){
     playerComponent->isAttacking = false;
     playerComponent->isAlive = true;
     playerComponent->hasWeapon = false;
+    playerComponent->maxHealth = 100.0f;
+    playerComponent->currentHealth = 100.0f;
+    playerComponent->attackDamage = 30.0f;
+    playerComponent->attackRange = 2.0f;
+
     	addComponent(playerEntity, COMPONENT_PLAYER, playerComponent);
 
         addComponent(playerEntity, COMPONENT_RENDERABLE, playerModel);
@@ -318,5 +323,5 @@ void damagePlayer(GameState* gamestate, int damage){
 		gamestate->playerHealth = 0;
 		return;
 	}
-	gamestate->playerHealth -= damage;
+	//qgamestate->playerHealth -= damage;
 }

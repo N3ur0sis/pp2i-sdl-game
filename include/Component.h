@@ -40,3 +40,14 @@ typedef struct {
 
 void FreeAttachementComponent(AttachmentComponent* AttachmentComponent);
 void FreeRigidBody(RigidBody* rb);
+
+
+typedef struct _PlayerComponent {
+    bool isAttacking;
+    bool isAlive;
+    bool hasWeapon;
+    float currentHealth;
+    float maxHealth;
+    float attackDamage;
+    float attackRange;
+} PlayerComponent;

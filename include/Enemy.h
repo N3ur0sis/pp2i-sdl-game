@@ -13,6 +13,8 @@ typedef struct _EnemyComponent {
     float attackDamage;
     bool isAttacking;
     bool isAlive;
+    float health;
+    bool takeDamage;
 } EnemyComponent;
 
 Entity *create_golem(Scene* scene,float x,float y,float z,float scale);

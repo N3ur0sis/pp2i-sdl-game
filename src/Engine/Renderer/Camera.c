@@ -54,12 +54,12 @@ void updateCameraVectors(Camera* camera){
 
 void cameraControl(Camera* camera){
    
-    //Zoom Camera
-    float zpos = getMousePosition(4);
-    float zoffset = zpos - getMousePosition(5);
-    setMousePosition(5, zpos);
-    vec3 velocityZ;
-    glm_vec3_scale(camera->Front, zoffset*1.5f, velocityZ);
-    glm_vec3_add(camera->Position, velocityZ, camera->Position);
+    // //Zoom Camera
+    // float zpos = getMousePosition(4);
+    // float zoffset = zpos - getMousePosition(5);
+    // setMousePosition(5, zpos);
+    // vec3 velocityZ;
+    // glm_vec3_scale(camera->Front, zoffset*1.5f, velocityZ);
+    // glm_vec3_add(camera->Position, velocityZ, camera->Position);
     updateCameraVectors(camera);
 }

@@ -48,8 +48,6 @@ int main(void){
                 RenderText("MENU", (SDL_Color){0,0,0,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 9 * (&sceneManager->gameState)->g_WindowHeight / 10, 50, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
                 MenuPauseDraw(game, &sceneManager->gameState, &sceneManager->scenes[sceneManager->currentSceneIndex]->textShader);
         }else{
-
-
         physicsSystem(sceneManager->scenes[sceneManager->currentSceneIndex]);
         SceneManagerUpdateCurrentScene(sceneManager);
         cameraControl(sceneManager->scenes[sceneManager->currentSceneIndex]->camera);
