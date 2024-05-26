@@ -472,7 +472,6 @@ void initializeLRooms(Dungeon *dj) {
  * @param gameState The GameState
  */
 void LoadRoom(Scene* scene, Model* player, Dungeon* dj,RigidBody* body, Collider* collider,GameState* gameState) {
-    SDL_Color color_black = {0, 0, 0, 0};
     char d1;
     switch (dj->direction){
         case 'S': 
@@ -486,6 +485,9 @@ void LoadRoom(Scene* scene, Model* player, Dungeon* dj,RigidBody* body, Collider
             break;
         case 'N': 
             d1 = 'S';
+            break;
+        default :
+            d1 ='S';
             break;
     }
     if (dj->quit){
@@ -640,6 +642,9 @@ void LoadRoom1C(Scene* scene,GameState* gameState,Model* map,Collider* col, Mode
         case 'N': 
             rot = glm_rad(0.0f);
             break;
+        default:
+            rot = glm_rad(0.0f);
+            break;
           }
     int n =-1;
     if (dj->rooms[dj->current_room].type==1){
@@ -653,7 +658,7 @@ void LoadRoom1C(Scene* scene,GameState* gameState,Model* map,Collider* col, Mode
         ((Model*)Chest->components[0].data)->rotation[1] = rot;
         ((Model*)Chest->components[1].data)->rotation[1] = rot;
         glm_rotate_make(((Collider*)Chest->components[2].data)->transformMatrix,rot,(vec3){0.0f,1.0f,0.0f});
-        for (size_t i = 0; i < col->numCollider; i++) {glm_aabb_transform(((Collider*)Chest->components[2].data)->boundingBoxReference[i],((Collider*)Chest->components[2].data)->transformMatrix,((Collider*)Chest->components[2].data)->boundingBox[i]); }
+        for (int i = 0; i < col->numCollider; i++) {glm_aabb_transform(((Collider*)Chest->components[2].data)->boundingBoxReference[i],((Collider*)Chest->components[2].data)->transformMatrix,((Collider*)Chest->components[2].data)->boundingBox[i]); }
         UpdateCollider(((Collider*)Chest->components[2].data));
         if (dj->rooms[dj->current_room].isCompleted){
         ((Model*)Chest->components[1].data)->isRenderable = true;
@@ -1751,9 +1756,7 @@ void LogicRoom2I(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
  * @param body The RigidBody
  */
 void LogicRoomB(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
-    SDL_Color color_black = {0, 0, 0, 0};
     Entity* player = &scene->entities[2];
-    Model* playerModel = (Model*)getComponent(player,COMPONENT_RENDERABLE);
     vec3 DoorPosition={0.0f,0.0f,0.0f};
     vec3 DoorDir;
     char d1=dj->direction;
@@ -1814,7 +1817,8 @@ void setTypeRoom(Dungeon* dj){
             dj->rooms[i].type = 0;
         }
         else if (dj->rooms[i].id == 0){
-            int n = rand()%LootChance+1;
+            int n = rand()% LootChance;
+            n+=1;
             if (n == 1 || n==0){
                  dj->rooms[i].type = 2;
                  }
@@ -1824,7 +1828,8 @@ void setTypeRoom(Dungeon* dj){
 
         }
         else {
-            int n = rand()%LootChance+1;
+            int n = rand()%LootChance;
+            n+=1;
             if (n==2){
                 dj->rooms[i].type = 3;
                 }

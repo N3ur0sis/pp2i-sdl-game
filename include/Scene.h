@@ -23,7 +23,7 @@ typedef struct _Scene {
     float deltaTime;
     void (*start)(struct _Scene* scene, GameState* gameState);
     void (*update)(struct _Scene* scene, GameState* gameState);
-    void (*unload)(struct _cene* scene);
+    void (*unload)(struct _Scene* scene);
 } Scene;
 
 Entity* createEntity(Scene* scene);
