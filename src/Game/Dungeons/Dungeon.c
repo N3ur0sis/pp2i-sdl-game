@@ -367,7 +367,6 @@ void initializeRooms(Dungeon *dj){
             if (li[i]==m&&!hasBossRoom){
                 hasBossRoom = true;
                 dj->rooms[i].id = 7;//B
-                printf("La salle du Boss est la salle %d\n",i);
                 break;
             }
             dj->rooms[i].id = 0;//1C
@@ -473,8 +472,6 @@ void initializeLRooms(Dungeon *dj) {
  * @param gameState The GameState
  */
 void LoadRoom(Scene* scene, Model* player, Dungeon* dj,RigidBody* body, Collider* collider,GameState* gameState) {
-    printf("Changement de salle du type : %d\n",dj->rooms[dj->current_room].id);
-    printf("On vient du %c\n",dj->direction);
     SDL_Color color_black = {0, 0, 0, 0};
     char d1;
     switch (dj->direction){
@@ -540,7 +537,6 @@ void LoadRoom(Scene* scene, Model* player, Dungeon* dj,RigidBody* body, Collider
     }
     
 
-    printf("Nous sommes dans la salle %d  (id = %d) depuis le %c\n",dj->current_room,dj->rooms[dj->current_room].id,dj->direction);
     mat4 id;
     glm_translate_make(id,body->velocity);
     glm_aabb_transform(collider->boundingBoxReference[0],id,collider->boundingBox[0]);
@@ -1203,9 +1199,7 @@ void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         }
         dj->change = true;
     }
-    if (getKeyState(SDLK_o)){
-        printf("D1 = %f\n",DoorDist);
-    }
+
 
 
 }
@@ -1280,9 +1274,7 @@ void LogicRoom2C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         }
         dj->change = true;
     }
-    if (getKeyState(SDLK_o)){
-        printf("D1 = %f,D2 = %f\n",Door1Dist,Door2Dist);
-    }
+
 
 }
 
@@ -1328,9 +1320,7 @@ void LogicRoom3C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     float Door2Dist = glm_vec3_norm(Door2Dir);
     float Door3Dist = glm_vec3_norm(Door3Dir);
     float Door4Dist = glm_vec3_norm(Door4Dir);
-    if (!getKeyState(SDLK_o)){
-        printf("S : %f, N : %f, E : %f, W : %f\n",Door1Dist,Door2Dist,Door3Dist,Door4Dist);
-    }
+
     if (Door1Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime&&dir_used[1] ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='S'){
@@ -1420,9 +1410,7 @@ void LogicRoom4C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     float Door2Dist = glm_vec3_norm(Door2Dir);
     float Door3Dist = glm_vec3_norm(Door3Dir);
     float Door4Dist = glm_vec3_norm(Door4Dir);
-    if (!getKeyState(SDLK_o)){
-        printf("S : %f, N : %f, E : %f, W : %f\n",Door1Dist,Door2Dist,Door3Dist,Door4Dist);
-    }
+
     if (Door1Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='S'){
@@ -1546,12 +1534,7 @@ void LogicRoom3T(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     float Door1Dist = glm_vec3_norm(Door1Dir);
     float Door2Dist = glm_vec3_norm(Door2Dir);
     float Door3Dist = glm_vec3_norm(Door3Dir);
-    if (getKeyState(SDLK_o)){
-        printf("D1 : %f, D2 : %f, D3 : %f\n",Door1Dist,Door2Dist,Door3Dist);
-    }
-    if (getKeyState(SDLK_f)){
-        printf("D1 : %c, D2 : %c, D3 : %c,D4 : %c\n",d1,d2,d3,d4);
-    }
+
     if (Door1Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d1){
@@ -1655,9 +1638,7 @@ void LogicRoom2L(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     glm_vec3_sub( body->velocity, Door2Position, Door2Dir);
     float Door1Dist = glm_vec3_norm(Door1Dir);
     float Door2Dist = glm_vec3_norm(Door2Dir);
-    if (getKeyState(SDLK_o)){
-        printf("D1 : %f, D2 : %f\n",Door1Dist,Door2Dist);
-    }
+
     if (Door1Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
          for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]=='S'||dj->adj[dj->current_room][i]=='N'){
@@ -1727,9 +1708,7 @@ void LogicRoom2I(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     }
     glm_vec3_sub( body->velocity, Door1Position, Door1Dir);
     glm_vec3_sub( body->velocity, Door2Position, Door2Dir);
-    if (getKeyState(SDLK_f)){
-            printf("D1 : %c, D2 : %c\n",d1,d2);
-        }
+
     float Door1Dist = glm_vec3_norm(Door1Dir);
     float Door2Dist = glm_vec3_norm(Door2Dir);
     if (Door1Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime ){
@@ -1758,9 +1737,7 @@ void LogicRoom2I(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         }
         dj->change = true;
     }
-    if (getKeyState(SDLK_o)){
-        printf("D1 = %f,D2 = %f\n",Door1Dist,Door2Dist);
-    }
+
 }
 
 /**
@@ -1814,9 +1791,7 @@ void LogicRoomB(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         }
         dj->change = true;
     }
-    if (getKeyState(SDLK_o)){
-        printf("D1 = %f\n",DoorDist);
-    }
+
 
 }
 
@@ -1860,7 +1835,6 @@ void setTypeRoom(Dungeon* dj){
                 dj->rooms[i].id_enemy[1] = 6 + (dj->nb_enemy+1);
                 dj->nb_enemy+=2;
                 dj->rooms[i].nb_enemy = 2;
-                printf("id ennmy salle %d = %d %d\n",i,dj->rooms[i].id_enemy[0],dj->rooms[i].id_enemy[1]);
             }
             else if (dj->nb_enemy<NB_ENEMY){
                 dj->rooms[i].id_enemy[0] = 6 + dj->nb_enemy;
@@ -1871,7 +1845,6 @@ void setTypeRoom(Dungeon* dj){
                 dj->rooms[i].type = -1;
             }
         }
-        printf("id ennmy salle %d = %d %d\n",i,dj->rooms[i].id_enemy[0],dj->rooms[i].id_enemy[1]);
         }
      }
         
