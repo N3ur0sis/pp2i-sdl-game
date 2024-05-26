@@ -32,7 +32,7 @@ int main(void){
     sceneManager->gameState.pauseMenu = menu;
 
     /* Set Default Current Scene */
-    sceneManager->gameState.currentSceneIndex = 2;
+    sceneManager->gameState.currentSceneIndex = 0;
     SceneManagerSetCurrentScene(sceneManager, sceneManager->gameState.currentSceneIndex);
 
     /* Set Default Camera Position */
