@@ -9,6 +9,12 @@ Object* Object_create(char* name, char* description, int id) {
 }
 
 
+Object* Object_createFromId(int id) {
+    char* name = nameFromId(id);
+    char* description = descriptionFromId(id);
+    return Object_create(name, description, id);
+}
+
 
 
 void printObject(int id, int nb) {

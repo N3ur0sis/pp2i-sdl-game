@@ -23,24 +23,33 @@ void InventoryAddObjects(int nb, Inventory* inventory, Object* object) {
 }
 
 
-/* idée à implémenter : vérifier si un objet de ce type est bien présent dans l'inventaire et si c'est le cas, 
-créer un nouvel inventaire, copier dedans l'ancien inventaire sans l'objet en question et remplacer l'inventaire 
-précédent par le nouvel inventaire (ne pas oublier de free l'ancien inventaire) */
 
-
-void InventoryRemoveObject(Inventory* inventory, int id) {
+bool InventoryRemoveObject(Inventory* inventory, int id) {
+    //Premier parcours pour vérifier si un objet de est bien présent dans l'inventaire
+    bool isPresent = false;
     for (int i = 0; i < inventory->size; i++) {
         if (inventory->objects[i]->id == id) {
-            free(inventory->objects[i]);
-            for (int j = i; j < inventory->size - 1; j++) {
-                inventory->objects[j] = inventory->objects[j + 1];
-            }
-            inventory->size--;
+            isPresent = true;
             break;
         }
     }
+    //Si l'objet est présent, on crée un nouvel inventaire, on copie l'ancien sans l'objet en question et on remplace l'ancien par le nouveau
+    if (isPresent) {
+        bool found = false;
+        Inventory* newInventory = InventoryCreate(inventory->capacity);
+        for (int i = 0; i < inventory->size; i++) {
+            if (inventory->objects[i]->id != id || found) {
+                InventoryAddObjects(1, newInventory, inventory->objects[i]);
+            } else {
+                found = true;
+            }
+        }
+        // Inventory* tmp = inventory;
+        *inventory = *newInventory;
+        // freeInventory(tmp);
+    }
+    return isPresent;
 }
-
 
 void freeInventory(Inventory* inventory) {
     if (inventory != NULL) {
@@ -56,6 +65,10 @@ void freeInventory(Inventory* inventory) {
 
 
 void InventoryPrint(Inventory* inventory, float window_width, float window_height, GLuint shader, float offset_x, float offset_y) {
+    if (inventory->size == 0) {
+        RenderImage("assets/images/Inventory_Example_03.png", offset_x + window_width / 2, offset_y + window_height / 3, window_width, window_height, shader);
+        return;
+    }
     int nb_items_non_nuls = 0;
     for (int i = 0; i < 10; i++) {
         int nb_items = 0;
@@ -82,11 +95,16 @@ void InventoryPrint(Inventory* inventory, float window_width, float window_heigh
 
 
 int InventoryPrintTrade(Inventory* inventory, float window_width, float window_height, GLuint shader, float offset_x, float offset_y, int mouse_x, int mouse_y, bool* hasClicked, bool isClickingMarchand) {
+    if (inventory->size == 0) {
+        RenderImage("assets/images/Inventory_Example_03.png", offset_x + window_width / 2, offset_y + window_height / 3, window_width, window_height, shader);
+        return -1;
+    }
     int renduId = -1;
     int nb_items_non_nuls = 0;
     for (int i = 0; i < 10; i++) {
         int nb_items = 0;
         for (int k = 0; k < inventory->size; k++ ) {
+            printf("k : %d\n", k);
             if ((inventory->objects[k])->id == i) {
                 nb_items++;
             }

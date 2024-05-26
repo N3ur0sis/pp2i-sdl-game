@@ -146,9 +146,7 @@ void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, flo
     bool isClickingMarchand = getMouseButtonState(1);
     int pos_x = getMousePosition(0);
     int pos_y = getMousePosition(1);
-
-    // printf("%f, %f, %d, %d\n", window_width / 2, window_height / 2 + 105, pos_x, pos_y);
-    printInventorySimple(inventory);
+    printf("%d\n", currentIdObject);
     int id_joueur = InventoryPrintTrade(inventory, window_width, window_height, shader, -300, 150, pos_x, pos_y, &hasClicked, isClickingMarchand);
     int id_marchand = InventoryPrintTrade(marchantInventory, window_width, window_height, shader, +300, 150, pos_x, pos_y, &hasClicked, isClickingMarchand);
     if (hasClicked) {
@@ -181,7 +179,10 @@ void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, flo
             if (checkWantToTrade(pos_x, pos_y, window_width, window_height)) {
                 RenderText("ACHETER", color_yellow, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
                 if (getMouseButtonState(1) && !clickAction) {
-                    InventoryRemoveObject(marchantInventory, currentIdObject);
+                    bool isPResent = InventoryRemoveObject(marchantInventory, currentIdObject);
+                    if (isPResent) {
+                        InventoryAddObjects(1, inventory, Object_createFromId(currentIdObject));
+                    } 
                     clickAction = true;
                 } else if (!getMouseButtonState(1)) {
                     clickAction = false;
