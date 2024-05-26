@@ -30,6 +30,11 @@ void startStartScene(Scene* scene, GameState* gameState) {
     /* Load and compile textShader */
     scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
 
+    /* Create a scene camera */
+    scene->camera = camera_create(80, 80, 0, gameState->g_WindowWidth, gameState->g_WindowHeight);
+    glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
+    /* Create a skybox */
+    scene->skybox = SkyboxCreate();
 
     /* Enemy Entity */
     Entity* golem = create_golemPurple(scene,0.0f,0.1f,0.0f,0.5f);
