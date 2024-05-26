@@ -21,7 +21,6 @@ Dungeon* dj_create(){
     
     srand(time(NULL));
     dj->nb_rooms = rand() % (NB_ROOM_MAX + 1 - NB_ROOM_MIN) + NB_ROOM_MIN;
-    initializeAdjacencyList(dj);
     
     dj->rooms = malloc((dj->nb_rooms )  * sizeof(Room));
     if (dj->rooms == NULL) {
@@ -37,7 +36,7 @@ Dungeon* dj_create(){
     dj->nb_enemy = 0;
     dj->quit = false;
     dj->lastRoomChangeTime = 0;
-    initializeLRooms(dj);
+
     return dj;
 }
 
@@ -106,10 +105,13 @@ void freeRooms(Dungeon* dj){
  * @param dj The Dungeon object
  */
 void freeTypeRooms(Dungeon* dj){
+    if (dj->type_room){
+        
     for (int i =0;i<NB_MODEL_SALLE;i++){
         freeLRoom(&dj->type_room[i]);
     }
     free(dj->type_room);
+    }
 }
 
 /**
@@ -120,10 +122,13 @@ void freeTypeRooms(Dungeon* dj){
  * @param dj The Dungeon object
  */
 void freeAdjacencyList(Dungeon *dj) {
+    if (dj->adj){
+        
     for (int i = 0; i < dj->nb_rooms; i++) {
         free(dj->adj[i]);
     }
     free(dj->adj);
+    }
 }
 
 /**
@@ -134,6 +139,8 @@ void freeAdjacencyList(Dungeon *dj) {
  * @param dj The Dungeon object
  */
 void initialize(Dungeon *dj){
+    initializeAdjacencyList(dj);
+    initializeLRooms(dj);
     char *l = "SENW";
     srand(time(NULL));
     int nb_door_init = rand() % (MAX_DOOR - MIN_DOOR) + MIN_DOOR;
