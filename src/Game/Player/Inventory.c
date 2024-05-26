@@ -104,7 +104,6 @@ int InventoryPrintTrade(Inventory* inventory, float window_width, float window_h
     for (int i = 0; i < 10; i++) {
         int nb_items = 0;
         for (int k = 0; k < inventory->size; k++ ) {
-            printf("k : %d\n", k);
             if ((inventory->objects[k])->id == i) {
                 nb_items++;
             }
