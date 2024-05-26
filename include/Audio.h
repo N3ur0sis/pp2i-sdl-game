@@ -1,4 +1,4 @@
-/*
+/**
 * @file Audio.h
 * @brief Audio header file
 */

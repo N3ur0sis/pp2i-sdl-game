@@ -1,4 +1,4 @@
-/*
+/**
 * @file Algebra.h
 * @brief Implementations of algebra functions.
 *

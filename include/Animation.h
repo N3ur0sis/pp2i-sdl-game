@@ -1,4 +1,4 @@
-/*
+/**
 * @file Animation.h
 * @brief Implementations of animation functions.
 *

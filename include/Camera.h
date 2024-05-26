@@ -1,4 +1,4 @@
-/*
+/**
 * @file Camera.h
 * @brief Camera header file
 */

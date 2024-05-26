@@ -1,4 +1,4 @@
-/*
+/**
 * @file Collider.h
 * @brief Collider header file
 */
