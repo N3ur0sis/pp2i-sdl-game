@@ -9,6 +9,12 @@ Object* Object_create(char* name, char* description, int id) {
 }
 
 
+Object* Object_createFromId(int id) {
+    char* name = nameFromId(id);
+    char* description = descriptionFromId(id);
+    return Object_create(name, description, id);
+}
+
 
 
 void printObject(int id, int nb) {
@@ -34,4 +40,50 @@ char* checkIdObject(int id) {
             break;
     }
     return path;
+}
+
+
+char* nameFromId(int id) {
+    char* name = (char*)malloc(256 * sizeof(char));
+    switch (id) {
+        case 1 :
+            strcpy(name, "Potion de vie");
+            break;
+        case 2 : 
+            strcpy(name, "Épée");
+            break;
+        case 3 :
+            strcpy(name, "Torche");
+            break;
+        case 4 :
+            strcpy(name, "Bouclier");
+            break;
+        default :
+            strcpy(name, "Objet inconnu");
+            break;
+    }
+    return name;
+}
+
+
+char* descriptionFromId(int id) {
+    char* description = (char*)malloc(256 * sizeof(char));
+    switch (id) {
+        case 1 :
+            strcpy(description, "Restaure 10 points de vie");
+            break;
+        case 2 : 
+            strcpy(description, "Permet de se défendre des monstres");
+            break;
+        case 3 :
+            strcpy(description, "Eclaire dans le noir");
+            break;
+        case 4 :
+            strcpy(description, "Protège des attaques");
+            break;
+        default :
+            strcpy(description, "Objet inconnu");
+            break;
+    }
+    return description;
 }

@@ -1,5 +1,12 @@
 #include <Marchand.h>
 
+
+int currentIdObject = -1;
+bool hasClicked = false;
+int origin = -1;
+bool clickAction = false;
+
+
 Entity* createMarchand(Scene* scene, vec3 position, vec3 scale, vec3 rotation) {
     Entity* marchandEntity = createEntity(scene);
     if (marchandEntity != NULL) {
@@ -135,22 +142,71 @@ void talkToMarchandMain(Inventory* inventory, Inventory* marchantInventory, floa
 void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, float window_width, float window_height, GLuint shader,int* click_counter, bool* is_clicking, bool* isBusy) {
     SDL_Color color_black = {0, 0, 0, 0};
     SDL_Color color_white = {255, 255, 255, 0};
-    int id_joueur = InventoryPrintTrade(inventory, window_width, window_height, shader, -300, 150, getMousePosition(0), getMousePosition(1));
-    int id_marchand = InventoryPrintTrade(marchantInventory, window_width, window_height, shader, +300, 150, getMousePosition(0), getMousePosition(1));
-    if (id_joueur != -1) {
-        RenderText("VENDRE", color_black, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
-        char* path = checkIdObject(id_joueur);
-        RenderImage(path, window_width / 2, window_height / 2 + 105 , window_width, window_height, shader);
-        free(path);
-    } else if (id_marchand != -1) {
-        RenderText("ACHETER", color_black, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
-        char* path = checkIdObject(id_marchand);
-        RenderImage(path, window_width / 2, window_height / 2 + 105 , window_width, window_height, shader);
-        free(path);
+    SDL_Color color_yellow = {255, 215, 0, 255};
+    bool isClickingMarchand = getMouseButtonState(1);
+    int pos_x = getMousePosition(0);
+    int pos_y = getMousePosition(1);
+    printf("%d\n", currentIdObject);
+    int id_joueur = InventoryPrintTrade(inventory, window_width, window_height, shader, -300, 150, pos_x, pos_y, &hasClicked, isClickingMarchand);
+    int id_marchand = InventoryPrintTrade(marchantInventory, window_width, window_height, shader, +300, 150, pos_x, pos_y, &hasClicked, isClickingMarchand);
+    if (hasClicked) {
+        hasClicked = false;
+        if (id_joueur != -1) {
+            currentIdObject = id_joueur;
+            origin = 0;
+        } else {
+            currentIdObject = id_marchand;
+            origin = 1;
+        }
+    }
+    if (currentIdObject != -1) {
+        if (origin == 0) {
+            if (checkWantToTrade(pos_x, pos_y, window_width, window_height)) {
+                RenderText("VENDRE", color_yellow, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
+                if (getMouseButtonState(1) && !clickAction) {
+                    InventoryRemoveObject(inventory, currentIdObject);
+                    clickAction = true;
+                } else if (!getMouseButtonState(1)) {
+                    clickAction = false;
+                }
+            } else {
+                RenderText("VENDRE", color_black, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
+            }
+            char* path = checkIdObject(currentIdObject);
+            RenderImage(path, window_width / 2, window_height / 2 + 105 , window_width, window_height, shader);
+            free(path);
+        } else {
+            if (checkWantToTrade(pos_x, pos_y, window_width, window_height)) {
+                RenderText("ACHETER", color_yellow, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
+                if (getMouseButtonState(1) && !clickAction) {
+                    bool isPResent = InventoryRemoveObject(marchantInventory, currentIdObject);
+                    if (isPResent) {
+                        InventoryAddObjects(1, inventory, Object_createFromId(currentIdObject));
+                    } 
+                    clickAction = true;
+                } else if (!getMouseButtonState(1)) {
+                    clickAction = false;
+                }
+            } else {
+                RenderText("ACHETER", color_black, window_width / 2, window_height / 3 + 90, 30, window_width, window_height, shader); 
+            }
+            char* path = checkIdObject(currentIdObject);
+            RenderImage(path, window_width / 2, window_height / 2 + 105 , window_width, window_height, shader);
+            free(path);
+        }
     }
     RenderText("   Marchand         ", color_white, window_width / 2 - 175, window_height / 15 + 200, 25, window_width, window_height, shader);
     RenderText("Que veux tu échanger ?", color_black, window_width / 2, window_height / 15 + 140 , 30, window_width, window_height, shader);
-    RenderText("            Appuie sur echap pour quiter...", color_black, window_width / 2 + 45, window_height / 15 + 50, 25, window_width, window_height, shader);
+    RenderText("            Appuie sur echap pour quitter...", color_black, window_width / 2 + 45, window_height / 15 + 50, 25, window_width, window_height, shader);
     RenderImage("assets/images/dialog-box.png", window_width / 2, window_height / 15, window_width, window_height, shader);
     RenderImage("assets/images/Inventory_Slot_1.png", window_width / 2, window_height / 2 + 85 , window_width, window_height, shader);
+}
+
+
+
+bool checkWantToTrade(int x, int y, float window_width, float window_height) {
+    if (x > window_width / 2 - 80 && x < window_width / 2 + 80 && y < (window_height - (window_height / 3 + 90  - 23)) && y  > (window_height - (window_height / 3 + 90  + 23))) {
+        return true;
+    }
+    return false;
 }
