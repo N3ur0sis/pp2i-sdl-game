@@ -1,3 +1,8 @@
+/**
+ * @file DungeonScene.c
+ * @brief Implementation of the dungeon scene.
+*/
+
 #include "DungeonScene.h"
 
 
@@ -13,6 +18,14 @@ Entity of this scene (order of their index):
     BOSS
 */
 
+/**
+ * @brief Function to create the dungeon scene.
+ * 
+ * This function creates the dungeon scene.
+ * 
+ * @param scene Pointer to the scene.
+ * @param gameState Pointer to the game state.
+ */
 void DungeonMainScene(Scene* scene, GameState* gameState) {
     /* Load and compile shaders */
     scene->shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
@@ -109,6 +122,14 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
     
 }
 
+/**
+ * @brief Function to update the dungeon scene.
+ * 
+ * This function updates the dungeon scene.
+ * 
+ * @param scene Pointer to the scene.
+ * @param gameState Pointer to the game state.
+ */
 void updateDungeonScene(Scene* scene, GameState* gameState) {
     Entity* playerEntity = &scene->entities[2];
     Entity* dungeon = &scene->entities[1];
@@ -211,6 +232,13 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
         }
 }
 
+/**
+ * @brief Function to unload the dungeon scene.
+ * 
+ * This function unloads the dungeon scene.
+ * 
+ * @param scene Pointer to the scene.
+ */
 void unloadDungeonScene(Scene* scene){
     DeleteShaders(scene->shader);
     DeleteShaders(scene->textShader);
