@@ -1,5 +1,17 @@
+/*
+* @file Dungeon.c
+* @brief implementation of the Dungeon
+*/
+
 #include "Dungeon.h"
 
+/**
+ * @brief Create a Dungeon object
+ * 
+ * This function creates a Dungeon object.
+ * 
+ * @return Dungeon* The Dungeon object
+ */
 Dungeon* dj_create(){
     Dungeon *dj = malloc(sizeof(Dungeon)); 
     if (dj == NULL) {
@@ -28,6 +40,14 @@ Dungeon* dj_create(){
     initializeLRooms(dj);
     return dj;
 }
+
+/**
+ * @brief Initialize the adjacency list
+ * 
+ * This function initializes the adjacency list of the dungeon.
+ * 
+ * @param dj The dungeon
+ */
 void initializeAdjacencyList(Dungeon *dj) {
     dj->adj = malloc(dj->nb_rooms * sizeof(char*));
     if (dj->adj == NULL) {
@@ -46,6 +66,14 @@ void initializeAdjacencyList(Dungeon *dj) {
         dj->adj[i][dj->nb_rooms] = '\0'; 
     }
 }
+
+/**
+ * @brief Free the Dungeon object
+ * 
+ * This function frees the Dungeon object.
+ * 
+ * @param dj The Dungeon object
+ */
 void freeDungeon(Dungeon *dj) {
     if (dj == NULL) {
         return;
@@ -55,12 +83,28 @@ void freeDungeon(Dungeon *dj) {
     freeRooms(dj);
     free(dj);
 }
+
+/**
+ * @brief Free the rooms
+ * 
+ * This function frees the rooms of the dungeon.
+ * 
+ * @param dj The Dungeon object
+ */
 void freeRooms(Dungeon* dj){
     for (int i =0;i<dj->nb_rooms;i++){
         freeRoom(&dj->rooms[i]);
     }
     free(dj->rooms);
 }
+
+/**
+ * @brief Free the type of rooms
+ * 
+ * This function frees the type of rooms of the dungeon.
+ * 
+ * @param dj The Dungeon object
+ */
 void freeTypeRooms(Dungeon* dj){
     for (int i =0;i<NB_MODEL_SALLE;i++){
         freeLRoom(&dj->type_room[i]);
@@ -68,12 +112,27 @@ void freeTypeRooms(Dungeon* dj){
     free(dj->type_room);
 }
 
+/**
+ * @brief Free the adjacency list
+ * 
+ * This function frees the adjacency list of the dungeon.
+ * 
+ * @param dj The Dungeon object
+ */
 void freeAdjacencyList(Dungeon *dj) {
     for (int i = 0; i < dj->nb_rooms; i++) {
         free(dj->adj[i]);
     }
     free(dj->adj);
 }
+
+/**
+ * @brief Initialize the dungeon
+ * 
+ * This function initializes the dungeon.
+ * 
+ * @param dj The Dungeon object
+ */
 void initialize(Dungeon *dj){
     char *l = "SENW";
     srand(time(NULL));
@@ -164,7 +223,13 @@ void initialize(Dungeon *dj){
     free_list(Pile);
 }
 
-
+/**
+ * @brief Print the adjacency list
+ * 
+ * This function prints the adjacency list of the dungeon.
+ * 
+ * @param dj The Dungeon object
+ */
 void printAdjList(Dungeon *dj){    
     for (int i =0;i<dj->nb_rooms;i++){
         printf("%s\n",dj->adj[i]);
@@ -172,8 +237,15 @@ void printAdjList(Dungeon *dj){
 
 }
 
-
-
+/**
+ * @brief Find the maximum of two integers
+ * 
+ * This function finds the maximum of two integers.
+ * 
+ * @param a The first integer
+ * @param b The second integer
+ * @return int The maximum of the two integers
+ */
 int max(int a, int b) {
     return (a > b) ? a : b;
 }
@@ -189,6 +261,14 @@ void depthFirstSearch(Dungeon *dj, int room, int depth, int *depths, int *visite
     }
 }
 
+/**
+ * @brief Find the depth of each room
+ * 
+ * This function finds the depth of each room in the dungeon.
+ * 
+ * @param dj The Dungeon object
+ * @return int* The depth of each room
+ */
 int *profondeur(Dungeon *dj) {
     int *depths = (int *)malloc(dj->nb_rooms * sizeof(int));
     int *visited = (int *)calloc(dj->nb_rooms, sizeof(int)); 
@@ -203,11 +283,29 @@ int *profondeur(Dungeon *dj) {
     return depths;
 }
 
+/**
+ * @brief Print the depth of each room
+ * 
+ * This function prints the depth of each room in the dungeon.
+ * 
+ * @param depths The depth of each room
+ * @param nb_rooms The number of rooms
+ */
 void printDepth(int *depths, int nb_rooms) {
     for (int i = 0; i < nb_rooms; i++) {
         printf("Profondeur de la salle %d: %d\n", i, depths[i]);
     }
 }
+
+/**
+ * @brief Find the maximum of a list of integers
+ * 
+ * This function finds the maximum of a list of integers.
+ * 
+ * @param list The list of integers
+ * @param size The size of the list
+ * @return int The maximum of the list
+ */
 int maxList(int list[], int size) {
     if (size <= 0) {
         return 0;
@@ -224,6 +322,13 @@ int maxList(int list[], int size) {
     return max;
 }
 
+/**
+ * @brief Initialize the rooms
+ * 
+ * This function initializes the rooms of the dungeon.
+ * 
+ * @param dj The Dungeon object
+ */
 void initializeRooms(Dungeon *dj){
     int * li = profondeur(dj);
     int m = maxList(li,dj->nb_rooms);
@@ -306,9 +411,17 @@ void initializeRooms(Dungeon *dj){
             dj->rooms[i].id = 6;//4C
             break;
         }
-}
+    }
 free(li);
 }
+
+/**
+ * @brief Initialize the rooms
+ * 
+ * This function initializes the rooms of the dungeon.
+ * 
+ * @param dj The Dungeon object
+ */
 void initializeLRooms(Dungeon *dj) {
     dj->type_room = malloc(NB_MODEL_SALLE * sizeof(L_Room));
     for (int i = 0; i < NB_MODEL_SALLE; i++) {
@@ -340,6 +453,18 @@ void initializeLRooms(Dungeon *dj) {
     dj->type_room[3].col = ColliderCreate("assets/models/Room/ColL.obj");
 }
 
+/**
+ * @brief Load the room
+ * 
+ * This function loads the room.
+ * 
+ * @param scene The scene
+ * @param player The player
+ * @param dj The Dungeon object
+ * @param body The RigidBody
+ * @param collider The Collider
+ * @param gameState The GameState
+ */
 void LoadRoom(Scene* scene, Model* player, Dungeon* dj,RigidBody* body, Collider* collider,GameState* gameState) {
     printf("Changement de salle du type : %d\n",dj->rooms[dj->current_room].id);
     printf("On vient du %c\n",dj->direction);
@@ -413,10 +538,13 @@ void LoadRoom(Scene* scene, Model* player, Dungeon* dj,RigidBody* body, Collider
     glm_aabb_transform(collider->boundingBoxReference[0],id,collider->boundingBox[0]);
 }
 
-    
-         
-    
-
+/**
+ * @brief prints the information of the dungeon
+ * 
+ * This function prints the information of the dungeon.
+ * 
+ * @param dj The Dungeon object
+*/
 void Affiche(Dungeon *dj){
     printf("\n");
     printAdjList(dj);
@@ -479,7 +607,20 @@ void Affiche(Dungeon *dj){
     printf("Il y a %d 1C,%d 2C,%d 2I,%d 2L, %d 3C,%d 3T, %d 4C, %d B\n",id0,id1,id2,id3,id4,id5,id6,id7);
 
 }
-//on doit pouvoir factoriser les LoadRoomiC mais flemme
+
+/**
+ * @brief Load the room 1C
+ * 
+ * This function loads the room 1C.
+ * 
+ * @param scene The scene
+ * @param gameState The GameState
+ * @param map The Model
+ * @param col The Collider
+ * @param player The Model
+ * @param dj The Dungeon object
+ * @param body The RigidBody
+ */
 void LoadRoom1C(Scene* scene,GameState* gameState,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
     float rot;
         switch (dj->direction){
@@ -549,6 +690,20 @@ void LoadRoom1C(Scene* scene,GameState* gameState,Model* map,Collider* col, Mode
     }
     
 }
+
+/**
+ * @brief Load the room B
+ * 
+ * This function loads the room B.
+ * 
+ * @param scene The scene
+ * @param gameState The GameState
+ * @param map The Model
+ * @param col The Collider
+ * @param player The Model
+ * @param dj The Dungeon object
+ * @param body The RigidBody
+ */
 void LoadRoomB(Scene* scene,GameState* gameState,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
      
     switch (dj->direction)
@@ -583,6 +738,20 @@ void LoadRoomB(Scene* scene,GameState* gameState,Model* map,Collider* col, Model
     }
     
 }
+
+/**
+ * @brief Load the room 2C
+ * 
+ * This function loads the room 2C.
+ * 
+ * @param scene The scene
+ * @param gameState The GameState
+ * @param map The Model
+ * @param col The Collider
+ * @param player The Model
+ * @param dj The Dungeon object
+ * @param body The RigidBody
+ */
 void LoadRoom2C(Scene* scene,GameState* gameState,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
      
     switch (dj->direction)
@@ -616,6 +785,20 @@ void LoadRoom2C(Scene* scene,GameState* gameState,Model* map,Collider* col, Mode
         break;
     }
 }
+
+/**
+ * @brief Load the room 3C
+ * 
+ * This function loads the room 3C.
+ * 
+ * @param scene The scene
+ * @param gameState The GameState
+ * @param map The Model
+ * @param col The Collider
+ * @param player The Model
+ * @param dj The Dungeon object
+ * @param body The RigidBody
+ */
 void LoadRoom3C(Scene* scene,GameState* gameState,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
     char *l = "NSWE";
     int c =0;
@@ -670,6 +853,20 @@ void LoadRoom3C(Scene* scene,GameState* gameState,Model* map,Collider* col, Mode
         break;
     }
 }
+
+/**
+ * @brief Load the room 4C
+ * 
+ * This function loads the room 4C.
+ * 
+ * @param scene The scene
+ * @param gameState The GameState
+ * @param map The Model
+ * @param col The Collider
+ * @param player The Model
+ * @param dj The Dungeon object
+ * @param body The RigidBody
+ */
 void LoadRoom4C(Scene* scene,GameState* gameState,Model* player,Dungeon*dj,RigidBody* body){
     switch (dj->direction)
     {
@@ -691,6 +888,19 @@ void LoadRoom4C(Scene* scene,GameState* gameState,Model* player,Dungeon*dj,Rigid
     }
 }
 
+/**
+ * @brief Load the room 2I
+ * 
+ * This function loads the room 2I.
+ * 
+ * @param scene The scene
+ * @param gameState The GameState
+ * @param map The Model
+ * @param col The Collider
+ * @param player The Model
+ * @param dj The Dungeon object
+ * @param body The RigidBody
+ */
 void LoadRoom2I(Scene* scene,GameState* gameState,Model* map,Collider* col, Model* player,Dungeon * dj,RigidBody* body) {
      
     switch (dj->direction)
@@ -726,6 +936,19 @@ void LoadRoom2I(Scene* scene,GameState* gameState,Model* map,Collider* col, Mode
     }
 }
 
+/**
+ * @brief Load the room 3T
+ * 
+ * This function loads the room 3T.
+ * 
+ * @param scene The scene
+ * @param gameState The GameState
+ * @param map The Model
+ * @param col The Collider
+ * @param player The Model
+ * @param dj The Dungeon object
+ * @param body The RigidBody
+ */
 void LoadRoom3T(Scene* scene,GameState* gameState,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
     char *l = "NSWE";
     bool dir_used[4] = {false,false,false,false};
@@ -781,6 +1004,19 @@ void LoadRoom3T(Scene* scene,GameState* gameState,Model* map,Collider* col, Mode
     }
 }
 
+/**
+ * @brief Load the room 2L
+ * 
+ * This function loads the room 2L.
+ * 
+ * @param scene The scene
+ * @param gameState The GameState
+ * @param map The Model
+ * @param col The Collider
+ * @param player The Model
+ * @param dj The Dungeon object
+ * @param body The RigidBody
+ */
 void LoadRoom2L(Scene* scene,GameState* gameState,Model* map,Collider* col, Model* player,Dungeon *dj,RigidBody* body) {
     char *l = "NSWE";
     bool dir_used[4] = {false,false,false,false};
@@ -844,6 +1080,17 @@ void LoadRoom2L(Scene* scene,GameState* gameState,Model* map,Collider* col, Mode
         break;
     }
 }
+
+/*
+* @brief Handle the logic of the room 1C
+*
+* This function handles the logic of the room 1C.
+*
+* @param scene The scene
+* @param gameState The GameState
+* @param dj The Dungeon object
+* @param body The RigidBody
+*/
 void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){  
     SDL_Color color_black = {0, 0, 0, 0};
     SDL_Color color_white = {255, 255, 255, 0};
@@ -954,6 +1201,17 @@ void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
 
 
 }
+
+/**
+ * @brief Handle the logic of the room 2C
+ *
+ * This function handles the logic of the room 2C.
+ *
+ * @param scene The scene
+ * @param gameState The GameState
+ * @param dj The Dungeon object
+ * @param body The RigidBody
+ */
 void LogicRoom2C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     vec3 Door1Position;
     vec3 Door2Position;
@@ -1019,6 +1277,17 @@ void LogicRoom2C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     }
 
 }
+
+/**
+ * @brief Handle the logic of the room 3C
+ *
+ * This function handles the logic of the room 3C.
+ *
+ * @param scene The scene
+ * @param gameState The GameState
+ * @param dj The Dungeon object
+ * @param body The RigidBody
+ */
 void LogicRoom3C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     char *l = "NSWE";
     bool dir_used[4] = {false,false,false,false};
@@ -1112,6 +1381,16 @@ void LogicRoom3C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
 
 }
 
+/**
+ * @brief Handle the logic of the room 4C
+ *
+ * This function handles the logic of the room 4C.
+ *
+ * @param scene The scene
+ * @param gameState The GameState
+ * @param dj The Dungeon object
+ * @param body The RigidBody
+ */
 void LogicRoom4C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     vec3 Door1Position={0.0f,0.0f,0.0f};
     vec3 Door2Position={0.0f,0.0f,0.0f};
@@ -1194,6 +1473,16 @@ void LogicRoom4C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
 
 }
 
+/**
+ * @brief Handle the logic of the room 3T
+ *
+ * This function handles the logic of the room 3T.
+ *
+ * @param scene The scene
+ * @param gameState The GameState
+ * @param dj The Dungeon object
+ * @param body The RigidBody
+ */
 void LogicRoom3T(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     char *l = "NSWE";
     bool dir_used[4] = {false,false,false,false};
@@ -1296,6 +1585,16 @@ void LogicRoom3T(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     }
 }
 
+/**
+ * @brief Handle the logic of the room 2L
+ *
+ * This function handles the logic of the room 2L.
+ *
+ * @param scene The scene
+ * @param gameState The GameState
+ * @param dj The Dungeon object
+ * @param body The RigidBody
+ */
 void LogicRoom2L(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     char *l = "NSWE";
     bool dir_used[4] = {false,false,false,false};
@@ -1378,6 +1677,17 @@ void LogicRoom2L(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         dj->change = true;
     }
 }
+
+/**
+ * @brief Handle the logic of the room 2I
+ *
+ * This function handles the logic of the room 2I.
+ *
+ * @param scene The scene
+ * @param gameState The GameState
+ * @param dj The Dungeon object
+ * @param body The RigidBody
+ */
 void LogicRoom2I(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     vec3 Door1Position;
     vec3 Door2Position;
@@ -1444,6 +1754,17 @@ void LogicRoom2I(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
         printf("D1 = %f,D2 = %f\n",Door1Dist,Door2Dist);
     }
 }
+
+/**
+ * @brief Handle the logic of the room B
+ *
+ * This function handles the logic of the room B.
+ *
+ * @param scene The scene
+ * @param gameState The GameState
+ * @param dj The Dungeon object
+ * @param body The RigidBody
+ */
 void LogicRoomB(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     SDL_Color color_black = {0, 0, 0, 0};
     Entity* player = &scene->entities[2];
@@ -1491,6 +1812,13 @@ void LogicRoomB(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
 
 }
 
+/**
+ * @brief Set the type of the rooms
+ * 
+ * This function sets the type of the rooms.
+ * 
+ * @param dj The Dungeon object
+*/
 void setTypeRoom(Dungeon* dj){
     bool hasKeyBoss = false;
     srand(time(NULL));
@@ -1539,7 +1867,15 @@ void setTypeRoom(Dungeon* dj){
         }
      }
         
-
+/*
+* @brief Display the minimap
+*
+* This function displays the minimap.
+*
+* @param scene The scene
+* @param dj The Dungeon object
+* @param gameState The GameState
+*/
 void displayMiniMap(Scene* scene, Dungeon* dj,GameState* gameState){
     char *l = "NSWE";
     bool dir_used[4] = {false,false,false,false};
