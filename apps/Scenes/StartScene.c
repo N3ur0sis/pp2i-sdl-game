@@ -30,7 +30,8 @@ void startStartScene(Scene* scene, GameState* gameState) {
     /* Load and compile textShader */
     scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
     /* Create a scene camera */
-    scene->camera = camera_create(80, 80, 0, gameState->g_WindowWidth, gameState->g_WindowHeight);
+    scene->camera = camera_create(20, 22, -30, gameState->g_WindowWidth, gameState->g_WindowHeight);
+    
     glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
     /* Create a skybox */
     scene->skybox = SkyboxCreate();
@@ -136,7 +137,6 @@ void startStartScene(Scene* scene, GameState* gameState) {
 }
  
 void updateStartScene(Scene* scene, GameState* gameState) {
-
     Entity* enemy = &scene->entities[0];
     Entity* playerEntity = &scene->entities[1];
     Entity* swordEntity = &scene->entities[2];
@@ -237,9 +237,9 @@ void updateStartScene(Scene* scene, GameState* gameState) {
 
 
         if (y < -29.25f) {
-            ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 1.1f;
+            ((RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY))->velocity[1] = 1.1f;
         } else {
-            ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 0.1f;
+            ((RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY))->velocity[1] = 0.1f;
         }
         
 
