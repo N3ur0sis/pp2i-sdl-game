@@ -4,7 +4,7 @@
 #include <Skybox.h>
 #include <Entity.h>
 #include <GameState.h>
-
+#include <SDL_mixer.h>
 #define MAX_ENTITIES 100
 
 #define INIT_SCENE(sceneVar, sceneManager, startFunc, updateFunc, unloadFunc) \
@@ -23,7 +23,7 @@ typedef struct _Scene {
     float deltaTime;
     void (*start)(struct _Scene* scene, GameState* gameState);
     void (*update)(struct _Scene* scene, GameState* gameState);
-    void (*unload)(struct _cene* scene);
+    void (*unload)(struct _Scene* scene);
 } Scene;
 
 Entity* createEntity(Scene* scene);

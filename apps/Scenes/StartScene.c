@@ -69,7 +69,7 @@ void startStartScene(Scene* scene, GameState* gameState) {
         addComponent(mapEntity, COMPONENT_RENDERABLE, map);
 
         Collider* mapCollision = ColliderCreate("assets/models/start/col.obj");
-        glm_translate_make(mapCollision->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
+        glm_translate_make(mapCollision->transformMatrix, (vec3){0.0f, -9.0f, 0.0f});
         UpdateCollider(mapCollision);
         addComponent(mapEntity, COMPONENT_COLLIDER, mapCollision);
     }
@@ -88,7 +88,7 @@ void startStartScene(Scene* scene, GameState* gameState) {
         ModelCreate(chestClose, "assets/models/Objet/Chest/ChestFerme.obj");
         glm_vec3_copy((vec3){-0.2f,1.2f,-33.3f},chestClose->position);
         addComponent(chestEntity, COMPONENT_RENDERABLE, chestClose);
-        Collider* chestCollision = ColliderCreate("assets/models/Objet/Chest/ChestFerme.obj");
+        Collider* chestCollision = ColliderCreate("assets/models/Objet/Chest/ChestOuvert.obj");
         glm_translate_make(chestCollision->transformMatrix, (vec3){-0.2f, 1.2f, -33.3f});
         UpdateCollider(chestCollision);
         addComponent(chestEntity, COMPONENT_COLLIDER, chestCollision);
@@ -100,6 +100,10 @@ void startStartScene(Scene* scene, GameState* gameState) {
         glm_vec3_copy((vec3){-0.2f,1.2f,-33.4f},chestOpen->position);
         chestOpen->isRenderable = false;
         addComponent(chestOpenEntity, COMPONENT_RENDERABLE, chestOpen);
+        Collider* chestCollision = ColliderCreate("assets/models/Objet/Chest/ChestOuvert.obj");
+        glm_translate_make(chestCollision->transformMatrix, (vec3){-0.2f, 1.2f, -33.3f});
+        UpdateCollider(chestCollision);
+        addComponent(chestOpenEntity, COMPONENT_COLLIDER, chestCollision);
     }
     Entity* startBarrierEntity = createEntity(scene);
     if (startBarrierEntity != NULL) {
@@ -305,6 +309,8 @@ void updateStartScene(Scene* scene, GameState* gameState) {
                 scene->camera->Pitch = -20.0f;
             }
         }else if (y < -30.5f && y > -35.5f && x < 2.08f && x > -2.8 && *isBusy && !checkpoint_sword) {
+            ((Model*)getComponent(chestEntity, COMPONENT_RENDERABLE))->isRenderable = false;
+            ((Model*)getComponent(chestOpenEntity, COMPONENT_RENDERABLE))->isRenderable = true;
             switch (click_counter) {
                 case 0:
                     RenderText("Coffre         ", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
@@ -316,8 +322,6 @@ void updateStartScene(Scene* scene, GameState* gameState) {
                         click_counter = 0;
                         *isBusy = false;
                         ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))->isRenderable = true;
-                        ((Model*)getComponent(chestEntity, COMPONENT_RENDERABLE))->isRenderable = false;
-                        ((Model*)getComponent(chestOpenEntity, COMPONENT_RENDERABLE))->isRenderable = true;
                         enemyModel->isRenderable = true;
                         is_clicking = true;
                         checkpoint_sword = true;
