@@ -72,10 +72,10 @@ $(function() {
 <a href="_enemy_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;Model.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_model_8h.html">Model.h</a>&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_animator_8h.html">Animator.h</a>&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_entity_8h.html">Entity.h</a>&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;Scene.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_scene_8h.html">Scene.h</a>&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
 <div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct___enemy_component.html">   19</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___enemy_component.html">_EnemyComponent</a> {</div>
 <div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="struct___enemy_component.html#ad0dea711cdf3eaf35d6e1dfde0f163b3">   20</a></span>&#160;    vec3 <a class="code" href="struct___enemy_component.html#ad0dea711cdf3eaf35d6e1dfde0f163b3">direction</a>;         </div>
@@ -106,6 +106,8 @@ $(function() {
 <div class="ttc" id="a_enemy_8h_html_a52beb855a39301787fb16dae67362691"><div class="ttname"><a href="_enemy_8h.html#a52beb855a39301787fb16dae67362691">EnemyComponent</a></div><div class="ttdeci">struct _EnemyComponent EnemyComponent</div><div class="ttdoc">Struct representing an enemy component.</div></div>
 <div class="ttc" id="a_enemy_8h_html_a8335475d9ba17b935313f61bc2eeb9d4"><div class="ttname"><a href="_enemy_8h.html#a8335475d9ba17b935313f61bc2eeb9d4">create_golem</a></div><div class="ttdeci">Entity * create_golem(Scene *scene, float x, float y, float z, float scale)</div><div class="ttdoc">Function to create a golem enemy.</div><div class="ttdef"><b>Definition:</b> Enemy.c:101</div></div>
 <div class="ttc" id="a_entity_8h_html"><div class="ttname"><a href="_entity_8h.html">Entity.h</a></div><div class="ttdoc">Header file for the entity component.</div></div>
+<div class="ttc" id="a_model_8h_html"><div class="ttname"><a href="_model_8h.html">Model.h</a></div><div class="ttdoc">Header file for the model component.</div></div>
+<div class="ttc" id="a_scene_8h_html"><div class="ttname"><a href="_scene_8h.html">Scene.h</a></div><div class="ttdoc">Header file for the scene component.</div></div>
 <div class="ttc" id="astruct___enemy_component_html"><div class="ttname"><a href="struct___enemy_component.html">_EnemyComponent</a></div><div class="ttdoc">Struct representing an enemy component.</div><div class="ttdef"><b>Definition:</b> Enemy.h:19</div></div>
 <div class="ttc" id="astruct___enemy_component_html_a146987c4b529a1ab1c072ae09e32bce8"><div class="ttname"><a href="struct___enemy_component.html#a146987c4b529a1ab1c072ae09e32bce8">_EnemyComponent::attackRange</a></div><div class="ttdeci">float attackRange</div><div class="ttdef"><b>Definition:</b> Enemy.h:22</div></div>
 <div class="ttc" id="astruct___enemy_component_html_a631e83154e218047a2889c328a40d351"><div class="ttname"><a href="struct___enemy_component.html#a631e83154e218047a2889c328a40d351">_EnemyComponent::movementSpeed</a></div><div class="ttdeci">float movementSpeed</div><div class="ttdef"><b>Definition:</b> Enemy.h:23</div></div>
@@ -117,7 +119,7 @@ $(function() {
 <div class="ttc" id="astruct___enemy_component_html_abce0ad2e9dcca793a209d876bbee0959"><div class="ttname"><a href="struct___enemy_component.html#abce0ad2e9dcca793a209d876bbee0959">_EnemyComponent::detectionRange</a></div><div class="ttdeci">float detectionRange</div><div class="ttdef"><b>Definition:</b> Enemy.h:21</div></div>
 <div class="ttc" id="astruct___enemy_component_html_ad0dea711cdf3eaf35d6e1dfde0f163b3"><div class="ttname"><a href="struct___enemy_component.html#ad0dea711cdf3eaf35d6e1dfde0f163b3">_EnemyComponent::direction</a></div><div class="ttdeci">vec3 direction</div><div class="ttdef"><b>Definition:</b> Enemy.h:20</div></div>
 <div class="ttc" id="astruct___entity_html"><div class="ttname"><a href="struct___entity.html">_Entity</a></div><div class="ttdoc">Struct representing an entity.</div><div class="ttdef"><b>Definition:</b> Entity.h:18</div></div>
-<div class="ttc" id="astruct___scene_html"><div class="ttname"><a href="struct___scene.html">_Scene</a></div><div class="ttdef"><b>Definition:</b> Scene.h:16</div></div>
+<div class="ttc" id="astruct___scene_html"><div class="ttname"><a href="struct___scene.html">_Scene</a></div><div class="ttdoc">Struct representing a scene.</div><div class="ttdef"><b>Definition:</b> Scene.h:27</div></div>
 <div class="ttc" id="astruct_game_state_html"><div class="ttname"><a href="struct_game_state.html">GameState</a></div><div class="ttdoc">Struct representing the game state.</div><div class="ttdef"><b>Definition:</b> GameState.h:17</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

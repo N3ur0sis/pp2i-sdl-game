@@ -38,13 +38,13 @@ typedef struct \mbox{\hyperlink{struct___enemy_component}{\+\_\+\+Enemy\+Compone
 \doxysubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$ \mbox{\hyperlink{_enemy_8h_a8335475d9ba17b935313f61bc2eeb9d4}{create\+\_\+golem}} (\mbox{\hyperlink{struct___scene}{Scene}} $\ast$scene, float x, float y, float z, float scale)
+\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$ \mbox{\hyperlink{_enemy_8h_a8335475d9ba17b935313f61bc2eeb9d4}{create\+\_\+golem}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, float x, float y, float z, float scale)
 \begin{DoxyCompactList}\small\item\em Function to create a golem enemy. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$ \mbox{\hyperlink{_enemy_8h_a1ae9387a33d38641b5a12df1ebedb8ad}{create\+\_\+golem\+Purple}} (\mbox{\hyperlink{struct___scene}{Scene}} $\ast$scene, float x, float y, float z, float scale)
+\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$ \mbox{\hyperlink{_enemy_8h_a1ae9387a33d38641b5a12df1ebedb8ad}{create\+\_\+golem\+Purple}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, float x, float y, float z, float scale)
 \begin{DoxyCompactList}\small\item\em Function to create a purple golem enemy. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{_enemy_8h_a2de3683b7ea85c8bcaf4d4dec03cffdf}{golem\+Logic}} (\mbox{\hyperlink{struct___scene}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$golem, \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$player)
+void \mbox{\hyperlink{_enemy_8h_a2de3683b7ea85c8bcaf4d4dec03cffdf}{golem\+Logic}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$golem, \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$player)
 \begin{DoxyCompactList}\small\item\em Function to handle the logic of the golem enemy. \end{DoxyCompactList}\item 
-void \mbox{\hyperlink{_enemy_8h_a3060d418d8161d72f78cdd5c438a07b9}{update\+Enemy}} (\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$enemy, \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$player, \mbox{\hyperlink{struct___scene}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, float delta\+Time)
+void \mbox{\hyperlink{_enemy_8h_a3060d418d8161d72f78cdd5c438a07b9}{update\+Enemy}} (\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$enemy, \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$player, \mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, float delta\+Time)
 \begin{DoxyCompactList}\small\item\em Function to update the enemy. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_enemy_8h_a169711f58adbc7328de0118f1f6550e8}{initialize\+Enemy\+Component}} (\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$enemy, float detection\+Range, float attack\+Range, float movement\+Speed, float attack\+Damage)
 \begin{DoxyCompactList}\small\item\em Function to initialize the enemy component. \end{DoxyCompactList}\end{DoxyCompactItemize}
@@ -73,7 +73,7 @@ This struct represents an enemy component.
 \index{Enemy.h@{Enemy.h}!create\_golem@{create\_golem}}
 \index{create\_golem@{create\_golem}!Enemy.h@{Enemy.h}}
 \doxysubsubsection{\texorpdfstring{create\_golem()}{create\_golem()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}}$\ast$ create\+\_\+golem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___scene}{Scene}} $\ast$}]{scene,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}}$\ast$ create\+\_\+golem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{scale }\end{DoxyParamCaption})}
 
 
 
@@ -101,7 +101,7 @@ Pointer to the golem entity.
 \index{Enemy.h@{Enemy.h}!create\_golemPurple@{create\_golemPurple}}
 \index{create\_golemPurple@{create\_golemPurple}!Enemy.h@{Enemy.h}}
 \doxysubsubsection{\texorpdfstring{create\_golemPurple()}{create\_golemPurple()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}}$\ast$ create\+\_\+golem\+Purple (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___scene}{Scene}} $\ast$}]{scene,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}}$\ast$ create\+\_\+golem\+Purple (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{scale }\end{DoxyParamCaption})}
 
 
 
@@ -129,7 +129,7 @@ Pointer to the golem entity.
 \index{Enemy.h@{Enemy.h}!golemLogic@{golemLogic}}
 \index{golemLogic@{golemLogic}!Enemy.h@{Enemy.h}}
 \doxysubsubsection{\texorpdfstring{golemLogic()}{golemLogic()}}
-{\footnotesize\ttfamily void golem\+Logic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___scene}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{golem,  }\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{player }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void golem\+Logic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{golem,  }\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{player }\end{DoxyParamCaption})}
 
 
 
@@ -177,7 +177,7 @@ This function initializes the enemy component.
 \index{Enemy.h@{Enemy.h}!updateEnemy@{updateEnemy}}
 \index{updateEnemy@{updateEnemy}!Enemy.h@{Enemy.h}}
 \doxysubsubsection{\texorpdfstring{updateEnemy()}{updateEnemy()}}
-{\footnotesize\ttfamily void update\+Enemy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{enemy,  }\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{player,  }\item[{\mbox{\hyperlink{struct___scene}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily void update\+Enemy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{enemy,  }\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{player,  }\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
 
 
 

@@ -1,0 +1,88 @@
+\hypertarget{_shadow_map_8h}{}\doxysection{include/\+Shadow\+Map.h File Reference}
+\label{_shadow_map_8h}\index{include/ShadowMap.h@{include/ShadowMap.h}}
+
+
+Header file for the shadow map component.  
+
+
+{\ttfamily \#include $<$glad/glad.\+h$>$}\newline
+{\ttfamily \#include $<$cglm/cglm.\+h$>$}\newline
+{\ttfamily \#include $<$Shader.\+h$>$}\newline
+Include dependency graph for Shadow\+Map.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_shadow_map_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_shadow_map_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___shadow_map}{\+\_\+\+Shadow\+Map}}
+\begin{DoxyCompactList}\small\item\em Struct representing a shadow map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct___shadow_map}{\+\_\+\+Shadow\+Map}} \mbox{\hyperlink{_shadow_map_8h_ab1324e464e55bd96805d28d8d94ebab4}{Shadow\+Map}}
+\begin{DoxyCompactList}\small\item\em Struct representing a shadow map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_shadow_map_8h_ab1324e464e55bd96805d28d8d94ebab4}{Shadow\+Map}} $\ast$ \mbox{\hyperlink{_shadow_map_8h_af4606f0d65759d18f9a72c85d231c05c}{Shadow\+Map\+Create}} (vec3 position, \mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$shader, float nearz, float farz)
+\begin{DoxyCompactList}\small\item\em Function to create a shadow map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the shadow map component. 
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_shadow_map_8h_ab1324e464e55bd96805d28d8d94ebab4}\label{_shadow_map_8h_ab1324e464e55bd96805d28d8d94ebab4}} 
+\index{ShadowMap.h@{ShadowMap.h}!ShadowMap@{ShadowMap}}
+\index{ShadowMap@{ShadowMap}!ShadowMap.h@{ShadowMap.h}}
+\doxysubsubsection{\texorpdfstring{ShadowMap}{ShadowMap}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct___shadow_map}{\+\_\+\+Shadow\+Map}} \mbox{\hyperlink{_shadow_map_8h_ab1324e464e55bd96805d28d8d94ebab4}{Shadow\+Map}}}
+
+
+
+Struct representing a shadow map. 
+
+This struct represents a shadow map. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_shadow_map_8h_af4606f0d65759d18f9a72c85d231c05c}\label{_shadow_map_8h_af4606f0d65759d18f9a72c85d231c05c}} 
+\index{ShadowMap.h@{ShadowMap.h}!ShadowMapCreate@{ShadowMapCreate}}
+\index{ShadowMapCreate@{ShadowMapCreate}!ShadowMap.h@{ShadowMap.h}}
+\doxysubsubsection{\texorpdfstring{ShadowMapCreate()}{ShadowMapCreate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_shadow_map_8h_ab1324e464e55bd96805d28d8d94ebab4}{Shadow\+Map}}$\ast$ Shadow\+Map\+Create (\begin{DoxyParamCaption}\item[{vec3}]{position,  }\item[{\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$}]{shader,  }\item[{float}]{nearz,  }\item[{float}]{farz }\end{DoxyParamCaption})}
+
+
+
+Function to create a shadow map. 
+
+This function creates a shadow map.
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & Position of the shadow map. \\
+\hline
+{\em shader} & Shader for the shadow map. \\
+\hline
+{\em nearz} & Near z value. \\
+\hline
+{\em farz} & Far z value. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the shadow map. 
+\end{DoxyReturn}

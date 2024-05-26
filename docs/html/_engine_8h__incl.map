@@ -6,8 +6,8 @@
 <area shape="rect" id="node5" title=" " alt="" coords="141,752,237,779"/>
 <area shape="rect" id="node6" href="$_window_8h.html" title="Window management functions and definitions for the application." alt="" coords="45,229,131,256"/>
 <area shape="rect" id="node7" href="$_audio_8h.html" title="Audio header file." alt="" coords="1625,80,1695,107"/>
-<area shape="rect" id="node9" href="$_textures_8h_source.html" title=" " alt="" coords="574,752,663,779"/>
-<area shape="rect" id="node10" href="$_renderer_8h_source.html" title=" " alt="" coords="1111,677,1203,704"/>
+<area shape="rect" id="node9" href="$_textures_8h.html" title="Header file for the Textures module." alt="" coords="574,752,663,779"/>
+<area shape="rect" id="node10" href="$_renderer_8h.html" title="Header file for the renderer component." alt="" coords="1111,677,1203,704"/>
 <area shape="rect" id="node14" href="$_controls_8h.html" title="Input processing functions and definitions for the application." alt="" coords="405,80,493,107"/>
 <area shape="rect" id="node8" title=" " alt="" coords="1608,155,1747,181"/>
 <area shape="rect" id="node11" title=" " alt="" coords="1096,752,1213,779"/>
@@ -18,13 +18,13 @@
 <area shape="rect" id="node17" href="$_time_8h.html" title="Time management structures and definitions for the application." alt="" coords="335,304,401,331"/>
 <area shape="rect" id="node18" href="$_event_8h.html" title="Scene management event functions and definitions for the application." alt="" coords="451,155,522,181"/>
 <area shape="rect" id="node40" href="$_game_state_8h.html" title="Header file for the game state." alt="" coords="1061,379,1168,405"/>
-<area shape="rect" id="node19" href="$_scene_manager_8h_source.html" title=" " alt="" coords="722,229,851,256"/>
-<area shape="rect" id="node20" href="$_scene_8h_source.html" title=" " alt="" coords="802,304,875,331"/>
-<area shape="rect" id="node21" href="$_shader_8h_source.html" title=" " alt="" coords="891,752,970,779"/>
-<area shape="rect" id="node24" href="$_skybox_8h_source.html" title=" " alt="" coords="633,677,714,704"/>
+<area shape="rect" id="node19" href="$_scene_manager_8h.html" title="Header file for the scene manager component." alt="" coords="722,229,851,256"/>
+<area shape="rect" id="node20" href="$_scene_8h.html" title="Header file for the scene component." alt="" coords="802,304,875,331"/>
+<area shape="rect" id="node21" href="$_shader_8h.html" title="Header file for the shader component." alt="" coords="891,752,970,779"/>
+<area shape="rect" id="node24" href="$_skybox_8h.html" title="Header file for the skybox component." alt="" coords="633,677,714,704"/>
 <area shape="rect" id="node27" href="$_entity_8h.html" title="Header file for the entity component." alt="" coords="895,379,966,405"/>
 <area shape="rect" id="node43" title=" " alt="" coords="698,379,801,405"/>
-<area shape="rect" id="node22" href="$_read_shader_8h_source.html" title=" " alt="" coords="1002,827,1113,853"/>
+<area shape="rect" id="node22" href="$_read_shader_8h.html" title="Header file for the read shader component." alt="" coords="1002,827,1113,853"/>
 <area shape="rect" id="node23" title=" " alt="" coords="1115,901,1186,928"/>
 <area shape="rect" id="node25" href="$_camera_8h.html" title="Camera header file." alt="" coords="464,752,549,779"/>
 <area shape="rect" id="node26" title=" " alt="" coords="587,827,680,853"/>
@@ -33,13 +33,13 @@
 <area shape="rect" id="node37" href="$_light_8h.html" title="Header file for the light component." alt="" coords="907,603,973,629"/>
 <area shape="rect" id="node39" href="$_collider_8h.html" title="Collider header file." alt="" coords="749,528,832,555"/>
 <area shape="rect" id="node30" href="$_animation_8h.html" title="Implementations of animation functions." alt="" coords="456,603,557,629"/>
-<area shape="rect" id="node31" href="$_model_8h_source.html" title=" " alt="" coords="469,677,544,704"/>
+<area shape="rect" id="node31" href="$_model_8h.html" title="Header file for the model component." alt="" coords="469,677,544,704"/>
 <area shape="rect" id="node32" href="$_mesh_8h.html" title="Header file for the mesh component." alt="" coords="371,752,440,779"/>
 <area shape="rect" id="node36" href="$_algebra_8h.html" title="Implementations of algebra functions." alt="" coords="262,752,346,779"/>
 <area shape="rect" id="node33" title=" " alt="" coords="94,827,229,853"/>
 <area shape="rect" id="node34" title=" " alt="" coords="253,827,376,853"/>
 <area shape="rect" id="node35" title=" " alt="" coords="400,827,563,853"/>
-<area shape="rect" id="node38" href="$_shadow_map_8h_source.html" title=" " alt="" coords="794,677,907,704"/>
+<area shape="rect" id="node38" href="$_shadow_map_8h.html" title="Header file for the shadow map component." alt="" coords="794,677,907,704"/>
 <area shape="rect" id="node41" href="$_inventory_8h.html" title="Header file for the inventory component." alt="" coords="1213,603,1307,629"/>
-<area shape="rect" id="node42" href="$_objects_8h_source.html" title=" " alt="" coords="1359,827,1441,853"/>
+<area shape="rect" id="node42" href="$_objects_8h.html" title="Header file for the objects component." alt="" coords="1359,827,1441,853"/>
 </map>

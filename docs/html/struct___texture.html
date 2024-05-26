@@ -68,20 +68,53 @@ $(function() {
 </div><!--header-->
 <div class="contents">
 
+<p>Represent a single texture in the engine. Can be used by multiple Objet, completely dissociated from any Model, this class is just the reuslt of loading an image into a buffer.  
+ <a href="struct___texture.html#details">More...</a></p>
+
 <p><code>#include &lt;<a class="el" href="_textures_8h_source.html">Textures.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a8e313194e7fdf81e86c9f267a5625ec1"><td class="memItemLeft" align="right" valign="top"><a id="a8e313194e7fdf81e86c9f267a5625ec1"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>id</b></td></tr>
+<tr class="memitem:a8e313194e7fdf81e86c9f267a5625ec1"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___texture.html#a8e313194e7fdf81e86c9f267a5625ec1">id</a></td></tr>
 <tr class="separator:a8e313194e7fdf81e86c9f267a5625ec1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a763fd8db6bba8fbbbc113ca0d61c47c2"><td class="memItemLeft" align="right" valign="top"><a id="a763fd8db6bba8fbbbc113ca0d61c47c2"></a>
-const char *&#160;</td><td class="memItemRight" valign="bottom"><b>type</b></td></tr>
+<tr class="memitem:a763fd8db6bba8fbbbc113ca0d61c47c2"><td class="memItemLeft" align="right" valign="top">const char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___texture.html#a763fd8db6bba8fbbbc113ca0d61c47c2">type</a></td></tr>
 <tr class="separator:a763fd8db6bba8fbbbc113ca0d61c47c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Represent a single texture in the engine. Can be used by multiple Objet, completely dissociated from any Model, this class is just the reuslt of loading an image into a buffer. </p><dl class="section note"><dt>Note</dt><dd>It uses the default texture unit, hence it is not necessary to specify the uniform value on the shader. </dd></dl>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
+<div class="textblock"><p>Represent a single texture in the engine. Can be used by multiple Objet, completely dissociated from any Model, this class is just the reuslt of loading an image into a buffer. </p>
+<dl class="section note"><dt>Note</dt><dd>It uses the default texture unit, hence it is not necessary to specify the uniform value on the shader. </dd></dl>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a id="a8e313194e7fdf81e86c9f267a5625ec1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8e313194e7fdf81e86c9f267a5625ec1">&#9670;&nbsp;</a></span>id</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint id</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Holds the id of the texture object, used to bind the texure before rendering </p>
+
+</div>
+</div>
+<a id="a763fd8db6bba8fbbbc113ca0d61c47c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a763fd8db6bba8fbbbc113ca0d61c47c2">&#9670;&nbsp;</a></span>type</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const char* type</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Type of the texture map, ex. DIFFUSE, SPECULAR, NORMAL, ROUGHNESS </p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/<a class="el" href="_textures_8h_source.html">Textures.h</a></li>
 </ul>
 </div><!-- contents -->

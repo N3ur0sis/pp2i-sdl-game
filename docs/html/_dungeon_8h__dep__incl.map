@@ -2,7 +2,7 @@
 <area shape="rect" id="node1" title="Dungeon header file." alt="" coords="241,5,384,32"/>
 <area shape="rect" id="node2" href="$_dungeon_scene_8h.html" title="Header file for the dungeon scene." alt="" coords="21,80,204,107"/>
 <area shape="rect" id="node5" href="$_dungeon_test_8h_source.html" title=" " alt="" coords="228,80,397,107"/>
-<area shape="rect" id="node6" href="$_system_8h_source.html" title=" " alt="" coords="421,80,556,107"/>
+<area shape="rect" id="node6" href="$_system_8h.html" title="Header file for the system functions." alt="" coords="421,80,556,107"/>
 <area shape="rect" id="node3" href="$_application_8c.html" title="Entry point of the program." alt="" coords="331,155,473,181"/>
 <area shape="rect" id="node4" href="$_dungeon_scene_8c.html" title="Implementation of the dungeon scene." alt="" coords="5,155,220,181"/>
 </map>

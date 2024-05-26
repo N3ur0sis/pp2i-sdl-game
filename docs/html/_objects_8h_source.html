@@ -69,28 +69,44 @@ $(function() {
 <div class="title">Objects.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="struct___object.html">    7</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___object.html">_Object</a> {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordtype">char</span>* name;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordtype">char</span>* description;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordtype">int</span> id;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;} <a class="code" href="struct___object.html">Object</a>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<a class="code" href="struct___object.html">Object</a>* Object_create(<span class="keywordtype">char</span>* name, <span class="keywordtype">char</span>* description, <span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<a class="code" href="struct___object.html">Object</a>* Object_createFromId(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">void</span> printObject(<span class="keywordtype">int</span> <span class="keywordtype">id</span>, <span class="keywordtype">int</span> nb);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">char</span>* checkIdObject(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">char</span>* nameFromId(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">char</span>* descriptionFromId(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">int</span> costFromId(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
-<div class="ttc" id="astruct___object_html"><div class="ttname"><a href="struct___object.html">_Object</a></div><div class="ttdef"><b>Definition:</b> Objects.h:7</div></div>
+<a href="_objects_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="struct___object.html">   15</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___object.html">_Object</a> {</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct___object.html#a5ac083a645d964373f022d03df4849c8">   16</a></span>&#160;    <span class="keywordtype">char</span>* <a class="code" href="struct___object.html#a5ac083a645d964373f022d03df4849c8">name</a>;         </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="struct___object.html#a8444d6e0dfe2bbab0b5e7b24308f1559">   17</a></span>&#160;    <span class="keywordtype">char</span>* <a class="code" href="struct___object.html#a8444d6e0dfe2bbab0b5e7b24308f1559">description</a>;  </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct___object.html#a7441ef0865bcb3db9b8064dd7375c1ea">   18</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct___object.html#a7441ef0865bcb3db9b8064dd7375c1ea">id</a>;             </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="_objects_8h.html#a7f8bbcda919b65ce67f92fba08e0212f">   19</a></span>&#160;} <a class="code" href="_objects_8h.html#a7f8bbcda919b65ce67f92fba08e0212f">Object</a>;</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<a class="code" href="struct___object.html">Object</a>* <a class="code" href="_objects_8h.html#ac716bb5a4091fc833a0b34f48d4cced9">Object_create</a>(<span class="keywordtype">char</span>* name, <span class="keywordtype">char</span>* description, <span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<a class="code" href="struct___object.html">Object</a>* <a class="code" href="_objects_8h.html#ac688d85012cbd1ce3b9eaddeee03947a">Object_createFromId</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_objects_8h.html#a1a3e1a119dc6bcb030996b5b7dda97c2">printObject</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>, <span class="keywordtype">int</span> nb);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="_objects_8h.html#acfb7fb36de11034b92567c6ae9f84d9c">checkIdObject</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="_objects_8h.html#a5384620c9797000f78bf26486415066b">nameFromId</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordtype">char</span>* <a class="code" href="_objects_8h.html#a6d5105da1c54f6485b5e3bc270fa639b">descriptionFromId</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160;<span class="keywordtype">int</span> <a class="code" href="_objects_8h.html#af24d9567b0c3e9d0f1db04ad10ec2529">costFromId</a>(<span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="ttc" id="a_objects_8h_html_a1a3e1a119dc6bcb030996b5b7dda97c2"><div class="ttname"><a href="_objects_8h.html#a1a3e1a119dc6bcb030996b5b7dda97c2">printObject</a></div><div class="ttdeci">void printObject(int id, int nb)</div><div class="ttdoc">Function to print an object.</div><div class="ttdef"><b>Definition:</b> Object.c:21</div></div>
+<div class="ttc" id="a_objects_8h_html_a5384620c9797000f78bf26486415066b"><div class="ttname"><a href="_objects_8h.html#a5384620c9797000f78bf26486415066b">nameFromId</a></div><div class="ttdeci">char * nameFromId(int id)</div><div class="ttdoc">Function to get the name of an object based on its ID.</div><div class="ttdef"><b>Definition:</b> Object.c:47</div></div>
+<div class="ttc" id="a_objects_8h_html_a6d5105da1c54f6485b5e3bc270fa639b"><div class="ttname"><a href="_objects_8h.html#a6d5105da1c54f6485b5e3bc270fa639b">descriptionFromId</a></div><div class="ttdeci">char * descriptionFromId(int id)</div><div class="ttdoc">Function to get the description of an object based on its ID.</div><div class="ttdef"><b>Definition:</b> Object.c:70</div></div>
+<div class="ttc" id="a_objects_8h_html_a7f8bbcda919b65ce67f92fba08e0212f"><div class="ttname"><a href="_objects_8h.html#a7f8bbcda919b65ce67f92fba08e0212f">Object</a></div><div class="ttdeci">struct _Object Object</div><div class="ttdoc">Struct representing an object.</div></div>
+<div class="ttc" id="a_objects_8h_html_ac688d85012cbd1ce3b9eaddeee03947a"><div class="ttname"><a href="_objects_8h.html#ac688d85012cbd1ce3b9eaddeee03947a">Object_createFromId</a></div><div class="ttdeci">Object * Object_createFromId(int id)</div><div class="ttdoc">Function to create an object from an ID.</div><div class="ttdef"><b>Definition:</b> Object.c:12</div></div>
+<div class="ttc" id="a_objects_8h_html_ac716bb5a4091fc833a0b34f48d4cced9"><div class="ttname"><a href="_objects_8h.html#ac716bb5a4091fc833a0b34f48d4cced9">Object_create</a></div><div class="ttdeci">Object * Object_create(char *name, char *description, int id)</div><div class="ttdoc">Function to create an object.</div><div class="ttdef"><b>Definition:</b> Object.c:3</div></div>
+<div class="ttc" id="a_objects_8h_html_acfb7fb36de11034b92567c6ae9f84d9c"><div class="ttname"><a href="_objects_8h.html#acfb7fb36de11034b92567c6ae9f84d9c">checkIdObject</a></div><div class="ttdeci">char * checkIdObject(int id)</div><div class="ttdoc">Function to get the path of an object based on its ID.</div><div class="ttdef"><b>Definition:</b> Object.c:25</div></div>
+<div class="ttc" id="a_objects_8h_html_af24d9567b0c3e9d0f1db04ad10ec2529"><div class="ttname"><a href="_objects_8h.html#af24d9567b0c3e9d0f1db04ad10ec2529">costFromId</a></div><div class="ttdeci">int costFromId(int id)</div><div class="ttdoc">Function to get the cost of an object based on its ID.</div><div class="ttdef"><b>Definition:</b> Object.c:93</div></div>
+<div class="ttc" id="astruct___object_html"><div class="ttname"><a href="struct___object.html">_Object</a></div><div class="ttdoc">Struct representing an object.</div><div class="ttdef"><b>Definition:</b> Objects.h:15</div></div>
+<div class="ttc" id="astruct___object_html_a5ac083a645d964373f022d03df4849c8"><div class="ttname"><a href="struct___object.html#a5ac083a645d964373f022d03df4849c8">_Object::name</a></div><div class="ttdeci">char * name</div><div class="ttdef"><b>Definition:</b> Objects.h:16</div></div>
+<div class="ttc" id="astruct___object_html_a7441ef0865bcb3db9b8064dd7375c1ea"><div class="ttname"><a href="struct___object.html#a7441ef0865bcb3db9b8064dd7375c1ea">_Object::id</a></div><div class="ttdeci">int id</div><div class="ttdef"><b>Definition:</b> Objects.h:18</div></div>
+<div class="ttc" id="astruct___object_html_a8444d6e0dfe2bbab0b5e7b24308f1559"><div class="ttname"><a href="struct___object.html#a8444d6e0dfe2bbab0b5e7b24308f1559">_Object::description</a></div><div class="ttdeci">char * description</div><div class="ttdef"><b>Definition:</b> Objects.h:17</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

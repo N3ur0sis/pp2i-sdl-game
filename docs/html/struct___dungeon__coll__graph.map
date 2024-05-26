@@ -1,10 +1,10 @@
 <map id="_Dungeon" name="_Dungeon">
 <area shape="rect" id="node1" title="Structure representing a dungeon." alt="" coords="33,363,119,389"/>
-<area shape="rect" id="node2" href="$struct___room.html" title=" " alt="" coords="5,273,72,300"/>
-<area shape="rect" id="node3" href="$struct___l___room.html" title=" " alt="" coords="97,273,178,300"/>
+<area shape="rect" id="node2" href="$struct___room.html" title="Struct representing a room." alt="" coords="5,273,72,300"/>
+<area shape="rect" id="node3" href="$struct___l___room.html" title="Struct representing a L room." alt="" coords="97,273,178,300"/>
 <area shape="rect" id="node4" href="$struct___collider.html" title="Structure representing a collider." alt="" coords="61,184,139,211"/>
-<area shape="rect" id="node5" href="$struct___model.html" title=" " alt="" coords="164,184,233,211"/>
-<area shape="rect" id="node6" href="$struct___texture.html" title=" " alt="" coords="112,95,189,121"/>
+<area shape="rect" id="node5" href="$struct___model.html" title="A Model class to represent a 3D object in the scene." alt="" coords="164,184,233,211"/>
+<area shape="rect" id="node6" href="$struct___texture.html" title="Represent a single texture in the engine. Can be used by multiple Objet, completely dissociated from ..." alt="" coords="112,95,189,121"/>
 <area shape="rect" id="node7" href="$struct___mesh.html" title="A Mesh class that hold data parsed from a file and converted ot OpenGL format." alt="" coords="216,95,280,121"/>
 <area shape="rect" id="node8" href="$struct___vertex.html" title="A Custom vertex struct we pass to OpenGL." alt="" coords="213,5,283,32"/>
 </map>

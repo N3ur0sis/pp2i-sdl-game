@@ -1,8 +1,8 @@
 <map id="include/GameState.h" name="include/GameState.h">
 <area shape="rect" id="node1" title="Header file for the game state." alt="" coords="323,5,482,32"/>
 <area shape="rect" id="node2" href="$_inventory_8h.html" title="Header file for the inventory component." alt="" coords="355,80,450,107"/>
-<area shape="rect" id="node3" href="$_objects_8h_source.html" title=" " alt="" coords="192,155,275,181"/>
-<area shape="rect" id="node8" href="$_renderer_8h_source.html" title=" " alt="" coords="605,155,697,181"/>
+<area shape="rect" id="node3" href="$_objects_8h.html" title="Header file for the objects component." alt="" coords="192,155,275,181"/>
+<area shape="rect" id="node8" href="$_renderer_8h.html" title="Header file for the renderer component." alt="" coords="605,155,697,181"/>
 <area shape="rect" id="node4" title=" " alt="" coords="5,229,72,256"/>
 <area shape="rect" id="node5" title=" " alt="" coords="97,229,167,256"/>
 <area shape="rect" id="node6" title=" " alt="" coords="192,229,275,256"/>

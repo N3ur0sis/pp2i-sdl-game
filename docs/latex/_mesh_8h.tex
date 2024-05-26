@@ -10,8 +10,7 @@ Header file for the mesh component.
 {\ttfamily \#include $<$assimp/postprocess.\+h$>$}\newline
 {\ttfamily \#include $<$cglm/cglm.\+h$>$}\newline
 {\ttfamily \#include $<$glad/glad.\+h$>$}\newline
-Include dependency graph for Mesh.\+h\+:
-\nopagebreak
+Include dependency graph for Mesh.\+h\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -55,14 +54,13 @@ typedef struct \mbox{\hyperlink{struct___mesh}{\+\_\+\+Mesh}} \mbox{\hyperlink{_
 \begin{DoxyCompactItemize}
 \item 
 void \mbox{\hyperlink{_mesh_8h_a5070fef103193b797d09f2854536d602}{Mesh\+Create}} (\mbox{\hyperlink{_mesh_8h_aa0a88b11e856d3e20ae17ccd4a30cacb}{Mesh}} $\ast$mesh, struct ai\+Mesh $\ast$ai\+Mesh)
-\begin{DoxyCompactList}\small\item\em A constructor for the mesh class. It copies the data from an assimp mesh format Into our Open\+GL-\/friendly mesh format. \end{DoxyCompactList}\item 
+\begin{DoxyCompactList}\small\item\em A constructor for the mesh class. It copies the data from an assimp mesh format into our Open\+GL-\/friendly mesh format. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_mesh_8h_a18582705d0a58c48de3e41aaf28a3ee9}{Mesh\+Setup}} (\mbox{\hyperlink{_mesh_8h_aa0a88b11e856d3e20ae17ccd4a30cacb}{Mesh}} $\ast$mesh)
-\item 
+\begin{DoxyCompactList}\small\item\em Auxiliary function used to GL-\/ize our Mesh object. Basically generate the buffers, load data into them and specifies the arrays attribute (positon, normal and uvs). \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{_mesh_8h_aea132ffa12731a580738bb0c45eec7c9}{Mesh\+Draw}} (\mbox{\hyperlink{_mesh_8h_aa0a88b11e856d3e20ae17ccd4a30cacb}{Mesh}} $\ast$mesh)
-\item 
-\mbox{\Hypertarget{_mesh_8h_a06d7d997a5b48583d487c5fcd73868ef}\label{_mesh_8h_a06d7d997a5b48583d487c5fcd73868ef}} 
-void {\bfseries Mesh\+Clean} (\mbox{\hyperlink{_mesh_8h_aa0a88b11e856d3e20ae17ccd4a30cacb}{Mesh}} $\ast$mesh)
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Render the corresponding mesh using gl\+Draw\+Elements and bind the proper texture associated with this mesh. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_mesh_8h_a06d7d997a5b48583d487c5fcd73868ef}{Mesh\+Clean}} (\mbox{\hyperlink{_mesh_8h_aa0a88b11e856d3e20ae17ccd4a30cacb}{Mesh}} $\ast$mesh)
+\begin{DoxyCompactList}\small\item\em Free the memory allocated for the mesh object. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
@@ -71,6 +69,21 @@ Header file for the mesh component.
 
 
 \doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_mesh_8h_a06d7d997a5b48583d487c5fcd73868ef}\label{_mesh_8h_a06d7d997a5b48583d487c5fcd73868ef}} 
+\index{Mesh.h@{Mesh.h}!MeshClean@{MeshClean}}
+\index{MeshClean@{MeshClean}!Mesh.h@{Mesh.h}}
+\doxysubsubsection{\texorpdfstring{MeshClean()}{MeshClean()}}
+{\footnotesize\ttfamily void Mesh\+Clean (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_mesh_8h_aa0a88b11e856d3e20ae17ccd4a30cacb}{Mesh}} $\ast$}]{mesh }\end{DoxyParamCaption})}
+
+
+
+Free the memory allocated for the mesh object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em mesh} & A mesh object to be freed. \\
+\hline
+\end{DoxyParams}
 \mbox{\Hypertarget{_mesh_8h_a5070fef103193b797d09f2854536d602}\label{_mesh_8h_a5070fef103193b797d09f2854536d602}} 
 \index{Mesh.h@{Mesh.h}!MeshCreate@{MeshCreate}}
 \index{MeshCreate@{MeshCreate}!Mesh.h@{Mesh.h}}
@@ -79,7 +92,7 @@ Header file for the mesh component.
 
 
 
-A constructor for the mesh class. It copies the data from an assimp mesh format Into our Open\+GL-\/friendly mesh format. 
+A constructor for the mesh class. It copies the data from an assimp mesh format into our Open\+GL-\/friendly mesh format. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -95,7 +108,11 @@ A Mesh object with all necessary data for rendering and converted into proper fo
 \doxysubsubsection{\texorpdfstring{MeshDraw()}{MeshDraw()}}
 {\footnotesize\ttfamily void Mesh\+Draw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_mesh_8h_aa0a88b11e856d3e20ae17ccd4a30cacb}{Mesh}} $\ast$}]{mesh }\end{DoxyParamCaption})}
 
+
+
 Render the corresponding mesh using gl\+Draw\+Elements and bind the proper texture associated with this mesh. 
+
+
 \begin{DoxyParams}{Parameters}
 {\em mesh} & A mesh ready to be rendered. \\
 \hline
@@ -106,7 +123,11 @@ Render the corresponding mesh using gl\+Draw\+Elements and bind the proper textu
 \doxysubsubsection{\texorpdfstring{MeshSetup()}{MeshSetup()}}
 {\footnotesize\ttfamily void Mesh\+Setup (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_mesh_8h_aa0a88b11e856d3e20ae17ccd4a30cacb}{Mesh}} $\ast$}]{mesh }\end{DoxyParamCaption})}
 
+
+
 Auxiliary function used to GL-\/ize our Mesh object. Basically generate the buffers, load data into them and specifies the arrays attribute (positon, normal and uvs). 
+
+
 \begin{DoxyParams}{Parameters}
 {\em mesh} & A mesh object ready to have buffers. \\
 \hline

@@ -2,6 +2,15 @@
 \label{struct___model}\index{\_Model@{\_Model}}
 
 
+A Model class to represent a 3D object in the scene.  
+
+
+
+
+{\ttfamily \#include $<$Model.\+h$>$}
+
+
+
 Collaboration diagram for \+\_\+\+Model\+:
 \nopagebreak
 \begin{figure}[H]
@@ -13,56 +22,150 @@ Collaboration diagram for \+\_\+\+Model\+:
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct___model_a8d9cf411437bc11e2fca43fca7605edd}\label{struct___model_a8d9cf411437bc11e2fca43fca7605edd}} 
-\mbox{\hyperlink{_mesh_8h_aa0a88b11e856d3e20ae17ccd4a30cacb}{Mesh}} $\ast$ {\bfseries meshes}
+\mbox{\hyperlink{_mesh_8h_aa0a88b11e856d3e20ae17ccd4a30cacb}{Mesh}} $\ast$ \mbox{\hyperlink{struct___model_a8d9cf411437bc11e2fca43fca7605edd}{meshes}}
 \item 
-\mbox{\Hypertarget{struct___model_a123c67956c6179af3edde2c6233c49f7}\label{struct___model_a123c67956c6179af3edde2c6233c49f7}} 
-\mbox{\hyperlink{struct___texture}{Texture}} $\ast$ {\bfseries materials}
+\mbox{\hyperlink{_textures_8h_a0f34ff9a2bbd56e076a7bcdf99d39a71}{Texture}} $\ast$ \mbox{\hyperlink{struct___model_a123c67956c6179af3edde2c6233c49f7}{materials}}
 \item 
-\mbox{\Hypertarget{struct___model_a881211beb5599d596da2a175af8c724d}\label{struct___model_a881211beb5599d596da2a175af8c724d}} 
-size\+\_\+t {\bfseries mesh\+Count}
+size\+\_\+t \mbox{\hyperlink{struct___model_a881211beb5599d596da2a175af8c724d}{mesh\+Count}}
 \item 
-\mbox{\Hypertarget{struct___model_ae2d92c4d30d5527f1d1f2ae19a2f521c}\label{struct___model_ae2d92c4d30d5527f1d1f2ae19a2f521c}} 
-size\+\_\+t {\bfseries mat\+Count}
+size\+\_\+t \mbox{\hyperlink{struct___model_ae2d92c4d30d5527f1d1f2ae19a2f521c}{mat\+Count}}
 \item 
-\mbox{\Hypertarget{struct___model_a8eadc6730ef4fbdae87a20414b789faf}\label{struct___model_a8eadc6730ef4fbdae87a20414b789faf}} 
-char $\ast$ {\bfseries directory}
+char $\ast$ \mbox{\hyperlink{struct___model_a8eadc6730ef4fbdae87a20414b789faf}{directory}}
 \item 
-\mbox{\Hypertarget{struct___model_a2807b9fb4b79e01dfde022b613d2575f}\label{struct___model_a2807b9fb4b79e01dfde022b613d2575f}} 
-vec3 {\bfseries position}
+vec3 \mbox{\hyperlink{struct___model_a2807b9fb4b79e01dfde022b613d2575f}{position}}
 \item 
-\mbox{\Hypertarget{struct___model_a748697685bbb042a4356f2403dcc4185}\label{struct___model_a748697685bbb042a4356f2403dcc4185}} 
-vec3 {\bfseries rotation}
+vec3 \mbox{\hyperlink{struct___model_a748697685bbb042a4356f2403dcc4185}{rotation}}
 \item 
-\mbox{\Hypertarget{struct___model_ae5be9557844048ede54186048c8e6295}\label{struct___model_ae5be9557844048ede54186048c8e6295}} 
-vec3 {\bfseries scale}
+vec3 \mbox{\hyperlink{struct___model_ae5be9557844048ede54186048c8e6295}{scale}}
 \item 
-\mbox{\Hypertarget{struct___model_a242a50b7fe75862f41b92478af8afa70}\label{struct___model_a242a50b7fe75862f41b92478af8afa70}} 
-vec3 {\bfseries center}
+vec3 \mbox{\hyperlink{struct___model_a242a50b7fe75862f41b92478af8afa70}{center}}
 \item 
-\mbox{\Hypertarget{struct___model_a7436df88e68c054304f0c32f8bd95e7a}\label{struct___model_a7436df88e68c054304f0c32f8bd95e7a}} 
-mat4 {\bfseries model\+Matrix}
+mat4 \mbox{\hyperlink{struct___model_a7436df88e68c054304f0c32f8bd95e7a}{model\+Matrix}}
 \item 
-\mbox{\Hypertarget{struct___model_a3569fc65c1b87eaef8b048138b620119}\label{struct___model_a3569fc65c1b87eaef8b048138b620119}} 
-mat4 {\bfseries bones} \mbox{[}MAX\+\_\+\+BONES\mbox{]}
+mat4 \mbox{\hyperlink{struct___model_a3569fc65c1b87eaef8b048138b620119}{bones}} \mbox{[}MAX\+\_\+\+BONES\mbox{]}
 \item 
-\mbox{\Hypertarget{struct___model_a3ef8a58d6f9a0918053b3a56f92edf48}\label{struct___model_a3ef8a58d6f9a0918053b3a56f92edf48}} 
-char {\bfseries bone\+\_\+names} \mbox{[}MAX\+\_\+\+BONES\mbox{]}\mbox{[}256\mbox{]}
+char \mbox{\hyperlink{struct___model_a3ef8a58d6f9a0918053b3a56f92edf48}{bone\+\_\+names}} \mbox{[}MAX\+\_\+\+BONES\mbox{]}\mbox{[}256\mbox{]}
 \item 
-\mbox{\Hypertarget{struct___model_a783c3555cd5a586e9c764706f3800c20}\label{struct___model_a783c3555cd5a586e9c764706f3800c20}} 
-size\+\_\+t {\bfseries bone\+\_\+count}
+size\+\_\+t \mbox{\hyperlink{struct___model_a783c3555cd5a586e9c764706f3800c20}{bone\+\_\+count}}
 \item 
-\mbox{\Hypertarget{struct___model_a0ed9356bc7bb59a9c461178b7b7868f7}\label{struct___model_a0ed9356bc7bb59a9c461178b7b7868f7}} 
-bool {\bfseries is\+Animated}
+bool \mbox{\hyperlink{struct___model_a0ed9356bc7bb59a9c461178b7b7868f7}{is\+Animated}}
 \item 
-\mbox{\Hypertarget{struct___model_a5124476ed83f0b8a643d3e13861ca0c4}\label{struct___model_a5124476ed83f0b8a643d3e13861ca0c4}} 
-bool {\bfseries is\+Renderable}
+bool \mbox{\hyperlink{struct___model_a5124476ed83f0b8a643d3e13861ca0c4}{is\+Renderable}}
 \item 
-\mbox{\Hypertarget{struct___model_a099f725f22a344e190121634f53328d8}\label{struct___model_a099f725f22a344e190121634f53328d8}} 
-bool {\bfseries is\+Busy}
+bool \mbox{\hyperlink{struct___model_a099f725f22a344e190121634f53328d8}{is\+Busy}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+A Model class to represent a 3D object in the scene. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct___model_a783c3555cd5a586e9c764706f3800c20}\label{struct___model_a783c3555cd5a586e9c764706f3800c20}} 
+\index{\_Model@{\_Model}!bone\_count@{bone\_count}}
+\index{bone\_count@{bone\_count}!\_Model@{\_Model}}
+\doxysubsubsection{\texorpdfstring{bone\_count}{bone\_count}}
+{\footnotesize\ttfamily size\+\_\+t bone\+\_\+count}
+
+Number of bones in the model ~\newline
+ \mbox{\Hypertarget{struct___model_a3ef8a58d6f9a0918053b3a56f92edf48}\label{struct___model_a3ef8a58d6f9a0918053b3a56f92edf48}} 
+\index{\_Model@{\_Model}!bone\_names@{bone\_names}}
+\index{bone\_names@{bone\_names}!\_Model@{\_Model}}
+\doxysubsubsection{\texorpdfstring{bone\_names}{bone\_names}}
+{\footnotesize\ttfamily char bone\+\_\+names\mbox{[}MAX\+\_\+\+BONES\mbox{]}\mbox{[}256\mbox{]}}
+
+Array of bone names \mbox{\Hypertarget{struct___model_a3569fc65c1b87eaef8b048138b620119}\label{struct___model_a3569fc65c1b87eaef8b048138b620119}} 
+\index{\_Model@{\_Model}!bones@{bones}}
+\index{bones@{bones}!\_Model@{\_Model}}
+\doxysubsubsection{\texorpdfstring{bones}{bones}}
+{\footnotesize\ttfamily mat4 bones\mbox{[}MAX\+\_\+\+BONES\mbox{]}}
+
+Array of bones matrices ~\newline
+ \mbox{\Hypertarget{struct___model_a242a50b7fe75862f41b92478af8afa70}\label{struct___model_a242a50b7fe75862f41b92478af8afa70}} 
+\index{\_Model@{\_Model}!center@{center}}
+\index{center@{center}!\_Model@{\_Model}}
+\doxysubsubsection{\texorpdfstring{center}{center}}
+{\footnotesize\ttfamily vec3 center}
+
+Center of the volume of the model ~\newline
+ \mbox{\Hypertarget{struct___model_a8eadc6730ef4fbdae87a20414b789faf}\label{struct___model_a8eadc6730ef4fbdae87a20414b789faf}} 
+\index{\_Model@{\_Model}!directory@{directory}}
+\index{directory@{directory}!\_Model@{\_Model}}
+\doxysubsubsection{\texorpdfstring{directory}{directory}}
+{\footnotesize\ttfamily char$\ast$ directory}
+
+Path to the folder of the model ~\newline
+ \mbox{\Hypertarget{struct___model_a0ed9356bc7bb59a9c461178b7b7868f7}\label{struct___model_a0ed9356bc7bb59a9c461178b7b7868f7}} 
+\index{\_Model@{\_Model}!isAnimated@{isAnimated}}
+\index{isAnimated@{isAnimated}!\_Model@{\_Model}}
+\doxysubsubsection{\texorpdfstring{isAnimated}{isAnimated}}
+{\footnotesize\ttfamily bool is\+Animated}
+
+Boolean flag indicating if the model is animated \mbox{\Hypertarget{struct___model_a099f725f22a344e190121634f53328d8}\label{struct___model_a099f725f22a344e190121634f53328d8}} 
+\index{\_Model@{\_Model}!isBusy@{isBusy}}
+\index{isBusy@{isBusy}!\_Model@{\_Model}}
+\doxysubsubsection{\texorpdfstring{isBusy}{isBusy}}
+{\footnotesize\ttfamily bool is\+Busy}
+
+Boolean flag indicating if the model is busy \mbox{\Hypertarget{struct___model_a5124476ed83f0b8a643d3e13861ca0c4}\label{struct___model_a5124476ed83f0b8a643d3e13861ca0c4}} 
+\index{\_Model@{\_Model}!isRenderable@{isRenderable}}
+\index{isRenderable@{isRenderable}!\_Model@{\_Model}}
+\doxysubsubsection{\texorpdfstring{isRenderable}{isRenderable}}
+{\footnotesize\ttfamily bool is\+Renderable}
+
+Boolean flag indicating if the model is renderable \mbox{\Hypertarget{struct___model_ae2d92c4d30d5527f1d1f2ae19a2f521c}\label{struct___model_ae2d92c4d30d5527f1d1f2ae19a2f521c}} 
+\index{\_Model@{\_Model}!matCount@{matCount}}
+\index{matCount@{matCount}!\_Model@{\_Model}}
+\doxysubsubsection{\texorpdfstring{matCount}{matCount}}
+{\footnotesize\ttfamily size\+\_\+t mat\+Count}
+
+Nmmber of materials in the model ~\newline
+ \mbox{\Hypertarget{struct___model_a123c67956c6179af3edde2c6233c49f7}\label{struct___model_a123c67956c6179af3edde2c6233c49f7}} 
+\index{\_Model@{\_Model}!materials@{materials}}
+\index{materials@{materials}!\_Model@{\_Model}}
+\doxysubsubsection{\texorpdfstring{materials}{materials}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_textures_8h_a0f34ff9a2bbd56e076a7bcdf99d39a71}{Texture}}$\ast$ materials}
+
+Arrays of materials used by meshes \mbox{\Hypertarget{struct___model_a881211beb5599d596da2a175af8c724d}\label{struct___model_a881211beb5599d596da2a175af8c724d}} 
+\index{\_Model@{\_Model}!meshCount@{meshCount}}
+\index{meshCount@{meshCount}!\_Model@{\_Model}}
+\doxysubsubsection{\texorpdfstring{meshCount}{meshCount}}
+{\footnotesize\ttfamily size\+\_\+t mesh\+Count}
+
+Number of meshes within the model ~\newline
+ \mbox{\Hypertarget{struct___model_a8d9cf411437bc11e2fca43fca7605edd}\label{struct___model_a8d9cf411437bc11e2fca43fca7605edd}} 
+\index{\_Model@{\_Model}!meshes@{meshes}}
+\index{meshes@{meshes}!\_Model@{\_Model}}
+\doxysubsubsection{\texorpdfstring{meshes}{meshes}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_mesh_8h_aa0a88b11e856d3e20ae17ccd4a30cacb}{Mesh}}$\ast$ meshes}
+
+Arrays of meshes forming the model \mbox{\Hypertarget{struct___model_a7436df88e68c054304f0c32f8bd95e7a}\label{struct___model_a7436df88e68c054304f0c32f8bd95e7a}} 
+\index{\_Model@{\_Model}!modelMatrix@{modelMatrix}}
+\index{modelMatrix@{modelMatrix}!\_Model@{\_Model}}
+\doxysubsubsection{\texorpdfstring{modelMatrix}{modelMatrix}}
+{\footnotesize\ttfamily mat4 model\+Matrix}
+
+Model Matrix of the model ~\newline
+ \mbox{\Hypertarget{struct___model_a2807b9fb4b79e01dfde022b613d2575f}\label{struct___model_a2807b9fb4b79e01dfde022b613d2575f}} 
+\index{\_Model@{\_Model}!position@{position}}
+\index{position@{position}!\_Model@{\_Model}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily vec3 position}
+
+Position of the model in the scene \mbox{\Hypertarget{struct___model_a748697685bbb042a4356f2403dcc4185}\label{struct___model_a748697685bbb042a4356f2403dcc4185}} 
+\index{\_Model@{\_Model}!rotation@{rotation}}
+\index{rotation@{rotation}!\_Model@{\_Model}}
+\doxysubsubsection{\texorpdfstring{rotation}{rotation}}
+{\footnotesize\ttfamily vec3 rotation}
+
+Rotation of the model in the scene \mbox{\Hypertarget{struct___model_ae5be9557844048ede54186048c8e6295}\label{struct___model_ae5be9557844048ede54186048c8e6295}} 
+\index{\_Model@{\_Model}!scale@{scale}}
+\index{scale@{scale}!\_Model@{\_Model}}
+\doxysubsubsection{\texorpdfstring{scale}{scale}}
+{\footnotesize\ttfamily vec3 scale}
+
+Scale of the model in the scene ~\newline
+ 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Model.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_model_8h}{Model.\+h}}\end{DoxyCompactItemize}

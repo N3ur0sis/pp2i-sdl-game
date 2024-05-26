@@ -71,8 +71,8 @@ $(function() {
 <div class="contents">
 <a href="_inventory_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;Objects.h&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;Renderer.h&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_objects_8h.html">Objects.h</a>&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_renderer_8h.html">Renderer.h</a>&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// #include &lt;Controls.h&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
@@ -83,7 +83,7 @@ $(function() {
 <div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct___inventory.html#aa1332d7c42ebc20f5228cf4c8f3bff10">   22</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct___inventory.html#aa1332d7c42ebc20f5228cf4c8f3bff10">isOpened</a>;          </div>
 <div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="_inventory_8h.html#a2253bf64ac4ce6a9c1d6f39c0b0d32a3">   23</a></span>&#160;} <a class="code" href="_inventory_8h.html#a2253bf64ac4ce6a9c1d6f39c0b0d32a3">Inventory</a>;</div>
 <div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<a class="code" href="struct___inventory.html">Inventory</a>* <a class="code" href="_inventory_8h.html#a2da02d88df02b12e3291c1cfed3cf6a6">InventoryCreate</a>(<span class="keywordtype">int</span> capacity);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<a class="code" href="struct___inventory.html">Inventory</a>* <a class="code" href="_inventory_8h.html#a2da02d88df02b12e3291c1cfed3cf6a6">InventoryCreate</a>(<span class="keywordtype">int</span> <a class="code" href="_vector_8h.html#a9bdb60f2a3a54b8e278c4d40cf553fdd">capacity</a>);</div>
 <div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
 <div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_inventory_8h.html#af624f04ed7939611a4f3077a9a9ed3ed">InventoryAddObjects</a>(<span class="keywordtype">int</span> nb, <a class="code" href="struct___inventory.html">Inventory</a>* inventory, <a class="code" href="struct___object.html">Object</a>* <span class="keywordtype">object</span>);</div>
 <div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
@@ -107,12 +107,15 @@ $(function() {
 <div class="ttc" id="a_inventory_8h_html_a7dadfd30e12f99e7b07b47fcad5c18f4"><div class="ttname"><a href="_inventory_8h.html#a7dadfd30e12f99e7b07b47fcad5c18f4">freeInventory</a></div><div class="ttdeci">void freeInventory(Inventory *inventory)</div><div class="ttdoc">Function to free the inventory.</div><div class="ttdef"><b>Definition:</b> Inventory.c:54</div></div>
 <div class="ttc" id="a_inventory_8h_html_accee10470969c8f5fa8536b23aeeda40"><div class="ttname"><a href="_inventory_8h.html#accee10470969c8f5fa8536b23aeeda40">InventoryPrint</a></div><div class="ttdeci">void InventoryPrint(Inventory *inventory, float window_width, float window_height, GLuint shader, float offset_x, float offset_y)</div><div class="ttdoc">Function to print the inventory.</div><div class="ttdef"><b>Definition:</b> Inventory.c:67</div></div>
 <div class="ttc" id="a_inventory_8h_html_af624f04ed7939611a4f3077a9a9ed3ed"><div class="ttname"><a href="_inventory_8h.html#af624f04ed7939611a4f3077a9a9ed3ed">InventoryAddObjects</a></div><div class="ttdeci">void InventoryAddObjects(int nb, Inventory *inventory, Object *object)</div><div class="ttdoc">Function to add an object to the inventory.</div><div class="ttdef"><b>Definition:</b> Inventory.c:16</div></div>
+<div class="ttc" id="a_objects_8h_html"><div class="ttname"><a href="_objects_8h.html">Objects.h</a></div><div class="ttdoc">Header file for the objects component.</div></div>
+<div class="ttc" id="a_renderer_8h_html"><div class="ttname"><a href="_renderer_8h.html">Renderer.h</a></div><div class="ttdoc">Header file for the renderer component.</div></div>
+<div class="ttc" id="a_vector_8h_html_a9bdb60f2a3a54b8e278c4d40cf553fdd"><div class="ttname"><a href="_vector_8h.html#a9bdb60f2a3a54b8e278c4d40cf553fdd">capacity</a></div><div class="ttdeci">int capacity(Vector *vector)</div><div class="ttdoc">Function to get the capacity of the vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:28</div></div>
 <div class="ttc" id="astruct___inventory_html"><div class="ttname"><a href="struct___inventory.html">_Inventory</a></div><div class="ttdoc">Struct representing an inventory.</div><div class="ttdef"><b>Definition:</b> Inventory.h:18</div></div>
 <div class="ttc" id="astruct___inventory_html_a439227feff9d7f55384e8780cfc2eb82"><div class="ttname"><a href="struct___inventory.html#a439227feff9d7f55384e8780cfc2eb82">_Inventory::size</a></div><div class="ttdeci">int size</div><div class="ttdef"><b>Definition:</b> Inventory.h:20</div></div>
 <div class="ttc" id="astruct___inventory_html_a7a74f1687ae74dbee7e7787c3deff1b8"><div class="ttname"><a href="struct___inventory.html#a7a74f1687ae74dbee7e7787c3deff1b8">_Inventory::objects</a></div><div class="ttdeci">Object ** objects</div><div class="ttdef"><b>Definition:</b> Inventory.h:19</div></div>
 <div class="ttc" id="astruct___inventory_html_aa1332d7c42ebc20f5228cf4c8f3bff10"><div class="ttname"><a href="struct___inventory.html#aa1332d7c42ebc20f5228cf4c8f3bff10">_Inventory::isOpened</a></div><div class="ttdeci">bool isOpened</div><div class="ttdef"><b>Definition:</b> Inventory.h:22</div></div>
 <div class="ttc" id="astruct___inventory_html_adbe66a087ac3fd4a5b0566f64ca2d12b"><div class="ttname"><a href="struct___inventory.html#adbe66a087ac3fd4a5b0566f64ca2d12b">_Inventory::capacity</a></div><div class="ttdeci">int capacity</div><div class="ttdef"><b>Definition:</b> Inventory.h:21</div></div>
-<div class="ttc" id="astruct___object_html"><div class="ttname"><a href="struct___object.html">_Object</a></div><div class="ttdef"><b>Definition:</b> Objects.h:7</div></div>
+<div class="ttc" id="astruct___object_html"><div class="ttname"><a href="struct___object.html">_Object</a></div><div class="ttdoc">Struct representing an object.</div><div class="ttdef"><b>Definition:</b> Objects.h:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

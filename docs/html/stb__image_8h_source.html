@@ -479,7 +479,7 @@ $(function() {
 <div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160; </div>
 <div class="line"><a name="l00410"></a><span class="lineno"><a class="line" href="structstbi__io__callbacks.html">  410</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
 <div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;{</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;   int      (*read)  (<span class="keywordtype">void</span> *user,<span class="keywordtype">char</span> *data,<span class="keywordtype">int</span> size);   <span class="comment">// fill &#39;data&#39; with &#39;size&#39; bytes.  return number of bytes actually read</span></div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;   int      (*read)  (<span class="keywordtype">void</span> *user,<span class="keywordtype">char</span> *data,<span class="keywordtype">int</span> <a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>);   <span class="comment">// fill &#39;data&#39; with &#39;size&#39; bytes.  return number of bytes actually read</span></div>
 <div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;   void     (*skip)  (<span class="keywordtype">void</span> *user,<span class="keywordtype">int</span> n);                 <span class="comment">// skip the next &#39;n&#39; bytes, or &#39;unget&#39; the last -n bytes if negative</span></div>
 <div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;   int      (*eof)   (<span class="keywordtype">void</span> *user);                       <span class="comment">// returns nonzero if we are at end of file/data</span></div>
 <div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;} <a class="code" href="structstbi__io__callbacks.html">stbi_io_callbacks</a>;</div>
@@ -911,9 +911,9 @@ $(function() {
 <div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160; </div>
 <div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;<span class="preprocessor">#ifndef STBI_NO_STDIO</span></div>
 <div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160; </div>
-<div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__stdio_read(<span class="keywordtype">void</span> *user, <span class="keywordtype">char</span> *data, <span class="keywordtype">int</span> size)</div>
+<div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__stdio_read(<span class="keywordtype">void</span> *user, <span class="keywordtype">char</span> *data, <span class="keywordtype">int</span> <a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>)</div>
 <div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;{</div>
-<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;   <span class="keywordflow">return</span> (<span class="keywordtype">int</span>) fread(data,1,size,(FILE*) user);</div>
+<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;   <span class="keywordflow">return</span> (<span class="keywordtype">int</span>) fread(data,1,<a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>,(FILE*) user);</div>
 <div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160;}</div>
 <div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160; </div>
 <div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> stbi__stdio_skip(<span class="keywordtype">void</span> *user, <span class="keywordtype">int</span> n)</div>
@@ -1046,9 +1046,9 @@ $(function() {
 <div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;}</div>
 <div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160; </div>
-<div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> *stbi__malloc(<span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> *stbi__malloc(<span class="keywordtype">size_t</span> <a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>)</div>
 <div class="line"><a name="l00985"></a><span class="lineno">  985</span>&#160;{</div>
-<div class="line"><a name="l00986"></a><span class="lineno">  986</span>&#160;    <span class="keywordflow">return</span> STBI_MALLOC(size);</div>
+<div class="line"><a name="l00986"></a><span class="lineno">  986</span>&#160;    <span class="keywordflow">return</span> STBI_MALLOC(<a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>);</div>
 <div class="line"><a name="l00987"></a><span class="lineno">  987</span>&#160;}</div>
 <div class="line"><a name="l00988"></a><span class="lineno">  988</span>&#160; </div>
 <div class="line"><a name="l00989"></a><span class="lineno">  989</span>&#160;<span class="comment">// stb_image uses ints pervasively, including for offset calculations.</span></div>
@@ -2002,7 +2002,7 @@ $(function() {
 <div class="line"><a name="l01940"></a><span class="lineno"> 1940</span>&#160;   <span class="comment">// weirdly, repacking this into AoS is a 10% speed loss, instead of a win</span></div>
 <div class="line"><a name="l01941"></a><span class="lineno"> 1941</span>&#160;   stbi__uint16 code[256];</div>
 <div class="line"><a name="l01942"></a><span class="lineno"> 1942</span>&#160;   stbi_uc  values[256];</div>
-<div class="line"><a name="l01943"></a><span class="lineno"> 1943</span>&#160;   stbi_uc  size[257];</div>
+<div class="line"><a name="l01943"></a><span class="lineno"> 1943</span>&#160;   stbi_uc  <a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>[257];</div>
 <div class="line"><a name="l01944"></a><span class="lineno"> 1944</span>&#160;   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> maxcode[18];</div>
 <div class="line"><a name="l01945"></a><span class="lineno"> 1945</span>&#160;   <span class="keywordtype">int</span>    delta[17];   <span class="comment">// old &#39;firstsymbol&#39; - old &#39;firstcode&#39;</span></div>
 <div class="line"><a name="l01946"></a><span class="lineno"> 1946</span>&#160;} stbi__huffman;</div>
@@ -4161,7 +4161,7 @@ $(function() {
 <div class="line"><a name="l04099"></a><span class="lineno"> 4099</span>&#160;   stbi__uint16 firstcode[16];</div>
 <div class="line"><a name="l04100"></a><span class="lineno"> 4100</span>&#160;   <span class="keywordtype">int</span> maxcode[17];</div>
 <div class="line"><a name="l04101"></a><span class="lineno"> 4101</span>&#160;   stbi__uint16 firstsymbol[16];</div>
-<div class="line"><a name="l04102"></a><span class="lineno"> 4102</span>&#160;   stbi_uc  size[STBI__ZNSYMS];</div>
+<div class="line"><a name="l04102"></a><span class="lineno"> 4102</span>&#160;   stbi_uc  <a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>[STBI__ZNSYMS];</div>
 <div class="line"><a name="l04103"></a><span class="lineno"> 4103</span>&#160;   stbi__uint16 value[STBI__ZNSYMS];</div>
 <div class="line"><a name="l04104"></a><span class="lineno"> 4104</span>&#160;} stbi__zhuffman;</div>
 <div class="line"><a name="l04105"></a><span class="lineno"> 4105</span>&#160; </div>
@@ -4692,7 +4692,7 @@ $(function() {
 <div class="line"><a name="l04630"></a><span class="lineno"> 4630</span>&#160;{</div>
 <div class="line"><a name="l04631"></a><span class="lineno"> 4631</span>&#160;   stbi__context *s;</div>
 <div class="line"><a name="l04632"></a><span class="lineno"> 4632</span>&#160;   stbi_uc *idata, *expanded, *out;</div>
-<div class="line"><a name="l04633"></a><span class="lineno"> 4633</span>&#160;   <span class="keywordtype">int</span> depth;</div>
+<div class="line"><a name="l04633"></a><span class="lineno"> 4633</span>&#160;   <span class="keywordtype">int</span> <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>;</div>
 <div class="line"><a name="l04634"></a><span class="lineno"> 4634</span>&#160;} stbi__png;</div>
 <div class="line"><a name="l04635"></a><span class="lineno"> 4635</span>&#160; </div>
 <div class="line"><a name="l04636"></a><span class="lineno"> 4636</span>&#160; </div>
@@ -4754,9 +4754,9 @@ $(function() {
 <div class="line"><a name="l04692"></a><span class="lineno"> 4692</span>&#160;}</div>
 <div class="line"><a name="l04693"></a><span class="lineno"> 4693</span>&#160; </div>
 <div class="line"><a name="l04694"></a><span class="lineno"> 4694</span>&#160;<span class="comment">// create the png data from post-deflated data</span></div>
-<div class="line"><a name="l04695"></a><span class="lineno"> 4695</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__create_png_image_raw(stbi__png *a, stbi_uc *raw, stbi__uint32 raw_len, <span class="keywordtype">int</span> out_n, stbi__uint32 x, stbi__uint32 y, <span class="keywordtype">int</span> depth, <span class="keywordtype">int</span> color)</div>
+<div class="line"><a name="l04695"></a><span class="lineno"> 4695</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__create_png_image_raw(stbi__png *a, stbi_uc *raw, stbi__uint32 raw_len, <span class="keywordtype">int</span> out_n, stbi__uint32 x, stbi__uint32 y, <span class="keywordtype">int</span> <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>, <span class="keywordtype">int</span> color)</div>
 <div class="line"><a name="l04696"></a><span class="lineno"> 4696</span>&#160;{</div>
-<div class="line"><a name="l04697"></a><span class="lineno"> 4697</span>&#160;   <span class="keywordtype">int</span> bytes = (depth == 16 ? 2 : 1);</div>
+<div class="line"><a name="l04697"></a><span class="lineno"> 4697</span>&#160;   <span class="keywordtype">int</span> bytes = (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> == 16 ? 2 : 1);</div>
 <div class="line"><a name="l04698"></a><span class="lineno"> 4698</span>&#160;   stbi__context *s = a-&gt;s;</div>
 <div class="line"><a name="l04699"></a><span class="lineno"> 4699</span>&#160;   stbi__uint32 i,j,stride = x*out_n*bytes;</div>
 <div class="line"><a name="l04700"></a><span class="lineno"> 4700</span>&#160;   stbi__uint32 img_len, img_width_bytes;</div>
@@ -4775,8 +4775,8 @@ $(function() {
 <div class="line"><a name="l04713"></a><span class="lineno"> 4713</span>&#160; </div>
 <div class="line"><a name="l04714"></a><span class="lineno"> 4714</span>&#160;   <span class="comment">// note: error exits here don&#39;t need to clean up a-&gt;out individually,</span></div>
 <div class="line"><a name="l04715"></a><span class="lineno"> 4715</span>&#160;   <span class="comment">// stbi__do_png always does on error.</span></div>
-<div class="line"><a name="l04716"></a><span class="lineno"> 4716</span>&#160;   <span class="keywordflow">if</span> (!stbi__mad3sizes_valid(img_n, x, depth, 7)) <span class="keywordflow">return</span> stbi__err(<span class="stringliteral">&quot;too large&quot;</span>, <span class="stringliteral">&quot;Corrupt PNG&quot;</span>);</div>
-<div class="line"><a name="l04717"></a><span class="lineno"> 4717</span>&#160;   img_width_bytes = (((img_n * x * depth) + 7) &gt;&gt; 3);</div>
+<div class="line"><a name="l04716"></a><span class="lineno"> 4716</span>&#160;   <span class="keywordflow">if</span> (!stbi__mad3sizes_valid(img_n, x, <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>, 7)) <span class="keywordflow">return</span> stbi__err(<span class="stringliteral">&quot;too large&quot;</span>, <span class="stringliteral">&quot;Corrupt PNG&quot;</span>);</div>
+<div class="line"><a name="l04717"></a><span class="lineno"> 4717</span>&#160;   img_width_bytes = (((img_n * x * <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>) + 7) &gt;&gt; 3);</div>
 <div class="line"><a name="l04718"></a><span class="lineno"> 4718</span>&#160;   <span class="keywordflow">if</span> (!stbi__mad2sizes_valid(img_width_bytes, y, img_width_bytes)) <span class="keywordflow">return</span> stbi__err(<span class="stringliteral">&quot;too large&quot;</span>, <span class="stringliteral">&quot;Corrupt PNG&quot;</span>);</div>
 <div class="line"><a name="l04719"></a><span class="lineno"> 4719</span>&#160;   img_len = (img_width_bytes + 1) * y;</div>
 <div class="line"><a name="l04720"></a><span class="lineno"> 4720</span>&#160; </div>
@@ -4790,7 +4790,7 @@ $(function() {
 <div class="line"><a name="l04728"></a><span class="lineno"> 4728</span>&#160;   <span class="keywordflow">if</span> (!filter_buf) <span class="keywordflow">return</span> stbi__err(<span class="stringliteral">&quot;outofmem&quot;</span>, <span class="stringliteral">&quot;Out of memory&quot;</span>);</div>
 <div class="line"><a name="l04729"></a><span class="lineno"> 4729</span>&#160; </div>
 <div class="line"><a name="l04730"></a><span class="lineno"> 4730</span>&#160;   <span class="comment">// Filtering for low-bit-depth images</span></div>
-<div class="line"><a name="l04731"></a><span class="lineno"> 4731</span>&#160;   <span class="keywordflow">if</span> (depth &lt; 8) {</div>
+<div class="line"><a name="l04731"></a><span class="lineno"> 4731</span>&#160;   <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> &lt; 8) {</div>
 <div class="line"><a name="l04732"></a><span class="lineno"> 4732</span>&#160;      filter_bytes = 1;</div>
 <div class="line"><a name="l04733"></a><span class="lineno"> 4733</span>&#160;      width = img_width_bytes;</div>
 <div class="line"><a name="l04734"></a><span class="lineno"> 4734</span>&#160;   }</div>
@@ -4848,28 +4848,28 @@ $(function() {
 <div class="line"><a name="l04786"></a><span class="lineno"> 4786</span>&#160;      raw += nk;</div>
 <div class="line"><a name="l04787"></a><span class="lineno"> 4787</span>&#160; </div>
 <div class="line"><a name="l04788"></a><span class="lineno"> 4788</span>&#160;      <span class="comment">// expand decoded bits in cur to dest, also adding an extra alpha channel if desired</span></div>
-<div class="line"><a name="l04789"></a><span class="lineno"> 4789</span>&#160;      <span class="keywordflow">if</span> (depth &lt; 8) {</div>
-<div class="line"><a name="l04790"></a><span class="lineno"> 4790</span>&#160;         stbi_uc scale = (color == 0) ? stbi__depth_scale_table[depth] : 1; <span class="comment">// scale grayscale values to 0..255 range</span></div>
+<div class="line"><a name="l04789"></a><span class="lineno"> 4789</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> &lt; 8) {</div>
+<div class="line"><a name="l04790"></a><span class="lineno"> 4790</span>&#160;         stbi_uc scale = (color == 0) ? stbi__depth_scale_table[<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>] : 1; <span class="comment">// scale grayscale values to 0..255 range</span></div>
 <div class="line"><a name="l04791"></a><span class="lineno"> 4791</span>&#160;         stbi_uc *in = cur;</div>
 <div class="line"><a name="l04792"></a><span class="lineno"> 4792</span>&#160;         stbi_uc *out = dest;</div>
 <div class="line"><a name="l04793"></a><span class="lineno"> 4793</span>&#160;         stbi_uc inb = 0;</div>
 <div class="line"><a name="l04794"></a><span class="lineno"> 4794</span>&#160;         stbi__uint32 nsmp = x*img_n;</div>
 <div class="line"><a name="l04795"></a><span class="lineno"> 4795</span>&#160; </div>
 <div class="line"><a name="l04796"></a><span class="lineno"> 4796</span>&#160;         <span class="comment">// expand bits to bytes first</span></div>
-<div class="line"><a name="l04797"></a><span class="lineno"> 4797</span>&#160;         <span class="keywordflow">if</span> (depth == 4) {</div>
+<div class="line"><a name="l04797"></a><span class="lineno"> 4797</span>&#160;         <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> == 4) {</div>
 <div class="line"><a name="l04798"></a><span class="lineno"> 4798</span>&#160;            <span class="keywordflow">for</span> (i=0; i &lt; nsmp; ++i) {</div>
 <div class="line"><a name="l04799"></a><span class="lineno"> 4799</span>&#160;               <span class="keywordflow">if</span> ((i &amp; 1) == 0) inb = *in++;</div>
 <div class="line"><a name="l04800"></a><span class="lineno"> 4800</span>&#160;               *out++ = scale * (inb &gt;&gt; 4);</div>
 <div class="line"><a name="l04801"></a><span class="lineno"> 4801</span>&#160;               inb &lt;&lt;= 4;</div>
 <div class="line"><a name="l04802"></a><span class="lineno"> 4802</span>&#160;            }</div>
-<div class="line"><a name="l04803"></a><span class="lineno"> 4803</span>&#160;         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (depth == 2) {</div>
+<div class="line"><a name="l04803"></a><span class="lineno"> 4803</span>&#160;         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> == 2) {</div>
 <div class="line"><a name="l04804"></a><span class="lineno"> 4804</span>&#160;            <span class="keywordflow">for</span> (i=0; i &lt; nsmp; ++i) {</div>
 <div class="line"><a name="l04805"></a><span class="lineno"> 4805</span>&#160;               <span class="keywordflow">if</span> ((i &amp; 3) == 0) inb = *in++;</div>
 <div class="line"><a name="l04806"></a><span class="lineno"> 4806</span>&#160;               *out++ = scale * (inb &gt;&gt; 6);</div>
 <div class="line"><a name="l04807"></a><span class="lineno"> 4807</span>&#160;               inb &lt;&lt;= 2;</div>
 <div class="line"><a name="l04808"></a><span class="lineno"> 4808</span>&#160;            }</div>
 <div class="line"><a name="l04809"></a><span class="lineno"> 4809</span>&#160;         } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l04810"></a><span class="lineno"> 4810</span>&#160;            STBI_ASSERT(depth == 1);</div>
+<div class="line"><a name="l04810"></a><span class="lineno"> 4810</span>&#160;            STBI_ASSERT(<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> == 1);</div>
 <div class="line"><a name="l04811"></a><span class="lineno"> 4811</span>&#160;            <span class="keywordflow">for</span> (i=0; i &lt; nsmp; ++i) {</div>
 <div class="line"><a name="l04812"></a><span class="lineno"> 4812</span>&#160;               <span class="keywordflow">if</span> ((i &amp; 7) == 0) inb = *in++;</div>
 <div class="line"><a name="l04813"></a><span class="lineno"> 4813</span>&#160;               *out++ = scale * (inb &gt;&gt; 7);</div>
@@ -4880,12 +4880,12 @@ $(function() {
 <div class="line"><a name="l04818"></a><span class="lineno"> 4818</span>&#160;         <span class="comment">// insert alpha=255 values if desired</span></div>
 <div class="line"><a name="l04819"></a><span class="lineno"> 4819</span>&#160;         <span class="keywordflow">if</span> (img_n != out_n)</div>
 <div class="line"><a name="l04820"></a><span class="lineno"> 4820</span>&#160;            stbi__create_png_alpha_expand8(dest, dest, x, img_n);</div>
-<div class="line"><a name="l04821"></a><span class="lineno"> 4821</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (depth == 8) {</div>
+<div class="line"><a name="l04821"></a><span class="lineno"> 4821</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> == 8) {</div>
 <div class="line"><a name="l04822"></a><span class="lineno"> 4822</span>&#160;         <span class="keywordflow">if</span> (img_n == out_n)</div>
 <div class="line"><a name="l04823"></a><span class="lineno"> 4823</span>&#160;            memcpy(dest, cur, x*img_n);</div>
 <div class="line"><a name="l04824"></a><span class="lineno"> 4824</span>&#160;         <span class="keywordflow">else</span></div>
 <div class="line"><a name="l04825"></a><span class="lineno"> 4825</span>&#160;            stbi__create_png_alpha_expand8(dest, cur, x, img_n);</div>
-<div class="line"><a name="l04826"></a><span class="lineno"> 4826</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (depth == 16) {</div>
+<div class="line"><a name="l04826"></a><span class="lineno"> 4826</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> == 16) {</div>
 <div class="line"><a name="l04827"></a><span class="lineno"> 4827</span>&#160;         <span class="comment">// convert the image data from big-endian to platform-native</span></div>
 <div class="line"><a name="l04828"></a><span class="lineno"> 4828</span>&#160;         stbi__uint16 *dest16 = (stbi__uint16*)dest;</div>
 <div class="line"><a name="l04829"></a><span class="lineno"> 4829</span>&#160;         stbi__uint32 nsmp = x*img_n;</div>
@@ -4919,14 +4919,14 @@ $(function() {
 <div class="line"><a name="l04857"></a><span class="lineno"> 4857</span>&#160;   <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l04858"></a><span class="lineno"> 4858</span>&#160;}</div>
 <div class="line"><a name="l04859"></a><span class="lineno"> 4859</span>&#160; </div>
-<div class="line"><a name="l04860"></a><span class="lineno"> 4860</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__create_png_image(stbi__png *a, stbi_uc *image_data, stbi__uint32 image_data_len, <span class="keywordtype">int</span> out_n, <span class="keywordtype">int</span> depth, <span class="keywordtype">int</span> color, <span class="keywordtype">int</span> interlaced)</div>
+<div class="line"><a name="l04860"></a><span class="lineno"> 4860</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__create_png_image(stbi__png *a, stbi_uc *image_data, stbi__uint32 image_data_len, <span class="keywordtype">int</span> out_n, <span class="keywordtype">int</span> <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>, <span class="keywordtype">int</span> color, <span class="keywordtype">int</span> interlaced)</div>
 <div class="line"><a name="l04861"></a><span class="lineno"> 4861</span>&#160;{</div>
-<div class="line"><a name="l04862"></a><span class="lineno"> 4862</span>&#160;   <span class="keywordtype">int</span> bytes = (depth == 16 ? 2 : 1);</div>
+<div class="line"><a name="l04862"></a><span class="lineno"> 4862</span>&#160;   <span class="keywordtype">int</span> bytes = (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> == 16 ? 2 : 1);</div>
 <div class="line"><a name="l04863"></a><span class="lineno"> 4863</span>&#160;   <span class="keywordtype">int</span> out_bytes = out_n * bytes;</div>
 <div class="line"><a name="l04864"></a><span class="lineno"> 4864</span>&#160;   stbi_uc *<span class="keyword">final</span>;</div>
 <div class="line"><a name="l04865"></a><span class="lineno"> 4865</span>&#160;   <span class="keywordtype">int</span> p;</div>
 <div class="line"><a name="l04866"></a><span class="lineno"> 4866</span>&#160;   <span class="keywordflow">if</span> (!interlaced)</div>
-<div class="line"><a name="l04867"></a><span class="lineno"> 4867</span>&#160;      <span class="keywordflow">return</span> stbi__create_png_image_raw(a, image_data, image_data_len, out_n, a-&gt;s-&gt;img_x, a-&gt;s-&gt;img_y, depth, color);</div>
+<div class="line"><a name="l04867"></a><span class="lineno"> 4867</span>&#160;      <span class="keywordflow">return</span> stbi__create_png_image_raw(a, image_data, image_data_len, out_n, a-&gt;s-&gt;img_x, a-&gt;s-&gt;img_y, <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>, color);</div>
 <div class="line"><a name="l04868"></a><span class="lineno"> 4868</span>&#160; </div>
 <div class="line"><a name="l04869"></a><span class="lineno"> 4869</span>&#160;   <span class="comment">// de-interlacing</span></div>
 <div class="line"><a name="l04870"></a><span class="lineno"> 4870</span>&#160;   <span class="keyword">final</span> = (stbi_uc *) stbi__malloc_mad3(a-&gt;s-&gt;img_x, a-&gt;s-&gt;img_y, out_bytes, 0);</div>
@@ -4941,8 +4941,8 @@ $(function() {
 <div class="line"><a name="l04879"></a><span class="lineno"> 4879</span>&#160;      x = (a-&gt;s-&gt;img_x - xorig[p] + xspc[p]-1) / xspc[p];</div>
 <div class="line"><a name="l04880"></a><span class="lineno"> 4880</span>&#160;      y = (a-&gt;s-&gt;img_y - yorig[p] + yspc[p]-1) / yspc[p];</div>
 <div class="line"><a name="l04881"></a><span class="lineno"> 4881</span>&#160;      <span class="keywordflow">if</span> (x &amp;&amp; y) {</div>
-<div class="line"><a name="l04882"></a><span class="lineno"> 4882</span>&#160;         stbi__uint32 img_len = ((((a-&gt;s-&gt;img_n * x * depth) + 7) &gt;&gt; 3) + 1) * y;</div>
-<div class="line"><a name="l04883"></a><span class="lineno"> 4883</span>&#160;         <span class="keywordflow">if</span> (!stbi__create_png_image_raw(a, image_data, image_data_len, out_n, x, y, depth, color)) {</div>
+<div class="line"><a name="l04882"></a><span class="lineno"> 4882</span>&#160;         stbi__uint32 img_len = ((((a-&gt;s-&gt;img_n * x * <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>) + 7) &gt;&gt; 3) + 1) * y;</div>
+<div class="line"><a name="l04883"></a><span class="lineno"> 4883</span>&#160;         <span class="keywordflow">if</span> (!stbi__create_png_image_raw(a, image_data, image_data_len, out_n, x, y, <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>, color)) {</div>
 <div class="line"><a name="l04884"></a><span class="lineno"> 4884</span>&#160;            STBI_FREE(<span class="keyword">final</span>);</div>
 <div class="line"><a name="l04885"></a><span class="lineno"> 4885</span>&#160;            <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l04886"></a><span class="lineno"> 4886</span>&#160;         }</div>
@@ -6420,7 +6420,7 @@ $(function() {
 <div class="line"><a name="l06358"></a><span class="lineno"> 6358</span>&#160; </div>
 <div class="line"><a name="l06359"></a><span class="lineno"> 6359</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
 <div class="line"><a name="l06360"></a><span class="lineno"> 6360</span>&#160;{</div>
-<div class="line"><a name="l06361"></a><span class="lineno"> 6361</span>&#160;   stbi_uc size,<a class="code" href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a>,channel;</div>
+<div class="line"><a name="l06361"></a><span class="lineno"> 6361</span>&#160;   stbi_uc <a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>,<a class="code" href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a>,channel;</div>
 <div class="line"><a name="l06362"></a><span class="lineno"> 6362</span>&#160;} stbi__pic_packet;</div>
 <div class="line"><a name="l06363"></a><span class="lineno"> 6363</span>&#160; </div>
 <div class="line"><a name="l06364"></a><span class="lineno"> 6364</span>&#160;<span class="keyword">static</span> stbi_uc *stbi__readval(stbi__context *s, <span class="keywordtype">int</span> channel, stbi_uc *dest)</div>
@@ -6446,7 +6446,7 @@ $(function() {
 <div class="line"><a name="l06384"></a><span class="lineno"> 6384</span>&#160;         dest[i]=src[i];</div>
 <div class="line"><a name="l06385"></a><span class="lineno"> 6385</span>&#160;}</div>
 <div class="line"><a name="l06386"></a><span class="lineno"> 6386</span>&#160; </div>
-<div class="line"><a name="l06387"></a><span class="lineno"> 6387</span>&#160;<span class="keyword">static</span> stbi_uc *stbi__pic_load_core(stbi__context *s,<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height,<span class="keywordtype">int</span> *comp, stbi_uc *result)</div>
+<div class="line"><a name="l06387"></a><span class="lineno"> 6387</span>&#160;<span class="keyword">static</span> stbi_uc *stbi__pic_load_core(stbi__context *s,<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> <a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>,<span class="keywordtype">int</span> *comp, stbi_uc *result)</div>
 <div class="line"><a name="l06388"></a><span class="lineno"> 6388</span>&#160;{</div>
 <div class="line"><a name="l06389"></a><span class="lineno"> 6389</span>&#160;   <span class="keywordtype">int</span> act_comp=0,num_packets=0,y,chained;</div>
 <div class="line"><a name="l06390"></a><span class="lineno"> 6390</span>&#160;   stbi__pic_packet packets[10];</div>
@@ -6474,7 +6474,7 @@ $(function() {
 <div class="line"><a name="l06412"></a><span class="lineno"> 6412</span>&#160; </div>
 <div class="line"><a name="l06413"></a><span class="lineno"> 6413</span>&#160;   *comp = (act_comp &amp; 0x10 ? 4 : 3); <span class="comment">// has alpha channel?</span></div>
 <div class="line"><a name="l06414"></a><span class="lineno"> 6414</span>&#160; </div>
-<div class="line"><a name="l06415"></a><span class="lineno"> 6415</span>&#160;   <span class="keywordflow">for</span>(y=0; y&lt;height; ++y) {</div>
+<div class="line"><a name="l06415"></a><span class="lineno"> 6415</span>&#160;   <span class="keywordflow">for</span>(y=0; y&lt;<a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>; ++y) {</div>
 <div class="line"><a name="l06416"></a><span class="lineno"> 6416</span>&#160;      <span class="keywordtype">int</span> packet_idx;</div>
 <div class="line"><a name="l06417"></a><span class="lineno"> 6417</span>&#160; </div>
 <div class="line"><a name="l06418"></a><span class="lineno"> 6418</span>&#160;      <span class="keywordflow">for</span>(packet_idx=0; packet_idx &lt; num_packets; ++packet_idx) {</div>
@@ -6752,25 +6752,25 @@ $(function() {
 <div class="line"><a name="l06690"></a><span class="lineno"> 6690</span>&#160;   stbi_uc lzw_cs;</div>
 <div class="line"><a name="l06691"></a><span class="lineno"> 6691</span>&#160;   stbi__int32 <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, init_code;</div>
 <div class="line"><a name="l06692"></a><span class="lineno"> 6692</span>&#160;   stbi__uint32 first;</div>
-<div class="line"><a name="l06693"></a><span class="lineno"> 6693</span>&#160;   stbi__int32 codesize, codemask, avail, oldcode, bits, valid_bits, clear;</div>
+<div class="line"><a name="l06693"></a><span class="lineno"> 6693</span>&#160;   stbi__int32 codesize, codemask, avail, oldcode, bits, valid_bits, <a class="code" href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a>;</div>
 <div class="line"><a name="l06694"></a><span class="lineno"> 6694</span>&#160;   stbi__gif_lzw *p;</div>
 <div class="line"><a name="l06695"></a><span class="lineno"> 6695</span>&#160; </div>
 <div class="line"><a name="l06696"></a><span class="lineno"> 6696</span>&#160;   lzw_cs = stbi__get8(s);</div>
 <div class="line"><a name="l06697"></a><span class="lineno"> 6697</span>&#160;   <span class="keywordflow">if</span> (lzw_cs &gt; 12) <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l06698"></a><span class="lineno"> 6698</span>&#160;   clear = 1 &lt;&lt; lzw_cs;</div>
+<div class="line"><a name="l06698"></a><span class="lineno"> 6698</span>&#160;   <a class="code" href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a> = 1 &lt;&lt; lzw_cs;</div>
 <div class="line"><a name="l06699"></a><span class="lineno"> 6699</span>&#160;   first = 1;</div>
 <div class="line"><a name="l06700"></a><span class="lineno"> 6700</span>&#160;   codesize = lzw_cs + 1;</div>
 <div class="line"><a name="l06701"></a><span class="lineno"> 6701</span>&#160;   codemask = (1 &lt;&lt; codesize) - 1;</div>
 <div class="line"><a name="l06702"></a><span class="lineno"> 6702</span>&#160;   bits = 0;</div>
 <div class="line"><a name="l06703"></a><span class="lineno"> 6703</span>&#160;   valid_bits = 0;</div>
-<div class="line"><a name="l06704"></a><span class="lineno"> 6704</span>&#160;   <span class="keywordflow">for</span> (init_code = 0; init_code &lt; clear; init_code++) {</div>
+<div class="line"><a name="l06704"></a><span class="lineno"> 6704</span>&#160;   <span class="keywordflow">for</span> (init_code = 0; init_code &lt; <a class="code" href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a>; init_code++) {</div>
 <div class="line"><a name="l06705"></a><span class="lineno"> 6705</span>&#160;      g-&gt;codes[init_code].prefix = -1;</div>
 <div class="line"><a name="l06706"></a><span class="lineno"> 6706</span>&#160;      g-&gt;codes[init_code].first = (stbi_uc) init_code;</div>
 <div class="line"><a name="l06707"></a><span class="lineno"> 6707</span>&#160;      g-&gt;codes[init_code].suffix = (stbi_uc) init_code;</div>
 <div class="line"><a name="l06708"></a><span class="lineno"> 6708</span>&#160;   }</div>
 <div class="line"><a name="l06709"></a><span class="lineno"> 6709</span>&#160; </div>
 <div class="line"><a name="l06710"></a><span class="lineno"> 6710</span>&#160;   <span class="comment">// support no starting clear code</span></div>
-<div class="line"><a name="l06711"></a><span class="lineno"> 6711</span>&#160;   avail = clear+2;</div>
+<div class="line"><a name="l06711"></a><span class="lineno"> 6711</span>&#160;   avail = <a class="code" href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a>+2;</div>
 <div class="line"><a name="l06712"></a><span class="lineno"> 6712</span>&#160;   oldcode = -1;</div>
 <div class="line"><a name="l06713"></a><span class="lineno"> 6713</span>&#160; </div>
 <div class="line"><a name="l06714"></a><span class="lineno"> 6714</span>&#160;   <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> = 0;</div>
@@ -6789,13 +6789,13 @@ $(function() {
 <div class="line"><a name="l06727"></a><span class="lineno"> 6727</span>&#160;         bits &gt;&gt;= codesize;</div>
 <div class="line"><a name="l06728"></a><span class="lineno"> 6728</span>&#160;         valid_bits -= codesize;</div>
 <div class="line"><a name="l06729"></a><span class="lineno"> 6729</span>&#160;         <span class="comment">// @OPTIMIZE: is there some way we can accelerate the non-clear path?</span></div>
-<div class="line"><a name="l06730"></a><span class="lineno"> 6730</span>&#160;         <span class="keywordflow">if</span> (code == clear) {  <span class="comment">// clear code</span></div>
+<div class="line"><a name="l06730"></a><span class="lineno"> 6730</span>&#160;         <span class="keywordflow">if</span> (code == <a class="code" href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a>) {  <span class="comment">// clear code</span></div>
 <div class="line"><a name="l06731"></a><span class="lineno"> 6731</span>&#160;            codesize = lzw_cs + 1;</div>
 <div class="line"><a name="l06732"></a><span class="lineno"> 6732</span>&#160;            codemask = (1 &lt;&lt; codesize) - 1;</div>
-<div class="line"><a name="l06733"></a><span class="lineno"> 6733</span>&#160;            avail = clear + 2;</div>
+<div class="line"><a name="l06733"></a><span class="lineno"> 6733</span>&#160;            avail = <a class="code" href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a> + 2;</div>
 <div class="line"><a name="l06734"></a><span class="lineno"> 6734</span>&#160;            oldcode = -1;</div>
 <div class="line"><a name="l06735"></a><span class="lineno"> 6735</span>&#160;            first = 0;</div>
-<div class="line"><a name="l06736"></a><span class="lineno"> 6736</span>&#160;         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (code == clear + 1) { <span class="comment">// end of stream code</span></div>
+<div class="line"><a name="l06736"></a><span class="lineno"> 6736</span>&#160;         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (code == <a class="code" href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a> + 1) { <span class="comment">// end of stream code</span></div>
 <div class="line"><a name="l06737"></a><span class="lineno"> 6737</span>&#160;            stbi__skip(s, <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
 <div class="line"><a name="l06738"></a><span class="lineno"> 6738</span>&#160;            <span class="keywordflow">while</span> ((<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> = stbi__get8(s)) &gt; 0)</div>
 <div class="line"><a name="l06739"></a><span class="lineno"> 6739</span>&#160;               stbi__skip(s,<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
@@ -7219,7 +7219,7 @@ $(function() {
 <div class="line"><a name="l07157"></a><span class="lineno"> 7157</span>&#160;   <span class="keywordtype">char</span> buffer[STBI__HDR_BUFLEN];</div>
 <div class="line"><a name="l07158"></a><span class="lineno"> 7158</span>&#160;   <span class="keywordtype">char</span> *token;</div>
 <div class="line"><a name="l07159"></a><span class="lineno"> 7159</span>&#160;   <span class="keywordtype">int</span> valid = 0;</div>
-<div class="line"><a name="l07160"></a><span class="lineno"> 7160</span>&#160;   <span class="keywordtype">int</span> width, height;</div>
+<div class="line"><a name="l07160"></a><span class="lineno"> 7160</span>&#160;   <span class="keywordtype">int</span> width, <a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>;</div>
 <div class="line"><a name="l07161"></a><span class="lineno"> 7161</span>&#160;   stbi_uc *scanline;</div>
 <div class="line"><a name="l07162"></a><span class="lineno"> 7162</span>&#160;   <span class="keywordtype">float</span> *hdr_data;</div>
 <div class="line"><a name="l07163"></a><span class="lineno"> 7163</span>&#160;   <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>;</div>
@@ -7247,26 +7247,26 @@ $(function() {
 <div class="line"><a name="l07185"></a><span class="lineno"> 7185</span>&#160;   token = stbi__hdr_gettoken(s,buffer);</div>
 <div class="line"><a name="l07186"></a><span class="lineno"> 7186</span>&#160;   <span class="keywordflow">if</span> (strncmp(token, <span class="stringliteral">&quot;-Y &quot;</span>, 3))  <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;unsupported data layout&quot;</span>, <span class="stringliteral">&quot;Unsupported HDR format&quot;</span>);</div>
 <div class="line"><a name="l07187"></a><span class="lineno"> 7187</span>&#160;   token += 3;</div>
-<div class="line"><a name="l07188"></a><span class="lineno"> 7188</span>&#160;   height = (int) strtol(token, &amp;token, 10);</div>
+<div class="line"><a name="l07188"></a><span class="lineno"> 7188</span>&#160;   <a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a> = (int) strtol(token, &amp;token, 10);</div>
 <div class="line"><a name="l07189"></a><span class="lineno"> 7189</span>&#160;   <span class="keywordflow">while</span> (*token == <span class="charliteral">&#39; &#39;</span>) ++token;</div>
 <div class="line"><a name="l07190"></a><span class="lineno"> 7190</span>&#160;   <span class="keywordflow">if</span> (strncmp(token, <span class="stringliteral">&quot;+X &quot;</span>, 3))  <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;unsupported data layout&quot;</span>, <span class="stringliteral">&quot;Unsupported HDR format&quot;</span>);</div>
 <div class="line"><a name="l07191"></a><span class="lineno"> 7191</span>&#160;   token += 3;</div>
 <div class="line"><a name="l07192"></a><span class="lineno"> 7192</span>&#160;   width = (int) strtol(token, NULL, 10);</div>
 <div class="line"><a name="l07193"></a><span class="lineno"> 7193</span>&#160; </div>
-<div class="line"><a name="l07194"></a><span class="lineno"> 7194</span>&#160;   <span class="keywordflow">if</span> (height &gt; STBI_MAX_DIMENSIONS) <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;too large&quot;</span>,<span class="stringliteral">&quot;Very large image (corrupt?)&quot;</span>);</div>
+<div class="line"><a name="l07194"></a><span class="lineno"> 7194</span>&#160;   <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a> &gt; STBI_MAX_DIMENSIONS) <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;too large&quot;</span>,<span class="stringliteral">&quot;Very large image (corrupt?)&quot;</span>);</div>
 <div class="line"><a name="l07195"></a><span class="lineno"> 7195</span>&#160;   <span class="keywordflow">if</span> (width &gt; STBI_MAX_DIMENSIONS) <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;too large&quot;</span>,<span class="stringliteral">&quot;Very large image (corrupt?)&quot;</span>);</div>
 <div class="line"><a name="l07196"></a><span class="lineno"> 7196</span>&#160; </div>
 <div class="line"><a name="l07197"></a><span class="lineno"> 7197</span>&#160;   *x = width;</div>
-<div class="line"><a name="l07198"></a><span class="lineno"> 7198</span>&#160;   *y = height;</div>
+<div class="line"><a name="l07198"></a><span class="lineno"> 7198</span>&#160;   *y = <a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>;</div>
 <div class="line"><a name="l07199"></a><span class="lineno"> 7199</span>&#160; </div>
 <div class="line"><a name="l07200"></a><span class="lineno"> 7200</span>&#160;   <span class="keywordflow">if</span> (comp) *comp = 3;</div>
 <div class="line"><a name="l07201"></a><span class="lineno"> 7201</span>&#160;   <span class="keywordflow">if</span> (req_comp == 0) req_comp = 3;</div>
 <div class="line"><a name="l07202"></a><span class="lineno"> 7202</span>&#160; </div>
-<div class="line"><a name="l07203"></a><span class="lineno"> 7203</span>&#160;   <span class="keywordflow">if</span> (!stbi__mad4sizes_valid(width, height, req_comp, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>), 0))</div>
+<div class="line"><a name="l07203"></a><span class="lineno"> 7203</span>&#160;   <span class="keywordflow">if</span> (!stbi__mad4sizes_valid(width, <a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>, req_comp, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>), 0))</div>
 <div class="line"><a name="l07204"></a><span class="lineno"> 7204</span>&#160;      <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;too large&quot;</span>, <span class="stringliteral">&quot;HDR image is too large&quot;</span>);</div>
 <div class="line"><a name="l07205"></a><span class="lineno"> 7205</span>&#160; </div>
 <div class="line"><a name="l07206"></a><span class="lineno"> 7206</span>&#160;   <span class="comment">// Read data</span></div>
-<div class="line"><a name="l07207"></a><span class="lineno"> 7207</span>&#160;   hdr_data = (<span class="keywordtype">float</span> *) stbi__malloc_mad4(width, height, req_comp, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>), 0);</div>
+<div class="line"><a name="l07207"></a><span class="lineno"> 7207</span>&#160;   hdr_data = (<span class="keywordtype">float</span> *) stbi__malloc_mad4(width, <a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>, req_comp, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>), 0);</div>
 <div class="line"><a name="l07208"></a><span class="lineno"> 7208</span>&#160;   <span class="keywordflow">if</span> (!hdr_data)</div>
 <div class="line"><a name="l07209"></a><span class="lineno"> 7209</span>&#160;      <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;outofmem&quot;</span>, <span class="stringliteral">&quot;Out of memory&quot;</span>);</div>
 <div class="line"><a name="l07210"></a><span class="lineno"> 7210</span>&#160; </div>
@@ -7274,7 +7274,7 @@ $(function() {
 <div class="line"><a name="l07212"></a><span class="lineno"> 7212</span>&#160;   <span class="comment">// image data is stored as some number of sca</span></div>
 <div class="line"><a name="l07213"></a><span class="lineno"> 7213</span>&#160;   <span class="keywordflow">if</span> ( width &lt; 8 || width &gt;= 32768) {</div>
 <div class="line"><a name="l07214"></a><span class="lineno"> 7214</span>&#160;      <span class="comment">// Read flat data</span></div>
-<div class="line"><a name="l07215"></a><span class="lineno"> 7215</span>&#160;      <span class="keywordflow">for</span> (j=0; j &lt; height; ++j) {</div>
+<div class="line"><a name="l07215"></a><span class="lineno"> 7215</span>&#160;      <span class="keywordflow">for</span> (j=0; j &lt; <a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>; ++j) {</div>
 <div class="line"><a name="l07216"></a><span class="lineno"> 7216</span>&#160;         <span class="keywordflow">for</span> (i=0; i &lt; width; ++i) {</div>
 <div class="line"><a name="l07217"></a><span class="lineno"> 7217</span>&#160;            stbi_uc rgbe[4];</div>
 <div class="line"><a name="l07218"></a><span class="lineno"> 7218</span>&#160;           main_decode_loop:</div>
@@ -7286,7 +7286,7 @@ $(function() {
 <div class="line"><a name="l07224"></a><span class="lineno"> 7224</span>&#160;      <span class="comment">// Read RLE-encoded data</span></div>
 <div class="line"><a name="l07225"></a><span class="lineno"> 7225</span>&#160;      scanline = NULL;</div>
 <div class="line"><a name="l07226"></a><span class="lineno"> 7226</span>&#160; </div>
-<div class="line"><a name="l07227"></a><span class="lineno"> 7227</span>&#160;      <span class="keywordflow">for</span> (j = 0; j &lt; height; ++j) {</div>
+<div class="line"><a name="l07227"></a><span class="lineno"> 7227</span>&#160;      <span class="keywordflow">for</span> (j = 0; j &lt; <a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>; ++j) {</div>
 <div class="line"><a name="l07228"></a><span class="lineno"> 7228</span>&#160;         c1 = stbi__get8(s);</div>
 <div class="line"><a name="l07229"></a><span class="lineno"> 7229</span>&#160;         c2 = stbi__get8(s);</div>
 <div class="line"><a name="l07230"></a><span class="lineno"> 7230</span>&#160;         <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> = stbi__get8(s);</div>
@@ -7417,7 +7417,7 @@ $(function() {
 <div class="line"><a name="l07355"></a><span class="lineno"> 7355</span>&#160;<span class="preprocessor">#ifndef STBI_NO_PSD</span></div>
 <div class="line"><a name="l07356"></a><span class="lineno"> 7356</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__psd_info(stbi__context *s, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *comp)</div>
 <div class="line"><a name="l07357"></a><span class="lineno"> 7357</span>&#160;{</div>
-<div class="line"><a name="l07358"></a><span class="lineno"> 7358</span>&#160;   <span class="keywordtype">int</span> channelCount, dummy, depth;</div>
+<div class="line"><a name="l07358"></a><span class="lineno"> 7358</span>&#160;   <span class="keywordtype">int</span> channelCount, dummy, <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>;</div>
 <div class="line"><a name="l07359"></a><span class="lineno"> 7359</span>&#160;   <span class="keywordflow">if</span> (!x) x = &amp;dummy;</div>
 <div class="line"><a name="l07360"></a><span class="lineno"> 7360</span>&#160;   <span class="keywordflow">if</span> (!y) y = &amp;dummy;</div>
 <div class="line"><a name="l07361"></a><span class="lineno"> 7361</span>&#160;   <span class="keywordflow">if</span> (!comp) comp = &amp;dummy;</div>
@@ -7437,8 +7437,8 @@ $(function() {
 <div class="line"><a name="l07375"></a><span class="lineno"> 7375</span>&#160;   }</div>
 <div class="line"><a name="l07376"></a><span class="lineno"> 7376</span>&#160;   *y = stbi__get32be(s);</div>
 <div class="line"><a name="l07377"></a><span class="lineno"> 7377</span>&#160;   *x = stbi__get32be(s);</div>
-<div class="line"><a name="l07378"></a><span class="lineno"> 7378</span>&#160;   depth = stbi__get16be(s);</div>
-<div class="line"><a name="l07379"></a><span class="lineno"> 7379</span>&#160;   <span class="keywordflow">if</span> (depth != 8 &amp;&amp; depth != 16) {</div>
+<div class="line"><a name="l07378"></a><span class="lineno"> 7378</span>&#160;   <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> = stbi__get16be(s);</div>
+<div class="line"><a name="l07379"></a><span class="lineno"> 7379</span>&#160;   <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> != 8 &amp;&amp; <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> != 16) {</div>
 <div class="line"><a name="l07380"></a><span class="lineno"> 7380</span>&#160;       stbi__rewind( s );</div>
 <div class="line"><a name="l07381"></a><span class="lineno"> 7381</span>&#160;       <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l07382"></a><span class="lineno"> 7382</span>&#160;   }</div>
@@ -7452,7 +7452,7 @@ $(function() {
 <div class="line"><a name="l07390"></a><span class="lineno"> 7390</span>&#160; </div>
 <div class="line"><a name="l07391"></a><span class="lineno"> 7391</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__psd_is16(stbi__context *s)</div>
 <div class="line"><a name="l07392"></a><span class="lineno"> 7392</span>&#160;{</div>
-<div class="line"><a name="l07393"></a><span class="lineno"> 7393</span>&#160;   <span class="keywordtype">int</span> channelCount, depth;</div>
+<div class="line"><a name="l07393"></a><span class="lineno"> 7393</span>&#160;   <span class="keywordtype">int</span> channelCount, <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>;</div>
 <div class="line"><a name="l07394"></a><span class="lineno"> 7394</span>&#160;   <span class="keywordflow">if</span> (stbi__get32be(s) != 0x38425053) {</div>
 <div class="line"><a name="l07395"></a><span class="lineno"> 7395</span>&#160;       stbi__rewind( s );</div>
 <div class="line"><a name="l07396"></a><span class="lineno"> 7396</span>&#160;       <span class="keywordflow">return</span> 0;</div>
@@ -7469,8 +7469,8 @@ $(function() {
 <div class="line"><a name="l07407"></a><span class="lineno"> 7407</span>&#160;   }</div>
 <div class="line"><a name="l07408"></a><span class="lineno"> 7408</span>&#160;   STBI_NOTUSED(stbi__get32be(s));</div>
 <div class="line"><a name="l07409"></a><span class="lineno"> 7409</span>&#160;   STBI_NOTUSED(stbi__get32be(s));</div>
-<div class="line"><a name="l07410"></a><span class="lineno"> 7410</span>&#160;   depth = stbi__get16be(s);</div>
-<div class="line"><a name="l07411"></a><span class="lineno"> 7411</span>&#160;   <span class="keywordflow">if</span> (depth != 16) {</div>
+<div class="line"><a name="l07410"></a><span class="lineno"> 7410</span>&#160;   <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> = stbi__get16be(s);</div>
+<div class="line"><a name="l07411"></a><span class="lineno"> 7411</span>&#160;   <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> != 16) {</div>
 <div class="line"><a name="l07412"></a><span class="lineno"> 7412</span>&#160;       stbi__rewind( s );</div>
 <div class="line"><a name="l07413"></a><span class="lineno"> 7413</span>&#160;       <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l07414"></a><span class="lineno"> 7414</span>&#160;   }</div>
@@ -8047,6 +8047,10 @@ $(function() {
 <div class="line"><a name="l07985"></a><span class="lineno"> 7985</span>&#160;<span class="comment">*/</span></div>
 <div class="ttc" id="a_data_8h_html_adb1dbf691ca9751b21d4ab403146a6b1"><div class="ttname"><a href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a></div><div class="ttdeci">Type type(Data *data)</div><div class="ttdoc">Gets the type of the data.</div><div class="ttdef"><b>Definition:</b> Data.c:98</div></div>
 <div class="ttc" id="a_list_8h_html_a86d5d52dc56d8f55814ca44913b57f43"><div class="ttname"><a href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a></div><div class="ttdeci">int len(List *L)</div><div class="ttdoc">Function to get the length of a list.</div><div class="ttdef"><b>Definition:</b> List.c:33</div></div>
+<div class="ttc" id="a_tree_8h_html_a3df7d5d6e4eb92eac6d3d51155f8df3e"><div class="ttname"><a href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a></div><div class="ttdeci">int height(Node *root)</div><div class="ttdoc">Function to get the height of a node.</div><div class="ttdef"><b>Definition:</b> Tree.c:38</div></div>
+<div class="ttc" id="a_tree_8h_html_ad27cc76d3737eed66f7b5320aac170db"><div class="ttname"><a href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a></div><div class="ttdeci">int depth(Node *root, Node *node)</div><div class="ttdoc">Function to get the depth of a node.</div><div class="ttdef"><b>Definition:</b> Tree.c:25</div></div>
+<div class="ttc" id="a_vector_8h_html_a367c80e4a5c6743c3b79d831f99a66f2"><div class="ttname"><a href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a></div><div class="ttdeci">int size(Vector *vector)</div><div class="ttdoc">Function to get the size of the vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:24</div></div>
+<div class="ttc" id="a_vector_8h_html_aedc11a5ecd0fac563528da44327addb9"><div class="ttname"><a href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a></div><div class="ttdeci">void clear(Vector *vector)</div><div class="ttdoc">Function to clear the vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:139</div></div>
 <div class="ttc" id="astructstbi__io__callbacks_html"><div class="ttname"><a href="structstbi__io__callbacks.html">stbi_io_callbacks</a></div><div class="ttdef"><b>Definition:</b> stb_image.h:411</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->

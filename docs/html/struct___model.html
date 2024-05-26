@@ -67,13 +67,18 @@ $(function() {
 <div class="title">_Model Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A Model class to represent a 3D object in the scene.  
+ <a href="struct___model.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_model_8h_source.html">Model.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for _Model:</div>
 <div class="dyncontent">
 <div class="center"><img src="struct___model__coll__graph.png" border="0" usemap="#a___model_coll__map" alt="Collaboration graph"/></div>
 <map name="a___model_coll__map" id="a___model_coll__map">
-<area shape="rect" title=" " alt="" coords="57,184,127,211"/>
-<area shape="rect" href="struct___texture.html" title=" " alt="" coords="5,95,83,121"/>
+<area shape="rect" title="A Model class to represent a 3D object in the scene." alt="" coords="57,184,127,211"/>
+<area shape="rect" href="struct___texture.html" title="Represent a single texture in the engine. Can be used by multiple Objet, completely dissociated from ..." alt="" coords="5,95,83,121"/>
 <area shape="rect" href="struct___mesh.html" title="A Mesh class that hold data parsed from a file and converted ot OpenGL format." alt="" coords="109,95,173,121"/>
 <area shape="rect" href="struct___vertex.html" title="A Custom vertex struct we pass to OpenGL." alt="" coords="106,5,177,32"/>
 </map>
@@ -81,55 +86,290 @@ Collaboration diagram for _Model:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a8d9cf411437bc11e2fca43fca7605edd"><td class="memItemLeft" align="right" valign="top"><a id="a8d9cf411437bc11e2fca43fca7605edd"></a>
-<a class="el" href="_mesh_8h.html#aa0a88b11e856d3e20ae17ccd4a30cacb">Mesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>meshes</b></td></tr>
+<tr class="memitem:a8d9cf411437bc11e2fca43fca7605edd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_mesh_8h.html#aa0a88b11e856d3e20ae17ccd4a30cacb">Mesh</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___model.html#a8d9cf411437bc11e2fca43fca7605edd">meshes</a></td></tr>
 <tr class="separator:a8d9cf411437bc11e2fca43fca7605edd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a123c67956c6179af3edde2c6233c49f7"><td class="memItemLeft" align="right" valign="top"><a id="a123c67956c6179af3edde2c6233c49f7"></a>
-<a class="el" href="struct___texture.html">Texture</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>materials</b></td></tr>
+<tr class="memitem:a123c67956c6179af3edde2c6233c49f7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_textures_8h.html#a0f34ff9a2bbd56e076a7bcdf99d39a71">Texture</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___model.html#a123c67956c6179af3edde2c6233c49f7">materials</a></td></tr>
 <tr class="separator:a123c67956c6179af3edde2c6233c49f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a881211beb5599d596da2a175af8c724d"><td class="memItemLeft" align="right" valign="top"><a id="a881211beb5599d596da2a175af8c724d"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>meshCount</b></td></tr>
+<tr class="memitem:a881211beb5599d596da2a175af8c724d"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___model.html#a881211beb5599d596da2a175af8c724d">meshCount</a></td></tr>
 <tr class="separator:a881211beb5599d596da2a175af8c724d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae2d92c4d30d5527f1d1f2ae19a2f521c"><td class="memItemLeft" align="right" valign="top"><a id="ae2d92c4d30d5527f1d1f2ae19a2f521c"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>matCount</b></td></tr>
+<tr class="memitem:ae2d92c4d30d5527f1d1f2ae19a2f521c"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___model.html#ae2d92c4d30d5527f1d1f2ae19a2f521c">matCount</a></td></tr>
 <tr class="separator:ae2d92c4d30d5527f1d1f2ae19a2f521c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8eadc6730ef4fbdae87a20414b789faf"><td class="memItemLeft" align="right" valign="top"><a id="a8eadc6730ef4fbdae87a20414b789faf"></a>
-char *&#160;</td><td class="memItemRight" valign="bottom"><b>directory</b></td></tr>
+<tr class="memitem:a8eadc6730ef4fbdae87a20414b789faf"><td class="memItemLeft" align="right" valign="top">char *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___model.html#a8eadc6730ef4fbdae87a20414b789faf">directory</a></td></tr>
 <tr class="separator:a8eadc6730ef4fbdae87a20414b789faf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2807b9fb4b79e01dfde022b613d2575f"><td class="memItemLeft" align="right" valign="top"><a id="a2807b9fb4b79e01dfde022b613d2575f"></a>
-vec3&#160;</td><td class="memItemRight" valign="bottom"><b>position</b></td></tr>
+<tr class="memitem:a2807b9fb4b79e01dfde022b613d2575f"><td class="memItemLeft" align="right" valign="top">vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___model.html#a2807b9fb4b79e01dfde022b613d2575f">position</a></td></tr>
 <tr class="separator:a2807b9fb4b79e01dfde022b613d2575f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a748697685bbb042a4356f2403dcc4185"><td class="memItemLeft" align="right" valign="top"><a id="a748697685bbb042a4356f2403dcc4185"></a>
-vec3&#160;</td><td class="memItemRight" valign="bottom"><b>rotation</b></td></tr>
+<tr class="memitem:a748697685bbb042a4356f2403dcc4185"><td class="memItemLeft" align="right" valign="top">vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___model.html#a748697685bbb042a4356f2403dcc4185">rotation</a></td></tr>
 <tr class="separator:a748697685bbb042a4356f2403dcc4185"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae5be9557844048ede54186048c8e6295"><td class="memItemLeft" align="right" valign="top"><a id="ae5be9557844048ede54186048c8e6295"></a>
-vec3&#160;</td><td class="memItemRight" valign="bottom"><b>scale</b></td></tr>
+<tr class="memitem:ae5be9557844048ede54186048c8e6295"><td class="memItemLeft" align="right" valign="top">vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___model.html#ae5be9557844048ede54186048c8e6295">scale</a></td></tr>
 <tr class="separator:ae5be9557844048ede54186048c8e6295"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a242a50b7fe75862f41b92478af8afa70"><td class="memItemLeft" align="right" valign="top"><a id="a242a50b7fe75862f41b92478af8afa70"></a>
-vec3&#160;</td><td class="memItemRight" valign="bottom"><b>center</b></td></tr>
+<tr class="memitem:a242a50b7fe75862f41b92478af8afa70"><td class="memItemLeft" align="right" valign="top">vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___model.html#a242a50b7fe75862f41b92478af8afa70">center</a></td></tr>
 <tr class="separator:a242a50b7fe75862f41b92478af8afa70"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7436df88e68c054304f0c32f8bd95e7a"><td class="memItemLeft" align="right" valign="top"><a id="a7436df88e68c054304f0c32f8bd95e7a"></a>
-mat4&#160;</td><td class="memItemRight" valign="bottom"><b>modelMatrix</b></td></tr>
+<tr class="memitem:a7436df88e68c054304f0c32f8bd95e7a"><td class="memItemLeft" align="right" valign="top">mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___model.html#a7436df88e68c054304f0c32f8bd95e7a">modelMatrix</a></td></tr>
 <tr class="separator:a7436df88e68c054304f0c32f8bd95e7a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3569fc65c1b87eaef8b048138b620119"><td class="memItemLeft" align="right" valign="top"><a id="a3569fc65c1b87eaef8b048138b620119"></a>
-mat4&#160;</td><td class="memItemRight" valign="bottom"><b>bones</b> [MAX_BONES]</td></tr>
+<tr class="memitem:a3569fc65c1b87eaef8b048138b620119"><td class="memItemLeft" align="right" valign="top">mat4&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___model.html#a3569fc65c1b87eaef8b048138b620119">bones</a> [MAX_BONES]</td></tr>
 <tr class="separator:a3569fc65c1b87eaef8b048138b620119"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3ef8a58d6f9a0918053b3a56f92edf48"><td class="memItemLeft" align="right" valign="top"><a id="a3ef8a58d6f9a0918053b3a56f92edf48"></a>
-char&#160;</td><td class="memItemRight" valign="bottom"><b>bone_names</b> [MAX_BONES][256]</td></tr>
+<tr class="memitem:a3ef8a58d6f9a0918053b3a56f92edf48"><td class="memItemLeft" align="right" valign="top">char&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___model.html#a3ef8a58d6f9a0918053b3a56f92edf48">bone_names</a> [MAX_BONES][256]</td></tr>
 <tr class="separator:a3ef8a58d6f9a0918053b3a56f92edf48"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a783c3555cd5a586e9c764706f3800c20"><td class="memItemLeft" align="right" valign="top"><a id="a783c3555cd5a586e9c764706f3800c20"></a>
-size_t&#160;</td><td class="memItemRight" valign="bottom"><b>bone_count</b></td></tr>
+<tr class="memitem:a783c3555cd5a586e9c764706f3800c20"><td class="memItemLeft" align="right" valign="top">size_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___model.html#a783c3555cd5a586e9c764706f3800c20">bone_count</a></td></tr>
 <tr class="separator:a783c3555cd5a586e9c764706f3800c20"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ed9356bc7bb59a9c461178b7b7868f7"><td class="memItemLeft" align="right" valign="top"><a id="a0ed9356bc7bb59a9c461178b7b7868f7"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isAnimated</b></td></tr>
+<tr class="memitem:a0ed9356bc7bb59a9c461178b7b7868f7"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___model.html#a0ed9356bc7bb59a9c461178b7b7868f7">isAnimated</a></td></tr>
 <tr class="separator:a0ed9356bc7bb59a9c461178b7b7868f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5124476ed83f0b8a643d3e13861ca0c4"><td class="memItemLeft" align="right" valign="top"><a id="a5124476ed83f0b8a643d3e13861ca0c4"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isRenderable</b></td></tr>
+<tr class="memitem:a5124476ed83f0b8a643d3e13861ca0c4"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___model.html#a5124476ed83f0b8a643d3e13861ca0c4">isRenderable</a></td></tr>
 <tr class="separator:a5124476ed83f0b8a643d3e13861ca0c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a099f725f22a344e190121634f53328d8"><td class="memItemLeft" align="right" valign="top"><a id="a099f725f22a344e190121634f53328d8"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isBusy</b></td></tr>
+<tr class="memitem:a099f725f22a344e190121634f53328d8"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___model.html#a099f725f22a344e190121634f53328d8">isBusy</a></td></tr>
 <tr class="separator:a099f725f22a344e190121634f53328d8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A Model class to represent a 3D object in the scene. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a id="a783c3555cd5a586e9c764706f3800c20"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a783c3555cd5a586e9c764706f3800c20">&#9670;&nbsp;</a></span>bone_count</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t bone_count</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Number of bones in the model <br  />
+ </p>
+
+</div>
+</div>
+<a id="a3ef8a58d6f9a0918053b3a56f92edf48"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3ef8a58d6f9a0918053b3a56f92edf48">&#9670;&nbsp;</a></span>bone_names</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char bone_names[MAX_BONES][256]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Array of bone names </p>
+
+</div>
+</div>
+<a id="a3569fc65c1b87eaef8b048138b620119"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3569fc65c1b87eaef8b048138b620119">&#9670;&nbsp;</a></span>bones</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">mat4 bones[MAX_BONES]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Array of bones matrices <br  />
+ </p>
+
+</div>
+</div>
+<a id="a242a50b7fe75862f41b92478af8afa70"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a242a50b7fe75862f41b92478af8afa70">&#9670;&nbsp;</a></span>center</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vec3 center</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Center of the volume of the model <br  />
+ </p>
+
+</div>
+</div>
+<a id="a8eadc6730ef4fbdae87a20414b789faf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8eadc6730ef4fbdae87a20414b789faf">&#9670;&nbsp;</a></span>directory</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">char* directory</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Path to the folder of the model <br  />
+ </p>
+
+</div>
+</div>
+<a id="a0ed9356bc7bb59a9c461178b7b7868f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0ed9356bc7bb59a9c461178b7b7868f7">&#9670;&nbsp;</a></span>isAnimated</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isAnimated</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Boolean flag indicating if the model is animated </p>
+
+</div>
+</div>
+<a id="a099f725f22a344e190121634f53328d8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a099f725f22a344e190121634f53328d8">&#9670;&nbsp;</a></span>isBusy</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isBusy</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Boolean flag indicating if the model is busy </p>
+
+</div>
+</div>
+<a id="a5124476ed83f0b8a643d3e13861ca0c4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5124476ed83f0b8a643d3e13861ca0c4">&#9670;&nbsp;</a></span>isRenderable</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isRenderable</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Boolean flag indicating if the model is renderable </p>
+
+</div>
+</div>
+<a id="ae2d92c4d30d5527f1d1f2ae19a2f521c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae2d92c4d30d5527f1d1f2ae19a2f521c">&#9670;&nbsp;</a></span>matCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t matCount</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Nmmber of materials in the model <br  />
+ </p>
+
+</div>
+</div>
+<a id="a123c67956c6179af3edde2c6233c49f7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a123c67956c6179af3edde2c6233c49f7">&#9670;&nbsp;</a></span>materials</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_textures_8h.html#a0f34ff9a2bbd56e076a7bcdf99d39a71">Texture</a>* materials</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Arrays of materials used by meshes </p>
+
+</div>
+</div>
+<a id="a881211beb5599d596da2a175af8c724d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a881211beb5599d596da2a175af8c724d">&#9670;&nbsp;</a></span>meshCount</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">size_t meshCount</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Number of meshes within the model <br  />
+ </p>
+
+</div>
+</div>
+<a id="a8d9cf411437bc11e2fca43fca7605edd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8d9cf411437bc11e2fca43fca7605edd">&#9670;&nbsp;</a></span>meshes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_mesh_8h.html#aa0a88b11e856d3e20ae17ccd4a30cacb">Mesh</a>* meshes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Arrays of meshes forming the model </p>
+
+</div>
+</div>
+<a id="a7436df88e68c054304f0c32f8bd95e7a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7436df88e68c054304f0c32f8bd95e7a">&#9670;&nbsp;</a></span>modelMatrix</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">mat4 modelMatrix</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Model Matrix of the model <br  />
+ </p>
+
+</div>
+</div>
+<a id="a2807b9fb4b79e01dfde022b613d2575f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2807b9fb4b79e01dfde022b613d2575f">&#9670;&nbsp;</a></span>position</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vec3 position</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Position of the model in the scene </p>
+
+</div>
+</div>
+<a id="a748697685bbb042a4356f2403dcc4185"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a748697685bbb042a4356f2403dcc4185">&#9670;&nbsp;</a></span>rotation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vec3 rotation</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Rotation of the model in the scene </p>
+
+</div>
+</div>
+<a id="ae5be9557844048ede54186048c8e6295"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae5be9557844048ede54186048c8e6295">&#9670;&nbsp;</a></span>scale</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vec3 scale</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Scale of the model in the scene <br  />
+ </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/<a class="el" href="_model_8h_source.html">Model.h</a></li>
 </ul>

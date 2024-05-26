@@ -71,7 +71,7 @@ $(function() {
 <div class="contents">
 <a href="_animation_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;Model.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_model_8h.html">Model.h</a>&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct_animation.html">   16</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_animation.html">Animation</a> {</div>
 <div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="struct_animation.html#a884ec7205b34f35c5abf137793bdb840">   17</a></span>&#160;    <a class="code" href="struct_node.html">Node</a>* <a class="code" href="struct_animation.html#a884ec7205b34f35c5abf137793bdb840">root_node</a>;    </div>
@@ -101,7 +101,8 @@ $(function() {
 <div class="ttc" id="a_animation_8h_html_a89bef044de34155e47dc1315f96267f8"><div class="ttname"><a href="_animation_8h.html#a89bef044de34155e47dc1315f96267f8">AnimationCreate</a></div><div class="ttdeci">Animation * AnimationCreate(char *path, Model *model, char *name)</div><div class="ttdoc">Creates a new Animation instance.</div><div class="ttdef"><b>Definition:</b> Animation.c:4</div></div>
 <div class="ttc" id="a_animation_8h_html_a942398e7323612a16e821629d747b4ad"><div class="ttname"><a href="_animation_8h.html#a942398e7323612a16e821629d747b4ad">CalculateBoneTransformation</a></div><div class="ttdeci">void CalculateBoneTransformation(Node *node, float anim_time, mat4 parent_mat, mat4 *bones, mat4 *bone_anim_mats)</div><div class="ttdoc">Calculates the bone transformation.</div><div class="ttdef"><b>Definition:</b> Animation.c:124</div></div>
 <div class="ttc" id="a_animation_8h_html_ade6a90df50ad3e4adaea9aebc4096ba8"><div class="ttname"><a href="_animation_8h.html#ade6a90df50ad3e4adaea9aebc4096ba8">Animation</a></div><div class="ttdeci">struct Animation Animation</div><div class="ttdoc">Structure representing a node in the skeleton.</div></div>
-<div class="ttc" id="astruct___model_html"><div class="ttname"><a href="struct___model.html">_Model</a></div><div class="ttdef"><b>Definition:</b> Model.h:29</div></div>
+<div class="ttc" id="a_model_8h_html"><div class="ttname"><a href="_model_8h.html">Model.h</a></div><div class="ttdoc">Header file for the model component.</div></div>
+<div class="ttc" id="astruct___model_html"><div class="ttname"><a href="struct___model.html">_Model</a></div><div class="ttdoc">A Model class to represent a 3D object in the scene.</div><div class="ttdef"><b>Definition:</b> Model.h:37</div></div>
 <div class="ttc" id="astruct_animation_html"><div class="ttname"><a href="struct_animation.html">Animation</a></div><div class="ttdoc">Structure representing a node in the skeleton.</div><div class="ttdef"><b>Definition:</b> Animation.h:16</div></div>
 <div class="ttc" id="astruct_animation_html_a4066d7871f7764f7e4b6e51ae0b48738"><div class="ttname"><a href="struct_animation.html#a4066d7871f7764f7e4b6e51ae0b48738">Animation::anim_dur</a></div><div class="ttdeci">float anim_dur</div><div class="ttdef"><b>Definition:</b> Animation.h:21</div></div>
 <div class="ttc" id="astruct_animation_html_a507bb497bce2bcdd2f627996a4c822b4"><div class="ttname"><a href="struct_animation.html#a507bb497bce2bcdd2f627996a4c822b4">Animation::anim_ticks</a></div><div class="ttdeci">float anim_ticks</div><div class="ttdef"><b>Definition:</b> Animation.h:22</div></div>
@@ -110,7 +111,7 @@ $(function() {
 <div class="ttc" id="astruct_animation_html_a884ec7205b34f35c5abf137793bdb840"><div class="ttname"><a href="struct_animation.html#a884ec7205b34f35c5abf137793bdb840">Animation::root_node</a></div><div class="ttdeci">Node * root_node</div><div class="ttdef"><b>Definition:</b> Animation.h:17</div></div>
 <div class="ttc" id="astruct_animation_html_ab0617d93d740672159be4364236a9398"><div class="ttname"><a href="struct_animation.html#ab0617d93d740672159be4364236a9398">Animation::bone_mats</a></div><div class="ttdeci">mat4 * bone_mats</div><div class="ttdef"><b>Definition:</b> Animation.h:19</div></div>
 <div class="ttc" id="astruct_animation_html_ae1cf9a130c7310b571394d65f8db1ef8"><div class="ttname"><a href="struct_animation.html#ae1cf9a130c7310b571394d65f8db1ef8">Animation::parent_mat</a></div><div class="ttdeci">mat4 parent_mat</div><div class="ttdef"><b>Definition:</b> Animation.h:18</div></div>
-<div class="ttc" id="astruct_node_html"><div class="ttname"><a href="struct_node.html">Node</a></div><div class="ttdef"><b>Definition:</b> Tree.h:15</div></div>
+<div class="ttc" id="astruct_node_html"><div class="ttname"><a href="struct_node.html">Node</a></div><div class="ttdoc">Struct representing a node in a tree.</div><div class="ttdef"><b>Definition:</b> Tree.h:20</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

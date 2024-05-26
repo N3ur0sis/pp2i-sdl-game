@@ -2,6 +2,15 @@
 \label{struct_scene_manager}\index{SceneManager@{SceneManager}}
 
 
+Structure for the scene manager.  
+
+
+
+
+{\ttfamily \#include $<$Scene\+Manager.\+h$>$}
+
+
+
 Collaboration diagram for Scene\+Manager\+:
 \nopagebreak
 \begin{figure}[H]
@@ -13,20 +22,46 @@ Collaboration diagram for Scene\+Manager\+:
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct_scene_manager_a26ddc21c5c3d95c66397ea37a6053523}\label{struct_scene_manager_a26ddc21c5c3d95c66397ea37a6053523}} 
-\mbox{\hyperlink{struct___scene}{Scene}} $\ast$ {\bfseries scenes} \mbox{[}MAX\+\_\+\+SCENES\mbox{]}
+\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$ \mbox{\hyperlink{struct_scene_manager_a26ddc21c5c3d95c66397ea37a6053523}{scenes}} \mbox{[}\mbox{\hyperlink{_scene_manager_8h_ac2357da0d2d85045cd269b34c338a6cc}{MAX\+\_\+\+SCENES}}\mbox{]}
 \item 
-\mbox{\Hypertarget{struct_scene_manager_a15fc03f737b4b6d8a73c849d8d026a87}\label{struct_scene_manager_a15fc03f737b4b6d8a73c849d8d026a87}} 
-int {\bfseries current\+Scene\+Index}
+int \mbox{\hyperlink{struct_scene_manager_a15fc03f737b4b6d8a73c849d8d026a87}{current\+Scene\+Index}}
 \item 
-\mbox{\Hypertarget{struct_scene_manager_a1c8c986d780599a7c7cdeb70686b123c}\label{struct_scene_manager_a1c8c986d780599a7c7cdeb70686b123c}} 
-int {\bfseries num\+Scenes}
+int \mbox{\hyperlink{struct_scene_manager_a1c8c986d780599a7c7cdeb70686b123c}{num\+Scenes}}
 \item 
-\mbox{\Hypertarget{struct_scene_manager_a2706ed05d331ef3b53c728a6868bda26}\label{struct_scene_manager_a2706ed05d331ef3b53c728a6868bda26}} 
-\mbox{\hyperlink{struct_game_state}{Game\+State}} {\bfseries game\+State}
+\mbox{\hyperlink{struct_game_state}{Game\+State}} \mbox{\hyperlink{struct_scene_manager_a2706ed05d331ef3b53c728a6868bda26}{game\+State}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Structure for the scene manager. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct_scene_manager_a15fc03f737b4b6d8a73c849d8d026a87}\label{struct_scene_manager_a15fc03f737b4b6d8a73c849d8d026a87}} 
+\index{SceneManager@{SceneManager}!currentSceneIndex@{currentSceneIndex}}
+\index{currentSceneIndex@{currentSceneIndex}!SceneManager@{SceneManager}}
+\doxysubsubsection{\texorpdfstring{currentSceneIndex}{currentSceneIndex}}
+{\footnotesize\ttfamily int current\+Scene\+Index}
+
+Index of the current scene. \mbox{\Hypertarget{struct_scene_manager_a2706ed05d331ef3b53c728a6868bda26}\label{struct_scene_manager_a2706ed05d331ef3b53c728a6868bda26}} 
+\index{SceneManager@{SceneManager}!gameState@{gameState}}
+\index{gameState@{gameState}!SceneManager@{SceneManager}}
+\doxysubsubsection{\texorpdfstring{gameState}{gameState}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_game_state}{Game\+State}} game\+State}
+
+Game state of the scene manager. \mbox{\Hypertarget{struct_scene_manager_a1c8c986d780599a7c7cdeb70686b123c}\label{struct_scene_manager_a1c8c986d780599a7c7cdeb70686b123c}} 
+\index{SceneManager@{SceneManager}!numScenes@{numScenes}}
+\index{numScenes@{numScenes}!SceneManager@{SceneManager}}
+\doxysubsubsection{\texorpdfstring{numScenes}{numScenes}}
+{\footnotesize\ttfamily int num\+Scenes}
+
+Number of scenes. \mbox{\Hypertarget{struct_scene_manager_a26ddc21c5c3d95c66397ea37a6053523}\label{struct_scene_manager_a26ddc21c5c3d95c66397ea37a6053523}} 
+\index{SceneManager@{SceneManager}!scenes@{scenes}}
+\index{scenes@{scenes}!SceneManager@{SceneManager}}
+\doxysubsubsection{\texorpdfstring{scenes}{scenes}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}}$\ast$ scenes\mbox{[}\mbox{\hyperlink{_scene_manager_8h_ac2357da0d2d85045cd269b34c338a6cc}{MAX\+\_\+\+SCENES}}\mbox{]}}
+
+Array of scenes. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Scene\+Manager.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_scene_manager_8h}{Scene\+Manager.\+h}}\end{DoxyCompactItemize}

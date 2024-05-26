@@ -67,23 +67,28 @@ $(function() {
 <div class="title">SceneManager Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Structure for the scene manager.  
+ <a href="struct_scene_manager.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_scene_manager_8h_source.html">SceneManager.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for SceneManager:</div>
 <div class="dyncontent">
 <div class="center"><img src="struct_scene_manager__coll__graph.png" border="0" usemap="#a_scene_manager_coll__map" alt="Collaboration graph"/></div>
 <map name="a_scene_manager_coll__map" id="a_scene_manager_coll__map">
-<area shape="rect" title=" " alt="" coords="323,380,441,407"/>
+<area shape="rect" title="Structure for the scene manager." alt="" coords="323,380,441,407"/>
 <area shape="rect" href="struct_game_state.html" title="Struct representing the game state." alt="" coords="237,291,332,317"/>
 <area shape="rect" href="struct___menu.html" title="Struct representing a menu." alt="" coords="59,185,124,212"/>
 <area shape="rect" href="struct___application.html" title="Represents the main Engine structure." alt="" coords="40,95,143,121"/>
 <area shape="rect" href="struct___window.html" title="A Window class that handles the SDL_Window holding the application and the OpenGL context associated ..." alt="" coords="5,5,87,32"/>
 <area shape="rect" href="struct_time.html" title="Structure for managing time&#45;related information in the application." alt="" coords="111,5,165,32"/>
 <area shape="rect" href="struct___inventory.html" title="Struct representing an inventory." alt="" coords="266,185,357,212"/>
-<area shape="rect" href="struct___object.html" title=" " alt="" coords="276,95,347,121"/>
-<area shape="rect" href="struct___scene.html" title=" " alt="" coords="531,291,599,317"/>
-<area shape="rect" href="struct___shader.html" title=" " alt="" coords="437,95,511,121"/>
-<area shape="rect" href="struct___skybox.html" title=" " alt="" coords="527,185,603,212"/>
-<area shape="rect" href="struct__shader_locations.html" title=" " alt="" coords="407,5,541,32"/>
+<area shape="rect" href="struct___object.html" title="Struct representing an object." alt="" coords="276,95,347,121"/>
+<area shape="rect" href="struct___scene.html" title="Struct representing a scene." alt="" coords="531,291,599,317"/>
+<area shape="rect" href="struct___shader.html" title="Struct for storing shader program." alt="" coords="437,95,511,121"/>
+<area shape="rect" href="struct___skybox.html" title="Struct representing a skybox." alt="" coords="527,185,603,212"/>
+<area shape="rect" href="struct__shader_locations.html" title="Struct for storing shader uniform locations." alt="" coords="407,5,541,32"/>
 <area shape="rect" href="struct_camera.html" title="Structure representing a camera." alt="" coords="627,185,700,212"/>
 <area shape="rect" href="struct___entity.html" title="Struct representing an entity." alt="" coords="725,185,791,212"/>
 <area shape="rect" href="struct___component.html" title="Structure representing a component." alt="" coords="706,95,810,121"/>
@@ -92,19 +97,78 @@ Collaboration diagram for SceneManager:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a26ddc21c5c3d95c66397ea37a6053523"><td class="memItemLeft" align="right" valign="top"><a id="a26ddc21c5c3d95c66397ea37a6053523"></a>
-<a class="el" href="struct___scene.html">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>scenes</b> [MAX_SCENES]</td></tr>
+<tr class="memitem:a26ddc21c5c3d95c66397ea37a6053523"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_scene_8h.html#afb6a0fc8b17a0d7674228341a3cb529e">Scene</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_scene_manager.html#a26ddc21c5c3d95c66397ea37a6053523">scenes</a> [<a class="el" href="_scene_manager_8h.html#ac2357da0d2d85045cd269b34c338a6cc">MAX_SCENES</a>]</td></tr>
 <tr class="separator:a26ddc21c5c3d95c66397ea37a6053523"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15fc03f737b4b6d8a73c849d8d026a87"><td class="memItemLeft" align="right" valign="top"><a id="a15fc03f737b4b6d8a73c849d8d026a87"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>currentSceneIndex</b></td></tr>
+<tr class="memitem:a15fc03f737b4b6d8a73c849d8d026a87"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_scene_manager.html#a15fc03f737b4b6d8a73c849d8d026a87">currentSceneIndex</a></td></tr>
 <tr class="separator:a15fc03f737b4b6d8a73c849d8d026a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1c8c986d780599a7c7cdeb70686b123c"><td class="memItemLeft" align="right" valign="top"><a id="a1c8c986d780599a7c7cdeb70686b123c"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>numScenes</b></td></tr>
+<tr class="memitem:a1c8c986d780599a7c7cdeb70686b123c"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_scene_manager.html#a1c8c986d780599a7c7cdeb70686b123c">numScenes</a></td></tr>
 <tr class="separator:a1c8c986d780599a7c7cdeb70686b123c"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2706ed05d331ef3b53c728a6868bda26"><td class="memItemLeft" align="right" valign="top"><a id="a2706ed05d331ef3b53c728a6868bda26"></a>
-<a class="el" href="struct_game_state.html">GameState</a>&#160;</td><td class="memItemRight" valign="bottom"><b>gameState</b></td></tr>
+<tr class="memitem:a2706ed05d331ef3b53c728a6868bda26"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_game_state.html">GameState</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_scene_manager.html#a2706ed05d331ef3b53c728a6868bda26">gameState</a></td></tr>
 <tr class="separator:a2706ed05d331ef3b53c728a6868bda26"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Structure for the scene manager. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a id="a15fc03f737b4b6d8a73c849d8d026a87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15fc03f737b4b6d8a73c849d8d026a87">&#9670;&nbsp;</a></span>currentSceneIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int currentSceneIndex</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Index of the current scene. </p>
+
+</div>
+</div>
+<a id="a2706ed05d331ef3b53c728a6868bda26"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2706ed05d331ef3b53c728a6868bda26">&#9670;&nbsp;</a></span>gameState</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_game_state.html">GameState</a> gameState</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Game state of the scene manager. </p>
+
+</div>
+</div>
+<a id="a1c8c986d780599a7c7cdeb70686b123c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1c8c986d780599a7c7cdeb70686b123c">&#9670;&nbsp;</a></span>numScenes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int numScenes</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Number of scenes. </p>
+
+</div>
+</div>
+<a id="a26ddc21c5c3d95c66397ea37a6053523"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a26ddc21c5c3d95c66397ea37a6053523">&#9670;&nbsp;</a></span>scenes</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_scene_8h.html#afb6a0fc8b17a0d7674228341a3cb529e">Scene</a>* scenes[<a class="el" href="_scene_manager_8h.html#ac2357da0d2d85045cd269b34c338a6cc">MAX_SCENES</a>]</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Array of scenes. </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/<a class="el" href="_scene_manager_8h_source.html">SceneManager.h</a></li>
 </ul>

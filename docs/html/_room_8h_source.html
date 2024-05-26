@@ -69,41 +69,67 @@ $(function() {
 <div class="title">Room.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;Model.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_component_8h.html">Component.h</a>&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define NB_ENEMY 5</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___room.html">_Room</a> <a class="code" href="struct___room.html">Room</a>;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="struct___room.html">   10</a></span>&#160;<span class="keyword">struct  </span><a class="code" href="struct___room.html">_Room</a></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;{</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">int</span>* data;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    <span class="keywordtype">int</span> nb_door;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    <span class="keywordtype">int</span> id;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    <span class="keywordtype">int</span> type;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    <span class="keywordtype">bool</span> isCompleted;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">int</span> nb_enemy;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">int</span> id_enemy[NB_ENEMY];</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;};</div>
-<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="struct___l___room.html">   20</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___l___room.html">_L_Room</a> {</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="struct___model.html">Model</a>* model;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    <a class="code" href="struct___collider.html">Collider</a>* col;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;}<a class="code" href="struct___l___room.html">L_Room</a>;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">void</span> freeRoom(<a class="code" href="struct___room.html">Room</a>* room);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">void</span> freeLRoom(<a class="code" href="struct___l___room.html">L_Room</a>* l);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">void</span> initializeRoom(<a class="code" href="struct___room.html">Room</a>* room);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> initializeBossRoom(<a class="code" href="struct___room.html">Room</a> *room);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">void</span> initializeLootRoom(<a class="code" href="struct___room.html">Room</a> *room);</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">void</span> initializeFightRoom(<a class="code" href="struct___room.html">Room</a> *room);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<a href="_room_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_model_8h.html">Model.h</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_component_8h.html">Component.h</a>&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="_room_8h.html#ac3419cfa544fa3b086be151d4c6a3ca0">   12</a></span>&#160;<span class="preprocessor">#define NB_ENEMY 5  </span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___room.html">_Room</a> <a class="code" href="struct___room.html">Room</a>;</div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct___room.html">   22</a></span>&#160;<span class="keyword">struct  </span><a class="code" href="struct___room.html">_Room</a></div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;{</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="struct___room.html#ac103627c1ad15cbec2f22d0abe6d54b6">   24</a></span>&#160;    <span class="keywordtype">int</span>* <a class="code" href="struct___room.html#ac103627c1ad15cbec2f22d0abe6d54b6">data</a>;                  </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="struct___room.html#a8b0ca128a95ac39b66e15de28b896cba">   25</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct___room.html#a8b0ca128a95ac39b66e15de28b896cba">nb_door</a>;                </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="struct___room.html#a7441ef0865bcb3db9b8064dd7375c1ea">   26</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct___room.html#a7441ef0865bcb3db9b8064dd7375c1ea">id</a>;                     </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="struct___room.html#ac765329451135abec74c45e1897abf26">   27</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct___room.html#ac765329451135abec74c45e1897abf26">type</a>;                   </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="struct___room.html#a92fea5604f84796183f124ee173aae15">   28</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct___room.html#a92fea5604f84796183f124ee173aae15">isCompleted</a>;           </div>
+<div class="line"><a name="l00029"></a><span class="lineno"><a class="line" href="struct___room.html#a7f6ef45c226eaffed816b17068342e65">   29</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct___room.html#a7f6ef45c226eaffed816b17068342e65">nb_enemy</a>;               </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="struct___room.html#a2052d6a7d1d84e2ec5069c256434807c">   30</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct___room.html#a2052d6a7d1d84e2ec5069c256434807c">id_enemy</a>[<a class="code" href="_room_8h.html#ac3419cfa544fa3b086be151d4c6a3ca0">NB_ENEMY</a>];     </div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;};</div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="struct___l___room.html">   38</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___l___room.html">_L_Room</a> {</div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="struct___l___room.html#a7b56c3ca57dde73bdbc8dbe9772bca19">   39</a></span>&#160;    <a class="code" href="struct___model.html">Model</a>* <a class="code" href="struct___l___room.html#a7b56c3ca57dde73bdbc8dbe9772bca19">model</a>;       </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="struct___l___room.html#a7cc10237927148c2a964faa0ab3279b3">   40</a></span>&#160;    <a class="code" href="struct___collider.html">Collider</a>* <a class="code" href="struct___l___room.html#a7cc10237927148c2a964faa0ab3279b3">col</a>;      </div>
+<div class="line"><a name="l00041"></a><span class="lineno"><a class="line" href="_room_8h.html#a21f3465bc0d6541c13d17d7a2660ba75">   41</a></span>&#160;}<a class="code" href="_room_8h.html#a21f3465bc0d6541c13d17d7a2660ba75">L_Room</a>;</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_room_8h.html#a7a2c4831d10846369f34e2a04c37eba5">freeRoom</a>(<a class="code" href="struct___room.html">Room</a>* room);</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_room_8h.html#ac0a5daeaccdb6481efff1eed3728dd4e">freeLRoom</a>(<a class="code" href="struct___l___room.html">L_Room</a>* l);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno"><a class="line" href="_room_8h.html#aeed308ea962de855fcf06b5199371c9e">   68</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_room_8h.html#aeed308ea962de855fcf06b5199371c9e">initializeRoom</a>(<a class="code" href="struct___room.html">Room</a>* room);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00077"></a><span class="lineno"><a class="line" href="_room_8h.html#acc7bdbee367f1f6aa3a37729d38ecc20">   77</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_room_8h.html#acc7bdbee367f1f6aa3a37729d38ecc20">initializeBossRoom</a>(<a class="code" href="struct___room.html">Room</a> *room);</div>
+<div class="line"><a name="l00078"></a><span class="lineno">   78</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno"><a class="line" href="_room_8h.html#a5d8138724162d7300b25dc2c91585b01">   86</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_room_8h.html#a5d8138724162d7300b25dc2c91585b01">initializeLootRoom</a>(<a class="code" href="struct___room.html">Room</a> *room);</div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160; </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="_room_8h.html#a8174671571ff12395a20fb2cd36d9530">   95</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_room_8h.html#a8174671571ff12395a20fb2cd36d9530">initializeFightRoom</a>(<a class="code" href="struct___room.html">Room</a> *room);</div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160; </div>
 <div class="ttc" id="a_component_8h_html"><div class="ttname"><a href="_component_8h.html">Component.h</a></div><div class="ttdoc">Component header file.</div></div>
+<div class="ttc" id="a_model_8h_html"><div class="ttname"><a href="_model_8h.html">Model.h</a></div><div class="ttdoc">Header file for the model component.</div></div>
+<div class="ttc" id="a_room_8h_html_a21f3465bc0d6541c13d17d7a2660ba75"><div class="ttname"><a href="_room_8h.html#a21f3465bc0d6541c13d17d7a2660ba75">L_Room</a></div><div class="ttdeci">struct _L_Room L_Room</div><div class="ttdoc">Struct representing a L room.</div></div>
+<div class="ttc" id="a_room_8h_html_a5d8138724162d7300b25dc2c91585b01"><div class="ttname"><a href="_room_8h.html#a5d8138724162d7300b25dc2c91585b01">initializeLootRoom</a></div><div class="ttdeci">void initializeLootRoom(Room *room)</div><div class="ttdoc">Function to initialize a Loot room.</div></div>
+<div class="ttc" id="a_room_8h_html_a7a2c4831d10846369f34e2a04c37eba5"><div class="ttname"><a href="_room_8h.html#a7a2c4831d10846369f34e2a04c37eba5">freeRoom</a></div><div class="ttdeci">void freeRoom(Room *room)</div><div class="ttdoc">Function to free a room.</div><div class="ttdef"><b>Definition:</b> Room.c:6</div></div>
+<div class="ttc" id="a_room_8h_html_a8174671571ff12395a20fb2cd36d9530"><div class="ttname"><a href="_room_8h.html#a8174671571ff12395a20fb2cd36d9530">initializeFightRoom</a></div><div class="ttdeci">void initializeFightRoom(Room *room)</div><div class="ttdoc">Function to initialize a Fight room.</div></div>
+<div class="ttc" id="a_room_8h_html_ac0a5daeaccdb6481efff1eed3728dd4e"><div class="ttname"><a href="_room_8h.html#ac0a5daeaccdb6481efff1eed3728dd4e">freeLRoom</a></div><div class="ttdeci">void freeLRoom(L_Room *l)</div><div class="ttdoc">Function to free a L room.</div><div class="ttdef"><b>Definition:</b> Room.c:11</div></div>
+<div class="ttc" id="a_room_8h_html_ac3419cfa544fa3b086be151d4c6a3ca0"><div class="ttname"><a href="_room_8h.html#ac3419cfa544fa3b086be151d4c6a3ca0">NB_ENEMY</a></div><div class="ttdeci">#define NB_ENEMY</div><div class="ttdef"><b>Definition:</b> Room.h:12</div></div>
+<div class="ttc" id="a_room_8h_html_acc7bdbee367f1f6aa3a37729d38ecc20"><div class="ttname"><a href="_room_8h.html#acc7bdbee367f1f6aa3a37729d38ecc20">initializeBossRoom</a></div><div class="ttdeci">void initializeBossRoom(Room *room)</div><div class="ttdoc">Function to initialize a Boss room.</div></div>
+<div class="ttc" id="a_room_8h_html_aeed308ea962de855fcf06b5199371c9e"><div class="ttname"><a href="_room_8h.html#aeed308ea962de855fcf06b5199371c9e">initializeRoom</a></div><div class="ttdeci">void initializeRoom(Room *room)</div><div class="ttdoc">Function to initialize a room.</div></div>
 <div class="ttc" id="astruct___collider_html"><div class="ttname"><a href="struct___collider.html">_Collider</a></div><div class="ttdoc">Structure representing a collider.</div><div class="ttdef"><b>Definition:</b> Collider.h:16</div></div>
-<div class="ttc" id="astruct___l___room_html"><div class="ttname"><a href="struct___l___room.html">_L_Room</a></div><div class="ttdef"><b>Definition:</b> Room.h:20</div></div>
-<div class="ttc" id="astruct___model_html"><div class="ttname"><a href="struct___model.html">_Model</a></div><div class="ttdef"><b>Definition:</b> Model.h:29</div></div>
-<div class="ttc" id="astruct___room_html"><div class="ttname"><a href="struct___room.html">_Room</a></div><div class="ttdef"><b>Definition:</b> Room.h:11</div></div>
+<div class="ttc" id="astruct___l___room_html"><div class="ttname"><a href="struct___l___room.html">_L_Room</a></div><div class="ttdoc">Struct representing a L room.</div><div class="ttdef"><b>Definition:</b> Room.h:38</div></div>
+<div class="ttc" id="astruct___l___room_html_a7b56c3ca57dde73bdbc8dbe9772bca19"><div class="ttname"><a href="struct___l___room.html#a7b56c3ca57dde73bdbc8dbe9772bca19">_L_Room::model</a></div><div class="ttdeci">Model * model</div><div class="ttdef"><b>Definition:</b> Room.h:39</div></div>
+<div class="ttc" id="astruct___l___room_html_a7cc10237927148c2a964faa0ab3279b3"><div class="ttname"><a href="struct___l___room.html#a7cc10237927148c2a964faa0ab3279b3">_L_Room::col</a></div><div class="ttdeci">Collider * col</div><div class="ttdef"><b>Definition:</b> Room.h:40</div></div>
+<div class="ttc" id="astruct___model_html"><div class="ttname"><a href="struct___model.html">_Model</a></div><div class="ttdoc">A Model class to represent a 3D object in the scene.</div><div class="ttdef"><b>Definition:</b> Model.h:37</div></div>
+<div class="ttc" id="astruct___room_html"><div class="ttname"><a href="struct___room.html">_Room</a></div><div class="ttdoc">Struct representing a room.</div><div class="ttdef"><b>Definition:</b> Room.h:23</div></div>
+<div class="ttc" id="astruct___room_html_a2052d6a7d1d84e2ec5069c256434807c"><div class="ttname"><a href="struct___room.html#a2052d6a7d1d84e2ec5069c256434807c">_Room::id_enemy</a></div><div class="ttdeci">int id_enemy[NB_ENEMY]</div><div class="ttdef"><b>Definition:</b> Room.h:30</div></div>
+<div class="ttc" id="astruct___room_html_a7441ef0865bcb3db9b8064dd7375c1ea"><div class="ttname"><a href="struct___room.html#a7441ef0865bcb3db9b8064dd7375c1ea">_Room::id</a></div><div class="ttdeci">int id</div><div class="ttdef"><b>Definition:</b> Room.h:26</div></div>
+<div class="ttc" id="astruct___room_html_a7f6ef45c226eaffed816b17068342e65"><div class="ttname"><a href="struct___room.html#a7f6ef45c226eaffed816b17068342e65">_Room::nb_enemy</a></div><div class="ttdeci">int nb_enemy</div><div class="ttdef"><b>Definition:</b> Room.h:29</div></div>
+<div class="ttc" id="astruct___room_html_a8b0ca128a95ac39b66e15de28b896cba"><div class="ttname"><a href="struct___room.html#a8b0ca128a95ac39b66e15de28b896cba">_Room::nb_door</a></div><div class="ttdeci">int nb_door</div><div class="ttdef"><b>Definition:</b> Room.h:25</div></div>
+<div class="ttc" id="astruct___room_html_a92fea5604f84796183f124ee173aae15"><div class="ttname"><a href="struct___room.html#a92fea5604f84796183f124ee173aae15">_Room::isCompleted</a></div><div class="ttdeci">bool isCompleted</div><div class="ttdef"><b>Definition:</b> Room.h:28</div></div>
+<div class="ttc" id="astruct___room_html_ac103627c1ad15cbec2f22d0abe6d54b6"><div class="ttname"><a href="struct___room.html#ac103627c1ad15cbec2f22d0abe6d54b6">_Room::data</a></div><div class="ttdeci">int * data</div><div class="ttdef"><b>Definition:</b> Room.h:24</div></div>
+<div class="ttc" id="astruct___room_html_ac765329451135abec74c45e1897abf26"><div class="ttname"><a href="struct___room.html#ac765329451135abec74c45e1897abf26">_Room::type</a></div><div class="ttdeci">int type</div><div class="ttdef"><b>Definition:</b> Room.h:27</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

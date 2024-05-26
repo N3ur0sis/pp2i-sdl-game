@@ -1,4 +1,4 @@
 <map id="_Inventory" name="_Inventory">
 <area shape="rect" id="node1" title="Struct representing an inventory." alt="" coords="5,95,96,121"/>
-<area shape="rect" id="node2" href="$struct___object.html" title=" " alt="" coords="15,5,86,32"/>
+<area shape="rect" id="node2" href="$struct___object.html" title="Struct representing an object." alt="" coords="15,5,86,32"/>
 </map>

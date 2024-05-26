@@ -76,14 +76,14 @@ $(function() {
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;Vector.h&quot;</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;Type.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_vector_8h.html">Vector.h</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_type_8h.html">Type.h</a>&quot;</span></div>
 <div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___data.html">_Data</a> <a class="code" href="struct___data.html">Data</a>;</div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___vector.html">_Vector</a> <a class="code" href="struct___vector.html">Vector</a>;</div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="struct___data.html">   25</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct___data.html">_Data</a> {</div>
-<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="struct___data.html#ab6f4e6d3fde00ce906e46494f60dfe7a">   26</a></span>&#160;    Type <a class="code" href="struct___data.html#ab6f4e6d3fde00ce906e46494f60dfe7a">type</a>;              </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="struct___data.html#ab6f4e6d3fde00ce906e46494f60dfe7a">   26</a></span>&#160;    <a class="code" href="_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7">Type</a> <a class="code" href="struct___data.html#ab6f4e6d3fde00ce906e46494f60dfe7a">type</a>;              </div>
 <div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    <span class="keyword">union </span>{                 </div>
 <div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;        <span class="keywordtype">int</span> i;</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;        <span class="keywordtype">float</span> f;</div>
@@ -106,7 +106,7 @@ $(function() {
 <div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160; </div>
 <div class="line"><a name="l00103"></a><span class="lineno">  103</span>&#160;<span class="keywordtype">void</span>* <a class="code" href="_data_8h.html#a1f07448fba5744c51855cecdb4733cec">getValue</a>(<a class="code" href="struct___data.html">Data</a>* data);</div>
 <div class="line"><a name="l00104"></a><span class="lineno">  104</span>&#160; </div>
-<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;Type <a class="code" href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a>(<a class="code" href="struct___data.html">Data</a>* data);</div>
+<div class="line"><a name="l00113"></a><span class="lineno">  113</span>&#160;<a class="code" href="_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7">Type</a> <a class="code" href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a>(<a class="code" href="struct___data.html">Data</a>* data);</div>
 <div class="line"><a name="l00114"></a><span class="lineno">  114</span>&#160; </div>
 <div class="line"><a name="l00115"></a><span class="lineno">  115</span>&#160;<span class="preprocessor">#endif </span><span class="comment">//PP2I_DATA_H</span></div>
 <div class="ttc" id="a_data_8h_html_a070612a8981edf43ceb988a1c411cacb"><div class="ttname"><a href="_data_8h.html#a070612a8981edf43ceb988a1c411cacb">createVectorData</a></div><div class="ttdeci">Data * createVectorData(Vector *value)</div><div class="ttdoc">Creates a new Data instance of type vector.</div><div class="ttdef"><b>Definition:</b> Data.c:40</div></div>
@@ -117,10 +117,13 @@ $(function() {
 <div class="ttc" id="a_data_8h_html_aa93a2de38166de7c533baf99acb831b8"><div class="ttname"><a href="_data_8h.html#aa93a2de38166de7c533baf99acb831b8">printData</a></div><div class="ttdeci">void printData(Data *data)</div><div class="ttdoc">Prints the data.</div><div class="ttdef"><b>Definition:</b> Data.c:68</div></div>
 <div class="ttc" id="a_data_8h_html_ab6a3efcbd0f40622eda8ecc701b7bbe1"><div class="ttname"><a href="_data_8h.html#ab6a3efcbd0f40622eda8ecc701b7bbe1">createStringData</a></div><div class="ttdeci">Data * createStringData(char *value)</div><div class="ttdoc">Creates a new Data instance of type string.</div><div class="ttdef"><b>Definition:</b> Data.c:29</div></div>
 <div class="ttc" id="a_data_8h_html_adb1dbf691ca9751b21d4ab403146a6b1"><div class="ttname"><a href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a></div><div class="ttdeci">Type type(Data *data)</div><div class="ttdoc">Gets the type of the data.</div><div class="ttdef"><b>Definition:</b> Data.c:98</div></div>
+<div class="ttc" id="a_type_8h_html"><div class="ttname"><a href="_type_8h.html">Type.h</a></div><div class="ttdoc">Header file for the type.</div></div>
+<div class="ttc" id="a_type_8h_html_a1d1cfd8ffb84e947f82999c682b666a7"><div class="ttname"><a href="_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7">Type</a></div><div class="ttdeci">Type</div><div class="ttdoc">Enum representing the type.</div><div class="ttdef"><b>Definition:</b> Type.h:15</div></div>
+<div class="ttc" id="a_vector_8h_html"><div class="ttname"><a href="_vector_8h.html">Vector.h</a></div><div class="ttdoc">Header file for the vector.</div></div>
 <div class="ttc" id="astruct___data_html"><div class="ttname"><a href="struct___data.html">_Data</a></div><div class="ttdoc">Structure representing a data.</div><div class="ttdef"><b>Definition:</b> Data.h:25</div></div>
 <div class="ttc" id="astruct___data_html_a2c27dd757dd56f0e930e20836fe4ec1f"><div class="ttname"><a href="struct___data.html#a2c27dd757dd56f0e930e20836fe4ec1f">_Data::value</a></div><div class="ttdeci">union _Data::@0 value</div></div>
 <div class="ttc" id="astruct___data_html_ab6f4e6d3fde00ce906e46494f60dfe7a"><div class="ttname"><a href="struct___data.html#ab6f4e6d3fde00ce906e46494f60dfe7a">_Data::type</a></div><div class="ttdeci">Type type</div><div class="ttdef"><b>Definition:</b> Data.h:26</div></div>
-<div class="ttc" id="astruct___vector_html"><div class="ttname"><a href="struct___vector.html">_Vector</a></div><div class="ttdef"><b>Definition:</b> Vector.h:18</div></div>
+<div class="ttc" id="astruct___vector_html"><div class="ttname"><a href="struct___vector.html">_Vector</a></div><div class="ttdoc">Struct representing a vector.</div><div class="ttdef"><b>Definition:</b> Vector.h:23</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

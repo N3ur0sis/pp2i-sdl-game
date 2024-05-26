@@ -69,19 +69,25 @@ $(function() {
 <div class="title">Textures.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;glad/glad.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="struct___texture.html">   10</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___texture.html">_Texture</a> {</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    GLuint id;              <span class="comment">/* Holds the id of the texture object, used to bind the texure before rendering */</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span>* type;       <span class="comment">/* Type of the texture map, ex. DIFFUSE, SPECULAR, NORMAL, ROUGHNESS */</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;} <a class="code" href="struct___texture.html">Texture</a>;  </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;GLuint TextureLoad(<span class="keyword">const</span> <span class="keywordtype">char</span>* texturePath);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;GLuint CubeMapLoad(<span class="keywordtype">char</span>** faces);</div>
-<div class="ttc" id="astruct___texture_html"><div class="ttname"><a href="struct___texture.html">_Texture</a></div><div class="ttdef"><b>Definition:</b> Textures.h:10</div></div>
+<a href="_textures_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;glad/glad.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="struct___texture.html">   15</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___texture.html">_Texture</a> {</div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct___texture.html#a8e313194e7fdf81e86c9f267a5625ec1">   16</a></span>&#160;    GLuint <a class="code" href="struct___texture.html#a8e313194e7fdf81e86c9f267a5625ec1">id</a>;              </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="struct___texture.html#a763fd8db6bba8fbbbc113ca0d61c47c2">   17</a></span>&#160;    <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code" href="struct___texture.html#a763fd8db6bba8fbbbc113ca0d61c47c2">type</a>;       </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="_textures_8h.html#a0f34ff9a2bbd56e076a7bcdf99d39a71">   18</a></span>&#160;} <a class="code" href="_textures_8h.html#a0f34ff9a2bbd56e076a7bcdf99d39a71">Texture</a>;  </div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;GLuint <a class="code" href="_textures_8h.html#af2f1f496d01219006a8f24916a3d07ac">TextureLoad</a>(<span class="keyword">const</span> <span class="keywordtype">char</span>* texturePath);</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;GLuint <a class="code" href="_textures_8h.html#a9672685786301f9809b32bb80ca2e13a">CubeMapLoad</a>(<span class="keywordtype">char</span>** faces);</div>
+<div class="ttc" id="a_textures_8h_html_a0f34ff9a2bbd56e076a7bcdf99d39a71"><div class="ttname"><a href="_textures_8h.html#a0f34ff9a2bbd56e076a7bcdf99d39a71">Texture</a></div><div class="ttdeci">struct _Texture Texture</div><div class="ttdoc">Represent a single texture in the engine. Can be used by multiple Objet, completely dissociated from ...</div></div>
+<div class="ttc" id="a_textures_8h_html_a9672685786301f9809b32bb80ca2e13a"><div class="ttname"><a href="_textures_8h.html#a9672685786301f9809b32bb80ca2e13a">CubeMapLoad</a></div><div class="ttdeci">GLuint CubeMapLoad(char **faces)</div><div class="ttdoc">Load a cubemap texture.</div><div class="ttdef"><b>Definition:</b> Textures.c:40</div></div>
+<div class="ttc" id="a_textures_8h_html_af2f1f496d01219006a8f24916a3d07ac"><div class="ttname"><a href="_textures_8h.html#af2f1f496d01219006a8f24916a3d07ac">TextureLoad</a></div><div class="ttdeci">GLuint TextureLoad(const char *texturePath)</div><div class="ttdoc">Load a texture from a file.</div><div class="ttdef"><b>Definition:</b> Textures.c:5</div></div>
+<div class="ttc" id="astruct___texture_html"><div class="ttname"><a href="struct___texture.html">_Texture</a></div><div class="ttdoc">Represent a single texture in the engine. Can be used by multiple Objet, completely dissociated from ...</div><div class="ttdef"><b>Definition:</b> Textures.h:15</div></div>
+<div class="ttc" id="astruct___texture_html_a763fd8db6bba8fbbbc113ca0d61c47c2"><div class="ttname"><a href="struct___texture.html#a763fd8db6bba8fbbbc113ca0d61c47c2">_Texture::type</a></div><div class="ttdeci">const char * type</div><div class="ttdef"><b>Definition:</b> Textures.h:17</div></div>
+<div class="ttc" id="astruct___texture_html_a8e313194e7fdf81e86c9f267a5625ec1"><div class="ttname"><a href="struct___texture.html#a8e313194e7fdf81e86c9f267a5625ec1">_Texture::id</a></div><div class="ttdeci">GLuint id</div><div class="ttdef"><b>Definition:</b> Textures.h:16</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

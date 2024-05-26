@@ -82,8 +82,8 @@ $(function() {
 <code>#include &lt;SDL2/SDL.h&gt;</code><br />
 <code>#include &lt;<a class="el" href="_window_8h_source.html">Window.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_audio_8h_source.html">Audio.h</a>&gt;</code><br />
-<code>#include &lt;Textures.h&gt;</code><br />
-<code>#include &lt;Renderer.h&gt;</code><br />
+<code>#include &lt;<a class="el" href="_textures_8h_source.html">Textures.h</a>&gt;</code><br />
+<code>#include &lt;<a class="el" href="_renderer_8h_source.html">Renderer.h</a>&gt;</code><br />
 <code>#include &lt;<a class="el" href="_controls_8h_source.html">Controls.h</a>&gt;</code><br />
 </div><div class="textblock"><div class="dynheader">
 Include dependency graph for Engine.h:</div>
@@ -97,8 +97,8 @@ Include dependency graph for Engine.h:</div>
 <area shape="rect" title=" " alt="" coords="141,752,237,779"/>
 <area shape="rect" href="_window_8h.html" title="Window management functions and definitions for the application." alt="" coords="45,229,131,256"/>
 <area shape="rect" href="_audio_8h.html" title="Audio header file." alt="" coords="1625,80,1695,107"/>
-<area shape="rect" href="_textures_8h_source.html" title=" " alt="" coords="574,752,663,779"/>
-<area shape="rect" href="_renderer_8h_source.html" title=" " alt="" coords="1111,677,1203,704"/>
+<area shape="rect" href="_textures_8h.html" title="Header file for the Textures module." alt="" coords="574,752,663,779"/>
+<area shape="rect" href="_renderer_8h.html" title="Header file for the renderer component." alt="" coords="1111,677,1203,704"/>
 <area shape="rect" href="_controls_8h.html" title="Input processing functions and definitions for the application." alt="" coords="405,80,493,107"/>
 <area shape="rect" title=" " alt="" coords="1608,155,1747,181"/>
 <area shape="rect" title=" " alt="" coords="1096,752,1213,779"/>
@@ -109,13 +109,13 @@ Include dependency graph for Engine.h:</div>
 <area shape="rect" href="_time_8h.html" title="Time management structures and definitions for the application." alt="" coords="335,304,401,331"/>
 <area shape="rect" href="_event_8h.html" title="Scene management event functions and definitions for the application." alt="" coords="451,155,522,181"/>
 <area shape="rect" href="_game_state_8h.html" title="Header file for the game state." alt="" coords="1061,379,1168,405"/>
-<area shape="rect" href="_scene_manager_8h_source.html" title=" " alt="" coords="722,229,851,256"/>
-<area shape="rect" href="_scene_8h_source.html" title=" " alt="" coords="802,304,875,331"/>
-<area shape="rect" href="_shader_8h_source.html" title=" " alt="" coords="891,752,970,779"/>
-<area shape="rect" href="_skybox_8h_source.html" title=" " alt="" coords="633,677,714,704"/>
+<area shape="rect" href="_scene_manager_8h.html" title="Header file for the scene manager component." alt="" coords="722,229,851,256"/>
+<area shape="rect" href="_scene_8h.html" title="Header file for the scene component." alt="" coords="802,304,875,331"/>
+<area shape="rect" href="_shader_8h.html" title="Header file for the shader component." alt="" coords="891,752,970,779"/>
+<area shape="rect" href="_skybox_8h.html" title="Header file for the skybox component." alt="" coords="633,677,714,704"/>
 <area shape="rect" href="_entity_8h.html" title="Header file for the entity component." alt="" coords="895,379,966,405"/>
 <area shape="rect" title=" " alt="" coords="698,379,801,405"/>
-<area shape="rect" href="_read_shader_8h_source.html" title=" " alt="" coords="1002,827,1113,853"/>
+<area shape="rect" href="_read_shader_8h.html" title="Header file for the read shader component." alt="" coords="1002,827,1113,853"/>
 <area shape="rect" title=" " alt="" coords="1115,901,1186,928"/>
 <area shape="rect" href="_camera_8h.html" title="Camera header file." alt="" coords="464,752,549,779"/>
 <area shape="rect" title=" " alt="" coords="587,827,680,853"/>
@@ -124,15 +124,15 @@ Include dependency graph for Engine.h:</div>
 <area shape="rect" href="_light_8h.html" title="Header file for the light component." alt="" coords="907,603,973,629"/>
 <area shape="rect" href="_collider_8h.html" title="Collider header file." alt="" coords="749,528,832,555"/>
 <area shape="rect" href="_animation_8h.html" title="Implementations of animation functions." alt="" coords="456,603,557,629"/>
-<area shape="rect" href="_model_8h_source.html" title=" " alt="" coords="469,677,544,704"/>
+<area shape="rect" href="_model_8h.html" title="Header file for the model component." alt="" coords="469,677,544,704"/>
 <area shape="rect" href="_mesh_8h.html" title="Header file for the mesh component." alt="" coords="371,752,440,779"/>
 <area shape="rect" href="_algebra_8h.html" title="Implementations of algebra functions." alt="" coords="262,752,346,779"/>
 <area shape="rect" title=" " alt="" coords="94,827,229,853"/>
 <area shape="rect" title=" " alt="" coords="253,827,376,853"/>
 <area shape="rect" title=" " alt="" coords="400,827,563,853"/>
-<area shape="rect" href="_shadow_map_8h_source.html" title=" " alt="" coords="794,677,907,704"/>
+<area shape="rect" href="_shadow_map_8h.html" title="Header file for the shadow map component." alt="" coords="794,677,907,704"/>
 <area shape="rect" href="_inventory_8h.html" title="Header file for the inventory component." alt="" coords="1213,603,1307,629"/>
-<area shape="rect" href="_objects_8h_source.html" title=" " alt="" coords="1359,827,1441,853"/>
+<area shape="rect" href="_objects_8h.html" title="Header file for the objects component." alt="" coords="1359,827,1441,853"/>
 </map>
 </div>
 </div><div class="textblock"><div class="dynheader">
@@ -165,7 +165,7 @@ typedef struct <a class="el" href="struct___application.html">_Application</a>&#
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:addafd98935faa0f09d72baf9d7188416"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_8h.html#a71931feb51e2f53ba9cc5bc3bd9e30d5">Application</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_engine_8h.html#addafd98935faa0f09d72baf9d7188416">ApplicationCreate</a> (int width, int height, const char *title)</td></tr>
+<tr class="memitem:addafd98935faa0f09d72baf9d7188416"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_engine_8h.html#a71931feb51e2f53ba9cc5bc3bd9e30d5">Application</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_engine_8h.html#addafd98935faa0f09d72baf9d7188416">ApplicationCreate</a> (int width, int <a class="el" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>, const char *title)</td></tr>
 <tr class="memdesc:addafd98935faa0f09d72baf9d7188416"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new Application instance.  <a href="_engine_8h.html#addafd98935faa0f09d72baf9d7188416">More...</a><br /></td></tr>
 <tr class="separator:addafd98935faa0f09d72baf9d7188416"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a373bf5cd77debc5584ff178052c769d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="_engine_8h.html#a373bf5cd77debc5584ff178052c769d2">StartFrame</a> (<a class="el" href="_engine_8h.html#a71931feb51e2f53ba9cc5bc3bd9e30d5">Application</a> *game, <a class="el" href="struct_game_state.html">GameState</a> *gameState, <a class="el" href="struct_scene_manager.html">SceneManager</a> *sceneManager)</td></tr>

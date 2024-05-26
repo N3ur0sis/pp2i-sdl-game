@@ -1,6 +1,6 @@
 <map id="include/Data.h" name="include/Data.h">
 <area shape="rect" id="node1" title="Data header file." alt="" coords="109,5,225,32"/>
 <area shape="rect" id="node2" href="$_graph_8h.html" title="Header file for the graph component." alt="" coords="5,155,129,181"/>
-<area shape="rect" id="node3" href="$_vector_8h_source.html" title=" " alt="" coords="105,80,230,107"/>
-<area shape="rect" id="node4" href="$_tree_8h_source.html" title=" " alt="" coords="154,155,266,181"/>
+<area shape="rect" id="node3" href="$_vector_8h.html" title="Header file for the vector." alt="" coords="105,80,230,107"/>
+<area shape="rect" id="node4" href="$_tree_8h.html" title="Header file for the tree structure." alt="" coords="154,155,266,181"/>
 </map>

@@ -73,8 +73,8 @@ $(function() {
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;cglm/cglm.h&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;Shader.h&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;ShadowMap.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_shader_8h.html">Shader.h</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_shadow_map_8h.html">ShadowMap.h</a>&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
 <div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct___light.html">   18</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___light.html">_Light</a> {</div>
 <div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct___light.html#ad2f3ba5de614c8ed18494b2d27fa53d5">   19</a></span>&#160;    vec4 <a class="code" href="struct___light.html#ad2f3ba5de614c8ed18494b2d27fa53d5">position</a>;              </div>
@@ -90,14 +90,16 @@ $(function() {
 <div class="ttc" id="a_light_8h_html_a0996ba2d4bb475e3984fda9ac71ae1e9"><div class="ttname"><a href="_light_8h.html#a0996ba2d4bb475e3984fda9ac71ae1e9">LightUpdate</a></div><div class="ttdeci">void LightUpdate(Shader *S, Light *point)</div><div class="ttdoc">Function to update the light.</div><div class="ttdef"><b>Definition:</b> Light.c:23</div></div>
 <div class="ttc" id="a_light_8h_html_a46afdce67e7fe51065b7a3e3724e0715"><div class="ttname"><a href="_light_8h.html#a46afdce67e7fe51065b7a3e3724e0715">Light</a></div><div class="ttdeci">struct _Light Light</div><div class="ttdoc">Struct representing a light.</div></div>
 <div class="ttc" id="a_light_8h_html_afafa968358e8fcffd9e69dcfe29e7a73"><div class="ttname"><a href="_light_8h.html#afafa968358e8fcffd9e69dcfe29e7a73">LightCreate</a></div><div class="ttdeci">Light * LightCreate(Shader *S, vec4 position, vec3 intensity, float attenuation, float ambientCoef, float nearz, float farz)</div><div class="ttdoc">Function to create a light.</div><div class="ttdef"><b>Definition:</b> Light.c:7</div></div>
+<div class="ttc" id="a_shader_8h_html"><div class="ttname"><a href="_shader_8h.html">Shader.h</a></div><div class="ttdoc">Header file for the shader component.</div></div>
+<div class="ttc" id="a_shadow_map_8h_html"><div class="ttname"><a href="_shadow_map_8h.html">ShadowMap.h</a></div><div class="ttdoc">Header file for the shadow map component.</div></div>
 <div class="ttc" id="astruct___light_html"><div class="ttname"><a href="struct___light.html">_Light</a></div><div class="ttdoc">Struct representing a light.</div><div class="ttdef"><b>Definition:</b> Light.h:18</div></div>
 <div class="ttc" id="astruct___light_html_a0354c63db5576a4ce071d42cf9aff827"><div class="ttname"><a href="struct___light.html#a0354c63db5576a4ce071d42cf9aff827">_Light::shadowMap</a></div><div class="ttdeci">ShadowMap * shadowMap</div><div class="ttdef"><b>Definition:</b> Light.h:23</div></div>
 <div class="ttc" id="astruct___light_html_a59e2ef17a85f2aa5635268c41acc2e98"><div class="ttname"><a href="struct___light.html#a59e2ef17a85f2aa5635268c41acc2e98">_Light::ambientCoefficient</a></div><div class="ttdeci">float ambientCoefficient</div><div class="ttdef"><b>Definition:</b> Light.h:22</div></div>
 <div class="ttc" id="astruct___light_html_ab8507ddef0cd4dfe9c6cd6baacc8c845"><div class="ttname"><a href="struct___light.html#ab8507ddef0cd4dfe9c6cd6baacc8c845">_Light::intensity</a></div><div class="ttdeci">vec3 intensity</div><div class="ttdef"><b>Definition:</b> Light.h:20</div></div>
 <div class="ttc" id="astruct___light_html_ad2f3ba5de614c8ed18494b2d27fa53d5"><div class="ttname"><a href="struct___light.html#ad2f3ba5de614c8ed18494b2d27fa53d5">_Light::position</a></div><div class="ttdeci">vec4 position</div><div class="ttdef"><b>Definition:</b> Light.h:19</div></div>
 <div class="ttc" id="astruct___light_html_ad3890904ca5aac7c01ee4fd75e828ebe"><div class="ttname"><a href="struct___light.html#ad3890904ca5aac7c01ee4fd75e828ebe">_Light::attenuation</a></div><div class="ttdeci">float attenuation</div><div class="ttdef"><b>Definition:</b> Light.h:21</div></div>
-<div class="ttc" id="astruct___shader_html"><div class="ttname"><a href="struct___shader.html">_Shader</a></div><div class="ttdef"><b>Definition:</b> Shader.h:19</div></div>
-<div class="ttc" id="astruct___shadow_map_html"><div class="ttname"><a href="struct___shadow_map.html">_ShadowMap</a></div><div class="ttdef"><b>Definition:</b> ShadowMap.h:6</div></div>
+<div class="ttc" id="astruct___shader_html"><div class="ttname"><a href="struct___shader.html">_Shader</a></div><div class="ttdoc">Struct for storing shader program.</div><div class="ttdef"><b>Definition:</b> Shader.h:30</div></div>
+<div class="ttc" id="astruct___shadow_map_html"><div class="ttname"><a href="struct___shadow_map.html">_ShadowMap</a></div><div class="ttdoc">Struct representing a shadow map.</div><div class="ttdef"><b>Definition:</b> ShadowMap.h:16</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

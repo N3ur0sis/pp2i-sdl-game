@@ -72,7 +72,7 @@ $(function() {
 <a href="_dungeon_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;Room.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_room_8h.html">Room.h</a>&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_time_8h.html">time.h</a>&gt;</span> </div>
@@ -80,7 +80,7 @@ $(function() {
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
 <div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
 <div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_game_state_8h.html">GameState.h</a>&gt;</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;Scene.h&gt;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_scene_8h.html">Scene.h</a>&gt;</span></div>
 <div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_controls_8h.html">Controls.h</a>&gt;</span></div>
 <div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="preprocessor">#define NB_ROOM_MAX 15</span></div>
 <div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="preprocessor">#define NB_ROOM_MIN 10</span></div>
@@ -130,12 +130,12 @@ $(function() {
 <div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
 <div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_dungeon_8h.html#a9e42ae21c2cb81be48b70df4ce50a275">Affiche</a>(<a class="code" href="struct___dungeon.html">Dungeon</a> *dj);</div>
 <div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
-<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="keywordtype">int</span> <a class="code" href="_dungeon_8h.html#a8e97a28c04a2056bb8ad2cd4faa9b0d0">maxList</a>(<span class="keywordtype">int</span> list[], <span class="keywordtype">int</span> size);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160;<span class="keywordtype">int</span> <a class="code" href="_dungeon_8h.html#a8e97a28c04a2056bb8ad2cd4faa9b0d0">maxList</a>(<span class="keywordtype">int</span> list[], <span class="keywordtype">int</span> <a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>);</div>
 <div class="line"><a name="l00151"></a><span class="lineno">  151</span>&#160; </div>
 <div class="line"><a name="l00161"></a><span class="lineno">  161</span>&#160;<span class="keywordtype">int</span> <a class="code" href="_dungeon_8h.html#af082905f7eac6d03e92015146bbc1925">max</a>(<span class="keywordtype">int</span> a, <span class="keywordtype">int</span> b);</div>
 <div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160; </div>
 <div class="line"><a name="l00163"></a><span class="lineno">  163</span>&#160; </div>
-<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="keywordtype">void</span> depthFirstSearch(<a class="code" href="struct___dungeon.html">Dungeon</a> *dj, <span class="keywordtype">int</span> room, <span class="keywordtype">int</span> depth, <span class="keywordtype">int</span> *depths, <span class="keywordtype">int</span> *visited);</div>
+<div class="line"><a name="l00164"></a><span class="lineno">  164</span>&#160;<span class="keywordtype">void</span> depthFirstSearch(<a class="code" href="struct___dungeon.html">Dungeon</a> *dj, <span class="keywordtype">int</span> room, <span class="keywordtype">int</span> <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>, <span class="keywordtype">int</span> *depths, <span class="keywordtype">int</span> *visited);</div>
 <div class="line"><a name="l00165"></a><span class="lineno">  165</span>&#160; </div>
 <div class="line"><a name="l00174"></a><span class="lineno">  174</span>&#160;<span class="keywordtype">int</span> *<a class="code" href="_dungeon_8h.html#a0c3d88e962dd1339f8ca0641b715dda4">profondeur</a>(<a class="code" href="struct___dungeon.html">Dungeon</a> *dj);</div>
 <div class="line"><a name="l00175"></a><span class="lineno">  175</span>&#160; </div>
@@ -217,7 +217,11 @@ $(function() {
 <div class="ttc" id="a_dungeon_8h_html_afe04a673915824eb6309a298b04f0a81"><div class="ttname"><a href="_dungeon_8h.html#afe04a673915824eb6309a298b04f0a81">LogicRoom4C</a></div><div class="ttdeci">void LogicRoom4C(Scene *scene, GameState *gameState, Dungeon *dj, RigidBody *body)</div><div class="ttdoc">Handle the logic of the room 4C.</div><div class="ttdef"><b>Definition:</b> Dungeon.c:1397</div></div>
 <div class="ttc" id="a_game_state_8h_html"><div class="ttname"><a href="_game_state_8h.html">GameState.h</a></div><div class="ttdoc">Header file for the game state.</div></div>
 <div class="ttc" id="a_list_8h_html"><div class="ttname"><a href="_list_8h.html">List.h</a></div><div class="ttdoc">Header file for the list component.</div></div>
+<div class="ttc" id="a_room_8h_html"><div class="ttname"><a href="_room_8h.html">Room.h</a></div><div class="ttdoc">Header file for the room component.</div></div>
+<div class="ttc" id="a_scene_8h_html"><div class="ttname"><a href="_scene_8h.html">Scene.h</a></div><div class="ttdoc">Header file for the scene component.</div></div>
 <div class="ttc" id="a_time_8h_html"><div class="ttname"><a href="_time_8h.html">Time.h</a></div><div class="ttdoc">Time management structures and definitions for the application.</div></div>
+<div class="ttc" id="a_tree_8h_html_ad27cc76d3737eed66f7b5320aac170db"><div class="ttname"><a href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a></div><div class="ttdeci">int depth(Node *root, Node *node)</div><div class="ttdoc">Function to get the depth of a node.</div><div class="ttdef"><b>Definition:</b> Tree.c:25</div></div>
+<div class="ttc" id="a_vector_8h_html_a367c80e4a5c6743c3b79d831f99a66f2"><div class="ttname"><a href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a></div><div class="ttdeci">int size(Vector *vector)</div><div class="ttdoc">Function to get the size of the vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:24</div></div>
 <div class="ttc" id="astruct___collider_html"><div class="ttname"><a href="struct___collider.html">_Collider</a></div><div class="ttdoc">Structure representing a collider.</div><div class="ttdef"><b>Definition:</b> Collider.h:16</div></div>
 <div class="ttc" id="astruct___dungeon_html"><div class="ttname"><a href="struct___dungeon.html">_Dungeon</a></div><div class="ttdoc">Structure representing a dungeon.</div><div class="ttdef"><b>Definition:</b> Dungeon.h:35</div></div>
 <div class="ttc" id="astruct___dungeon_html_a210b3e6ffb6e047c4ae6e2c0e737ed52"><div class="ttname"><a href="struct___dungeon.html#a210b3e6ffb6e047c4ae6e2c0e737ed52">_Dungeon::direction</a></div><div class="ttdeci">char direction</div><div class="ttdef"><b>Definition:</b> Dungeon.h:39</div></div>
@@ -233,10 +237,10 @@ $(function() {
 <div class="ttc" id="astruct___dungeon_html_ae0dcd6f33c78b09ef8c839722763a6a9"><div class="ttname"><a href="struct___dungeon.html#ae0dcd6f33c78b09ef8c839722763a6a9">_Dungeon::previous_direction</a></div><div class="ttdeci">char previous_direction</div><div class="ttdef"><b>Definition:</b> Dungeon.h:40</div></div>
 <div class="ttc" id="astruct___dungeon_html_aee96bb698576f506a15bc32013f74499"><div class="ttname"><a href="struct___dungeon.html#aee96bb698576f506a15bc32013f74499">_Dungeon::type_room</a></div><div class="ttdeci">L_Room * type_room</div><div class="ttdef"><b>Definition:</b> Dungeon.h:37</div></div>
 <div class="ttc" id="astruct___dungeon_html_afc5b792c3706d5aa2896fad6ab1be022"><div class="ttname"><a href="struct___dungeon.html#afc5b792c3706d5aa2896fad6ab1be022">_Dungeon::nb_rooms</a></div><div class="ttdeci">int nb_rooms</div><div class="ttdef"><b>Definition:</b> Dungeon.h:41</div></div>
-<div class="ttc" id="astruct___l___room_html"><div class="ttname"><a href="struct___l___room.html">_L_Room</a></div><div class="ttdef"><b>Definition:</b> Room.h:20</div></div>
-<div class="ttc" id="astruct___model_html"><div class="ttname"><a href="struct___model.html">_Model</a></div><div class="ttdef"><b>Definition:</b> Model.h:29</div></div>
-<div class="ttc" id="astruct___room_html"><div class="ttname"><a href="struct___room.html">_Room</a></div><div class="ttdef"><b>Definition:</b> Room.h:11</div></div>
-<div class="ttc" id="astruct___scene_html"><div class="ttname"><a href="struct___scene.html">_Scene</a></div><div class="ttdef"><b>Definition:</b> Scene.h:16</div></div>
+<div class="ttc" id="astruct___l___room_html"><div class="ttname"><a href="struct___l___room.html">_L_Room</a></div><div class="ttdoc">Struct representing a L room.</div><div class="ttdef"><b>Definition:</b> Room.h:38</div></div>
+<div class="ttc" id="astruct___model_html"><div class="ttname"><a href="struct___model.html">_Model</a></div><div class="ttdoc">A Model class to represent a 3D object in the scene.</div><div class="ttdef"><b>Definition:</b> Model.h:37</div></div>
+<div class="ttc" id="astruct___room_html"><div class="ttname"><a href="struct___room.html">_Room</a></div><div class="ttdoc">Struct representing a room.</div><div class="ttdef"><b>Definition:</b> Room.h:23</div></div>
+<div class="ttc" id="astruct___scene_html"><div class="ttname"><a href="struct___scene.html">_Scene</a></div><div class="ttdoc">Struct representing a scene.</div><div class="ttdef"><b>Definition:</b> Scene.h:27</div></div>
 <div class="ttc" id="astruct_game_state_html"><div class="ttname"><a href="struct_game_state.html">GameState</a></div><div class="ttdoc">Struct representing the game state.</div><div class="ttdef"><b>Definition:</b> GameState.h:17</div></div>
 <div class="ttc" id="astruct_rigid_body_html"><div class="ttname"><a href="struct_rigid_body.html">RigidBody</a></div><div class="ttdoc">Structure representing a rigid body.</div><div class="ttdef"><b>Definition:</b> Component.h:61</div></div>
 </div><!-- fragment --></div><!-- contents -->

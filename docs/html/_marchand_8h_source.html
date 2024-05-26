@@ -71,12 +71,12 @@ $(function() {
 <div class="contents">
 <a href="_marchand_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;Scene.h&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;Player.h&gt;</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_scene_8h.html">Scene.h</a>&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_player_8h.html">Player.h</a>&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_game_state_8h.html">GameState.h</a>&gt;</span></div>
 <div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;cglm/cglm.h&gt;</span></div>
 <div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_enemy_8h.html">Enemy.h</a>&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;Renderer.h&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_renderer_8h.html">Renderer.h</a>&gt;</span></div>
 <div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
 <div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<a class="code" href="struct___entity.html">Entity</a>* <a class="code" href="_marchand_8h.html#ae3e1f13546c803ed83e65d9c7ddd9d59">createMarchand</a>(<a class="code" href="struct___scene.html">Scene</a>* scene, vec3 position, vec3 scale, vec3 rotation);</div>
 <div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
@@ -94,9 +94,12 @@ $(function() {
 <div class="ttc" id="a_marchand_8h_html_ac924b28419cf27cd1ec7f4d0daa45244"><div class="ttname"><a href="_marchand_8h.html#ac924b28419cf27cd1ec7f4d0daa45244">checkWantToTrade</a></div><div class="ttdeci">bool checkWantToTrade(int x, int y, float window_width, float window_height)</div><div class="ttdoc">Function to check if the player wants to trade.</div><div class="ttdef"><b>Definition:</b> Marchand.c:225</div></div>
 <div class="ttc" id="a_marchand_8h_html_ae1b81d5e433107a4ef2edd3fc493a016"><div class="ttname"><a href="_marchand_8h.html#ae1b81d5e433107a4ef2edd3fc493a016">talkToMarchandMain</a></div><div class="ttdeci">void talkToMarchandMain(Inventory *inventory, Inventory *marchantInventory, float window_width, float window_height, GLuint shader, int *click_counter, bool *is_clicking, bool *isBusy, int *money)</div><div class="ttdoc">Function when the player is talking to the marchand.</div><div class="ttdef"><b>Definition:</b> Marchand.c:92</div></div>
 <div class="ttc" id="a_marchand_8h_html_ae3e1f13546c803ed83e65d9c7ddd9d59"><div class="ttname"><a href="_marchand_8h.html#ae3e1f13546c803ed83e65d9c7ddd9d59">createMarchand</a></div><div class="ttdeci">Entity * createMarchand(Scene *scene, vec3 position, vec3 scale, vec3 rotation)</div><div class="ttdoc">Function to create a marchand.</div><div class="ttdef"><b>Definition:</b> Marchand.c:10</div></div>
+<div class="ttc" id="a_player_8h_html"><div class="ttname"><a href="_player_8h.html">Player.h</a></div><div class="ttdoc">Header file for the player component.</div></div>
+<div class="ttc" id="a_renderer_8h_html"><div class="ttname"><a href="_renderer_8h.html">Renderer.h</a></div><div class="ttdoc">Header file for the renderer component.</div></div>
+<div class="ttc" id="a_scene_8h_html"><div class="ttname"><a href="_scene_8h.html">Scene.h</a></div><div class="ttdoc">Header file for the scene component.</div></div>
 <div class="ttc" id="astruct___entity_html"><div class="ttname"><a href="struct___entity.html">_Entity</a></div><div class="ttdoc">Struct representing an entity.</div><div class="ttdef"><b>Definition:</b> Entity.h:18</div></div>
 <div class="ttc" id="astruct___inventory_html"><div class="ttname"><a href="struct___inventory.html">_Inventory</a></div><div class="ttdoc">Struct representing an inventory.</div><div class="ttdef"><b>Definition:</b> Inventory.h:18</div></div>
-<div class="ttc" id="astruct___scene_html"><div class="ttname"><a href="struct___scene.html">_Scene</a></div><div class="ttdef"><b>Definition:</b> Scene.h:16</div></div>
+<div class="ttc" id="astruct___scene_html"><div class="ttname"><a href="struct___scene.html">_Scene</a></div><div class="ttdoc">Struct representing a scene.</div><div class="ttdef"><b>Definition:</b> Scene.h:27</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

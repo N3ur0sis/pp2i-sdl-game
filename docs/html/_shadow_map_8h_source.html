@@ -69,21 +69,29 @@ $(function() {
 <div class="title">ShadowMap.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;glad/glad.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;cglm/cglm.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;Shader.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno"><a class="line" href="struct___shadow_map.html">    6</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___shadow_map.html">_ShadowMap</a>{</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    GLuint depthMapFBO;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    GLuint depthMap;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    mat4 depthMatrix;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="struct___shader.html">Shader</a>* shadowMapShader;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;} <a class="code" href="struct___shadow_map.html">ShadowMap</a>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<a class="code" href="struct___shadow_map.html">ShadowMap</a>* ShadowMapCreate(vec3 position, <a class="code" href="struct___shader.html">Shader</a>* shader,<span class="keywordtype">float</span> nearz, <span class="keywordtype">float</span> farz);</div>
-<div class="ttc" id="astruct___shader_html"><div class="ttname"><a href="struct___shader.html">_Shader</a></div><div class="ttdef"><b>Definition:</b> Shader.h:19</div></div>
-<div class="ttc" id="astruct___shadow_map_html"><div class="ttname"><a href="struct___shadow_map.html">_ShadowMap</a></div><div class="ttdef"><b>Definition:</b> ShadowMap.h:6</div></div>
+<a href="_shadow_map_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;glad/glad.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;cglm/cglm.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_shader_8h.html">Shader.h</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct___shadow_map.html">   16</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___shadow_map.html">_ShadowMap</a>{</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="struct___shadow_map.html#ac81a44aca8800c7383c1ce0e7458a6be">   17</a></span>&#160;    GLuint <a class="code" href="struct___shadow_map.html#ac81a44aca8800c7383c1ce0e7458a6be">depthMapFBO</a>;         </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct___shadow_map.html#ab220e4f5b0a3807e3d675c4f64e01f25">   18</a></span>&#160;    GLuint <a class="code" href="struct___shadow_map.html#ab220e4f5b0a3807e3d675c4f64e01f25">depthMap</a>;            </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct___shadow_map.html#a5ac0912556a9fc7a1cebb31518c7c38c">   19</a></span>&#160;    mat4 <a class="code" href="struct___shadow_map.html#a5ac0912556a9fc7a1cebb31518c7c38c">depthMatrix</a>;           </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="struct___shadow_map.html#afbf970c61a30b847c84d9c15ba9b449e">   20</a></span>&#160;    <a class="code" href="struct___shader.html">Shader</a>* <a class="code" href="struct___shadow_map.html#afbf970c61a30b847c84d9c15ba9b449e">shadowMapShader</a>;    </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="_shadow_map_8h.html#ab1324e464e55bd96805d28d8d94ebab4">   21</a></span>&#160;} <a class="code" href="_shadow_map_8h.html#ab1324e464e55bd96805d28d8d94ebab4">ShadowMap</a>;</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<a class="code" href="struct___shadow_map.html">ShadowMap</a>* <a class="code" href="_shadow_map_8h.html#af4606f0d65759d18f9a72c85d231c05c">ShadowMapCreate</a>(vec3 position, <a class="code" href="struct___shader.html">Shader</a>* shader,<span class="keywordtype">float</span> nearz, <span class="keywordtype">float</span> farz);</div>
+<div class="ttc" id="a_shader_8h_html"><div class="ttname"><a href="_shader_8h.html">Shader.h</a></div><div class="ttdoc">Header file for the shader component.</div></div>
+<div class="ttc" id="a_shadow_map_8h_html_ab1324e464e55bd96805d28d8d94ebab4"><div class="ttname"><a href="_shadow_map_8h.html#ab1324e464e55bd96805d28d8d94ebab4">ShadowMap</a></div><div class="ttdeci">struct _ShadowMap ShadowMap</div><div class="ttdoc">Struct representing a shadow map.</div></div>
+<div class="ttc" id="a_shadow_map_8h_html_af4606f0d65759d18f9a72c85d231c05c"><div class="ttname"><a href="_shadow_map_8h.html#af4606f0d65759d18f9a72c85d231c05c">ShadowMapCreate</a></div><div class="ttdeci">ShadowMap * ShadowMapCreate(vec3 position, Shader *shader, float nearz, float farz)</div><div class="ttdoc">Function to create a shadow map.</div><div class="ttdef"><b>Definition:</b> ShadowMap.c:3</div></div>
+<div class="ttc" id="astruct___shader_html"><div class="ttname"><a href="struct___shader.html">_Shader</a></div><div class="ttdoc">Struct for storing shader program.</div><div class="ttdef"><b>Definition:</b> Shader.h:30</div></div>
+<div class="ttc" id="astruct___shadow_map_html"><div class="ttname"><a href="struct___shadow_map.html">_ShadowMap</a></div><div class="ttdoc">Struct representing a shadow map.</div><div class="ttdef"><b>Definition:</b> ShadowMap.h:16</div></div>
+<div class="ttc" id="astruct___shadow_map_html_a5ac0912556a9fc7a1cebb31518c7c38c"><div class="ttname"><a href="struct___shadow_map.html#a5ac0912556a9fc7a1cebb31518c7c38c">_ShadowMap::depthMatrix</a></div><div class="ttdeci">mat4 depthMatrix</div><div class="ttdef"><b>Definition:</b> ShadowMap.h:19</div></div>
+<div class="ttc" id="astruct___shadow_map_html_ab220e4f5b0a3807e3d675c4f64e01f25"><div class="ttname"><a href="struct___shadow_map.html#ab220e4f5b0a3807e3d675c4f64e01f25">_ShadowMap::depthMap</a></div><div class="ttdeci">GLuint depthMap</div><div class="ttdef"><b>Definition:</b> ShadowMap.h:18</div></div>
+<div class="ttc" id="astruct___shadow_map_html_ac81a44aca8800c7383c1ce0e7458a6be"><div class="ttname"><a href="struct___shadow_map.html#ac81a44aca8800c7383c1ce0e7458a6be">_ShadowMap::depthMapFBO</a></div><div class="ttdeci">GLuint depthMapFBO</div><div class="ttdef"><b>Definition:</b> ShadowMap.h:17</div></div>
+<div class="ttc" id="astruct___shadow_map_html_afbf970c61a30b847c84d9c15ba9b449e"><div class="ttname"><a href="struct___shadow_map.html#afbf970c61a30b847c84d9c15ba9b449e">_ShadowMap::shadowMapShader</a></div><div class="ttdeci">Shader * shadowMapShader</div><div class="ttdef"><b>Definition:</b> ShadowMap.h:20</div></div>
 </div><!-- fragment --></div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>

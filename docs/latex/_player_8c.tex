@@ -1,0 +1,346 @@
+\hypertarget{_player_8c}{}\doxysection{src/\+Game/\+Player/\+Player.c File Reference}
+\label{_player_8c}\index{src/Game/Player/Player.c@{src/Game/Player/Player.c}}
+
+
+Implementation of the player component.  
+
+
+{\ttfamily \#include $<$Player.\+h$>$}\newline
+Include dependency graph for Player.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_player_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_player_8c_a1c4604be92435608e32cea6896f8e443}{player\+Movement}} (\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$player, float delta\+Time, \mbox{\hyperlink{struct_camera}{Camera}} $\ast$camera)
+\begin{DoxyCompactList}\small\item\em Function to move the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_player_8c_a51028284031cf4cb250c68970e3d55ef}{update\+Player\+Animator}} (\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$player\+Entity, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State)
+\begin{DoxyCompactList}\small\item\em Updates the player\textquotesingle{}s animator based on the current state and input. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_player_8c_ab110cf8e2e422435362cb695d22baee6}{move\+Camera\+Player}} (\mbox{\hyperlink{struct_camera}{Camera}} $\ast$camera, vec3 position, vec3 target\+Position, float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Moves the camera to follow the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_player_8c_afa0877cd7cde43b480a9bbc88cb9f17b}{lerp\+\_\+camera}} (\mbox{\hyperlink{struct_camera}{Camera}} $\ast$camera, vec3 old\+\_\+pos, vec3 new\+\_\+pos, float old\+\_\+yaw, float new\+\_\+yaw, int steps, float duration)
+\begin{DoxyCompactList}\small\item\em Linearly interpolates the camera position and yaw. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_player_8c_a7ea4b5e89549eaf212ad9908a5c1a8c3}{lerp\+\_\+vec3}} (vec3 a, vec3 b, vec3 res, float t)
+\begin{DoxyCompactList}\small\item\em Linearly interpolates between two vectors. \end{DoxyCompactList}\item 
+float \mbox{\hyperlink{_player_8c_ad6bc34de2fbb797431daff728514b5e0}{lerp\+\_\+float}} (float a, float b, float t)
+\begin{DoxyCompactList}\small\item\em Linearly interpolates between two floats. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_player_8c_a36148454132e0c6a4958e82b641a714f}{player\+Interact}} ()
+\begin{DoxyCompactList}\small\item\em Function to check if the player is interacting. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$ \mbox{\hyperlink{_player_8c_a7adb3300228ee86a10db243898e4554e}{create\+\_\+player}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, float x, float y, float z)
+\begin{DoxyCompactList}\small\item\em Function to create the player entity. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$ \mbox{\hyperlink{_player_8c_ab0e68fb642d4f18bbe545e43e31042d6}{create\+\_\+sword}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Function to create the player\textquotesingle{}s sword entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_player_8c_a81507fb2da74b7c453c5ce3c2b580206}{player\+\_\+attack}} (\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$player, \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$enemy, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State)
+\begin{DoxyCompactList}\small\item\em Function to make the player attack. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_player_8c_a35b71eae565c6bf7c024e64ac905b000}{check\+Dead}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$gamestate)
+\begin{DoxyCompactList}\small\item\em Function to check if the player is dead. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_player_8c_a2a0f67164ab15e15516ed5f533e3c161}{damage\+Player}} (\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$gamestate, int damage)
+\begin{DoxyCompactList}\small\item\em Function to damage the player. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_player_8c_a9d6b9697664f3c5eaf18a69f7470b868}{play\+Sound\+Player}} (\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$player, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$gamestate)
+\begin{DoxyCompactList}\small\item\em Function to play the sound of the player. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+bool \mbox{\hyperlink{_player_8c_afe16ccb40ec9ab3c5541e8fc16515ab5}{is\+Clicking}} = false
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementation of the player component. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_player_8c_a35b71eae565c6bf7c024e64ac905b000}\label{_player_8c_a35b71eae565c6bf7c024e64ac905b000}} 
+\index{Player.c@{Player.c}!checkDead@{checkDead}}
+\index{checkDead@{checkDead}!Player.c@{Player.c}}
+\doxysubsubsection{\texorpdfstring{checkDead()}{checkDead()}}
+{\footnotesize\ttfamily void check\+Dead (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{gamestate }\end{DoxyParamCaption})}
+
+
+
+Function to check if the player is dead. 
+
+This function checks if the player is dead.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gamestate} & Pointer to the game state. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_player_8c_a7adb3300228ee86a10db243898e4554e}\label{_player_8c_a7adb3300228ee86a10db243898e4554e}} 
+\index{Player.c@{Player.c}!create\_player@{create\_player}}
+\index{create\_player@{create\_player}!Player.c@{Player.c}}
+\doxysubsubsection{\texorpdfstring{create\_player()}{create\_player()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}}$\ast$ create\+\_\+player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z }\end{DoxyParamCaption})}
+
+
+
+Function to create the player entity. 
+
+This function creates the player entity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em x} & X position of the player. \\
+\hline
+{\em y} & Y position of the player. \\
+\hline
+{\em z} & Z position of the player. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the player entity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_player_8c_ab0e68fb642d4f18bbe545e43e31042d6}\label{_player_8c_ab0e68fb642d4f18bbe545e43e31042d6}} 
+\index{Player.c@{Player.c}!create\_sword@{create\_sword}}
+\index{create\_sword@{create\_sword}!Player.c@{Player.c}}
+\doxysubsubsection{\texorpdfstring{create\_sword()}{create\_sword()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}}$\ast$ create\+\_\+sword (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{parent }\end{DoxyParamCaption})}
+
+
+
+Function to create the player\textquotesingle{}s sword entity. 
+
+This function creates the player\textquotesingle{}s sword entity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em parent} & Pointer to the parent entity. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the sword entity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_player_8c_a2a0f67164ab15e15516ed5f533e3c161}\label{_player_8c_a2a0f67164ab15e15516ed5f533e3c161}} 
+\index{Player.c@{Player.c}!damagePlayer@{damagePlayer}}
+\index{damagePlayer@{damagePlayer}!Player.c@{Player.c}}
+\doxysubsubsection{\texorpdfstring{damagePlayer()}{damagePlayer()}}
+{\footnotesize\ttfamily void damage\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{gamestate,  }\item[{int}]{damage }\end{DoxyParamCaption})}
+
+
+
+Function to damage the player. 
+
+This function damages the player.
+
+
+\begin{DoxyParams}{Parameters}
+{\em gamestate} & Pointer to the game state. \\
+\hline
+{\em damage} & Amount of damage to deal to the player. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_player_8c_afa0877cd7cde43b480a9bbc88cb9f17b}\label{_player_8c_afa0877cd7cde43b480a9bbc88cb9f17b}} 
+\index{Player.c@{Player.c}!lerp\_camera@{lerp\_camera}}
+\index{lerp\_camera@{lerp\_camera}!Player.c@{Player.c}}
+\doxysubsubsection{\texorpdfstring{lerp\_camera()}{lerp\_camera()}}
+{\footnotesize\ttfamily void lerp\+\_\+camera (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_camera}{Camera}} $\ast$}]{camera,  }\item[{vec3}]{old\+\_\+pos,  }\item[{vec3}]{new\+\_\+pos,  }\item[{float}]{old\+\_\+yaw,  }\item[{float}]{new\+\_\+yaw,  }\item[{int}]{steps,  }\item[{float}]{duration }\end{DoxyParamCaption})}
+
+
+
+Linearly interpolates the camera position and yaw. 
+
+This function linearly interpolates the camera position and yaw.
+
+
+\begin{DoxyParams}{Parameters}
+{\em camera} & Pointer to the camera. \\
+\hline
+{\em old\+\_\+pos} & Old position of the camera. \\
+\hline
+{\em new\+\_\+pos} & New position of the camera. \\
+\hline
+{\em old\+\_\+yaw} & Old yaw of the camera. \\
+\hline
+{\em new\+\_\+yaw} & New yaw of the camera. \\
+\hline
+{\em steps} & Number of steps to interpolate. \\
+\hline
+{\em duration} & Duration of the interpolation. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_player_8c_ad6bc34de2fbb797431daff728514b5e0}\label{_player_8c_ad6bc34de2fbb797431daff728514b5e0}} 
+\index{Player.c@{Player.c}!lerp\_float@{lerp\_float}}
+\index{lerp\_float@{lerp\_float}!Player.c@{Player.c}}
+\doxysubsubsection{\texorpdfstring{lerp\_float()}{lerp\_float()}}
+{\footnotesize\ttfamily float lerp\+\_\+float (\begin{DoxyParamCaption}\item[{float}]{a,  }\item[{float}]{b,  }\item[{float}]{t }\end{DoxyParamCaption})}
+
+
+
+Linearly interpolates between two floats. 
+
+This function linearly interpolates between two floats.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & First float. \\
+\hline
+{\em b} & Second float. \\
+\hline
+{\em t} & Interpolation factor. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Result of the interpolation. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_player_8c_a7ea4b5e89549eaf212ad9908a5c1a8c3}\label{_player_8c_a7ea4b5e89549eaf212ad9908a5c1a8c3}} 
+\index{Player.c@{Player.c}!lerp\_vec3@{lerp\_vec3}}
+\index{lerp\_vec3@{lerp\_vec3}!Player.c@{Player.c}}
+\doxysubsubsection{\texorpdfstring{lerp\_vec3()}{lerp\_vec3()}}
+{\footnotesize\ttfamily void lerp\+\_\+vec3 (\begin{DoxyParamCaption}\item[{vec3}]{a,  }\item[{vec3}]{b,  }\item[{vec3}]{res,  }\item[{float}]{t }\end{DoxyParamCaption})}
+
+
+
+Linearly interpolates between two vectors. 
+
+This function linearly interpolates between two vectors.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & First vector. \\
+\hline
+{\em b} & Second vector. \\
+\hline
+{\em res} & Resulting vector. \\
+\hline
+{\em t} & Interpolation factor. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_player_8c_ab110cf8e2e422435362cb695d22baee6}\label{_player_8c_ab110cf8e2e422435362cb695d22baee6}} 
+\index{Player.c@{Player.c}!moveCameraPlayer@{moveCameraPlayer}}
+\index{moveCameraPlayer@{moveCameraPlayer}!Player.c@{Player.c}}
+\doxysubsubsection{\texorpdfstring{moveCameraPlayer()}{moveCameraPlayer()}}
+{\footnotesize\ttfamily void move\+Camera\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_camera}{Camera}} $\ast$}]{camera,  }\item[{vec3}]{position,  }\item[{vec3}]{target\+Position,  }\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+
+
+
+Moves the camera to follow the player. 
+
+This function moves the camera to follow the player, ensuring that the camera is always positioned behind the player and looking at the player.
+
+
+\begin{DoxyParams}{Parameters}
+{\em camera} & Pointer to the camera. \\
+\hline
+{\em position} & Position of the player. \\
+\hline
+{\em target\+Position} & Target position of the player. \\
+\hline
+{\em delta\+Time} & \mbox{\hyperlink{struct_time}{Time}} since the last frame. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_player_8c_a81507fb2da74b7c453c5ce3c2b580206}\label{_player_8c_a81507fb2da74b7c453c5ce3c2b580206}} 
+\index{Player.c@{Player.c}!player\_attack@{player\_attack}}
+\index{player\_attack@{player\_attack}!Player.c@{Player.c}}
+\doxysubsubsection{\texorpdfstring{player\_attack()}{player\_attack()}}
+{\footnotesize\ttfamily void player\+\_\+attack (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{player,  }\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{enemy,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State }\end{DoxyParamCaption})}
+
+
+
+Function to make the player attack. 
+
+This function makes the player attack.
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Pointer to the player entity. \\
+\hline
+{\em enemy} & Pointer to the enemy entity. \\
+\hline
+{\em game\+State} & Pointer to the game state. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_player_8c_a36148454132e0c6a4958e82b641a714f}\label{_player_8c_a36148454132e0c6a4958e82b641a714f}} 
+\index{Player.c@{Player.c}!playerInteract@{playerInteract}}
+\index{playerInteract@{playerInteract}!Player.c@{Player.c}}
+\doxysubsubsection{\texorpdfstring{playerInteract()}{playerInteract()}}
+{\footnotesize\ttfamily bool player\+Interact (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to check if the player is interacting. 
+
+This function checks if the player is interacting.
+
+\begin{DoxyReturn}{Returns}
+True if the player is interacting, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_player_8c_a1c4604be92435608e32cea6896f8e443}\label{_player_8c_a1c4604be92435608e32cea6896f8e443}} 
+\index{Player.c@{Player.c}!playerMovement@{playerMovement}}
+\index{playerMovement@{playerMovement}!Player.c@{Player.c}}
+\doxysubsubsection{\texorpdfstring{playerMovement()}{playerMovement()}}
+{\footnotesize\ttfamily void player\+Movement (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{player,  }\item[{float}]{delta\+Time,  }\item[{\mbox{\hyperlink{struct_camera}{Camera}} $\ast$}]{camera }\end{DoxyParamCaption})}
+
+
+
+Function to move the player. 
+
+This function moves the player based on the input and the camera.
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Pointer to the player entity. \\
+\hline
+{\em delta\+Time} & \mbox{\hyperlink{struct_time}{Time}} since the last frame. \\
+\hline
+{\em camera} & Pointer to the camera. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_player_8c_a9d6b9697664f3c5eaf18a69f7470b868}\label{_player_8c_a9d6b9697664f3c5eaf18a69f7470b868}} 
+\index{Player.c@{Player.c}!playSoundPlayer@{playSoundPlayer}}
+\index{playSoundPlayer@{playSoundPlayer}!Player.c@{Player.c}}
+\doxysubsubsection{\texorpdfstring{playSoundPlayer()}{playSoundPlayer()}}
+{\footnotesize\ttfamily void play\+Sound\+Player (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{player,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{gamestate }\end{DoxyParamCaption})}
+
+
+
+Function to play the sound of the player. 
+
+This function plays the sound of the player.
+
+
+\begin{DoxyParams}{Parameters}
+{\em player} & Pointer to the player entity. \\
+\hline
+{\em gamestate} & Pointer to the game state. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_player_8c_a51028284031cf4cb250c68970e3d55ef}\label{_player_8c_a51028284031cf4cb250c68970e3d55ef}} 
+\index{Player.c@{Player.c}!updatePlayerAnimator@{updatePlayerAnimator}}
+\index{updatePlayerAnimator@{updatePlayerAnimator}!Player.c@{Player.c}}
+\doxysubsubsection{\texorpdfstring{updatePlayerAnimator()}{updatePlayerAnimator()}}
+{\footnotesize\ttfamily void update\+Player\+Animator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{player\+Entity,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State }\end{DoxyParamCaption})}
+
+
+
+Updates the player\textquotesingle{}s animator based on the current state and input. 
+
+This function manages the animation state of the player entity, ensuring that the correct animation is played based on the player\textquotesingle{}s actions, such as moving, attacking, or being idle.
+
+
+\begin{DoxyParams}{Parameters}
+{\em player\+Entity} & Pointer to the player entity. \\
+\hline
+{\em game\+State} & Pointer to the game state. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Variable Documentation}
+\mbox{\Hypertarget{_player_8c_afe16ccb40ec9ab3c5541e8fc16515ab5}\label{_player_8c_afe16ccb40ec9ab3c5541e8fc16515ab5}} 
+\index{Player.c@{Player.c}!isClicking@{isClicking}}
+\index{isClicking@{isClicking}!Player.c@{Player.c}}
+\doxysubsubsection{\texorpdfstring{isClicking}{isClicking}}
+{\footnotesize\ttfamily bool is\+Clicking = false}
+
+Boolean to check if the player is clicking. 
