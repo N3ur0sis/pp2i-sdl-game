@@ -36,7 +36,8 @@ int main(void){
     SceneManagerSetCurrentScene(sceneManager, sceneManager->gameState.currentSceneIndex);
 
     /* Set Default Camera Position */
-    sceneManager->scenes[sceneManager->currentSceneIndex]->camera->Yaw = 180.0f;
+    sceneManager->scenes[sceneManager->currentSceneIndex]->camera->Yaw = 130.0f;
+    sceneManager->scenes[sceneManager->currentSceneIndex]->camera->Pitch = -15.0f;
     SceneManagerUpdateCurrentScene(sceneManager);
     physicsSystem(sceneManager->scenes[sceneManager->currentSceneIndex]);
 
