@@ -85,6 +85,7 @@ void renderSystem(Scene* scene, GameState* gamestate) {
             LightUpdate(scene->shader, light);
         }
     }
+    
 }
 
 
