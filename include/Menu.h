@@ -1,7 +1,7 @@
-/*
-* Menu.h
-* Header file for the pause menu.
-* Authors: VD
+/**
+* @file Menu.h
+* @brief Header file for the pause menu.
+* @author VD
 */
 
 #pragma once
