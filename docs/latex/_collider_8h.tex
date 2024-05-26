@@ -1,0 +1,130 @@
+\hypertarget{_collider_8h}{}\doxysection{include/\+Collider.h File Reference}
+\label{_collider_8h}\index{include/Collider.h@{include/Collider.h}}
+
+
+Collider header file.  
+
+
+{\ttfamily \#include $<$Model.\+h$>$}\newline
+Include dependency graph for Collider.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_collider_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_collider_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___collider}{\+\_\+\+Collider}}
+\begin{DoxyCompactList}\small\item\em Structure representing a collider. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_collider_8h_aadd6169cec56f2160d5621151269fdab}{MAXCOLLIDER}}~2000
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct___collider}{\+\_\+\+Collider}} \mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}}
+\begin{DoxyCompactList}\small\item\em Structure representing a collider. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$ \mbox{\hyperlink{_collider_8h_abe795c111bf6bbf1badabb70c149d2ec}{Collider\+Create}} (char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Creates a new Collider instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_collider_8h_a4bf861505ba68a1e698c55deed9e1b2f}{Update\+Collider}} (\mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$collider)
+\begin{DoxyCompactList}\small\item\em Updates the collider. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_collider_8h_a673a0897fd792c85d7b94fbb5a2bdcbf}{Free\+Collider}} (\mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$collider)
+\begin{DoxyCompactList}\small\item\em Frees the collider. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Collider header file. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_collider_8h_aadd6169cec56f2160d5621151269fdab}\label{_collider_8h_aadd6169cec56f2160d5621151269fdab}} 
+\index{Collider.h@{Collider.h}!MAXCOLLIDER@{MAXCOLLIDER}}
+\index{MAXCOLLIDER@{MAXCOLLIDER}!Collider.h@{Collider.h}}
+\doxysubsubsection{\texorpdfstring{MAXCOLLIDER}{MAXCOLLIDER}}
+{\footnotesize\ttfamily \#define MAXCOLLIDER~2000}
+
+Maximum number of colliders 
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_collider_8h_a23755eef9288a1810babb90938157450}\label{_collider_8h_a23755eef9288a1810babb90938157450}} 
+\index{Collider.h@{Collider.h}!Collider@{Collider}}
+\index{Collider@{Collider}!Collider.h@{Collider.h}}
+\doxysubsubsection{\texorpdfstring{Collider}{Collider}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct___collider}{\+\_\+\+Collider}} \mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}}}
+
+
+
+Structure representing a collider. 
+
+This structure represents a collider. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_collider_8h_abe795c111bf6bbf1badabb70c149d2ec}\label{_collider_8h_abe795c111bf6bbf1badabb70c149d2ec}} 
+\index{Collider.h@{Collider.h}!ColliderCreate@{ColliderCreate}}
+\index{ColliderCreate@{ColliderCreate}!Collider.h@{Collider.h}}
+\doxysubsubsection{\texorpdfstring{ColliderCreate()}{ColliderCreate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}}$\ast$ Collider\+Create (\begin{DoxyParamCaption}\item[{char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Creates a new Collider instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the model file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the created Collider instance or NULL on failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_collider_8h_a673a0897fd792c85d7b94fbb5a2bdcbf}\label{_collider_8h_a673a0897fd792c85d7b94fbb5a2bdcbf}} 
+\index{Collider.h@{Collider.h}!FreeCollider@{FreeCollider}}
+\index{FreeCollider@{FreeCollider}!Collider.h@{Collider.h}}
+\doxysubsubsection{\texorpdfstring{FreeCollider()}{FreeCollider()}}
+{\footnotesize\ttfamily void Free\+Collider (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$}]{collider }\end{DoxyParamCaption})}
+
+
+
+Frees the collider. 
+
+This function frees the collider.
+
+
+\begin{DoxyParams}{Parameters}
+{\em collider} & The collider to free. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_collider_8h_a4bf861505ba68a1e698c55deed9e1b2f}\label{_collider_8h_a4bf861505ba68a1e698c55deed9e1b2f}} 
+\index{Collider.h@{Collider.h}!UpdateCollider@{UpdateCollider}}
+\index{UpdateCollider@{UpdateCollider}!Collider.h@{Collider.h}}
+\doxysubsubsection{\texorpdfstring{UpdateCollider()}{UpdateCollider()}}
+{\footnotesize\ttfamily void Update\+Collider (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$}]{collider }\end{DoxyParamCaption})}
+
+
+
+Updates the collider. 
+
+This function updates the collider.
+
+
+\begin{DoxyParams}{Parameters}
+{\em collider} & The collider to update. \\
+\hline
+\end{DoxyParams}

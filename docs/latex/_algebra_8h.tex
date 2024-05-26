@@ -1,0 +1,98 @@
+\hypertarget{_algebra_8h}{}\doxysection{include/\+Algebra.h File Reference}
+\label{_algebra_8h}\index{include/Algebra.h@{include/Algebra.h}}
+
+
+Implementations of algebra functions.  
+
+
+{\ttfamily \#include $<$assimp/cimport.\+h$>$}\newline
+{\ttfamily \#include $<$cglm/cglm.\+h$>$}\newline
+Include dependency graph for Algebra.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{_algebra_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_algebra_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_algebra_8h_a5f307af7bc4419616c7047813ac9af30}{Assimp\+Vec3}} (vec3 vec, struct ai\+Vector3D ai\+\_\+vec)
+\begin{DoxyCompactList}\small\item\em Converts an assimp vector to a glm vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_algebra_8h_a452fbc6bb44c070bf0f3667fd706aa2c}{Assimp\+Quat}} (versor q, struct ai\+Quaternion ai\+\_\+q)
+\begin{DoxyCompactList}\small\item\em Converts an assimp quaternion to a glm quaternion. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_algebra_8h_af264d66f011da2aadd314fcff4f42826}{Assimp\+Mat4}} (mat4 mat, struct ai\+Matrix4x4 ai\+\_\+mat)
+\begin{DoxyCompactList}\small\item\em Converts an assimp matrix to a glm matrix. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementations of algebra functions. 
+
+This file contains the implementations of algebra functions. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_algebra_8h_af264d66f011da2aadd314fcff4f42826}\label{_algebra_8h_af264d66f011da2aadd314fcff4f42826}} 
+\index{Algebra.h@{Algebra.h}!AssimpMat4@{AssimpMat4}}
+\index{AssimpMat4@{AssimpMat4}!Algebra.h@{Algebra.h}}
+\doxysubsubsection{\texorpdfstring{AssimpMat4()}{AssimpMat4()}}
+{\footnotesize\ttfamily void Assimp\+Mat4 (\begin{DoxyParamCaption}\item[{mat4}]{mat,  }\item[{struct ai\+Matrix4x4}]{ai\+\_\+mat }\end{DoxyParamCaption})}
+
+
+
+Converts an assimp matrix to a glm matrix. 
+
+This function converts an assimp matrix to a glm matrix.
+
+
+\begin{DoxyParams}{Parameters}
+{\em mat} & The glm matrix. \\
+\hline
+{\em ai\+\_\+mat} & The assimp matrix. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_algebra_8h_a452fbc6bb44c070bf0f3667fd706aa2c}\label{_algebra_8h_a452fbc6bb44c070bf0f3667fd706aa2c}} 
+\index{Algebra.h@{Algebra.h}!AssimpQuat@{AssimpQuat}}
+\index{AssimpQuat@{AssimpQuat}!Algebra.h@{Algebra.h}}
+\doxysubsubsection{\texorpdfstring{AssimpQuat()}{AssimpQuat()}}
+{\footnotesize\ttfamily void Assimp\+Quat (\begin{DoxyParamCaption}\item[{versor}]{q,  }\item[{struct ai\+Quaternion}]{ai\+\_\+q }\end{DoxyParamCaption})}
+
+
+
+Converts an assimp quaternion to a glm quaternion. 
+
+This function converts an assimp quaternion to a glm quaternion.
+
+
+\begin{DoxyParams}{Parameters}
+{\em q} & The glm quaternion. \\
+\hline
+{\em ai\+\_\+q} & The assimp quaternion. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_algebra_8h_a5f307af7bc4419616c7047813ac9af30}\label{_algebra_8h_a5f307af7bc4419616c7047813ac9af30}} 
+\index{Algebra.h@{Algebra.h}!AssimpVec3@{AssimpVec3}}
+\index{AssimpVec3@{AssimpVec3}!Algebra.h@{Algebra.h}}
+\doxysubsubsection{\texorpdfstring{AssimpVec3()}{AssimpVec3()}}
+{\footnotesize\ttfamily void Assimp\+Vec3 (\begin{DoxyParamCaption}\item[{vec3}]{vec,  }\item[{struct ai\+Vector3D}]{ai\+\_\+vec }\end{DoxyParamCaption})}
+
+
+
+Converts an assimp vector to a glm vector. 
+
+This function converts an assimp vector to a glm vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vec} & The glm vector. \\
+\hline
+{\em ai\+\_\+vec} & The assimp vector. \\
+\hline
+\end{DoxyParams}

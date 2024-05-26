@@ -1,0 +1,115 @@
+\hypertarget{_main_scene_8h}{}\doxysection{include/\+Main\+Scene.h File Reference}
+\label{_main_scene_8h}\index{include/MainScene.h@{include/MainScene.h}}
+
+
+Header file for the main scene.  
+
+
+{\ttfamily \#include $<$Scene.\+h$>$}\newline
+{\ttfamily \#include $<$Player.\+h$>$}\newline
+{\ttfamily \#include $<$Game\+State.\+h$>$}\newline
+{\ttfamily \#include $<$cglm/cglm.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Enemy.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Renderer.\+h$>$}\newline
+{\ttfamily \#include $<$Inventory.\+h$>$}\newline
+Include dependency graph for Main\+Scene.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_main_scene_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=197pt]{_main_scene_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_main_scene_8h_a9e41ca037c1c5b10641df6f104c8ed41}{NBPARTMAP}}~8
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_main_scene_8h_a5cdaf208a0334bd3936dfd195e0b7d27}{start\+Main\+Scene}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State)
+\begin{DoxyCompactList}\small\item\em Function to create the main scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_main_scene_8h_a3bd8a7266ddd835aa7cdedcf0d12eee4}{update\+Main\+Scene}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State)
+\begin{DoxyCompactList}\small\item\em Function to update the main scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_main_scene_8h_afe738e3405ba8c5e368e74335d49cd99}{unload\+Main\+Scene}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene)
+\begin{DoxyCompactList}\small\item\em Function to unload the main scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the main scene. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_main_scene_8h_a9e41ca037c1c5b10641df6f104c8ed41}\label{_main_scene_8h_a9e41ca037c1c5b10641df6f104c8ed41}} 
+\index{MainScene.h@{MainScene.h}!NBPARTMAP@{NBPARTMAP}}
+\index{NBPARTMAP@{NBPARTMAP}!MainScene.h@{MainScene.h}}
+\doxysubsubsection{\texorpdfstring{NBPARTMAP}{NBPARTMAP}}
+{\footnotesize\ttfamily \#define NBPARTMAP~8}
+
+Number of parts of the map. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_main_scene_8h_a5cdaf208a0334bd3936dfd195e0b7d27}\label{_main_scene_8h_a5cdaf208a0334bd3936dfd195e0b7d27}} 
+\index{MainScene.h@{MainScene.h}!startMainScene@{startMainScene}}
+\index{startMainScene@{startMainScene}!MainScene.h@{MainScene.h}}
+\doxysubsubsection{\texorpdfstring{startMainScene()}{startMainScene()}}
+{\footnotesize\ttfamily void start\+Main\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State }\end{DoxyParamCaption})}
+
+
+
+Function to create the main scene. 
+
+This function creates the main scene.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em game\+State} & Pointer to the game state. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_main_scene_8h_afe738e3405ba8c5e368e74335d49cd99}\label{_main_scene_8h_afe738e3405ba8c5e368e74335d49cd99}} 
+\index{MainScene.h@{MainScene.h}!unloadMainScene@{unloadMainScene}}
+\index{unloadMainScene@{unloadMainScene}!MainScene.h@{MainScene.h}}
+\doxysubsubsection{\texorpdfstring{unloadMainScene()}{unloadMainScene()}}
+{\footnotesize\ttfamily void unload\+Main\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene }\end{DoxyParamCaption})}
+
+
+
+Function to unload the main scene. 
+
+This function unloads the main scene.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_main_scene_8h_a3bd8a7266ddd835aa7cdedcf0d12eee4}\label{_main_scene_8h_a3bd8a7266ddd835aa7cdedcf0d12eee4}} 
+\index{MainScene.h@{MainScene.h}!updateMainScene@{updateMainScene}}
+\index{updateMainScene@{updateMainScene}!MainScene.h@{MainScene.h}}
+\doxysubsubsection{\texorpdfstring{updateMainScene()}{updateMainScene()}}
+{\footnotesize\ttfamily void update\+Main\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State }\end{DoxyParamCaption})}
+
+
+
+Function to update the main scene. 
+
+This function updates the main scene.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em game\+State} & Pointer to the game state. \\
+\hline
+\end{DoxyParams}

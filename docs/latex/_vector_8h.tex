@@ -1,0 +1,463 @@
+\hypertarget{_vector_8h}{}\doxysection{include/\+Vector.h File Reference}
+\label{_vector_8h}\index{include/Vector.h@{include/Vector.h}}
+
+
+Header file for the vector.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$glad/glad.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Data.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Type.\+h\char`\"{}}\newline
+Include dependency graph for Vector.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_vector_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=308pt]{_vector_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___vector}{\+\_\+\+Vector}}
+\begin{DoxyCompactList}\small\item\em Struct representing a vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_vector_8h_ab77952ba65ecab25409ab9188e1d3019}\label{_vector_8h_ab77952ba65ecab25409ab9188e1d3019}} 
+typedef struct \mbox{\hyperlink{struct___vector}{\+\_\+\+Vector}} {\bfseries Vector}
+\item 
+\mbox{\Hypertarget{_vector_8h_aaa99c0766395c8c2a88946185b5c5683}\label{_vector_8h_aaa99c0766395c8c2a88946185b5c5683}} 
+typedef struct \mbox{\hyperlink{struct___data}{\+\_\+\+Data}} {\bfseries Data}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct___vector}{Vector}} $\ast$ \mbox{\hyperlink{_vector_8h_a01314b55a327a1a93d951c40c254940b}{create\+Vector}} (\mbox{\hyperlink{_type_8h_a1d1cfd8ffb84e947f82999c682b666a7}{Type}} \mbox{\hyperlink{_data_8h_adb1dbf691ca9751b21d4ab403146a6b1}{type}})
+\begin{DoxyCompactList}\small\item\em Function to create a vector. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_vector_8h_a367c80e4a5c6743c3b79d831f99a66f2}{size}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector)
+\begin{DoxyCompactList}\small\item\em Function to get the size of the vector. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_vector_8h_a9bdb60f2a3a54b8e278c4d40cf553fdd}{capacity}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector)
+\begin{DoxyCompactList}\small\item\em Function to get the capacity of the vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_vector_8h_a9ce46318e8920df893b3ad587d1234fd}{resize}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector, int \mbox{\hyperlink{_vector_8h_a367c80e4a5c6743c3b79d831f99a66f2}{size}}, \mbox{\hyperlink{struct___data}{Data}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Function to resize the vector. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_vector_8h_a5f2e14078107c9ba4fa7dcfa3a84e8e4}{empty}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector)
+\begin{DoxyCompactList}\small\item\em Function to check if the vector is empty. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_vector_8h_a84b046a0652361656c6203a29c578b8c}{reserve}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector, int \mbox{\hyperlink{_vector_8h_a9bdb60f2a3a54b8e278c4d40cf553fdd}{capacity}})
+\begin{DoxyCompactList}\small\item\em Function to reserve space in the vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_vector_8h_abf29dd81d5baefe2bf8a46ee613a5a5c}{shrink\+\_\+to\+\_\+fit}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector)
+\begin{DoxyCompactList}\small\item\em Function to shrink the vector to fit the size. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct___data}{Data}} $\ast$ \mbox{\hyperlink{_vector_8h_a85dfb0845707d8469963b4a6cc74a216}{operator\+\_\+index}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector, int index)
+\begin{DoxyCompactList}\small\item\em Function to get the data at an index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_vector_8h_a9043554d0039fc8a0eb6875b26862ca1}{push\+\_\+back}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector, \mbox{\hyperlink{struct___data}{Data}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Function to add data to the end of the vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_vector_8h_a608f81a7d33f7db22d55f00eeb820db2}{pop\+\_\+back}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector)
+\begin{DoxyCompactList}\small\item\em Function to remove data from the end of the vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_vector_8h_aa876563225848a42cf72014afdc25ea8}{insert}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector, int index, \mbox{\hyperlink{struct___data}{Data}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Function to insert data at an index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_vector_8h_a9b13365fbfe3b6a3fe7f1050ed4b3936}{erase}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector, int index)
+\begin{DoxyCompactList}\small\item\em Function to erase data at an index. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_vector_8h_aedc11a5ecd0fac563528da44327addb9}{clear}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector)
+\begin{DoxyCompactList}\small\item\em Function to clear the vector. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_vector_8h_ae9b3d0b47b2131d8fc7e2bf2973ec24a}{equals\+Vector}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector1, \mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector2)
+\begin{DoxyCompactList}\small\item\em Function to check if two vectors are equal. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_vector_8h_a45843b7d1ea88314568175fb3a389891}{num\+Elements}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector)
+\begin{DoxyCompactList}\small\item\em Function to get the number of elements in the vector. \end{DoxyCompactList}\item 
+GLfloat $\ast$ \mbox{\hyperlink{_vector_8h_a502250a44170baa14bc4cf76b10cd08e}{to\+Vertices}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector)
+\begin{DoxyCompactList}\small\item\em Function to convert a vector to vertices. \end{DoxyCompactList}\item 
+GLuint $\ast$ \mbox{\hyperlink{_vector_8h_a83c0fd973e41351061f6a4e3d8d04978}{to\+Indices}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector)
+\begin{DoxyCompactList}\small\item\em Function to convert a vector to indices. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_vector_8h_a6d21e1b273901077c82da93ed70eb785}{print\+Vector}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector)
+\begin{DoxyCompactList}\small\item\em Function to print the vector. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_vector_8h_a47570451fa092448feba659faf3939b3}{destroy\+Vector}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$vector)
+\begin{DoxyCompactList}\small\item\em Function to destroy the vector. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the vector. 
+
+\begin{DoxyAuthor}{Author}
+VD 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_vector_8h_a9bdb60f2a3a54b8e278c4d40cf553fdd}\label{_vector_8h_a9bdb60f2a3a54b8e278c4d40cf553fdd}} 
+\index{Vector.h@{Vector.h}!capacity@{capacity}}
+\index{capacity@{capacity}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{capacity()}{capacity()}}
+{\footnotesize\ttfamily int capacity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector }\end{DoxyParamCaption})}
+
+
+
+Function to get the capacity of the vector. 
+
+This function gets the capacity of the vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Capacity of the vector. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_vector_8h_aedc11a5ecd0fac563528da44327addb9}\label{_vector_8h_aedc11a5ecd0fac563528da44327addb9}} 
+\index{Vector.h@{Vector.h}!clear@{clear}}
+\index{clear@{clear}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily void clear (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector }\end{DoxyParamCaption})}
+
+
+
+Function to clear the vector. 
+
+This function clears the vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_vector_8h_a01314b55a327a1a93d951c40c254940b}\label{_vector_8h_a01314b55a327a1a93d951c40c254940b}} 
+\index{Vector.h@{Vector.h}!createVector@{createVector}}
+\index{createVector@{createVector}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{createVector()}{createVector()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct___vector}{Vector}}$\ast$ create\+Vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_type_8h_a1d1cfd8ffb84e947f82999c682b666a7}{Type}}}]{type }\end{DoxyParamCaption})}
+
+
+
+Function to create a vector. 
+
+This function creates a vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & Type of the vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the vector. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_vector_8h_a47570451fa092448feba659faf3939b3}\label{_vector_8h_a47570451fa092448feba659faf3939b3}} 
+\index{Vector.h@{Vector.h}!destroyVector@{destroyVector}}
+\index{destroyVector@{destroyVector}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{destroyVector()}{destroyVector()}}
+{\footnotesize\ttfamily void destroy\+Vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector }\end{DoxyParamCaption})}
+
+
+
+Function to destroy the vector. 
+
+This function destroys the vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_vector_8h_a5f2e14078107c9ba4fa7dcfa3a84e8e4}\label{_vector_8h_a5f2e14078107c9ba4fa7dcfa3a84e8e4}} 
+\index{Vector.h@{Vector.h}!empty@{empty}}
+\index{empty@{empty}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily bool empty (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector }\end{DoxyParamCaption})}
+
+
+
+Function to check if the vector is empty. 
+
+This function checks if the vector is empty.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the vector is empty, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_vector_8h_ae9b3d0b47b2131d8fc7e2bf2973ec24a}\label{_vector_8h_ae9b3d0b47b2131d8fc7e2bf2973ec24a}} 
+\index{Vector.h@{Vector.h}!equalsVector@{equalsVector}}
+\index{equalsVector@{equalsVector}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{equalsVector()}{equalsVector()}}
+{\footnotesize\ttfamily bool equals\+Vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector1,  }\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector2 }\end{DoxyParamCaption})}
+
+
+
+Function to check if two vectors are equal. 
+
+This function checks if two vectors are equal.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector1} & Pointer to the first vector. \\
+\hline
+{\em vector2} & Pointer to the second vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the vectors are equal, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_vector_8h_a9b13365fbfe3b6a3fe7f1050ed4b3936}\label{_vector_8h_a9b13365fbfe3b6a3fe7f1050ed4b3936}} 
+\index{Vector.h@{Vector.h}!erase@{erase}}
+\index{erase@{erase}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{erase()}{erase()}}
+{\footnotesize\ttfamily void erase (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Function to erase data at an index. 
+
+This function erases data at an index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+{\em index} & Index to erase the data. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_vector_8h_aa876563225848a42cf72014afdc25ea8}\label{_vector_8h_aa876563225848a42cf72014afdc25ea8}} 
+\index{Vector.h@{Vector.h}!insert@{insert}}
+\index{insert@{insert}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily void insert (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector,  }\item[{int}]{index,  }\item[{\mbox{\hyperlink{struct___data}{Data}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Function to insert data at an index. 
+
+This function inserts data at an index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+{\em index} & Index to insert the data. \\
+\hline
+{\em data} & Pointer to the data. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_vector_8h_a45843b7d1ea88314568175fb3a389891}\label{_vector_8h_a45843b7d1ea88314568175fb3a389891}} 
+\index{Vector.h@{Vector.h}!numElements@{numElements}}
+\index{numElements@{numElements}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{numElements()}{numElements()}}
+{\footnotesize\ttfamily int num\+Elements (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector }\end{DoxyParamCaption})}
+
+
+
+Function to get the number of elements in the vector. 
+
+This function gets the number of elements in the vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of elements in the vector. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_vector_8h_a85dfb0845707d8469963b4a6cc74a216}\label{_vector_8h_a85dfb0845707d8469963b4a6cc74a216}} 
+\index{Vector.h@{Vector.h}!operator\_index@{operator\_index}}
+\index{operator\_index@{operator\_index}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{operator\_index()}{operator\_index()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct___data}{Data}}$\ast$ operator\+\_\+index (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Function to get the data at an index. 
+
+This function gets the data at an index.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+{\em index} & Index of the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the data. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_vector_8h_a608f81a7d33f7db22d55f00eeb820db2}\label{_vector_8h_a608f81a7d33f7db22d55f00eeb820db2}} 
+\index{Vector.h@{Vector.h}!pop\_back@{pop\_back}}
+\index{pop\_back@{pop\_back}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{pop\_back()}{pop\_back()}}
+{\footnotesize\ttfamily void pop\+\_\+back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector }\end{DoxyParamCaption})}
+
+
+
+Function to remove data from the end of the vector. 
+
+This function removes data from the end of the vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_vector_8h_a6d21e1b273901077c82da93ed70eb785}\label{_vector_8h_a6d21e1b273901077c82da93ed70eb785}} 
+\index{Vector.h@{Vector.h}!printVector@{printVector}}
+\index{printVector@{printVector}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{printVector()}{printVector()}}
+{\footnotesize\ttfamily void print\+Vector (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector }\end{DoxyParamCaption})}
+
+
+
+Function to print the vector. 
+
+This function prints the vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_vector_8h_a9043554d0039fc8a0eb6875b26862ca1}\label{_vector_8h_a9043554d0039fc8a0eb6875b26862ca1}} 
+\index{Vector.h@{Vector.h}!push\_back@{push\_back}}
+\index{push\_back@{push\_back}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{push\_back()}{push\_back()}}
+{\footnotesize\ttfamily void push\+\_\+back (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector,  }\item[{\mbox{\hyperlink{struct___data}{Data}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Function to add data to the end of the vector. 
+
+This function adds data to the end of the vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+{\em data} & Pointer to the data. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_vector_8h_a84b046a0652361656c6203a29c578b8c}\label{_vector_8h_a84b046a0652361656c6203a29c578b8c}} 
+\index{Vector.h@{Vector.h}!reserve@{reserve}}
+\index{reserve@{reserve}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{reserve()}{reserve()}}
+{\footnotesize\ttfamily void reserve (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector,  }\item[{int}]{capacity }\end{DoxyParamCaption})}
+
+
+
+Function to reserve space in the vector. 
+
+This function reserves space in the vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+{\em capacity} & Capacity to reserve. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_vector_8h_a9ce46318e8920df893b3ad587d1234fd}\label{_vector_8h_a9ce46318e8920df893b3ad587d1234fd}} 
+\index{Vector.h@{Vector.h}!resize@{resize}}
+\index{resize@{resize}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{resize()}{resize()}}
+{\footnotesize\ttfamily void resize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector,  }\item[{int}]{size,  }\item[{\mbox{\hyperlink{struct___data}{Data}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Function to resize the vector. 
+
+This function resizes the vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+{\em size} & New size of the vector. \\
+\hline
+{\em data} & Pointer to the data. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_vector_8h_abf29dd81d5baefe2bf8a46ee613a5a5c}\label{_vector_8h_abf29dd81d5baefe2bf8a46ee613a5a5c}} 
+\index{Vector.h@{Vector.h}!shrink\_to\_fit@{shrink\_to\_fit}}
+\index{shrink\_to\_fit@{shrink\_to\_fit}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{shrink\_to\_fit()}{shrink\_to\_fit()}}
+{\footnotesize\ttfamily void shrink\+\_\+to\+\_\+fit (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector }\end{DoxyParamCaption})}
+
+
+
+Function to shrink the vector to fit the size. 
+
+This function shrinks the vector to fit the size.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_vector_8h_a367c80e4a5c6743c3b79d831f99a66f2}\label{_vector_8h_a367c80e4a5c6743c3b79d831f99a66f2}} 
+\index{Vector.h@{Vector.h}!size@{size}}
+\index{size@{size}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{size()}{size()}}
+{\footnotesize\ttfamily int size (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector }\end{DoxyParamCaption})}
+
+
+
+Function to get the size of the vector. 
+
+This function gets the size of the vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Size of the vector. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_vector_8h_a83c0fd973e41351061f6a4e3d8d04978}\label{_vector_8h_a83c0fd973e41351061f6a4e3d8d04978}} 
+\index{Vector.h@{Vector.h}!toIndices@{toIndices}}
+\index{toIndices@{toIndices}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{toIndices()}{toIndices()}}
+{\footnotesize\ttfamily GLuint$\ast$ to\+Indices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector }\end{DoxyParamCaption})}
+
+
+
+Function to convert a vector to indices. 
+
+This function converts a vector to indices.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the indices. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_vector_8h_a502250a44170baa14bc4cf76b10cd08e}\label{_vector_8h_a502250a44170baa14bc4cf76b10cd08e}} 
+\index{Vector.h@{Vector.h}!toVertices@{toVertices}}
+\index{toVertices@{toVertices}!Vector.h@{Vector.h}}
+\doxysubsubsection{\texorpdfstring{toVertices()}{toVertices()}}
+{\footnotesize\ttfamily GLfloat$\ast$ to\+Vertices (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{vector }\end{DoxyParamCaption})}
+
+
+
+Function to convert a vector to vertices. 
+
+This function converts a vector to vertices.
+
+
+\begin{DoxyParams}{Parameters}
+{\em vector} & Pointer to the vector. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the vertices. 
+\end{DoxyReturn}

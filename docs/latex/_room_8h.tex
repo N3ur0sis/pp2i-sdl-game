@@ -1,0 +1,194 @@
+\hypertarget{_room_8h}{}\doxysection{include/\+Room.h File Reference}
+\label{_room_8h}\index{include/Room.h@{include/Room.h}}
+
+
+Header file for the room component.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$Model.\+h$>$}\newline
+{\ttfamily \#include $<$Component.\+h$>$}\newline
+Include dependency graph for Room.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_room_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_room_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___room}{\+\_\+\+Room}}
+\begin{DoxyCompactList}\small\item\em Struct representing a room. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct___l___room}{\+\_\+\+L\+\_\+\+Room}}
+\begin{DoxyCompactList}\small\item\em Struct representing a L room. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_room_8h_ac3419cfa544fa3b086be151d4c6a3ca0}{NB\+\_\+\+ENEMY}}~5
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_room_8h_acc60bf66fbe5761810d4300caeec7cb5}\label{_room_8h_acc60bf66fbe5761810d4300caeec7cb5}} 
+typedef struct \mbox{\hyperlink{struct___room}{\+\_\+\+Room}} {\bfseries Room}
+\item 
+typedef struct \mbox{\hyperlink{struct___l___room}{\+\_\+\+L\+\_\+\+Room}} \mbox{\hyperlink{_room_8h_a21f3465bc0d6541c13d17d7a2660ba75}{L\+\_\+\+Room}}
+\begin{DoxyCompactList}\small\item\em Struct representing a L room. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_room_8h_a7a2c4831d10846369f34e2a04c37eba5}{free\+Room}} (\mbox{\hyperlink{struct___room}{Room}} $\ast$room)
+\begin{DoxyCompactList}\small\item\em Function to free a room. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_room_8h_ac0a5daeaccdb6481efff1eed3728dd4e}{free\+LRoom}} (\mbox{\hyperlink{_room_8h_a21f3465bc0d6541c13d17d7a2660ba75}{L\+\_\+\+Room}} $\ast$l)
+\begin{DoxyCompactList}\small\item\em Function to free a L room. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_room_8h_aeed308ea962de855fcf06b5199371c9e}{initialize\+Room}} (\mbox{\hyperlink{struct___room}{Room}} $\ast$room)
+\begin{DoxyCompactList}\small\item\em Function to initialize a room. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_room_8h_acc7bdbee367f1f6aa3a37729d38ecc20}{initialize\+Boss\+Room}} (\mbox{\hyperlink{struct___room}{Room}} $\ast$room)
+\begin{DoxyCompactList}\small\item\em Function to initialize a Boss room. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_room_8h_a5d8138724162d7300b25dc2c91585b01}{initialize\+Loot\+Room}} (\mbox{\hyperlink{struct___room}{Room}} $\ast$room)
+\begin{DoxyCompactList}\small\item\em Function to initialize a Loot room. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_room_8h_a8174671571ff12395a20fb2cd36d9530}{initialize\+Fight\+Room}} (\mbox{\hyperlink{struct___room}{Room}} $\ast$room)
+\begin{DoxyCompactList}\small\item\em Function to initialize a Fight room. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the room component. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_room_8h_ac3419cfa544fa3b086be151d4c6a3ca0}\label{_room_8h_ac3419cfa544fa3b086be151d4c6a3ca0}} 
+\index{Room.h@{Room.h}!NB\_ENEMY@{NB\_ENEMY}}
+\index{NB\_ENEMY@{NB\_ENEMY}!Room.h@{Room.h}}
+\doxysubsubsection{\texorpdfstring{NB\_ENEMY}{NB\_ENEMY}}
+{\footnotesize\ttfamily \#define NB\+\_\+\+ENEMY~5}
+
+Maximum number of enemies. 
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_room_8h_a21f3465bc0d6541c13d17d7a2660ba75}\label{_room_8h_a21f3465bc0d6541c13d17d7a2660ba75}} 
+\index{Room.h@{Room.h}!L\_Room@{L\_Room}}
+\index{L\_Room@{L\_Room}!Room.h@{Room.h}}
+\doxysubsubsection{\texorpdfstring{L\_Room}{L\_Room}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct___l___room}{\+\_\+\+L\+\_\+\+Room}} \mbox{\hyperlink{_room_8h_a21f3465bc0d6541c13d17d7a2660ba75}{L\+\_\+\+Room}}}
+
+
+
+Struct representing a L room. 
+
+This struct represents a L room. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_room_8h_ac0a5daeaccdb6481efff1eed3728dd4e}\label{_room_8h_ac0a5daeaccdb6481efff1eed3728dd4e}} 
+\index{Room.h@{Room.h}!freeLRoom@{freeLRoom}}
+\index{freeLRoom@{freeLRoom}!Room.h@{Room.h}}
+\doxysubsubsection{\texorpdfstring{freeLRoom()}{freeLRoom()}}
+{\footnotesize\ttfamily void free\+LRoom (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_room_8h_a21f3465bc0d6541c13d17d7a2660ba75}{L\+\_\+\+Room}} $\ast$}]{l }\end{DoxyParamCaption})}
+
+
+
+Function to free a L room. 
+
+This function frees a L room.
+
+
+\begin{DoxyParams}{Parameters}
+{\em l} & Pointer to the L room. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_room_8h_a7a2c4831d10846369f34e2a04c37eba5}\label{_room_8h_a7a2c4831d10846369f34e2a04c37eba5}} 
+\index{Room.h@{Room.h}!freeRoom@{freeRoom}}
+\index{freeRoom@{freeRoom}!Room.h@{Room.h}}
+\doxysubsubsection{\texorpdfstring{freeRoom()}{freeRoom()}}
+{\footnotesize\ttfamily void free\+Room (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___room}{Room}} $\ast$}]{room }\end{DoxyParamCaption})}
+
+
+
+Function to free a room. 
+
+This function frees a room.
+
+
+\begin{DoxyParams}{Parameters}
+{\em room} & Pointer to the room. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_room_8h_acc7bdbee367f1f6aa3a37729d38ecc20}\label{_room_8h_acc7bdbee367f1f6aa3a37729d38ecc20}} 
+\index{Room.h@{Room.h}!initializeBossRoom@{initializeBossRoom}}
+\index{initializeBossRoom@{initializeBossRoom}!Room.h@{Room.h}}
+\doxysubsubsection{\texorpdfstring{initializeBossRoom()}{initializeBossRoom()}}
+{\footnotesize\ttfamily void initialize\+Boss\+Room (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___room}{Room}} $\ast$}]{room }\end{DoxyParamCaption})}
+
+
+
+Function to initialize a Boss room. 
+
+This function initializes a Boss room.
+
+
+\begin{DoxyParams}{Parameters}
+{\em room} & Pointer to the room. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_room_8h_a8174671571ff12395a20fb2cd36d9530}\label{_room_8h_a8174671571ff12395a20fb2cd36d9530}} 
+\index{Room.h@{Room.h}!initializeFightRoom@{initializeFightRoom}}
+\index{initializeFightRoom@{initializeFightRoom}!Room.h@{Room.h}}
+\doxysubsubsection{\texorpdfstring{initializeFightRoom()}{initializeFightRoom()}}
+{\footnotesize\ttfamily void initialize\+Fight\+Room (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___room}{Room}} $\ast$}]{room }\end{DoxyParamCaption})}
+
+
+
+Function to initialize a Fight room. 
+
+This function initializes a Fight room.
+
+
+\begin{DoxyParams}{Parameters}
+{\em room} & Pointer to the room. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_room_8h_a5d8138724162d7300b25dc2c91585b01}\label{_room_8h_a5d8138724162d7300b25dc2c91585b01}} 
+\index{Room.h@{Room.h}!initializeLootRoom@{initializeLootRoom}}
+\index{initializeLootRoom@{initializeLootRoom}!Room.h@{Room.h}}
+\doxysubsubsection{\texorpdfstring{initializeLootRoom()}{initializeLootRoom()}}
+{\footnotesize\ttfamily void initialize\+Loot\+Room (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___room}{Room}} $\ast$}]{room }\end{DoxyParamCaption})}
+
+
+
+Function to initialize a Loot room. 
+
+This function initializes a Loot room.
+
+
+\begin{DoxyParams}{Parameters}
+{\em room} & Pointer to the room. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_room_8h_aeed308ea962de855fcf06b5199371c9e}\label{_room_8h_aeed308ea962de855fcf06b5199371c9e}} 
+\index{Room.h@{Room.h}!initializeRoom@{initializeRoom}}
+\index{initializeRoom@{initializeRoom}!Room.h@{Room.h}}
+\doxysubsubsection{\texorpdfstring{initializeRoom()}{initializeRoom()}}
+{\footnotesize\ttfamily void initialize\+Room (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___room}{Room}} $\ast$}]{room }\end{DoxyParamCaption})}
+
+
+
+Function to initialize a room. 
+
+This function initializes a room.
+
+
+\begin{DoxyParams}{Parameters}
+{\em room} & Pointer to the room. \\
+\hline
+\end{DoxyParams}

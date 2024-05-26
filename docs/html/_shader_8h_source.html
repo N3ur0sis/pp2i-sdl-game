@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_shader_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,49 +59,67 @@ $(document).ready(function(){initNavTree('_shader_8h_source.html',''); initResiz
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Shader.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;glad/glad.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;ReadShader.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="struct__shader_locations.html">    8</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct__shader_locations.html">_shaderLocations</a> {</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    GLuint View;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    GLuint Projection;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    GLuint <a class="code" href="struct___model.html">Model</a>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    GLuint lightPosition;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    GLuint lightIntensity;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    GLuint lightAttenuation;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    GLuint lightAmbienbtCoef;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    GLuint cameraPosition;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;} <a class="code" href="struct__shader_locations.html">ShaderLocations</a>;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct___shader.html">   19</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___shader.html">_Shader</a> {</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    GLuint m_program;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <a class="code" href="struct__shader_locations.html">ShaderLocations</a> m_locations;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;} <a class="code" href="struct___shader.html">Shader</a>;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<a class="code" href="struct___shader.html">Shader</a>* LoadShaders(<span class="keyword">const</span> <span class="keywordtype">char</span> * vertex_file_path, <span class="keyword">const</span> <span class="keywordtype">char</span> * fragment_file_path);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">void</span> UseShaders(<a class="code" href="struct___shader.html">Shader</a>* shader);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> DeleteShaders(<a class="code" href="struct___shader.html">Shader</a>* shader);</div>
-<div class="ttc" id="astruct___model_html"><div class="ttname"><a href="struct___model.html">_Model</a></div><div class="ttdef"><b>Definition:</b> Model.h:29</div></div>
-<div class="ttc" id="astruct___shader_html"><div class="ttname"><a href="struct___shader.html">_Shader</a></div><div class="ttdef"><b>Definition:</b> Shader.h:19</div></div>
-<div class="ttc" id="astruct__shader_locations_html"><div class="ttname"><a href="struct__shader_locations.html">_shaderLocations</a></div><div class="ttdef"><b>Definition:</b> Shader.h:8</div></div>
+<a href="_shader_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;glad/glad.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_read_shader_8h.html">ReadShader.h</a>&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;string.h&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct__shader_locations.html">   16</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct__shader_locations.html">_shaderLocations</a> {</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="struct__shader_locations.html#ae3e9d97ab19212b0995aa9a13c0a6653">   17</a></span>&#160;    GLuint <a class="code" href="struct__shader_locations.html#ae3e9d97ab19212b0995aa9a13c0a6653">View</a>;                </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct__shader_locations.html#a617c126f048f1ad333567d11b3b20fd0">   18</a></span>&#160;    GLuint <a class="code" href="struct__shader_locations.html#a617c126f048f1ad333567d11b3b20fd0">Projection</a>;          </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct__shader_locations.html#a2287577114d46dc8f11ed794b1ea165f">   19</a></span>&#160;    GLuint <a class="code" href="struct__shader_locations.html#a2287577114d46dc8f11ed794b1ea165f">Model</a>;               </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="struct__shader_locations.html#a8df0fe1bf67a381ee97aac182c1812bc">   20</a></span>&#160;    GLuint <a class="code" href="struct__shader_locations.html#a8df0fe1bf67a381ee97aac182c1812bc">lightPosition</a>;       </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="struct__shader_locations.html#aebcc511a41afc71aacc7c7fd2c8b49e1">   21</a></span>&#160;    GLuint <a class="code" href="struct__shader_locations.html#aebcc511a41afc71aacc7c7fd2c8b49e1">lightIntensity</a>;      </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct__shader_locations.html#ae78db648469573ba609491bafa6af192">   22</a></span>&#160;    GLuint <a class="code" href="struct__shader_locations.html#ae78db648469573ba609491bafa6af192">lightAttenuation</a>;    </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="struct__shader_locations.html#a154dd7248b88a6bcda7fcbaaf8686660">   23</a></span>&#160;    GLuint <a class="code" href="struct__shader_locations.html#a154dd7248b88a6bcda7fcbaaf8686660">lightAmbienbtCoef</a>;   </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="struct__shader_locations.html#a81dabde4964d0cf9f81fee6deabcbeb7">   24</a></span>&#160;    GLuint <a class="code" href="struct__shader_locations.html#a81dabde4964d0cf9f81fee6deabcbeb7">cameraPosition</a>;      </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="_shader_8h.html#a3e887fab034b8d308c64687af1ca3157">   25</a></span>&#160;} <a class="code" href="_shader_8h.html#a3e887fab034b8d308c64687af1ca3157">ShaderLocations</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="struct___shader.html">   30</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___shader.html">_Shader</a> {</div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="struct___shader.html#a07e8486fe98e0b8c80b30d2755bd900f">   31</a></span>&#160;    GLuint <a class="code" href="struct___shader.html#a07e8486fe98e0b8c80b30d2755bd900f">m_program</a>;           </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="struct___shader.html#a5a1f784843fd1bdd356e257042e91321">   32</a></span>&#160;    <a class="code" href="struct__shader_locations.html">ShaderLocations</a> <a class="code" href="struct___shader.html#a5a1f784843fd1bdd356e257042e91321">m_locations</a>;    </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="_shader_8h.html#a22a7a4fe4f498b60b8a6986249bdf1e6">   33</a></span>&#160;} <a class="code" href="_shader_8h.html#a22a7a4fe4f498b60b8a6986249bdf1e6">Shader</a>;</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<a class="code" href="struct___shader.html">Shader</a>* <a class="code" href="_shader_8h.html#a45fec12f148a97b3573cafc50f41695f">LoadShaders</a>(<span class="keyword">const</span> <span class="keywordtype">char</span> * vertex_file_path, <span class="keyword">const</span> <span class="keywordtype">char</span> * fragment_file_path);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_shader_8h.html#a9c58d20ee4298ea68c01f6ace4733ed8">UseShaders</a>(<a class="code" href="struct___shader.html">Shader</a>* shader);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_shader_8h.html#a17c99b99709f6c9705b15afd1a959357">DeleteShaders</a>(<a class="code" href="struct___shader.html">Shader</a>* shader);</div>
+<div class="ttc" id="a_read_shader_8h_html"><div class="ttname"><a href="_read_shader_8h.html">ReadShader.h</a></div><div class="ttdoc">Header file for the read shader component.</div></div>
+<div class="ttc" id="a_shader_8h_html_a17c99b99709f6c9705b15afd1a959357"><div class="ttname"><a href="_shader_8h.html#a17c99b99709f6c9705b15afd1a959357">DeleteShaders</a></div><div class="ttdeci">void DeleteShaders(Shader *shader)</div><div class="ttdoc">Deletes the specified shader program and frees associated resources.</div><div class="ttdef"><b>Definition:</b> Shader.c:88</div></div>
+<div class="ttc" id="a_shader_8h_html_a22a7a4fe4f498b60b8a6986249bdf1e6"><div class="ttname"><a href="_shader_8h.html#a22a7a4fe4f498b60b8a6986249bdf1e6">Shader</a></div><div class="ttdeci">struct _Shader Shader</div><div class="ttdoc">Struct for storing shader program.</div></div>
+<div class="ttc" id="a_shader_8h_html_a3e887fab034b8d308c64687af1ca3157"><div class="ttname"><a href="_shader_8h.html#a3e887fab034b8d308c64687af1ca3157">ShaderLocations</a></div><div class="ttdeci">struct _shaderLocations ShaderLocations</div><div class="ttdoc">Struct for storing shader uniform locations.</div></div>
+<div class="ttc" id="a_shader_8h_html_a45fec12f148a97b3573cafc50f41695f"><div class="ttname"><a href="_shader_8h.html#a45fec12f148a97b3573cafc50f41695f">LoadShaders</a></div><div class="ttdeci">Shader * LoadShaders(const char *vertex_file_path, const char *fragment_file_path)</div><div class="ttdoc">Loads vertex and fragment shaders from files and creates a shader program.</div><div class="ttdef"><b>Definition:</b> Shader.c:3</div></div>
+<div class="ttc" id="a_shader_8h_html_a9c58d20ee4298ea68c01f6ace4733ed8"><div class="ttname"><a href="_shader_8h.html#a9c58d20ee4298ea68c01f6ace4733ed8">UseShaders</a></div><div class="ttdeci">void UseShaders(Shader *shader)</div><div class="ttdoc">Uses the specified shader program.</div><div class="ttdef"><b>Definition:</b> Shader.c:84</div></div>
+<div class="ttc" id="astruct___shader_html"><div class="ttname"><a href="struct___shader.html">_Shader</a></div><div class="ttdoc">Struct for storing shader program.</div><div class="ttdef"><b>Definition:</b> Shader.h:30</div></div>
+<div class="ttc" id="astruct___shader_html_a07e8486fe98e0b8c80b30d2755bd900f"><div class="ttname"><a href="struct___shader.html#a07e8486fe98e0b8c80b30d2755bd900f">_Shader::m_program</a></div><div class="ttdeci">GLuint m_program</div><div class="ttdef"><b>Definition:</b> Shader.h:31</div></div>
+<div class="ttc" id="astruct___shader_html_a5a1f784843fd1bdd356e257042e91321"><div class="ttname"><a href="struct___shader.html#a5a1f784843fd1bdd356e257042e91321">_Shader::m_locations</a></div><div class="ttdeci">ShaderLocations m_locations</div><div class="ttdef"><b>Definition:</b> Shader.h:32</div></div>
+<div class="ttc" id="astruct__shader_locations_html"><div class="ttname"><a href="struct__shader_locations.html">_shaderLocations</a></div><div class="ttdoc">Struct for storing shader uniform locations.</div><div class="ttdef"><b>Definition:</b> Shader.h:16</div></div>
+<div class="ttc" id="astruct__shader_locations_html_a154dd7248b88a6bcda7fcbaaf8686660"><div class="ttname"><a href="struct__shader_locations.html#a154dd7248b88a6bcda7fcbaaf8686660">_shaderLocations::lightAmbienbtCoef</a></div><div class="ttdeci">GLuint lightAmbienbtCoef</div><div class="ttdef"><b>Definition:</b> Shader.h:23</div></div>
+<div class="ttc" id="astruct__shader_locations_html_a2287577114d46dc8f11ed794b1ea165f"><div class="ttname"><a href="struct__shader_locations.html#a2287577114d46dc8f11ed794b1ea165f">_shaderLocations::Model</a></div><div class="ttdeci">GLuint Model</div><div class="ttdef"><b>Definition:</b> Shader.h:19</div></div>
+<div class="ttc" id="astruct__shader_locations_html_a617c126f048f1ad333567d11b3b20fd0"><div class="ttname"><a href="struct__shader_locations.html#a617c126f048f1ad333567d11b3b20fd0">_shaderLocations::Projection</a></div><div class="ttdeci">GLuint Projection</div><div class="ttdef"><b>Definition:</b> Shader.h:18</div></div>
+<div class="ttc" id="astruct__shader_locations_html_a81dabde4964d0cf9f81fee6deabcbeb7"><div class="ttname"><a href="struct__shader_locations.html#a81dabde4964d0cf9f81fee6deabcbeb7">_shaderLocations::cameraPosition</a></div><div class="ttdeci">GLuint cameraPosition</div><div class="ttdef"><b>Definition:</b> Shader.h:24</div></div>
+<div class="ttc" id="astruct__shader_locations_html_a8df0fe1bf67a381ee97aac182c1812bc"><div class="ttname"><a href="struct__shader_locations.html#a8df0fe1bf67a381ee97aac182c1812bc">_shaderLocations::lightPosition</a></div><div class="ttdeci">GLuint lightPosition</div><div class="ttdef"><b>Definition:</b> Shader.h:20</div></div>
+<div class="ttc" id="astruct__shader_locations_html_ae3e9d97ab19212b0995aa9a13c0a6653"><div class="ttname"><a href="struct__shader_locations.html#ae3e9d97ab19212b0995aa9a13c0a6653">_shaderLocations::View</a></div><div class="ttdeci">GLuint View</div><div class="ttdef"><b>Definition:</b> Shader.h:17</div></div>
+<div class="ttc" id="astruct__shader_locations_html_ae78db648469573ba609491bafa6af192"><div class="ttname"><a href="struct__shader_locations.html#ae78db648469573ba609491bafa6af192">_shaderLocations::lightAttenuation</a></div><div class="ttdeci">GLuint lightAttenuation</div><div class="ttdef"><b>Definition:</b> Shader.h:22</div></div>
+<div class="ttc" id="astruct__shader_locations_html_aebcc511a41afc71aacc7c7fd2c8b49e1"><div class="ttname"><a href="struct__shader_locations.html#aebcc511a41afc71aacc7c7fd2c8b49e1">_shaderLocations::lightIntensity</a></div><div class="ttdeci">GLuint lightIntensity</div><div class="ttdef"><b>Definition:</b> Shader.h:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>Shader.h</b></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

@@ -1,0 +1,157 @@
+\hypertarget{_scene_8h}{}\doxysection{include/\+Scene.h File Reference}
+\label{_scene_8h}\index{include/Scene.h@{include/Scene.h}}
+
+
+Header file for the scene component.  
+
+
+{\ttfamily \#include $<$Shader.\+h$>$}\newline
+{\ttfamily \#include $<$Skybox.\+h$>$}\newline
+{\ttfamily \#include $<$Entity.\+h$>$}\newline
+{\ttfamily \#include $<$Game\+State.\+h$>$}\newline
+{\ttfamily \#include $<$SDL\+\_\+mixer.\+h$>$}\newline
+Include dependency graph for Scene.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_scene_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_scene_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___scene}{\+\_\+\+Scene}}
+\begin{DoxyCompactList}\small\item\em Struct representing a scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_scene_8h_a0b7e155f796ed5e7b49b0f44867135ee}{MAX\+\_\+\+ENTITIES}}~100
+\item 
+\mbox{\Hypertarget{_scene_8h_aacfaf2852096c295ebd5c65d034a18b0}\label{_scene_8h_aacfaf2852096c295ebd5c65d034a18b0}} 
+\#define {\bfseries INIT\+\_\+\+SCENE}(scene\+Var,  scene\+Manager,  start\+Func,  update\+Func,  unload\+Func)~\textbackslash{}
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct___scene}{\+\_\+\+Scene}} \mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}}
+\begin{DoxyCompactList}\small\item\em Struct representing a scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_scene_8h_a116ce8bcd9d86f934ddce238e980863a}{Scene\+Manager\+Add\+Scene}} (scene\+Manager, scene\+Var, start\+Func, update\+Func, unload\+Func)
+\item 
+\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$ \mbox{\hyperlink{_scene_8h_a126edbfd146c323dde318354b9ba00ef}{create\+Entity}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene)
+\begin{DoxyCompactList}\small\item\em Function to create an entity. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_scene_8h_a2f853eb65ad6d77fb89a334aecd9c5e2}{free\+Scene}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene)
+\begin{DoxyCompactList}\small\item\em Function to free a scene. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{_scene_8h_ac4ac5458b8994ae9c07a807f809ff791}{free\+Entity}} (\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$e)
+\begin{DoxyCompactList}\small\item\em Function to free an entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_scene_8h_a98adc38a02f60b73736adb64acc16e40}\label{_scene_8h_a98adc38a02f60b73736adb64acc16e40}} 
+\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$ {\bfseries scene\+Var} = (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}}$\ast$)calloc(1, sizeof(\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}}))
+\item 
+\mbox{\Hypertarget{_scene_8h_ad21160131fc4a0e219a6bde75e335307}\label{_scene_8h_ad21160131fc4a0e219a6bde75e335307}} 
+scene\+Var {\bfseries num\+Entities} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the scene component. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_scene_8h_a0b7e155f796ed5e7b49b0f44867135ee}\label{_scene_8h_a0b7e155f796ed5e7b49b0f44867135ee}} 
+\index{Scene.h@{Scene.h}!MAX\_ENTITIES@{MAX\_ENTITIES}}
+\index{MAX\_ENTITIES@{MAX\_ENTITIES}!Scene.h@{Scene.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_ENTITIES}{MAX\_ENTITIES}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+ENTITIES~100}
+
+Maximum number of entities. 
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}\label{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}} 
+\index{Scene.h@{Scene.h}!Scene@{Scene}}
+\index{Scene@{Scene}!Scene.h@{Scene.h}}
+\doxysubsubsection{\texorpdfstring{Scene}{Scene}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct___scene}{\+\_\+\+Scene}} \mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}}}
+
+
+
+Struct representing a scene. 
+
+This struct represents a scene. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_scene_8h_a126edbfd146c323dde318354b9ba00ef}\label{_scene_8h_a126edbfd146c323dde318354b9ba00ef}} 
+\index{Scene.h@{Scene.h}!createEntity@{createEntity}}
+\index{createEntity@{createEntity}!Scene.h@{Scene.h}}
+\doxysubsubsection{\texorpdfstring{createEntity()}{createEntity()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}}$\ast$ create\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene }\end{DoxyParamCaption})}
+
+
+
+Function to create an entity. 
+
+This function creates an entity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the entity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_scene_8h_ac4ac5458b8994ae9c07a807f809ff791}\label{_scene_8h_ac4ac5458b8994ae9c07a807f809ff791}} 
+\index{Scene.h@{Scene.h}!freeEntity@{freeEntity}}
+\index{freeEntity@{freeEntity}!Scene.h@{Scene.h}}
+\doxysubsubsection{\texorpdfstring{freeEntity()}{freeEntity()}}
+{\footnotesize\ttfamily void$\ast$ free\+Entity (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{e }\end{DoxyParamCaption})}
+
+
+
+Function to free an entity. 
+
+This function frees an entity.
+
+
+\begin{DoxyParams}{Parameters}
+{\em e} & Pointer to the entity. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_scene_8h_a2f853eb65ad6d77fb89a334aecd9c5e2}\label{_scene_8h_a2f853eb65ad6d77fb89a334aecd9c5e2}} 
+\index{Scene.h@{Scene.h}!freeScene@{freeScene}}
+\index{freeScene@{freeScene}!Scene.h@{Scene.h}}
+\doxysubsubsection{\texorpdfstring{freeScene()}{freeScene()}}
+{\footnotesize\ttfamily void free\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene }\end{DoxyParamCaption})}
+
+
+
+Function to free a scene. 
+
+This function frees a scene.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_scene_8h_a116ce8bcd9d86f934ddce238e980863a}\label{_scene_8h_a116ce8bcd9d86f934ddce238e980863a}} 
+\index{Scene.h@{Scene.h}!SceneManagerAddScene@{SceneManagerAddScene}}
+\index{SceneManagerAddScene@{SceneManagerAddScene}!Scene.h@{Scene.h}}
+\doxysubsubsection{\texorpdfstring{SceneManagerAddScene()}{SceneManagerAddScene()}}
+{\footnotesize\ttfamily Scene\+Manager\+Add\+Scene (\begin{DoxyParamCaption}\item[{scene\+Manager}]{,  }\item[{scene\+Var}]{,  }\item[{start\+Func}]{,  }\item[{update\+Func}]{,  }\item[{unload\+Func}]{ }\end{DoxyParamCaption})}
+
+Macro to initialize a scene. 

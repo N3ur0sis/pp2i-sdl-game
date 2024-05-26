@@ -30,6 +30,7 @@ int main() {
         CU_cleanup_registry();
         return CU_get_error();
     }
+
     CU_pSuite pSuiteDungeon = NULL;
     pSuiteDungeon = CU_add_suite("Dungeon Test Suite", 0, 0);
 
@@ -39,13 +40,11 @@ int main() {
     }
 
     if ((NULL == CU_add_test(pSuiteDungeon, "test of dj_create", test_dj_create)) ||
-          NULL ==   CU_add_test(pSuiteDungeon, "test of initializeAdjacencyList", test_initializeAdjacencyList)
-    
-    
-    ) {
+        (NULL ==   CU_add_test(pSuiteDungeon, "test of initializeAdjacencyList", test_initializeAdjacencyList))) {
         CU_cleanup_registry();
         return CU_get_error();
     }
+
     CU_basic_set_mode(CU_BRM_VERBOSE);
     CU_basic_run_tests();
     CU_cleanup_registry();

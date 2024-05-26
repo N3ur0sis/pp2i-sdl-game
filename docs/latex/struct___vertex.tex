@@ -1,25 +1,67 @@
 \hypertarget{struct___vertex}{}\doxysection{\+\_\+\+Vertex Struct Reference}
 \label{struct___vertex}\index{\_Vertex@{\_Vertex}}
+
+
+A Custom vertex struct we pass to Open\+GL.  
+
+
+
+
+{\ttfamily \#include $<$Mesh.\+h$>$}
+
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct___vertex_a22f26330866eeafaa78f832abc34414e}\label{struct___vertex_a22f26330866eeafaa78f832abc34414e}} 
-vec3 {\bfseries Position}
+vec3 \mbox{\hyperlink{struct___vertex_a22f26330866eeafaa78f832abc34414e}{Position}}
 \item 
-\mbox{\Hypertarget{struct___vertex_ac1b9cfb0a6f22733d035e450c49e7427}\label{struct___vertex_ac1b9cfb0a6f22733d035e450c49e7427}} 
-vec3 {\bfseries Normal}
+vec3 \mbox{\hyperlink{struct___vertex_ac1b9cfb0a6f22733d035e450c49e7427}{Normal}}
 \item 
-\mbox{\Hypertarget{struct___vertex_a35aeb85250a1b29926045a9014ccae85}\label{struct___vertex_a35aeb85250a1b29926045a9014ccae85}} 
-vec2 {\bfseries Tex\+Coords}
+vec2 \mbox{\hyperlink{struct___vertex_a35aeb85250a1b29926045a9014ccae85}{Tex\+Coords}}
 \item 
-\mbox{\Hypertarget{struct___vertex_ab545ff355ba181213ea2d89220ca00bd}\label{struct___vertex_ab545ff355ba181213ea2d89220ca00bd}} 
-GLuint {\bfseries Bone\+Info} \mbox{[}MAX\+\_\+\+BONE\+\_\+\+INFLUENCE\mbox{]}
+GLuint \mbox{\hyperlink{struct___vertex_ab545ff355ba181213ea2d89220ca00bd}{Bone\+Info}} \mbox{[}MAX\+\_\+\+BONE\+\_\+\+INFLUENCE\mbox{]}
 \item 
-\mbox{\Hypertarget{struct___vertex_a6c577b5ed0d5e814e024d2ef10ffe036}\label{struct___vertex_a6c577b5ed0d5e814e024d2ef10ffe036}} 
-float {\bfseries Weights} \mbox{[}MAX\+\_\+\+BONE\+\_\+\+INFLUENCE\mbox{]}
+float \mbox{\hyperlink{struct___vertex_a6c577b5ed0d5e814e024d2ef10ffe036}{Weights}} \mbox{[}MAX\+\_\+\+BONE\+\_\+\+INFLUENCE\mbox{]}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+A Custom vertex struct we pass to Open\+GL. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct___vertex_ab545ff355ba181213ea2d89220ca00bd}\label{struct___vertex_ab545ff355ba181213ea2d89220ca00bd}} 
+\index{\_Vertex@{\_Vertex}!BoneInfo@{BoneInfo}}
+\index{BoneInfo@{BoneInfo}!\_Vertex@{\_Vertex}}
+\doxysubsubsection{\texorpdfstring{BoneInfo}{BoneInfo}}
+{\footnotesize\ttfamily GLuint Bone\+Info\mbox{[}MAX\+\_\+\+BONE\+\_\+\+INFLUENCE\mbox{]}}
+
+Array of bone indices that affect this vertex \mbox{\Hypertarget{struct___vertex_ac1b9cfb0a6f22733d035e450c49e7427}\label{struct___vertex_ac1b9cfb0a6f22733d035e450c49e7427}} 
+\index{\_Vertex@{\_Vertex}!Normal@{Normal}}
+\index{Normal@{Normal}!\_Vertex@{\_Vertex}}
+\doxysubsubsection{\texorpdfstring{Normal}{Normal}}
+{\footnotesize\ttfamily vec3 Normal}
+
+Normal direction of each vertex for lighting calculation ~\newline
+ \mbox{\Hypertarget{struct___vertex_a22f26330866eeafaa78f832abc34414e}\label{struct___vertex_a22f26330866eeafaa78f832abc34414e}} 
+\index{\_Vertex@{\_Vertex}!Position@{Position}}
+\index{Position@{Position}!\_Vertex@{\_Vertex}}
+\doxysubsubsection{\texorpdfstring{Position}{Position}}
+{\footnotesize\ttfamily vec3 Position}
+
+Posiiton of each vertex in the local space ~\newline
+ \mbox{\Hypertarget{struct___vertex_a35aeb85250a1b29926045a9014ccae85}\label{struct___vertex_a35aeb85250a1b29926045a9014ccae85}} 
+\index{\_Vertex@{\_Vertex}!TexCoords@{TexCoords}}
+\index{TexCoords@{TexCoords}!\_Vertex@{\_Vertex}}
+\doxysubsubsection{\texorpdfstring{TexCoords}{TexCoords}}
+{\footnotesize\ttfamily vec2 Tex\+Coords}
+
+2D coordinates in the correpsonding textures for this vertex \mbox{\Hypertarget{struct___vertex_a6c577b5ed0d5e814e024d2ef10ffe036}\label{struct___vertex_a6c577b5ed0d5e814e024d2ef10ffe036}} 
+\index{\_Vertex@{\_Vertex}!Weights@{Weights}}
+\index{Weights@{Weights}!\_Vertex@{\_Vertex}}
+\doxysubsubsection{\texorpdfstring{Weights}{Weights}}
+{\footnotesize\ttfamily float Weights\mbox{[}MAX\+\_\+\+BONE\+\_\+\+INFLUENCE\mbox{]}}
+
+Array of weights that indicate how much each bone affect this vertex 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Mesh.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_mesh_8h}{Mesh.\+h}}\end{DoxyCompactItemize}

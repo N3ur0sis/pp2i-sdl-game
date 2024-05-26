@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_player_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,48 +59,75 @@ $(document).ready(function(){initNavTree('_player_8h_source.html',''); initResiz
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Player.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;SDL2/SDL.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;math.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;SceneManager.h&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_controls_8h.html">Controls.h</a>&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define DAMAGE 50.0f</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define ATTACK_RANGE 2.5f</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">void</span> lerp_vec3(vec3 a, vec3 b, vec3 res, <span class="keywordtype">float</span> t);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">void</span> playerMovement(<a class="code" href="struct___entity.html">Entity</a>* player, <span class="keywordtype">float</span> deltaTime, <a class="code" href="struct_camera.html">Camera</a>* camera);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">void</span> updatePlayerAnimator(<a class="code" href="struct___entity.html">Entity</a>* playerEntity, <a class="code" href="struct_game_state.html">GameState</a>* gameState);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keywordtype">void</span> moveCameraPlayer(<a class="code" href="struct_camera.html">Camera</a>* camera, vec3 position, vec3 targetPosition, <span class="keywordtype">float</span> deltaTime);</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">float</span> lerp_float(<span class="keywordtype">float</span> a, <span class="keywordtype">float</span> b, <span class="keywordtype">float</span> t);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">void</span> lerp_camera(<a class="code" href="struct_camera.html">Camera</a>* camera, vec3 old_pos, vec3 new_pos, <span class="keywordtype">float</span> old_yaw, <span class="keywordtype">float</span> new_yaw, <span class="keywordtype">int</span> steps, <span class="keywordtype">float</span> duration);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">bool</span> playerInteract();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">void</span> checkDead(<a class="code" href="struct_game_state.html">GameState</a>* gamestate);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> damagePlayer(<a class="code" href="struct_game_state.html">GameState</a>* gamestate, <span class="keywordtype">int</span> damage);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<a class="code" href="struct___entity.html">Entity</a>* create_player(<a class="code" href="struct___scene.html">Scene</a>*  scene,<span class="keywordtype">float</span> x,<span class="keywordtype">float</span> y,<span class="keywordtype">float</span> z);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<a class="code" href="struct___entity.html">Entity</a>* create_sword(<a class="code" href="struct___scene.html">Scene</a>* scene,<a class="code" href="struct___entity.html">Entity</a>* parent);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">void</span> player_attack(<a class="code" href="struct___entity.html">Entity</a>* player,<a class="code" href="struct___entity.html">Entity</a>* enemy,<a class="code" href="struct_game_state.html">GameState</a>* gameState);</div>
+<a href="_player_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;SDL2/SDL.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;math.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;unistd.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_scene_manager_8h.html">SceneManager.h</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_controls_8h.html">Controls.h</a>&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="_player_8h.html#a0b55d367d80b5221e6de48330dd43e6d">   14</a></span>&#160;<span class="preprocessor">#define DAMAGE 50.0f        </span></div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="_player_8h.html#a729d387b92736ef05704bc06f85521ff">   15</a></span>&#160;<span class="preprocessor">#define ATTACK_RANGE 2.5f   </span></div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_player_8h.html#a7ea4b5e89549eaf212ad9908a5c1a8c3">lerp_vec3</a>(vec3 a, vec3 b, vec3 res, <span class="keywordtype">float</span> t);</div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_player_8h.html#a1c4604be92435608e32cea6896f8e443">playerMovement</a>(<a class="code" href="struct___entity.html">Entity</a>* player, <span class="keywordtype">float</span> deltaTime, <a class="code" href="struct_camera.html">Camera</a>* camera);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_player_8h.html#a51028284031cf4cb250c68970e3d55ef">updatePlayerAnimator</a>(<a class="code" href="struct___entity.html">Entity</a>* playerEntity, <a class="code" href="struct_game_state.html">GameState</a>* gameState);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_player_8h.html#ab110cf8e2e422435362cb695d22baee6">moveCameraPlayer</a>(<a class="code" href="struct_camera.html">Camera</a>* camera, vec3 position, vec3 targetPosition, <span class="keywordtype">float</span> deltaTime);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">float</span> <a class="code" href="_player_8h.html#ad6bc34de2fbb797431daff728514b5e0">lerp_float</a>(<span class="keywordtype">float</span> a, <span class="keywordtype">float</span> b, <span class="keywordtype">float</span> t);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_player_8h.html#afa0877cd7cde43b480a9bbc88cb9f17b">lerp_camera</a>(<a class="code" href="struct_camera.html">Camera</a>* camera, vec3 old_pos, vec3 new_pos, <span class="keywordtype">float</span> old_yaw, <span class="keywordtype">float</span> new_yaw, <span class="keywordtype">int</span> steps, <span class="keywordtype">float</span> duration);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="_player_8h.html#a36148454132e0c6a4958e82b641a714f">playerInteract</a>();</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00107"></a><span class="lineno">  107</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_player_8h.html#a35b71eae565c6bf7c024e64ac905b000">checkDead</a>(<a class="code" href="struct_game_state.html">GameState</a>* gamestate);</div>
+<div class="line"><a name="l00108"></a><span class="lineno">  108</span>&#160; </div>
+<div class="line"><a name="l00117"></a><span class="lineno">  117</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_player_8h.html#a2a0f67164ab15e15516ed5f533e3c161">damagePlayer</a>(<a class="code" href="struct_game_state.html">GameState</a>* gamestate, <span class="keywordtype">int</span> damage);</div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160; </div>
+<div class="line"><a name="l00130"></a><span class="lineno">  130</span>&#160;<a class="code" href="struct___entity.html">Entity</a>* <a class="code" href="_player_8h.html#a7adb3300228ee86a10db243898e4554e">create_player</a>(<a class="code" href="struct___scene.html">Scene</a>*  scene,<span class="keywordtype">float</span> x,<span class="keywordtype">float</span> y,<span class="keywordtype">float</span> z);</div>
+<div class="line"><a name="l00131"></a><span class="lineno">  131</span>&#160; </div>
+<div class="line"><a name="l00141"></a><span class="lineno">  141</span>&#160;<a class="code" href="struct___entity.html">Entity</a>* <a class="code" href="_player_8h.html#ab0e68fb642d4f18bbe545e43e31042d6">create_sword</a>(<a class="code" href="struct___scene.html">Scene</a>* scene,<a class="code" href="struct___entity.html">Entity</a>* parent);</div>
+<div class="line"><a name="l00142"></a><span class="lineno">  142</span>&#160; </div>
+<div class="line"><a name="l00152"></a><span class="lineno">  152</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_player_8h.html#a81507fb2da74b7c453c5ce3c2b580206">player_attack</a>(<a class="code" href="struct___entity.html">Entity</a>* player,<a class="code" href="struct___entity.html">Entity</a>* enemy,<a class="code" href="struct_game_state.html">GameState</a>* gameState);</div>
+<div class="line"><a name="l00153"></a><span class="lineno">  153</span>&#160; </div>
+<div class="line"><a name="l00162"></a><span class="lineno">  162</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_player_8h.html#a9d6b9697664f3c5eaf18a69f7470b868">playSoundPlayer</a>(<a class="code" href="struct___entity.html">Entity</a>* player,<a class="code" href="struct_game_state.html">GameState</a>* gamestate);</div>
 <div class="ttc" id="a_controls_8h_html"><div class="ttname"><a href="_controls_8h.html">Controls.h</a></div><div class="ttdoc">Input processing functions and definitions for the application.</div></div>
-<div class="ttc" id="astruct___entity_html"><div class="ttname"><a href="struct___entity.html">_Entity</a></div><div class="ttdef"><b>Definition:</b> Entity.h:7</div></div>
-<div class="ttc" id="astruct___scene_html"><div class="ttname"><a href="struct___scene.html">_Scene</a></div><div class="ttdef"><b>Definition:</b> Scene.h:16</div></div>
-<div class="ttc" id="astruct_camera_html"><div class="ttname"><a href="struct_camera.html">Camera</a></div><div class="ttdef"><b>Definition:</b> Camera.h:7</div></div>
-<div class="ttc" id="astruct_game_state_html"><div class="ttname"><a href="struct_game_state.html">GameState</a></div><div class="ttdef"><b>Definition:</b> GameState.h:6</div></div>
+<div class="ttc" id="a_player_8h_html_a1c4604be92435608e32cea6896f8e443"><div class="ttname"><a href="_player_8h.html#a1c4604be92435608e32cea6896f8e443">playerMovement</a></div><div class="ttdeci">void playerMovement(Entity *player, float deltaTime, Camera *camera)</div><div class="ttdoc">Function to move the player.</div><div class="ttdef"><b>Definition:</b> Player.c:19</div></div>
+<div class="ttc" id="a_player_8h_html_a2a0f67164ab15e15516ed5f533e3c161"><div class="ttname"><a href="_player_8h.html#a2a0f67164ab15e15516ed5f533e3c161">damagePlayer</a></div><div class="ttdeci">void damagePlayer(GameState *gamestate, int damage)</div><div class="ttdoc">Function to damage the player.</div><div class="ttdef"><b>Definition:</b> Player.c:416</div></div>
+<div class="ttc" id="a_player_8h_html_a35b71eae565c6bf7c024e64ac905b000"><div class="ttname"><a href="_player_8h.html#a35b71eae565c6bf7c024e64ac905b000">checkDead</a></div><div class="ttdeci">void checkDead(GameState *gamestate)</div><div class="ttdoc">Function to check if the player is dead.</div><div class="ttdef"><b>Definition:</b> Player.c:402</div></div>
+<div class="ttc" id="a_player_8h_html_a36148454132e0c6a4958e82b641a714f"><div class="ttname"><a href="_player_8h.html#a36148454132e0c6a4958e82b641a714f">playerInteract</a></div><div class="ttdeci">bool playerInteract()</div><div class="ttdoc">Function to check if the player is interacting.</div><div class="ttdef"><b>Definition:</b> Player.c:269</div></div>
+<div class="ttc" id="a_player_8h_html_a51028284031cf4cb250c68970e3d55ef"><div class="ttname"><a href="_player_8h.html#a51028284031cf4cb250c68970e3d55ef">updatePlayerAnimator</a></div><div class="ttdeci">void updatePlayerAnimator(Entity *playerEntity, GameState *gameState)</div><div class="ttdoc">Updates the player's animator based on the current state and input.</div><div class="ttdef"><b>Definition:</b> Player.c:117</div></div>
+<div class="ttc" id="a_player_8h_html_a7adb3300228ee86a10db243898e4554e"><div class="ttname"><a href="_player_8h.html#a7adb3300228ee86a10db243898e4554e">create_player</a></div><div class="ttdeci">Entity * create_player(Scene *scene, float x, float y, float z)</div><div class="ttdoc">Function to create the player entity.</div><div class="ttdef"><b>Definition:</b> Player.c:284</div></div>
+<div class="ttc" id="a_player_8h_html_a7ea4b5e89549eaf212ad9908a5c1a8c3"><div class="ttname"><a href="_player_8h.html#a7ea4b5e89549eaf212ad9908a5c1a8c3">lerp_vec3</a></div><div class="ttdeci">void lerp_vec3(vec3 a, vec3 b, vec3 res, float t)</div><div class="ttdoc">Linearly interpolates between two vectors.</div><div class="ttdef"><b>Definition:</b> Player.c:252</div></div>
+<div class="ttc" id="a_player_8h_html_a81507fb2da74b7c453c5ce3c2b580206"><div class="ttname"><a href="_player_8h.html#a81507fb2da74b7c453c5ce3c2b580206">player_attack</a></div><div class="ttdeci">void player_attack(Entity *player, Entity *enemy, GameState *gameState)</div><div class="ttdoc">Function to make the player attack.</div><div class="ttdef"><b>Definition:</b> Player.c:364</div></div>
+<div class="ttc" id="a_player_8h_html_a9d6b9697664f3c5eaf18a69f7470b868"><div class="ttname"><a href="_player_8h.html#a9d6b9697664f3c5eaf18a69f7470b868">playSoundPlayer</a></div><div class="ttdeci">void playSoundPlayer(Entity *player, GameState *gamestate)</div><div class="ttdoc">Function to play the sound of the player.</div><div class="ttdef"><b>Definition:</b> Player.c:432</div></div>
+<div class="ttc" id="a_player_8h_html_ab0e68fb642d4f18bbe545e43e31042d6"><div class="ttname"><a href="_player_8h.html#ab0e68fb642d4f18bbe545e43e31042d6">create_sword</a></div><div class="ttdeci">Entity * create_sword(Scene *scene, Entity *parent)</div><div class="ttdoc">Function to create the player's sword entity.</div><div class="ttdef"><b>Definition:</b> Player.c:335</div></div>
+<div class="ttc" id="a_player_8h_html_ab110cf8e2e422435362cb695d22baee6"><div class="ttname"><a href="_player_8h.html#ab110cf8e2e422435362cb695d22baee6">moveCameraPlayer</a></div><div class="ttdeci">void moveCameraPlayer(Camera *camera, vec3 position, vec3 targetPosition, float deltaTime)</div><div class="ttdoc">Moves the camera to follow the player.</div><div class="ttdef"><b>Definition:</b> Player.c:155</div></div>
+<div class="ttc" id="a_player_8h_html_ad6bc34de2fbb797431daff728514b5e0"><div class="ttname"><a href="_player_8h.html#ad6bc34de2fbb797431daff728514b5e0">lerp_float</a></div><div class="ttdeci">float lerp_float(float a, float b, float t)</div><div class="ttdoc">Linearly interpolates between two floats.</div><div class="ttdef"><b>Definition:</b> Player.c:258</div></div>
+<div class="ttc" id="a_player_8h_html_afa0877cd7cde43b480a9bbc88cb9f17b"><div class="ttname"><a href="_player_8h.html#afa0877cd7cde43b480a9bbc88cb9f17b">lerp_camera</a></div><div class="ttdeci">void lerp_camera(Camera *camera, vec3 old_pos, vec3 new_pos, float old_yaw, float new_yaw, int steps, float duration)</div><div class="ttdoc">Linearly interpolates the camera position and yaw.</div><div class="ttdef"><b>Definition:</b> Player.c:225</div></div>
+<div class="ttc" id="a_scene_manager_8h_html"><div class="ttname"><a href="_scene_manager_8h.html">SceneManager.h</a></div><div class="ttdoc">Header file for the scene manager component.</div></div>
+<div class="ttc" id="astruct___entity_html"><div class="ttname"><a href="struct___entity.html">_Entity</a></div><div class="ttdoc">Struct representing an entity.</div><div class="ttdef"><b>Definition:</b> Entity.h:18</div></div>
+<div class="ttc" id="astruct___scene_html"><div class="ttname"><a href="struct___scene.html">_Scene</a></div><div class="ttdoc">Struct representing a scene.</div><div class="ttdef"><b>Definition:</b> Scene.h:27</div></div>
+<div class="ttc" id="astruct_camera_html"><div class="ttname"><a href="struct_camera.html">Camera</a></div><div class="ttdoc">Structure representing a camera.</div><div class="ttdef"><b>Definition:</b> Camera.h:16</div></div>
+<div class="ttc" id="astruct_game_state_html"><div class="ttname"><a href="struct_game_state.html">GameState</a></div><div class="ttdoc">Struct representing the game state.</div><div class="ttdef"><b>Definition:</b> GameState.h:17</div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>Player.h</b></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

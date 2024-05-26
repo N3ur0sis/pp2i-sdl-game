@@ -1,0 +1,267 @@
+\hypertarget{_ennemy_8h}{}\doxysection{include/\+Ennemy.h File Reference}
+\label{_ennemy_8h}\index{include/Ennemy.h@{include/Ennemy.h}}
+
+
+Header file for the enemy component.  
+
+
+{\ttfamily \#include $<$Model.\+h$>$}\newline
+{\ttfamily \#include $<$Animator.\+h$>$}\newline
+{\ttfamily \#include $<$Entity.\+h$>$}\newline
+{\ttfamily \#include $<$Scene.\+h$>$}\newline
+Include dependency graph for Ennemy.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_ennemy_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{_ennemy_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$ \mbox{\hyperlink{_ennemy_8h_a8335475d9ba17b935313f61bc2eeb9d4}{create\+\_\+golem}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, float x, float y, float z, float scale)
+\begin{DoxyCompactList}\small\item\em Function to create a golem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$ \mbox{\hyperlink{_ennemy_8h_a22660e87de9c5732972430ed490e339f}{create\+\_\+golem\+Blue}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, float x, float y, float z, float scale)
+\begin{DoxyCompactList}\small\item\em Function to create a blue golem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$ \mbox{\hyperlink{_ennemy_8h_a1ae9387a33d38641b5a12df1ebedb8ad}{create\+\_\+golem\+Purple}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, float x, float y, float z, float scale)
+\begin{DoxyCompactList}\small\item\em Function to create a purple golem. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_ennemy_8h_a2de3683b7ea85c8bcaf4d4dec03cffdf}{golem\+Logic}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$golem, \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$player)
+\begin{DoxyCompactList}\small\item\em Function to handle the logic of the golem. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$ \mbox{\hyperlink{_ennemy_8h_acf500b1a396361c096ab9dc4975c1f74}{create\+\_\+gobelin}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, float x, float y, float z, float scale)
+\begin{DoxyCompactList}\small\item\em Function to create a gobelin. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$ \mbox{\hyperlink{_ennemy_8h_a47b4d9b5eb3dcda905fd9bf754e588aa}{create\+\_\+skeleton}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, float x, float y, float z, float scale)
+\begin{DoxyCompactList}\small\item\em Function to create a skeleton. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the enemy component. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_ennemy_8h_acf500b1a396361c096ab9dc4975c1f74}\label{_ennemy_8h_acf500b1a396361c096ab9dc4975c1f74}} 
+\index{Ennemy.h@{Ennemy.h}!create\_gobelin@{create\_gobelin}}
+\index{create\_gobelin@{create\_gobelin}!Ennemy.h@{Ennemy.h}}
+\doxysubsubsection{\texorpdfstring{create\_gobelin()}{create\_gobelin()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}}$\ast$ create\+\_\+gobelin (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+
+
+Function to create a gobelin. 
+
+This function creates a gobelin.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em x} & X position of the gobelin. \\
+\hline
+{\em y} & Y position of the gobelin. \\
+\hline
+{\em z} & Z position of the gobelin. \\
+\hline
+{\em scale} & Scale of the gobelin. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the gobelin entity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_ennemy_8h_a8335475d9ba17b935313f61bc2eeb9d4}\label{_ennemy_8h_a8335475d9ba17b935313f61bc2eeb9d4}} 
+\index{Ennemy.h@{Ennemy.h}!create\_golem@{create\_golem}}
+\index{create\_golem@{create\_golem}!Ennemy.h@{Ennemy.h}}
+\doxysubsubsection{\texorpdfstring{create\_golem()}{create\_golem()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}}$\ast$ create\+\_\+golem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+
+
+Function to create a golem. 
+
+This function creates a golem.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em x} & X position of the golem. \\
+\hline
+{\em y} & Y position of the golem. \\
+\hline
+{\em z} & Z position of the golem. \\
+\hline
+{\em scale} & Scale of the golem. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the golem entity.
+\end{DoxyReturn}
+Function to create a golem.
+
+This function creates a golem enemy.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em x} & X position of the golem. \\
+\hline
+{\em y} & Y position of the golem. \\
+\hline
+{\em z} & Z position of the golem. \\
+\hline
+{\em scale} & Scale of the golem. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the golem entity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_ennemy_8h_a22660e87de9c5732972430ed490e339f}\label{_ennemy_8h_a22660e87de9c5732972430ed490e339f}} 
+\index{Ennemy.h@{Ennemy.h}!create\_golemBlue@{create\_golemBlue}}
+\index{create\_golemBlue@{create\_golemBlue}!Ennemy.h@{Ennemy.h}}
+\doxysubsubsection{\texorpdfstring{create\_golemBlue()}{create\_golemBlue()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}}$\ast$ create\+\_\+golem\+Blue (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+
+
+Function to create a blue golem. 
+
+This function creates a blue golem.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em x} & X position of the golem. \\
+\hline
+{\em y} & Y position of the golem. \\
+\hline
+{\em z} & Z position of the golem. \\
+\hline
+{\em scale} & Scale of the golem. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the golem entity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_ennemy_8h_a1ae9387a33d38641b5a12df1ebedb8ad}\label{_ennemy_8h_a1ae9387a33d38641b5a12df1ebedb8ad}} 
+\index{Ennemy.h@{Ennemy.h}!create\_golemPurple@{create\_golemPurple}}
+\index{create\_golemPurple@{create\_golemPurple}!Ennemy.h@{Ennemy.h}}
+\doxysubsubsection{\texorpdfstring{create\_golemPurple()}{create\_golemPurple()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}}$\ast$ create\+\_\+golem\+Purple (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+
+
+Function to create a purple golem. 
+
+This function creates a purple golem.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em x} & X position of the golem. \\
+\hline
+{\em y} & Y position of the golem. \\
+\hline
+{\em z} & Z position of the golem. \\
+\hline
+{\em scale} & Scale of the golem. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the golem entity.
+\end{DoxyReturn}
+Function to create a purple golem.
+
+This function creates a purple golem enemy.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em x} & X position of the golem. \\
+\hline
+{\em y} & Y position of the golem. \\
+\hline
+{\em z} & Z position of the golem. \\
+\hline
+{\em scale} & Scale of the golem. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the golem entity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_ennemy_8h_a47b4d9b5eb3dcda905fd9bf754e588aa}\label{_ennemy_8h_a47b4d9b5eb3dcda905fd9bf754e588aa}} 
+\index{Ennemy.h@{Ennemy.h}!create\_skeleton@{create\_skeleton}}
+\index{create\_skeleton@{create\_skeleton}!Ennemy.h@{Ennemy.h}}
+\doxysubsubsection{\texorpdfstring{create\_skeleton()}{create\_skeleton()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}}$\ast$ create\+\_\+skeleton (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+
+
+Function to create a skeleton. 
+
+This function creates a skeleton.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em x} & X position of the skeleton. \\
+\hline
+{\em y} & Y position of the skeleton. \\
+\hline
+{\em z} & Z position of the skeleton. \\
+\hline
+{\em scale} & Scale of the skeleton. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the skeleton entity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_ennemy_8h_a2de3683b7ea85c8bcaf4d4dec03cffdf}\label{_ennemy_8h_a2de3683b7ea85c8bcaf4d4dec03cffdf}} 
+\index{Ennemy.h@{Ennemy.h}!golemLogic@{golemLogic}}
+\index{golemLogic@{golemLogic}!Ennemy.h@{Ennemy.h}}
+\doxysubsubsection{\texorpdfstring{golemLogic()}{golemLogic()}}
+{\footnotesize\ttfamily void golem\+Logic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{golem,  }\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{player }\end{DoxyParamCaption})}
+
+
+
+Function to handle the logic of the golem. 
+
+This function handles the logic of the golem.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em game\+State} & Pointer to the game state. \\
+\hline
+{\em golem} & Pointer to the golem entity. \\
+\hline
+{\em player} & Pointer to the player entity.\\
+\hline
+\end{DoxyParams}
+Function to handle the logic of the golem.
+
+This function handles the logic of the golem enemy.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em game\+State} & Pointer to the game state. \\
+\hline
+{\em golem} & Pointer to the golem entity. \\
+\hline
+{\em player} & Pointer to the player entity. \\
+\hline
+\end{DoxyParams}

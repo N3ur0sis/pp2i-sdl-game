@@ -1,4 +1,4 @@
 <map id="_Mesh" name="_Mesh">
-<area shape="rect" id="node1" title=" " alt="" coords="9,95,73,121"/>
-<area shape="rect" id="node2" href="$struct___vertex.html" title=" " alt="" coords="5,5,76,32"/>
+<area shape="rect" id="node1" title="A Mesh class that hold data parsed from a file and converted ot OpenGL format." alt="" coords="9,95,73,121"/>
+<area shape="rect" id="node2" href="$struct___vertex.html" title="A Custom vertex struct we pass to OpenGL." alt="" coords="5,5,76,32"/>
 </map>

@@ -2,7 +2,17 @@
 \label{struct___skybox}\index{\_Skybox@{\_Skybox}}
 
 
-Collaboration diagram for \+\_\+\+Skybox\+:\nopagebreak
+Struct representing a skybox.  
+
+
+
+
+{\ttfamily \#include $<$Skybox.\+h$>$}
+
+
+
+Collaboration diagram for \+\_\+\+Skybox\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,23 +22,56 @@ Collaboration diagram for \+\_\+\+Skybox\+:\nopagebreak
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct___skybox_a452068a59b544fa23600416220dabd66}\label{struct___skybox_a452068a59b544fa23600416220dabd66}} 
-unsigned int {\bfseries skybox\+VAO}
+unsigned int \mbox{\hyperlink{struct___skybox_a452068a59b544fa23600416220dabd66}{skybox\+VAO}}
 \item 
-\mbox{\Hypertarget{struct___skybox_ae699746b398b257d35423d05f2374c48}\label{struct___skybox_ae699746b398b257d35423d05f2374c48}} 
-unsigned int {\bfseries skybox\+VBO}
+unsigned int \mbox{\hyperlink{struct___skybox_ae699746b398b257d35423d05f2374c48}{skybox\+VBO}}
 \item 
-\mbox{\Hypertarget{struct___skybox_a9735af3a88450a431ca5cb13bce5b07e}\label{struct___skybox_a9735af3a88450a431ca5cb13bce5b07e}} 
-unsigned int {\bfseries cubemap\+Texture}
+unsigned int \mbox{\hyperlink{struct___skybox_a9735af3a88450a431ca5cb13bce5b07e}{cubemap\+Texture}}
 \item 
-\mbox{\Hypertarget{struct___skybox_aa5d204dfedca3af7cd520bddad00162d}\label{struct___skybox_aa5d204dfedca3af7cd520bddad00162d}} 
-char $\ast$ {\bfseries faces} \mbox{[}6\mbox{]}
+char $\ast$ \mbox{\hyperlink{struct___skybox_aa5d204dfedca3af7cd520bddad00162d}{faces}} \mbox{[}6\mbox{]}
 \item 
-\mbox{\Hypertarget{struct___skybox_ac7373354f9cc35f76804c73d4c98781c}\label{struct___skybox_ac7373354f9cc35f76804c73d4c98781c}} 
-\mbox{\hyperlink{struct___shader}{Shader}} $\ast$ {\bfseries shader}
+\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$ \mbox{\hyperlink{struct___skybox_ac7373354f9cc35f76804c73d4c98781c}{shader}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Struct representing a skybox. 
+
+This struct represents a skybox. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct___skybox_a9735af3a88450a431ca5cb13bce5b07e}\label{struct___skybox_a9735af3a88450a431ca5cb13bce5b07e}} 
+\index{\_Skybox@{\_Skybox}!cubemapTexture@{cubemapTexture}}
+\index{cubemapTexture@{cubemapTexture}!\_Skybox@{\_Skybox}}
+\doxysubsubsection{\texorpdfstring{cubemapTexture}{cubemapTexture}}
+{\footnotesize\ttfamily unsigned int cubemap\+Texture}
+
+Cubemap texture. \mbox{\Hypertarget{struct___skybox_aa5d204dfedca3af7cd520bddad00162d}\label{struct___skybox_aa5d204dfedca3af7cd520bddad00162d}} 
+\index{\_Skybox@{\_Skybox}!faces@{faces}}
+\index{faces@{faces}!\_Skybox@{\_Skybox}}
+\doxysubsubsection{\texorpdfstring{faces}{faces}}
+{\footnotesize\ttfamily char$\ast$ faces\mbox{[}6\mbox{]}}
+
+Array of faces. \mbox{\Hypertarget{struct___skybox_ac7373354f9cc35f76804c73d4c98781c}\label{struct___skybox_ac7373354f9cc35f76804c73d4c98781c}} 
+\index{\_Skybox@{\_Skybox}!shader@{shader}}
+\index{shader@{shader}!\_Skybox@{\_Skybox}}
+\doxysubsubsection{\texorpdfstring{shader}{shader}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}}$\ast$ shader}
+
+Shader for the skybox. \mbox{\Hypertarget{struct___skybox_a452068a59b544fa23600416220dabd66}\label{struct___skybox_a452068a59b544fa23600416220dabd66}} 
+\index{\_Skybox@{\_Skybox}!skyboxVAO@{skyboxVAO}}
+\index{skyboxVAO@{skyboxVAO}!\_Skybox@{\_Skybox}}
+\doxysubsubsection{\texorpdfstring{skyboxVAO}{skyboxVAO}}
+{\footnotesize\ttfamily unsigned int skybox\+VAO}
+
+Vertex array object for the skybox. \mbox{\Hypertarget{struct___skybox_ae699746b398b257d35423d05f2374c48}\label{struct___skybox_ae699746b398b257d35423d05f2374c48}} 
+\index{\_Skybox@{\_Skybox}!skyboxVBO@{skyboxVBO}}
+\index{skyboxVBO@{skyboxVBO}!\_Skybox@{\_Skybox}}
+\doxysubsubsection{\texorpdfstring{skyboxVBO}{skyboxVBO}}
+{\footnotesize\ttfamily unsigned int skybox\+VBO}
+
+Vertex buffer object for the skybox. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Skybox.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_skybox_8h}{Skybox.\+h}}\end{DoxyCompactItemize}

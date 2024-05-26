@@ -1,0 +1,78 @@
+\hypertarget{_system_8h}{}\doxysection{include/\+System.h File Reference}
+\label{_system_8h}\index{include/System.h@{include/System.h}}
+
+
+Header file for the system functions.  
+
+
+{\ttfamily \#include $<$Scene.\+h$>$}\newline
+{\ttfamily \#include $<$Dungeon.\+h$>$}\newline
+Include dependency graph for System.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_system_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=186pt]{_system_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_system_8h_a0e002adaef7ee632ca6fed44e7e99a2a}{render\+System}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$gamestate)
+\begin{DoxyCompactList}\small\item\em Function to render the system. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_system_8h_af5fde353b74261c98e7c271e650aa66c}{physics\+System}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene)
+\begin{DoxyCompactList}\small\item\em Function to update the system. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the system functions. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_system_8h_af5fde353b74261c98e7c271e650aa66c}\label{_system_8h_af5fde353b74261c98e7c271e650aa66c}} 
+\index{System.h@{System.h}!physicsSystem@{physicsSystem}}
+\index{physicsSystem@{physicsSystem}!System.h@{System.h}}
+\doxysubsubsection{\texorpdfstring{physicsSystem()}{physicsSystem()}}
+{\footnotesize\ttfamily void physics\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene }\end{DoxyParamCaption})}
+
+
+
+Function to update the system. 
+
+This function updates the system.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em gamestate} & Pointer to the game state. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_system_8h_a0e002adaef7ee632ca6fed44e7e99a2a}\label{_system_8h_a0e002adaef7ee632ca6fed44e7e99a2a}} 
+\index{System.h@{System.h}!renderSystem@{renderSystem}}
+\index{renderSystem@{renderSystem}!System.h@{System.h}}
+\doxysubsubsection{\texorpdfstring{renderSystem()}{renderSystem()}}
+{\footnotesize\ttfamily void render\+System (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{gamestate }\end{DoxyParamCaption})}
+
+
+
+Function to render the system. 
+
+This function renders the system.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em gamestate} & Pointer to the game state. \\
+\hline
+\end{DoxyParams}
