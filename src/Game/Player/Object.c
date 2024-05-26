@@ -12,6 +12,7 @@ Object* Object_create(char* name, char* description, int id) {
 Object* Object_createFromId(int id) {
     char* name = nameFromId(id);
     char* description = descriptionFromId(id);
+    int cost = costFromId(id);
     return Object_create(name, description, id);
 }
 
@@ -86,4 +87,20 @@ char* descriptionFromId(int id) {
             break;
     }
     return description;
+}
+
+
+int costFromId(int id) {
+    switch (id) {
+        case 1 :
+            return 10;
+        case 2 : 
+            return 20;
+        case 3 :
+            return 5;
+        case 4 :
+            return 15;
+        default :
+            return 0;
+    }
 }
