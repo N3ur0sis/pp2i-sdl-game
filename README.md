@@ -46,20 +46,20 @@ If you're on MacOS: get on Linux.
 ## TODO List
 
 - [X] not abandon the project
-- [ ] remove some memory leaks (just kidding, i'll never do that)
+- [lol] remove some memory leaks (just kidding, i'll never do that)
 - [x] Basic player movement
 - [x] Map creation (Blender) + Level design (in-engine)
-- [ ] Dungeons procedural Generation
+- [x] Dungeons procedural Generation
 - [x] Lights
 - [x] Basic Shadow Mapping
 - [x] Import + Render animation
 - [x] Basic Combat system
-- [ ] Menu (Main & Pause )
+- [/] Menu (Main & Pause )
 - [ ] GUI
-- [ ] Inventory system
-- [ ] Trading System
-- [ ] Scene Manager
-- [ ] Entity Component System
+- [x] Inventory system
+- [x] Trading System
+- [x] Scene Manager
+- [x] Entity Component System
 - [ ] Finish the game
 - [ ] Find a name for the game
 

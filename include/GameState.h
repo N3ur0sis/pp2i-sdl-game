@@ -20,5 +20,6 @@ typedef struct GameState {
     Menu* pauseMenu;
     bool restarting;
     bool mainMenuOpen;
+    int money;
     // Add other game state variables as needed
 } GameState;
