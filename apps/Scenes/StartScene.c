@@ -69,7 +69,7 @@ void startStartScene(Scene* scene, GameState* gameState) {
         addComponent(mapEntity, COMPONENT_RENDERABLE, map);
 
         Collider* mapCollision = ColliderCreate("assets/models/start/col.obj");
-        glm_translate_make(mapCollision->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
+        glm_translate_make(mapCollision->transformMatrix, (vec3){0.0f, -9.0f, 0.0f});
         UpdateCollider(mapCollision);
         addComponent(mapEntity, COMPONENT_COLLIDER, mapCollision);
     }

@@ -32,7 +32,7 @@ int main(void){
     sceneManager->gameState.pauseMenu = menu;
 
     /* Set Default Current Scene */
-    sceneManager->gameState.currentSceneIndex = 1;
+    sceneManager->gameState.currentSceneIndex = 0;
     SceneManagerSetCurrentScene(sceneManager, sceneManager->gameState.currentSceneIndex);
 
     Uint32 last = SDL_GetTicks();
