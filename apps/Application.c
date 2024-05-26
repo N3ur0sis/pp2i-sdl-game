@@ -35,6 +35,11 @@ int main(void){
     sceneManager->gameState.currentSceneIndex = 0;
     SceneManagerSetCurrentScene(sceneManager, sceneManager->gameState.currentSceneIndex);
 
+    /* Set Default Camera Position */
+    sceneManager->scenes[sceneManager->currentSceneIndex]->camera->Yaw = 180.0f;
+    SceneManagerUpdateCurrentScene(sceneManager);
+    physicsSystem(sceneManager->scenes[sceneManager->currentSceneIndex]);
+
     Uint32 last = SDL_GetTicks();
     int nbframe;
 
@@ -50,6 +55,7 @@ int main(void){
         /* Update Frame */
         StartFrame(game,&sceneManager->gameState, sceneManager);
         
+        /* Game Logic */
         if (sceneManager->gameState.mainMenuOpen) {
             RenderText("WELCOME TO THE GAME", (SDL_Color){0,0,0,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 9 * (&sceneManager->gameState)->g_WindowHeight / 10, 50, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
             RenderText("PRESS ENTER TO START", (SDL_Color){0,0,0,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 5 * (&sceneManager->gameState)->g_WindowHeight / 10, 40, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
@@ -64,6 +70,7 @@ int main(void){
             }
         }
 
+        /* Render Frame */
         renderSystem(sceneManager->scenes[sceneManager->currentSceneIndex],&sceneManager->gameState);
 
         EndFrame(game);
