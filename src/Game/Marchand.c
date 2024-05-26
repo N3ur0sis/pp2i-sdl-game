@@ -187,7 +187,6 @@ void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, flo
                 char prix[12];
                 sprintf(prix, "%d Sushis", costFromId(currentIdObject));
                 RenderText(prix, color_black, window_width / 2, window_height / 3 + 140, 30, window_width, window_height, shader);
-                printf("cost : %d\n", costFromId(currentIdObject));
                 if (getMouseButtonState(1) && !clickAction) {
                     bool isPResent = InventoryRemoveObject(marchantInventory, currentIdObject);
                     if (isPResent) {
