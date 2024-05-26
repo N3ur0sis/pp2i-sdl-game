@@ -21,5 +21,6 @@ typedef struct GameState {
     bool restarting;
     bool mainMenuOpen;
     int money;
+    bool fullscreen;
     // Add other game state variables as needed
 } GameState;
