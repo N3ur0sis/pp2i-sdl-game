@@ -34,10 +34,18 @@ static void logSDLError(const char* msg) {
 void processInput(SDL_Event* e, bool* running, bool* isPaused, GameState* gameState, SceneManager* sceneManager) {
     switch (e->type) {
         case SDL_QUIT:
+            if (gameState->mainMenuOpen) {
+                gameState->mainMenuOpen = false;
+            }
             *running = false;
             break;
         case SDL_KEYDOWN:
 			/*Handle pause menu input*/
+            if (gameState->mainMenuOpen) {
+                if (e->key.keysym.sym == SDLK_RETURN) {
+                    gameState->mainMenuOpen = false;
+                }
+            }
 			if (e->key.keysym.sym == SDLK_ESCAPE){
 				*isPaused = !*isPaused;
                 MenuPauseReset(gameState->pauseMenu);

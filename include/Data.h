@@ -1,4 +1,4 @@
-/*
+/**
 * @file Data.h
 * @brief Data header file
 * 
@@ -17,7 +17,7 @@
 typedef struct _Data Data;
 typedef struct _Vector Vector;
 
-/*
+/**
 * @brief Structure representing a data.
 *
 * This structure represents a data that can be of type int, float, string or vector.
@@ -32,7 +32,7 @@ struct _Data {
     } value;                /**< Value of the data */
 };
 
-/*
+/**
 * @brief Creates a new Data instance of type int.
 *
 * This function creates a new Data instance of type int.
@@ -42,7 +42,7 @@ struct _Data {
 */
 Data* createIntData(int value);
 
-/*
+/**
 * @brief Creates a new Data instance of type float.
 *
 * This function creates a new Data instance of type float.
@@ -52,7 +52,7 @@ Data* createIntData(int value);
 */
 Data* createFloatData(float value);
 
-/*
+/**
 * @brief Creates a new Data instance of type string.
 *
 * This function creates a new Data instance of type string.
@@ -62,7 +62,7 @@ Data* createFloatData(float value);
 */
 Data* createStringData(char* value);
 
-/*
+/**
 * @brief Creates a new Data instance of type vector.
 *
 * This function creates a new Data instance of type vector.
@@ -72,7 +72,7 @@ Data* createStringData(char* value);
 */
 Data* createVectorData(Vector* value);
 
-/*
+/**
 * @brief Verifies if two Data instances are equal.
 *
 * This function verifies if two Data instances are equal.
@@ -83,7 +83,7 @@ Data* createVectorData(Vector* value);
 */
 bool equalsData(Data* data1, Data* data2);
 
-/*
+/**
 * @brief Prints the data.
 *
 * This function prints the data.
@@ -92,7 +92,7 @@ bool equalsData(Data* data1, Data* data2);
 */
 void printData(Data* data);
 
-/*
+/**
 * @brief Gets the value of the data.
 *
 * This function gets the value of the data.
@@ -102,7 +102,7 @@ void printData(Data* data);
 */
 void* getValue(Data* data);
 
-/*
+/**
 * @brief Gets the type of the data.
 *
 * This function gets the type of the data.

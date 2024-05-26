@@ -36,6 +36,7 @@ int main(void){
 
     Uint32 last = SDL_GetTicks();
     int nbframe;
+
     /* Game Loop */
     while (game->running) {
         Uint64 current = SDL_GetTicks();
@@ -48,13 +49,18 @@ int main(void){
         /* Update Frame */
         StartFrame(game,&sceneManager->gameState, sceneManager);
         
-        if (game->isPaused) {
-                RenderText("MENU", (SDL_Color){0,0,0,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 9 * (&sceneManager->gameState)->g_WindowHeight / 10, 50, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
-                MenuPauseDraw(game, &sceneManager->gameState, &sceneManager->scenes[sceneManager->currentSceneIndex]->textShader, sceneManager->gameState.pauseMenu);
-        }else{
-        physicsSystem(sceneManager->scenes[sceneManager->currentSceneIndex]);
-        SceneManagerUpdateCurrentScene(sceneManager);
-        cameraControl(sceneManager->scenes[sceneManager->currentSceneIndex]->camera);
+        if (sceneManager->gameState.mainMenuOpen) {
+            RenderText("WELCOME TO THE GAME", (SDL_Color){0,0,0,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 9 * (&sceneManager->gameState)->g_WindowHeight / 10, 50, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
+            RenderText("PRESS ENTER TO START", (SDL_Color){0,0,0,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 5 * (&sceneManager->gameState)->g_WindowHeight / 10, 40, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
+        } else {
+            if (game->isPaused) {
+                    RenderText("MENU", (SDL_Color){0,0,0,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 9 * (&sceneManager->gameState)->g_WindowHeight / 10, 50, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
+                    MenuPauseDraw(game, &sceneManager->gameState, &sceneManager->scenes[sceneManager->currentSceneIndex]->textShader, sceneManager->gameState.pauseMenu);
+            }else{
+            physicsSystem(sceneManager->scenes[sceneManager->currentSceneIndex]);
+            SceneManagerUpdateCurrentScene(sceneManager);
+            cameraControl(sceneManager->scenes[sceneManager->currentSceneIndex]->camera);
+            }
         }
 
         renderSystem(sceneManager->scenes[sceneManager->currentSceneIndex],&sceneManager->gameState);
