@@ -1124,7 +1124,7 @@ void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
             }
         if (playerModel->isBusy ){
                 RenderText("Coffre         ", color_white, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 200, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-                RenderText("Vous venez de récupérer la clé du donjon !", color_black, gameState->g_WindowWidth / 2 - 135, gameState->g_WindowHeight / 15 + 100, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                RenderText("Vous venez de récupérer la clé du donjon !", color_black, gameState->g_WindowWidth / 2 - 115, gameState->g_WindowHeight / 15 + 100, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                 RenderImage("assets/images/redBossKey.png", gameState->g_WindowWidth/2, gameState->g_WindowHeight/30 , gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                 RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                 if (getMouseButtonState(1)){

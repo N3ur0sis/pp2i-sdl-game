@@ -22,3 +22,4 @@ void damagePlayer(GameState* gamestate, int damage);
 Entity* create_player(Scene*  scene,float x,float y,float z);
 Entity* create_sword(Scene* scene,Entity* parent);
 void player_attack(Entity* player,Entity* enemy,GameState* gameState);
+void playSoundPlayer(Entity* player,GameState* gamestate);

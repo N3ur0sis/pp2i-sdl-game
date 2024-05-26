@@ -94,4 +94,5 @@ typedef struct _PlayerComponent {
     float maxHealth;        /**< Maximum health of the player */
     float attackDamage;     /**< Attack damage of the player */
     float attackRange;      /**< Attack range of the player */
+    bool hasPlayedAttackSound;
 } PlayerComponent;
