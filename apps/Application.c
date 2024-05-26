@@ -13,7 +13,7 @@
 int main(void){
 
     /* Initialize the Engine */
-    Application* game = ApplicationCreate(1920,1080,"GAME");
+    Application* game = ApplicationCreate(1280,720,"GAME");
 
     /*Initialize the Scene Manager*/
     SceneManager* sceneManager = SceneManagerInit();
@@ -42,7 +42,7 @@ int main(void){
 
     Uint32 last = SDL_GetTicks();
     int nbframe;
-    SDL_SetWindowFullscreen(game->window->m_window, SDL_WINDOW_FULLSCREEN);
+    // SDL_SetWindowFullscreen(game->window->m_window, SDL_WINDOW_FULLSCREEN);
     /* Game Loop */
     while (game->running) {
         Uint64 current = SDL_GetTicks();    

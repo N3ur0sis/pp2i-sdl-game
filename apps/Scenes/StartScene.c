@@ -338,6 +338,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
                         is_clicking = true;
                         checkpoint_sword = true;
                         playerComponent->hasWeapon = true;
+                        gameState->isChestOpen = true;
                     }
                     if (!getMouseButtonState(1)) {
                         is_clicking = false;

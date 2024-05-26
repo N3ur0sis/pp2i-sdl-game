@@ -362,4 +362,11 @@ void drawHUD(Scene* scene, GameState* gamestate) {
 	sprintf(money, "%d", gamestate->money);
 	RenderText(money, (SDL_Color){255,255,255,0}, gamestate->g_WindowWidth / 45 + 70, 13 * gamestate->g_WindowHeight / 15 + 18, 30, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
 	RenderImage("assets/images/sushi.png", gamestate->g_WindowWidth / 45, 13 * gamestate->g_WindowHeight / 15 - 10, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+	for (int j = 0 ; j < 6; j++) {
+		if (gamestate->isChestOpen) {
+			RenderImage("assets/images/pixil-frame-0(6).png", 44 * gamestate->g_WindowWidth / 45 - 10 - j * 75, 14 * gamestate->g_WindowHeight / 15 - 50 , gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+		}
+		RenderImage("assets/images/Inventory_Slot_1.png", 44 * gamestate->g_WindowWidth / 45 - 10 - j * 75, 14 * gamestate->g_WindowHeight / 15 - 50 , gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+		// RenderImage("assets/images/Inventory_Slot_1.png", gamestate->g_WindowWidth / 2 + 100 * i, gamestate->g_WindowHeight / 2, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+	}
 }

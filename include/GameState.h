@@ -17,6 +17,7 @@ typedef struct GameState {
     int currentSceneIndex;
     int previousSceneIndex;
     bool change;
+    bool isChestOpen;
     bool isForestDungeonDone;
     Menu* pauseMenu;
     bool restarting;
