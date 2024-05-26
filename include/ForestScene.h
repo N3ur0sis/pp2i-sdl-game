@@ -8,7 +8,7 @@
 #include <Player.h>
 #include <GameState.h>
 #include <cglm/cglm.h>
-#include <Ennemy.h>
+#include <Enemy.h>
 #define FLAMEDIST 2.0f
 
 /**

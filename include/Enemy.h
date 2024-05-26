@@ -9,6 +9,8 @@
 #include <Animator.h>
 #include <Entity.h>
 #include <Scene.h>
+#include <Player.h>
+
 
 /**
  * @brief Struct representing an enemy component.
@@ -93,3 +95,4 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
  * @param attackDamage Attack damage of the enemy.
  */
 void initializeEnemyComponent(Entity* enemy, float detectionRange, float attackRange, float movementSpeed, float attackDamage);
+extern bool isDamageShown;

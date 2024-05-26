@@ -1,7 +1,7 @@
 #include "Enemy.h"
 
 
-
+bool isDamageShown = false;
 void initializeEnemyComponent(Entity* enemy, float detectionRange, float attackRange, float movementSpeed, float attackDamage) {
     EnemyComponent* enemyComponent = (EnemyComponent*)calloc(1, sizeof(EnemyComponent));
     glm_vec3_zero(enemyComponent->direction);
@@ -78,6 +78,7 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
             }
             if (enemyAnimator->playTime > enemyAnimator->currentAnimation->anim_dur - 10) {
                 damagePlayer(gameState, enemyComponent->attackDamage);
+                isDamageShown = true;
                 printf("L'ennemi frappe\n");
                 enemyAnimator->playTime = 0.0f;
                 enemyComponent->isAttacking = false;
@@ -195,7 +196,7 @@ Entity* create_golemPurple(Scene* scene,float x,float y,float z,float scale){
     enemyComponent->detectionRange = 20.0f;
     enemyComponent->attackRange = 3.0f;
     enemyComponent->movementSpeed = 3.0f;
-    enemyComponent->attackDamage = 10.0f;
+    enemyComponent->attackDamage = 5.0f;
     enemyComponent->isAttacking = false;
     enemyComponent->isAlive = true;
     enemyComponent->health = 100.0f;

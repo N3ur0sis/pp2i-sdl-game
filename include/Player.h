@@ -160,3 +160,4 @@ void player_attack(Entity* player,Entity* enemy,GameState* gameState);
  * @param gamestate Pointer to the game state.
  */
 void playSoundPlayer(Entity* player,GameState* gamestate);
+void drawHUD(Scene* scene, GameState* gamestate);

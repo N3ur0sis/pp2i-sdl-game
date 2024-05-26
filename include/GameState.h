@@ -17,6 +17,7 @@ typedef struct _Menu Menu;
 typedef struct GameState {
     bool enemyIsAttacking;          /**< Boolean flag indicating if the enemy is attacking. */
     bool playerIsAttacking;         /**< Boolean flag indicating if the player is attacking. */
+    float max_health;               /**< Maximum health of the player. */
     float playerHealth;             /**< Health of the player. */
     Inventory* inventory;           /**< Pointer to the player's inventory. */
     Inventory* marchantInventory;   /**< Pointer to the marchant's inventory. */
@@ -27,6 +28,7 @@ typedef struct GameState {
     int currentSceneIndex;          /**< Index of the current scene. */
     int previousSceneIndex;         /**< Index of the previous scene. */
     bool change;                    /**< Boolean flag indicating if the scene is changing. */
+    bool isChestOpen;               /**< Boolean flag indicating if the chest is open. */
     bool isForestDungeonDone;       /**< Boolean flag indicating if the forest dungeon is done. */
     Menu* pauseMenu;                /**< Pointer to the pause menu. */
     bool restarting;                /**< Boolean flag indicating if the game is restarting. */

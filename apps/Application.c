@@ -48,10 +48,10 @@ int main(void){
 
     Uint32 last = SDL_GetTicks();
     int nbframe;
-
+    // SDL_SetWindowFullscreen(game->window->m_window, SDL_WINDOW_FULLSCREEN);
     /* Game Loop */
     while (game->running) {
-        Uint64 current = SDL_GetTicks();
+        Uint64 current = SDL_GetTicks();    
         nbframe++;
         if(current - last >= 1000.0f){
             printf("FPS: %d\n", nbframe);

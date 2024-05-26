@@ -18,8 +18,8 @@ bool isBarrierDestroyed;
 int click_counter = 0 ;
 Inventory* inventory;
 Inventory* marchantInventory;
-Uint32 textDisplayStartTime = 0;
-const Uint32 enemyHitTextDisplayDuration = 5000; // ms
+Uint32 timeOfHit;
+const Uint32 enemyHitTextDisplayDuration = 750; // ms
 
 void startStartScene(Scene* scene, GameState* gameState) {
     checkpoint_sword = false;
@@ -29,6 +29,7 @@ void startStartScene(Scene* scene, GameState* gameState) {
     UseShaders(scene->shader);
     /* Load and compile textShader */
     scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
+
     /* Create a scene camera */
     scene->camera = camera_create(20, 22, -30, gameState->g_WindowWidth, gameState->g_WindowHeight);
     
@@ -134,6 +135,15 @@ void startStartScene(Scene* scene, GameState* gameState) {
     inventory = gameState->inventory;
     InventoryAddObjects(2, inventory, Object_createFromId(1));
     InventoryAddObjects(1, inventory, Object_createFromId(2));
+
+    /* Create a scene camera */
+    scene->camera = camera_create(0, 100, -100, gameState->g_WindowWidth, gameState->g_WindowHeight);
+    glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
+
+
+    /* Create a skybox */
+    scene->skybox = SkyboxCreate();
+
 }
  
 void updateStartScene(Scene* scene, GameState* gameState) {
@@ -150,6 +160,16 @@ void updateStartScene(Scene* scene, GameState* gameState) {
     float x = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[0];
     float y = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[2];
     checkDead(gameState);
+
+    if(isDamageShown){
+        isDamageShown = false;
+        timeOfHit = SDL_GetTicks();
+        }
+
+    if(SDL_GetTicks() - timeOfHit < enemyHitTextDisplayDuration){
+        RenderText("-10", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 45 + 140, 13 * gameState->g_WindowHeight / 15 + 20, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        
+    }
 
 
     if (gameState->isPlayerDead) {
@@ -174,7 +194,8 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             ((Model*)getComponent(chestOpenEntity, COMPONENT_RENDERABLE))->isRenderable = false;
             ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->isRenderable = true;
             ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->isRenderable = false;
-            gameState->playerHealth = 1000.0f;
+            float max_health = gameState->max_health;
+            gameState->playerHealth = max_health;
             gameState->isPlayerDead = false;
             ChangeSceneEvent(gameState->nextSceneIndex);
             gameState->nextSceneIndex = 0;
@@ -184,6 +205,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
         }
     }
 
+        drawHUD(scene, gameState);
         Model* playerModel = (Model*)getComponent(playerEntity, COMPONENT_RENDERABLE);
         Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
         RigidBody* playerRigidbody = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
@@ -326,6 +348,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
                         is_clicking = true;
                         checkpoint_sword = true;
                         playerComponent->hasWeapon = true;
+                        gameState->isChestOpen = true;
                     }
                     if (!getMouseButtonState(1)) {
                         is_clicking = false;

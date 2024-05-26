@@ -9,7 +9,7 @@
 #include <Skybox.h>
 #include <Entity.h>
 #include <GameState.h>
-#include <SDL_mixer.h>
+#include <SDL2/SDL_mixer.h>
 
 #define MAX_ENTITIES 100    /**< Maximum number of entities. */
 
