@@ -1,0 +1,28 @@
+<map id="include/Skybox.h" name="include/Skybox.h">
+<area shape="rect" id="node1" title="Header file for the skybox component." alt="" coords="763,5,895,32"/>
+<area shape="rect" id="node2" href="$_scene_8h.html" title="Header file for the scene component." alt="" coords="767,80,891,107"/>
+<area shape="rect" id="node3" href="$_chest_8h_source.html" title=" " alt="" coords="244,155,367,181"/>
+<area shape="rect" id="node4" href="$_dungeon_8h.html" title="Dungeon header file." alt="" coords="442,379,585,405"/>
+<area shape="rect" id="node5" href="$_dungeon_scene_8h.html" title="Header file for the dungeon scene." alt="" coords="525,453,707,480"/>
+<area shape="rect" id="node9" href="$_system_8h.html" title="Header file for the system functions." alt="" coords="19,453,154,480"/>
+<area shape="rect" id="node10" href="$_enemy_8h.html" title="Header file for the enemy component." alt="" coords="1143,379,1271,405"/>
+<area shape="rect" id="node11" href="$_main_scene_8h.html" title="Header file for the main scene." alt="" coords="783,453,939,480"/>
+<area shape="rect" id="node12" href="$_marchand_8h.html" title="Header file for the marchand component." alt="" coords="1273,453,1423,480"/>
+<area shape="rect" id="node14" href="$_ennemy_8h.html" title="Header file for the enemy component." alt="" coords="1353,229,1489,256"/>
+<area shape="rect" id="node15" href="$_forest_scene_8h.html" title="Header file for the forest scene." alt="" coords="1447,453,1611,480"/>
+<area shape="rect" id="node16" href="$_scene_manager_8h.html" title="Header file for the scene manager component." alt="" coords="845,155,1025,181"/>
+<area shape="rect" id="node8" href="$_dungeon_test_8h_source.html" title=" " alt="" coords="178,453,347,480"/>
+<area shape="rect" id="node6" href="$_application_8c.html" title="Entry point of the program." alt="" coords="681,603,823,629"/>
+<area shape="rect" id="node7" href="$_dungeon_scene_8c.html" title="Implementation of the dungeon scene." alt="" coords="474,528,689,555"/>
+<area shape="rect" id="node13" href="$_start_scene_8h.html" title="Header file for the start scene." alt="" coords="1133,528,1288,555"/>
+<area shape="rect" id="node17" href="$_event_8h.html" title="Scene management event functions and definitions for the application." alt="" coords="873,229,996,256"/>
+<area shape="rect" id="node25" href="$_player_8h.html" title="Header file for the player component." alt="" coords="993,379,1119,405"/>
+<area shape="rect" id="node18" href="$_event_8c.html" title="Implementation of scene management event functions for the application." alt="" coords="924,304,1113,331"/>
+<area shape="rect" id="node19" href="$_controls_8h.html" title="Input processing functions and definitions for the application." alt="" coords="761,304,900,331"/>
+<area shape="rect" id="node20" href="$_controls_8c.html" title="Implementation of input processing functions for the application." alt="" coords="762,379,969,405"/>
+<area shape="rect" id="node21" href="$_engine_8h.html" title="Engine initialization and management functions. Include this file to implement the engine and start c..." alt="" coords="371,453,501,480"/>
+<area shape="rect" id="node22" href="$_engine_8c.html" title="Implementations of application functions." alt="" coords="215,528,398,555"/>
+<area shape="rect" id="node23" href="$_menu_8h.html" title="Header file for the pause menu." alt="" coords="18,528,139,555"/>
+<area shape="rect" id="node24" href="$_menu_test_8h_source.html" title=" " alt="" coords="5,603,152,629"/>
+<area shape="rect" id="node26" href="$_player_8c.html" title="Implementation of the player component." alt="" coords="964,453,1148,480"/>
+</map>

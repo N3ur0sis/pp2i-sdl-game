@@ -1,7 +1,21 @@
+/**
+ * @file Player.c
+ * @brief Implementation of the player component.
+*/
+
 #include <Player.h>
 
-bool isClicking = false;
+bool isClicking = false;	/**< Boolean to check if the player is clicking. */
 
+/**
+ * @brief Function to move the player.
+ * 
+ * This function moves the player based on the input and the camera.
+ * 
+ * @param player Pointer to the player entity.
+ * @param deltaTime Time since the last frame.
+ * @param camera Pointer to the camera.
+ */
 void playerMovement(Entity* player, float deltaTime, Camera* camera){
 
 	Animator* playerAnimator = (Animator*)getComponent(player, COMPONENT_ANIMATOR);
@@ -127,7 +141,17 @@ void updatePlayerAnimator(Entity* playerEntity, GameState* gameState) {
 	}
 }
 
-
+/**
+ * @brief Moves the camera to follow the player.
+ * 
+ * This function moves the camera to follow the player, ensuring that the camera is always
+ * positioned behind the player and looking at the player.
+ * 
+ * @param camera Pointer to the camera.
+ * @param position Position of the player.
+ * @param targetPosition Target position of the player.
+ * @param deltaTime Time since the last frame.
+ */
 void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float deltaTime) {
 	// printf("each frame \n");
 	targetPosition++;
@@ -185,7 +209,19 @@ void moveCameraPlayer(Camera* camera, vec3 position, vec3 targetPosition, float 
 
 }
 
-
+/**
+ * @brief Linearly interpolates the camera position and yaw.
+ * 
+ * This function linearly interpolates the camera position and yaw.
+ * 
+ * @param camera Pointer to the camera.
+ * @param old_pos Old position of the camera.
+ * @param new_pos New position of the camera.
+ * @param old_yaw Old yaw of the camera.
+ * @param new_yaw New yaw of the camera.
+ * @param steps Number of steps to interpolate.
+ * @param duration Duration of the interpolation.
+ */
 void lerp_camera(Camera* camera, vec3 old_pos, vec3 new_pos, float old_yaw, float new_yaw, int steps, float duration) {
 	duration *= 1000;
     for (int i = 0; i <= steps; ++i) {
@@ -200,10 +236,19 @@ void lerp_camera(Camera* camera, vec3 old_pos, vec3 new_pos, float old_yaw, floa
 		camera->Yaw = interpolated_yaw;
 
 		updateCameraVectors(camera);
-}
+	}
 }
 
-
+/**
+ * @brief Linearly interpolates between two vectors.
+ * 
+ * This function linearly interpolates between two vectors.
+ * 
+ * @param a First vector.
+ * @param b Second vector.
+ * @param res Resulting vector.
+ * @param t Interpolation factor.
+ */
 void lerp_vec3(vec3 a, vec3 b, vec3 res, float t){
     res[0] = a[0] + (b[0] - a[0]) * t;
     res[1] = a[1] + (b[1] - a[1]) * t;
@@ -214,10 +259,28 @@ float lerp_float(float a, float b, float t) {
     return a + (b - a) * t;
 }
 
+/**
+ * @brief Function to check if the player is interacting.
+ * 
+ * This function checks if the player is interacting.
+ * 
+ * @return True if the player is interacting, false otherwise.
+ */
 bool playerInteract(){
 	return getKeyState(SDLK_e);
 }
 
+/**
+ * @brief Function to create the player entity.
+ * 
+ * This function creates the player entity.
+ * 
+ * @param scene Pointer to the scene.
+ * @param x X position of the player.
+ * @param y Y position of the player.
+ * @param z Z position of the player.
+ * @return Pointer to the player entity.
+ */
 Entity* create_player(Scene*  scene,float x,float y,float z){
 	Entity* playerEntity = createEntity(scene);
     if (playerEntity != NULL) {
@@ -260,6 +323,15 @@ Entity* create_player(Scene*  scene,float x,float y,float z){
 	return playerEntity;
 }
 
+/**
+ * @brief Function to create the player's sword entity.
+ * 
+ * This function creates the player's sword entity.
+ * 
+ * @param scene Pointer to the scene.
+ * @param parent Pointer to the parent entity.
+ * @return Pointer to the sword entity.
+ */
 Entity* create_sword(Scene* scene,Entity* parent){
 	Entity* swordEntity = createEntity(scene);
     if (swordEntity != NULL) {
@@ -280,6 +352,15 @@ Entity* create_sword(Scene* scene,Entity* parent){
 	return swordEntity;
 }
 
+/**
+ * @brief Function to make the player attack.
+ * 
+ * This function makes the player attack.
+ * 
+ * @param player Pointer to the player entity.
+ * @param enemy Pointer to the enemy entity.
+ * @param gameState Pointer to the game state.
+ */
 void player_attack(Entity* player,Entity* enemy,GameState* gameState){
 	Animator* playerAnimator = (Animator*)getComponent(player, COMPONENT_ANIMATOR);
 	RigidBody* playerRigidbody = (RigidBody*)getComponent(player, COMPONENT_RIGIDBODY);
@@ -311,13 +392,27 @@ void player_attack(Entity* player,Entity* enemy,GameState* gameState){
 			}
 }
 
+/**
+ * @brief Function to check if the player is dead.
+ * 
+ * This function checks if the player is dead.
+ * 
+ * @param gamestate Pointer to the game state.
+ */
 void checkDead(GameState* gamestate){
 	if (gamestate->playerHealth <= 0) {
 		gamestate->isPlayerDead = true;
 	}
 }
 
-
+/**
+ * @brief Function to damage the player.
+ * 
+ * This function damages the player.
+ * 
+ * @param gamestate Pointer to the game state.
+ * @param damage Amount of damage to deal to the player.
+ */
 void damagePlayer(GameState* gamestate, int damage){
 	if (gamestate->playerHealth - damage < 0) {
 		gamestate->playerHealth = 0;
@@ -326,6 +421,14 @@ void damagePlayer(GameState* gamestate, int damage){
 	gamestate->playerHealth -= damage;
 }
 
+/**
+ * @brief Function to play the sound of the player.
+ * 
+ * This function plays the sound of the player.
+ * 
+ * @param player Pointer to the player entity.
+ * @param gamestate Pointer to the game state.
+ */
 void playSoundPlayer(Entity* player,GameState* gamestate){
 	PlayerComponent* playerComponent = (PlayerComponent*)getComponent(player, COMPONENT_PLAYER);
 	Animator* playerAnimator = (Animator*)getComponent(player, COMPONENT_ANIMATOR);

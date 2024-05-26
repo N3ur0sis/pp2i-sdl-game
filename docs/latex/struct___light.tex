@@ -2,7 +2,17 @@
 \label{struct___light}\index{\_Light@{\_Light}}
 
 
-Collaboration diagram for \+\_\+\+Light\+:\nopagebreak
+Struct representing a light.  
+
+
+
+
+{\ttfamily \#include $<$Light.\+h$>$}
+
+
+
+Collaboration diagram for \+\_\+\+Light\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,23 +22,56 @@ Collaboration diagram for \+\_\+\+Light\+:\nopagebreak
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct___light_ad2f3ba5de614c8ed18494b2d27fa53d5}\label{struct___light_ad2f3ba5de614c8ed18494b2d27fa53d5}} 
-vec4 {\bfseries position}
+vec4 \mbox{\hyperlink{struct___light_ad2f3ba5de614c8ed18494b2d27fa53d5}{position}}
 \item 
-\mbox{\Hypertarget{struct___light_ab8507ddef0cd4dfe9c6cd6baacc8c845}\label{struct___light_ab8507ddef0cd4dfe9c6cd6baacc8c845}} 
-vec3 {\bfseries intensity}
+vec3 \mbox{\hyperlink{struct___light_ab8507ddef0cd4dfe9c6cd6baacc8c845}{intensity}}
 \item 
-\mbox{\Hypertarget{struct___light_ad3890904ca5aac7c01ee4fd75e828ebe}\label{struct___light_ad3890904ca5aac7c01ee4fd75e828ebe}} 
-float {\bfseries attenuation}
+float \mbox{\hyperlink{struct___light_ad3890904ca5aac7c01ee4fd75e828ebe}{attenuation}}
 \item 
-\mbox{\Hypertarget{struct___light_a59e2ef17a85f2aa5635268c41acc2e98}\label{struct___light_a59e2ef17a85f2aa5635268c41acc2e98}} 
-float {\bfseries ambient\+Coefficient}
+float \mbox{\hyperlink{struct___light_a59e2ef17a85f2aa5635268c41acc2e98}{ambient\+Coefficient}}
 \item 
-\mbox{\Hypertarget{struct___light_a0354c63db5576a4ce071d42cf9aff827}\label{struct___light_a0354c63db5576a4ce071d42cf9aff827}} 
-\mbox{\hyperlink{struct___shadow_map}{Shadow\+Map}} $\ast$ {\bfseries shadow\+Map}
+\mbox{\hyperlink{_shadow_map_8h_ab1324e464e55bd96805d28d8d94ebab4}{Shadow\+Map}} $\ast$ \mbox{\hyperlink{struct___light_a0354c63db5576a4ce071d42cf9aff827}{shadow\+Map}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Struct representing a light. 
+
+This struct represents a light. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct___light_a59e2ef17a85f2aa5635268c41acc2e98}\label{struct___light_a59e2ef17a85f2aa5635268c41acc2e98}} 
+\index{\_Light@{\_Light}!ambientCoefficient@{ambientCoefficient}}
+\index{ambientCoefficient@{ambientCoefficient}!\_Light@{\_Light}}
+\doxysubsubsection{\texorpdfstring{ambientCoefficient}{ambientCoefficient}}
+{\footnotesize\ttfamily float ambient\+Coefficient}
+
+Ambient coefficient of the light. \mbox{\Hypertarget{struct___light_ad3890904ca5aac7c01ee4fd75e828ebe}\label{struct___light_ad3890904ca5aac7c01ee4fd75e828ebe}} 
+\index{\_Light@{\_Light}!attenuation@{attenuation}}
+\index{attenuation@{attenuation}!\_Light@{\_Light}}
+\doxysubsubsection{\texorpdfstring{attenuation}{attenuation}}
+{\footnotesize\ttfamily float attenuation}
+
+Attenuation of the light. \mbox{\Hypertarget{struct___light_ab8507ddef0cd4dfe9c6cd6baacc8c845}\label{struct___light_ab8507ddef0cd4dfe9c6cd6baacc8c845}} 
+\index{\_Light@{\_Light}!intensity@{intensity}}
+\index{intensity@{intensity}!\_Light@{\_Light}}
+\doxysubsubsection{\texorpdfstring{intensity}{intensity}}
+{\footnotesize\ttfamily vec3 intensity}
+
+Color of the light. \mbox{\Hypertarget{struct___light_ad2f3ba5de614c8ed18494b2d27fa53d5}\label{struct___light_ad2f3ba5de614c8ed18494b2d27fa53d5}} 
+\index{\_Light@{\_Light}!position@{position}}
+\index{position@{position}!\_Light@{\_Light}}
+\doxysubsubsection{\texorpdfstring{position}{position}}
+{\footnotesize\ttfamily vec4 position}
+
+Position of the light. \mbox{\Hypertarget{struct___light_a0354c63db5576a4ce071d42cf9aff827}\label{struct___light_a0354c63db5576a4ce071d42cf9aff827}} 
+\index{\_Light@{\_Light}!shadowMap@{shadowMap}}
+\index{shadowMap@{shadowMap}!\_Light@{\_Light}}
+\doxysubsubsection{\texorpdfstring{shadowMap}{shadowMap}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_shadow_map_8h_ab1324e464e55bd96805d28d8d94ebab4}{Shadow\+Map}}$\ast$ shadow\+Map}
+
+Shadow map of the light. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Light.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_light_8h}{Light.\+h}}\end{DoxyCompactItemize}

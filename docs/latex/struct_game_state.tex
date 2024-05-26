@@ -2,63 +2,180 @@
 \label{struct_game_state}\index{GameState@{GameState}}
 
 
-Collaboration diagram for Game\+State\+:\nopagebreak
+Struct representing the game state.  
+
+
+
+
+{\ttfamily \#include $<$Game\+State.\+h$>$}
+
+
+
+Collaboration diagram for Game\+State\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=271pt]{struct_game_state__coll__graph}
+\includegraphics[width=350pt]{struct_game_state__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct_game_state_a15658a5133d709eb9d50b54e7514adac}\label{struct_game_state_a15658a5133d709eb9d50b54e7514adac}} 
-bool {\bfseries enemy\+Is\+Attacking}
+bool \mbox{\hyperlink{struct_game_state_a15658a5133d709eb9d50b54e7514adac}{enemy\+Is\+Attacking}}
 \item 
-\mbox{\Hypertarget{struct_game_state_aa7b2f9aabe9788ec2c5202408aa751ae}\label{struct_game_state_aa7b2f9aabe9788ec2c5202408aa751ae}} 
-bool {\bfseries player\+Is\+Attacking}
+bool \mbox{\hyperlink{struct_game_state_aa7b2f9aabe9788ec2c5202408aa751ae}{player\+Is\+Attacking}}
 \item 
-\mbox{\Hypertarget{struct_game_state_a187ba493bb2ea51fa5a4226e11d3c90e}\label{struct_game_state_a187ba493bb2ea51fa5a4226e11d3c90e}} 
-float {\bfseries player\+Health}
+float \mbox{\hyperlink{struct_game_state_a187ba493bb2ea51fa5a4226e11d3c90e}{player\+Health}}
 \item 
-\mbox{\Hypertarget{struct_game_state_ae077c9247ee2900bd0a7f5528b73f150}\label{struct_game_state_ae077c9247ee2900bd0a7f5528b73f150}} 
-\mbox{\hyperlink{struct___inventory}{Inventory}} $\ast$ {\bfseries inventory}
+\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$ \mbox{\hyperlink{struct_game_state_ae077c9247ee2900bd0a7f5528b73f150}{inventory}}
 \item 
-\mbox{\Hypertarget{struct_game_state_ad79f5a2af5b2db64c68cb21430a3043d}\label{struct_game_state_ad79f5a2af5b2db64c68cb21430a3043d}} 
-\mbox{\hyperlink{struct___inventory}{Inventory}} $\ast$ {\bfseries marchant\+Inventory}
+\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$ \mbox{\hyperlink{struct_game_state_ad79f5a2af5b2db64c68cb21430a3043d}{marchant\+Inventory}}
 \item 
-\mbox{\Hypertarget{struct_game_state_afefc47fa71c9486ae2663c35ffe6f298}\label{struct_game_state_afefc47fa71c9486ae2663c35ffe6f298}} 
-int {\bfseries g\+\_\+\+Window\+Width}
+int \mbox{\hyperlink{struct_game_state_afefc47fa71c9486ae2663c35ffe6f298}{g\+\_\+\+Window\+Width}}
 \item 
-\mbox{\Hypertarget{struct_game_state_a82255a1238b10f6626acc81f1507cc17}\label{struct_game_state_a82255a1238b10f6626acc81f1507cc17}} 
-int {\bfseries g\+\_\+\+Window\+Height}
+int \mbox{\hyperlink{struct_game_state_a82255a1238b10f6626acc81f1507cc17}{g\+\_\+\+Window\+Height}}
 \item 
-\mbox{\Hypertarget{struct_game_state_aa97ebe391336718344762e15209e9b01}\label{struct_game_state_aa97ebe391336718344762e15209e9b01}} 
-bool {\bfseries is\+Player\+Dead}
+bool \mbox{\hyperlink{struct_game_state_aa97ebe391336718344762e15209e9b01}{is\+Player\+Dead}}
 \item 
-\mbox{\Hypertarget{struct_game_state_a62c6e41c69b2beb6d39dcae6b3b96df0}\label{struct_game_state_a62c6e41c69b2beb6d39dcae6b3b96df0}} 
-int {\bfseries next\+Scene\+Index}
+int \mbox{\hyperlink{struct_game_state_a62c6e41c69b2beb6d39dcae6b3b96df0}{next\+Scene\+Index}}
 \item 
-\mbox{\Hypertarget{struct_game_state_a15fc03f737b4b6d8a73c849d8d026a87}\label{struct_game_state_a15fc03f737b4b6d8a73c849d8d026a87}} 
-int {\bfseries current\+Scene\+Index}
+int \mbox{\hyperlink{struct_game_state_a15fc03f737b4b6d8a73c849d8d026a87}{current\+Scene\+Index}}
 \item 
-\mbox{\Hypertarget{struct_game_state_ad791dc07789aea9da4fdaf320128af45}\label{struct_game_state_ad791dc07789aea9da4fdaf320128af45}} 
-int {\bfseries previous\+Scene\+Index}
+int \mbox{\hyperlink{struct_game_state_ad791dc07789aea9da4fdaf320128af45}{previous\+Scene\+Index}}
 \item 
-\mbox{\Hypertarget{struct_game_state_a857502cff71d45019163294ccc1779d5}\label{struct_game_state_a857502cff71d45019163294ccc1779d5}} 
-bool {\bfseries change}
+bool \mbox{\hyperlink{struct_game_state_a857502cff71d45019163294ccc1779d5}{change}}
 \item 
-\mbox{\Hypertarget{struct_game_state_a495f8c1124aa64aa97e1a0dc69215868}\label{struct_game_state_a495f8c1124aa64aa97e1a0dc69215868}} 
-bool {\bfseries is\+Forest\+Dungeon\+Done}
+bool \mbox{\hyperlink{struct_game_state_a495f8c1124aa64aa97e1a0dc69215868}{is\+Forest\+Dungeon\+Done}}
 \item 
-\mbox{\Hypertarget{struct_game_state_a4c51740b74fdd89a23f9bf668ed07c9f}\label{struct_game_state_a4c51740b74fdd89a23f9bf668ed07c9f}} 
-\mbox{\hyperlink{struct___menu}{Menu}} $\ast$ {\bfseries pause\+Menu}
+\mbox{\hyperlink{struct___menu}{Menu}} $\ast$ \mbox{\hyperlink{struct_game_state_a4c51740b74fdd89a23f9bf668ed07c9f}{pause\+Menu}}
 \item 
-\mbox{\Hypertarget{struct_game_state_a45f726b4d2ef2c1577480c0722bf74c2}\label{struct_game_state_a45f726b4d2ef2c1577480c0722bf74c2}} 
-bool {\bfseries restarting}
+bool \mbox{\hyperlink{struct_game_state_a45f726b4d2ef2c1577480c0722bf74c2}{restarting}}
+\item 
+bool \mbox{\hyperlink{struct_game_state_a25bd836d21da946eed2e5fae493ab7b1}{main\+Menu\+Open}}
+\item 
+int \mbox{\hyperlink{struct_game_state_acc0b64212bc67a1e415d25c147961df5}{money}}
+\item 
+bool \mbox{\hyperlink{struct_game_state_a5a9147cb82d1cbeefadd62beb9e6910b}{fullscreen}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Struct representing the game state. 
+
+This struct represents the game state. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct_game_state_a857502cff71d45019163294ccc1779d5}\label{struct_game_state_a857502cff71d45019163294ccc1779d5}} 
+\index{GameState@{GameState}!change@{change}}
+\index{change@{change}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{change}{change}}
+{\footnotesize\ttfamily bool change}
+
+Boolean flag indicating if the scene is changing. \mbox{\Hypertarget{struct_game_state_a15fc03f737b4b6d8a73c849d8d026a87}\label{struct_game_state_a15fc03f737b4b6d8a73c849d8d026a87}} 
+\index{GameState@{GameState}!currentSceneIndex@{currentSceneIndex}}
+\index{currentSceneIndex@{currentSceneIndex}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{currentSceneIndex}{currentSceneIndex}}
+{\footnotesize\ttfamily int current\+Scene\+Index}
+
+Index of the current scene. \mbox{\Hypertarget{struct_game_state_a15658a5133d709eb9d50b54e7514adac}\label{struct_game_state_a15658a5133d709eb9d50b54e7514adac}} 
+\index{GameState@{GameState}!enemyIsAttacking@{enemyIsAttacking}}
+\index{enemyIsAttacking@{enemyIsAttacking}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{enemyIsAttacking}{enemyIsAttacking}}
+{\footnotesize\ttfamily bool enemy\+Is\+Attacking}
+
+Boolean flag indicating if the enemy is attacking. \mbox{\Hypertarget{struct_game_state_a5a9147cb82d1cbeefadd62beb9e6910b}\label{struct_game_state_a5a9147cb82d1cbeefadd62beb9e6910b}} 
+\index{GameState@{GameState}!fullscreen@{fullscreen}}
+\index{fullscreen@{fullscreen}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{fullscreen}{fullscreen}}
+{\footnotesize\ttfamily bool fullscreen}
+
+Boolean flag indicating if the game is in fullscreen mode. \mbox{\Hypertarget{struct_game_state_a82255a1238b10f6626acc81f1507cc17}\label{struct_game_state_a82255a1238b10f6626acc81f1507cc17}} 
+\index{GameState@{GameState}!g\_WindowHeight@{g\_WindowHeight}}
+\index{g\_WindowHeight@{g\_WindowHeight}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{g\_WindowHeight}{g\_WindowHeight}}
+{\footnotesize\ttfamily int g\+\_\+\+Window\+Height}
+
+Height of the window. \mbox{\Hypertarget{struct_game_state_afefc47fa71c9486ae2663c35ffe6f298}\label{struct_game_state_afefc47fa71c9486ae2663c35ffe6f298}} 
+\index{GameState@{GameState}!g\_WindowWidth@{g\_WindowWidth}}
+\index{g\_WindowWidth@{g\_WindowWidth}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{g\_WindowWidth}{g\_WindowWidth}}
+{\footnotesize\ttfamily int g\+\_\+\+Window\+Width}
+
+Width of the window. \mbox{\Hypertarget{struct_game_state_ae077c9247ee2900bd0a7f5528b73f150}\label{struct_game_state_ae077c9247ee2900bd0a7f5528b73f150}} 
+\index{GameState@{GameState}!inventory@{inventory}}
+\index{inventory@{inventory}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{inventory}{inventory}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}}$\ast$ inventory}
+
+Pointer to the player\textquotesingle{}s inventory. \mbox{\Hypertarget{struct_game_state_a495f8c1124aa64aa97e1a0dc69215868}\label{struct_game_state_a495f8c1124aa64aa97e1a0dc69215868}} 
+\index{GameState@{GameState}!isForestDungeonDone@{isForestDungeonDone}}
+\index{isForestDungeonDone@{isForestDungeonDone}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{isForestDungeonDone}{isForestDungeonDone}}
+{\footnotesize\ttfamily bool is\+Forest\+Dungeon\+Done}
+
+Boolean flag indicating if the forest dungeon is done. \mbox{\Hypertarget{struct_game_state_aa97ebe391336718344762e15209e9b01}\label{struct_game_state_aa97ebe391336718344762e15209e9b01}} 
+\index{GameState@{GameState}!isPlayerDead@{isPlayerDead}}
+\index{isPlayerDead@{isPlayerDead}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{isPlayerDead}{isPlayerDead}}
+{\footnotesize\ttfamily bool is\+Player\+Dead}
+
+Boolean flag indicating if the player is dead. \mbox{\Hypertarget{struct_game_state_a25bd836d21da946eed2e5fae493ab7b1}\label{struct_game_state_a25bd836d21da946eed2e5fae493ab7b1}} 
+\index{GameState@{GameState}!mainMenuOpen@{mainMenuOpen}}
+\index{mainMenuOpen@{mainMenuOpen}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{mainMenuOpen}{mainMenuOpen}}
+{\footnotesize\ttfamily bool main\+Menu\+Open}
+
+Boolean flag indicating if the main menu is open. \mbox{\Hypertarget{struct_game_state_ad79f5a2af5b2db64c68cb21430a3043d}\label{struct_game_state_ad79f5a2af5b2db64c68cb21430a3043d}} 
+\index{GameState@{GameState}!marchantInventory@{marchantInventory}}
+\index{marchantInventory@{marchantInventory}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{marchantInventory}{marchantInventory}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}}$\ast$ marchant\+Inventory}
+
+Pointer to the marchant\textquotesingle{}s inventory. \mbox{\Hypertarget{struct_game_state_acc0b64212bc67a1e415d25c147961df5}\label{struct_game_state_acc0b64212bc67a1e415d25c147961df5}} 
+\index{GameState@{GameState}!money@{money}}
+\index{money@{money}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{money}{money}}
+{\footnotesize\ttfamily int money}
+
+Money of the player. \mbox{\Hypertarget{struct_game_state_a62c6e41c69b2beb6d39dcae6b3b96df0}\label{struct_game_state_a62c6e41c69b2beb6d39dcae6b3b96df0}} 
+\index{GameState@{GameState}!nextSceneIndex@{nextSceneIndex}}
+\index{nextSceneIndex@{nextSceneIndex}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{nextSceneIndex}{nextSceneIndex}}
+{\footnotesize\ttfamily int next\+Scene\+Index}
+
+Index of the next scene. \mbox{\Hypertarget{struct_game_state_a4c51740b74fdd89a23f9bf668ed07c9f}\label{struct_game_state_a4c51740b74fdd89a23f9bf668ed07c9f}} 
+\index{GameState@{GameState}!pauseMenu@{pauseMenu}}
+\index{pauseMenu@{pauseMenu}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{pauseMenu}{pauseMenu}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct___menu}{Menu}}$\ast$ pause\+Menu}
+
+Pointer to the pause menu. \mbox{\Hypertarget{struct_game_state_a187ba493bb2ea51fa5a4226e11d3c90e}\label{struct_game_state_a187ba493bb2ea51fa5a4226e11d3c90e}} 
+\index{GameState@{GameState}!playerHealth@{playerHealth}}
+\index{playerHealth@{playerHealth}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{playerHealth}{playerHealth}}
+{\footnotesize\ttfamily float player\+Health}
+
+Health of the player. \mbox{\Hypertarget{struct_game_state_aa7b2f9aabe9788ec2c5202408aa751ae}\label{struct_game_state_aa7b2f9aabe9788ec2c5202408aa751ae}} 
+\index{GameState@{GameState}!playerIsAttacking@{playerIsAttacking}}
+\index{playerIsAttacking@{playerIsAttacking}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{playerIsAttacking}{playerIsAttacking}}
+{\footnotesize\ttfamily bool player\+Is\+Attacking}
+
+Boolean flag indicating if the player is attacking. \mbox{\Hypertarget{struct_game_state_ad791dc07789aea9da4fdaf320128af45}\label{struct_game_state_ad791dc07789aea9da4fdaf320128af45}} 
+\index{GameState@{GameState}!previousSceneIndex@{previousSceneIndex}}
+\index{previousSceneIndex@{previousSceneIndex}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{previousSceneIndex}{previousSceneIndex}}
+{\footnotesize\ttfamily int previous\+Scene\+Index}
+
+Index of the previous scene. \mbox{\Hypertarget{struct_game_state_a45f726b4d2ef2c1577480c0722bf74c2}\label{struct_game_state_a45f726b4d2ef2c1577480c0722bf74c2}} 
+\index{GameState@{GameState}!restarting@{restarting}}
+\index{restarting@{restarting}!GameState@{GameState}}
+\doxysubsubsection{\texorpdfstring{restarting}{restarting}}
+{\footnotesize\ttfamily bool restarting}
+
+Boolean flag indicating if the game is restarting. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Game\+State.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_game_state_8h}{Game\+State.\+h}}\end{DoxyCompactItemize}

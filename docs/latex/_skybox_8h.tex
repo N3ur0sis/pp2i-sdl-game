@@ -1,0 +1,135 @@
+\hypertarget{_skybox_8h}{}\doxysection{include/\+Skybox.h File Reference}
+\label{_skybox_8h}\index{include/Skybox.h@{include/Skybox.h}}
+
+
+Header file for the skybox component.  
+
+
+{\ttfamily \#include $<$Shader.\+h$>$}\newline
+{\ttfamily \#include $<$Textures.\+h$>$}\newline
+{\ttfamily \#include $<$cglm/cglm.\+h$>$}\newline
+{\ttfamily \#include $<$Camera.\+h$>$}\newline
+Include dependency graph for Skybox.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_skybox_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_skybox_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___skybox}{\+\_\+\+Skybox}}
+\begin{DoxyCompactList}\small\item\em Struct representing a skybox. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct___skybox}{\+\_\+\+Skybox}} \mbox{\hyperlink{_skybox_8h_a64f80fadb2002a97d914b02b1031e26b}{Skybox}}
+\begin{DoxyCompactList}\small\item\em Struct representing a skybox. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_skybox_8h_a64f80fadb2002a97d914b02b1031e26b}{Skybox}} $\ast$ \mbox{\hyperlink{_skybox_8h_aaf8b9bd7f38dfc5b057f4612dc065458}{Skybox\+Create}} (void)
+\begin{DoxyCompactList}\small\item\em Function to create a skybox. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_skybox_8h_a64f80fadb2002a97d914b02b1031e26b}{Skybox}} $\ast$ \mbox{\hyperlink{_skybox_8h_a3c14bf564df6872ed8c1883cb2fef16d}{Night\+Skybox\+Create}} (void)
+\begin{DoxyCompactList}\small\item\em Function to create a night skybox. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_skybox_8h_a3b2e12a4869e0e4145a652b64f7dc099}{Skybox\+Draw}} (\mbox{\hyperlink{_skybox_8h_a64f80fadb2002a97d914b02b1031e26b}{Skybox}} $\ast$skybox, \mbox{\hyperlink{struct_camera}{Camera}} $\ast$camera)
+\begin{DoxyCompactList}\small\item\em Function to draw the skybox. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_skybox_8h_ac67883f1a9eb024fff38a8087c39435c}{Skybox\+Delete}} (\mbox{\hyperlink{_skybox_8h_a64f80fadb2002a97d914b02b1031e26b}{Skybox}} $\ast$skybox)
+\begin{DoxyCompactList}\small\item\em Function to delete the skybox. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the skybox component. 
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_skybox_8h_a64f80fadb2002a97d914b02b1031e26b}\label{_skybox_8h_a64f80fadb2002a97d914b02b1031e26b}} 
+\index{Skybox.h@{Skybox.h}!Skybox@{Skybox}}
+\index{Skybox@{Skybox}!Skybox.h@{Skybox.h}}
+\doxysubsubsection{\texorpdfstring{Skybox}{Skybox}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct___skybox}{\+\_\+\+Skybox}} \mbox{\hyperlink{_skybox_8h_a64f80fadb2002a97d914b02b1031e26b}{Skybox}}}
+
+
+
+Struct representing a skybox. 
+
+This struct represents a skybox. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_skybox_8h_a3c14bf564df6872ed8c1883cb2fef16d}\label{_skybox_8h_a3c14bf564df6872ed8c1883cb2fef16d}} 
+\index{Skybox.h@{Skybox.h}!NightSkyboxCreate@{NightSkyboxCreate}}
+\index{NightSkyboxCreate@{NightSkyboxCreate}!Skybox.h@{Skybox.h}}
+\doxysubsubsection{\texorpdfstring{NightSkyboxCreate()}{NightSkyboxCreate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_skybox_8h_a64f80fadb2002a97d914b02b1031e26b}{Skybox}}$\ast$ Night\+Skybox\+Create (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function to create a night skybox. 
+
+This function creates a night skybox.
+
+\begin{DoxyReturn}{Returns}
+Pointer to the skybox. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_skybox_8h_aaf8b9bd7f38dfc5b057f4612dc065458}\label{_skybox_8h_aaf8b9bd7f38dfc5b057f4612dc065458}} 
+\index{Skybox.h@{Skybox.h}!SkyboxCreate@{SkyboxCreate}}
+\index{SkyboxCreate@{SkyboxCreate}!Skybox.h@{Skybox.h}}
+\doxysubsubsection{\texorpdfstring{SkyboxCreate()}{SkyboxCreate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_skybox_8h_a64f80fadb2002a97d914b02b1031e26b}{Skybox}}$\ast$ Skybox\+Create (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Function to create a skybox. 
+
+This function creates a skybox.
+
+\begin{DoxyReturn}{Returns}
+Pointer to the skybox. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_skybox_8h_ac67883f1a9eb024fff38a8087c39435c}\label{_skybox_8h_ac67883f1a9eb024fff38a8087c39435c}} 
+\index{Skybox.h@{Skybox.h}!SkyboxDelete@{SkyboxDelete}}
+\index{SkyboxDelete@{SkyboxDelete}!Skybox.h@{Skybox.h}}
+\doxysubsubsection{\texorpdfstring{SkyboxDelete()}{SkyboxDelete()}}
+{\footnotesize\ttfamily void Skybox\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_skybox_8h_a64f80fadb2002a97d914b02b1031e26b}{Skybox}} $\ast$}]{skybox }\end{DoxyParamCaption})}
+
+
+
+Function to delete the skybox. 
+
+This function deletes the skybox.
+
+
+\begin{DoxyParams}{Parameters}
+{\em skybox} & Pointer to the skybox. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_skybox_8h_a3b2e12a4869e0e4145a652b64f7dc099}\label{_skybox_8h_a3b2e12a4869e0e4145a652b64f7dc099}} 
+\index{Skybox.h@{Skybox.h}!SkyboxDraw@{SkyboxDraw}}
+\index{SkyboxDraw@{SkyboxDraw}!Skybox.h@{Skybox.h}}
+\doxysubsubsection{\texorpdfstring{SkyboxDraw()}{SkyboxDraw()}}
+{\footnotesize\ttfamily void Skybox\+Draw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_skybox_8h_a64f80fadb2002a97d914b02b1031e26b}{Skybox}} $\ast$}]{skybox,  }\item[{\mbox{\hyperlink{struct_camera}{Camera}} $\ast$}]{camera }\end{DoxyParamCaption})}
+
+
+
+Function to draw the skybox. 
+
+This function draws the skybox.
+
+
+\begin{DoxyParams}{Parameters}
+{\em skybox} & Pointer to the skybox. \\
+\hline
+{\em camera} & Pointer to the camera. \\
+\hline
+\end{DoxyParams}

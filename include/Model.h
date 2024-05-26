@@ -1,3 +1,8 @@
+/**
+ * @file Model.h
+ * @brief Header file for the model component.
+*/
+
 #pragma once
 #include <SDL2/SDL.h>
 #include <Mesh.h>
@@ -6,49 +11,52 @@
 #include <Textures.h>
 #include <Algebra.h>
 
-
-
+/**
+ * @brief Struct representing a node.
+*/
 typedef struct _Node {
-    char name[256];
-    struct _Node* children[MAX_BONES];
-    vec3* pos_keys;
-    versor* rot_keys;
-    vec3* sca_keys;
-    float* pos_key_times;
-    float* rot_key_times;
-    float* sca_key_times;
-    size_t pos_keys_count;
-    size_t rot_keys_count;
-    size_t sca_keys_count;
-    size_t child_count;
-    int bone_idx;
+    char name[256];                     /**< Name of the node */
+    struct _Node* children[MAX_BONES];  /**< Array of children nodes */
+    vec3* pos_keys;                     /**< Array of position keys */
+    versor* rot_keys;                   /**< Array of rotation keys */
+    vec3* sca_keys;                     /**< Array of scale keys */
+    float* pos_key_times;               /**< Array of position key times */
+    float* rot_key_times;               /**< Array of rotation key times */
+    float* sca_key_times;               /**< Array of scale key times */
+    size_t pos_keys_count;              /**< Number of position keys */
+    size_t rot_keys_count;              /**< Number of rotation keys */
+    size_t sca_keys_count;              /**< Number of scale keys */
+    size_t child_count;                 /**< Number of children nodes */
+    int bone_idx;                       /**< Index of the bone */
 } Node;
 
 
-/* A Model class to represent a 3D object in the scene */
+/**
+ * @brief A Model class to represent a 3D object in the scene 
+*/
 typedef struct _Model{
-    Mesh*    meshes;        /* Arrays of meshes forming the model */
-    Texture* materials;     /* Arrays of materials used by meshes */
-    size_t   meshCount;     /* Number of meshes within the model  */
-    size_t   matCount;      /* Nmmber of materials in the model   */
-    char*    directory;     /* Path to the folder of the model    */
-    vec3     position;      /* Position of the model in the scene */
-    vec3     rotation;      /* Rotation of the model in the scene */
-    vec3     scale;         /* Scale of the model in the scene    */
-    vec3     center;
-    mat4     modelMatrix;
-    mat4 bones[MAX_BONES];
-    char bone_names[MAX_BONES][256];
-    size_t bone_count;
-    bool isAnimated;
-    bool isRenderable;
-    bool isBusy;
+    Mesh*    meshes;        /**< Arrays of meshes forming the model */
+    Texture* materials;     /**< Arrays of materials used by meshes */
+    size_t   meshCount;     /**< Number of meshes within the model  */
+    size_t   matCount;      /**< Nmmber of materials in the model   */
+    char*    directory;     /**< Path to the folder of the model    */
+    vec3     position;      /**< Position of the model in the scene */
+    vec3     rotation;      /**< Rotation of the model in the scene */
+    vec3     scale;         /**< Scale of the model in the scene    */
+    vec3     center;        /**< Center of the volume of the model  */
+    mat4     modelMatrix;   /**< Model Matrix of the model          */
+    mat4 bones[MAX_BONES];  /**< Array of bones matrices            */
+    char bone_names[MAX_BONES][256];    /**< Array of bone names */
+    size_t bone_count;      /**< Number of bones in the model        */
+    bool isAnimated;        /**< Boolean flag indicating if the model is animated */
+    bool isRenderable;      /**< Boolean flag indicating if the model is renderable */
+    bool isBusy;            /**< Boolean flag indicating if the model is busy */
 } Model;
 
 
 
 /**
- * Import a model from a file using assimp library.
+ * @brief Import a model from a file using assimp library.
  * Flags for importation can be configured.  
  * 
  * @param path Relative path of the model from the executable file
@@ -58,7 +66,7 @@ typedef struct _Model{
 const struct aiScene* ModelLoad(char* path);
 
 /**
- * Organize the assimp model data format to a format usable by OpenGL.
+ * @brief Organize the assimp model data format to a format usable by OpenGL.
  * Calls the ModelLoad function to load the data from the file, calls MeshCreate
  * to convert each Mesh data and load them to GL buffers and process every material found
  * 
@@ -69,7 +77,7 @@ const struct aiScene* ModelLoad(char* path);
 void ModelCreate(Model* model, char* path);
 
 /**
- * Render the Model with DrawElement using VAO and EBO. 
+ * @brief Render the Model with DrawElement using VAO and EBO. 
  * Calculate a Model Matrix and link it to the shader.
  * 
  * @param model A model the we want to draw.
@@ -80,7 +88,7 @@ void ModelCreate(Model* model, char* path);
 void ModelDraw(Model* model, Shader* shader, Camera* camera, mat4 customModelMatrix);
 
 /**
- * Auxiliar function of the rendering process. It calculates based on a positon
+ * @brief Auxiliar function of the rendering process. It calculates based on a positon
  * rotation and scale vector a transformation matrix to "move" our model vefore rendering.
  * 
  * @param position The target position of the model
@@ -92,12 +100,33 @@ void ModelDraw(Model* model, Shader* shader, Camera* camera, mat4 customModelMat
 */
 void ModelMatrixCalculate(vec3 position,vec3 rotation, vec3 scale , Camera* camera, Shader* sahder, mat4 modelMatrix);
 
-
+/**
+ * @brief Free the memory allocated for the model object.
+ * 
+ * @param model A model object to be freed.
+*/
 void ModelFree(Model* model);
 
-
+/**
+ * @brief Function to animate the model.
+ * 
+ * This function animates the model.
+ * 
+ * @param node Pointer to the node.
+ * @param anim_time Time of the animation.
+ * @param parent_mat Parent matrix.
+ * @param bones Array of bones.
+ * @param bone_anim_mats Array of bone animation matrices.
+*/
 void ModelAnimate(Node* node, float anim_time, mat4 parent_mat, mat4* bones,mat4* bone_anim_mats);
 
 void ModelDrawAttached(Model* model, Shader* shader, Camera* camera);
 
+/**
+ * @brief Function to compute the center of volume of the model.
+ * 
+ * This function computes the center of volume of the model.
+ * 
+ * @param model Pointer to the model.
+*/
 void compute_center_of_volume(Model* model);

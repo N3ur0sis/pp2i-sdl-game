@@ -24,7 +24,8 @@ SceneManager* SceneManagerInit() {
     manager->gameState.pauseMenu = NULL;
     manager->gameState.restarting = false;
     manager->gameState.mainMenuOpen = true;
-    manager->gameState.money = 10;
+    manager->gameState.money = 1000;
+    manager->gameState.fullscreen = false;
     
     return manager;
 }

@@ -1,0 +1,204 @@
+\hypertarget{_objects_8h}{}\doxysection{include/\+Objects.h File Reference}
+\label{_objects_8h}\index{include/Objects.h@{include/Objects.h}}
+
+
+Header file for the objects component.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for Objects.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_objects_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_objects_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___object}{\+\_\+\+Object}}
+\begin{DoxyCompactList}\small\item\em Struct representing an object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_objects_8h_a7f8bbcda919b65ce67f92fba08e0212f}\label{_objects_8h_a7f8bbcda919b65ce67f92fba08e0212f}} 
+typedef struct \mbox{\hyperlink{struct___object}{\+\_\+\+Object}} \mbox{\hyperlink{_objects_8h_a7f8bbcda919b65ce67f92fba08e0212f}{Object}}
+\begin{DoxyCompactList}\small\item\em Struct representing an object. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_objects_8h_a7f8bbcda919b65ce67f92fba08e0212f}{Object}} $\ast$ \mbox{\hyperlink{_objects_8h_ac716bb5a4091fc833a0b34f48d4cced9}{Object\+\_\+create}} (char $\ast$name, char $\ast$description, int id)
+\begin{DoxyCompactList}\small\item\em Function to create an object. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_objects_8h_a7f8bbcda919b65ce67f92fba08e0212f}{Object}} $\ast$ \mbox{\hyperlink{_objects_8h_ac688d85012cbd1ce3b9eaddeee03947a}{Object\+\_\+create\+From\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Function to create an object from an ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_objects_8h_a1a3e1a119dc6bcb030996b5b7dda97c2}{print\+Object}} (int id, int nb)
+\begin{DoxyCompactList}\small\item\em Function to print an object. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{_objects_8h_acfb7fb36de11034b92567c6ae9f84d9c}{check\+Id\+Object}} (int id)
+\begin{DoxyCompactList}\small\item\em Function to get the path of an object based on its ID. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{_objects_8h_a5384620c9797000f78bf26486415066b}{name\+From\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Function to get the name of an object based on its ID. \end{DoxyCompactList}\item 
+char $\ast$ \mbox{\hyperlink{_objects_8h_a6d5105da1c54f6485b5e3bc270fa639b}{description\+From\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Function to get the description of an object based on its ID. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_objects_8h_af24d9567b0c3e9d0f1db04ad10ec2529}{cost\+From\+Id}} (int id)
+\begin{DoxyCompactList}\small\item\em Function to get the cost of an object based on its ID. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the objects component. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_objects_8h_acfb7fb36de11034b92567c6ae9f84d9c}\label{_objects_8h_acfb7fb36de11034b92567c6ae9f84d9c}} 
+\index{Objects.h@{Objects.h}!checkIdObject@{checkIdObject}}
+\index{checkIdObject@{checkIdObject}!Objects.h@{Objects.h}}
+\doxysubsubsection{\texorpdfstring{checkIdObject()}{checkIdObject()}}
+{\footnotesize\ttfamily char$\ast$ check\+Id\+Object (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Function to get the path of an object based on its ID. 
+
+This function gets the path of an object based on its ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & ID of the object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Path of the object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_objects_8h_af24d9567b0c3e9d0f1db04ad10ec2529}\label{_objects_8h_af24d9567b0c3e9d0f1db04ad10ec2529}} 
+\index{Objects.h@{Objects.h}!costFromId@{costFromId}}
+\index{costFromId@{costFromId}!Objects.h@{Objects.h}}
+\doxysubsubsection{\texorpdfstring{costFromId()}{costFromId()}}
+{\footnotesize\ttfamily int cost\+From\+Id (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Function to get the cost of an object based on its ID. 
+
+This function gets the cost of an object based on its ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & ID of the object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Cost of the object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_objects_8h_a6d5105da1c54f6485b5e3bc270fa639b}\label{_objects_8h_a6d5105da1c54f6485b5e3bc270fa639b}} 
+\index{Objects.h@{Objects.h}!descriptionFromId@{descriptionFromId}}
+\index{descriptionFromId@{descriptionFromId}!Objects.h@{Objects.h}}
+\doxysubsubsection{\texorpdfstring{descriptionFromId()}{descriptionFromId()}}
+{\footnotesize\ttfamily char$\ast$ description\+From\+Id (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Function to get the description of an object based on its ID. 
+
+This function gets the description of an object based on its ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & ID of the object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Description of the object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_objects_8h_a5384620c9797000f78bf26486415066b}\label{_objects_8h_a5384620c9797000f78bf26486415066b}} 
+\index{Objects.h@{Objects.h}!nameFromId@{nameFromId}}
+\index{nameFromId@{nameFromId}!Objects.h@{Objects.h}}
+\doxysubsubsection{\texorpdfstring{nameFromId()}{nameFromId()}}
+{\footnotesize\ttfamily char$\ast$ name\+From\+Id (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Function to get the name of an object based on its ID. 
+
+This function gets the name of an object based on its ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & ID of the object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Name of the object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_objects_8h_ac716bb5a4091fc833a0b34f48d4cced9}\label{_objects_8h_ac716bb5a4091fc833a0b34f48d4cced9}} 
+\index{Objects.h@{Objects.h}!Object\_create@{Object\_create}}
+\index{Object\_create@{Object\_create}!Objects.h@{Objects.h}}
+\doxysubsubsection{\texorpdfstring{Object\_create()}{Object\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_objects_8h_a7f8bbcda919b65ce67f92fba08e0212f}{Object}}$\ast$ Object\+\_\+create (\begin{DoxyParamCaption}\item[{char $\ast$}]{name,  }\item[{char $\ast$}]{description,  }\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Function to create an object. 
+
+This function creates an object.
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & Name of the object. \\
+\hline
+{\em description} & Description of the object. \\
+\hline
+{\em id} & ID of the object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_objects_8h_ac688d85012cbd1ce3b9eaddeee03947a}\label{_objects_8h_ac688d85012cbd1ce3b9eaddeee03947a}} 
+\index{Objects.h@{Objects.h}!Object\_createFromId@{Object\_createFromId}}
+\index{Object\_createFromId@{Object\_createFromId}!Objects.h@{Objects.h}}
+\doxysubsubsection{\texorpdfstring{Object\_createFromId()}{Object\_createFromId()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_objects_8h_a7f8bbcda919b65ce67f92fba08e0212f}{Object}}$\ast$ Object\+\_\+create\+From\+Id (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Function to create an object from an ID. 
+
+This function creates an object from an ID.
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & ID of the object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_objects_8h_a1a3e1a119dc6bcb030996b5b7dda97c2}\label{_objects_8h_a1a3e1a119dc6bcb030996b5b7dda97c2}} 
+\index{Objects.h@{Objects.h}!printObject@{printObject}}
+\index{printObject@{printObject}!Objects.h@{Objects.h}}
+\doxysubsubsection{\texorpdfstring{printObject()}{printObject()}}
+{\footnotesize\ttfamily void print\+Object (\begin{DoxyParamCaption}\item[{int}]{id,  }\item[{int}]{nb }\end{DoxyParamCaption})}
+
+
+
+Function to print an object. 
+
+This function prints an object.
+
+
+\begin{DoxyParams}{Parameters}
+{\em object} & Pointer to the object. \\
+\hline
+\end{DoxyParams}

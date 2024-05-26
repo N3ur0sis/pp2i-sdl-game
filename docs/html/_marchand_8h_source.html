@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_marchand_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,35 +59,51 @@ $(document).ready(function(){initNavTree('_marchand_8h_source.html',''); initRes
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Marchand.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;Scene.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;Player.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;GameState.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;cglm/cglm.h&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;Enemy.h&quot;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;Renderer.h&gt;</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<a class="code" href="struct___entity.html">Entity</a>* createMarchand(<a class="code" href="struct___scene.html">Scene</a>* scene, vec3 position, vec3 scale, vec3 rotation);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keywordtype">void</span> talkToMarchandStart(<span class="keywordtype">float</span> window_width, <span class="keywordtype">float</span> window_height, GLuint shader, <span class="keywordtype">int</span>* click_counter, <span class="keywordtype">bool</span>* is_clicking, <span class="keywordtype">bool</span>* isBusy);</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keywordtype">void</span> talkToMarchandMain(<a class="code" href="struct___inventory.html">Inventory</a>* inventory, <a class="code" href="struct___inventory.html">Inventory</a>* marchantInventory, <span class="keywordtype">float</span> window_width, <span class="keywordtype">float</span> window_height, GLuint shader, <span class="keywordtype">int</span>* click_counter, <span class="keywordtype">bool</span>* is_clicking, <span class="keywordtype">bool</span>* isBusy);</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">void</span> tradingWithMarchand(<a class="code" href="struct___inventory.html">Inventory</a>* inventory, <a class="code" href="struct___inventory.html">Inventory</a>* marchantInventory, <span class="keywordtype">float</span> window_width, <span class="keywordtype">float</span> window_height, GLuint shader,<span class="keywordtype">int</span>* click_counter, <span class="keywordtype">bool</span>* is_clicking, <span class="keywordtype">bool</span>* isBusy);</div>
-<div class="ttc" id="astruct___entity_html"><div class="ttname"><a href="struct___entity.html">_Entity</a></div><div class="ttdef"><b>Definition:</b> Entity.h:7</div></div>
-<div class="ttc" id="astruct___inventory_html"><div class="ttname"><a href="struct___inventory.html">_Inventory</a></div><div class="ttdef"><b>Definition:</b> Inventory.h:8</div></div>
-<div class="ttc" id="astruct___scene_html"><div class="ttname"><a href="struct___scene.html">_Scene</a></div><div class="ttdef"><b>Definition:</b> Scene.h:16</div></div>
+<a href="_marchand_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_scene_8h.html">Scene.h</a>&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_player_8h.html">Player.h</a>&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_game_state_8h.html">GameState.h</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;cglm/cglm.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_enemy_8h.html">Enemy.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_renderer_8h.html">Renderer.h</a>&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<a class="code" href="struct___entity.html">Entity</a>* <a class="code" href="_marchand_8h.html#ae3e1f13546c803ed83e65d9c7ddd9d59">createMarchand</a>(<a class="code" href="struct___scene.html">Scene</a>* scene, vec3 position, vec3 scale, vec3 rotation);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_marchand_8h.html#a3ffdb581c8be4706d7e3b5bbd446823e">talkToMarchandStart</a>(<span class="keywordtype">float</span> window_width, <span class="keywordtype">float</span> window_height, GLuint shader, <span class="keywordtype">int</span>* click_counter, <span class="keywordtype">bool</span>* is_clicking, <span class="keywordtype">bool</span>* isBusy);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_marchand_8h.html#ae1b81d5e433107a4ef2edd3fc493a016">talkToMarchandMain</a>(<a class="code" href="struct___inventory.html">Inventory</a>* inventory, <a class="code" href="struct___inventory.html">Inventory</a>* marchantInventory, <span class="keywordtype">float</span> window_width, <span class="keywordtype">float</span> window_height, GLuint shader, <span class="keywordtype">int</span>* click_counter, <span class="keywordtype">bool</span>* is_clicking, <span class="keywordtype">bool</span>* isBusy, <span class="keywordtype">int</span>* money);</div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_marchand_8h.html#a0884c751b40dac4ca9e40a63e97eaa1f">tradingWithMarchand</a>(<a class="code" href="struct___inventory.html">Inventory</a>* inventory, <a class="code" href="struct___inventory.html">Inventory</a>* marchantInventory, <span class="keywordtype">float</span> window_width, <span class="keywordtype">float</span> window_height, GLuint shader,<span class="keywordtype">int</span>* click_counter, <span class="keywordtype">bool</span>* is_clicking, <span class="keywordtype">bool</span>* isBusy, <span class="keywordtype">int</span>* money);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="_marchand_8h.html#ac924b28419cf27cd1ec7f4d0daa45244">checkWantToTrade</a>(<span class="keywordtype">int</span> x, <span class="keywordtype">int</span> y, <span class="keywordtype">float</span> window_width, <span class="keywordtype">float</span> window_height);</div>
+<div class="ttc" id="a_enemy_8h_html"><div class="ttname"><a href="_enemy_8h.html">Enemy.h</a></div><div class="ttdoc">Header file for the enemy component.</div></div>
+<div class="ttc" id="a_game_state_8h_html"><div class="ttname"><a href="_game_state_8h.html">GameState.h</a></div><div class="ttdoc">Header file for the game state.</div></div>
+<div class="ttc" id="a_marchand_8h_html_a0884c751b40dac4ca9e40a63e97eaa1f"><div class="ttname"><a href="_marchand_8h.html#a0884c751b40dac4ca9e40a63e97eaa1f">tradingWithMarchand</a></div><div class="ttdeci">void tradingWithMarchand(Inventory *inventory, Inventory *marchantInventory, float window_width, float window_height, GLuint shader, int *click_counter, bool *is_clicking, bool *isBusy, int *money)</div><div class="ttdoc">Function to trade with the marchand.</div><div class="ttdef"><b>Definition:</b> Marchand.c:142</div></div>
+<div class="ttc" id="a_marchand_8h_html_a3ffdb581c8be4706d7e3b5bbd446823e"><div class="ttname"><a href="_marchand_8h.html#a3ffdb581c8be4706d7e3b5bbd446823e">talkToMarchandStart</a></div><div class="ttdeci">void talkToMarchandStart(float window_width, float window_height, GLuint shader, int *click_counter, bool *is_clicking, bool *isBusy)</div><div class="ttdoc">Function when the player is talking to the marchand.</div><div class="ttdef"><b>Definition:</b> Marchand.c:39</div></div>
+<div class="ttc" id="a_marchand_8h_html_ac924b28419cf27cd1ec7f4d0daa45244"><div class="ttname"><a href="_marchand_8h.html#ac924b28419cf27cd1ec7f4d0daa45244">checkWantToTrade</a></div><div class="ttdeci">bool checkWantToTrade(int x, int y, float window_width, float window_height)</div><div class="ttdoc">Function to check if the player wants to trade.</div><div class="ttdef"><b>Definition:</b> Marchand.c:225</div></div>
+<div class="ttc" id="a_marchand_8h_html_ae1b81d5e433107a4ef2edd3fc493a016"><div class="ttname"><a href="_marchand_8h.html#ae1b81d5e433107a4ef2edd3fc493a016">talkToMarchandMain</a></div><div class="ttdeci">void talkToMarchandMain(Inventory *inventory, Inventory *marchantInventory, float window_width, float window_height, GLuint shader, int *click_counter, bool *is_clicking, bool *isBusy, int *money)</div><div class="ttdoc">Function when the player is talking to the marchand.</div><div class="ttdef"><b>Definition:</b> Marchand.c:92</div></div>
+<div class="ttc" id="a_marchand_8h_html_ae3e1f13546c803ed83e65d9c7ddd9d59"><div class="ttname"><a href="_marchand_8h.html#ae3e1f13546c803ed83e65d9c7ddd9d59">createMarchand</a></div><div class="ttdeci">Entity * createMarchand(Scene *scene, vec3 position, vec3 scale, vec3 rotation)</div><div class="ttdoc">Function to create a marchand.</div><div class="ttdef"><b>Definition:</b> Marchand.c:10</div></div>
+<div class="ttc" id="a_player_8h_html"><div class="ttname"><a href="_player_8h.html">Player.h</a></div><div class="ttdoc">Header file for the player component.</div></div>
+<div class="ttc" id="a_renderer_8h_html"><div class="ttname"><a href="_renderer_8h.html">Renderer.h</a></div><div class="ttdoc">Header file for the renderer component.</div></div>
+<div class="ttc" id="a_scene_8h_html"><div class="ttname"><a href="_scene_8h.html">Scene.h</a></div><div class="ttdoc">Header file for the scene component.</div></div>
+<div class="ttc" id="astruct___entity_html"><div class="ttname"><a href="struct___entity.html">_Entity</a></div><div class="ttdoc">Struct representing an entity.</div><div class="ttdef"><b>Definition:</b> Entity.h:18</div></div>
+<div class="ttc" id="astruct___inventory_html"><div class="ttname"><a href="struct___inventory.html">_Inventory</a></div><div class="ttdoc">Struct representing an inventory.</div><div class="ttdef"><b>Definition:</b> Inventory.h:18</div></div>
+<div class="ttc" id="astruct___scene_html"><div class="ttname"><a href="struct___scene.html">_Scene</a></div><div class="ttdoc">Struct representing a scene.</div><div class="ttdef"><b>Definition:</b> Scene.h:27</div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>Marchand.h</b></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

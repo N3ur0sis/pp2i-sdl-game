@@ -1,3 +1,8 @@
+/**
+ * @file Application.c
+ * @brief Entry point of the program.
+*/
+
 #include <Engine.h>
 #include <System.h>
 
@@ -28,7 +33,7 @@ int main(void){
     INIT_SCENE(mainScene, sceneManager, startMainScene, updateMainScene, unloadStartScene);
 
     /* Initialize Menu */
-    Menu* menu = MenuPauseInit();
+    Menu* menu = MenuPauseInit(game);
     sceneManager->gameState.pauseMenu = menu;
 
     /* Set Default Current Scene */
@@ -36,7 +41,8 @@ int main(void){
     SceneManagerSetCurrentScene(sceneManager, sceneManager->gameState.currentSceneIndex);
 
     /* Set Default Camera Position */
-    sceneManager->scenes[sceneManager->currentSceneIndex]->camera->Yaw = 180.0f;
+    sceneManager->scenes[sceneManager->currentSceneIndex]->camera->Yaw = 130.0f;
+    sceneManager->scenes[sceneManager->currentSceneIndex]->camera->Pitch = -15.0f;
     SceneManagerUpdateCurrentScene(sceneManager);
     physicsSystem(sceneManager->scenes[sceneManager->currentSceneIndex]);
 
@@ -57,8 +63,8 @@ int main(void){
         
         /* Game Logic */
         if (sceneManager->gameState.mainMenuOpen) {
-            RenderText("WELCOME TO THE GAME", (SDL_Color){0,0,0,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 9 * (&sceneManager->gameState)->g_WindowHeight / 10, 50, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
-            RenderText("PRESS ENTER TO START", (SDL_Color){0,0,0,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 5 * (&sceneManager->gameState)->g_WindowHeight / 10, 40, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
+            RenderText("WELCOME TO THE GAME", (SDL_Color){255,255,255,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 9 * (&sceneManager->gameState)->g_WindowHeight / 10, 50, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
+            RenderText("PRESS ENTER TO START", (SDL_Color){255,255,255,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 5 * (&sceneManager->gameState)->g_WindowHeight / 10, 40, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
         } else {
             if (game->isPaused) {
                     RenderText("MENU", (SDL_Color){0,0,0,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 9 * (&sceneManager->gameState)->g_WindowHeight / 10, 50, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);

@@ -1,0 +1,200 @@
+\hypertarget{_enemy_8h}{}\doxysection{include/\+Enemy.h File Reference}
+\label{_enemy_8h}\index{include/Enemy.h@{include/Enemy.h}}
+
+
+Header file for the enemy component.  
+
+
+{\ttfamily \#include $<$Model.\+h$>$}\newline
+{\ttfamily \#include $<$Animator.\+h$>$}\newline
+{\ttfamily \#include $<$Entity.\+h$>$}\newline
+{\ttfamily \#include $<$Scene.\+h$>$}\newline
+Include dependency graph for Enemy.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_enemy_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_enemy_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___enemy_component}{\+\_\+\+Enemy\+Component}}
+\begin{DoxyCompactList}\small\item\em Struct representing an enemy component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct___enemy_component}{\+\_\+\+Enemy\+Component}} \mbox{\hyperlink{_enemy_8h_a52beb855a39301787fb16dae67362691}{Enemy\+Component}}
+\begin{DoxyCompactList}\small\item\em Struct representing an enemy component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$ \mbox{\hyperlink{_enemy_8h_a8335475d9ba17b935313f61bc2eeb9d4}{create\+\_\+golem}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, float x, float y, float z, float scale)
+\begin{DoxyCompactList}\small\item\em Function to create a golem enemy. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$ \mbox{\hyperlink{_enemy_8h_a1ae9387a33d38641b5a12df1ebedb8ad}{create\+\_\+golem\+Purple}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, float x, float y, float z, float scale)
+\begin{DoxyCompactList}\small\item\em Function to create a purple golem enemy. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_enemy_8h_a2de3683b7ea85c8bcaf4d4dec03cffdf}{golem\+Logic}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$golem, \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$player)
+\begin{DoxyCompactList}\small\item\em Function to handle the logic of the golem enemy. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_enemy_8h_a3060d418d8161d72f78cdd5c438a07b9}{update\+Enemy}} (\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$enemy, \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$player, \mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Function to update the enemy. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_enemy_8h_a169711f58adbc7328de0118f1f6550e8}{initialize\+Enemy\+Component}} (\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$enemy, float detection\+Range, float attack\+Range, float movement\+Speed, float attack\+Damage)
+\begin{DoxyCompactList}\small\item\em Function to initialize the enemy component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the enemy component. 
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_enemy_8h_a52beb855a39301787fb16dae67362691}\label{_enemy_8h_a52beb855a39301787fb16dae67362691}} 
+\index{Enemy.h@{Enemy.h}!EnemyComponent@{EnemyComponent}}
+\index{EnemyComponent@{EnemyComponent}!Enemy.h@{Enemy.h}}
+\doxysubsubsection{\texorpdfstring{EnemyComponent}{EnemyComponent}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct___enemy_component}{\+\_\+\+Enemy\+Component}} \mbox{\hyperlink{_enemy_8h_a52beb855a39301787fb16dae67362691}{Enemy\+Component}}}
+
+
+
+Struct representing an enemy component. 
+
+This struct represents an enemy component. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_enemy_8h_a8335475d9ba17b935313f61bc2eeb9d4}\label{_enemy_8h_a8335475d9ba17b935313f61bc2eeb9d4}} 
+\index{Enemy.h@{Enemy.h}!create\_golem@{create\_golem}}
+\index{create\_golem@{create\_golem}!Enemy.h@{Enemy.h}}
+\doxysubsubsection{\texorpdfstring{create\_golem()}{create\_golem()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}}$\ast$ create\+\_\+golem (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+
+
+Function to create a golem enemy. 
+
+This function creates a golem enemy.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em x} & X position of the golem. \\
+\hline
+{\em y} & Y position of the golem. \\
+\hline
+{\em z} & Z position of the golem. \\
+\hline
+{\em scale} & Scale of the golem. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the golem entity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_enemy_8h_a1ae9387a33d38641b5a12df1ebedb8ad}\label{_enemy_8h_a1ae9387a33d38641b5a12df1ebedb8ad}} 
+\index{Enemy.h@{Enemy.h}!create\_golemPurple@{create\_golemPurple}}
+\index{create\_golemPurple@{create\_golemPurple}!Enemy.h@{Enemy.h}}
+\doxysubsubsection{\texorpdfstring{create\_golemPurple()}{create\_golemPurple()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}}$\ast$ create\+\_\+golem\+Purple (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{float}]{x,  }\item[{float}]{y,  }\item[{float}]{z,  }\item[{float}]{scale }\end{DoxyParamCaption})}
+
+
+
+Function to create a purple golem enemy. 
+
+This function creates a purple golem enemy.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em x} & X position of the golem. \\
+\hline
+{\em y} & Y position of the golem. \\
+\hline
+{\em z} & Z position of the golem. \\
+\hline
+{\em scale} & Scale of the golem. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the golem entity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_enemy_8h_a2de3683b7ea85c8bcaf4d4dec03cffdf}\label{_enemy_8h_a2de3683b7ea85c8bcaf4d4dec03cffdf}} 
+\index{Enemy.h@{Enemy.h}!golemLogic@{golemLogic}}
+\index{golemLogic@{golemLogic}!Enemy.h@{Enemy.h}}
+\doxysubsubsection{\texorpdfstring{golemLogic()}{golemLogic()}}
+{\footnotesize\ttfamily void golem\+Logic (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{golem,  }\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{player }\end{DoxyParamCaption})}
+
+
+
+Function to handle the logic of the golem enemy. 
+
+This function handles the logic of the golem enemy.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em game\+State} & Pointer to the game state. \\
+\hline
+{\em golem} & Pointer to the golem entity. \\
+\hline
+{\em player} & Pointer to the player entity. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_enemy_8h_a169711f58adbc7328de0118f1f6550e8}\label{_enemy_8h_a169711f58adbc7328de0118f1f6550e8}} 
+\index{Enemy.h@{Enemy.h}!initializeEnemyComponent@{initializeEnemyComponent}}
+\index{initializeEnemyComponent@{initializeEnemyComponent}!Enemy.h@{Enemy.h}}
+\doxysubsubsection{\texorpdfstring{initializeEnemyComponent()}{initializeEnemyComponent()}}
+{\footnotesize\ttfamily void initialize\+Enemy\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{enemy,  }\item[{float}]{detection\+Range,  }\item[{float}]{attack\+Range,  }\item[{float}]{movement\+Speed,  }\item[{float}]{attack\+Damage }\end{DoxyParamCaption})}
+
+
+
+Function to initialize the enemy component. 
+
+This function initializes the enemy component.
+
+
+\begin{DoxyParams}{Parameters}
+{\em enemy} & Pointer to the enemy entity. \\
+\hline
+{\em detection\+Range} & Detection range of the enemy. \\
+\hline
+{\em attack\+Range} & Attack range of the enemy. \\
+\hline
+{\em movement\+Speed} & Movement speed of the enemy. \\
+\hline
+{\em attack\+Damage} & Attack damage of the enemy. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_enemy_8h_a3060d418d8161d72f78cdd5c438a07b9}\label{_enemy_8h_a3060d418d8161d72f78cdd5c438a07b9}} 
+\index{Enemy.h@{Enemy.h}!updateEnemy@{updateEnemy}}
+\index{updateEnemy@{updateEnemy}!Enemy.h@{Enemy.h}}
+\doxysubsubsection{\texorpdfstring{updateEnemy()}{updateEnemy()}}
+{\footnotesize\ttfamily void update\+Enemy (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{enemy,  }\item[{\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$}]{player,  }\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+
+
+
+Function to update the enemy. 
+
+This function updates the enemy.
+
+
+\begin{DoxyParams}{Parameters}
+{\em enemy} & Pointer to the enemy entity. \\
+\hline
+{\em player} & Pointer to the player entity. \\
+\hline
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em game\+State} & Pointer to the game state. \\
+\hline
+{\em delta\+Time} & \mbox{\hyperlink{struct_time}{Time}} since the last frame. \\
+\hline
+\end{DoxyParams}

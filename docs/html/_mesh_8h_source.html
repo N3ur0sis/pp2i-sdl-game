@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_mesh_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,62 +59,76 @@ $(document).ready(function(){initNavTree('_mesh_8h_source.html',''); initResizab
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Mesh.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;assimp/cimport.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;assimp/scene.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;assimp/postprocess.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;cglm/cglm.h&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;glad/glad.h&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define MAX_BONES 100</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#define MAX_BONE_INFLUENCE 8</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="comment">/* A Custom vertex struct we pass to OpenGL */</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="struct___vertex.html">   12</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___vertex.html">_Vertex</a> {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    vec3 Position;          <span class="comment">/* Posiiton of each vertex in the local space                   */</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    vec3 Normal;            <span class="comment">/* Normal direction of each vertex for lighting calculation     */</span></div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    vec2 TexCoords;         <span class="comment">/* 2D coordinates in the correpsonding textures for this vertex */</span></div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    GLuint BoneInfo[MAX_BONE_INFLUENCE];</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">float</span> Weights[MAX_BONE_INFLUENCE];</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;} <a class="code" href="struct___vertex.html">Vertex</a>;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160; </div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="comment">/* A Mesh class that hold data parsed from a file and converted ot OpenGL format*/</span></div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct___mesh.html">   22</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___mesh.html">_Mesh</a> {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    <a class="code" href="struct___vertex.html">Vertex</a>*       vertices;           <span class="comment">/* Arrays of vertex each contains posiiton, uvs and normals      */</span></div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>* indices;            <span class="comment">/* Arrays of indices to indicate wich vertices goes in each face */</span></div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;    <span class="keywordtype">size_t</span> vertexCount, indiceCount;  <span class="comment">/* Numbers of vertex and indices of the mesh, used to know the size of the arrays */</span></div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;    <span class="keywordtype">size_t</span> matID;                     <span class="comment">/* ID of the materials for this mesh in the arrays of materials available in the model */</span></div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;    GLuint VAO, VBO, EBO;             <span class="comment">/* GL Buffers to store vertex and indices and organise them in a VAO*/</span></div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keyword">struct </span>aiAABB aabb;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;} <a class="code" href="struct___mesh.html">Mesh</a>;  </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<span class="keywordtype">void</span> MeshCreate(<a class="code" href="struct___mesh.html">Mesh</a>* mesh, <span class="keyword">struct</span> aiMesh* aiMesh);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">void</span> MeshSetup(<a class="code" href="struct___mesh.html">Mesh</a>* mesh);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">void</span> MeshDraw(<a class="code" href="struct___mesh.html">Mesh</a>* mesh);</div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">void</span> MeshClean(<a class="code" href="struct___mesh.html">Mesh</a>* mesh);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="ttc" id="astruct___mesh_html"><div class="ttname"><a href="struct___mesh.html">_Mesh</a></div><div class="ttdef"><b>Definition:</b> Mesh.h:22</div></div>
-<div class="ttc" id="astruct___vertex_html"><div class="ttname"><a href="struct___vertex.html">_Vertex</a></div><div class="ttdef"><b>Definition:</b> Mesh.h:12</div></div>
+<a href="_mesh_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;assimp/cimport.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;assimp/scene.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;assimp/postprocess.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;cglm/cglm.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;glad/glad.h&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#define MAX_BONES 100</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#define MAX_BONE_INFLUENCE 8</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct___vertex.html">   19</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___vertex.html">_Vertex</a> {</div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="struct___vertex.html#a22f26330866eeafaa78f832abc34414e">   20</a></span>&#160;    vec3 <a class="code" href="struct___vertex.html#a22f26330866eeafaa78f832abc34414e">Position</a>;          </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="struct___vertex.html#ac1b9cfb0a6f22733d035e450c49e7427">   21</a></span>&#160;    vec3 <a class="code" href="struct___vertex.html#ac1b9cfb0a6f22733d035e450c49e7427">Normal</a>;            </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct___vertex.html#a35aeb85250a1b29926045a9014ccae85">   22</a></span>&#160;    vec2 <a class="code" href="struct___vertex.html#a35aeb85250a1b29926045a9014ccae85">TexCoords</a>;         </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="struct___vertex.html#ab545ff355ba181213ea2d89220ca00bd">   23</a></span>&#160;    GLuint <a class="code" href="struct___vertex.html#ab545ff355ba181213ea2d89220ca00bd">BoneInfo</a>[MAX_BONE_INFLUENCE];    </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="struct___vertex.html#a6c577b5ed0d5e814e024d2ef10ffe036">   24</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="struct___vertex.html#a6c577b5ed0d5e814e024d2ef10ffe036">Weights</a>[MAX_BONE_INFLUENCE];      </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="_mesh_8h.html#a4bd172f8dd0e9405b88e151f44852233">   25</a></span>&#160;} <a class="code" href="_mesh_8h.html#a4bd172f8dd0e9405b88e151f44852233">Vertex</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00031"></a><span class="lineno"><a class="line" href="struct___mesh.html">   31</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___mesh.html">_Mesh</a> {</div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="struct___mesh.html#aa184fcb106f77d0014446ed6844db369">   32</a></span>&#160;    <a class="code" href="struct___vertex.html">Vertex</a>*       <a class="code" href="struct___mesh.html#aa184fcb106f77d0014446ed6844db369">vertices</a>;           </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="struct___mesh.html#a025069ad0f0bcb1a4980c97e344afeef">   33</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span>* <a class="code" href="struct___mesh.html#a025069ad0f0bcb1a4980c97e344afeef">indices</a>;            </div>
+<div class="line"><a name="l00034"></a><span class="lineno"><a class="line" href="struct___mesh.html#a3deaf47c614fe69f7ad03dbe8d7db984">   34</a></span>&#160;    <span class="keywordtype">size_t</span> vertexCount, <a class="code" href="struct___mesh.html#a3deaf47c614fe69f7ad03dbe8d7db984">indiceCount</a>;  </div>
+<div class="line"><a name="l00035"></a><span class="lineno"><a class="line" href="struct___mesh.html#aa0992f502bbd5e7935affb3ba6b66073">   35</a></span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="struct___mesh.html#aa0992f502bbd5e7935affb3ba6b66073">matID</a>;                     </div>
+<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="struct___mesh.html#a58ec40b0f92d4d214dc0b627e8597f0c">   36</a></span>&#160;    GLuint VAO, VBO, <a class="code" href="struct___mesh.html#a58ec40b0f92d4d214dc0b627e8597f0c">EBO</a>;             </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    <span class="keyword">struct </span>aiAABB aabb;</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="_mesh_8h.html#aa0a88b11e856d3e20ae17ccd4a30cacb">   38</a></span>&#160;} <a class="code" href="_mesh_8h.html#aa0a88b11e856d3e20ae17ccd4a30cacb">Mesh</a>;  </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_mesh_8h.html#a5070fef103193b797d09f2854536d602">MeshCreate</a>(<a class="code" href="struct___mesh.html">Mesh</a>* mesh, <span class="keyword">struct</span> aiMesh* aiMesh);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_mesh_8h.html#a18582705d0a58c48de3e41aaf28a3ee9">MeshSetup</a>(<a class="code" href="struct___mesh.html">Mesh</a>* mesh);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_mesh_8h.html#aea132ffa12731a580738bb0c45eec7c9">MeshDraw</a>(<a class="code" href="struct___mesh.html">Mesh</a>* mesh);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_mesh_8h.html#a06d7d997a5b48583d487c5fcd73868ef">MeshClean</a>(<a class="code" href="struct___mesh.html">Mesh</a>* mesh);</div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="ttc" id="a_mesh_8h_html_a06d7d997a5b48583d487c5fcd73868ef"><div class="ttname"><a href="_mesh_8h.html#a06d7d997a5b48583d487c5fcd73868ef">MeshClean</a></div><div class="ttdeci">void MeshClean(Mesh *mesh)</div><div class="ttdoc">Free the memory allocated for the mesh object.</div><div class="ttdef"><b>Definition:</b> Mesh.c:103</div></div>
+<div class="ttc" id="a_mesh_8h_html_a18582705d0a58c48de3e41aaf28a3ee9"><div class="ttname"><a href="_mesh_8h.html#a18582705d0a58c48de3e41aaf28a3ee9">MeshSetup</a></div><div class="ttdeci">void MeshSetup(Mesh *mesh)</div><div class="ttdoc">Auxiliary function used to GL-ize our Mesh object. Basically generate the buffers,...</div><div class="ttdef"><b>Definition:</b> Mesh.c:54</div></div>
+<div class="ttc" id="a_mesh_8h_html_a4bd172f8dd0e9405b88e151f44852233"><div class="ttname"><a href="_mesh_8h.html#a4bd172f8dd0e9405b88e151f44852233">Vertex</a></div><div class="ttdeci">struct _Vertex Vertex</div><div class="ttdoc">A Custom vertex struct we pass to OpenGL.</div></div>
+<div class="ttc" id="a_mesh_8h_html_a5070fef103193b797d09f2854536d602"><div class="ttname"><a href="_mesh_8h.html#a5070fef103193b797d09f2854536d602">MeshCreate</a></div><div class="ttdeci">void MeshCreate(Mesh *mesh, struct aiMesh *aiMesh)</div><div class="ttdoc">A constructor for the mesh class. It copies the data from an assimp mesh format into our OpenGL-frien...</div><div class="ttdef"><b>Definition:</b> Mesh.c:3</div></div>
+<div class="ttc" id="a_mesh_8h_html_aa0a88b11e856d3e20ae17ccd4a30cacb"><div class="ttname"><a href="_mesh_8h.html#aa0a88b11e856d3e20ae17ccd4a30cacb">Mesh</a></div><div class="ttdeci">struct _Mesh Mesh</div><div class="ttdoc">A Mesh class that hold data parsed from a file and converted ot OpenGL format.</div></div>
+<div class="ttc" id="a_mesh_8h_html_aea132ffa12731a580738bb0c45eec7c9"><div class="ttname"><a href="_mesh_8h.html#aea132ffa12731a580738bb0c45eec7c9">MeshDraw</a></div><div class="ttdeci">void MeshDraw(Mesh *mesh)</div><div class="ttdoc">Render the corresponding mesh using glDrawElements and bind the proper texture associated with this m...</div><div class="ttdef"><b>Definition:</b> Mesh.c:95</div></div>
+<div class="ttc" id="astruct___mesh_html"><div class="ttname"><a href="struct___mesh.html">_Mesh</a></div><div class="ttdoc">A Mesh class that hold data parsed from a file and converted ot OpenGL format.</div><div class="ttdef"><b>Definition:</b> Mesh.h:31</div></div>
+<div class="ttc" id="astruct___mesh_html_a025069ad0f0bcb1a4980c97e344afeef"><div class="ttname"><a href="struct___mesh.html#a025069ad0f0bcb1a4980c97e344afeef">_Mesh::indices</a></div><div class="ttdeci">unsigned int * indices</div><div class="ttdef"><b>Definition:</b> Mesh.h:33</div></div>
+<div class="ttc" id="astruct___mesh_html_a3deaf47c614fe69f7ad03dbe8d7db984"><div class="ttname"><a href="struct___mesh.html#a3deaf47c614fe69f7ad03dbe8d7db984">_Mesh::indiceCount</a></div><div class="ttdeci">size_t indiceCount</div><div class="ttdef"><b>Definition:</b> Mesh.h:34</div></div>
+<div class="ttc" id="astruct___mesh_html_a58ec40b0f92d4d214dc0b627e8597f0c"><div class="ttname"><a href="struct___mesh.html#a58ec40b0f92d4d214dc0b627e8597f0c">_Mesh::EBO</a></div><div class="ttdeci">GLuint EBO</div><div class="ttdef"><b>Definition:</b> Mesh.h:36</div></div>
+<div class="ttc" id="astruct___mesh_html_aa0992f502bbd5e7935affb3ba6b66073"><div class="ttname"><a href="struct___mesh.html#aa0992f502bbd5e7935affb3ba6b66073">_Mesh::matID</a></div><div class="ttdeci">size_t matID</div><div class="ttdef"><b>Definition:</b> Mesh.h:35</div></div>
+<div class="ttc" id="astruct___mesh_html_aa184fcb106f77d0014446ed6844db369"><div class="ttname"><a href="struct___mesh.html#aa184fcb106f77d0014446ed6844db369">_Mesh::vertices</a></div><div class="ttdeci">Vertex * vertices</div><div class="ttdef"><b>Definition:</b> Mesh.h:32</div></div>
+<div class="ttc" id="astruct___vertex_html"><div class="ttname"><a href="struct___vertex.html">_Vertex</a></div><div class="ttdoc">A Custom vertex struct we pass to OpenGL.</div><div class="ttdef"><b>Definition:</b> Mesh.h:19</div></div>
+<div class="ttc" id="astruct___vertex_html_a22f26330866eeafaa78f832abc34414e"><div class="ttname"><a href="struct___vertex.html#a22f26330866eeafaa78f832abc34414e">_Vertex::Position</a></div><div class="ttdeci">vec3 Position</div><div class="ttdef"><b>Definition:</b> Mesh.h:20</div></div>
+<div class="ttc" id="astruct___vertex_html_a35aeb85250a1b29926045a9014ccae85"><div class="ttname"><a href="struct___vertex.html#a35aeb85250a1b29926045a9014ccae85">_Vertex::TexCoords</a></div><div class="ttdeci">vec2 TexCoords</div><div class="ttdef"><b>Definition:</b> Mesh.h:22</div></div>
+<div class="ttc" id="astruct___vertex_html_a6c577b5ed0d5e814e024d2ef10ffe036"><div class="ttname"><a href="struct___vertex.html#a6c577b5ed0d5e814e024d2ef10ffe036">_Vertex::Weights</a></div><div class="ttdeci">float Weights[MAX_BONE_INFLUENCE]</div><div class="ttdef"><b>Definition:</b> Mesh.h:24</div></div>
+<div class="ttc" id="astruct___vertex_html_ab545ff355ba181213ea2d89220ca00bd"><div class="ttname"><a href="struct___vertex.html#ab545ff355ba181213ea2d89220ca00bd">_Vertex::BoneInfo</a></div><div class="ttdeci">GLuint BoneInfo[MAX_BONE_INFLUENCE]</div><div class="ttdef"><b>Definition:</b> Mesh.h:23</div></div>
+<div class="ttc" id="astruct___vertex_html_ac1b9cfb0a6f22733d035e450c49e7427"><div class="ttname"><a href="struct___vertex.html#ac1b9cfb0a6f22733d035e450c49e7427">_Vertex::Normal</a></div><div class="ttdeci">vec3 Normal</div><div class="ttdef"><b>Definition:</b> Mesh.h:21</div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>Mesh.h</b></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

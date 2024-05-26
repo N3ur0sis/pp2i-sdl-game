@@ -2,7 +2,17 @@
 \label{struct_node}\index{Node@{Node}}
 
 
-Collaboration diagram for Node\+:\nopagebreak
+Struct representing a node in a tree.  
+
+
+
+
+{\ttfamily \#include $<$Tree.\+h$>$}
+
+
+
+Collaboration diagram for Node\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,17 +22,38 @@ Collaboration diagram for Node\+:\nopagebreak
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct_node_a2af5b7044d23259dc1eb64027bf76d5d}\label{struct_node_a2af5b7044d23259dc1eb64027bf76d5d}} 
-\mbox{\hyperlink{struct___data}{Data}} $\ast$ {\bfseries content}
+\mbox{\hyperlink{struct___data}{Data}} $\ast$ \mbox{\hyperlink{struct_node_a2af5b7044d23259dc1eb64027bf76d5d}{content}}
 \item 
-\mbox{\Hypertarget{struct_node_ac982488ff00eb5f539929c2a66d45d21}\label{struct_node_ac982488ff00eb5f539929c2a66d45d21}} 
-\mbox{\hyperlink{struct_node}{Node}} $\ast$$\ast$ {\bfseries children}
+\mbox{\hyperlink{struct_node}{Node}} $\ast$$\ast$ \mbox{\hyperlink{struct_node_ac982488ff00eb5f539929c2a66d45d21}{children}}
 \item 
-\mbox{\Hypertarget{struct_node_a22f522e28566b51c9f92ff89c8077541}\label{struct_node_a22f522e28566b51c9f92ff89c8077541}} 
-int {\bfseries child\+Count}
+int \mbox{\hyperlink{struct_node_a22f522e28566b51c9f92ff89c8077541}{child\+Count}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Struct representing a node in a tree. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct_node_a22f522e28566b51c9f92ff89c8077541}\label{struct_node_a22f522e28566b51c9f92ff89c8077541}} 
+\index{Node@{Node}!childCount@{childCount}}
+\index{childCount@{childCount}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{childCount}{childCount}}
+{\footnotesize\ttfamily int child\+Count}
+
+Number of children of the node. \mbox{\Hypertarget{struct_node_ac982488ff00eb5f539929c2a66d45d21}\label{struct_node_ac982488ff00eb5f539929c2a66d45d21}} 
+\index{Node@{Node}!children@{children}}
+\index{children@{children}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{children}{children}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_node}{Node}}$\ast$$\ast$ children}
+
+Array of pointers to the children of the node. \mbox{\Hypertarget{struct_node_a2af5b7044d23259dc1eb64027bf76d5d}\label{struct_node_a2af5b7044d23259dc1eb64027bf76d5d}} 
+\index{Node@{Node}!content@{content}}
+\index{content@{content}!Node@{Node}}
+\doxysubsubsection{\texorpdfstring{content}{content}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct___data}{Data}}$\ast$ content}
+
+Pointer to the data of the node. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Tree.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_tree_8h}{Tree.\+h}}\end{DoxyCompactItemize}

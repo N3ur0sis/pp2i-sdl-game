@@ -2,7 +2,17 @@
 \label{struct___node}\index{\_Node@{\_Node}}
 
 
-Collaboration diagram for \+\_\+\+Node\+:\nopagebreak
+Struct representing a node.  
+
+
+
+
+{\ttfamily \#include $<$Model.\+h$>$}
+
+
+
+Collaboration diagram for \+\_\+\+Node\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,47 +22,118 @@ Collaboration diagram for \+\_\+\+Node\+:\nopagebreak
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct___node_a8e03167ce04350be901b028cc4cf1ce1}\label{struct___node_a8e03167ce04350be901b028cc4cf1ce1}} 
-char {\bfseries name} \mbox{[}256\mbox{]}
+char \mbox{\hyperlink{struct___node_a8e03167ce04350be901b028cc4cf1ce1}{name}} \mbox{[}256\mbox{]}
 \item 
-\mbox{\Hypertarget{struct___node_a5e3bcc95f3f447e5ffac42f69d830044}\label{struct___node_a5e3bcc95f3f447e5ffac42f69d830044}} 
-struct \mbox{\hyperlink{struct___node}{\+\_\+\+Node}} $\ast$ {\bfseries children} \mbox{[}MAX\+\_\+\+BONES\mbox{]}
+struct \mbox{\hyperlink{struct___node}{\+\_\+\+Node}} $\ast$ \mbox{\hyperlink{struct___node_a5e3bcc95f3f447e5ffac42f69d830044}{children}} \mbox{[}MAX\+\_\+\+BONES\mbox{]}
 \item 
-\mbox{\Hypertarget{struct___node_a570e1b7b833ba211c596f96d8af51c79}\label{struct___node_a570e1b7b833ba211c596f96d8af51c79}} 
-vec3 $\ast$ {\bfseries pos\+\_\+keys}
+vec3 $\ast$ \mbox{\hyperlink{struct___node_a570e1b7b833ba211c596f96d8af51c79}{pos\+\_\+keys}}
 \item 
-\mbox{\Hypertarget{struct___node_a5cb003c5dbaca8c1c2c9217eb720a98b}\label{struct___node_a5cb003c5dbaca8c1c2c9217eb720a98b}} 
-versor $\ast$ {\bfseries rot\+\_\+keys}
+versor $\ast$ \mbox{\hyperlink{struct___node_a5cb003c5dbaca8c1c2c9217eb720a98b}{rot\+\_\+keys}}
 \item 
-\mbox{\Hypertarget{struct___node_afb74c382d63c0d34c535337ac1b6d6f6}\label{struct___node_afb74c382d63c0d34c535337ac1b6d6f6}} 
-vec3 $\ast$ {\bfseries sca\+\_\+keys}
+vec3 $\ast$ \mbox{\hyperlink{struct___node_afb74c382d63c0d34c535337ac1b6d6f6}{sca\+\_\+keys}}
 \item 
-\mbox{\Hypertarget{struct___node_ae0efeec08658247f969ea4a976c5fc3a}\label{struct___node_ae0efeec08658247f969ea4a976c5fc3a}} 
-float $\ast$ {\bfseries pos\+\_\+key\+\_\+times}
+float $\ast$ \mbox{\hyperlink{struct___node_ae0efeec08658247f969ea4a976c5fc3a}{pos\+\_\+key\+\_\+times}}
 \item 
-\mbox{\Hypertarget{struct___node_ac84d0c50cf3672888e75bf4b6f73cc5c}\label{struct___node_ac84d0c50cf3672888e75bf4b6f73cc5c}} 
-float $\ast$ {\bfseries rot\+\_\+key\+\_\+times}
+float $\ast$ \mbox{\hyperlink{struct___node_ac84d0c50cf3672888e75bf4b6f73cc5c}{rot\+\_\+key\+\_\+times}}
 \item 
-\mbox{\Hypertarget{struct___node_aed5ce16cdafcc44238957ac9bf79aabe}\label{struct___node_aed5ce16cdafcc44238957ac9bf79aabe}} 
-float $\ast$ {\bfseries sca\+\_\+key\+\_\+times}
+float $\ast$ \mbox{\hyperlink{struct___node_aed5ce16cdafcc44238957ac9bf79aabe}{sca\+\_\+key\+\_\+times}}
 \item 
-\mbox{\Hypertarget{struct___node_a0f3e58304cd115068f5634949936536e}\label{struct___node_a0f3e58304cd115068f5634949936536e}} 
-size\+\_\+t {\bfseries pos\+\_\+keys\+\_\+count}
+size\+\_\+t \mbox{\hyperlink{struct___node_a0f3e58304cd115068f5634949936536e}{pos\+\_\+keys\+\_\+count}}
 \item 
-\mbox{\Hypertarget{struct___node_acf6b7145aefbea139f4d4d42a76c2bb0}\label{struct___node_acf6b7145aefbea139f4d4d42a76c2bb0}} 
-size\+\_\+t {\bfseries rot\+\_\+keys\+\_\+count}
+size\+\_\+t \mbox{\hyperlink{struct___node_acf6b7145aefbea139f4d4d42a76c2bb0}{rot\+\_\+keys\+\_\+count}}
 \item 
-\mbox{\Hypertarget{struct___node_a1fbaf3300fbcf5a04e6e02dc4b1c631a}\label{struct___node_a1fbaf3300fbcf5a04e6e02dc4b1c631a}} 
-size\+\_\+t {\bfseries sca\+\_\+keys\+\_\+count}
+size\+\_\+t \mbox{\hyperlink{struct___node_a1fbaf3300fbcf5a04e6e02dc4b1c631a}{sca\+\_\+keys\+\_\+count}}
 \item 
-\mbox{\Hypertarget{struct___node_a14ee889e7160d2e3371646b36955ef9e}\label{struct___node_a14ee889e7160d2e3371646b36955ef9e}} 
-size\+\_\+t {\bfseries child\+\_\+count}
+size\+\_\+t \mbox{\hyperlink{struct___node_a14ee889e7160d2e3371646b36955ef9e}{child\+\_\+count}}
 \item 
-\mbox{\Hypertarget{struct___node_a8308f4cefc3b5705cd50eda62ca94cec}\label{struct___node_a8308f4cefc3b5705cd50eda62ca94cec}} 
-int {\bfseries bone\+\_\+idx}
+int \mbox{\hyperlink{struct___node_a8308f4cefc3b5705cd50eda62ca94cec}{bone\+\_\+idx}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Struct representing a node. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct___node_a8308f4cefc3b5705cd50eda62ca94cec}\label{struct___node_a8308f4cefc3b5705cd50eda62ca94cec}} 
+\index{\_Node@{\_Node}!bone\_idx@{bone\_idx}}
+\index{bone\_idx@{bone\_idx}!\_Node@{\_Node}}
+\doxysubsubsection{\texorpdfstring{bone\_idx}{bone\_idx}}
+{\footnotesize\ttfamily int bone\+\_\+idx}
+
+Index of the bone \mbox{\Hypertarget{struct___node_a14ee889e7160d2e3371646b36955ef9e}\label{struct___node_a14ee889e7160d2e3371646b36955ef9e}} 
+\index{\_Node@{\_Node}!child\_count@{child\_count}}
+\index{child\_count@{child\_count}!\_Node@{\_Node}}
+\doxysubsubsection{\texorpdfstring{child\_count}{child\_count}}
+{\footnotesize\ttfamily size\+\_\+t child\+\_\+count}
+
+Number of children nodes \mbox{\Hypertarget{struct___node_a5e3bcc95f3f447e5ffac42f69d830044}\label{struct___node_a5e3bcc95f3f447e5ffac42f69d830044}} 
+\index{\_Node@{\_Node}!children@{children}}
+\index{children@{children}!\_Node@{\_Node}}
+\doxysubsubsection{\texorpdfstring{children}{children}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{struct___node}{\+\_\+\+Node}}$\ast$ children\mbox{[}MAX\+\_\+\+BONES\mbox{]}}
+
+Array of children nodes \mbox{\Hypertarget{struct___node_a8e03167ce04350be901b028cc4cf1ce1}\label{struct___node_a8e03167ce04350be901b028cc4cf1ce1}} 
+\index{\_Node@{\_Node}!name@{name}}
+\index{name@{name}!\_Node@{\_Node}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily char name\mbox{[}256\mbox{]}}
+
+Name of the node \mbox{\Hypertarget{struct___node_ae0efeec08658247f969ea4a976c5fc3a}\label{struct___node_ae0efeec08658247f969ea4a976c5fc3a}} 
+\index{\_Node@{\_Node}!pos\_key\_times@{pos\_key\_times}}
+\index{pos\_key\_times@{pos\_key\_times}!\_Node@{\_Node}}
+\doxysubsubsection{\texorpdfstring{pos\_key\_times}{pos\_key\_times}}
+{\footnotesize\ttfamily float$\ast$ pos\+\_\+key\+\_\+times}
+
+Array of position key times \mbox{\Hypertarget{struct___node_a570e1b7b833ba211c596f96d8af51c79}\label{struct___node_a570e1b7b833ba211c596f96d8af51c79}} 
+\index{\_Node@{\_Node}!pos\_keys@{pos\_keys}}
+\index{pos\_keys@{pos\_keys}!\_Node@{\_Node}}
+\doxysubsubsection{\texorpdfstring{pos\_keys}{pos\_keys}}
+{\footnotesize\ttfamily vec3$\ast$ pos\+\_\+keys}
+
+Array of position keys \mbox{\Hypertarget{struct___node_a0f3e58304cd115068f5634949936536e}\label{struct___node_a0f3e58304cd115068f5634949936536e}} 
+\index{\_Node@{\_Node}!pos\_keys\_count@{pos\_keys\_count}}
+\index{pos\_keys\_count@{pos\_keys\_count}!\_Node@{\_Node}}
+\doxysubsubsection{\texorpdfstring{pos\_keys\_count}{pos\_keys\_count}}
+{\footnotesize\ttfamily size\+\_\+t pos\+\_\+keys\+\_\+count}
+
+Number of position keys \mbox{\Hypertarget{struct___node_ac84d0c50cf3672888e75bf4b6f73cc5c}\label{struct___node_ac84d0c50cf3672888e75bf4b6f73cc5c}} 
+\index{\_Node@{\_Node}!rot\_key\_times@{rot\_key\_times}}
+\index{rot\_key\_times@{rot\_key\_times}!\_Node@{\_Node}}
+\doxysubsubsection{\texorpdfstring{rot\_key\_times}{rot\_key\_times}}
+{\footnotesize\ttfamily float$\ast$ rot\+\_\+key\+\_\+times}
+
+Array of rotation key times \mbox{\Hypertarget{struct___node_a5cb003c5dbaca8c1c2c9217eb720a98b}\label{struct___node_a5cb003c5dbaca8c1c2c9217eb720a98b}} 
+\index{\_Node@{\_Node}!rot\_keys@{rot\_keys}}
+\index{rot\_keys@{rot\_keys}!\_Node@{\_Node}}
+\doxysubsubsection{\texorpdfstring{rot\_keys}{rot\_keys}}
+{\footnotesize\ttfamily versor$\ast$ rot\+\_\+keys}
+
+Array of rotation keys \mbox{\Hypertarget{struct___node_acf6b7145aefbea139f4d4d42a76c2bb0}\label{struct___node_acf6b7145aefbea139f4d4d42a76c2bb0}} 
+\index{\_Node@{\_Node}!rot\_keys\_count@{rot\_keys\_count}}
+\index{rot\_keys\_count@{rot\_keys\_count}!\_Node@{\_Node}}
+\doxysubsubsection{\texorpdfstring{rot\_keys\_count}{rot\_keys\_count}}
+{\footnotesize\ttfamily size\+\_\+t rot\+\_\+keys\+\_\+count}
+
+Number of rotation keys \mbox{\Hypertarget{struct___node_aed5ce16cdafcc44238957ac9bf79aabe}\label{struct___node_aed5ce16cdafcc44238957ac9bf79aabe}} 
+\index{\_Node@{\_Node}!sca\_key\_times@{sca\_key\_times}}
+\index{sca\_key\_times@{sca\_key\_times}!\_Node@{\_Node}}
+\doxysubsubsection{\texorpdfstring{sca\_key\_times}{sca\_key\_times}}
+{\footnotesize\ttfamily float$\ast$ sca\+\_\+key\+\_\+times}
+
+Array of scale key times \mbox{\Hypertarget{struct___node_afb74c382d63c0d34c535337ac1b6d6f6}\label{struct___node_afb74c382d63c0d34c535337ac1b6d6f6}} 
+\index{\_Node@{\_Node}!sca\_keys@{sca\_keys}}
+\index{sca\_keys@{sca\_keys}!\_Node@{\_Node}}
+\doxysubsubsection{\texorpdfstring{sca\_keys}{sca\_keys}}
+{\footnotesize\ttfamily vec3$\ast$ sca\+\_\+keys}
+
+Array of scale keys \mbox{\Hypertarget{struct___node_a1fbaf3300fbcf5a04e6e02dc4b1c631a}\label{struct___node_a1fbaf3300fbcf5a04e6e02dc4b1c631a}} 
+\index{\_Node@{\_Node}!sca\_keys\_count@{sca\_keys\_count}}
+\index{sca\_keys\_count@{sca\_keys\_count}!\_Node@{\_Node}}
+\doxysubsubsection{\texorpdfstring{sca\_keys\_count}{sca\_keys\_count}}
+{\footnotesize\ttfamily size\+\_\+t sca\+\_\+keys\+\_\+count}
+
+Number of scale keys 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Model.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_model_8h}{Model.\+h}}\end{DoxyCompactItemize}

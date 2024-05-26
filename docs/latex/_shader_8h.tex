@@ -1,0 +1,111 @@
+\hypertarget{_shader_8h}{}\doxysection{include/\+Shader.h File Reference}
+\label{_shader_8h}\index{include/Shader.h@{include/Shader.h}}
+
+
+Header file for the shader component.  
+
+
+{\ttfamily \#include $<$glad/glad.\+h$>$}\newline
+{\ttfamily \#include $<$Read\+Shader.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+Include dependency graph for Shader.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_shader_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_shader_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct__shader_locations}{\+\_\+shader\+Locations}}
+\begin{DoxyCompactList}\small\item\em Struct for storing shader uniform locations. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct___shader}{\+\_\+\+Shader}}
+\begin{DoxyCompactList}\small\item\em Struct for storing shader program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_shader_8h_a3e887fab034b8d308c64687af1ca3157}\label{_shader_8h_a3e887fab034b8d308c64687af1ca3157}} 
+typedef struct \mbox{\hyperlink{struct__shader_locations}{\+\_\+shader\+Locations}} \mbox{\hyperlink{_shader_8h_a3e887fab034b8d308c64687af1ca3157}{Shader\+Locations}}
+\begin{DoxyCompactList}\small\item\em Struct for storing shader uniform locations. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}\label{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}} 
+typedef struct \mbox{\hyperlink{struct___shader}{\+\_\+\+Shader}} \mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}}
+\begin{DoxyCompactList}\small\item\em Struct for storing shader program. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$ \mbox{\hyperlink{_shader_8h_a45fec12f148a97b3573cafc50f41695f}{Load\+Shaders}} (const char $\ast$vertex\+\_\+file\+\_\+path, const char $\ast$fragment\+\_\+file\+\_\+path)
+\begin{DoxyCompactList}\small\item\em Loads vertex and fragment shaders from files and creates a shader program. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8h_a9c58d20ee4298ea68c01f6ace4733ed8}{Use\+Shaders}} (\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$shader)
+\begin{DoxyCompactList}\small\item\em Uses the specified shader program. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_shader_8h_a17c99b99709f6c9705b15afd1a959357}{Delete\+Shaders}} (\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$shader)
+\begin{DoxyCompactList}\small\item\em Deletes the specified shader program and frees associated resources. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the shader component. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_shader_8h_a17c99b99709f6c9705b15afd1a959357}\label{_shader_8h_a17c99b99709f6c9705b15afd1a959357}} 
+\index{Shader.h@{Shader.h}!DeleteShaders@{DeleteShaders}}
+\index{DeleteShaders@{DeleteShaders}!Shader.h@{Shader.h}}
+\doxysubsubsection{\texorpdfstring{DeleteShaders()}{DeleteShaders()}}
+{\footnotesize\ttfamily void Delete\+Shaders (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$}]{shader }\end{DoxyParamCaption})}
+
+
+
+Deletes the specified shader program and frees associated resources. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shader} & Pointer to the Shader struct to be deleted. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_shader_8h_a45fec12f148a97b3573cafc50f41695f}\label{_shader_8h_a45fec12f148a97b3573cafc50f41695f}} 
+\index{Shader.h@{Shader.h}!LoadShaders@{LoadShaders}}
+\index{LoadShaders@{LoadShaders}!Shader.h@{Shader.h}}
+\doxysubsubsection{\texorpdfstring{LoadShaders()}{LoadShaders()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}}$\ast$ Load\+Shaders (\begin{DoxyParamCaption}\item[{const char $\ast$}]{vertex\+\_\+file\+\_\+path,  }\item[{const char $\ast$}]{fragment\+\_\+file\+\_\+path }\end{DoxyParamCaption})}
+
+
+
+Loads vertex and fragment shaders from files and creates a shader program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em vertex\+\_\+file\+\_\+path} & Path to the vertex shader file. \\
+\hline
+{\em fragment\+\_\+file\+\_\+path} & Path to the fragment shader file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the created Shader struct. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_shader_8h_a9c58d20ee4298ea68c01f6ace4733ed8}\label{_shader_8h_a9c58d20ee4298ea68c01f6ace4733ed8}} 
+\index{Shader.h@{Shader.h}!UseShaders@{UseShaders}}
+\index{UseShaders@{UseShaders}!Shader.h@{Shader.h}}
+\doxysubsubsection{\texorpdfstring{UseShaders()}{UseShaders()}}
+{\footnotesize\ttfamily void Use\+Shaders (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$}]{shader }\end{DoxyParamCaption})}
+
+
+
+Uses the specified shader program. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shader} & Pointer to the Shader struct to be used. \\
+\hline
+\end{DoxyParams}

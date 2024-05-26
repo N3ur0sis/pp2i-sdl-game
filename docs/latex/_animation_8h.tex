@@ -1,0 +1,199 @@
+\hypertarget{_animation_8h}{}\doxysection{include/\+Animation.h File Reference}
+\label{_animation_8h}\index{include/Animation.h@{include/Animation.h}}
+
+
+Implementations of animation functions.  
+
+
+{\ttfamily \#include $<$Model.\+h$>$}\newline
+Include dependency graph for Animation.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_animation_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_animation_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_animation}{Animation}}
+\begin{DoxyCompactList}\small\item\em Structure representing a node in the skeleton. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct_animation}{Animation}} \mbox{\hyperlink{_animation_8h_ade6a90df50ad3e4adaea9aebc4096ba8}{Animation}}
+\begin{DoxyCompactList}\small\item\em Structure representing a node in the skeleton. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_animation}{Animation}} $\ast$ \mbox{\hyperlink{_animation_8h_a89bef044de34155e47dc1315f96267f8}{Animation\+Create}} (char $\ast$path, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$model, char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Creates a new \mbox{\hyperlink{struct_animation}{Animation}} instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_animation_8h_a942398e7323612a16e821629d747b4ad}{Calculate\+Bone\+Transformation}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$node, float anim\+\_\+time, mat4 parent\+\_\+mat, mat4 $\ast$bones, mat4 $\ast$bone\+\_\+anim\+\_\+mats)
+\begin{DoxyCompactList}\small\item\em Calculates the bone transformation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_node}{Node}} $\ast$ \mbox{\hyperlink{_animation_8h_a660baae95ad8a879ff5fec882a91b3b9}{Node\+Find}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$root, const char $\ast$name)
+\begin{DoxyCompactList}\small\item\em Finds a node in the skeleton. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_animation_8h_a4bfb51ca43005b2b25011ab9ca4d4837}{Node\+Import}} (const struct ai\+Node $\ast$ai\+\_\+node, \mbox{\hyperlink{struct_node}{Node}} $\ast$$\ast$skel\+\_\+node, size\+\_\+t bone\+\_\+count, char bone\+\_\+names\mbox{[}$\,$\mbox{]}\mbox{[}256\mbox{]})
+\begin{DoxyCompactList}\small\item\em Imports a node from an assimp node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_animation_8h_a3227c34e982071dfe1aa8c9eb7fd071e}{Node\+Delete}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Deletes a node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_animation_8h_a4cf0c6be8ad434c9b3d9c5efd0295078}{Animation\+Delete}} (\mbox{\hyperlink{struct_animation}{Animation}} $\ast$animation)
+\begin{DoxyCompactList}\small\item\em Deletes an animation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Implementations of animation functions. 
+
+This file contains the implementations of animation functions. 
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_animation_8h_ade6a90df50ad3e4adaea9aebc4096ba8}\label{_animation_8h_ade6a90df50ad3e4adaea9aebc4096ba8}} 
+\index{Animation.h@{Animation.h}!Animation@{Animation}}
+\index{Animation@{Animation}!Animation.h@{Animation.h}}
+\doxysubsubsection{\texorpdfstring{Animation}{Animation}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct_animation}{Animation}} \mbox{\hyperlink{struct_animation}{Animation}}}
+
+
+
+Structure representing a node in the skeleton. 
+
+This structure represents a node in the skeleton. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_animation_8h_a89bef044de34155e47dc1315f96267f8}\label{_animation_8h_a89bef044de34155e47dc1315f96267f8}} 
+\index{Animation.h@{Animation.h}!AnimationCreate@{AnimationCreate}}
+\index{AnimationCreate@{AnimationCreate}!Animation.h@{Animation.h}}
+\doxysubsubsection{\texorpdfstring{AnimationCreate()}{AnimationCreate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_animation}{Animation}}$\ast$ Animation\+Create (\begin{DoxyParamCaption}\item[{char $\ast$}]{path,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{model,  }\item[{char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Creates a new \mbox{\hyperlink{struct_animation}{Animation}} instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & The path to the model file. \\
+\hline
+{\em model} & The model to animate. \\
+\hline
+{\em name} & The name of the animation. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the created \mbox{\hyperlink{struct_animation}{Animation}} instance or NULL on failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_animation_8h_a4cf0c6be8ad434c9b3d9c5efd0295078}\label{_animation_8h_a4cf0c6be8ad434c9b3d9c5efd0295078}} 
+\index{Animation.h@{Animation.h}!AnimationDelete@{AnimationDelete}}
+\index{AnimationDelete@{AnimationDelete}!Animation.h@{Animation.h}}
+\doxysubsubsection{\texorpdfstring{AnimationDelete()}{AnimationDelete()}}
+{\footnotesize\ttfamily void Animation\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_animation}{Animation}} $\ast$}]{animation }\end{DoxyParamCaption})}
+
+
+
+Deletes an animation. 
+
+This function deletes an animation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em animation} & The animation to delete. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_animation_8h_a942398e7323612a16e821629d747b4ad}\label{_animation_8h_a942398e7323612a16e821629d747b4ad}} 
+\index{Animation.h@{Animation.h}!CalculateBoneTransformation@{CalculateBoneTransformation}}
+\index{CalculateBoneTransformation@{CalculateBoneTransformation}!Animation.h@{Animation.h}}
+\doxysubsubsection{\texorpdfstring{CalculateBoneTransformation()}{CalculateBoneTransformation()}}
+{\footnotesize\ttfamily void Calculate\+Bone\+Transformation (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$}]{node,  }\item[{float}]{anim\+\_\+time,  }\item[{mat4}]{parent\+\_\+mat,  }\item[{mat4 $\ast$}]{bones,  }\item[{mat4 $\ast$}]{bone\+\_\+anim\+\_\+mats }\end{DoxyParamCaption})}
+
+
+
+Calculates the bone transformation. 
+
+This function calculates the bone transformation.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The node to calculate the transformation for. \\
+\hline
+{\em anim\+\_\+time} & The time of the animation. \\
+\hline
+{\em parent\+\_\+mat} & The parent matrix. \\
+\hline
+{\em bones} & The array of bone matrices. \\
+\hline
+{\em bone\+\_\+anim\+\_\+mats} & The array of bone animation matrices. \\
+\hline
+\end{DoxyParams}
+Uncomment the following if you want to use scale animation mat4 s\+\_\+node; glm\+\_\+mat4\+\_\+identity(s\+\_\+node); if(node-\/$>$sca\+\_\+keys\+\_\+count$>$0) \{ size\+\_\+t p\+\_\+key = 0; size\+\_\+t n\+\_\+key = 0; for(size\+\_\+t i=0; i$<$node-\/$>$sca\+\_\+keys\+\_\+count-\/1; ++i) \{ p\+\_\+key = i; n\+\_\+key = i+1; if(node-\/$>$sca\+\_\+key\+\_\+times\mbox{[}n\+\_\+key\mbox{]}$>$=anim\+\_\+time) break; \} float t\+\_\+tot = node-\/$>$sca\+\_\+key\+\_\+times\mbox{[}n\+\_\+key\mbox{]} -\/ node-\/$>$sca\+\_\+key\+\_\+times\mbox{[}p\+\_\+key\mbox{]}; float t = (anim\+\_\+time -\/ node-\/$>$sca\+\_\+key\+\_\+times\mbox{[}p\+\_\+key\mbox{]}) / t\+\_\+tot; vec3 vi, vf; glm\+\_\+vec3\+\_\+dup(node-\/$>$sca\+\_\+keys\mbox{[}p\+\_\+key\mbox{]}, vi); glm\+\_\+vec3\+\_\+dup(node-\/$>$sca\+\_\+keys\mbox{[}n\+\_\+key\mbox{]}, vf); vec3 lerp0, lerp1, lerp; glm\+\_\+vec3\+\_\+scale(vi, 1.\+0f-\/t, lerp0); glm\+\_\+vec3\+\_\+scale(vf, t, lerp1); glm\+\_\+vec3\+\_\+add(lerp0, lerp1, lerp); glm\+\_\+translate(t\+\_\+node, (vec3)\{lerp\mbox{[}0\mbox{]}, lerp\mbox{[}1\mbox{]}, lerp\mbox{[}2\mbox{]}\}); \}\mbox{\Hypertarget{_animation_8h_a3227c34e982071dfe1aa8c9eb7fd071e}\label{_animation_8h_a3227c34e982071dfe1aa8c9eb7fd071e}} 
+\index{Animation.h@{Animation.h}!NodeDelete@{NodeDelete}}
+\index{NodeDelete@{NodeDelete}!Animation.h@{Animation.h}}
+\doxysubsubsection{\texorpdfstring{NodeDelete()}{NodeDelete()}}
+{\footnotesize\ttfamily void Node\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Deletes a node. 
+
+This function deletes a node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The node to delete. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_animation_8h_a660baae95ad8a879ff5fec882a91b3b9}\label{_animation_8h_a660baae95ad8a879ff5fec882a91b3b9}} 
+\index{Animation.h@{Animation.h}!NodeFind@{NodeFind}}
+\index{NodeFind@{NodeFind}!Animation.h@{Animation.h}}
+\doxysubsubsection{\texorpdfstring{NodeFind()}{NodeFind()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_node}{Node}}$\ast$ Node\+Find (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$}]{root,  }\item[{const char $\ast$}]{name }\end{DoxyParamCaption})}
+
+
+
+Finds a node in the skeleton. 
+
+This function finds a node in the skeleton.
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & The root node. \\
+\hline
+{\em name} & The name of the node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the found node or NULL if not found. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_animation_8h_a4bfb51ca43005b2b25011ab9ca4d4837}\label{_animation_8h_a4bfb51ca43005b2b25011ab9ca4d4837}} 
+\index{Animation.h@{Animation.h}!NodeImport@{NodeImport}}
+\index{NodeImport@{NodeImport}!Animation.h@{Animation.h}}
+\doxysubsubsection{\texorpdfstring{NodeImport()}{NodeImport()}}
+{\footnotesize\ttfamily int Node\+Import (\begin{DoxyParamCaption}\item[{const struct ai\+Node $\ast$}]{ai\+\_\+node,  }\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$$\ast$}]{skel\+\_\+node,  }\item[{size\+\_\+t}]{bone\+\_\+count,  }\item[{char}]{bone\+\_\+names\mbox{[}$\,$\mbox{]}\mbox{[}256\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Imports a node from an assimp node. 
+
+This function imports a node from an assimp node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em ai\+\_\+node} & The assimp node. \\
+\hline
+{\em skel\+\_\+node} & The skeleton node. \\
+\hline
+{\em bone\+\_\+count} & The number of bones. \\
+\hline
+{\em bone\+\_\+names} & The array of bone names. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+0 on success, 1 on failure. 
+\end{DoxyReturn}

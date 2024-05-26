@@ -2,25 +2,45 @@
 \label{struct___texture}\index{\_Texture@{\_Texture}}
 
 
+Represent a single texture in the engine. Can be used by multiple Objet, completely dissociated from any Model, this class is just the reuslt of loading an image into a buffer.  
+
+
+
+
 {\ttfamily \#include $<$Textures.\+h$>$}
 
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct___texture_a8e313194e7fdf81e86c9f267a5625ec1}\label{struct___texture_a8e313194e7fdf81e86c9f267a5625ec1}} 
-GLuint {\bfseries id}
+GLuint \mbox{\hyperlink{struct___texture_a8e313194e7fdf81e86c9f267a5625ec1}{id}}
 \item 
-\mbox{\Hypertarget{struct___texture_a763fd8db6bba8fbbbc113ca0d61c47c2}\label{struct___texture_a763fd8db6bba8fbbbc113ca0d61c47c2}} 
-const char $\ast$ {\bfseries type}
+const char $\ast$ \mbox{\hyperlink{struct___texture_a763fd8db6bba8fbbbc113ca0d61c47c2}{type}}
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Represent a single texture in the engine. Can be used by multiple Objet, completely dissociated from any Model, this class is just the reuslt of loading an image into a buffer. \begin{DoxyNote}{Note}
+Represent a single texture in the engine. Can be used by multiple Objet, completely dissociated from any Model, this class is just the reuslt of loading an image into a buffer. 
+
+\begin{DoxyNote}{Note}
 It uses the default texture unit, hence it is not necessary to specify the uniform value on the shader. 
 \end{DoxyNote}
 
 
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct___texture_a8e313194e7fdf81e86c9f267a5625ec1}\label{struct___texture_a8e313194e7fdf81e86c9f267a5625ec1}} 
+\index{\_Texture@{\_Texture}!id@{id}}
+\index{id@{id}!\_Texture@{\_Texture}}
+\doxysubsubsection{\texorpdfstring{id}{id}}
+{\footnotesize\ttfamily GLuint id}
+
+Holds the id of the texture object, used to bind the texure before rendering \mbox{\Hypertarget{struct___texture_a763fd8db6bba8fbbbc113ca0d61c47c2}\label{struct___texture_a763fd8db6bba8fbbbc113ca0d61c47c2}} 
+\index{\_Texture@{\_Texture}!type@{type}}
+\index{type@{type}!\_Texture@{\_Texture}}
+\doxysubsubsection{\texorpdfstring{type}{type}}
+{\footnotesize\ttfamily const char$\ast$ type}
+
+Type of the texture map, ex. DIFFUSE, SPECULAR, NORMAL, ROUGHNESS 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Textures.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_textures_8h}{Textures.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,195 @@
+\hypertarget{_marchand_8h}{}\doxysection{include/\+Marchand.h File Reference}
+\label{_marchand_8h}\index{include/Marchand.h@{include/Marchand.h}}
+
+
+Header file for the marchand component.  
+
+
+{\ttfamily \#include $<$Scene.\+h$>$}\newline
+{\ttfamily \#include $<$Player.\+h$>$}\newline
+{\ttfamily \#include $<$Game\+State.\+h$>$}\newline
+{\ttfamily \#include $<$cglm/cglm.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Enemy.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$Renderer.\+h$>$}\newline
+Include dependency graph for Marchand.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_marchand_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=196pt]{_marchand_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} $\ast$ \mbox{\hyperlink{_marchand_8h_ae3e1f13546c803ed83e65d9c7ddd9d59}{create\+Marchand}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, vec3 position, vec3 scale, vec3 rotation)
+\begin{DoxyCompactList}\small\item\em Function to create a marchand. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_marchand_8h_a3ffdb581c8be4706d7e3b5bbd446823e}{talk\+To\+Marchand\+Start}} (float window\+\_\+width, float window\+\_\+height, GLuint shader, int $\ast$click\+\_\+counter, bool $\ast$is\+\_\+clicking, bool $\ast$is\+Busy)
+\begin{DoxyCompactList}\small\item\em Function when the player is talking to the marchand. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_marchand_8h_ae1b81d5e433107a4ef2edd3fc493a016}{talk\+To\+Marchand\+Main}} (\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$inventory, \mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$marchant\+Inventory, float window\+\_\+width, float window\+\_\+height, GLuint shader, int $\ast$click\+\_\+counter, bool $\ast$is\+\_\+clicking, bool $\ast$is\+Busy, int $\ast$money)
+\begin{DoxyCompactList}\small\item\em Function when the player is talking to the marchand. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_marchand_8h_a0884c751b40dac4ca9e40a63e97eaa1f}{trading\+With\+Marchand}} (\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$inventory, \mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$marchant\+Inventory, float window\+\_\+width, float window\+\_\+height, GLuint shader, int $\ast$click\+\_\+counter, bool $\ast$is\+\_\+clicking, bool $\ast$is\+Busy, int $\ast$money)
+\begin{DoxyCompactList}\small\item\em Function to trade with the marchand. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_marchand_8h_ac924b28419cf27cd1ec7f4d0daa45244}{check\+Want\+To\+Trade}} (int x, int y, float window\+\_\+width, float window\+\_\+height)
+\begin{DoxyCompactList}\small\item\em Function to check if the player wants to trade. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the marchand component. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_marchand_8h_ac924b28419cf27cd1ec7f4d0daa45244}\label{_marchand_8h_ac924b28419cf27cd1ec7f4d0daa45244}} 
+\index{Marchand.h@{Marchand.h}!checkWantToTrade@{checkWantToTrade}}
+\index{checkWantToTrade@{checkWantToTrade}!Marchand.h@{Marchand.h}}
+\doxysubsubsection{\texorpdfstring{checkWantToTrade()}{checkWantToTrade()}}
+{\footnotesize\ttfamily bool check\+Want\+To\+Trade (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{float}]{window\+\_\+width,  }\item[{float}]{window\+\_\+height }\end{DoxyParamCaption})}
+
+
+
+Function to check if the player wants to trade. 
+
+This function checks if the player wants to trade.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X position of the mouse. \\
+\hline
+{\em y} & Y position of the mouse. \\
+\hline
+{\em window\+\_\+width} & Width of the window. \\
+\hline
+{\em window\+\_\+height} & Height of the window. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean value indicating if the player wants to trade. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_marchand_8h_ae3e1f13546c803ed83e65d9c7ddd9d59}\label{_marchand_8h_ae3e1f13546c803ed83e65d9c7ddd9d59}} 
+\index{Marchand.h@{Marchand.h}!createMarchand@{createMarchand}}
+\index{createMarchand@{createMarchand}!Marchand.h@{Marchand.h}}
+\doxysubsubsection{\texorpdfstring{createMarchand()}{createMarchand()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}}$\ast$ create\+Marchand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{vec3}]{position,  }\item[{vec3}]{scale,  }\item[{vec3}]{rotation }\end{DoxyParamCaption})}
+
+
+
+Function to create a marchand. 
+
+This function creates a marchand.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em position} & Position of the marchand. \\
+\hline
+{\em scale} & Scale of the marchand. \\
+\hline
+{\em rotation} & Rotation of the marchand. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the marchand entity. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_marchand_8h_ae1b81d5e433107a4ef2edd3fc493a016}\label{_marchand_8h_ae1b81d5e433107a4ef2edd3fc493a016}} 
+\index{Marchand.h@{Marchand.h}!talkToMarchandMain@{talkToMarchandMain}}
+\index{talkToMarchandMain@{talkToMarchandMain}!Marchand.h@{Marchand.h}}
+\doxysubsubsection{\texorpdfstring{talkToMarchandMain()}{talkToMarchandMain()}}
+{\footnotesize\ttfamily void talk\+To\+Marchand\+Main (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$}]{inventory,  }\item[{\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$}]{marchant\+Inventory,  }\item[{float}]{window\+\_\+width,  }\item[{float}]{window\+\_\+height,  }\item[{GLuint}]{shader,  }\item[{int $\ast$}]{click\+\_\+counter,  }\item[{bool $\ast$}]{is\+\_\+clicking,  }\item[{bool $\ast$}]{is\+Busy,  }\item[{int $\ast$}]{money }\end{DoxyParamCaption})}
+
+
+
+Function when the player is talking to the marchand. 
+
+This function is called when the player is talking to the marchand.
+
+
+\begin{DoxyParams}{Parameters}
+{\em inventory} & Pointer to the inventory of the player. \\
+\hline
+{\em marchant\+Inventory} & Pointer to the inventory of the marchand. \\
+\hline
+{\em window\+\_\+width} & Width of the window. \\
+\hline
+{\em window\+\_\+height} & Height of the window. \\
+\hline
+{\em shader} & Shader of the game. \\
+\hline
+{\em click\+\_\+counter} & Counter of clicks. \\
+\hline
+{\em is\+\_\+clicking} & Pointer to the clicking state. \\
+\hline
+{\em is\+Busy} & Pointer to the busy state. \\
+\hline
+{\em money} & Pointer to the money of the player. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_marchand_8h_a3ffdb581c8be4706d7e3b5bbd446823e}\label{_marchand_8h_a3ffdb581c8be4706d7e3b5bbd446823e}} 
+\index{Marchand.h@{Marchand.h}!talkToMarchandStart@{talkToMarchandStart}}
+\index{talkToMarchandStart@{talkToMarchandStart}!Marchand.h@{Marchand.h}}
+\doxysubsubsection{\texorpdfstring{talkToMarchandStart()}{talkToMarchandStart()}}
+{\footnotesize\ttfamily void talk\+To\+Marchand\+Start (\begin{DoxyParamCaption}\item[{float}]{window\+\_\+width,  }\item[{float}]{window\+\_\+height,  }\item[{GLuint}]{shader,  }\item[{int $\ast$}]{click\+\_\+counter,  }\item[{bool $\ast$}]{is\+\_\+clicking,  }\item[{bool $\ast$}]{is\+Busy }\end{DoxyParamCaption})}
+
+
+
+Function when the player is talking to the marchand. 
+
+This function is called when the player is talking to the marchand.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window\+\_\+width} & Width of the window. \\
+\hline
+{\em window\+\_\+height} & Height of the window. \\
+\hline
+{\em shader} & Shader of the game. \\
+\hline
+{\em click\+\_\+counter} & Counter of clicks. \\
+\hline
+{\em is\+\_\+clicking} & Pointer to the clicking state. \\
+\hline
+{\em is\+Busy} & Pointer to the busy state. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_marchand_8h_a0884c751b40dac4ca9e40a63e97eaa1f}\label{_marchand_8h_a0884c751b40dac4ca9e40a63e97eaa1f}} 
+\index{Marchand.h@{Marchand.h}!tradingWithMarchand@{tradingWithMarchand}}
+\index{tradingWithMarchand@{tradingWithMarchand}!Marchand.h@{Marchand.h}}
+\doxysubsubsection{\texorpdfstring{tradingWithMarchand()}{tradingWithMarchand()}}
+{\footnotesize\ttfamily void trading\+With\+Marchand (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$}]{inventory,  }\item[{\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$}]{marchant\+Inventory,  }\item[{float}]{window\+\_\+width,  }\item[{float}]{window\+\_\+height,  }\item[{GLuint}]{shader,  }\item[{int $\ast$}]{click\+\_\+counter,  }\item[{bool $\ast$}]{is\+\_\+clicking,  }\item[{bool $\ast$}]{is\+Busy,  }\item[{int $\ast$}]{money }\end{DoxyParamCaption})}
+
+
+
+Function to trade with the marchand. 
+
+This function is called when the player is trading with the marchand.
+
+
+\begin{DoxyParams}{Parameters}
+{\em inventory} & Pointer to the inventory of the player. \\
+\hline
+{\em marchant\+Inventory} & Pointer to the inventory of the marchand. \\
+\hline
+{\em window\+\_\+width} & Width of the window. \\
+\hline
+{\em window\+\_\+height} & Height of the window. \\
+\hline
+{\em shader} & Shader of the game. \\
+\hline
+{\em click\+\_\+counter} & Counter of clicks. \\
+\hline
+{\em is\+\_\+clicking} & Pointer to the clicking state. \\
+\hline
+{\em is\+Busy} & Pointer to the busy state. \\
+\hline
+{\em money} & Pointer to the money of the player. \\
+\hline
+\end{DoxyParams}

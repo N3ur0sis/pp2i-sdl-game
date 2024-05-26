@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_component_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,78 +59,118 @@ $(document).ready(function(){initNavTree('_component_8h_source.html',''); initRe
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Component.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;Animator.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;Light.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;Collider.h&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    COMPONENT_RENDERABLE,</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    COMPONENT_ANIMATION,</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    COMPONENT_ANIMATOR,</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    COMPONENT_COLLIDER,</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    COMPONENT_LIGHT,</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    COMPONENT_ATTACHMENT,</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;    COMPONENT_RIGIDBODY,</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;    COMPONENT_DUNGEON,</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;    COMPONENT_HEALTH,</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    COMPONENT_DAMAGE,</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    COMPONENT_ENEMY,</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    COMPONENT_PLAYER</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;} ComponentType;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160; </div>
-<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct___component.html">   22</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___component.html">_Component</a>{</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;    ComponentType type;</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;    <span class="keywordtype">void</span>* data;</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;} <a class="code" href="struct___component.html">Component</a>;</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="struct_attachment_component.html">   27</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <span class="keywordtype">int</span> boneIndex;       <span class="comment">// Index of the bone to which the model is attached</span></div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="struct___model.html">Model</a>* parentModel;</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;    <a class="code" href="struct___animator.html">Animator</a>* parentAnimator;</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;    vec3 offsetPosition; <span class="comment">// Offset position relative to the bone</span></div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;    vec3 offsetRotation; <span class="comment">// Offset rotation relative to the bone</span></div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;    vec3 offsetScale;    <span class="comment">// Offset scale relative to the bone</span></div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;} <a class="code" href="struct_attachment_component.html">AttachmentComponent</a>;</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno"><a class="line" href="struct_rigid_body.html">   36</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;    vec3 velocity;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">float</span> speed; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;} <a class="code" href="struct_rigid_body.html">RigidBody</a>;</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> FreeAttachementComponent(<a class="code" href="struct_attachment_component.html">AttachmentComponent</a>* <a class="code" href="struct_attachment_component.html">AttachmentComponent</a>);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;<span class="keywordtype">void</span> FreeRigidBody(<a class="code" href="struct_rigid_body.html">RigidBody</a>* rb);</div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160; </div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno"><a class="line" href="struct___player_component.html">   45</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___player_component.html">_PlayerComponent</a> {</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;    <span class="keywordtype">bool</span> isAttacking;</div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;    <span class="keywordtype">bool</span> isAlive;</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;    <span class="keywordtype">bool</span> hasWeapon;</div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">float</span> currentHealth;</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;    <span class="keywordtype">float</span> maxHealth;</div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;    <span class="keywordtype">float</span> attackDamage;</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;    <span class="keywordtype">float</span> attackRange;</div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;} <a class="code" href="struct___player_component.html">PlayerComponent</a>;</div>
-<div class="ttc" id="astruct___animator_html"><div class="ttname"><a href="struct___animator.html">_Animator</a></div><div class="ttdef"><b>Definition:</b> Animator.h:4</div></div>
-<div class="ttc" id="astruct___component_html"><div class="ttname"><a href="struct___component.html">_Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:22</div></div>
-<div class="ttc" id="astruct___model_html"><div class="ttname"><a href="struct___model.html">_Model</a></div><div class="ttdef"><b>Definition:</b> Model.h:29</div></div>
-<div class="ttc" id="astruct___player_component_html"><div class="ttname"><a href="struct___player_component.html">_PlayerComponent</a></div><div class="ttdef"><b>Definition:</b> Component.h:45</div></div>
-<div class="ttc" id="astruct_attachment_component_html"><div class="ttname"><a href="struct_attachment_component.html">AttachmentComponent</a></div><div class="ttdef"><b>Definition:</b> Component.h:27</div></div>
-<div class="ttc" id="astruct_rigid_body_html"><div class="ttname"><a href="struct_rigid_body.html">RigidBody</a></div><div class="ttdef"><b>Definition:</b> Component.h:36</div></div>
+<a href="_component_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_animator_8h.html">Animator.h</a>&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_light_8h.html">Light.h</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_collider_8h.html">Collider.h</a>&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0">   17</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">enum</span> {</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0ad4f06f3feea8892f48bd311ad076f519">   18</a></span>&#160;    <a class="code" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0ad4f06f3feea8892f48bd311ad076f519">COMPONENT_RENDERABLE</a>,   </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0aada375d253f4a5bcd43c7aab26e069db">   19</a></span>&#160;    <a class="code" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0aada375d253f4a5bcd43c7aab26e069db">COMPONENT_ANIMATION</a>,    </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0a9df82abbcf32267068ea65aa958e6d77">   20</a></span>&#160;    <a class="code" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0a9df82abbcf32267068ea65aa958e6d77">COMPONENT_ANIMATOR</a>,    </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0abb48118ff6812774ece52569a227b539">   21</a></span>&#160;    <a class="code" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0abb48118ff6812774ece52569a227b539">COMPONENT_COLLIDER</a>,    </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0a5164d6993347c8e1991f5fdbb0597d66">   22</a></span>&#160;    <a class="code" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0a5164d6993347c8e1991f5fdbb0597d66">COMPONENT_LIGHT</a>,        </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0aa61dc40a53dc72fa744a5e4d6e6bd8cc">   23</a></span>&#160;    <a class="code" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0aa61dc40a53dc72fa744a5e4d6e6bd8cc">COMPONENT_ATTACHMENT</a>,   </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0ac7f143b8243c6759b486ea6c25105caf">   24</a></span>&#160;    <a class="code" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0ac7f143b8243c6759b486ea6c25105caf">COMPONENT_RIGIDBODY</a>,    </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0a66ba433d6006e6b356e22a18e203d252">   25</a></span>&#160;    <a class="code" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0a66ba433d6006e6b356e22a18e203d252">COMPONENT_DUNGEON</a>,    </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0ac41b7ff82ab09d798088ad45710992a7">   26</a></span>&#160;    <a class="code" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0ac41b7ff82ab09d798088ad45710992a7">COMPONENT_HEALTH</a>,   </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0a78f292e68df49403e961c125ff4f02d9">   27</a></span>&#160;    <a class="code" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0a78f292e68df49403e961c125ff4f02d9">COMPONENT_DAMAGE</a>,   </div>
+<div class="line"><a name="l00028"></a><span class="lineno"><a class="line" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0ac7b658a36bcbc788d7988e9f3a476f95">   28</a></span>&#160;    <a class="code" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0ac7b658a36bcbc788d7988e9f3a476f95">COMPONENT_ENEMY</a>,    </div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0ac67a04c281a1135f4e01c7b6b5ae2f8b">COMPONENT_PLAYER</a>    </div>
+<div class="line"><a name="l00030"></a><span class="lineno"><a class="line" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0ac67a04c281a1135f4e01c7b6b5ae2f8b">   30</a></span>&#160;} <a class="code" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0">ComponentType</a>;</div>
+<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno"><a class="line" href="struct___component.html">   37</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___component.html">_Component</a>{</div>
+<div class="line"><a name="l00038"></a><span class="lineno"><a class="line" href="struct___component.html#a403cef6b1071b443e8b185e84fce0b1d">   38</a></span>&#160;    <a class="code" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0">ComponentType</a> <a class="code" href="struct___component.html#a403cef6b1071b443e8b185e84fce0b1d">type</a>; </div>
+<div class="line"><a name="l00039"></a><span class="lineno"><a class="line" href="struct___component.html#a735984d41155bc1032e09bece8f8d66d">   39</a></span>&#160;    <span class="keywordtype">void</span>* <a class="code" href="struct___component.html#a735984d41155bc1032e09bece8f8d66d">data</a>;     </div>
+<div class="line"><a name="l00040"></a><span class="lineno"><a class="line" href="_component_8h.html#a0c1de350b13167ef4cc600b05051a97b">   40</a></span>&#160;} <a class="code" href="_component_8h.html#a0c1de350b13167ef4cc600b05051a97b">Component</a>;</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno"><a class="line" href="struct_attachment_component.html">   47</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00048"></a><span class="lineno"><a class="line" href="struct_attachment_component.html#a4076915344191ee0afc43213c5f9c420">   48</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct_attachment_component.html#a4076915344191ee0afc43213c5f9c420">boneIndex</a>;       </div>
+<div class="line"><a name="l00049"></a><span class="lineno"><a class="line" href="struct_attachment_component.html#a3207d761f88057b57052276900e1b7bf">   49</a></span>&#160;    <a class="code" href="struct___model.html">Model</a>* <a class="code" href="struct_attachment_component.html#a3207d761f88057b57052276900e1b7bf">parentModel</a>;         </div>
+<div class="line"><a name="l00050"></a><span class="lineno"><a class="line" href="struct_attachment_component.html#a59b8e7228fab7a54caf3225619cb4e1b">   50</a></span>&#160;    <a class="code" href="struct___animator.html">Animator</a>* <a class="code" href="struct_attachment_component.html#a59b8e7228fab7a54caf3225619cb4e1b">parentAnimator</a>;   </div>
+<div class="line"><a name="l00051"></a><span class="lineno"><a class="line" href="struct_attachment_component.html#aac3bfb24f0bc5f27fb04f48e7cc29429">   51</a></span>&#160;    vec3 <a class="code" href="struct_attachment_component.html#aac3bfb24f0bc5f27fb04f48e7cc29429">offsetPosition</a>; </div>
+<div class="line"><a name="l00052"></a><span class="lineno"><a class="line" href="struct_attachment_component.html#a7388b200bc2c3eeebb1b652dc742f1b1">   52</a></span>&#160;    vec3 <a class="code" href="struct_attachment_component.html#a7388b200bc2c3eeebb1b652dc742f1b1">offsetRotation</a>; </div>
+<div class="line"><a name="l00053"></a><span class="lineno"><a class="line" href="struct_attachment_component.html#a1f874ebb5be4d83850a59cafb779506e">   53</a></span>&#160;    vec3 <a class="code" href="struct_attachment_component.html#a1f874ebb5be4d83850a59cafb779506e">offsetScale</a>;    </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;} <a class="code" href="struct_attachment_component.html">AttachmentComponent</a>;</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00061"></a><span class="lineno"><a class="line" href="struct_rigid_body.html">   61</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00062"></a><span class="lineno"><a class="line" href="struct_rigid_body.html#a589efe00d8bd4e8a69613f98390a04c7">   62</a></span>&#160;    vec3 <a class="code" href="struct_rigid_body.html#a589efe00d8bd4e8a69613f98390a04c7">velocity</a>;  </div>
+<div class="line"><a name="l00063"></a><span class="lineno"><a class="line" href="struct_rigid_body.html#a7f7e4724cf57d59513b39c5ecc81adc8">   63</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="struct_rigid_body.html#a7f7e4724cf57d59513b39c5ecc81adc8">speed</a>;    </div>
+<div class="line"><a name="l00064"></a><span class="lineno">   64</span>&#160;} <a class="code" href="struct_rigid_body.html">RigidBody</a>;</div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160; </div>
+<div class="line"><a name="l00073"></a><span class="lineno">   73</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_component_8h.html#a112f2d2a9fe5e0d89e2b803c19849783">FreeAttachementComponent</a>(<a class="code" href="struct_attachment_component.html">AttachmentComponent</a>* <a class="code" href="struct_attachment_component.html">AttachmentComponent</a>);</div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160; </div>
+<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_component_8h.html#a4ebd1f63014b429ead47b5bba39d431b">FreeRigidBody</a>(<a class="code" href="struct_rigid_body.html">RigidBody</a>* rb);</div>
+<div class="line"><a name="l00083"></a><span class="lineno">   83</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno"><a class="line" href="struct___player_component.html">   89</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___player_component.html">_PlayerComponent</a> {</div>
+<div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="struct___player_component.html#a7c36c7f1c07b0023acb9a3b3af4670ec">   90</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct___player_component.html#a7c36c7f1c07b0023acb9a3b3af4670ec">isAttacking</a>;   </div>
+<div class="line"><a name="l00091"></a><span class="lineno"><a class="line" href="struct___player_component.html#aabfb502219a0916360c29c8ba710b3c6">   91</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct___player_component.html#aabfb502219a0916360c29c8ba710b3c6">isAlive</a>;       </div>
+<div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="struct___player_component.html#a2cb71724131fbb28f803f7bf356f93be">   92</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct___player_component.html#a2cb71724131fbb28f803f7bf356f93be">hasWeapon</a>;     </div>
+<div class="line"><a name="l00093"></a><span class="lineno"><a class="line" href="struct___player_component.html#a9765105b1c439f5ef55f78993b59d291">   93</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="struct___player_component.html#a9765105b1c439f5ef55f78993b59d291">currentHealth</a>;    </div>
+<div class="line"><a name="l00094"></a><span class="lineno"><a class="line" href="struct___player_component.html#a779e04b52b7c89c455f2d98b459b2dd6">   94</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="struct___player_component.html#a779e04b52b7c89c455f2d98b459b2dd6">maxHealth</a>;        </div>
+<div class="line"><a name="l00095"></a><span class="lineno"><a class="line" href="struct___player_component.html#a98f761d151df0aa5b7759f890c7f2c0e">   95</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="struct___player_component.html#a98f761d151df0aa5b7759f890c7f2c0e">attackDamage</a>;     </div>
+<div class="line"><a name="l00096"></a><span class="lineno"><a class="line" href="struct___player_component.html#a146987c4b529a1ab1c072ae09e32bce8">   96</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="struct___player_component.html#a146987c4b529a1ab1c072ae09e32bce8">attackRange</a>;      </div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;    <span class="keywordtype">bool</span> hasPlayedAttackSound;</div>
+<div class="line"><a name="l00098"></a><span class="lineno"><a class="line" href="_component_8h.html#ae3963143aedf5ade35e2e29eb9f4ca94">   98</a></span>&#160;} <a class="code" href="_component_8h.html#ae3963143aedf5ade35e2e29eb9f4ca94">PlayerComponent</a>;</div>
+<div class="ttc" id="a_animator_8h_html"><div class="ttname"><a href="_animator_8h.html">Animator.h</a></div><div class="ttdoc">Animator header file.</div></div>
+<div class="ttc" id="a_collider_8h_html"><div class="ttname"><a href="_collider_8h.html">Collider.h</a></div><div class="ttdoc">Collider header file.</div></div>
+<div class="ttc" id="a_component_8h_html_a0c1de350b13167ef4cc600b05051a97b"><div class="ttname"><a href="_component_8h.html#a0c1de350b13167ef4cc600b05051a97b">Component</a></div><div class="ttdeci">struct _Component Component</div><div class="ttdoc">Structure representing a component.</div></div>
+<div class="ttc" id="a_component_8h_html_a112f2d2a9fe5e0d89e2b803c19849783"><div class="ttname"><a href="_component_8h.html#a112f2d2a9fe5e0d89e2b803c19849783">FreeAttachementComponent</a></div><div class="ttdeci">void FreeAttachementComponent(AttachmentComponent *AttachmentComponent)</div><div class="ttdoc">Free the attachment component.</div><div class="ttdef"><b>Definition:</b> Component.c:3</div></div>
+<div class="ttc" id="a_component_8h_html_a4ebd1f63014b429ead47b5bba39d431b"><div class="ttname"><a href="_component_8h.html#a4ebd1f63014b429ead47b5bba39d431b">FreeRigidBody</a></div><div class="ttdeci">void FreeRigidBody(RigidBody *rb)</div><div class="ttdoc">Free the rigid body.</div><div class="ttdef"><b>Definition:</b> Component.c:11</div></div>
+<div class="ttc" id="a_component_8h_html_a81f78fc173dedefe5a049c0aa3eed2c0"><div class="ttname"><a href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0">ComponentType</a></div><div class="ttdeci">ComponentType</div><div class="ttdoc">Enum representing the type of a component.</div><div class="ttdef"><b>Definition:</b> Component.h:17</div></div>
+<div class="ttc" id="a_component_8h_html_a81f78fc173dedefe5a049c0aa3eed2c0a5164d6993347c8e1991f5fdbb0597d66"><div class="ttname"><a href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0a5164d6993347c8e1991f5fdbb0597d66">COMPONENT_LIGHT</a></div><div class="ttdeci">@ COMPONENT_LIGHT</div><div class="ttdef"><b>Definition:</b> Component.h:22</div></div>
+<div class="ttc" id="a_component_8h_html_a81f78fc173dedefe5a049c0aa3eed2c0a66ba433d6006e6b356e22a18e203d252"><div class="ttname"><a href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0a66ba433d6006e6b356e22a18e203d252">COMPONENT_DUNGEON</a></div><div class="ttdeci">@ COMPONENT_DUNGEON</div><div class="ttdef"><b>Definition:</b> Component.h:25</div></div>
+<div class="ttc" id="a_component_8h_html_a81f78fc173dedefe5a049c0aa3eed2c0a78f292e68df49403e961c125ff4f02d9"><div class="ttname"><a href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0a78f292e68df49403e961c125ff4f02d9">COMPONENT_DAMAGE</a></div><div class="ttdeci">@ COMPONENT_DAMAGE</div><div class="ttdef"><b>Definition:</b> Component.h:27</div></div>
+<div class="ttc" id="a_component_8h_html_a81f78fc173dedefe5a049c0aa3eed2c0a9df82abbcf32267068ea65aa958e6d77"><div class="ttname"><a href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0a9df82abbcf32267068ea65aa958e6d77">COMPONENT_ANIMATOR</a></div><div class="ttdeci">@ COMPONENT_ANIMATOR</div><div class="ttdef"><b>Definition:</b> Component.h:20</div></div>
+<div class="ttc" id="a_component_8h_html_a81f78fc173dedefe5a049c0aa3eed2c0aa61dc40a53dc72fa744a5e4d6e6bd8cc"><div class="ttname"><a href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0aa61dc40a53dc72fa744a5e4d6e6bd8cc">COMPONENT_ATTACHMENT</a></div><div class="ttdeci">@ COMPONENT_ATTACHMENT</div><div class="ttdef"><b>Definition:</b> Component.h:23</div></div>
+<div class="ttc" id="a_component_8h_html_a81f78fc173dedefe5a049c0aa3eed2c0aada375d253f4a5bcd43c7aab26e069db"><div class="ttname"><a href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0aada375d253f4a5bcd43c7aab26e069db">COMPONENT_ANIMATION</a></div><div class="ttdeci">@ COMPONENT_ANIMATION</div><div class="ttdef"><b>Definition:</b> Component.h:19</div></div>
+<div class="ttc" id="a_component_8h_html_a81f78fc173dedefe5a049c0aa3eed2c0abb48118ff6812774ece52569a227b539"><div class="ttname"><a href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0abb48118ff6812774ece52569a227b539">COMPONENT_COLLIDER</a></div><div class="ttdeci">@ COMPONENT_COLLIDER</div><div class="ttdef"><b>Definition:</b> Component.h:21</div></div>
+<div class="ttc" id="a_component_8h_html_a81f78fc173dedefe5a049c0aa3eed2c0ac41b7ff82ab09d798088ad45710992a7"><div class="ttname"><a href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0ac41b7ff82ab09d798088ad45710992a7">COMPONENT_HEALTH</a></div><div class="ttdeci">@ COMPONENT_HEALTH</div><div class="ttdef"><b>Definition:</b> Component.h:26</div></div>
+<div class="ttc" id="a_component_8h_html_a81f78fc173dedefe5a049c0aa3eed2c0ac67a04c281a1135f4e01c7b6b5ae2f8b"><div class="ttname"><a href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0ac67a04c281a1135f4e01c7b6b5ae2f8b">COMPONENT_PLAYER</a></div><div class="ttdeci">@ COMPONENT_PLAYER</div><div class="ttdef"><b>Definition:</b> Component.h:29</div></div>
+<div class="ttc" id="a_component_8h_html_a81f78fc173dedefe5a049c0aa3eed2c0ac7b658a36bcbc788d7988e9f3a476f95"><div class="ttname"><a href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0ac7b658a36bcbc788d7988e9f3a476f95">COMPONENT_ENEMY</a></div><div class="ttdeci">@ COMPONENT_ENEMY</div><div class="ttdef"><b>Definition:</b> Component.h:28</div></div>
+<div class="ttc" id="a_component_8h_html_a81f78fc173dedefe5a049c0aa3eed2c0ac7f143b8243c6759b486ea6c25105caf"><div class="ttname"><a href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0ac7f143b8243c6759b486ea6c25105caf">COMPONENT_RIGIDBODY</a></div><div class="ttdeci">@ COMPONENT_RIGIDBODY</div><div class="ttdef"><b>Definition:</b> Component.h:24</div></div>
+<div class="ttc" id="a_component_8h_html_a81f78fc173dedefe5a049c0aa3eed2c0ad4f06f3feea8892f48bd311ad076f519"><div class="ttname"><a href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0ad4f06f3feea8892f48bd311ad076f519">COMPONENT_RENDERABLE</a></div><div class="ttdeci">@ COMPONENT_RENDERABLE</div><div class="ttdef"><b>Definition:</b> Component.h:18</div></div>
+<div class="ttc" id="a_component_8h_html_ae3963143aedf5ade35e2e29eb9f4ca94"><div class="ttname"><a href="_component_8h.html#ae3963143aedf5ade35e2e29eb9f4ca94">PlayerComponent</a></div><div class="ttdeci">struct _PlayerComponent PlayerComponent</div><div class="ttdoc">Structure representing a player component.</div></div>
+<div class="ttc" id="a_light_8h_html"><div class="ttname"><a href="_light_8h.html">Light.h</a></div><div class="ttdoc">Header file for the light component.</div></div>
+<div class="ttc" id="astruct___animator_html"><div class="ttname"><a href="struct___animator.html">_Animator</a></div><div class="ttdoc">Structure representing an animator.</div><div class="ttdef"><b>Definition:</b> Animator.h:14</div></div>
+<div class="ttc" id="astruct___component_html"><div class="ttname"><a href="struct___component.html">_Component</a></div><div class="ttdoc">Structure representing a component.</div><div class="ttdef"><b>Definition:</b> Component.h:37</div></div>
+<div class="ttc" id="astruct___component_html_a403cef6b1071b443e8b185e84fce0b1d"><div class="ttname"><a href="struct___component.html#a403cef6b1071b443e8b185e84fce0b1d">_Component::type</a></div><div class="ttdeci">ComponentType type</div><div class="ttdef"><b>Definition:</b> Component.h:38</div></div>
+<div class="ttc" id="astruct___component_html_a735984d41155bc1032e09bece8f8d66d"><div class="ttname"><a href="struct___component.html#a735984d41155bc1032e09bece8f8d66d">_Component::data</a></div><div class="ttdeci">void * data</div><div class="ttdef"><b>Definition:</b> Component.h:39</div></div>
+<div class="ttc" id="astruct___model_html"><div class="ttname"><a href="struct___model.html">_Model</a></div><div class="ttdoc">A Model class to represent a 3D object in the scene.</div><div class="ttdef"><b>Definition:</b> Model.h:37</div></div>
+<div class="ttc" id="astruct___player_component_html"><div class="ttname"><a href="struct___player_component.html">_PlayerComponent</a></div><div class="ttdoc">Structure representing a player component.</div><div class="ttdef"><b>Definition:</b> Component.h:89</div></div>
+<div class="ttc" id="astruct___player_component_html_a146987c4b529a1ab1c072ae09e32bce8"><div class="ttname"><a href="struct___player_component.html#a146987c4b529a1ab1c072ae09e32bce8">_PlayerComponent::attackRange</a></div><div class="ttdeci">float attackRange</div><div class="ttdef"><b>Definition:</b> Component.h:96</div></div>
+<div class="ttc" id="astruct___player_component_html_a2cb71724131fbb28f803f7bf356f93be"><div class="ttname"><a href="struct___player_component.html#a2cb71724131fbb28f803f7bf356f93be">_PlayerComponent::hasWeapon</a></div><div class="ttdeci">bool hasWeapon</div><div class="ttdef"><b>Definition:</b> Component.h:92</div></div>
+<div class="ttc" id="astruct___player_component_html_a779e04b52b7c89c455f2d98b459b2dd6"><div class="ttname"><a href="struct___player_component.html#a779e04b52b7c89c455f2d98b459b2dd6">_PlayerComponent::maxHealth</a></div><div class="ttdeci">float maxHealth</div><div class="ttdef"><b>Definition:</b> Component.h:94</div></div>
+<div class="ttc" id="astruct___player_component_html_a7c36c7f1c07b0023acb9a3b3af4670ec"><div class="ttname"><a href="struct___player_component.html#a7c36c7f1c07b0023acb9a3b3af4670ec">_PlayerComponent::isAttacking</a></div><div class="ttdeci">bool isAttacking</div><div class="ttdef"><b>Definition:</b> Component.h:90</div></div>
+<div class="ttc" id="astruct___player_component_html_a9765105b1c439f5ef55f78993b59d291"><div class="ttname"><a href="struct___player_component.html#a9765105b1c439f5ef55f78993b59d291">_PlayerComponent::currentHealth</a></div><div class="ttdeci">float currentHealth</div><div class="ttdef"><b>Definition:</b> Component.h:93</div></div>
+<div class="ttc" id="astruct___player_component_html_a98f761d151df0aa5b7759f890c7f2c0e"><div class="ttname"><a href="struct___player_component.html#a98f761d151df0aa5b7759f890c7f2c0e">_PlayerComponent::attackDamage</a></div><div class="ttdeci">float attackDamage</div><div class="ttdef"><b>Definition:</b> Component.h:95</div></div>
+<div class="ttc" id="astruct___player_component_html_aabfb502219a0916360c29c8ba710b3c6"><div class="ttname"><a href="struct___player_component.html#aabfb502219a0916360c29c8ba710b3c6">_PlayerComponent::isAlive</a></div><div class="ttdeci">bool isAlive</div><div class="ttdef"><b>Definition:</b> Component.h:91</div></div>
+<div class="ttc" id="astruct_attachment_component_html"><div class="ttname"><a href="struct_attachment_component.html">AttachmentComponent</a></div><div class="ttdoc">Structure representing an attachment component.</div><div class="ttdef"><b>Definition:</b> Component.h:47</div></div>
+<div class="ttc" id="astruct_attachment_component_html_a1f874ebb5be4d83850a59cafb779506e"><div class="ttname"><a href="struct_attachment_component.html#a1f874ebb5be4d83850a59cafb779506e">AttachmentComponent::offsetScale</a></div><div class="ttdeci">vec3 offsetScale</div><div class="ttdef"><b>Definition:</b> Component.h:53</div></div>
+<div class="ttc" id="astruct_attachment_component_html_a3207d761f88057b57052276900e1b7bf"><div class="ttname"><a href="struct_attachment_component.html#a3207d761f88057b57052276900e1b7bf">AttachmentComponent::parentModel</a></div><div class="ttdeci">Model * parentModel</div><div class="ttdef"><b>Definition:</b> Component.h:49</div></div>
+<div class="ttc" id="astruct_attachment_component_html_a4076915344191ee0afc43213c5f9c420"><div class="ttname"><a href="struct_attachment_component.html#a4076915344191ee0afc43213c5f9c420">AttachmentComponent::boneIndex</a></div><div class="ttdeci">int boneIndex</div><div class="ttdef"><b>Definition:</b> Component.h:48</div></div>
+<div class="ttc" id="astruct_attachment_component_html_a59b8e7228fab7a54caf3225619cb4e1b"><div class="ttname"><a href="struct_attachment_component.html#a59b8e7228fab7a54caf3225619cb4e1b">AttachmentComponent::parentAnimator</a></div><div class="ttdeci">Animator * parentAnimator</div><div class="ttdef"><b>Definition:</b> Component.h:50</div></div>
+<div class="ttc" id="astruct_attachment_component_html_a7388b200bc2c3eeebb1b652dc742f1b1"><div class="ttname"><a href="struct_attachment_component.html#a7388b200bc2c3eeebb1b652dc742f1b1">AttachmentComponent::offsetRotation</a></div><div class="ttdeci">vec3 offsetRotation</div><div class="ttdef"><b>Definition:</b> Component.h:52</div></div>
+<div class="ttc" id="astruct_attachment_component_html_aac3bfb24f0bc5f27fb04f48e7cc29429"><div class="ttname"><a href="struct_attachment_component.html#aac3bfb24f0bc5f27fb04f48e7cc29429">AttachmentComponent::offsetPosition</a></div><div class="ttdeci">vec3 offsetPosition</div><div class="ttdef"><b>Definition:</b> Component.h:51</div></div>
+<div class="ttc" id="astruct_rigid_body_html"><div class="ttname"><a href="struct_rigid_body.html">RigidBody</a></div><div class="ttdoc">Structure representing a rigid body.</div><div class="ttdef"><b>Definition:</b> Component.h:61</div></div>
+<div class="ttc" id="astruct_rigid_body_html_a589efe00d8bd4e8a69613f98390a04c7"><div class="ttname"><a href="struct_rigid_body.html#a589efe00d8bd4e8a69613f98390a04c7">RigidBody::velocity</a></div><div class="ttdeci">vec3 velocity</div><div class="ttdef"><b>Definition:</b> Component.h:62</div></div>
+<div class="ttc" id="astruct_rigid_body_html_a7f7e4724cf57d59513b39c5ecc81adc8"><div class="ttname"><a href="struct_rigid_body.html#a7f7e4724cf57d59513b39c5ecc81adc8">RigidBody::speed</a></div><div class="ttdeci">float speed</div><div class="ttdef"><b>Definition:</b> Component.h:63</div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>Component.h</b></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

@@ -2,7 +2,17 @@
 \label{struct___dungeon}\index{\_Dungeon@{\_Dungeon}}
 
 
-Collaboration diagram for \+\_\+\+Dungeon\+:\nopagebreak
+Structure representing a dungeon.  
+
+
+
+
+{\ttfamily \#include $<$Dungeon.\+h$>$}
+
+
+
+Collaboration diagram for \+\_\+\+Dungeon\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,47 +22,120 @@ Collaboration diagram for \+\_\+\+Dungeon\+:\nopagebreak
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct___dungeon_a9f45b48de8f01c378c8e9cf0dfce61ab}\label{struct___dungeon_a9f45b48de8f01c378c8e9cf0dfce61ab}} 
-\mbox{\hyperlink{struct___room}{Room}} $\ast$ {\bfseries rooms}
+\mbox{\hyperlink{struct___room}{Room}} $\ast$ \mbox{\hyperlink{struct___dungeon_a9f45b48de8f01c378c8e9cf0dfce61ab}{rooms}}
 \item 
-\mbox{\Hypertarget{struct___dungeon_aee96bb698576f506a15bc32013f74499}\label{struct___dungeon_aee96bb698576f506a15bc32013f74499}} 
-\mbox{\hyperlink{struct___l___room}{L\+\_\+\+Room}} $\ast$ {\bfseries type\+\_\+room}
+\mbox{\hyperlink{_room_8h_a21f3465bc0d6541c13d17d7a2660ba75}{L\+\_\+\+Room}} $\ast$ \mbox{\hyperlink{struct___dungeon_aee96bb698576f506a15bc32013f74499}{type\+\_\+room}}
 \item 
-\mbox{\Hypertarget{struct___dungeon_ac47ae06c4fbd432cda959db21ed635a1}\label{struct___dungeon_ac47ae06c4fbd432cda959db21ed635a1}} 
-char $\ast$$\ast$ {\bfseries adj}
+char $\ast$$\ast$ \mbox{\hyperlink{struct___dungeon_ac47ae06c4fbd432cda959db21ed635a1}{adj}}
 \item 
-\mbox{\Hypertarget{struct___dungeon_a210b3e6ffb6e047c4ae6e2c0e737ed52}\label{struct___dungeon_a210b3e6ffb6e047c4ae6e2c0e737ed52}} 
-char {\bfseries direction}
+char \mbox{\hyperlink{struct___dungeon_a210b3e6ffb6e047c4ae6e2c0e737ed52}{direction}}
 \item 
-\mbox{\Hypertarget{struct___dungeon_ae0dcd6f33c78b09ef8c839722763a6a9}\label{struct___dungeon_ae0dcd6f33c78b09ef8c839722763a6a9}} 
-char {\bfseries previous\+\_\+direction}
+char \mbox{\hyperlink{struct___dungeon_ae0dcd6f33c78b09ef8c839722763a6a9}{previous\+\_\+direction}}
 \item 
-\mbox{\Hypertarget{struct___dungeon_afc5b792c3706d5aa2896fad6ab1be022}\label{struct___dungeon_afc5b792c3706d5aa2896fad6ab1be022}} 
-int {\bfseries nb\+\_\+rooms}
+int \mbox{\hyperlink{struct___dungeon_afc5b792c3706d5aa2896fad6ab1be022}{nb\+\_\+rooms}}
 \item 
-\mbox{\Hypertarget{struct___dungeon_a4acb40314632651c7ef3e68ac2e26721}\label{struct___dungeon_a4acb40314632651c7ef3e68ac2e26721}} 
-int {\bfseries current\+\_\+room}
+int \mbox{\hyperlink{struct___dungeon_a4acb40314632651c7ef3e68ac2e26721}{current\+\_\+room}}
 \item 
-\mbox{\Hypertarget{struct___dungeon_a8c66a28ade917330c544bb4109dcea9a}\label{struct___dungeon_a8c66a28ade917330c544bb4109dcea9a}} 
-int {\bfseries previous\+\_\+room}
+int \mbox{\hyperlink{struct___dungeon_a8c66a28ade917330c544bb4109dcea9a}{previous\+\_\+room}}
 \item 
-\mbox{\Hypertarget{struct___dungeon_a7f6ef45c226eaffed816b17068342e65}\label{struct___dungeon_a7f6ef45c226eaffed816b17068342e65}} 
-int {\bfseries nb\+\_\+enemy}
+int \mbox{\hyperlink{struct___dungeon_a7f6ef45c226eaffed816b17068342e65}{nb\+\_\+enemy}}
 \item 
-\mbox{\Hypertarget{struct___dungeon_a857502cff71d45019163294ccc1779d5}\label{struct___dungeon_a857502cff71d45019163294ccc1779d5}} 
-bool {\bfseries change}
+bool \mbox{\hyperlink{struct___dungeon_a857502cff71d45019163294ccc1779d5}{change}}
 \item 
-\mbox{\Hypertarget{struct___dungeon_ace28d58f0a32157c36ed1c358570265d}\label{struct___dungeon_ace28d58f0a32157c36ed1c358570265d}} 
-bool {\bfseries has\+Key}
+bool \mbox{\hyperlink{struct___dungeon_ace28d58f0a32157c36ed1c358570265d}{has\+Key}}
 \item 
-\mbox{\Hypertarget{struct___dungeon_ac746fa6ad48d19984a159f14bec028a3}\label{struct___dungeon_ac746fa6ad48d19984a159f14bec028a3}} 
-bool {\bfseries quit}
+bool \mbox{\hyperlink{struct___dungeon_ac746fa6ad48d19984a159f14bec028a3}{quit}}
 \item 
-\mbox{\Hypertarget{struct___dungeon_a41bc8ee9e68605bb04564667f4ebae53}\label{struct___dungeon_a41bc8ee9e68605bb04564667f4ebae53}} 
-float {\bfseries last\+Room\+Change\+Time}
+float \mbox{\hyperlink{struct___dungeon_a41bc8ee9e68605bb04564667f4ebae53}{last\+Room\+Change\+Time}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Structure representing a dungeon. 
+
+This structure represents a dungeon. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct___dungeon_ac47ae06c4fbd432cda959db21ed635a1}\label{struct___dungeon_ac47ae06c4fbd432cda959db21ed635a1}} 
+\index{\_Dungeon@{\_Dungeon}!adj@{adj}}
+\index{adj@{adj}!\_Dungeon@{\_Dungeon}}
+\doxysubsubsection{\texorpdfstring{adj}{adj}}
+{\footnotesize\ttfamily char$\ast$$\ast$ adj}
+
+Adjacency list \mbox{\Hypertarget{struct___dungeon_a857502cff71d45019163294ccc1779d5}\label{struct___dungeon_a857502cff71d45019163294ccc1779d5}} 
+\index{\_Dungeon@{\_Dungeon}!change@{change}}
+\index{change@{change}!\_Dungeon@{\_Dungeon}}
+\doxysubsubsection{\texorpdfstring{change}{change}}
+{\footnotesize\ttfamily bool change}
+
+Change \mbox{\Hypertarget{struct___dungeon_a4acb40314632651c7ef3e68ac2e26721}\label{struct___dungeon_a4acb40314632651c7ef3e68ac2e26721}} 
+\index{\_Dungeon@{\_Dungeon}!current\_room@{current\_room}}
+\index{current\_room@{current\_room}!\_Dungeon@{\_Dungeon}}
+\doxysubsubsection{\texorpdfstring{current\_room}{current\_room}}
+{\footnotesize\ttfamily int current\+\_\+room}
+
+Current room \mbox{\Hypertarget{struct___dungeon_a210b3e6ffb6e047c4ae6e2c0e737ed52}\label{struct___dungeon_a210b3e6ffb6e047c4ae6e2c0e737ed52}} 
+\index{\_Dungeon@{\_Dungeon}!direction@{direction}}
+\index{direction@{direction}!\_Dungeon@{\_Dungeon}}
+\doxysubsubsection{\texorpdfstring{direction}{direction}}
+{\footnotesize\ttfamily char direction}
+
+Direction \mbox{\Hypertarget{struct___dungeon_ace28d58f0a32157c36ed1c358570265d}\label{struct___dungeon_ace28d58f0a32157c36ed1c358570265d}} 
+\index{\_Dungeon@{\_Dungeon}!hasKey@{hasKey}}
+\index{hasKey@{hasKey}!\_Dungeon@{\_Dungeon}}
+\doxysubsubsection{\texorpdfstring{hasKey}{hasKey}}
+{\footnotesize\ttfamily bool has\+Key}
+
+If the player has the key \mbox{\Hypertarget{struct___dungeon_a41bc8ee9e68605bb04564667f4ebae53}\label{struct___dungeon_a41bc8ee9e68605bb04564667f4ebae53}} 
+\index{\_Dungeon@{\_Dungeon}!lastRoomChangeTime@{lastRoomChangeTime}}
+\index{lastRoomChangeTime@{lastRoomChangeTime}!\_Dungeon@{\_Dungeon}}
+\doxysubsubsection{\texorpdfstring{lastRoomChangeTime}{lastRoomChangeTime}}
+{\footnotesize\ttfamily float last\+Room\+Change\+Time}
+
+Last room change time \mbox{\Hypertarget{struct___dungeon_a7f6ef45c226eaffed816b17068342e65}\label{struct___dungeon_a7f6ef45c226eaffed816b17068342e65}} 
+\index{\_Dungeon@{\_Dungeon}!nb\_enemy@{nb\_enemy}}
+\index{nb\_enemy@{nb\_enemy}!\_Dungeon@{\_Dungeon}}
+\doxysubsubsection{\texorpdfstring{nb\_enemy}{nb\_enemy}}
+{\footnotesize\ttfamily int nb\+\_\+enemy}
+
+Number of enemies \mbox{\Hypertarget{struct___dungeon_afc5b792c3706d5aa2896fad6ab1be022}\label{struct___dungeon_afc5b792c3706d5aa2896fad6ab1be022}} 
+\index{\_Dungeon@{\_Dungeon}!nb\_rooms@{nb\_rooms}}
+\index{nb\_rooms@{nb\_rooms}!\_Dungeon@{\_Dungeon}}
+\doxysubsubsection{\texorpdfstring{nb\_rooms}{nb\_rooms}}
+{\footnotesize\ttfamily int nb\+\_\+rooms}
+
+Number of rooms \mbox{\Hypertarget{struct___dungeon_ae0dcd6f33c78b09ef8c839722763a6a9}\label{struct___dungeon_ae0dcd6f33c78b09ef8c839722763a6a9}} 
+\index{\_Dungeon@{\_Dungeon}!previous\_direction@{previous\_direction}}
+\index{previous\_direction@{previous\_direction}!\_Dungeon@{\_Dungeon}}
+\doxysubsubsection{\texorpdfstring{previous\_direction}{previous\_direction}}
+{\footnotesize\ttfamily char previous\+\_\+direction}
+
+Previous direction \mbox{\Hypertarget{struct___dungeon_a8c66a28ade917330c544bb4109dcea9a}\label{struct___dungeon_a8c66a28ade917330c544bb4109dcea9a}} 
+\index{\_Dungeon@{\_Dungeon}!previous\_room@{previous\_room}}
+\index{previous\_room@{previous\_room}!\_Dungeon@{\_Dungeon}}
+\doxysubsubsection{\texorpdfstring{previous\_room}{previous\_room}}
+{\footnotesize\ttfamily int previous\+\_\+room}
+
+Previous room \mbox{\Hypertarget{struct___dungeon_ac746fa6ad48d19984a159f14bec028a3}\label{struct___dungeon_ac746fa6ad48d19984a159f14bec028a3}} 
+\index{\_Dungeon@{\_Dungeon}!quit@{quit}}
+\index{quit@{quit}!\_Dungeon@{\_Dungeon}}
+\doxysubsubsection{\texorpdfstring{quit}{quit}}
+{\footnotesize\ttfamily bool quit}
+
+Quit \mbox{\Hypertarget{struct___dungeon_a9f45b48de8f01c378c8e9cf0dfce61ab}\label{struct___dungeon_a9f45b48de8f01c378c8e9cf0dfce61ab}} 
+\index{\_Dungeon@{\_Dungeon}!rooms@{rooms}}
+\index{rooms@{rooms}!\_Dungeon@{\_Dungeon}}
+\doxysubsubsection{\texorpdfstring{rooms}{rooms}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct___room}{Room}}$\ast$ rooms}
+
+Rooms \mbox{\Hypertarget{struct___dungeon_aee96bb698576f506a15bc32013f74499}\label{struct___dungeon_aee96bb698576f506a15bc32013f74499}} 
+\index{\_Dungeon@{\_Dungeon}!type\_room@{type\_room}}
+\index{type\_room@{type\_room}!\_Dungeon@{\_Dungeon}}
+\doxysubsubsection{\texorpdfstring{type\_room}{type\_room}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_room_8h_a21f3465bc0d6541c13d17d7a2660ba75}{L\+\_\+\+Room}}$\ast$ type\+\_\+room}
+
+Type of rooms 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Dungeon.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_dungeon_8h}{Dungeon.\+h}}\end{DoxyCompactItemize}
