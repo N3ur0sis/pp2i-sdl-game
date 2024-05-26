@@ -18,3 +18,4 @@ void printObject(int id, int nb);
 char* checkIdObject(int id);
 char* nameFromId(int id);
 char* descriptionFromId(int id);
+int costFromId(int id);

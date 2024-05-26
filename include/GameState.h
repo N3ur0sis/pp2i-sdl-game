@@ -19,5 +19,6 @@ typedef struct GameState {
     bool isForestDungeonDone;
     Menu* pauseMenu;
     bool restarting;
+    int money;
     // Add other game state variables as needed
 } GameState;
