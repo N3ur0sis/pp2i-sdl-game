@@ -45,6 +45,7 @@ void processInput(SDL_Event* e, bool* running, bool* isPaused, GameState* gameSt
                 if (e->key.keysym.sym == SDLK_RETURN) {
                     gameState->mainMenuOpen = false;
                 }
+                break;
             }
 			if (e->key.keysym.sym == SDLK_ESCAPE){
 				*isPaused = !*isPaused;
