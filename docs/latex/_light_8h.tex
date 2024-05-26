@@ -1,0 +1,115 @@
+\hypertarget{_light_8h}{}\doxysection{include/\+Light.h File Reference}
+\label{_light_8h}\index{include/Light.h@{include/Light.h}}
+
+
+Header file for the light component.  
+
+
+{\ttfamily \#include $<$cglm/cglm.\+h$>$}\newline
+{\ttfamily \#include $<$Shader.\+h$>$}\newline
+{\ttfamily \#include $<$Shadow\+Map.\+h$>$}\newline
+Include dependency graph for Light.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_light_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_light_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___light}{\+\_\+\+Light}}
+\begin{DoxyCompactList}\small\item\em Struct representing a light. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct___light}{\+\_\+\+Light}} \mbox{\hyperlink{_light_8h_a46afdce67e7fe51065b7a3e3724e0715}{Light}}
+\begin{DoxyCompactList}\small\item\em Struct representing a light. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_light_8h_a46afdce67e7fe51065b7a3e3724e0715}{Light}} $\ast$ \mbox{\hyperlink{_light_8h_afafa968358e8fcffd9e69dcfe29e7a73}{Light\+Create}} (\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$S, vec4 position, vec3 intensity, float attenuation, float ambient\+Coef, float nearz, float farz)
+\begin{DoxyCompactList}\small\item\em Function to create a light. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_light_8h_a0996ba2d4bb475e3984fda9ac71ae1e9}{Light\+Update}} (\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$S, \mbox{\hyperlink{_light_8h_a46afdce67e7fe51065b7a3e3724e0715}{Light}} $\ast$point)
+\begin{DoxyCompactList}\small\item\em Function to update the light. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the light component. 
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_light_8h_a46afdce67e7fe51065b7a3e3724e0715}\label{_light_8h_a46afdce67e7fe51065b7a3e3724e0715}} 
+\index{Light.h@{Light.h}!Light@{Light}}
+\index{Light@{Light}!Light.h@{Light.h}}
+\doxysubsubsection{\texorpdfstring{Light}{Light}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct___light}{\+\_\+\+Light}} \mbox{\hyperlink{_light_8h_a46afdce67e7fe51065b7a3e3724e0715}{Light}}}
+
+
+
+Struct representing a light. 
+
+This struct represents a light. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_light_8h_afafa968358e8fcffd9e69dcfe29e7a73}\label{_light_8h_afafa968358e8fcffd9e69dcfe29e7a73}} 
+\index{Light.h@{Light.h}!LightCreate@{LightCreate}}
+\index{LightCreate@{LightCreate}!Light.h@{Light.h}}
+\doxysubsubsection{\texorpdfstring{LightCreate()}{LightCreate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_light_8h_a46afdce67e7fe51065b7a3e3724e0715}{Light}}$\ast$ Light\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$}]{S,  }\item[{vec4}]{position,  }\item[{vec3}]{intensity,  }\item[{float}]{attenuation,  }\item[{float}]{ambient\+Coef,  }\item[{float}]{nearz,  }\item[{float}]{farz }\end{DoxyParamCaption})}
+
+
+
+Function to create a light. 
+
+This function creates a light.
+
+
+\begin{DoxyParams}{Parameters}
+{\em S} & Pointer to the shader. \\
+\hline
+{\em position} & Position of the light. \\
+\hline
+{\em intensity} & Intensity of the light. \\
+\hline
+{\em attenuation} & Attenuation of the light. \\
+\hline
+{\em ambient\+Coef} & Ambient coefficient of the light. \\
+\hline
+{\em nearz} & Near z value of the light. \\
+\hline
+{\em farz} & Far z value of the light. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the light. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_light_8h_a0996ba2d4bb475e3984fda9ac71ae1e9}\label{_light_8h_a0996ba2d4bb475e3984fda9ac71ae1e9}} 
+\index{Light.h@{Light.h}!LightUpdate@{LightUpdate}}
+\index{LightUpdate@{LightUpdate}!Light.h@{Light.h}}
+\doxysubsubsection{\texorpdfstring{LightUpdate()}{LightUpdate()}}
+{\footnotesize\ttfamily void Light\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$}]{S,  }\item[{\mbox{\hyperlink{_light_8h_a46afdce67e7fe51065b7a3e3724e0715}{Light}} $\ast$}]{point }\end{DoxyParamCaption})}
+
+
+
+Function to update the light. 
+
+This function updates the light.
+
+
+\begin{DoxyParams}{Parameters}
+{\em S} & Pointer to the shader. \\
+\hline
+{\em point} & Pointer to the light. \\
+\hline
+\end{DoxyParams}

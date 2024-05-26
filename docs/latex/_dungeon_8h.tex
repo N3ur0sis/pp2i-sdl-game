@@ -1,0 +1,1005 @@
+\hypertarget{_dungeon_8h}{}\doxysection{include/\+Dungeon.h File Reference}
+\label{_dungeon_8h}\index{include/Dungeon.h@{include/Dungeon.h}}
+
+
+Dungeon header file.  
+
+
+{\ttfamily \#include $<$Room.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$time.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}List.\+h\char`\"{}}\newline
+{\ttfamily \#include $<$stdbool.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$Game\+State.\+h$>$}\newline
+{\ttfamily \#include $<$Scene.\+h$>$}\newline
+{\ttfamily \#include $<$Controls.\+h$>$}\newline
+Include dependency graph for Dungeon.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_dungeon_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_dungeon_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___dungeon}{\+\_\+\+Dungeon}}
+\begin{DoxyCompactList}\small\item\em Structure representing a dungeon. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_dungeon_8h_a2c64ed2abb0bb0c5824cdc0b5ff8cb60}\label{_dungeon_8h_a2c64ed2abb0bb0c5824cdc0b5ff8cb60}} 
+\#define {\bfseries NB\+\_\+\+ROOM\+\_\+\+MAX}~15
+\item 
+\mbox{\Hypertarget{_dungeon_8h_ad4e6b368a9c7569e9e441ae862500abd}\label{_dungeon_8h_ad4e6b368a9c7569e9e441ae862500abd}} 
+\#define {\bfseries NB\+\_\+\+ROOM\+\_\+\+MIN}~10
+\item 
+\mbox{\Hypertarget{_dungeon_8h_a60254a1fe87afcbe8fc841c5a50e5a81}\label{_dungeon_8h_a60254a1fe87afcbe8fc841c5a50e5a81}} 
+\#define {\bfseries MIN\+\_\+\+DOOR}~1
+\item 
+\mbox{\Hypertarget{_dungeon_8h_a58b0f11303095e3b661e3a4de267c43e}\label{_dungeon_8h_a58b0f11303095e3b661e3a4de267c43e}} 
+\#define {\bfseries MAX\+\_\+\+DOOR}~4
+\item 
+\mbox{\Hypertarget{_dungeon_8h_ab608ffd36297155443dc3a1e7bfca41e}\label{_dungeon_8h_ab608ffd36297155443dc3a1e7bfca41e}} 
+\#define {\bfseries NB\+\_\+\+MODEL\+\_\+\+SALLE}~8
+\item 
+\mbox{\Hypertarget{_dungeon_8h_a3ac54772f418f80661d91f649f964942}\label{_dungeon_8h_a3ac54772f418f80661d91f649f964942}} 
+\#define {\bfseries Change\+Time}~2000.\+0f
+\item 
+\mbox{\Hypertarget{_dungeon_8h_a9f39918a78912f7a5248b3128ad881d1}\label{_dungeon_8h_a9f39918a78912f7a5248b3128ad881d1}} 
+\#define {\bfseries Loot\+Chance}~3;
+\item 
+\mbox{\Hypertarget{_dungeon_8h_a69a5834e33e09ac8752b2b1b846864c9}\label{_dungeon_8h_a69a5834e33e09ac8752b2b1b846864c9}} 
+\#define {\bfseries Fight\+Chance}~2;
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_dungeon_8h_a0261445bc54e33baec6f308abce70095}\label{_dungeon_8h_a0261445bc54e33baec6f308abce70095}} 
+typedef struct \mbox{\hyperlink{struct___dungeon}{\+\_\+\+Dungeon}} {\bfseries Dungeon}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$ \mbox{\hyperlink{_dungeon_8h_a6ff0c4b6ac48cbe434aa5e32c768627f}{dj\+\_\+create}} ()
+\begin{DoxyCompactList}\small\item\em Creates a new Dungeon instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_a62ad9e23cde31c15e911626b6fec11f6}{free\+Dungeon}} (\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj)
+\begin{DoxyCompactList}\small\item\em Frees the dungeon. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_a8449baf387f1e8136ec0d9b32759e60b}{free\+Type\+Rooms}} (\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj)
+\begin{DoxyCompactList}\small\item\em Frees the type of rooms. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_af577ae4f6276901097b22b15c8f46f8a}{initialize}} (\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj)
+\begin{DoxyCompactList}\small\item\em Initializes the dungeon. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_abb1c966559418e0e20b8d0913c489e18}{initialize\+Adjacency\+List}} (\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj)
+\begin{DoxyCompactList}\small\item\em Initialize the adjacency list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_ab37737bce39576a87f4a7d5881231f3b}{free\+Adjacency\+List}} (\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj)
+\begin{DoxyCompactList}\small\item\em Free the adjacency list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_abbe2d726bd67f91393f675a4f4754b38}{print\+Adj\+List}} (\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj)
+\begin{DoxyCompactList}\small\item\em Print the adjacency list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_aeb594874444f96838109f628f99fac79}{initialize\+Rooms}} (\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj)
+\begin{DoxyCompactList}\small\item\em Initialize the rooms. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_a0797d5a0cb8b8b7dfaf4d9d543093c91}{free\+Rooms}} (\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj)
+\begin{DoxyCompactList}\small\item\em Free the rooms. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_a9e42ae21c2cb81be48b70df4ce50a275}{Affiche}} (\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj)
+\begin{DoxyCompactList}\small\item\em prints the information of the dungeon \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_dungeon_8h_a8e97a28c04a2056bb8ad2cd4faa9b0d0}{max\+List}} (int list\mbox{[}$\,$\mbox{]}, int \mbox{\hyperlink{_vector_8h_a367c80e4a5c6743c3b79d831f99a66f2}{size}})
+\begin{DoxyCompactList}\small\item\em Find the maximum of a list of integers. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_dungeon_8h_af082905f7eac6d03e92015146bbc1925}{max}} (int a, int b)
+\begin{DoxyCompactList}\small\item\em Find the maximum of two integers. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_dungeon_8h_a4260dd378c45ed770b33073a042f67d5}\label{_dungeon_8h_a4260dd378c45ed770b33073a042f67d5}} 
+void {\bfseries depth\+First\+Search} (\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, int room, int \mbox{\hyperlink{_tree_8h_ad27cc76d3737eed66f7b5320aac170db}{depth}}, int $\ast$depths, int $\ast$visited)
+\item 
+int $\ast$ \mbox{\hyperlink{_dungeon_8h_a0c3d88e962dd1339f8ca0641b715dda4}{profondeur}} (\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj)
+\begin{DoxyCompactList}\small\item\em Find the depth of each room. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_a3b6c0e7e43b3ee694941f20573147d6d}{print\+Depth}} (int $\ast$depths, int nb\+\_\+rooms)
+\begin{DoxyCompactList}\small\item\em Print the depth of each room. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_afb3361f394fc3b24c722d141dcb0179a}{Load\+Room}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$player, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body, \mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$collider, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State)
+\begin{DoxyCompactList}\small\item\em Load the room. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_a82a5bb88d00af92140ba9c0265efe758}{Load\+Room1C}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$map, \mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$col, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$player, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body)
+\begin{DoxyCompactList}\small\item\em Load the room 1C. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_a4349bd08ca192298c611636e3dd6dae3}{Load\+Room2C}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$map, \mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$col, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$player, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body)
+\begin{DoxyCompactList}\small\item\em Load the room 2C. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_ac076943d69029e4fae77d5b4ad90549d}{Load\+Room3C}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$map, \mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$col, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$player, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body)
+\begin{DoxyCompactList}\small\item\em Load the room 3C. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_a17ef0818fef360cf6053f62bd8d3d647}{Load\+Room2I}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$map, \mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$col, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$player, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body)
+\begin{DoxyCompactList}\small\item\em Load the room 2I. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_a79a4604ceb87d4f9bda915cc70c79b12}{Load\+Room3T}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$map, \mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$col, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$player, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body)
+\begin{DoxyCompactList}\small\item\em Load the room 3T. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_a4e4bea8bbb869a20ea7cfef9f2214a5c}{Load\+Room2L}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$map, \mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$col, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$player, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body)
+\begin{DoxyCompactList}\small\item\em Load the room 2L. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_ab1f88bd22578254a52a2493643422655}{Load\+Room4C}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$player, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body)
+\begin{DoxyCompactList}\small\item\em Load the room 4C. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_a0536eecfbd55999dae146656a0bb8db3}{Load\+RoomB}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$map, \mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$col, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$player, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body)
+\begin{DoxyCompactList}\small\item\em Load the room B. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_a5fe1776f596da9063e2a5a03cef87d1e}{Logic\+Room1C}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body)
+\begin{DoxyCompactList}\small\item\em Handle the logic of the room 1C. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_ab2c906b5245fc2e8700d1879e596fece}{Logic\+Room2C}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body)
+\begin{DoxyCompactList}\small\item\em Handle the logic of the room 2C. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_abeb8b93bc07910715c3df50440b963e5}{Logic\+Room3C}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body)
+\begin{DoxyCompactList}\small\item\em Handle the logic of the room 3C. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_afe04a673915824eb6309a298b04f0a81}{Logic\+Room4C}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body)
+\begin{DoxyCompactList}\small\item\em Handle the logic of the room 4C. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_ab18534065b7bf677cc865a19c5d76328}{Logic\+Room2L}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body)
+\begin{DoxyCompactList}\small\item\em Handle the logic of the room 2L. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_ac801774a979c1e060e03684cc38bb2a2}{Logic\+Room2I}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body)
+\begin{DoxyCompactList}\small\item\em Handle the logic of the room 2I. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_a02532903dcdaf6d40ec98fde69319711}{Logic\+Room3T}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body)
+\begin{DoxyCompactList}\small\item\em Handle the logic of the room 3T. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_a188305d15e496ea1e79172a3057760b6}{Logic\+RoomB}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$body)
+\begin{DoxyCompactList}\small\item\em Handle the logic of the room B. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_a51724e0ac80a71a8b1b06ecb68ebb9c6}{initialize\+LRooms}} (\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj)
+\begin{DoxyCompactList}\small\item\em Initialize the LRooms. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_a9023ab27af37a56250f08757969b508b}{set\+Type\+Room}} (\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj)
+\begin{DoxyCompactList}\small\item\em Set the type of rooms. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_8h_aa9e0062fd1330b6484ba626841103db4}{display\+Mini\+Map}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$dj, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State)
+\begin{DoxyCompactList}\small\item\em Display the minimap. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Dungeon header file. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_dungeon_8h_a9e42ae21c2cb81be48b70df4ce50a275}\label{_dungeon_8h_a9e42ae21c2cb81be48b70df4ce50a275}} 
+\index{Dungeon.h@{Dungeon.h}!Affiche@{Affiche}}
+\index{Affiche@{Affiche}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{Affiche()}{Affiche()}}
+{\footnotesize\ttfamily void Affiche (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj }\end{DoxyParamCaption})}
+
+
+
+prints the information of the dungeon 
+
+This function prints the information of the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The Dungeon object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_aa9e0062fd1330b6484ba626841103db4}\label{_dungeon_8h_aa9e0062fd1330b6484ba626841103db4}} 
+\index{Dungeon.h@{Dungeon.h}!displayMiniMap@{displayMiniMap}}
+\index{displayMiniMap@{displayMiniMap}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{displayMiniMap()}{displayMiniMap()}}
+{\footnotesize\ttfamily void display\+Mini\+Map (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State }\end{DoxyParamCaption})}
+
+
+
+Display the minimap. 
+
+This function displays the minimap.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_a6ff0c4b6ac48cbe434aa5e32c768627f}\label{_dungeon_8h_a6ff0c4b6ac48cbe434aa5e32c768627f}} 
+\index{Dungeon.h@{Dungeon.h}!dj\_create@{dj\_create}}
+\index{dj\_create@{dj\_create}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{dj\_create()}{dj\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct___dungeon}{Dungeon}}$\ast$ dj\+\_\+create (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Creates a new Dungeon instance. 
+
+\begin{DoxyReturn}{Returns}
+Pointer to the created Dungeon instance or NULL on failure.
+\end{DoxyReturn}
+Creates a new Dungeon instance.
+
+This function creates a Dungeon object.
+
+\begin{DoxyReturn}{Returns}
+Dungeon$\ast$ The Dungeon object 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_dungeon_8h_ab37737bce39576a87f4a7d5881231f3b}\label{_dungeon_8h_ab37737bce39576a87f4a7d5881231f3b}} 
+\index{Dungeon.h@{Dungeon.h}!freeAdjacencyList@{freeAdjacencyList}}
+\index{freeAdjacencyList@{freeAdjacencyList}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{freeAdjacencyList()}{freeAdjacencyList()}}
+{\footnotesize\ttfamily void free\+Adjacency\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj }\end{DoxyParamCaption})}
+
+
+
+Free the adjacency list. 
+
+This function frees the adjacency list of the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The dungeon\\
+\hline
+\end{DoxyParams}
+This function frees the adjacency list of the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The Dungeon object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_a62ad9e23cde31c15e911626b6fec11f6}\label{_dungeon_8h_a62ad9e23cde31c15e911626b6fec11f6}} 
+\index{Dungeon.h@{Dungeon.h}!freeDungeon@{freeDungeon}}
+\index{freeDungeon@{freeDungeon}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{freeDungeon()}{freeDungeon()}}
+{\footnotesize\ttfamily void free\+Dungeon (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj }\end{DoxyParamCaption})}
+
+
+
+Frees the dungeon. 
+
+This function frees the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The dungeon\\
+\hline
+\end{DoxyParams}
+Frees the dungeon.
+
+This function frees the Dungeon object.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The Dungeon object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_a0797d5a0cb8b8b7dfaf4d9d543093c91}\label{_dungeon_8h_a0797d5a0cb8b8b7dfaf4d9d543093c91}} 
+\index{Dungeon.h@{Dungeon.h}!freeRooms@{freeRooms}}
+\index{freeRooms@{freeRooms}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{freeRooms()}{freeRooms()}}
+{\footnotesize\ttfamily void free\+Rooms (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj }\end{DoxyParamCaption})}
+
+
+
+Free the rooms. 
+
+This function frees the rooms of the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The dungeon\\
+\hline
+\end{DoxyParams}
+This function frees the rooms of the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The Dungeon object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_a8449baf387f1e8136ec0d9b32759e60b}\label{_dungeon_8h_a8449baf387f1e8136ec0d9b32759e60b}} 
+\index{Dungeon.h@{Dungeon.h}!freeTypeRooms@{freeTypeRooms}}
+\index{freeTypeRooms@{freeTypeRooms}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{freeTypeRooms()}{freeTypeRooms()}}
+{\footnotesize\ttfamily void free\+Type\+Rooms (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj }\end{DoxyParamCaption})}
+
+
+
+Frees the type of rooms. 
+
+This function frees the type of rooms.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The dungeon\\
+\hline
+\end{DoxyParams}
+Frees the type of rooms.
+
+This function frees the type of rooms of the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The Dungeon object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_af577ae4f6276901097b22b15c8f46f8a}\label{_dungeon_8h_af577ae4f6276901097b22b15c8f46f8a}} 
+\index{Dungeon.h@{Dungeon.h}!initialize@{initialize}}
+\index{initialize@{initialize}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{initialize()}{initialize()}}
+{\footnotesize\ttfamily void initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj }\end{DoxyParamCaption})}
+
+
+
+Initializes the dungeon. 
+
+This function initializes the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The dungeon\\
+\hline
+\end{DoxyParams}
+Initializes the dungeon.
+
+This function initializes the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The Dungeon object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_abb1c966559418e0e20b8d0913c489e18}\label{_dungeon_8h_abb1c966559418e0e20b8d0913c489e18}} 
+\index{Dungeon.h@{Dungeon.h}!initializeAdjacencyList@{initializeAdjacencyList}}
+\index{initializeAdjacencyList@{initializeAdjacencyList}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{initializeAdjacencyList()}{initializeAdjacencyList()}}
+{\footnotesize\ttfamily void initialize\+Adjacency\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj }\end{DoxyParamCaption})}
+
+
+
+Initialize the adjacency list. 
+
+This function initializes the adjacency list of the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The dungeon \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_a51724e0ac80a71a8b1b06ecb68ebb9c6}\label{_dungeon_8h_a51724e0ac80a71a8b1b06ecb68ebb9c6}} 
+\index{Dungeon.h@{Dungeon.h}!initializeLRooms@{initializeLRooms}}
+\index{initializeLRooms@{initializeLRooms}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{initializeLRooms()}{initializeLRooms()}}
+{\footnotesize\ttfamily void initialize\+LRooms (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj }\end{DoxyParamCaption})}
+
+
+
+Initialize the LRooms. 
+
+This function initializes the LRooms.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The Dungeon object\\
+\hline
+\end{DoxyParams}
+Initialize the LRooms.
+
+This function initializes the rooms of the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The Dungeon object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_aeb594874444f96838109f628f99fac79}\label{_dungeon_8h_aeb594874444f96838109f628f99fac79}} 
+\index{Dungeon.h@{Dungeon.h}!initializeRooms@{initializeRooms}}
+\index{initializeRooms@{initializeRooms}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{initializeRooms()}{initializeRooms()}}
+{\footnotesize\ttfamily void initialize\+Rooms (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj }\end{DoxyParamCaption})}
+
+
+
+Initialize the rooms. 
+
+This function initializes the rooms of the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The dungeon\\
+\hline
+\end{DoxyParams}
+This function initializes the rooms of the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The Dungeon object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_afb3361f394fc3b24c722d141dcb0179a}\label{_dungeon_8h_afb3361f394fc3b24c722d141dcb0179a}} 
+\index{Dungeon.h@{Dungeon.h}!LoadRoom@{LoadRoom}}
+\index{LoadRoom@{LoadRoom}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LoadRoom()}{LoadRoom()}}
+{\footnotesize\ttfamily void Load\+Room (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{player,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body,  }\item[{\mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$}]{collider,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State }\end{DoxyParamCaption})}
+
+
+
+Load the room. 
+
+This function loads the room.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em player} & The player \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+{\em collider} & The Collider \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_a82a5bb88d00af92140ba9c0265efe758}\label{_dungeon_8h_a82a5bb88d00af92140ba9c0265efe758}} 
+\index{Dungeon.h@{Dungeon.h}!LoadRoom1C@{LoadRoom1C}}
+\index{LoadRoom1C@{LoadRoom1C}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LoadRoom1C()}{LoadRoom1C()}}
+{\footnotesize\ttfamily void Load\+Room1C (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{map,  }\item[{\mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$}]{col,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{player,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Load the room 1C. 
+
+This function loads the room 1C.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em map} & The Model \\
+\hline
+{\em col} & The Collider \\
+\hline
+{\em player} & The Model \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_a4349bd08ca192298c611636e3dd6dae3}\label{_dungeon_8h_a4349bd08ca192298c611636e3dd6dae3}} 
+\index{Dungeon.h@{Dungeon.h}!LoadRoom2C@{LoadRoom2C}}
+\index{LoadRoom2C@{LoadRoom2C}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LoadRoom2C()}{LoadRoom2C()}}
+{\footnotesize\ttfamily void Load\+Room2C (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{map,  }\item[{\mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$}]{col,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{player,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Load the room 2C. 
+
+This function loads the room 2C.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em map} & The Model \\
+\hline
+{\em col} & The Collider \\
+\hline
+{\em player} & The Model \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_a17ef0818fef360cf6053f62bd8d3d647}\label{_dungeon_8h_a17ef0818fef360cf6053f62bd8d3d647}} 
+\index{Dungeon.h@{Dungeon.h}!LoadRoom2I@{LoadRoom2I}}
+\index{LoadRoom2I@{LoadRoom2I}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LoadRoom2I()}{LoadRoom2I()}}
+{\footnotesize\ttfamily void Load\+Room2I (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{map,  }\item[{\mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$}]{col,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{player,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Load the room 2I. 
+
+This function loads the room 2I.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em map} & The Model \\
+\hline
+{\em col} & The Collider \\
+\hline
+{\em player} & The Model \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_a4e4bea8bbb869a20ea7cfef9f2214a5c}\label{_dungeon_8h_a4e4bea8bbb869a20ea7cfef9f2214a5c}} 
+\index{Dungeon.h@{Dungeon.h}!LoadRoom2L@{LoadRoom2L}}
+\index{LoadRoom2L@{LoadRoom2L}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LoadRoom2L()}{LoadRoom2L()}}
+{\footnotesize\ttfamily void Load\+Room2L (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{map,  }\item[{\mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$}]{col,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{player,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Load the room 2L. 
+
+This function loads the room 2L.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em map} & The Model \\
+\hline
+{\em col} & The Collider \\
+\hline
+{\em player} & The Model \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_ac076943d69029e4fae77d5b4ad90549d}\label{_dungeon_8h_ac076943d69029e4fae77d5b4ad90549d}} 
+\index{Dungeon.h@{Dungeon.h}!LoadRoom3C@{LoadRoom3C}}
+\index{LoadRoom3C@{LoadRoom3C}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LoadRoom3C()}{LoadRoom3C()}}
+{\footnotesize\ttfamily void Load\+Room3C (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{map,  }\item[{\mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$}]{col,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{player,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Load the room 3C. 
+
+This function loads the room 3C.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em map} & The Model \\
+\hline
+{\em col} & The Collider \\
+\hline
+{\em player} & The Model \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_a79a4604ceb87d4f9bda915cc70c79b12}\label{_dungeon_8h_a79a4604ceb87d4f9bda915cc70c79b12}} 
+\index{Dungeon.h@{Dungeon.h}!LoadRoom3T@{LoadRoom3T}}
+\index{LoadRoom3T@{LoadRoom3T}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LoadRoom3T()}{LoadRoom3T()}}
+{\footnotesize\ttfamily void Load\+Room3T (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{map,  }\item[{\mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$}]{col,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{player,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Load the room 3T. 
+
+This function loads the room 3T.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em map} & The Model \\
+\hline
+{\em col} & The Collider \\
+\hline
+{\em player} & The Model \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_ab1f88bd22578254a52a2493643422655}\label{_dungeon_8h_ab1f88bd22578254a52a2493643422655}} 
+\index{Dungeon.h@{Dungeon.h}!LoadRoom4C@{LoadRoom4C}}
+\index{LoadRoom4C@{LoadRoom4C}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LoadRoom4C()}{LoadRoom4C()}}
+{\footnotesize\ttfamily void Load\+Room4C (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{player,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Load the room 4C. 
+
+This function loads the room 4C.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em player} & The Model \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}}\\
+\hline
+\end{DoxyParams}
+This function loads the room 4C.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em map} & The Model \\
+\hline
+{\em col} & The Collider \\
+\hline
+{\em player} & The Model \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_a0536eecfbd55999dae146656a0bb8db3}\label{_dungeon_8h_a0536eecfbd55999dae146656a0bb8db3}} 
+\index{Dungeon.h@{Dungeon.h}!LoadRoomB@{LoadRoomB}}
+\index{LoadRoomB@{LoadRoomB}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LoadRoomB()}{LoadRoomB()}}
+{\footnotesize\ttfamily void Load\+RoomB (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{map,  }\item[{\mbox{\hyperlink{_collider_8h_a23755eef9288a1810babb90938157450}{Collider}} $\ast$}]{col,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{player,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Load the room B. 
+
+This function loads the room B.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em map} & The Model \\
+\hline
+{\em col} & The Collider \\
+\hline
+{\em player} & The Model \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_a5fe1776f596da9063e2a5a03cef87d1e}\label{_dungeon_8h_a5fe1776f596da9063e2a5a03cef87d1e}} 
+\index{Dungeon.h@{Dungeon.h}!LogicRoom1C@{LogicRoom1C}}
+\index{LogicRoom1C@{LogicRoom1C}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LogicRoom1C()}{LogicRoom1C()}}
+{\footnotesize\ttfamily void Logic\+Room1C (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Handle the logic of the room 1C. 
+
+This function handles the logic of the room 1C.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_ab2c906b5245fc2e8700d1879e596fece}\label{_dungeon_8h_ab2c906b5245fc2e8700d1879e596fece}} 
+\index{Dungeon.h@{Dungeon.h}!LogicRoom2C@{LogicRoom2C}}
+\index{LogicRoom2C@{LogicRoom2C}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LogicRoom2C()}{LogicRoom2C()}}
+{\footnotesize\ttfamily void Logic\+Room2C (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Handle the logic of the room 2C. 
+
+This function handles the logic of the room 2C.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_ac801774a979c1e060e03684cc38bb2a2}\label{_dungeon_8h_ac801774a979c1e060e03684cc38bb2a2}} 
+\index{Dungeon.h@{Dungeon.h}!LogicRoom2I@{LogicRoom2I}}
+\index{LogicRoom2I@{LogicRoom2I}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LogicRoom2I()}{LogicRoom2I()}}
+{\footnotesize\ttfamily void Logic\+Room2I (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Handle the logic of the room 2I. 
+
+This function handles the logic of the room 2I.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_ab18534065b7bf677cc865a19c5d76328}\label{_dungeon_8h_ab18534065b7bf677cc865a19c5d76328}} 
+\index{Dungeon.h@{Dungeon.h}!LogicRoom2L@{LogicRoom2L}}
+\index{LogicRoom2L@{LogicRoom2L}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LogicRoom2L()}{LogicRoom2L()}}
+{\footnotesize\ttfamily void Logic\+Room2L (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Handle the logic of the room 2L. 
+
+This function handles the logic of the room 2L.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_abeb8b93bc07910715c3df50440b963e5}\label{_dungeon_8h_abeb8b93bc07910715c3df50440b963e5}} 
+\index{Dungeon.h@{Dungeon.h}!LogicRoom3C@{LogicRoom3C}}
+\index{LogicRoom3C@{LogicRoom3C}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LogicRoom3C()}{LogicRoom3C()}}
+{\footnotesize\ttfamily void Logic\+Room3C (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Handle the logic of the room 3C. 
+
+This function handles the logic of the room 3C.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_a02532903dcdaf6d40ec98fde69319711}\label{_dungeon_8h_a02532903dcdaf6d40ec98fde69319711}} 
+\index{Dungeon.h@{Dungeon.h}!LogicRoom3T@{LogicRoom3T}}
+\index{LogicRoom3T@{LogicRoom3T}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LogicRoom3T()}{LogicRoom3T()}}
+{\footnotesize\ttfamily void Logic\+Room3T (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Handle the logic of the room 3T. 
+
+This function handles the logic of the room 3T.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_afe04a673915824eb6309a298b04f0a81}\label{_dungeon_8h_afe04a673915824eb6309a298b04f0a81}} 
+\index{Dungeon.h@{Dungeon.h}!LogicRoom4C@{LogicRoom4C}}
+\index{LogicRoom4C@{LogicRoom4C}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LogicRoom4C()}{LogicRoom4C()}}
+{\footnotesize\ttfamily void Logic\+Room4C (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Handle the logic of the room 4C. 
+
+This function handles the logic of the room 4C.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_a188305d15e496ea1e79172a3057760b6}\label{_dungeon_8h_a188305d15e496ea1e79172a3057760b6}} 
+\index{Dungeon.h@{Dungeon.h}!LogicRoomB@{LogicRoomB}}
+\index{LogicRoomB@{LogicRoomB}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{LogicRoomB()}{LogicRoomB()}}
+{\footnotesize\ttfamily void Logic\+RoomB (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj,  }\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{body }\end{DoxyParamCaption})}
+
+
+
+Handle the logic of the room B. 
+
+This function handles the logic of the room B.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & The scene \\
+\hline
+{\em game\+State} & The \mbox{\hyperlink{struct_game_state}{Game\+State}} \\
+\hline
+{\em dj} & The Dungeon object \\
+\hline
+{\em body} & The \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_af082905f7eac6d03e92015146bbc1925}\label{_dungeon_8h_af082905f7eac6d03e92015146bbc1925}} 
+\index{Dungeon.h@{Dungeon.h}!max@{max}}
+\index{max@{max}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{max()}{max()}}
+{\footnotesize\ttfamily int max (\begin{DoxyParamCaption}\item[{int}]{a,  }\item[{int}]{b }\end{DoxyParamCaption})}
+
+
+
+Find the maximum of two integers. 
+
+This function finds the maximum of two integers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em a} & The first integer \\
+\hline
+{\em b} & The second integer \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The maximum of the two integers 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_dungeon_8h_a8e97a28c04a2056bb8ad2cd4faa9b0d0}\label{_dungeon_8h_a8e97a28c04a2056bb8ad2cd4faa9b0d0}} 
+\index{Dungeon.h@{Dungeon.h}!maxList@{maxList}}
+\index{maxList@{maxList}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{maxList()}{maxList()}}
+{\footnotesize\ttfamily int max\+List (\begin{DoxyParamCaption}\item[{int}]{list\mbox{[}$\,$\mbox{]},  }\item[{int}]{size }\end{DoxyParamCaption})}
+
+
+
+Find the maximum of a list of integers. 
+
+This function finds the maximum of a list of integers.
+
+
+\begin{DoxyParams}{Parameters}
+{\em list} & The list of integers \\
+\hline
+{\em size} & The size of the list \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int The maximum of the list 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_dungeon_8h_abbe2d726bd67f91393f675a4f4754b38}\label{_dungeon_8h_abbe2d726bd67f91393f675a4f4754b38}} 
+\index{Dungeon.h@{Dungeon.h}!printAdjList@{printAdjList}}
+\index{printAdjList@{printAdjList}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{printAdjList()}{printAdjList()}}
+{\footnotesize\ttfamily void print\+Adj\+List (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj }\end{DoxyParamCaption})}
+
+
+
+Print the adjacency list. 
+
+This function prints the adjacency list of the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The dungeon\\
+\hline
+\end{DoxyParams}
+This function prints the adjacency list of the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The Dungeon object \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_a3b6c0e7e43b3ee694941f20573147d6d}\label{_dungeon_8h_a3b6c0e7e43b3ee694941f20573147d6d}} 
+\index{Dungeon.h@{Dungeon.h}!printDepth@{printDepth}}
+\index{printDepth@{printDepth}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{printDepth()}{printDepth()}}
+{\footnotesize\ttfamily void print\+Depth (\begin{DoxyParamCaption}\item[{int $\ast$}]{depths,  }\item[{int}]{nb\+\_\+rooms }\end{DoxyParamCaption})}
+
+
+
+Print the depth of each room. 
+
+This function prints the depth of each room in the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em depths} & The depth of each room \\
+\hline
+{\em nb\+\_\+rooms} & The number of rooms \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_8h_a0c3d88e962dd1339f8ca0641b715dda4}\label{_dungeon_8h_a0c3d88e962dd1339f8ca0641b715dda4}} 
+\index{Dungeon.h@{Dungeon.h}!profondeur@{profondeur}}
+\index{profondeur@{profondeur}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{profondeur()}{profondeur()}}
+{\footnotesize\ttfamily int$\ast$ profondeur (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj }\end{DoxyParamCaption})}
+
+
+
+Find the depth of each room. 
+
+This function finds the depth of each room.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The dungeon \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int$\ast$ The depth of each room
+\end{DoxyReturn}
+This function finds the depth of each room in the dungeon.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The Dungeon object \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int$\ast$ The depth of each room 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_dungeon_8h_a9023ab27af37a56250f08757969b508b}\label{_dungeon_8h_a9023ab27af37a56250f08757969b508b}} 
+\index{Dungeon.h@{Dungeon.h}!setTypeRoom@{setTypeRoom}}
+\index{setTypeRoom@{setTypeRoom}!Dungeon.h@{Dungeon.h}}
+\doxysubsubsection{\texorpdfstring{setTypeRoom()}{setTypeRoom()}}
+{\footnotesize\ttfamily void set\+Type\+Room (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___dungeon}{Dungeon}} $\ast$}]{dj }\end{DoxyParamCaption})}
+
+
+
+Set the type of rooms. 
+
+This function sets the type of rooms.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The Dungeon object\\
+\hline
+\end{DoxyParams}
+Set the type of rooms.
+
+This function sets the type of the rooms.
+
+
+\begin{DoxyParams}{Parameters}
+{\em dj} & The Dungeon object \\
+\hline
+\end{DoxyParams}

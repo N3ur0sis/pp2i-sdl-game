@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nb_5fkeys_172',['NB_KEYS',['../_controls_8h.html#ae8ddcff73f96cca59675cd1d10769634',1,'Controls.h']]]
+  ['damage_1104',['DAMAGE',['../_player_8h.html#a0b55d367d80b5221e6de48330dd43e6d',1,'Player.h']]]
 ];

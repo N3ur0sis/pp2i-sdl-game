@@ -9,20 +9,33 @@ Struct representing a menu.
 
 {\ttfamily \#include $<$Menu.\+h$>$}
 
+
+
+Collaboration diagram for \+\_\+\+Menu\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{struct___menu__coll__graph}
+\end{center}
+\end{figure}
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct___menu_af06d911bb9e05f491ef3da520d03796c}\label{struct___menu_af06d911bb9e05f491ef3da520d03796c}} 
-char $\ast$ {\bfseries title}
+char $\ast$ \mbox{\hyperlink{struct___menu_af06d911bb9e05f491ef3da520d03796c}{title}}
 \item 
-\mbox{\Hypertarget{struct___menu_aa3174b58130e22f99a2289148aac2bc7}\label{struct___menu_aa3174b58130e22f99a2289148aac2bc7}} 
-int {\bfseries num\+Options}
+int \mbox{\hyperlink{struct___menu_aa3174b58130e22f99a2289148aac2bc7}{num\+Options}}
 \item 
-\mbox{\Hypertarget{struct___menu_afefe8f715b91a6c68097ec7503dd6020}\label{struct___menu_afefe8f715b91a6c68097ec7503dd6020}} 
-char $\ast$$\ast$ {\bfseries options}
+char $\ast$$\ast$ \mbox{\hyperlink{struct___menu_afefe8f715b91a6c68097ec7503dd6020}{options}}
 \item 
-\mbox{\Hypertarget{struct___menu_a4d4b64d77e8e94c0269a555600d585b1}\label{struct___menu_a4d4b64d77e8e94c0269a555600d585b1}} 
-int {\bfseries selected\+Option}
+int \mbox{\hyperlink{struct___menu_a4d4b64d77e8e94c0269a555600d585b1}{selected\+Option}}
+\item 
+\mbox{\hyperlink{struct___menu}{Menu}} $\ast$ \mbox{\hyperlink{struct___menu_a44b8a07482934b38165c392258af70ab}{Settings\+Menu}}
+\item 
+bool \mbox{\hyperlink{struct___menu_a47d867ea7ce2905963436869e8d2cb03}{is\+Settings}}
+\item 
+\mbox{\hyperlink{struct___menu}{Menu}} $\ast$ \mbox{\hyperlink{struct___menu_af153fe0e8d7a80232bc537bd3d99d14a}{parent\+Menu}}
+\item 
+\mbox{\hyperlink{_engine_8h_a71931feb51e2f53ba9cc5bc3bd9e30d5}{Application}} $\ast$ \mbox{\hyperlink{struct___menu_aae94167b0f1813763475f0b60e95a34f}{game}}
 \end{DoxyCompactItemize}
 
 
@@ -31,6 +44,57 @@ Struct representing a menu.
 
 This struct represents a menu. 
 
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct___menu_aae94167b0f1813763475f0b60e95a34f}\label{struct___menu_aae94167b0f1813763475f0b60e95a34f}} 
+\index{\_Menu@{\_Menu}!game@{game}}
+\index{game@{game}!\_Menu@{\_Menu}}
+\doxysubsubsection{\texorpdfstring{game}{game}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_engine_8h_a71931feb51e2f53ba9cc5bc3bd9e30d5}{Application}}$\ast$ game}
+
+Pointer to the application. \mbox{\Hypertarget{struct___menu_a47d867ea7ce2905963436869e8d2cb03}\label{struct___menu_a47d867ea7ce2905963436869e8d2cb03}} 
+\index{\_Menu@{\_Menu}!isSettings@{isSettings}}
+\index{isSettings@{isSettings}!\_Menu@{\_Menu}}
+\doxysubsubsection{\texorpdfstring{isSettings}{isSettings}}
+{\footnotesize\ttfamily bool is\+Settings}
+
+Boolean flag indicating if the settings menu is active. \mbox{\Hypertarget{struct___menu_aa3174b58130e22f99a2289148aac2bc7}\label{struct___menu_aa3174b58130e22f99a2289148aac2bc7}} 
+\index{\_Menu@{\_Menu}!numOptions@{numOptions}}
+\index{numOptions@{numOptions}!\_Menu@{\_Menu}}
+\doxysubsubsection{\texorpdfstring{numOptions}{numOptions}}
+{\footnotesize\ttfamily int num\+Options}
+
+Number of options in the menu. \mbox{\Hypertarget{struct___menu_afefe8f715b91a6c68097ec7503dd6020}\label{struct___menu_afefe8f715b91a6c68097ec7503dd6020}} 
+\index{\_Menu@{\_Menu}!options@{options}}
+\index{options@{options}!\_Menu@{\_Menu}}
+\doxysubsubsection{\texorpdfstring{options}{options}}
+{\footnotesize\ttfamily char$\ast$$\ast$ options}
+
+Array of options in the menu. \mbox{\Hypertarget{struct___menu_af153fe0e8d7a80232bc537bd3d99d14a}\label{struct___menu_af153fe0e8d7a80232bc537bd3d99d14a}} 
+\index{\_Menu@{\_Menu}!parentMenu@{parentMenu}}
+\index{parentMenu@{parentMenu}!\_Menu@{\_Menu}}
+\doxysubsubsection{\texorpdfstring{parentMenu}{parentMenu}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct___menu}{Menu}}$\ast$ parent\+Menu}
+
+Pointer to the parent menu. \mbox{\Hypertarget{struct___menu_a4d4b64d77e8e94c0269a555600d585b1}\label{struct___menu_a4d4b64d77e8e94c0269a555600d585b1}} 
+\index{\_Menu@{\_Menu}!selectedOption@{selectedOption}}
+\index{selectedOption@{selectedOption}!\_Menu@{\_Menu}}
+\doxysubsubsection{\texorpdfstring{selectedOption}{selectedOption}}
+{\footnotesize\ttfamily int selected\+Option}
+
+Index of the selected option. \mbox{\Hypertarget{struct___menu_a44b8a07482934b38165c392258af70ab}\label{struct___menu_a44b8a07482934b38165c392258af70ab}} 
+\index{\_Menu@{\_Menu}!SettingsMenu@{SettingsMenu}}
+\index{SettingsMenu@{SettingsMenu}!\_Menu@{\_Menu}}
+\doxysubsubsection{\texorpdfstring{SettingsMenu}{SettingsMenu}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct___menu}{Menu}}$\ast$ Settings\+Menu}
+
+Pointer to the settings menu. \mbox{\Hypertarget{struct___menu_af06d911bb9e05f491ef3da520d03796c}\label{struct___menu_af06d911bb9e05f491ef3da520d03796c}} 
+\index{\_Menu@{\_Menu}!title@{title}}
+\index{title@{title}!\_Menu@{\_Menu}}
+\doxysubsubsection{\texorpdfstring{title}{title}}
+{\footnotesize\ttfamily char$\ast$ title}
+
+Title of the menu. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Menu.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_menu_8h}{Menu.\+h}}\end{DoxyCompactItemize}

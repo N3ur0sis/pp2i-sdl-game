@@ -1,0 +1,261 @@
+\hypertarget{_inventory_8h}{}\doxysection{include/\+Inventory.h File Reference}
+\label{_inventory_8h}\index{include/Inventory.h@{include/Inventory.h}}
+
+
+Header file for the inventory component.  
+
+
+{\ttfamily \#include $<$Objects.\+h$>$}\newline
+{\ttfamily \#include $<$Renderer.\+h$>$}\newline
+Include dependency graph for Inventory.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_inventory_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_inventory_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___inventory}{\+\_\+\+Inventory}}
+\begin{DoxyCompactList}\small\item\em Struct representing an inventory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct___inventory}{\+\_\+\+Inventory}} \mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}}
+\begin{DoxyCompactList}\small\item\em Struct representing an inventory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$ \mbox{\hyperlink{_inventory_8h_a2da02d88df02b12e3291c1cfed3cf6a6}{Inventory\+Create}} (int \mbox{\hyperlink{_vector_8h_a9bdb60f2a3a54b8e278c4d40cf553fdd}{capacity}})
+\begin{DoxyCompactList}\small\item\em Function to create an inventory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_inventory_8h_af624f04ed7939611a4f3077a9a9ed3ed}{Inventory\+Add\+Objects}} (int nb, \mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$inventory, \mbox{\hyperlink{_objects_8h_a7f8bbcda919b65ce67f92fba08e0212f}{Object}} $\ast$object)
+\begin{DoxyCompactList}\small\item\em Function to add an object to the inventory. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_inventory_8h_a1cffe42a22158a26b032ed3cb46d7e8f}{Inventory\+Remove\+Object}} (\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$inventory, int id)
+\begin{DoxyCompactList}\small\item\em Function to remove an object from the inventory. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_inventory_8h_accee10470969c8f5fa8536b23aeeda40}{Inventory\+Print}} (\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$inventory, float window\+\_\+width, float window\+\_\+height, GLuint shader, float offset\+\_\+x, float offset\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Function to print the inventory. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_inventory_8h_a41232017109b6a261c02abbd3388dff1}{Inventory\+Print\+Trade}} (\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$inventory, float window\+\_\+width, float window\+\_\+height, GLuint shader, float offset\+\_\+x, float offset\+\_\+y, int mouse\+\_\+x, int mouse\+\_\+y, bool $\ast$has\+Clicked, bool is\+Clicking\+Marchand)
+\begin{DoxyCompactList}\small\item\em Function to print the inventory of the trade. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_inventory_8h_a7dadfd30e12f99e7b07b47fcad5c18f4}{free\+Inventory}} (\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$inventory)
+\begin{DoxyCompactList}\small\item\em Function to free the inventory. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_inventory_8h_a417e5d6ff87e154cd332499736334424}{Mouse\+On\+Case}} (int x\+\_\+square, int y\+\_\+square, int mouse\+\_\+x, int mouse\+\_\+y)
+\begin{DoxyCompactList}\small\item\em Function to check if the mouse is on a case. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_inventory_8h_a4fc7690d29cacb6160e0ba9b32a6de0d}{print\+Inventory\+Simple}} (\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$inventory)
+\begin{DoxyCompactList}\small\item\em Function to print the inventory. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the inventory component. 
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}\label{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}} 
+\index{Inventory.h@{Inventory.h}!Inventory@{Inventory}}
+\index{Inventory@{Inventory}!Inventory.h@{Inventory.h}}
+\doxysubsubsection{\texorpdfstring{Inventory}{Inventory}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct___inventory}{\+\_\+\+Inventory}} \mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}}}
+
+
+
+Struct representing an inventory. 
+
+This struct represents an inventory. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_inventory_8h_a7dadfd30e12f99e7b07b47fcad5c18f4}\label{_inventory_8h_a7dadfd30e12f99e7b07b47fcad5c18f4}} 
+\index{Inventory.h@{Inventory.h}!freeInventory@{freeInventory}}
+\index{freeInventory@{freeInventory}!Inventory.h@{Inventory.h}}
+\doxysubsubsection{\texorpdfstring{freeInventory()}{freeInventory()}}
+{\footnotesize\ttfamily void free\+Inventory (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$}]{inventory }\end{DoxyParamCaption})}
+
+
+
+Function to free the inventory. 
+
+This function frees the inventory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em inventory} & Pointer to the inventory. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_inventory_8h_af624f04ed7939611a4f3077a9a9ed3ed}\label{_inventory_8h_af624f04ed7939611a4f3077a9a9ed3ed}} 
+\index{Inventory.h@{Inventory.h}!InventoryAddObjects@{InventoryAddObjects}}
+\index{InventoryAddObjects@{InventoryAddObjects}!Inventory.h@{Inventory.h}}
+\doxysubsubsection{\texorpdfstring{InventoryAddObjects()}{InventoryAddObjects()}}
+{\footnotesize\ttfamily void Inventory\+Add\+Objects (\begin{DoxyParamCaption}\item[{int}]{nb,  }\item[{\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$}]{inventory,  }\item[{\mbox{\hyperlink{_objects_8h_a7f8bbcda919b65ce67f92fba08e0212f}{Object}} $\ast$}]{object }\end{DoxyParamCaption})}
+
+
+
+Function to add an object to the inventory. 
+
+This function adds an object to the inventory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em inventory} & Pointer to the inventory. \\
+\hline
+{\em object} & Pointer to the object. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_inventory_8h_a2da02d88df02b12e3291c1cfed3cf6a6}\label{_inventory_8h_a2da02d88df02b12e3291c1cfed3cf6a6}} 
+\index{Inventory.h@{Inventory.h}!InventoryCreate@{InventoryCreate}}
+\index{InventoryCreate@{InventoryCreate}!Inventory.h@{Inventory.h}}
+\doxysubsubsection{\texorpdfstring{InventoryCreate()}{InventoryCreate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}}$\ast$ Inventory\+Create (\begin{DoxyParamCaption}\item[{int}]{capacity }\end{DoxyParamCaption})}
+
+
+
+Function to create an inventory. 
+
+This function creates an inventory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em capacity} & Capacity of the inventory. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the inventory. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_inventory_8h_accee10470969c8f5fa8536b23aeeda40}\label{_inventory_8h_accee10470969c8f5fa8536b23aeeda40}} 
+\index{Inventory.h@{Inventory.h}!InventoryPrint@{InventoryPrint}}
+\index{InventoryPrint@{InventoryPrint}!Inventory.h@{Inventory.h}}
+\doxysubsubsection{\texorpdfstring{InventoryPrint()}{InventoryPrint()}}
+{\footnotesize\ttfamily void Inventory\+Print (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$}]{inventory,  }\item[{float}]{window\+\_\+width,  }\item[{float}]{window\+\_\+height,  }\item[{GLuint}]{shader,  }\item[{float}]{offset\+\_\+x,  }\item[{float}]{offset\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Function to print the inventory. 
+
+This function prints the inventory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em inventory} & Pointer to the inventory. \\
+\hline
+{\em window\+\_\+width} & Width of the window. \\
+\hline
+{\em window\+\_\+height} & Height of the window. \\
+\hline
+{\em shader} & Shader program. \\
+\hline
+{\em offset\+\_\+x} & X offset. \\
+\hline
+{\em offset\+\_\+y} & Y offset. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_inventory_8h_a41232017109b6a261c02abbd3388dff1}\label{_inventory_8h_a41232017109b6a261c02abbd3388dff1}} 
+\index{Inventory.h@{Inventory.h}!InventoryPrintTrade@{InventoryPrintTrade}}
+\index{InventoryPrintTrade@{InventoryPrintTrade}!Inventory.h@{Inventory.h}}
+\doxysubsubsection{\texorpdfstring{InventoryPrintTrade()}{InventoryPrintTrade()}}
+{\footnotesize\ttfamily int Inventory\+Print\+Trade (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$}]{inventory,  }\item[{float}]{window\+\_\+width,  }\item[{float}]{window\+\_\+height,  }\item[{GLuint}]{shader,  }\item[{float}]{offset\+\_\+x,  }\item[{float}]{offset\+\_\+y,  }\item[{int}]{mouse\+\_\+x,  }\item[{int}]{mouse\+\_\+y,  }\item[{bool $\ast$}]{has\+Clicked,  }\item[{bool}]{is\+Clicking\+Marchand }\end{DoxyParamCaption})}
+
+
+
+Function to print the inventory of the trade. 
+
+This function prints the inventory of the trade.
+
+
+\begin{DoxyParams}{Parameters}
+{\em inventory} & Pointer to the inventory. \\
+\hline
+{\em window\+\_\+width} & Width of the window. \\
+\hline
+{\em window\+\_\+height} & Height of the window. \\
+\hline
+{\em shader} & Shader program. \\
+\hline
+{\em offset\+\_\+x} & X offset. \\
+\hline
+{\em offset\+\_\+y} & Y offset. \\
+\hline
+{\em mouse\+\_\+x} & X position of the mouse. \\
+\hline
+{\em mouse\+\_\+y} & Y position of the mouse. \\
+\hline
+{\em has\+Clicked} & Pointer to the boolean flag indicating if the inventory has been clicked. \\
+\hline
+{\em is\+Clicking\+Marchand} & Boolean flag indicating if the inventory is being clicked. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean value indicating if the inventory is being clicked. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_inventory_8h_a1cffe42a22158a26b032ed3cb46d7e8f}\label{_inventory_8h_a1cffe42a22158a26b032ed3cb46d7e8f}} 
+\index{Inventory.h@{Inventory.h}!InventoryRemoveObject@{InventoryRemoveObject}}
+\index{InventoryRemoveObject@{InventoryRemoveObject}!Inventory.h@{Inventory.h}}
+\doxysubsubsection{\texorpdfstring{InventoryRemoveObject()}{InventoryRemoveObject()}}
+{\footnotesize\ttfamily bool Inventory\+Remove\+Object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$}]{inventory,  }\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Function to remove an object from the inventory. 
+
+This function removes an object from the inventory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em inventory} & Pointer to the inventory. \\
+\hline
+{\em id} & ID of the object. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean value indicating if the object was removed. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_inventory_8h_a417e5d6ff87e154cd332499736334424}\label{_inventory_8h_a417e5d6ff87e154cd332499736334424}} 
+\index{Inventory.h@{Inventory.h}!MouseOnCase@{MouseOnCase}}
+\index{MouseOnCase@{MouseOnCase}!Inventory.h@{Inventory.h}}
+\doxysubsubsection{\texorpdfstring{MouseOnCase()}{MouseOnCase()}}
+{\footnotesize\ttfamily bool Mouse\+On\+Case (\begin{DoxyParamCaption}\item[{int}]{x\+\_\+square,  }\item[{int}]{y\+\_\+square,  }\item[{int}]{mouse\+\_\+x,  }\item[{int}]{mouse\+\_\+y }\end{DoxyParamCaption})}
+
+
+
+Function to check if the mouse is on a case. 
+
+This function checks if the mouse is on a case.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+\_\+square} & X position of the square. \\
+\hline
+{\em y\+\_\+square} & Y position of the square. \\
+\hline
+{\em mouse\+\_\+x} & X position \\
+\hline
+{\em mouse\+\_\+y} & Y position \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean value indicating if the mouse is on the case. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_inventory_8h_a4fc7690d29cacb6160e0ba9b32a6de0d}\label{_inventory_8h_a4fc7690d29cacb6160e0ba9b32a6de0d}} 
+\index{Inventory.h@{Inventory.h}!printInventorySimple@{printInventorySimple}}
+\index{printInventorySimple@{printInventorySimple}!Inventory.h@{Inventory.h}}
+\doxysubsubsection{\texorpdfstring{printInventorySimple()}{printInventorySimple()}}
+{\footnotesize\ttfamily void print\+Inventory\+Simple (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_inventory_8h_a2253bf64ac4ce6a9c1d6f39c0b0d32a3}{Inventory}} $\ast$}]{inventory }\end{DoxyParamCaption})}
+
+
+
+Function to print the inventory. 
+
+This function prints the inventory.
+
+
+\begin{DoxyParams}{Parameters}
+{\em inventory} & Pointer to the inventory. \\
+\hline
+\end{DoxyParams}

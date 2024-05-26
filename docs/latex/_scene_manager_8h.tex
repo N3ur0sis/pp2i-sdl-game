@@ -1,0 +1,184 @@
+\hypertarget{_scene_manager_8h}{}\doxysection{include/\+Scene\+Manager.h File Reference}
+\label{_scene_manager_8h}\index{include/SceneManager.h@{include/SceneManager.h}}
+
+
+Header file for the scene manager component.  
+
+
+{\ttfamily \#include $<$Scene.\+h$>$}\newline
+Include dependency graph for Scene\+Manager.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_scene_manager_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_scene_manager_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}}
+\begin{DoxyCompactList}\small\item\em Structure for the scene manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{_scene_manager_8h_ac2357da0d2d85045cd269b34c338a6cc}{MAX\+\_\+\+SCENES}}~10
+\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_scene_manager_8h_a7849209658bfcbf2faedca7c0c4f8fee}\label{_scene_manager_8h_a7849209658bfcbf2faedca7c0c4f8fee}} 
+typedef struct \mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} \mbox{\hyperlink{_scene_manager_8h_a7849209658bfcbf2faedca7c0c4f8fee}{Scene\+Manager}}
+\begin{DoxyCompactList}\small\item\em Structure for the scene manager. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$ \mbox{\hyperlink{_scene_manager_8h_a738f34a296971be361d8183ee080a9cf}{Scene\+Manager\+Init}} ()
+\begin{DoxyCompactList}\small\item\em Function to initialize the scene manager. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_scene_manager_8h_a7d827199edeabdcc825a30ffc053776b}{Scene\+Manager\+Add\+Scene}} (\mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$manager, \mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, void($\ast$start)(\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$), void($\ast$update)(\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$), void($\ast$\mbox{\hyperlink{_start_scene_8h_a9267081f055ddc463f4ede12045e4cac}{unload\+Start\+Scene}})(\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$))
+\begin{DoxyCompactList}\small\item\em Function to add a scene to the scene manager. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_scene_manager_8h_a3e615c2dfea277070731154e86f16ceb}{Scene\+Manager\+Set\+Current\+Scene}} (\mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$manager, int index)
+\begin{DoxyCompactList}\small\item\em Function to set the current scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_scene_manager_8h_ae5d6fe503ee47948bf044a3a0c8576ed}{Scene\+Manager\+Update\+Current\+Scene}} (\mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$manager)
+\begin{DoxyCompactList}\small\item\em Function to update the current scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_scene_manager_8h_a5f73a50062b6a7526c691795588be3d1}{free\+Scene\+Manager}} (\mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$manager)
+\begin{DoxyCompactList}\small\item\em Function to free the scene manager. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_scene_manager_8h_a2579ebcf1377569f3db87568f2e95296}{Scene\+Manager\+Unload\+Current\+Scene}} (\mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$manager, int index)
+\begin{DoxyCompactList}\small\item\em Function to unload the current scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the scene manager component. 
+
+
+
+\doxysubsection{Macro Definition Documentation}
+\mbox{\Hypertarget{_scene_manager_8h_ac2357da0d2d85045cd269b34c338a6cc}\label{_scene_manager_8h_ac2357da0d2d85045cd269b34c338a6cc}} 
+\index{SceneManager.h@{SceneManager.h}!MAX\_SCENES@{MAX\_SCENES}}
+\index{MAX\_SCENES@{MAX\_SCENES}!SceneManager.h@{SceneManager.h}}
+\doxysubsubsection{\texorpdfstring{MAX\_SCENES}{MAX\_SCENES}}
+{\footnotesize\ttfamily \#define MAX\+\_\+\+SCENES~10}
+
+Maximum number of scenes. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_scene_manager_8h_a5f73a50062b6a7526c691795588be3d1}\label{_scene_manager_8h_a5f73a50062b6a7526c691795588be3d1}} 
+\index{SceneManager.h@{SceneManager.h}!freeSceneManager@{freeSceneManager}}
+\index{freeSceneManager@{freeSceneManager}!SceneManager.h@{SceneManager.h}}
+\doxysubsubsection{\texorpdfstring{freeSceneManager()}{freeSceneManager()}}
+{\footnotesize\ttfamily void free\+Scene\+Manager (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$}]{manager }\end{DoxyParamCaption})}
+
+
+
+Function to free the scene manager. 
+
+This function frees the scene manager.
+
+
+\begin{DoxyParams}{Parameters}
+{\em manager} & Pointer to the scene manager. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_scene_manager_8h_a7d827199edeabdcc825a30ffc053776b}\label{_scene_manager_8h_a7d827199edeabdcc825a30ffc053776b}} 
+\index{SceneManager.h@{SceneManager.h}!SceneManagerAddScene@{SceneManagerAddScene}}
+\index{SceneManagerAddScene@{SceneManagerAddScene}!SceneManager.h@{SceneManager.h}}
+\doxysubsubsection{\texorpdfstring{SceneManagerAddScene()}{SceneManagerAddScene()}}
+{\footnotesize\ttfamily void Scene\+Manager\+Add\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$}]{manager,  }\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{void($\ast$)(\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$)}]{start,  }\item[{void($\ast$)(\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$)}]{update,  }\item[{void($\ast$)(\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$)}]{unload\+Start\+Scene }\end{DoxyParamCaption})}
+
+
+
+Function to add a scene to the scene manager. 
+
+This function adds a scene to the scene manager.
+
+
+\begin{DoxyParams}{Parameters}
+{\em manager} & Pointer to the scene manager. \\
+\hline
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em start} & Start function of the scene. \\
+\hline
+{\em update} & Update function of the scene. \\
+\hline
+{\em unload\+Start\+Scene} & Unload function of the scene. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_scene_manager_8h_a738f34a296971be361d8183ee080a9cf}\label{_scene_manager_8h_a738f34a296971be361d8183ee080a9cf}} 
+\index{SceneManager.h@{SceneManager.h}!SceneManagerInit@{SceneManagerInit}}
+\index{SceneManagerInit@{SceneManagerInit}!SceneManager.h@{SceneManager.h}}
+\doxysubsubsection{\texorpdfstring{SceneManagerInit()}{SceneManagerInit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}}$\ast$ Scene\+Manager\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Function to initialize the scene manager. 
+
+This function initializes the scene manager.
+
+\begin{DoxyReturn}{Returns}
+Pointer to the scene manager. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_scene_manager_8h_a3e615c2dfea277070731154e86f16ceb}\label{_scene_manager_8h_a3e615c2dfea277070731154e86f16ceb}} 
+\index{SceneManager.h@{SceneManager.h}!SceneManagerSetCurrentScene@{SceneManagerSetCurrentScene}}
+\index{SceneManagerSetCurrentScene@{SceneManagerSetCurrentScene}!SceneManager.h@{SceneManager.h}}
+\doxysubsubsection{\texorpdfstring{SceneManagerSetCurrentScene()}{SceneManagerSetCurrentScene()}}
+{\footnotesize\ttfamily void Scene\+Manager\+Set\+Current\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$}]{manager,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Function to set the current scene. 
+
+This function sets the current scene.
+
+
+\begin{DoxyParams}{Parameters}
+{\em manager} & Pointer to the scene manager. \\
+\hline
+{\em index} & Index of the scene. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_scene_manager_8h_a2579ebcf1377569f3db87568f2e95296}\label{_scene_manager_8h_a2579ebcf1377569f3db87568f2e95296}} 
+\index{SceneManager.h@{SceneManager.h}!SceneManagerUnloadCurrentScene@{SceneManagerUnloadCurrentScene}}
+\index{SceneManagerUnloadCurrentScene@{SceneManagerUnloadCurrentScene}!SceneManager.h@{SceneManager.h}}
+\doxysubsubsection{\texorpdfstring{SceneManagerUnloadCurrentScene()}{SceneManagerUnloadCurrentScene()}}
+{\footnotesize\ttfamily void Scene\+Manager\+Unload\+Current\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$}]{manager,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Function to unload the current scene. 
+
+This function unloads the current scene.
+
+
+\begin{DoxyParams}{Parameters}
+{\em manager} & Pointer to the scene manager. \\
+\hline
+{\em index} & Index of the scene. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_scene_manager_8h_ae5d6fe503ee47948bf044a3a0c8576ed}\label{_scene_manager_8h_ae5d6fe503ee47948bf044a3a0c8576ed}} 
+\index{SceneManager.h@{SceneManager.h}!SceneManagerUpdateCurrentScene@{SceneManagerUpdateCurrentScene}}
+\index{SceneManagerUpdateCurrentScene@{SceneManagerUpdateCurrentScene}!SceneManager.h@{SceneManager.h}}
+\doxysubsubsection{\texorpdfstring{SceneManagerUpdateCurrentScene()}{SceneManagerUpdateCurrentScene()}}
+{\footnotesize\ttfamily void Scene\+Manager\+Update\+Current\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_scene_manager}{Scene\+Manager}} $\ast$}]{manager }\end{DoxyParamCaption})}
+
+
+
+Function to update the current scene. 
+
+This function updates the current scene.
+
+
+\begin{DoxyParams}{Parameters}
+{\em manager} & Pointer to the scene manager. \\
+\hline
+\end{DoxyParams}

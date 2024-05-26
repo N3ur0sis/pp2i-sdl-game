@@ -1,0 +1,200 @@
+\hypertarget{_tree_8h}{}\doxysection{include/\+Tree.h File Reference}
+\label{_tree_8h}\index{include/Tree.h@{include/Tree.h}}
+
+
+Header file for the tree structure.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Vector.\+h\char`\"{}}\newline
+Include dependency graph for Tree.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_tree_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_node}{Node}}
+\begin{DoxyCompactList}\small\item\em Struct representing a node in a tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_tree_8h_a3b09f37e675bcd48a01bf22155996872}\label{_tree_8h_a3b09f37e675bcd48a01bf22155996872}} 
+typedef struct \mbox{\hyperlink{struct_node}{Node}} {\bfseries Node}
+\item 
+\mbox{\Hypertarget{_tree_8h_aaa99c0766395c8c2a88946185b5c5683}\label{_tree_8h_aaa99c0766395c8c2a88946185b5c5683}} 
+typedef struct \mbox{\hyperlink{struct___data}{\+\_\+\+Data}} {\bfseries Data}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_node}{Node}} $\ast$ \mbox{\hyperlink{_tree_8h_ac85c8ff048f15a77a13db366f7c4e7ed}{create\+Node}} (\mbox{\hyperlink{struct___data}{Data}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Function to create a node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_tree_8h_a8080102cb9a6d19f2654189f4ced7b05}{add\+Child}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$parent, \mbox{\hyperlink{struct_node}{Node}} $\ast$child)
+\begin{DoxyCompactList}\small\item\em Function to add a child to a node. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_tree_8h_a52632ce85231a15b1eb0ef71a70efa32}{child\+Count}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Function to count the number of children of a node. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_tree_8h_ad27cc76d3737eed66f7b5320aac170db}{depth}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$root, \mbox{\hyperlink{struct_node}{Node}} $\ast$node)
+\begin{DoxyCompactList}\small\item\em Function to get the depth of a node. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_tree_8h_a3df7d5d6e4eb92eac6d3d51155f8df3e}{height}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$root)
+\begin{DoxyCompactList}\small\item\em Function to get the height of a node. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_tree_8h_a32b2cddefe10d5d01168b063d0f569e7}{BFS}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$parent)
+\begin{DoxyCompactList}\small\item\em Function to print the tree. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_tree_8h_ab59f3827fefd067c24059eb281713758}{search}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$parent, \mbox{\hyperlink{struct___data}{Data}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Function to search for a node in the tree. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the tree structure. 
+
+\begin{DoxyAuthor}{Author}
+VD 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_tree_8h_a8080102cb9a6d19f2654189f4ced7b05}\label{_tree_8h_a8080102cb9a6d19f2654189f4ced7b05}} 
+\index{Tree.h@{Tree.h}!addChild@{addChild}}
+\index{addChild@{addChild}!Tree.h@{Tree.h}}
+\doxysubsubsection{\texorpdfstring{addChild()}{addChild()}}
+{\footnotesize\ttfamily void add\+Child (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$}]{parent,  }\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$}]{child }\end{DoxyParamCaption})}
+
+
+
+Function to add a child to a node. 
+
+This function adds a child to a node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent node. \\
+\hline
+{\em child} & Pointer to the child node. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_tree_8h_a32b2cddefe10d5d01168b063d0f569e7}\label{_tree_8h_a32b2cddefe10d5d01168b063d0f569e7}} 
+\index{Tree.h@{Tree.h}!BFS@{BFS}}
+\index{BFS@{BFS}!Tree.h@{Tree.h}}
+\doxysubsubsection{\texorpdfstring{BFS()}{BFS()}}
+{\footnotesize\ttfamily void BFS (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$}]{parent }\end{DoxyParamCaption})}
+
+
+
+Function to print the tree. 
+
+This function prints the tree.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the root node. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_tree_8h_a52632ce85231a15b1eb0ef71a70efa32}\label{_tree_8h_a52632ce85231a15b1eb0ef71a70efa32}} 
+\index{Tree.h@{Tree.h}!childCount@{childCount}}
+\index{childCount@{childCount}!Tree.h@{Tree.h}}
+\doxysubsubsection{\texorpdfstring{childCount()}{childCount()}}
+{\footnotesize\ttfamily int child\+Count (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$}]{parent }\end{DoxyParamCaption})}
+
+
+
+Function to count the number of children of a node. 
+
+This function counts the number of children of a node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of children. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_tree_8h_ac85c8ff048f15a77a13db366f7c4e7ed}\label{_tree_8h_ac85c8ff048f15a77a13db366f7c4e7ed}} 
+\index{Tree.h@{Tree.h}!createNode@{createNode}}
+\index{createNode@{createNode}!Tree.h@{Tree.h}}
+\doxysubsubsection{\texorpdfstring{createNode()}{createNode()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_node}{Node}}$\ast$ create\+Node (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___data}{Data}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Function to create a node. 
+
+This function creates a node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Pointer to the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_tree_8h_ad27cc76d3737eed66f7b5320aac170db}\label{_tree_8h_ad27cc76d3737eed66f7b5320aac170db}} 
+\index{Tree.h@{Tree.h}!depth@{depth}}
+\index{depth@{depth}!Tree.h@{Tree.h}}
+\doxysubsubsection{\texorpdfstring{depth()}{depth()}}
+{\footnotesize\ttfamily int depth (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$}]{root,  }\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$}]{node }\end{DoxyParamCaption})}
+
+
+
+Function to get the depth of a node. 
+
+This function gets the depth of a node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & Pointer to the root node. \\
+\hline
+{\em node} & Pointer to the node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Depth of the node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_tree_8h_a3df7d5d6e4eb92eac6d3d51155f8df3e}\label{_tree_8h_a3df7d5d6e4eb92eac6d3d51155f8df3e}} 
+\index{Tree.h@{Tree.h}!height@{height}}
+\index{height@{height}!Tree.h@{Tree.h}}
+\doxysubsubsection{\texorpdfstring{height()}{height()}}
+{\footnotesize\ttfamily int height (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$}]{root }\end{DoxyParamCaption})}
+
+
+
+Function to get the height of a node. 
+
+This function gets the height of a node.
+
+
+\begin{DoxyParams}{Parameters}
+{\em root} & Pointer to the root node. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Height of the node. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_tree_8h_ab59f3827fefd067c24059eb281713758}\label{_tree_8h_ab59f3827fefd067c24059eb281713758}} 
+\index{Tree.h@{Tree.h}!search@{search}}
+\index{search@{search}!Tree.h@{Tree.h}}
+\doxysubsubsection{\texorpdfstring{search()}{search()}}
+{\footnotesize\ttfamily int search (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$}]{parent,  }\item[{\mbox{\hyperlink{struct___data}{Data}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Function to search for a node in the tree. 
+
+This function searches for a node in the tree.
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the root node. \\
+\hline
+{\em data} & Pointer to the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the node. 
+\end{DoxyReturn}

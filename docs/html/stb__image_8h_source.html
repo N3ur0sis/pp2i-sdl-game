@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,6 +59,11 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">stb_image.h</div>  </div>
@@ -495,7 +479,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l00409"></a><span class="lineno">  409</span>&#160; </div>
 <div class="line"><a name="l00410"></a><span class="lineno"><a class="line" href="structstbi__io__callbacks.html">  410</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
 <div class="line"><a name="l00411"></a><span class="lineno">  411</span>&#160;{</div>
-<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;   int      (*read)  (<span class="keywordtype">void</span> *user,<span class="keywordtype">char</span> *data,<span class="keywordtype">int</span> size);   <span class="comment">// fill &#39;data&#39; with &#39;size&#39; bytes.  return number of bytes actually read</span></div>
+<div class="line"><a name="l00412"></a><span class="lineno">  412</span>&#160;   int      (*read)  (<span class="keywordtype">void</span> *user,<span class="keywordtype">char</span> *data,<span class="keywordtype">int</span> <a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>);   <span class="comment">// fill &#39;data&#39; with &#39;size&#39; bytes.  return number of bytes actually read</span></div>
 <div class="line"><a name="l00413"></a><span class="lineno">  413</span>&#160;   void     (*skip)  (<span class="keywordtype">void</span> *user,<span class="keywordtype">int</span> n);                 <span class="comment">// skip the next &#39;n&#39; bytes, or &#39;unget&#39; the last -n bytes if negative</span></div>
 <div class="line"><a name="l00414"></a><span class="lineno">  414</span>&#160;   int      (*eof)   (<span class="keywordtype">void</span> *user);                       <span class="comment">// returns nonzero if we are at end of file/data</span></div>
 <div class="line"><a name="l00415"></a><span class="lineno">  415</span>&#160;} <a class="code" href="structstbi__io__callbacks.html">stbi_io_callbacks</a>;</div>
@@ -504,7 +488,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l00419"></a><span class="lineno">  419</span>&#160;<span class="comment">// 8-bits-per-channel interface</span></div>
 <div class="line"><a name="l00420"></a><span class="lineno">  420</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00421"></a><span class="lineno">  421</span>&#160; </div>
-<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;STBIDEF stbi_uc *stbi_load_from_memory   (stbi_uc           <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len   , <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *channels_in_file, <span class="keywordtype">int</span> desired_channels);</div>
+<div class="line"><a name="l00422"></a><span class="lineno">  422</span>&#160;STBIDEF stbi_uc *stbi_load_from_memory   (stbi_uc           <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>   , <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *channels_in_file, <span class="keywordtype">int</span> desired_channels);</div>
 <div class="line"><a name="l00423"></a><span class="lineno">  423</span>&#160;STBIDEF stbi_uc *stbi_load_from_callbacks(<a class="code" href="structstbi__io__callbacks.html">stbi_io_callbacks</a> <span class="keyword">const</span> *clbk  , <span class="keywordtype">void</span> *user, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *channels_in_file, <span class="keywordtype">int</span> desired_channels);</div>
 <div class="line"><a name="l00424"></a><span class="lineno">  424</span>&#160; </div>
 <div class="line"><a name="l00425"></a><span class="lineno">  425</span>&#160;<span class="preprocessor">#ifndef STBI_NO_STDIO</span></div>
@@ -514,7 +498,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l00429"></a><span class="lineno">  429</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00430"></a><span class="lineno">  430</span>&#160; </div>
 <div class="line"><a name="l00431"></a><span class="lineno">  431</span>&#160;<span class="preprocessor">#ifndef STBI_NO_GIF</span></div>
-<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;STBIDEF stbi_uc *stbi_load_gif_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> **delays, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *z, <span class="keywordtype">int</span> *comp, <span class="keywordtype">int</span> req_comp);</div>
+<div class="line"><a name="l00432"></a><span class="lineno">  432</span>&#160;STBIDEF stbi_uc *stbi_load_gif_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> **delays, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *z, <span class="keywordtype">int</span> *comp, <span class="keywordtype">int</span> req_comp);</div>
 <div class="line"><a name="l00433"></a><span class="lineno">  433</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00434"></a><span class="lineno">  434</span>&#160; </div>
 <div class="line"><a name="l00435"></a><span class="lineno">  435</span>&#160;<span class="preprocessor">#ifdef STBI_WINDOWS_UTF8</span></div>
@@ -525,7 +509,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l00441"></a><span class="lineno">  441</span>&#160;<span class="comment">// 16-bits-per-channel interface</span></div>
 <div class="line"><a name="l00442"></a><span class="lineno">  442</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00443"></a><span class="lineno">  443</span>&#160; </div>
-<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;STBIDEF stbi_us *stbi_load_16_from_memory   (stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *channels_in_file, <span class="keywordtype">int</span> desired_channels);</div>
+<div class="line"><a name="l00444"></a><span class="lineno">  444</span>&#160;STBIDEF stbi_us *stbi_load_16_from_memory   (stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *channels_in_file, <span class="keywordtype">int</span> desired_channels);</div>
 <div class="line"><a name="l00445"></a><span class="lineno">  445</span>&#160;STBIDEF stbi_us *stbi_load_16_from_callbacks(<a class="code" href="structstbi__io__callbacks.html">stbi_io_callbacks</a> <span class="keyword">const</span> *clbk, <span class="keywordtype">void</span> *user, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *channels_in_file, <span class="keywordtype">int</span> desired_channels);</div>
 <div class="line"><a name="l00446"></a><span class="lineno">  446</span>&#160; </div>
 <div class="line"><a name="l00447"></a><span class="lineno">  447</span>&#160;<span class="preprocessor">#ifndef STBI_NO_STDIO</span></div>
@@ -537,7 +521,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l00454"></a><span class="lineno">  454</span>&#160;<span class="comment">// float-per-channel interface</span></div>
 <div class="line"><a name="l00455"></a><span class="lineno">  455</span>&#160;<span class="comment">//</span></div>
 <div class="line"><a name="l00456"></a><span class="lineno">  456</span>&#160;<span class="preprocessor">#ifndef STBI_NO_LINEAR</span></div>
-<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;   STBIDEF <span class="keywordtype">float</span> *stbi_loadf_from_memory     (stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *channels_in_file, <span class="keywordtype">int</span> desired_channels);</div>
+<div class="line"><a name="l00457"></a><span class="lineno">  457</span>&#160;   STBIDEF <span class="keywordtype">float</span> *stbi_loadf_from_memory     (stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *channels_in_file, <span class="keywordtype">int</span> desired_channels);</div>
 <div class="line"><a name="l00458"></a><span class="lineno">  458</span>&#160;   STBIDEF <span class="keywordtype">float</span> *stbi_loadf_from_callbacks  (<a class="code" href="structstbi__io__callbacks.html">stbi_io_callbacks</a> <span class="keyword">const</span> *clbk, <span class="keywordtype">void</span> *user, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y,  <span class="keywordtype">int</span> *channels_in_file, <span class="keywordtype">int</span> desired_channels);</div>
 <div class="line"><a name="l00459"></a><span class="lineno">  459</span>&#160; </div>
 <div class="line"><a name="l00460"></a><span class="lineno">  460</span>&#160;<span class="preprocessor">   #ifndef STBI_NO_STDIO</span></div>
@@ -558,7 +542,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l00475"></a><span class="lineno">  475</span>&#160; </div>
 <div class="line"><a name="l00476"></a><span class="lineno">  476</span>&#160;<span class="comment">// stbi_is_hdr is always defined, but always returns false if STBI_NO_HDR</span></div>
 <div class="line"><a name="l00477"></a><span class="lineno">  477</span>&#160;STBIDEF <span class="keywordtype">int</span>    stbi_is_hdr_from_callbacks(<a class="code" href="structstbi__io__callbacks.html">stbi_io_callbacks</a> <span class="keyword">const</span> *clbk, <span class="keywordtype">void</span> *user);</div>
-<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;STBIDEF <span class="keywordtype">int</span>    stbi_is_hdr_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len);</div>
+<div class="line"><a name="l00478"></a><span class="lineno">  478</span>&#160;STBIDEF <span class="keywordtype">int</span>    stbi_is_hdr_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
 <div class="line"><a name="l00479"></a><span class="lineno">  479</span>&#160;<span class="preprocessor">#ifndef STBI_NO_STDIO</span></div>
 <div class="line"><a name="l00480"></a><span class="lineno">  480</span>&#160;STBIDEF <span class="keywordtype">int</span>      stbi_is_hdr          (<span class="keywordtype">char</span> <span class="keyword">const</span> *filename);</div>
 <div class="line"><a name="l00481"></a><span class="lineno">  481</span>&#160;STBIDEF <span class="keywordtype">int</span>      stbi_is_hdr_from_file(FILE *f);</div>
@@ -573,9 +557,9 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l00490"></a><span class="lineno">  490</span>&#160;STBIDEF <span class="keywordtype">void</span>     stbi_image_free      (<span class="keywordtype">void</span> *retval_from_stbi_load);</div>
 <div class="line"><a name="l00491"></a><span class="lineno">  491</span>&#160; </div>
 <div class="line"><a name="l00492"></a><span class="lineno">  492</span>&#160;<span class="comment">// get image dimensions &amp; components without fully decoding</span></div>
-<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;STBIDEF <span class="keywordtype">int</span>      stbi_info_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *comp);</div>
+<div class="line"><a name="l00493"></a><span class="lineno">  493</span>&#160;STBIDEF <span class="keywordtype">int</span>      stbi_info_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *comp);</div>
 <div class="line"><a name="l00494"></a><span class="lineno">  494</span>&#160;STBIDEF <span class="keywordtype">int</span>      stbi_info_from_callbacks(<a class="code" href="structstbi__io__callbacks.html">stbi_io_callbacks</a> <span class="keyword">const</span> *clbk, <span class="keywordtype">void</span> *user, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *comp);</div>
-<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;STBIDEF <span class="keywordtype">int</span>      stbi_is_16_bit_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len);</div>
+<div class="line"><a name="l00495"></a><span class="lineno">  495</span>&#160;STBIDEF <span class="keywordtype">int</span>      stbi_is_16_bit_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
 <div class="line"><a name="l00496"></a><span class="lineno">  496</span>&#160;STBIDEF <span class="keywordtype">int</span>      stbi_is_16_bit_from_callbacks(<a class="code" href="structstbi__io__callbacks.html">stbi_io_callbacks</a> <span class="keyword">const</span> *clbk, <span class="keywordtype">void</span> *user);</div>
 <div class="line"><a name="l00497"></a><span class="lineno">  497</span>&#160; </div>
 <div class="line"><a name="l00498"></a><span class="lineno">  498</span>&#160;<span class="preprocessor">#ifndef STBI_NO_STDIO</span></div>
@@ -608,12 +592,12 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l00525"></a><span class="lineno">  525</span>&#160; </div>
 <div class="line"><a name="l00526"></a><span class="lineno">  526</span>&#160;<span class="comment">// ZLIB client - used by PNG, available for other purposes</span></div>
 <div class="line"><a name="l00527"></a><span class="lineno">  527</span>&#160; </div>
-<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;STBIDEF <span class="keywordtype">char</span> *stbi_zlib_decode_malloc_guesssize(<span class="keyword">const</span> <span class="keywordtype">char</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> initial_size, <span class="keywordtype">int</span> *outlen);</div>
-<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;STBIDEF <span class="keywordtype">char</span> *stbi_zlib_decode_malloc_guesssize_headerflag(<span class="keyword">const</span> <span class="keywordtype">char</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> initial_size, <span class="keywordtype">int</span> *outlen, <span class="keywordtype">int</span> parse_header);</div>
-<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;STBIDEF <span class="keywordtype">char</span> *stbi_zlib_decode_malloc(<span class="keyword">const</span> <span class="keywordtype">char</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> *outlen);</div>
+<div class="line"><a name="l00528"></a><span class="lineno">  528</span>&#160;STBIDEF <span class="keywordtype">char</span> *stbi_zlib_decode_malloc_guesssize(<span class="keyword">const</span> <span class="keywordtype">char</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> initial_size, <span class="keywordtype">int</span> *outlen);</div>
+<div class="line"><a name="l00529"></a><span class="lineno">  529</span>&#160;STBIDEF <span class="keywordtype">char</span> *stbi_zlib_decode_malloc_guesssize_headerflag(<span class="keyword">const</span> <span class="keywordtype">char</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> initial_size, <span class="keywordtype">int</span> *outlen, <span class="keywordtype">int</span> parse_header);</div>
+<div class="line"><a name="l00530"></a><span class="lineno">  530</span>&#160;STBIDEF <span class="keywordtype">char</span> *stbi_zlib_decode_malloc(<span class="keyword">const</span> <span class="keywordtype">char</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> *outlen);</div>
 <div class="line"><a name="l00531"></a><span class="lineno">  531</span>&#160;STBIDEF <span class="keywordtype">int</span>   stbi_zlib_decode_buffer(<span class="keywordtype">char</span> *obuffer, <span class="keywordtype">int</span> olen, <span class="keyword">const</span> <span class="keywordtype">char</span> *ibuffer, <span class="keywordtype">int</span> ilen);</div>
 <div class="line"><a name="l00532"></a><span class="lineno">  532</span>&#160; </div>
-<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;STBIDEF <span class="keywordtype">char</span> *stbi_zlib_decode_noheader_malloc(<span class="keyword">const</span> <span class="keywordtype">char</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> *outlen);</div>
+<div class="line"><a name="l00533"></a><span class="lineno">  533</span>&#160;STBIDEF <span class="keywordtype">char</span> *stbi_zlib_decode_noheader_malloc(<span class="keyword">const</span> <span class="keywordtype">char</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> *outlen);</div>
 <div class="line"><a name="l00534"></a><span class="lineno">  534</span>&#160;STBIDEF <span class="keywordtype">int</span>   stbi_zlib_decode_noheader_buffer(<span class="keywordtype">char</span> *obuffer, <span class="keywordtype">int</span> olen, <span class="keyword">const</span> <span class="keywordtype">char</span> *ibuffer, <span class="keywordtype">int</span> ilen);</div>
 <div class="line"><a name="l00535"></a><span class="lineno">  535</span>&#160; </div>
 <div class="line"><a name="l00536"></a><span class="lineno">  536</span>&#160; </div>
@@ -903,13 +887,13 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l00822"></a><span class="lineno">  822</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> stbi__refill_buffer(stbi__context *s);</div>
 <div class="line"><a name="l00823"></a><span class="lineno">  823</span>&#160; </div>
 <div class="line"><a name="l00824"></a><span class="lineno">  824</span>&#160;<span class="comment">// initialize a memory-decode context</span></div>
-<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> stbi__start_mem(stbi__context *s, stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len)</div>
+<div class="line"><a name="l00825"></a><span class="lineno">  825</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> stbi__start_mem(stbi__context *s, stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>)</div>
 <div class="line"><a name="l00826"></a><span class="lineno">  826</span>&#160;{</div>
 <div class="line"><a name="l00827"></a><span class="lineno">  827</span>&#160;   s-&gt;io.read = NULL;</div>
 <div class="line"><a name="l00828"></a><span class="lineno">  828</span>&#160;   s-&gt;read_from_callbacks = 0;</div>
 <div class="line"><a name="l00829"></a><span class="lineno">  829</span>&#160;   s-&gt;callback_already_read = 0;</div>
 <div class="line"><a name="l00830"></a><span class="lineno">  830</span>&#160;   s-&gt;img_buffer = s-&gt;img_buffer_original = (stbi_uc *) buffer;</div>
-<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;   s-&gt;img_buffer_end = s-&gt;img_buffer_original_end = (stbi_uc *) buffer+len;</div>
+<div class="line"><a name="l00831"></a><span class="lineno">  831</span>&#160;   s-&gt;img_buffer_end = s-&gt;img_buffer_original_end = (stbi_uc *) buffer+<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>;</div>
 <div class="line"><a name="l00832"></a><span class="lineno">  832</span>&#160;}</div>
 <div class="line"><a name="l00833"></a><span class="lineno">  833</span>&#160; </div>
 <div class="line"><a name="l00834"></a><span class="lineno">  834</span>&#160;<span class="comment">// initialize a callback-based context</span></div>
@@ -927,9 +911,9 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l00846"></a><span class="lineno">  846</span>&#160; </div>
 <div class="line"><a name="l00847"></a><span class="lineno">  847</span>&#160;<span class="preprocessor">#ifndef STBI_NO_STDIO</span></div>
 <div class="line"><a name="l00848"></a><span class="lineno">  848</span>&#160; </div>
-<div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__stdio_read(<span class="keywordtype">void</span> *user, <span class="keywordtype">char</span> *data, <span class="keywordtype">int</span> size)</div>
+<div class="line"><a name="l00849"></a><span class="lineno">  849</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__stdio_read(<span class="keywordtype">void</span> *user, <span class="keywordtype">char</span> *data, <span class="keywordtype">int</span> <a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>)</div>
 <div class="line"><a name="l00850"></a><span class="lineno">  850</span>&#160;{</div>
-<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;   <span class="keywordflow">return</span> (<span class="keywordtype">int</span>) fread(data,1,size,(FILE*) user);</div>
+<div class="line"><a name="l00851"></a><span class="lineno">  851</span>&#160;   <span class="keywordflow">return</span> (<span class="keywordtype">int</span>) fread(data,1,<a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>,(FILE*) user);</div>
 <div class="line"><a name="l00852"></a><span class="lineno">  852</span>&#160;}</div>
 <div class="line"><a name="l00853"></a><span class="lineno">  853</span>&#160; </div>
 <div class="line"><a name="l00854"></a><span class="lineno">  854</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> stbi__stdio_skip(<span class="keywordtype">void</span> *user, <span class="keywordtype">int</span> n)</div>
@@ -1062,9 +1046,9 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l00981"></a><span class="lineno">  981</span>&#160;}</div>
 <div class="line"><a name="l00982"></a><span class="lineno">  982</span>&#160;<span class="preprocessor">#endif</span></div>
 <div class="line"><a name="l00983"></a><span class="lineno">  983</span>&#160; </div>
-<div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> *stbi__malloc(<span class="keywordtype">size_t</span> size)</div>
+<div class="line"><a name="l00984"></a><span class="lineno">  984</span>&#160;<span class="keyword">static</span> <span class="keywordtype">void</span> *stbi__malloc(<span class="keywordtype">size_t</span> <a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>)</div>
 <div class="line"><a name="l00985"></a><span class="lineno">  985</span>&#160;{</div>
-<div class="line"><a name="l00986"></a><span class="lineno">  986</span>&#160;    <span class="keywordflow">return</span> STBI_MALLOC(size);</div>
+<div class="line"><a name="l00986"></a><span class="lineno">  986</span>&#160;    <span class="keywordflow">return</span> STBI_MALLOC(<a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>);</div>
 <div class="line"><a name="l00987"></a><span class="lineno">  987</span>&#160;}</div>
 <div class="line"><a name="l00988"></a><span class="lineno">  988</span>&#160; </div>
 <div class="line"><a name="l00989"></a><span class="lineno">  989</span>&#160;<span class="comment">// stb_image uses ints pervasively, including for offset calculations.</span></div>
@@ -1492,10 +1476,10 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l01411"></a><span class="lineno"> 1411</span>&#160; </div>
 <div class="line"><a name="l01412"></a><span class="lineno"> 1412</span>&#160;<span class="preprocessor">#endif </span></div>
 <div class="line"><a name="l01413"></a><span class="lineno"> 1413</span>&#160; </div>
-<div class="line"><a name="l01414"></a><span class="lineno"> 1414</span>&#160;STBIDEF stbi_us *stbi_load_16_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *channels_in_file, <span class="keywordtype">int</span> desired_channels)</div>
+<div class="line"><a name="l01414"></a><span class="lineno"> 1414</span>&#160;STBIDEF stbi_us *stbi_load_16_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *channels_in_file, <span class="keywordtype">int</span> desired_channels)</div>
 <div class="line"><a name="l01415"></a><span class="lineno"> 1415</span>&#160;{</div>
 <div class="line"><a name="l01416"></a><span class="lineno"> 1416</span>&#160;   stbi__context s;</div>
-<div class="line"><a name="l01417"></a><span class="lineno"> 1417</span>&#160;   stbi__start_mem(&amp;s,buffer,len);</div>
+<div class="line"><a name="l01417"></a><span class="lineno"> 1417</span>&#160;   stbi__start_mem(&amp;s,buffer,<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
 <div class="line"><a name="l01418"></a><span class="lineno"> 1418</span>&#160;   <span class="keywordflow">return</span> stbi__load_and_postprocess_16bit(&amp;s,x,y,channels_in_file,desired_channels);</div>
 <div class="line"><a name="l01419"></a><span class="lineno"> 1419</span>&#160;}</div>
 <div class="line"><a name="l01420"></a><span class="lineno"> 1420</span>&#160; </div>
@@ -1506,10 +1490,10 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l01425"></a><span class="lineno"> 1425</span>&#160;   <span class="keywordflow">return</span> stbi__load_and_postprocess_16bit(&amp;s,x,y,channels_in_file,desired_channels);</div>
 <div class="line"><a name="l01426"></a><span class="lineno"> 1426</span>&#160;}</div>
 <div class="line"><a name="l01427"></a><span class="lineno"> 1427</span>&#160; </div>
-<div class="line"><a name="l01428"></a><span class="lineno"> 1428</span>&#160;STBIDEF stbi_uc *stbi_load_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *comp, <span class="keywordtype">int</span> req_comp)</div>
+<div class="line"><a name="l01428"></a><span class="lineno"> 1428</span>&#160;STBIDEF stbi_uc *stbi_load_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *comp, <span class="keywordtype">int</span> req_comp)</div>
 <div class="line"><a name="l01429"></a><span class="lineno"> 1429</span>&#160;{</div>
 <div class="line"><a name="l01430"></a><span class="lineno"> 1430</span>&#160;   stbi__context s;</div>
-<div class="line"><a name="l01431"></a><span class="lineno"> 1431</span>&#160;   stbi__start_mem(&amp;s,buffer,len);</div>
+<div class="line"><a name="l01431"></a><span class="lineno"> 1431</span>&#160;   stbi__start_mem(&amp;s,buffer,<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
 <div class="line"><a name="l01432"></a><span class="lineno"> 1432</span>&#160;   <span class="keywordflow">return</span> stbi__load_and_postprocess_8bit(&amp;s,x,y,comp,req_comp);</div>
 <div class="line"><a name="l01433"></a><span class="lineno"> 1433</span>&#160;}</div>
 <div class="line"><a name="l01434"></a><span class="lineno"> 1434</span>&#160; </div>
@@ -1521,11 +1505,11 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l01440"></a><span class="lineno"> 1440</span>&#160;}</div>
 <div class="line"><a name="l01441"></a><span class="lineno"> 1441</span>&#160; </div>
 <div class="line"><a name="l01442"></a><span class="lineno"> 1442</span>&#160;<span class="preprocessor">#ifndef STBI_NO_GIF</span></div>
-<div class="line"><a name="l01443"></a><span class="lineno"> 1443</span>&#160;STBIDEF stbi_uc *stbi_load_gif_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> **delays, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *z, <span class="keywordtype">int</span> *comp, <span class="keywordtype">int</span> req_comp)</div>
+<div class="line"><a name="l01443"></a><span class="lineno"> 1443</span>&#160;STBIDEF stbi_uc *stbi_load_gif_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> **delays, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *z, <span class="keywordtype">int</span> *comp, <span class="keywordtype">int</span> req_comp)</div>
 <div class="line"><a name="l01444"></a><span class="lineno"> 1444</span>&#160;{</div>
 <div class="line"><a name="l01445"></a><span class="lineno"> 1445</span>&#160;   <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> *result;</div>
 <div class="line"><a name="l01446"></a><span class="lineno"> 1446</span>&#160;   stbi__context s;</div>
-<div class="line"><a name="l01447"></a><span class="lineno"> 1447</span>&#160;   stbi__start_mem(&amp;s,buffer,len);</div>
+<div class="line"><a name="l01447"></a><span class="lineno"> 1447</span>&#160;   stbi__start_mem(&amp;s,buffer,<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
 <div class="line"><a name="l01448"></a><span class="lineno"> 1448</span>&#160; </div>
 <div class="line"><a name="l01449"></a><span class="lineno"> 1449</span>&#160;   result = (<span class="keywordtype">unsigned</span> <span class="keywordtype">char</span>*) stbi__load_gif_main(&amp;s, delays, x, y, z, comp, req_comp);</div>
 <div class="line"><a name="l01450"></a><span class="lineno"> 1450</span>&#160;   <span class="keywordflow">if</span> (stbi__vertically_flip_on_load) {</div>
@@ -1555,10 +1539,10 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l01474"></a><span class="lineno"> 1474</span>&#160;   <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;unknown image type&quot;</span>, <span class="stringliteral">&quot;Image not of any known type, or corrupt&quot;</span>);</div>
 <div class="line"><a name="l01475"></a><span class="lineno"> 1475</span>&#160;}</div>
 <div class="line"><a name="l01476"></a><span class="lineno"> 1476</span>&#160; </div>
-<div class="line"><a name="l01477"></a><span class="lineno"> 1477</span>&#160;STBIDEF <span class="keywordtype">float</span> *stbi_loadf_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *comp, <span class="keywordtype">int</span> req_comp)</div>
+<div class="line"><a name="l01477"></a><span class="lineno"> 1477</span>&#160;STBIDEF <span class="keywordtype">float</span> *stbi_loadf_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *comp, <span class="keywordtype">int</span> req_comp)</div>
 <div class="line"><a name="l01478"></a><span class="lineno"> 1478</span>&#160;{</div>
 <div class="line"><a name="l01479"></a><span class="lineno"> 1479</span>&#160;   stbi__context s;</div>
-<div class="line"><a name="l01480"></a><span class="lineno"> 1480</span>&#160;   stbi__start_mem(&amp;s,buffer,len);</div>
+<div class="line"><a name="l01480"></a><span class="lineno"> 1480</span>&#160;   stbi__start_mem(&amp;s,buffer,<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
 <div class="line"><a name="l01481"></a><span class="lineno"> 1481</span>&#160;   <span class="keywordflow">return</span> stbi__loadf_main(&amp;s,x,y,comp,req_comp);</div>
 <div class="line"><a name="l01482"></a><span class="lineno"> 1482</span>&#160;}</div>
 <div class="line"><a name="l01483"></a><span class="lineno"> 1483</span>&#160; </div>
@@ -1594,15 +1578,15 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l01513"></a><span class="lineno"> 1513</span>&#160;<span class="comment">// defined, for API simplicity; if STBI_NO_LINEAR is defined, it always</span></div>
 <div class="line"><a name="l01514"></a><span class="lineno"> 1514</span>&#160;<span class="comment">// reports false!</span></div>
 <div class="line"><a name="l01515"></a><span class="lineno"> 1515</span>&#160; </div>
-<div class="line"><a name="l01516"></a><span class="lineno"> 1516</span>&#160;STBIDEF <span class="keywordtype">int</span> stbi_is_hdr_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len)</div>
+<div class="line"><a name="l01516"></a><span class="lineno"> 1516</span>&#160;STBIDEF <span class="keywordtype">int</span> stbi_is_hdr_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>)</div>
 <div class="line"><a name="l01517"></a><span class="lineno"> 1517</span>&#160;{</div>
 <div class="line"><a name="l01518"></a><span class="lineno"> 1518</span>&#160;<span class="preprocessor">   #ifndef STBI_NO_HDR</span></div>
 <div class="line"><a name="l01519"></a><span class="lineno"> 1519</span>&#160;   stbi__context s;</div>
-<div class="line"><a name="l01520"></a><span class="lineno"> 1520</span>&#160;   stbi__start_mem(&amp;s,buffer,len);</div>
+<div class="line"><a name="l01520"></a><span class="lineno"> 1520</span>&#160;   stbi__start_mem(&amp;s,buffer,<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
 <div class="line"><a name="l01521"></a><span class="lineno"> 1521</span>&#160;   <span class="keywordflow">return</span> stbi__hdr_test(&amp;s);</div>
 <div class="line"><a name="l01522"></a><span class="lineno"> 1522</span>&#160;<span class="preprocessor">   #else</span></div>
 <div class="line"><a name="l01523"></a><span class="lineno"> 1523</span>&#160;   STBI_NOTUSED(buffer);</div>
-<div class="line"><a name="l01524"></a><span class="lineno"> 1524</span>&#160;   STBI_NOTUSED(len);</div>
+<div class="line"><a name="l01524"></a><span class="lineno"> 1524</span>&#160;   STBI_NOTUSED(<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
 <div class="line"><a name="l01525"></a><span class="lineno"> 1525</span>&#160;   <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l01526"></a><span class="lineno"> 1526</span>&#160;<span class="preprocessor">   #endif</span></div>
 <div class="line"><a name="l01527"></a><span class="lineno"> 1527</span>&#160;}</div>
@@ -2018,7 +2002,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l01940"></a><span class="lineno"> 1940</span>&#160;   <span class="comment">// weirdly, repacking this into AoS is a 10% speed loss, instead of a win</span></div>
 <div class="line"><a name="l01941"></a><span class="lineno"> 1941</span>&#160;   stbi__uint16 code[256];</div>
 <div class="line"><a name="l01942"></a><span class="lineno"> 1942</span>&#160;   stbi_uc  values[256];</div>
-<div class="line"><a name="l01943"></a><span class="lineno"> 1943</span>&#160;   stbi_uc  size[257];</div>
+<div class="line"><a name="l01943"></a><span class="lineno"> 1943</span>&#160;   stbi_uc  <a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>[257];</div>
 <div class="line"><a name="l01944"></a><span class="lineno"> 1944</span>&#160;   <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> maxcode[18];</div>
 <div class="line"><a name="l01945"></a><span class="lineno"> 1945</span>&#160;   <span class="keywordtype">int</span>    delta[17];   <span class="comment">// old &#39;firstsymbol&#39; - old &#39;firstcode&#39;</span></div>
 <div class="line"><a name="l01946"></a><span class="lineno"> 1946</span>&#160;} stbi__huffman;</div>
@@ -2134,16 +2118,16 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l02056"></a><span class="lineno"> 2056</span>&#160;         <span class="keywordtype">int</span> rs = h-&gt;values[fast];</div>
 <div class="line"><a name="l02057"></a><span class="lineno"> 2057</span>&#160;         <span class="keywordtype">int</span> run = (rs &gt;&gt; 4) &amp; 15;</div>
 <div class="line"><a name="l02058"></a><span class="lineno"> 2058</span>&#160;         <span class="keywordtype">int</span> magbits = rs &amp; 15;</div>
-<div class="line"><a name="l02059"></a><span class="lineno"> 2059</span>&#160;         <span class="keywordtype">int</span> len = h-&gt;size[fast];</div>
+<div class="line"><a name="l02059"></a><span class="lineno"> 2059</span>&#160;         <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> = h-&gt;size[fast];</div>
 <div class="line"><a name="l02060"></a><span class="lineno"> 2060</span>&#160; </div>
-<div class="line"><a name="l02061"></a><span class="lineno"> 2061</span>&#160;         <span class="keywordflow">if</span> (magbits &amp;&amp; len + magbits &lt;= FAST_BITS) {</div>
+<div class="line"><a name="l02061"></a><span class="lineno"> 2061</span>&#160;         <span class="keywordflow">if</span> (magbits &amp;&amp; <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> + magbits &lt;= FAST_BITS) {</div>
 <div class="line"><a name="l02062"></a><span class="lineno"> 2062</span>&#160;            <span class="comment">// magnitude code followed by receive_extend code</span></div>
-<div class="line"><a name="l02063"></a><span class="lineno"> 2063</span>&#160;            <span class="keywordtype">int</span> k = ((i &lt;&lt; len) &amp; ((1 &lt;&lt; FAST_BITS) - 1)) &gt;&gt; (FAST_BITS - magbits);</div>
+<div class="line"><a name="l02063"></a><span class="lineno"> 2063</span>&#160;            <span class="keywordtype">int</span> k = ((i &lt;&lt; <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>) &amp; ((1 &lt;&lt; FAST_BITS) - 1)) &gt;&gt; (FAST_BITS - magbits);</div>
 <div class="line"><a name="l02064"></a><span class="lineno"> 2064</span>&#160;            <span class="keywordtype">int</span> m = 1 &lt;&lt; (magbits - 1);</div>
 <div class="line"><a name="l02065"></a><span class="lineno"> 2065</span>&#160;            <span class="keywordflow">if</span> (k &lt; m) k += (~0U &lt;&lt; magbits) + 1;</div>
 <div class="line"><a name="l02066"></a><span class="lineno"> 2066</span>&#160;            <span class="comment">// if the result is small enough, we can fit it in fast_ac table</span></div>
 <div class="line"><a name="l02067"></a><span class="lineno"> 2067</span>&#160;            <span class="keywordflow">if</span> (k &gt;= -128 &amp;&amp; k &lt;= 127)</div>
-<div class="line"><a name="l02068"></a><span class="lineno"> 2068</span>&#160;               fast_ac[i] = (stbi__int16) ((k * 256) + (run * 16) + (len + magbits));</div>
+<div class="line"><a name="l02068"></a><span class="lineno"> 2068</span>&#160;               fast_ac[i] = (stbi__int16) ((k * 256) + (run * 16) + (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> + magbits));</div>
 <div class="line"><a name="l02069"></a><span class="lineno"> 2069</span>&#160;         }</div>
 <div class="line"><a name="l02070"></a><span class="lineno"> 2070</span>&#160;      }</div>
 <div class="line"><a name="l02071"></a><span class="lineno"> 2071</span>&#160;   }</div>
@@ -4177,7 +4161,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04099"></a><span class="lineno"> 4099</span>&#160;   stbi__uint16 firstcode[16];</div>
 <div class="line"><a name="l04100"></a><span class="lineno"> 4100</span>&#160;   <span class="keywordtype">int</span> maxcode[17];</div>
 <div class="line"><a name="l04101"></a><span class="lineno"> 4101</span>&#160;   stbi__uint16 firstsymbol[16];</div>
-<div class="line"><a name="l04102"></a><span class="lineno"> 4102</span>&#160;   stbi_uc  size[STBI__ZNSYMS];</div>
+<div class="line"><a name="l04102"></a><span class="lineno"> 4102</span>&#160;   stbi_uc  <a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>[STBI__ZNSYMS];</div>
 <div class="line"><a name="l04103"></a><span class="lineno"> 4103</span>&#160;   stbi__uint16 value[STBI__ZNSYMS];</div>
 <div class="line"><a name="l04104"></a><span class="lineno"> 4104</span>&#160;} stbi__zhuffman;</div>
 <div class="line"><a name="l04105"></a><span class="lineno"> 4105</span>&#160; </div>
@@ -4397,7 +4381,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04319"></a><span class="lineno"> 4319</span>&#160;         *zout++ = (char) z;</div>
 <div class="line"><a name="l04320"></a><span class="lineno"> 4320</span>&#160;      } <span class="keywordflow">else</span> {</div>
 <div class="line"><a name="l04321"></a><span class="lineno"> 4321</span>&#160;         stbi_uc *p;</div>
-<div class="line"><a name="l04322"></a><span class="lineno"> 4322</span>&#160;         <span class="keywordtype">int</span> len,dist;</div>
+<div class="line"><a name="l04322"></a><span class="lineno"> 4322</span>&#160;         <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>,dist;</div>
 <div class="line"><a name="l04323"></a><span class="lineno"> 4323</span>&#160;         <span class="keywordflow">if</span> (z == 256) {</div>
 <div class="line"><a name="l04324"></a><span class="lineno"> 4324</span>&#160;            a-&gt;zout = zout;</div>
 <div class="line"><a name="l04325"></a><span class="lineno"> 4325</span>&#160;            <span class="keywordflow">if</span> (a-&gt;hit_zeof_once &amp;&amp; a-&gt;num_bits &lt; 16) {</div>
@@ -4411,23 +4395,23 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04333"></a><span class="lineno"> 4333</span>&#160;         }</div>
 <div class="line"><a name="l04334"></a><span class="lineno"> 4334</span>&#160;         <span class="keywordflow">if</span> (z &gt;= 286) <span class="keywordflow">return</span> stbi__err(<span class="stringliteral">&quot;bad huffman code&quot;</span>,<span class="stringliteral">&quot;Corrupt PNG&quot;</span>); <span class="comment">// per DEFLATE, length codes 286 and 287 must not appear in compressed data</span></div>
 <div class="line"><a name="l04335"></a><span class="lineno"> 4335</span>&#160;         z -= 257;</div>
-<div class="line"><a name="l04336"></a><span class="lineno"> 4336</span>&#160;         len = stbi__zlength_base[z];</div>
-<div class="line"><a name="l04337"></a><span class="lineno"> 4337</span>&#160;         <span class="keywordflow">if</span> (stbi__zlength_extra[z]) len += stbi__zreceive(a, stbi__zlength_extra[z]);</div>
+<div class="line"><a name="l04336"></a><span class="lineno"> 4336</span>&#160;         <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> = stbi__zlength_base[z];</div>
+<div class="line"><a name="l04337"></a><span class="lineno"> 4337</span>&#160;         <span class="keywordflow">if</span> (stbi__zlength_extra[z]) <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> += stbi__zreceive(a, stbi__zlength_extra[z]);</div>
 <div class="line"><a name="l04338"></a><span class="lineno"> 4338</span>&#160;         z = stbi__zhuffman_decode(a, &amp;a-&gt;z_distance);</div>
 <div class="line"><a name="l04339"></a><span class="lineno"> 4339</span>&#160;         <span class="keywordflow">if</span> (z &lt; 0 || z &gt;= 30) <span class="keywordflow">return</span> stbi__err(<span class="stringliteral">&quot;bad huffman code&quot;</span>,<span class="stringliteral">&quot;Corrupt PNG&quot;</span>); <span class="comment">// per DEFLATE, distance codes 30 and 31 must not appear in compressed data</span></div>
 <div class="line"><a name="l04340"></a><span class="lineno"> 4340</span>&#160;         dist = stbi__zdist_base[z];</div>
 <div class="line"><a name="l04341"></a><span class="lineno"> 4341</span>&#160;         <span class="keywordflow">if</span> (stbi__zdist_extra[z]) dist += stbi__zreceive(a, stbi__zdist_extra[z]);</div>
 <div class="line"><a name="l04342"></a><span class="lineno"> 4342</span>&#160;         <span class="keywordflow">if</span> (zout - a-&gt;zout_start &lt; dist) <span class="keywordflow">return</span> stbi__err(<span class="stringliteral">&quot;bad dist&quot;</span>,<span class="stringliteral">&quot;Corrupt PNG&quot;</span>);</div>
-<div class="line"><a name="l04343"></a><span class="lineno"> 4343</span>&#160;         <span class="keywordflow">if</span> (len &gt; a-&gt;zout_end - zout) {</div>
-<div class="line"><a name="l04344"></a><span class="lineno"> 4344</span>&#160;            <span class="keywordflow">if</span> (!stbi__zexpand(a, zout, len)) <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l04343"></a><span class="lineno"> 4343</span>&#160;         <span class="keywordflow">if</span> (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> &gt; a-&gt;zout_end - zout) {</div>
+<div class="line"><a name="l04344"></a><span class="lineno"> 4344</span>&#160;            <span class="keywordflow">if</span> (!stbi__zexpand(a, zout, <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>)) <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l04345"></a><span class="lineno"> 4345</span>&#160;            zout = a-&gt;zout;</div>
 <div class="line"><a name="l04346"></a><span class="lineno"> 4346</span>&#160;         }</div>
 <div class="line"><a name="l04347"></a><span class="lineno"> 4347</span>&#160;         p = (stbi_uc *) (zout - dist);</div>
 <div class="line"><a name="l04348"></a><span class="lineno"> 4348</span>&#160;         <span class="keywordflow">if</span> (dist == 1) { <span class="comment">// run of one byte; common in images.</span></div>
 <div class="line"><a name="l04349"></a><span class="lineno"> 4349</span>&#160;            stbi_uc v = *p;</div>
-<div class="line"><a name="l04350"></a><span class="lineno"> 4350</span>&#160;            <span class="keywordflow">if</span> (len) { <span class="keywordflow">do</span> *zout++ = v; <span class="keywordflow">while</span> (--len); }</div>
+<div class="line"><a name="l04350"></a><span class="lineno"> 4350</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>) { <span class="keywordflow">do</span> *zout++ = v; <span class="keywordflow">while</span> (--<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>); }</div>
 <div class="line"><a name="l04351"></a><span class="lineno"> 4351</span>&#160;         } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l04352"></a><span class="lineno"> 4352</span>&#160;            <span class="keywordflow">if</span> (len) { <span class="keywordflow">do</span> *zout++ = *p++; <span class="keywordflow">while</span> (--len); }</div>
+<div class="line"><a name="l04352"></a><span class="lineno"> 4352</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>) { <span class="keywordflow">do</span> *zout++ = *p++; <span class="keywordflow">while</span> (--<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>); }</div>
 <div class="line"><a name="l04353"></a><span class="lineno"> 4353</span>&#160;         }</div>
 <div class="line"><a name="l04354"></a><span class="lineno"> 4354</span>&#160;      }</div>
 <div class="line"><a name="l04355"></a><span class="lineno"> 4355</span>&#160;   }</div>
@@ -4486,7 +4470,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04408"></a><span class="lineno"> 4408</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__parse_uncompressed_block(stbi__zbuf *a)</div>
 <div class="line"><a name="l04409"></a><span class="lineno"> 4409</span>&#160;{</div>
 <div class="line"><a name="l04410"></a><span class="lineno"> 4410</span>&#160;   stbi_uc header[4];</div>
-<div class="line"><a name="l04411"></a><span class="lineno"> 4411</span>&#160;   <span class="keywordtype">int</span> len,nlen,k;</div>
+<div class="line"><a name="l04411"></a><span class="lineno"> 4411</span>&#160;   <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>,nlen,k;</div>
 <div class="line"><a name="l04412"></a><span class="lineno"> 4412</span>&#160;   <span class="keywordflow">if</span> (a-&gt;num_bits &amp; 7)</div>
 <div class="line"><a name="l04413"></a><span class="lineno"> 4413</span>&#160;      stbi__zreceive(a, a-&gt;num_bits &amp; 7); <span class="comment">// discard</span></div>
 <div class="line"><a name="l04414"></a><span class="lineno"> 4414</span>&#160;   <span class="comment">// drain the bit-packed data into header</span></div>
@@ -4500,15 +4484,15 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04422"></a><span class="lineno"> 4422</span>&#160;   <span class="comment">// now fill header the normal way</span></div>
 <div class="line"><a name="l04423"></a><span class="lineno"> 4423</span>&#160;   <span class="keywordflow">while</span> (k &lt; 4)</div>
 <div class="line"><a name="l04424"></a><span class="lineno"> 4424</span>&#160;      header[k++] = stbi__zget8(a);</div>
-<div class="line"><a name="l04425"></a><span class="lineno"> 4425</span>&#160;   len  = header[1] * 256 + header[0];</div>
+<div class="line"><a name="l04425"></a><span class="lineno"> 4425</span>&#160;   <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>  = header[1] * 256 + header[0];</div>
 <div class="line"><a name="l04426"></a><span class="lineno"> 4426</span>&#160;   nlen = header[3] * 256 + header[2];</div>
-<div class="line"><a name="l04427"></a><span class="lineno"> 4427</span>&#160;   <span class="keywordflow">if</span> (nlen != (len ^ 0xffff)) <span class="keywordflow">return</span> stbi__err(<span class="stringliteral">&quot;zlib corrupt&quot;</span>,<span class="stringliteral">&quot;Corrupt PNG&quot;</span>);</div>
-<div class="line"><a name="l04428"></a><span class="lineno"> 4428</span>&#160;   <span class="keywordflow">if</span> (a-&gt;zbuffer + len &gt; a-&gt;zbuffer_end) <span class="keywordflow">return</span> stbi__err(<span class="stringliteral">&quot;read past buffer&quot;</span>,<span class="stringliteral">&quot;Corrupt PNG&quot;</span>);</div>
-<div class="line"><a name="l04429"></a><span class="lineno"> 4429</span>&#160;   <span class="keywordflow">if</span> (a-&gt;zout + len &gt; a-&gt;zout_end)</div>
-<div class="line"><a name="l04430"></a><span class="lineno"> 4430</span>&#160;      <span class="keywordflow">if</span> (!stbi__zexpand(a, a-&gt;zout, len)) <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l04431"></a><span class="lineno"> 4431</span>&#160;   memcpy(a-&gt;zout, a-&gt;zbuffer, len);</div>
-<div class="line"><a name="l04432"></a><span class="lineno"> 4432</span>&#160;   a-&gt;zbuffer += len;</div>
-<div class="line"><a name="l04433"></a><span class="lineno"> 4433</span>&#160;   a-&gt;zout += len;</div>
+<div class="line"><a name="l04427"></a><span class="lineno"> 4427</span>&#160;   <span class="keywordflow">if</span> (nlen != (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> ^ 0xffff)) <span class="keywordflow">return</span> stbi__err(<span class="stringliteral">&quot;zlib corrupt&quot;</span>,<span class="stringliteral">&quot;Corrupt PNG&quot;</span>);</div>
+<div class="line"><a name="l04428"></a><span class="lineno"> 4428</span>&#160;   <span class="keywordflow">if</span> (a-&gt;zbuffer + <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> &gt; a-&gt;zbuffer_end) <span class="keywordflow">return</span> stbi__err(<span class="stringliteral">&quot;read past buffer&quot;</span>,<span class="stringliteral">&quot;Corrupt PNG&quot;</span>);</div>
+<div class="line"><a name="l04429"></a><span class="lineno"> 4429</span>&#160;   <span class="keywordflow">if</span> (a-&gt;zout + <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> &gt; a-&gt;zout_end)</div>
+<div class="line"><a name="l04430"></a><span class="lineno"> 4430</span>&#160;      <span class="keywordflow">if</span> (!stbi__zexpand(a, a-&gt;zout, <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>)) <span class="keywordflow">return</span> 0;</div>
+<div class="line"><a name="l04431"></a><span class="lineno"> 4431</span>&#160;   memcpy(a-&gt;zout, a-&gt;zbuffer, <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
+<div class="line"><a name="l04432"></a><span class="lineno"> 4432</span>&#160;   a-&gt;zbuffer += <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>;</div>
+<div class="line"><a name="l04433"></a><span class="lineno"> 4433</span>&#160;   a-&gt;zout += <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>;</div>
 <div class="line"><a name="l04434"></a><span class="lineno"> 4434</span>&#160;   <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l04435"></a><span class="lineno"> 4435</span>&#160;}</div>
 <div class="line"><a name="l04436"></a><span class="lineno"> 4436</span>&#160; </div>
@@ -4557,7 +4541,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04479"></a><span class="lineno"> 4479</span>&#160; </div>
 <div class="line"><a name="l04480"></a><span class="lineno"> 4480</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__parse_zlib(stbi__zbuf *a, <span class="keywordtype">int</span> parse_header)</div>
 <div class="line"><a name="l04481"></a><span class="lineno"> 4481</span>&#160;{</div>
-<div class="line"><a name="l04482"></a><span class="lineno"> 4482</span>&#160;   <span class="keywordtype">int</span> <span class="keyword">final</span>, type;</div>
+<div class="line"><a name="l04482"></a><span class="lineno"> 4482</span>&#160;   <span class="keywordtype">int</span> <span class="keyword">final</span>, <a class="code" href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a>;</div>
 <div class="line"><a name="l04483"></a><span class="lineno"> 4483</span>&#160;   <span class="keywordflow">if</span> (parse_header)</div>
 <div class="line"><a name="l04484"></a><span class="lineno"> 4484</span>&#160;      <span class="keywordflow">if</span> (!stbi__parse_zlib_header(a)) <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l04485"></a><span class="lineno"> 4485</span>&#160;   a-&gt;num_bits = 0;</div>
@@ -4565,13 +4549,13 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04487"></a><span class="lineno"> 4487</span>&#160;   a-&gt;hit_zeof_once = 0;</div>
 <div class="line"><a name="l04488"></a><span class="lineno"> 4488</span>&#160;   <span class="keywordflow">do</span> {</div>
 <div class="line"><a name="l04489"></a><span class="lineno"> 4489</span>&#160;      <span class="keyword">final</span> = stbi__zreceive(a,1);</div>
-<div class="line"><a name="l04490"></a><span class="lineno"> 4490</span>&#160;      type = stbi__zreceive(a,2);</div>
-<div class="line"><a name="l04491"></a><span class="lineno"> 4491</span>&#160;      <span class="keywordflow">if</span> (type == 0) {</div>
+<div class="line"><a name="l04490"></a><span class="lineno"> 4490</span>&#160;      <a class="code" href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a> = stbi__zreceive(a,2);</div>
+<div class="line"><a name="l04491"></a><span class="lineno"> 4491</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a> == 0) {</div>
 <div class="line"><a name="l04492"></a><span class="lineno"> 4492</span>&#160;         <span class="keywordflow">if</span> (!stbi__parse_uncompressed_block(a)) <span class="keywordflow">return</span> 0;</div>
-<div class="line"><a name="l04493"></a><span class="lineno"> 4493</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (type == 3) {</div>
+<div class="line"><a name="l04493"></a><span class="lineno"> 4493</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a> == 3) {</div>
 <div class="line"><a name="l04494"></a><span class="lineno"> 4494</span>&#160;         <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l04495"></a><span class="lineno"> 4495</span>&#160;      } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l04496"></a><span class="lineno"> 4496</span>&#160;         <span class="keywordflow">if</span> (type == 1) {</div>
+<div class="line"><a name="l04496"></a><span class="lineno"> 4496</span>&#160;         <span class="keywordflow">if</span> (<a class="code" href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a> == 1) {</div>
 <div class="line"><a name="l04497"></a><span class="lineno"> 4497</span>&#160;            <span class="comment">// use fixed code lengths</span></div>
 <div class="line"><a name="l04498"></a><span class="lineno"> 4498</span>&#160;            <span class="keywordflow">if</span> (!stbi__zbuild_huffman(&amp;a-&gt;z_length  , stbi__zdefault_length  , STBI__ZNSYMS)) <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l04499"></a><span class="lineno"> 4499</span>&#160;            <span class="keywordflow">if</span> (!stbi__zbuild_huffman(&amp;a-&gt;z_distance, stbi__zdefault_distance,  32)) <span class="keywordflow">return</span> 0;</div>
@@ -4594,13 +4578,13 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04516"></a><span class="lineno"> 4516</span>&#160;   <span class="keywordflow">return</span> stbi__parse_zlib(a, parse_header);</div>
 <div class="line"><a name="l04517"></a><span class="lineno"> 4517</span>&#160;}</div>
 <div class="line"><a name="l04518"></a><span class="lineno"> 4518</span>&#160; </div>
-<div class="line"><a name="l04519"></a><span class="lineno"> 4519</span>&#160;STBIDEF <span class="keywordtype">char</span> *stbi_zlib_decode_malloc_guesssize(<span class="keyword">const</span> <span class="keywordtype">char</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> initial_size, <span class="keywordtype">int</span> *outlen)</div>
+<div class="line"><a name="l04519"></a><span class="lineno"> 4519</span>&#160;STBIDEF <span class="keywordtype">char</span> *stbi_zlib_decode_malloc_guesssize(<span class="keyword">const</span> <span class="keywordtype">char</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> initial_size, <span class="keywordtype">int</span> *outlen)</div>
 <div class="line"><a name="l04520"></a><span class="lineno"> 4520</span>&#160;{</div>
 <div class="line"><a name="l04521"></a><span class="lineno"> 4521</span>&#160;   stbi__zbuf a;</div>
 <div class="line"><a name="l04522"></a><span class="lineno"> 4522</span>&#160;   <span class="keywordtype">char</span> *p = (<span class="keywordtype">char</span> *) stbi__malloc(initial_size);</div>
 <div class="line"><a name="l04523"></a><span class="lineno"> 4523</span>&#160;   <span class="keywordflow">if</span> (p == NULL) <span class="keywordflow">return</span> NULL;</div>
 <div class="line"><a name="l04524"></a><span class="lineno"> 4524</span>&#160;   a.zbuffer = (stbi_uc *) buffer;</div>
-<div class="line"><a name="l04525"></a><span class="lineno"> 4525</span>&#160;   a.zbuffer_end = (stbi_uc *) buffer + len;</div>
+<div class="line"><a name="l04525"></a><span class="lineno"> 4525</span>&#160;   a.zbuffer_end = (stbi_uc *) buffer + <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>;</div>
 <div class="line"><a name="l04526"></a><span class="lineno"> 4526</span>&#160;   <span class="keywordflow">if</span> (stbi__do_zlib(&amp;a, p, initial_size, 1, 1)) {</div>
 <div class="line"><a name="l04527"></a><span class="lineno"> 4527</span>&#160;      <span class="keywordflow">if</span> (outlen) *outlen = (int) (a.zout - a.zout_start);</div>
 <div class="line"><a name="l04528"></a><span class="lineno"> 4528</span>&#160;      <span class="keywordflow">return</span> a.zout_start;</div>
@@ -4610,18 +4594,18 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04532"></a><span class="lineno"> 4532</span>&#160;   }</div>
 <div class="line"><a name="l04533"></a><span class="lineno"> 4533</span>&#160;}</div>
 <div class="line"><a name="l04534"></a><span class="lineno"> 4534</span>&#160; </div>
-<div class="line"><a name="l04535"></a><span class="lineno"> 4535</span>&#160;STBIDEF <span class="keywordtype">char</span> *stbi_zlib_decode_malloc(<span class="keywordtype">char</span> <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> *outlen)</div>
+<div class="line"><a name="l04535"></a><span class="lineno"> 4535</span>&#160;STBIDEF <span class="keywordtype">char</span> *stbi_zlib_decode_malloc(<span class="keywordtype">char</span> <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> *outlen)</div>
 <div class="line"><a name="l04536"></a><span class="lineno"> 4536</span>&#160;{</div>
-<div class="line"><a name="l04537"></a><span class="lineno"> 4537</span>&#160;   <span class="keywordflow">return</span> stbi_zlib_decode_malloc_guesssize(buffer, len, 16384, outlen);</div>
+<div class="line"><a name="l04537"></a><span class="lineno"> 4537</span>&#160;   <span class="keywordflow">return</span> stbi_zlib_decode_malloc_guesssize(buffer, <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, 16384, outlen);</div>
 <div class="line"><a name="l04538"></a><span class="lineno"> 4538</span>&#160;}</div>
 <div class="line"><a name="l04539"></a><span class="lineno"> 4539</span>&#160; </div>
-<div class="line"><a name="l04540"></a><span class="lineno"> 4540</span>&#160;STBIDEF <span class="keywordtype">char</span> *stbi_zlib_decode_malloc_guesssize_headerflag(<span class="keyword">const</span> <span class="keywordtype">char</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> initial_size, <span class="keywordtype">int</span> *outlen, <span class="keywordtype">int</span> parse_header)</div>
+<div class="line"><a name="l04540"></a><span class="lineno"> 4540</span>&#160;STBIDEF <span class="keywordtype">char</span> *stbi_zlib_decode_malloc_guesssize_headerflag(<span class="keyword">const</span> <span class="keywordtype">char</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> initial_size, <span class="keywordtype">int</span> *outlen, <span class="keywordtype">int</span> parse_header)</div>
 <div class="line"><a name="l04541"></a><span class="lineno"> 4541</span>&#160;{</div>
 <div class="line"><a name="l04542"></a><span class="lineno"> 4542</span>&#160;   stbi__zbuf a;</div>
 <div class="line"><a name="l04543"></a><span class="lineno"> 4543</span>&#160;   <span class="keywordtype">char</span> *p = (<span class="keywordtype">char</span> *) stbi__malloc(initial_size);</div>
 <div class="line"><a name="l04544"></a><span class="lineno"> 4544</span>&#160;   <span class="keywordflow">if</span> (p == NULL) <span class="keywordflow">return</span> NULL;</div>
 <div class="line"><a name="l04545"></a><span class="lineno"> 4545</span>&#160;   a.zbuffer = (stbi_uc *) buffer;</div>
-<div class="line"><a name="l04546"></a><span class="lineno"> 4546</span>&#160;   a.zbuffer_end = (stbi_uc *) buffer + len;</div>
+<div class="line"><a name="l04546"></a><span class="lineno"> 4546</span>&#160;   a.zbuffer_end = (stbi_uc *) buffer + <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>;</div>
 <div class="line"><a name="l04547"></a><span class="lineno"> 4547</span>&#160;   <span class="keywordflow">if</span> (stbi__do_zlib(&amp;a, p, initial_size, 1, parse_header)) {</div>
 <div class="line"><a name="l04548"></a><span class="lineno"> 4548</span>&#160;      <span class="keywordflow">if</span> (outlen) *outlen = (int) (a.zout - a.zout_start);</div>
 <div class="line"><a name="l04549"></a><span class="lineno"> 4549</span>&#160;      <span class="keywordflow">return</span> a.zout_start;</div>
@@ -4642,13 +4626,13 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04564"></a><span class="lineno"> 4564</span>&#160;      <span class="keywordflow">return</span> -1;</div>
 <div class="line"><a name="l04565"></a><span class="lineno"> 4565</span>&#160;}</div>
 <div class="line"><a name="l04566"></a><span class="lineno"> 4566</span>&#160; </div>
-<div class="line"><a name="l04567"></a><span class="lineno"> 4567</span>&#160;STBIDEF <span class="keywordtype">char</span> *stbi_zlib_decode_noheader_malloc(<span class="keywordtype">char</span> <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> *outlen)</div>
+<div class="line"><a name="l04567"></a><span class="lineno"> 4567</span>&#160;STBIDEF <span class="keywordtype">char</span> *stbi_zlib_decode_noheader_malloc(<span class="keywordtype">char</span> <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> *outlen)</div>
 <div class="line"><a name="l04568"></a><span class="lineno"> 4568</span>&#160;{</div>
 <div class="line"><a name="l04569"></a><span class="lineno"> 4569</span>&#160;   stbi__zbuf a;</div>
 <div class="line"><a name="l04570"></a><span class="lineno"> 4570</span>&#160;   <span class="keywordtype">char</span> *p = (<span class="keywordtype">char</span> *) stbi__malloc(16384);</div>
 <div class="line"><a name="l04571"></a><span class="lineno"> 4571</span>&#160;   <span class="keywordflow">if</span> (p == NULL) <span class="keywordflow">return</span> NULL;</div>
 <div class="line"><a name="l04572"></a><span class="lineno"> 4572</span>&#160;   a.zbuffer = (stbi_uc *) buffer;</div>
-<div class="line"><a name="l04573"></a><span class="lineno"> 4573</span>&#160;   a.zbuffer_end = (stbi_uc *) buffer+len;</div>
+<div class="line"><a name="l04573"></a><span class="lineno"> 4573</span>&#160;   a.zbuffer_end = (stbi_uc *) buffer+<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>;</div>
 <div class="line"><a name="l04574"></a><span class="lineno"> 4574</span>&#160;   <span class="keywordflow">if</span> (stbi__do_zlib(&amp;a, p, 16384, 1, 0)) {</div>
 <div class="line"><a name="l04575"></a><span class="lineno"> 4575</span>&#160;      <span class="keywordflow">if</span> (outlen) *outlen = (int) (a.zout - a.zout_start);</div>
 <div class="line"><a name="l04576"></a><span class="lineno"> 4576</span>&#160;      <span class="keywordflow">return</span> a.zout_start;</div>
@@ -4684,7 +4668,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04606"></a><span class="lineno"> 4606</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
 <div class="line"><a name="l04607"></a><span class="lineno"> 4607</span>&#160;{</div>
 <div class="line"><a name="l04608"></a><span class="lineno"> 4608</span>&#160;   stbi__uint32 length;</div>
-<div class="line"><a name="l04609"></a><span class="lineno"> 4609</span>&#160;   stbi__uint32 type;</div>
+<div class="line"><a name="l04609"></a><span class="lineno"> 4609</span>&#160;   stbi__uint32 <a class="code" href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a>;</div>
 <div class="line"><a name="l04610"></a><span class="lineno"> 4610</span>&#160;} stbi__pngchunk;</div>
 <div class="line"><a name="l04611"></a><span class="lineno"> 4611</span>&#160; </div>
 <div class="line"><a name="l04612"></a><span class="lineno"> 4612</span>&#160;<span class="keyword">static</span> stbi__pngchunk stbi__get_chunk_header(stbi__context *s)</div>
@@ -4708,7 +4692,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04630"></a><span class="lineno"> 4630</span>&#160;{</div>
 <div class="line"><a name="l04631"></a><span class="lineno"> 4631</span>&#160;   stbi__context *s;</div>
 <div class="line"><a name="l04632"></a><span class="lineno"> 4632</span>&#160;   stbi_uc *idata, *expanded, *out;</div>
-<div class="line"><a name="l04633"></a><span class="lineno"> 4633</span>&#160;   <span class="keywordtype">int</span> depth;</div>
+<div class="line"><a name="l04633"></a><span class="lineno"> 4633</span>&#160;   <span class="keywordtype">int</span> <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>;</div>
 <div class="line"><a name="l04634"></a><span class="lineno"> 4634</span>&#160;} stbi__png;</div>
 <div class="line"><a name="l04635"></a><span class="lineno"> 4635</span>&#160; </div>
 <div class="line"><a name="l04636"></a><span class="lineno"> 4636</span>&#160; </div>
@@ -4770,9 +4754,9 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04692"></a><span class="lineno"> 4692</span>&#160;}</div>
 <div class="line"><a name="l04693"></a><span class="lineno"> 4693</span>&#160; </div>
 <div class="line"><a name="l04694"></a><span class="lineno"> 4694</span>&#160;<span class="comment">// create the png data from post-deflated data</span></div>
-<div class="line"><a name="l04695"></a><span class="lineno"> 4695</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__create_png_image_raw(stbi__png *a, stbi_uc *raw, stbi__uint32 raw_len, <span class="keywordtype">int</span> out_n, stbi__uint32 x, stbi__uint32 y, <span class="keywordtype">int</span> depth, <span class="keywordtype">int</span> color)</div>
+<div class="line"><a name="l04695"></a><span class="lineno"> 4695</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__create_png_image_raw(stbi__png *a, stbi_uc *raw, stbi__uint32 raw_len, <span class="keywordtype">int</span> out_n, stbi__uint32 x, stbi__uint32 y, <span class="keywordtype">int</span> <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>, <span class="keywordtype">int</span> color)</div>
 <div class="line"><a name="l04696"></a><span class="lineno"> 4696</span>&#160;{</div>
-<div class="line"><a name="l04697"></a><span class="lineno"> 4697</span>&#160;   <span class="keywordtype">int</span> bytes = (depth == 16 ? 2 : 1);</div>
+<div class="line"><a name="l04697"></a><span class="lineno"> 4697</span>&#160;   <span class="keywordtype">int</span> bytes = (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> == 16 ? 2 : 1);</div>
 <div class="line"><a name="l04698"></a><span class="lineno"> 4698</span>&#160;   stbi__context *s = a-&gt;s;</div>
 <div class="line"><a name="l04699"></a><span class="lineno"> 4699</span>&#160;   stbi__uint32 i,j,stride = x*out_n*bytes;</div>
 <div class="line"><a name="l04700"></a><span class="lineno"> 4700</span>&#160;   stbi__uint32 img_len, img_width_bytes;</div>
@@ -4791,8 +4775,8 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04713"></a><span class="lineno"> 4713</span>&#160; </div>
 <div class="line"><a name="l04714"></a><span class="lineno"> 4714</span>&#160;   <span class="comment">// note: error exits here don&#39;t need to clean up a-&gt;out individually,</span></div>
 <div class="line"><a name="l04715"></a><span class="lineno"> 4715</span>&#160;   <span class="comment">// stbi__do_png always does on error.</span></div>
-<div class="line"><a name="l04716"></a><span class="lineno"> 4716</span>&#160;   <span class="keywordflow">if</span> (!stbi__mad3sizes_valid(img_n, x, depth, 7)) <span class="keywordflow">return</span> stbi__err(<span class="stringliteral">&quot;too large&quot;</span>, <span class="stringliteral">&quot;Corrupt PNG&quot;</span>);</div>
-<div class="line"><a name="l04717"></a><span class="lineno"> 4717</span>&#160;   img_width_bytes = (((img_n * x * depth) + 7) &gt;&gt; 3);</div>
+<div class="line"><a name="l04716"></a><span class="lineno"> 4716</span>&#160;   <span class="keywordflow">if</span> (!stbi__mad3sizes_valid(img_n, x, <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>, 7)) <span class="keywordflow">return</span> stbi__err(<span class="stringliteral">&quot;too large&quot;</span>, <span class="stringliteral">&quot;Corrupt PNG&quot;</span>);</div>
+<div class="line"><a name="l04717"></a><span class="lineno"> 4717</span>&#160;   img_width_bytes = (((img_n * x * <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>) + 7) &gt;&gt; 3);</div>
 <div class="line"><a name="l04718"></a><span class="lineno"> 4718</span>&#160;   <span class="keywordflow">if</span> (!stbi__mad2sizes_valid(img_width_bytes, y, img_width_bytes)) <span class="keywordflow">return</span> stbi__err(<span class="stringliteral">&quot;too large&quot;</span>, <span class="stringliteral">&quot;Corrupt PNG&quot;</span>);</div>
 <div class="line"><a name="l04719"></a><span class="lineno"> 4719</span>&#160;   img_len = (img_width_bytes + 1) * y;</div>
 <div class="line"><a name="l04720"></a><span class="lineno"> 4720</span>&#160; </div>
@@ -4806,7 +4790,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04728"></a><span class="lineno"> 4728</span>&#160;   <span class="keywordflow">if</span> (!filter_buf) <span class="keywordflow">return</span> stbi__err(<span class="stringliteral">&quot;outofmem&quot;</span>, <span class="stringliteral">&quot;Out of memory&quot;</span>);</div>
 <div class="line"><a name="l04729"></a><span class="lineno"> 4729</span>&#160; </div>
 <div class="line"><a name="l04730"></a><span class="lineno"> 4730</span>&#160;   <span class="comment">// Filtering for low-bit-depth images</span></div>
-<div class="line"><a name="l04731"></a><span class="lineno"> 4731</span>&#160;   <span class="keywordflow">if</span> (depth &lt; 8) {</div>
+<div class="line"><a name="l04731"></a><span class="lineno"> 4731</span>&#160;   <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> &lt; 8) {</div>
 <div class="line"><a name="l04732"></a><span class="lineno"> 4732</span>&#160;      filter_bytes = 1;</div>
 <div class="line"><a name="l04733"></a><span class="lineno"> 4733</span>&#160;      width = img_width_bytes;</div>
 <div class="line"><a name="l04734"></a><span class="lineno"> 4734</span>&#160;   }</div>
@@ -4864,28 +4848,28 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04786"></a><span class="lineno"> 4786</span>&#160;      raw += nk;</div>
 <div class="line"><a name="l04787"></a><span class="lineno"> 4787</span>&#160; </div>
 <div class="line"><a name="l04788"></a><span class="lineno"> 4788</span>&#160;      <span class="comment">// expand decoded bits in cur to dest, also adding an extra alpha channel if desired</span></div>
-<div class="line"><a name="l04789"></a><span class="lineno"> 4789</span>&#160;      <span class="keywordflow">if</span> (depth &lt; 8) {</div>
-<div class="line"><a name="l04790"></a><span class="lineno"> 4790</span>&#160;         stbi_uc scale = (color == 0) ? stbi__depth_scale_table[depth] : 1; <span class="comment">// scale grayscale values to 0..255 range</span></div>
+<div class="line"><a name="l04789"></a><span class="lineno"> 4789</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> &lt; 8) {</div>
+<div class="line"><a name="l04790"></a><span class="lineno"> 4790</span>&#160;         stbi_uc scale = (color == 0) ? stbi__depth_scale_table[<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>] : 1; <span class="comment">// scale grayscale values to 0..255 range</span></div>
 <div class="line"><a name="l04791"></a><span class="lineno"> 4791</span>&#160;         stbi_uc *in = cur;</div>
 <div class="line"><a name="l04792"></a><span class="lineno"> 4792</span>&#160;         stbi_uc *out = dest;</div>
 <div class="line"><a name="l04793"></a><span class="lineno"> 4793</span>&#160;         stbi_uc inb = 0;</div>
 <div class="line"><a name="l04794"></a><span class="lineno"> 4794</span>&#160;         stbi__uint32 nsmp = x*img_n;</div>
 <div class="line"><a name="l04795"></a><span class="lineno"> 4795</span>&#160; </div>
 <div class="line"><a name="l04796"></a><span class="lineno"> 4796</span>&#160;         <span class="comment">// expand bits to bytes first</span></div>
-<div class="line"><a name="l04797"></a><span class="lineno"> 4797</span>&#160;         <span class="keywordflow">if</span> (depth == 4) {</div>
+<div class="line"><a name="l04797"></a><span class="lineno"> 4797</span>&#160;         <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> == 4) {</div>
 <div class="line"><a name="l04798"></a><span class="lineno"> 4798</span>&#160;            <span class="keywordflow">for</span> (i=0; i &lt; nsmp; ++i) {</div>
 <div class="line"><a name="l04799"></a><span class="lineno"> 4799</span>&#160;               <span class="keywordflow">if</span> ((i &amp; 1) == 0) inb = *in++;</div>
 <div class="line"><a name="l04800"></a><span class="lineno"> 4800</span>&#160;               *out++ = scale * (inb &gt;&gt; 4);</div>
 <div class="line"><a name="l04801"></a><span class="lineno"> 4801</span>&#160;               inb &lt;&lt;= 4;</div>
 <div class="line"><a name="l04802"></a><span class="lineno"> 4802</span>&#160;            }</div>
-<div class="line"><a name="l04803"></a><span class="lineno"> 4803</span>&#160;         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (depth == 2) {</div>
+<div class="line"><a name="l04803"></a><span class="lineno"> 4803</span>&#160;         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> == 2) {</div>
 <div class="line"><a name="l04804"></a><span class="lineno"> 4804</span>&#160;            <span class="keywordflow">for</span> (i=0; i &lt; nsmp; ++i) {</div>
 <div class="line"><a name="l04805"></a><span class="lineno"> 4805</span>&#160;               <span class="keywordflow">if</span> ((i &amp; 3) == 0) inb = *in++;</div>
 <div class="line"><a name="l04806"></a><span class="lineno"> 4806</span>&#160;               *out++ = scale * (inb &gt;&gt; 6);</div>
 <div class="line"><a name="l04807"></a><span class="lineno"> 4807</span>&#160;               inb &lt;&lt;= 2;</div>
 <div class="line"><a name="l04808"></a><span class="lineno"> 4808</span>&#160;            }</div>
 <div class="line"><a name="l04809"></a><span class="lineno"> 4809</span>&#160;         } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l04810"></a><span class="lineno"> 4810</span>&#160;            STBI_ASSERT(depth == 1);</div>
+<div class="line"><a name="l04810"></a><span class="lineno"> 4810</span>&#160;            STBI_ASSERT(<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> == 1);</div>
 <div class="line"><a name="l04811"></a><span class="lineno"> 4811</span>&#160;            <span class="keywordflow">for</span> (i=0; i &lt; nsmp; ++i) {</div>
 <div class="line"><a name="l04812"></a><span class="lineno"> 4812</span>&#160;               <span class="keywordflow">if</span> ((i &amp; 7) == 0) inb = *in++;</div>
 <div class="line"><a name="l04813"></a><span class="lineno"> 4813</span>&#160;               *out++ = scale * (inb &gt;&gt; 7);</div>
@@ -4896,12 +4880,12 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04818"></a><span class="lineno"> 4818</span>&#160;         <span class="comment">// insert alpha=255 values if desired</span></div>
 <div class="line"><a name="l04819"></a><span class="lineno"> 4819</span>&#160;         <span class="keywordflow">if</span> (img_n != out_n)</div>
 <div class="line"><a name="l04820"></a><span class="lineno"> 4820</span>&#160;            stbi__create_png_alpha_expand8(dest, dest, x, img_n);</div>
-<div class="line"><a name="l04821"></a><span class="lineno"> 4821</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (depth == 8) {</div>
+<div class="line"><a name="l04821"></a><span class="lineno"> 4821</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> == 8) {</div>
 <div class="line"><a name="l04822"></a><span class="lineno"> 4822</span>&#160;         <span class="keywordflow">if</span> (img_n == out_n)</div>
 <div class="line"><a name="l04823"></a><span class="lineno"> 4823</span>&#160;            memcpy(dest, cur, x*img_n);</div>
 <div class="line"><a name="l04824"></a><span class="lineno"> 4824</span>&#160;         <span class="keywordflow">else</span></div>
 <div class="line"><a name="l04825"></a><span class="lineno"> 4825</span>&#160;            stbi__create_png_alpha_expand8(dest, cur, x, img_n);</div>
-<div class="line"><a name="l04826"></a><span class="lineno"> 4826</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (depth == 16) {</div>
+<div class="line"><a name="l04826"></a><span class="lineno"> 4826</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> == 16) {</div>
 <div class="line"><a name="l04827"></a><span class="lineno"> 4827</span>&#160;         <span class="comment">// convert the image data from big-endian to platform-native</span></div>
 <div class="line"><a name="l04828"></a><span class="lineno"> 4828</span>&#160;         stbi__uint16 *dest16 = (stbi__uint16*)dest;</div>
 <div class="line"><a name="l04829"></a><span class="lineno"> 4829</span>&#160;         stbi__uint32 nsmp = x*img_n;</div>
@@ -4935,14 +4919,14 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04857"></a><span class="lineno"> 4857</span>&#160;   <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l04858"></a><span class="lineno"> 4858</span>&#160;}</div>
 <div class="line"><a name="l04859"></a><span class="lineno"> 4859</span>&#160; </div>
-<div class="line"><a name="l04860"></a><span class="lineno"> 4860</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__create_png_image(stbi__png *a, stbi_uc *image_data, stbi__uint32 image_data_len, <span class="keywordtype">int</span> out_n, <span class="keywordtype">int</span> depth, <span class="keywordtype">int</span> color, <span class="keywordtype">int</span> interlaced)</div>
+<div class="line"><a name="l04860"></a><span class="lineno"> 4860</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__create_png_image(stbi__png *a, stbi_uc *image_data, stbi__uint32 image_data_len, <span class="keywordtype">int</span> out_n, <span class="keywordtype">int</span> <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>, <span class="keywordtype">int</span> color, <span class="keywordtype">int</span> interlaced)</div>
 <div class="line"><a name="l04861"></a><span class="lineno"> 4861</span>&#160;{</div>
-<div class="line"><a name="l04862"></a><span class="lineno"> 4862</span>&#160;   <span class="keywordtype">int</span> bytes = (depth == 16 ? 2 : 1);</div>
+<div class="line"><a name="l04862"></a><span class="lineno"> 4862</span>&#160;   <span class="keywordtype">int</span> bytes = (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> == 16 ? 2 : 1);</div>
 <div class="line"><a name="l04863"></a><span class="lineno"> 4863</span>&#160;   <span class="keywordtype">int</span> out_bytes = out_n * bytes;</div>
 <div class="line"><a name="l04864"></a><span class="lineno"> 4864</span>&#160;   stbi_uc *<span class="keyword">final</span>;</div>
 <div class="line"><a name="l04865"></a><span class="lineno"> 4865</span>&#160;   <span class="keywordtype">int</span> p;</div>
 <div class="line"><a name="l04866"></a><span class="lineno"> 4866</span>&#160;   <span class="keywordflow">if</span> (!interlaced)</div>
-<div class="line"><a name="l04867"></a><span class="lineno"> 4867</span>&#160;      <span class="keywordflow">return</span> stbi__create_png_image_raw(a, image_data, image_data_len, out_n, a-&gt;s-&gt;img_x, a-&gt;s-&gt;img_y, depth, color);</div>
+<div class="line"><a name="l04867"></a><span class="lineno"> 4867</span>&#160;      <span class="keywordflow">return</span> stbi__create_png_image_raw(a, image_data, image_data_len, out_n, a-&gt;s-&gt;img_x, a-&gt;s-&gt;img_y, <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>, color);</div>
 <div class="line"><a name="l04868"></a><span class="lineno"> 4868</span>&#160; </div>
 <div class="line"><a name="l04869"></a><span class="lineno"> 4869</span>&#160;   <span class="comment">// de-interlacing</span></div>
 <div class="line"><a name="l04870"></a><span class="lineno"> 4870</span>&#160;   <span class="keyword">final</span> = (stbi_uc *) stbi__malloc_mad3(a-&gt;s-&gt;img_x, a-&gt;s-&gt;img_y, out_bytes, 0);</div>
@@ -4957,8 +4941,8 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04879"></a><span class="lineno"> 4879</span>&#160;      x = (a-&gt;s-&gt;img_x - xorig[p] + xspc[p]-1) / xspc[p];</div>
 <div class="line"><a name="l04880"></a><span class="lineno"> 4880</span>&#160;      y = (a-&gt;s-&gt;img_y - yorig[p] + yspc[p]-1) / yspc[p];</div>
 <div class="line"><a name="l04881"></a><span class="lineno"> 4881</span>&#160;      <span class="keywordflow">if</span> (x &amp;&amp; y) {</div>
-<div class="line"><a name="l04882"></a><span class="lineno"> 4882</span>&#160;         stbi__uint32 img_len = ((((a-&gt;s-&gt;img_n * x * depth) + 7) &gt;&gt; 3) + 1) * y;</div>
-<div class="line"><a name="l04883"></a><span class="lineno"> 4883</span>&#160;         <span class="keywordflow">if</span> (!stbi__create_png_image_raw(a, image_data, image_data_len, out_n, x, y, depth, color)) {</div>
+<div class="line"><a name="l04882"></a><span class="lineno"> 4882</span>&#160;         stbi__uint32 img_len = ((((a-&gt;s-&gt;img_n * x * <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>) + 7) &gt;&gt; 3) + 1) * y;</div>
+<div class="line"><a name="l04883"></a><span class="lineno"> 4883</span>&#160;         <span class="keywordflow">if</span> (!stbi__create_png_image_raw(a, image_data, image_data_len, out_n, x, y, <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>, color)) {</div>
 <div class="line"><a name="l04884"></a><span class="lineno"> 4884</span>&#160;            STBI_FREE(<span class="keyword">final</span>);</div>
 <div class="line"><a name="l04885"></a><span class="lineno"> 4885</span>&#160;            <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l04886"></a><span class="lineno"> 4886</span>&#160;         }</div>
@@ -5030,7 +5014,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04952"></a><span class="lineno"> 4952</span>&#160;   <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l04953"></a><span class="lineno"> 4953</span>&#160;}</div>
 <div class="line"><a name="l04954"></a><span class="lineno"> 4954</span>&#160; </div>
-<div class="line"><a name="l04955"></a><span class="lineno"> 4955</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__expand_png_palette(stbi__png *a, stbi_uc *palette, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> pal_img_n)</div>
+<div class="line"><a name="l04955"></a><span class="lineno"> 4955</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__expand_png_palette(stbi__png *a, stbi_uc *palette, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> pal_img_n)</div>
 <div class="line"><a name="l04956"></a><span class="lineno"> 4956</span>&#160;{</div>
 <div class="line"><a name="l04957"></a><span class="lineno"> 4957</span>&#160;   stbi__uint32 i, pixel_count = a-&gt;s-&gt;img_x * a-&gt;s-&gt;img_y;</div>
 <div class="line"><a name="l04958"></a><span class="lineno"> 4958</span>&#160;   stbi_uc *p, *temp_out, *orig = a-&gt;out;</div>
@@ -5062,7 +5046,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l04984"></a><span class="lineno"> 4984</span>&#160;   STBI_FREE(a-&gt;out);</div>
 <div class="line"><a name="l04985"></a><span class="lineno"> 4985</span>&#160;   a-&gt;out = temp_out;</div>
 <div class="line"><a name="l04986"></a><span class="lineno"> 4986</span>&#160; </div>
-<div class="line"><a name="l04987"></a><span class="lineno"> 4987</span>&#160;   STBI_NOTUSED(len);</div>
+<div class="line"><a name="l04987"></a><span class="lineno"> 4987</span>&#160;   STBI_NOTUSED(<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
 <div class="line"><a name="l04988"></a><span class="lineno"> 4988</span>&#160; </div>
 <div class="line"><a name="l04989"></a><span class="lineno"> 4989</span>&#160;   <span class="keywordflow">return</span> 1;</div>
 <div class="line"><a name="l04990"></a><span class="lineno"> 4990</span>&#160;}</div>
@@ -6162,35 +6146,35 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l06084"></a><span class="lineno"> 6084</span>&#160; </div>
 <div class="line"><a name="l06085"></a><span class="lineno"> 6085</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__psd_decode_rle(stbi__context *s, stbi_uc *p, <span class="keywordtype">int</span> pixelCount)</div>
 <div class="line"><a name="l06086"></a><span class="lineno"> 6086</span>&#160;{</div>
-<div class="line"><a name="l06087"></a><span class="lineno"> 6087</span>&#160;   <span class="keywordtype">int</span> count, nleft, len;</div>
+<div class="line"><a name="l06087"></a><span class="lineno"> 6087</span>&#160;   <span class="keywordtype">int</span> count, nleft, <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>;</div>
 <div class="line"><a name="l06088"></a><span class="lineno"> 6088</span>&#160; </div>
 <div class="line"><a name="l06089"></a><span class="lineno"> 6089</span>&#160;   count = 0;</div>
 <div class="line"><a name="l06090"></a><span class="lineno"> 6090</span>&#160;   <span class="keywordflow">while</span> ((nleft = pixelCount - count) &gt; 0) {</div>
-<div class="line"><a name="l06091"></a><span class="lineno"> 6091</span>&#160;      len = stbi__get8(s);</div>
-<div class="line"><a name="l06092"></a><span class="lineno"> 6092</span>&#160;      <span class="keywordflow">if</span> (len == 128) {</div>
+<div class="line"><a name="l06091"></a><span class="lineno"> 6091</span>&#160;      <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> = stbi__get8(s);</div>
+<div class="line"><a name="l06092"></a><span class="lineno"> 6092</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> == 128) {</div>
 <div class="line"><a name="l06093"></a><span class="lineno"> 6093</span>&#160;         <span class="comment">// No-op.</span></div>
-<div class="line"><a name="l06094"></a><span class="lineno"> 6094</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (len &lt; 128) {</div>
+<div class="line"><a name="l06094"></a><span class="lineno"> 6094</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> &lt; 128) {</div>
 <div class="line"><a name="l06095"></a><span class="lineno"> 6095</span>&#160;         <span class="comment">// Copy next len+1 bytes literally.</span></div>
-<div class="line"><a name="l06096"></a><span class="lineno"> 6096</span>&#160;         len++;</div>
-<div class="line"><a name="l06097"></a><span class="lineno"> 6097</span>&#160;         <span class="keywordflow">if</span> (len &gt; nleft) <span class="keywordflow">return</span> 0; <span class="comment">// corrupt data</span></div>
-<div class="line"><a name="l06098"></a><span class="lineno"> 6098</span>&#160;         count += len;</div>
-<div class="line"><a name="l06099"></a><span class="lineno"> 6099</span>&#160;         <span class="keywordflow">while</span> (len) {</div>
+<div class="line"><a name="l06096"></a><span class="lineno"> 6096</span>&#160;         <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>++;</div>
+<div class="line"><a name="l06097"></a><span class="lineno"> 6097</span>&#160;         <span class="keywordflow">if</span> (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> &gt; nleft) <span class="keywordflow">return</span> 0; <span class="comment">// corrupt data</span></div>
+<div class="line"><a name="l06098"></a><span class="lineno"> 6098</span>&#160;         count += <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>;</div>
+<div class="line"><a name="l06099"></a><span class="lineno"> 6099</span>&#160;         <span class="keywordflow">while</span> (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>) {</div>
 <div class="line"><a name="l06100"></a><span class="lineno"> 6100</span>&#160;            *p = stbi__get8(s);</div>
 <div class="line"><a name="l06101"></a><span class="lineno"> 6101</span>&#160;            p += 4;</div>
-<div class="line"><a name="l06102"></a><span class="lineno"> 6102</span>&#160;            len--;</div>
+<div class="line"><a name="l06102"></a><span class="lineno"> 6102</span>&#160;            <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>--;</div>
 <div class="line"><a name="l06103"></a><span class="lineno"> 6103</span>&#160;         }</div>
-<div class="line"><a name="l06104"></a><span class="lineno"> 6104</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (len &gt; 128) {</div>
+<div class="line"><a name="l06104"></a><span class="lineno"> 6104</span>&#160;      } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> &gt; 128) {</div>
 <div class="line"><a name="l06105"></a><span class="lineno"> 6105</span>&#160;         stbi_uc   val;</div>
 <div class="line"><a name="l06106"></a><span class="lineno"> 6106</span>&#160;         <span class="comment">// Next -len+1 bytes in the dest are replicated from next source byte.</span></div>
 <div class="line"><a name="l06107"></a><span class="lineno"> 6107</span>&#160;         <span class="comment">// (Interpret len as a negative 8-bit int.)</span></div>
-<div class="line"><a name="l06108"></a><span class="lineno"> 6108</span>&#160;         len = 257 - len;</div>
-<div class="line"><a name="l06109"></a><span class="lineno"> 6109</span>&#160;         <span class="keywordflow">if</span> (len &gt; nleft) <span class="keywordflow">return</span> 0; <span class="comment">// corrupt data</span></div>
+<div class="line"><a name="l06108"></a><span class="lineno"> 6108</span>&#160;         <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> = 257 - <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>;</div>
+<div class="line"><a name="l06109"></a><span class="lineno"> 6109</span>&#160;         <span class="keywordflow">if</span> (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> &gt; nleft) <span class="keywordflow">return</span> 0; <span class="comment">// corrupt data</span></div>
 <div class="line"><a name="l06110"></a><span class="lineno"> 6110</span>&#160;         val = stbi__get8(s);</div>
-<div class="line"><a name="l06111"></a><span class="lineno"> 6111</span>&#160;         count += len;</div>
-<div class="line"><a name="l06112"></a><span class="lineno"> 6112</span>&#160;         <span class="keywordflow">while</span> (len) {</div>
+<div class="line"><a name="l06111"></a><span class="lineno"> 6111</span>&#160;         count += <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>;</div>
+<div class="line"><a name="l06112"></a><span class="lineno"> 6112</span>&#160;         <span class="keywordflow">while</span> (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>) {</div>
 <div class="line"><a name="l06113"></a><span class="lineno"> 6113</span>&#160;            *p = val;</div>
 <div class="line"><a name="l06114"></a><span class="lineno"> 6114</span>&#160;            p += 4;</div>
-<div class="line"><a name="l06115"></a><span class="lineno"> 6115</span>&#160;            len--;</div>
+<div class="line"><a name="l06115"></a><span class="lineno"> 6115</span>&#160;            <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>--;</div>
 <div class="line"><a name="l06116"></a><span class="lineno"> 6116</span>&#160;         }</div>
 <div class="line"><a name="l06117"></a><span class="lineno"> 6117</span>&#160;      }</div>
 <div class="line"><a name="l06118"></a><span class="lineno"> 6118</span>&#160;   }</div>
@@ -6436,7 +6420,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l06358"></a><span class="lineno"> 6358</span>&#160; </div>
 <div class="line"><a name="l06359"></a><span class="lineno"> 6359</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct</span></div>
 <div class="line"><a name="l06360"></a><span class="lineno"> 6360</span>&#160;{</div>
-<div class="line"><a name="l06361"></a><span class="lineno"> 6361</span>&#160;   stbi_uc size,type,channel;</div>
+<div class="line"><a name="l06361"></a><span class="lineno"> 6361</span>&#160;   stbi_uc <a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>,<a class="code" href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a>,channel;</div>
 <div class="line"><a name="l06362"></a><span class="lineno"> 6362</span>&#160;} stbi__pic_packet;</div>
 <div class="line"><a name="l06363"></a><span class="lineno"> 6363</span>&#160; </div>
 <div class="line"><a name="l06364"></a><span class="lineno"> 6364</span>&#160;<span class="keyword">static</span> stbi_uc *stbi__readval(stbi__context *s, <span class="keywordtype">int</span> channel, stbi_uc *dest)</div>
@@ -6462,7 +6446,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l06384"></a><span class="lineno"> 6384</span>&#160;         dest[i]=src[i];</div>
 <div class="line"><a name="l06385"></a><span class="lineno"> 6385</span>&#160;}</div>
 <div class="line"><a name="l06386"></a><span class="lineno"> 6386</span>&#160; </div>
-<div class="line"><a name="l06387"></a><span class="lineno"> 6387</span>&#160;<span class="keyword">static</span> stbi_uc *stbi__pic_load_core(stbi__context *s,<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> height,<span class="keywordtype">int</span> *comp, stbi_uc *result)</div>
+<div class="line"><a name="l06387"></a><span class="lineno"> 6387</span>&#160;<span class="keyword">static</span> stbi_uc *stbi__pic_load_core(stbi__context *s,<span class="keywordtype">int</span> width,<span class="keywordtype">int</span> <a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>,<span class="keywordtype">int</span> *comp, stbi_uc *result)</div>
 <div class="line"><a name="l06388"></a><span class="lineno"> 6388</span>&#160;{</div>
 <div class="line"><a name="l06389"></a><span class="lineno"> 6389</span>&#160;   <span class="keywordtype">int</span> act_comp=0,num_packets=0,y,chained;</div>
 <div class="line"><a name="l06390"></a><span class="lineno"> 6390</span>&#160;   stbi__pic_packet packets[10];</div>
@@ -6490,7 +6474,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l06412"></a><span class="lineno"> 6412</span>&#160; </div>
 <div class="line"><a name="l06413"></a><span class="lineno"> 6413</span>&#160;   *comp = (act_comp &amp; 0x10 ? 4 : 3); <span class="comment">// has alpha channel?</span></div>
 <div class="line"><a name="l06414"></a><span class="lineno"> 6414</span>&#160; </div>
-<div class="line"><a name="l06415"></a><span class="lineno"> 6415</span>&#160;   <span class="keywordflow">for</span>(y=0; y&lt;height; ++y) {</div>
+<div class="line"><a name="l06415"></a><span class="lineno"> 6415</span>&#160;   <span class="keywordflow">for</span>(y=0; y&lt;<a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>; ++y) {</div>
 <div class="line"><a name="l06416"></a><span class="lineno"> 6416</span>&#160;      <span class="keywordtype">int</span> packet_idx;</div>
 <div class="line"><a name="l06417"></a><span class="lineno"> 6417</span>&#160; </div>
 <div class="line"><a name="l06418"></a><span class="lineno"> 6418</span>&#160;      <span class="keywordflow">for</span>(packet_idx=0; packet_idx &lt; num_packets; ++packet_idx) {</div>
@@ -6766,38 +6750,38 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l06688"></a><span class="lineno"> 6688</span>&#160;<span class="keyword">static</span> stbi_uc *stbi__process_gif_raster(stbi__context *s, stbi__gif *g)</div>
 <div class="line"><a name="l06689"></a><span class="lineno"> 6689</span>&#160;{</div>
 <div class="line"><a name="l06690"></a><span class="lineno"> 6690</span>&#160;   stbi_uc lzw_cs;</div>
-<div class="line"><a name="l06691"></a><span class="lineno"> 6691</span>&#160;   stbi__int32 len, init_code;</div>
+<div class="line"><a name="l06691"></a><span class="lineno"> 6691</span>&#160;   stbi__int32 <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, init_code;</div>
 <div class="line"><a name="l06692"></a><span class="lineno"> 6692</span>&#160;   stbi__uint32 first;</div>
-<div class="line"><a name="l06693"></a><span class="lineno"> 6693</span>&#160;   stbi__int32 codesize, codemask, avail, oldcode, bits, valid_bits, clear;</div>
+<div class="line"><a name="l06693"></a><span class="lineno"> 6693</span>&#160;   stbi__int32 codesize, codemask, avail, oldcode, bits, valid_bits, <a class="code" href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a>;</div>
 <div class="line"><a name="l06694"></a><span class="lineno"> 6694</span>&#160;   stbi__gif_lzw *p;</div>
 <div class="line"><a name="l06695"></a><span class="lineno"> 6695</span>&#160; </div>
 <div class="line"><a name="l06696"></a><span class="lineno"> 6696</span>&#160;   lzw_cs = stbi__get8(s);</div>
 <div class="line"><a name="l06697"></a><span class="lineno"> 6697</span>&#160;   <span class="keywordflow">if</span> (lzw_cs &gt; 12) <span class="keywordflow">return</span> NULL;</div>
-<div class="line"><a name="l06698"></a><span class="lineno"> 6698</span>&#160;   clear = 1 &lt;&lt; lzw_cs;</div>
+<div class="line"><a name="l06698"></a><span class="lineno"> 6698</span>&#160;   <a class="code" href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a> = 1 &lt;&lt; lzw_cs;</div>
 <div class="line"><a name="l06699"></a><span class="lineno"> 6699</span>&#160;   first = 1;</div>
 <div class="line"><a name="l06700"></a><span class="lineno"> 6700</span>&#160;   codesize = lzw_cs + 1;</div>
 <div class="line"><a name="l06701"></a><span class="lineno"> 6701</span>&#160;   codemask = (1 &lt;&lt; codesize) - 1;</div>
 <div class="line"><a name="l06702"></a><span class="lineno"> 6702</span>&#160;   bits = 0;</div>
 <div class="line"><a name="l06703"></a><span class="lineno"> 6703</span>&#160;   valid_bits = 0;</div>
-<div class="line"><a name="l06704"></a><span class="lineno"> 6704</span>&#160;   <span class="keywordflow">for</span> (init_code = 0; init_code &lt; clear; init_code++) {</div>
+<div class="line"><a name="l06704"></a><span class="lineno"> 6704</span>&#160;   <span class="keywordflow">for</span> (init_code = 0; init_code &lt; <a class="code" href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a>; init_code++) {</div>
 <div class="line"><a name="l06705"></a><span class="lineno"> 6705</span>&#160;      g-&gt;codes[init_code].prefix = -1;</div>
 <div class="line"><a name="l06706"></a><span class="lineno"> 6706</span>&#160;      g-&gt;codes[init_code].first = (stbi_uc) init_code;</div>
 <div class="line"><a name="l06707"></a><span class="lineno"> 6707</span>&#160;      g-&gt;codes[init_code].suffix = (stbi_uc) init_code;</div>
 <div class="line"><a name="l06708"></a><span class="lineno"> 6708</span>&#160;   }</div>
 <div class="line"><a name="l06709"></a><span class="lineno"> 6709</span>&#160; </div>
 <div class="line"><a name="l06710"></a><span class="lineno"> 6710</span>&#160;   <span class="comment">// support no starting clear code</span></div>
-<div class="line"><a name="l06711"></a><span class="lineno"> 6711</span>&#160;   avail = clear+2;</div>
+<div class="line"><a name="l06711"></a><span class="lineno"> 6711</span>&#160;   avail = <a class="code" href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a>+2;</div>
 <div class="line"><a name="l06712"></a><span class="lineno"> 6712</span>&#160;   oldcode = -1;</div>
 <div class="line"><a name="l06713"></a><span class="lineno"> 6713</span>&#160; </div>
-<div class="line"><a name="l06714"></a><span class="lineno"> 6714</span>&#160;   len = 0;</div>
+<div class="line"><a name="l06714"></a><span class="lineno"> 6714</span>&#160;   <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> = 0;</div>
 <div class="line"><a name="l06715"></a><span class="lineno"> 6715</span>&#160;   <span class="keywordflow">for</span>(;;) {</div>
 <div class="line"><a name="l06716"></a><span class="lineno"> 6716</span>&#160;      <span class="keywordflow">if</span> (valid_bits &lt; codesize) {</div>
-<div class="line"><a name="l06717"></a><span class="lineno"> 6717</span>&#160;         <span class="keywordflow">if</span> (len == 0) {</div>
-<div class="line"><a name="l06718"></a><span class="lineno"> 6718</span>&#160;            len = stbi__get8(s); <span class="comment">// start new block</span></div>
-<div class="line"><a name="l06719"></a><span class="lineno"> 6719</span>&#160;            <span class="keywordflow">if</span> (len == 0)</div>
+<div class="line"><a name="l06717"></a><span class="lineno"> 6717</span>&#160;         <span class="keywordflow">if</span> (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> == 0) {</div>
+<div class="line"><a name="l06718"></a><span class="lineno"> 6718</span>&#160;            <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> = stbi__get8(s); <span class="comment">// start new block</span></div>
+<div class="line"><a name="l06719"></a><span class="lineno"> 6719</span>&#160;            <span class="keywordflow">if</span> (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> == 0)</div>
 <div class="line"><a name="l06720"></a><span class="lineno"> 6720</span>&#160;               <span class="keywordflow">return</span> g-&gt;out;</div>
 <div class="line"><a name="l06721"></a><span class="lineno"> 6721</span>&#160;         }</div>
-<div class="line"><a name="l06722"></a><span class="lineno"> 6722</span>&#160;         --len;</div>
+<div class="line"><a name="l06722"></a><span class="lineno"> 6722</span>&#160;         --<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>;</div>
 <div class="line"><a name="l06723"></a><span class="lineno"> 6723</span>&#160;         bits |= (stbi__int32) stbi__get8(s) &lt;&lt; valid_bits;</div>
 <div class="line"><a name="l06724"></a><span class="lineno"> 6724</span>&#160;         valid_bits += 8;</div>
 <div class="line"><a name="l06725"></a><span class="lineno"> 6725</span>&#160;      } <span class="keywordflow">else</span> {</div>
@@ -6805,16 +6789,16 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l06727"></a><span class="lineno"> 6727</span>&#160;         bits &gt;&gt;= codesize;</div>
 <div class="line"><a name="l06728"></a><span class="lineno"> 6728</span>&#160;         valid_bits -= codesize;</div>
 <div class="line"><a name="l06729"></a><span class="lineno"> 6729</span>&#160;         <span class="comment">// @OPTIMIZE: is there some way we can accelerate the non-clear path?</span></div>
-<div class="line"><a name="l06730"></a><span class="lineno"> 6730</span>&#160;         <span class="keywordflow">if</span> (code == clear) {  <span class="comment">// clear code</span></div>
+<div class="line"><a name="l06730"></a><span class="lineno"> 6730</span>&#160;         <span class="keywordflow">if</span> (code == <a class="code" href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a>) {  <span class="comment">// clear code</span></div>
 <div class="line"><a name="l06731"></a><span class="lineno"> 6731</span>&#160;            codesize = lzw_cs + 1;</div>
 <div class="line"><a name="l06732"></a><span class="lineno"> 6732</span>&#160;            codemask = (1 &lt;&lt; codesize) - 1;</div>
-<div class="line"><a name="l06733"></a><span class="lineno"> 6733</span>&#160;            avail = clear + 2;</div>
+<div class="line"><a name="l06733"></a><span class="lineno"> 6733</span>&#160;            avail = <a class="code" href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a> + 2;</div>
 <div class="line"><a name="l06734"></a><span class="lineno"> 6734</span>&#160;            oldcode = -1;</div>
 <div class="line"><a name="l06735"></a><span class="lineno"> 6735</span>&#160;            first = 0;</div>
-<div class="line"><a name="l06736"></a><span class="lineno"> 6736</span>&#160;         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (code == clear + 1) { <span class="comment">// end of stream code</span></div>
-<div class="line"><a name="l06737"></a><span class="lineno"> 6737</span>&#160;            stbi__skip(s, len);</div>
-<div class="line"><a name="l06738"></a><span class="lineno"> 6738</span>&#160;            <span class="keywordflow">while</span> ((len = stbi__get8(s)) &gt; 0)</div>
-<div class="line"><a name="l06739"></a><span class="lineno"> 6739</span>&#160;               stbi__skip(s,len);</div>
+<div class="line"><a name="l06736"></a><span class="lineno"> 6736</span>&#160;         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (code == <a class="code" href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a> + 1) { <span class="comment">// end of stream code</span></div>
+<div class="line"><a name="l06737"></a><span class="lineno"> 6737</span>&#160;            stbi__skip(s, <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
+<div class="line"><a name="l06738"></a><span class="lineno"> 6738</span>&#160;            <span class="keywordflow">while</span> ((<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> = stbi__get8(s)) &gt; 0)</div>
+<div class="line"><a name="l06739"></a><span class="lineno"> 6739</span>&#160;               stbi__skip(s,<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
 <div class="line"><a name="l06740"></a><span class="lineno"> 6740</span>&#160;            <span class="keywordflow">return</span> g-&gt;out;</div>
 <div class="line"><a name="l06741"></a><span class="lineno"> 6741</span>&#160;         } <span class="keywordflow">else</span> <span class="keywordflow">if</span> (code &lt;= avail) {</div>
 <div class="line"><a name="l06742"></a><span class="lineno"> 6742</span>&#160;            <span class="keywordflow">if</span> (first) {</div>
@@ -6982,11 +6966,11 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l06904"></a><span class="lineno"> 6904</span>&#160; </div>
 <div class="line"><a name="l06905"></a><span class="lineno"> 6905</span>&#160;         <span class="keywordflow">case</span> 0x21: <span class="comment">// Comment Extension.</span></div>
 <div class="line"><a name="l06906"></a><span class="lineno"> 6906</span>&#160;         {</div>
-<div class="line"><a name="l06907"></a><span class="lineno"> 6907</span>&#160;            <span class="keywordtype">int</span> len;</div>
+<div class="line"><a name="l06907"></a><span class="lineno"> 6907</span>&#160;            <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>;</div>
 <div class="line"><a name="l06908"></a><span class="lineno"> 6908</span>&#160;            <span class="keywordtype">int</span> ext = stbi__get8(s);</div>
 <div class="line"><a name="l06909"></a><span class="lineno"> 6909</span>&#160;            <span class="keywordflow">if</span> (ext == 0xF9) { <span class="comment">// Graphic Control Extension.</span></div>
-<div class="line"><a name="l06910"></a><span class="lineno"> 6910</span>&#160;               len = stbi__get8(s);</div>
-<div class="line"><a name="l06911"></a><span class="lineno"> 6911</span>&#160;               <span class="keywordflow">if</span> (len == 4) {</div>
+<div class="line"><a name="l06910"></a><span class="lineno"> 6910</span>&#160;               <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> = stbi__get8(s);</div>
+<div class="line"><a name="l06911"></a><span class="lineno"> 6911</span>&#160;               <span class="keywordflow">if</span> (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> == 4) {</div>
 <div class="line"><a name="l06912"></a><span class="lineno"> 6912</span>&#160;                  g-&gt;eflags = stbi__get8(s);</div>
 <div class="line"><a name="l06913"></a><span class="lineno"> 6913</span>&#160;                  g-&gt;delay = 10 * stbi__get16le(s); <span class="comment">// delay - 1/100th of a second, saving as 1/1000ths.</span></div>
 <div class="line"><a name="l06914"></a><span class="lineno"> 6914</span>&#160; </div>
@@ -7005,12 +6989,12 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l06927"></a><span class="lineno"> 6927</span>&#160;                     g-&gt;transparent = -1;</div>
 <div class="line"><a name="l06928"></a><span class="lineno"> 6928</span>&#160;                  }</div>
 <div class="line"><a name="l06929"></a><span class="lineno"> 6929</span>&#160;               } <span class="keywordflow">else</span> {</div>
-<div class="line"><a name="l06930"></a><span class="lineno"> 6930</span>&#160;                  stbi__skip(s, len);</div>
+<div class="line"><a name="l06930"></a><span class="lineno"> 6930</span>&#160;                  stbi__skip(s, <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
 <div class="line"><a name="l06931"></a><span class="lineno"> 6931</span>&#160;                  <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l06932"></a><span class="lineno"> 6932</span>&#160;               }</div>
 <div class="line"><a name="l06933"></a><span class="lineno"> 6933</span>&#160;            }</div>
-<div class="line"><a name="l06934"></a><span class="lineno"> 6934</span>&#160;            <span class="keywordflow">while</span> ((len = stbi__get8(s)) != 0) {</div>
-<div class="line"><a name="l06935"></a><span class="lineno"> 6935</span>&#160;               stbi__skip(s, len);</div>
+<div class="line"><a name="l06934"></a><span class="lineno"> 6934</span>&#160;            <span class="keywordflow">while</span> ((<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> = stbi__get8(s)) != 0) {</div>
+<div class="line"><a name="l06935"></a><span class="lineno"> 6935</span>&#160;               stbi__skip(s, <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
 <div class="line"><a name="l06936"></a><span class="lineno"> 6936</span>&#160;            }</div>
 <div class="line"><a name="l06937"></a><span class="lineno"> 6937</span>&#160;            <span class="keywordflow">break</span>;</div>
 <div class="line"><a name="l06938"></a><span class="lineno"> 6938</span>&#160;         }</div>
@@ -7183,14 +7167,14 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l07105"></a><span class="lineno"> 7105</span>&#160;<span class="preprocessor">#define STBI__HDR_BUFLEN  1024</span></div>
 <div class="line"><a name="l07106"></a><span class="lineno"> 7106</span>&#160;<span class="keyword">static</span> <span class="keywordtype">char</span> *stbi__hdr_gettoken(stbi__context *z, <span class="keywordtype">char</span> *buffer)</div>
 <div class="line"><a name="l07107"></a><span class="lineno"> 7107</span>&#160;{</div>
-<div class="line"><a name="l07108"></a><span class="lineno"> 7108</span>&#160;   <span class="keywordtype">int</span> len=0;</div>
+<div class="line"><a name="l07108"></a><span class="lineno"> 7108</span>&#160;   <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>=0;</div>
 <div class="line"><a name="l07109"></a><span class="lineno"> 7109</span>&#160;   <span class="keywordtype">char</span> c = <span class="charliteral">&#39;\0&#39;</span>;</div>
 <div class="line"><a name="l07110"></a><span class="lineno"> 7110</span>&#160; </div>
 <div class="line"><a name="l07111"></a><span class="lineno"> 7111</span>&#160;   c = (char) stbi__get8(z);</div>
 <div class="line"><a name="l07112"></a><span class="lineno"> 7112</span>&#160; </div>
 <div class="line"><a name="l07113"></a><span class="lineno"> 7113</span>&#160;   <span class="keywordflow">while</span> (!stbi__at_eof(z) &amp;&amp; c != <span class="charliteral">&#39;\n&#39;</span>) {</div>
-<div class="line"><a name="l07114"></a><span class="lineno"> 7114</span>&#160;      buffer[len++] = c;</div>
-<div class="line"><a name="l07115"></a><span class="lineno"> 7115</span>&#160;      <span class="keywordflow">if</span> (len == STBI__HDR_BUFLEN-1) {</div>
+<div class="line"><a name="l07114"></a><span class="lineno"> 7114</span>&#160;      buffer[<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>++] = c;</div>
+<div class="line"><a name="l07115"></a><span class="lineno"> 7115</span>&#160;      <span class="keywordflow">if</span> (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> == STBI__HDR_BUFLEN-1) {</div>
 <div class="line"><a name="l07116"></a><span class="lineno"> 7116</span>&#160;         <span class="comment">// flush to end of line</span></div>
 <div class="line"><a name="l07117"></a><span class="lineno"> 7117</span>&#160;         <span class="keywordflow">while</span> (!stbi__at_eof(z) &amp;&amp; stbi__get8(z) != <span class="charliteral">&#39;\n&#39;</span>)</div>
 <div class="line"><a name="l07118"></a><span class="lineno"> 7118</span>&#160;            ;</div>
@@ -7199,7 +7183,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l07121"></a><span class="lineno"> 7121</span>&#160;      c = (char) stbi__get8(z);</div>
 <div class="line"><a name="l07122"></a><span class="lineno"> 7122</span>&#160;   }</div>
 <div class="line"><a name="l07123"></a><span class="lineno"> 7123</span>&#160; </div>
-<div class="line"><a name="l07124"></a><span class="lineno"> 7124</span>&#160;   buffer[len] = 0;</div>
+<div class="line"><a name="l07124"></a><span class="lineno"> 7124</span>&#160;   buffer[<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>] = 0;</div>
 <div class="line"><a name="l07125"></a><span class="lineno"> 7125</span>&#160;   <span class="keywordflow">return</span> buffer;</div>
 <div class="line"><a name="l07126"></a><span class="lineno"> 7126</span>&#160;}</div>
 <div class="line"><a name="l07127"></a><span class="lineno"> 7127</span>&#160; </div>
@@ -7235,10 +7219,10 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l07157"></a><span class="lineno"> 7157</span>&#160;   <span class="keywordtype">char</span> buffer[STBI__HDR_BUFLEN];</div>
 <div class="line"><a name="l07158"></a><span class="lineno"> 7158</span>&#160;   <span class="keywordtype">char</span> *token;</div>
 <div class="line"><a name="l07159"></a><span class="lineno"> 7159</span>&#160;   <span class="keywordtype">int</span> valid = 0;</div>
-<div class="line"><a name="l07160"></a><span class="lineno"> 7160</span>&#160;   <span class="keywordtype">int</span> width, height;</div>
+<div class="line"><a name="l07160"></a><span class="lineno"> 7160</span>&#160;   <span class="keywordtype">int</span> width, <a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>;</div>
 <div class="line"><a name="l07161"></a><span class="lineno"> 7161</span>&#160;   stbi_uc *scanline;</div>
 <div class="line"><a name="l07162"></a><span class="lineno"> 7162</span>&#160;   <span class="keywordtype">float</span> *hdr_data;</div>
-<div class="line"><a name="l07163"></a><span class="lineno"> 7163</span>&#160;   <span class="keywordtype">int</span> len;</div>
+<div class="line"><a name="l07163"></a><span class="lineno"> 7163</span>&#160;   <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>;</div>
 <div class="line"><a name="l07164"></a><span class="lineno"> 7164</span>&#160;   <span class="keywordtype">unsigned</span> <span class="keywordtype">char</span> count, value;</div>
 <div class="line"><a name="l07165"></a><span class="lineno"> 7165</span>&#160;   <span class="keywordtype">int</span> i, j, k, c1,c2, z;</div>
 <div class="line"><a name="l07166"></a><span class="lineno"> 7166</span>&#160;   <span class="keyword">const</span> <span class="keywordtype">char</span> *headerToken;</div>
@@ -7263,26 +7247,26 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l07185"></a><span class="lineno"> 7185</span>&#160;   token = stbi__hdr_gettoken(s,buffer);</div>
 <div class="line"><a name="l07186"></a><span class="lineno"> 7186</span>&#160;   <span class="keywordflow">if</span> (strncmp(token, <span class="stringliteral">&quot;-Y &quot;</span>, 3))  <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;unsupported data layout&quot;</span>, <span class="stringliteral">&quot;Unsupported HDR format&quot;</span>);</div>
 <div class="line"><a name="l07187"></a><span class="lineno"> 7187</span>&#160;   token += 3;</div>
-<div class="line"><a name="l07188"></a><span class="lineno"> 7188</span>&#160;   height = (int) strtol(token, &amp;token, 10);</div>
+<div class="line"><a name="l07188"></a><span class="lineno"> 7188</span>&#160;   <a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a> = (int) strtol(token, &amp;token, 10);</div>
 <div class="line"><a name="l07189"></a><span class="lineno"> 7189</span>&#160;   <span class="keywordflow">while</span> (*token == <span class="charliteral">&#39; &#39;</span>) ++token;</div>
 <div class="line"><a name="l07190"></a><span class="lineno"> 7190</span>&#160;   <span class="keywordflow">if</span> (strncmp(token, <span class="stringliteral">&quot;+X &quot;</span>, 3))  <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;unsupported data layout&quot;</span>, <span class="stringliteral">&quot;Unsupported HDR format&quot;</span>);</div>
 <div class="line"><a name="l07191"></a><span class="lineno"> 7191</span>&#160;   token += 3;</div>
 <div class="line"><a name="l07192"></a><span class="lineno"> 7192</span>&#160;   width = (int) strtol(token, NULL, 10);</div>
 <div class="line"><a name="l07193"></a><span class="lineno"> 7193</span>&#160; </div>
-<div class="line"><a name="l07194"></a><span class="lineno"> 7194</span>&#160;   <span class="keywordflow">if</span> (height &gt; STBI_MAX_DIMENSIONS) <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;too large&quot;</span>,<span class="stringliteral">&quot;Very large image (corrupt?)&quot;</span>);</div>
+<div class="line"><a name="l07194"></a><span class="lineno"> 7194</span>&#160;   <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a> &gt; STBI_MAX_DIMENSIONS) <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;too large&quot;</span>,<span class="stringliteral">&quot;Very large image (corrupt?)&quot;</span>);</div>
 <div class="line"><a name="l07195"></a><span class="lineno"> 7195</span>&#160;   <span class="keywordflow">if</span> (width &gt; STBI_MAX_DIMENSIONS) <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;too large&quot;</span>,<span class="stringliteral">&quot;Very large image (corrupt?)&quot;</span>);</div>
 <div class="line"><a name="l07196"></a><span class="lineno"> 7196</span>&#160; </div>
 <div class="line"><a name="l07197"></a><span class="lineno"> 7197</span>&#160;   *x = width;</div>
-<div class="line"><a name="l07198"></a><span class="lineno"> 7198</span>&#160;   *y = height;</div>
+<div class="line"><a name="l07198"></a><span class="lineno"> 7198</span>&#160;   *y = <a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>;</div>
 <div class="line"><a name="l07199"></a><span class="lineno"> 7199</span>&#160; </div>
 <div class="line"><a name="l07200"></a><span class="lineno"> 7200</span>&#160;   <span class="keywordflow">if</span> (comp) *comp = 3;</div>
 <div class="line"><a name="l07201"></a><span class="lineno"> 7201</span>&#160;   <span class="keywordflow">if</span> (req_comp == 0) req_comp = 3;</div>
 <div class="line"><a name="l07202"></a><span class="lineno"> 7202</span>&#160; </div>
-<div class="line"><a name="l07203"></a><span class="lineno"> 7203</span>&#160;   <span class="keywordflow">if</span> (!stbi__mad4sizes_valid(width, height, req_comp, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>), 0))</div>
+<div class="line"><a name="l07203"></a><span class="lineno"> 7203</span>&#160;   <span class="keywordflow">if</span> (!stbi__mad4sizes_valid(width, <a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>, req_comp, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>), 0))</div>
 <div class="line"><a name="l07204"></a><span class="lineno"> 7204</span>&#160;      <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;too large&quot;</span>, <span class="stringliteral">&quot;HDR image is too large&quot;</span>);</div>
 <div class="line"><a name="l07205"></a><span class="lineno"> 7205</span>&#160; </div>
 <div class="line"><a name="l07206"></a><span class="lineno"> 7206</span>&#160;   <span class="comment">// Read data</span></div>
-<div class="line"><a name="l07207"></a><span class="lineno"> 7207</span>&#160;   hdr_data = (<span class="keywordtype">float</span> *) stbi__malloc_mad4(width, height, req_comp, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>), 0);</div>
+<div class="line"><a name="l07207"></a><span class="lineno"> 7207</span>&#160;   hdr_data = (<span class="keywordtype">float</span> *) stbi__malloc_mad4(width, <a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>, req_comp, <span class="keyword">sizeof</span>(<span class="keywordtype">float</span>), 0);</div>
 <div class="line"><a name="l07208"></a><span class="lineno"> 7208</span>&#160;   <span class="keywordflow">if</span> (!hdr_data)</div>
 <div class="line"><a name="l07209"></a><span class="lineno"> 7209</span>&#160;      <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;outofmem&quot;</span>, <span class="stringliteral">&quot;Out of memory&quot;</span>);</div>
 <div class="line"><a name="l07210"></a><span class="lineno"> 7210</span>&#160; </div>
@@ -7290,7 +7274,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l07212"></a><span class="lineno"> 7212</span>&#160;   <span class="comment">// image data is stored as some number of sca</span></div>
 <div class="line"><a name="l07213"></a><span class="lineno"> 7213</span>&#160;   <span class="keywordflow">if</span> ( width &lt; 8 || width &gt;= 32768) {</div>
 <div class="line"><a name="l07214"></a><span class="lineno"> 7214</span>&#160;      <span class="comment">// Read flat data</span></div>
-<div class="line"><a name="l07215"></a><span class="lineno"> 7215</span>&#160;      <span class="keywordflow">for</span> (j=0; j &lt; height; ++j) {</div>
+<div class="line"><a name="l07215"></a><span class="lineno"> 7215</span>&#160;      <span class="keywordflow">for</span> (j=0; j &lt; <a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>; ++j) {</div>
 <div class="line"><a name="l07216"></a><span class="lineno"> 7216</span>&#160;         <span class="keywordflow">for</span> (i=0; i &lt; width; ++i) {</div>
 <div class="line"><a name="l07217"></a><span class="lineno"> 7217</span>&#160;            stbi_uc rgbe[4];</div>
 <div class="line"><a name="l07218"></a><span class="lineno"> 7218</span>&#160;           main_decode_loop:</div>
@@ -7302,17 +7286,17 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l07224"></a><span class="lineno"> 7224</span>&#160;      <span class="comment">// Read RLE-encoded data</span></div>
 <div class="line"><a name="l07225"></a><span class="lineno"> 7225</span>&#160;      scanline = NULL;</div>
 <div class="line"><a name="l07226"></a><span class="lineno"> 7226</span>&#160; </div>
-<div class="line"><a name="l07227"></a><span class="lineno"> 7227</span>&#160;      <span class="keywordflow">for</span> (j = 0; j &lt; height; ++j) {</div>
+<div class="line"><a name="l07227"></a><span class="lineno"> 7227</span>&#160;      <span class="keywordflow">for</span> (j = 0; j &lt; <a class="code" href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a>; ++j) {</div>
 <div class="line"><a name="l07228"></a><span class="lineno"> 7228</span>&#160;         c1 = stbi__get8(s);</div>
 <div class="line"><a name="l07229"></a><span class="lineno"> 7229</span>&#160;         c2 = stbi__get8(s);</div>
-<div class="line"><a name="l07230"></a><span class="lineno"> 7230</span>&#160;         len = stbi__get8(s);</div>
-<div class="line"><a name="l07231"></a><span class="lineno"> 7231</span>&#160;         <span class="keywordflow">if</span> (c1 != 2 || c2 != 2 || (len &amp; 0x80)) {</div>
+<div class="line"><a name="l07230"></a><span class="lineno"> 7230</span>&#160;         <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> = stbi__get8(s);</div>
+<div class="line"><a name="l07231"></a><span class="lineno"> 7231</span>&#160;         <span class="keywordflow">if</span> (c1 != 2 || c2 != 2 || (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> &amp; 0x80)) {</div>
 <div class="line"><a name="l07232"></a><span class="lineno"> 7232</span>&#160;            <span class="comment">// not run-length encoded, so we have to actually use THIS data as a decoded</span></div>
 <div class="line"><a name="l07233"></a><span class="lineno"> 7233</span>&#160;            <span class="comment">// pixel (note this can&#39;t be a valid pixel--one of RGB must be &gt;= 128)</span></div>
 <div class="line"><a name="l07234"></a><span class="lineno"> 7234</span>&#160;            stbi_uc rgbe[4];</div>
 <div class="line"><a name="l07235"></a><span class="lineno"> 7235</span>&#160;            rgbe[0] = (stbi_uc) c1;</div>
 <div class="line"><a name="l07236"></a><span class="lineno"> 7236</span>&#160;            rgbe[1] = (stbi_uc) c2;</div>
-<div class="line"><a name="l07237"></a><span class="lineno"> 7237</span>&#160;            rgbe[2] = (stbi_uc) len;</div>
+<div class="line"><a name="l07237"></a><span class="lineno"> 7237</span>&#160;            rgbe[2] = (stbi_uc) <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>;</div>
 <div class="line"><a name="l07238"></a><span class="lineno"> 7238</span>&#160;            rgbe[3] = (stbi_uc) stbi__get8(s);</div>
 <div class="line"><a name="l07239"></a><span class="lineno"> 7239</span>&#160;            stbi__hdr_convert(hdr_data, rgbe, req_comp);</div>
 <div class="line"><a name="l07240"></a><span class="lineno"> 7240</span>&#160;            i = 1;</div>
@@ -7320,9 +7304,9 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l07242"></a><span class="lineno"> 7242</span>&#160;            STBI_FREE(scanline);</div>
 <div class="line"><a name="l07243"></a><span class="lineno"> 7243</span>&#160;            <span class="keywordflow">goto</span> main_decode_loop; <span class="comment">// yes, this makes no sense</span></div>
 <div class="line"><a name="l07244"></a><span class="lineno"> 7244</span>&#160;         }</div>
-<div class="line"><a name="l07245"></a><span class="lineno"> 7245</span>&#160;         len &lt;&lt;= 8;</div>
-<div class="line"><a name="l07246"></a><span class="lineno"> 7246</span>&#160;         len |= stbi__get8(s);</div>
-<div class="line"><a name="l07247"></a><span class="lineno"> 7247</span>&#160;         <span class="keywordflow">if</span> (len != width) { STBI_FREE(hdr_data); STBI_FREE(scanline); <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;invalid decoded scanline length&quot;</span>, <span class="stringliteral">&quot;corrupt HDR&quot;</span>); }</div>
+<div class="line"><a name="l07245"></a><span class="lineno"> 7245</span>&#160;         <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> &lt;&lt;= 8;</div>
+<div class="line"><a name="l07246"></a><span class="lineno"> 7246</span>&#160;         <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> |= stbi__get8(s);</div>
+<div class="line"><a name="l07247"></a><span class="lineno"> 7247</span>&#160;         <span class="keywordflow">if</span> (<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a> != width) { STBI_FREE(hdr_data); STBI_FREE(scanline); <span class="keywordflow">return</span> stbi__errpf(<span class="stringliteral">&quot;invalid decoded scanline length&quot;</span>, <span class="stringliteral">&quot;corrupt HDR&quot;</span>); }</div>
 <div class="line"><a name="l07248"></a><span class="lineno"> 7248</span>&#160;         <span class="keywordflow">if</span> (scanline == NULL) {</div>
 <div class="line"><a name="l07249"></a><span class="lineno"> 7249</span>&#160;            scanline = (stbi_uc *) stbi__malloc_mad2(width, 4, 0);</div>
 <div class="line"><a name="l07250"></a><span class="lineno"> 7250</span>&#160;            <span class="keywordflow">if</span> (!scanline) {</div>
@@ -7433,7 +7417,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l07355"></a><span class="lineno"> 7355</span>&#160;<span class="preprocessor">#ifndef STBI_NO_PSD</span></div>
 <div class="line"><a name="l07356"></a><span class="lineno"> 7356</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__psd_info(stbi__context *s, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *comp)</div>
 <div class="line"><a name="l07357"></a><span class="lineno"> 7357</span>&#160;{</div>
-<div class="line"><a name="l07358"></a><span class="lineno"> 7358</span>&#160;   <span class="keywordtype">int</span> channelCount, dummy, depth;</div>
+<div class="line"><a name="l07358"></a><span class="lineno"> 7358</span>&#160;   <span class="keywordtype">int</span> channelCount, dummy, <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>;</div>
 <div class="line"><a name="l07359"></a><span class="lineno"> 7359</span>&#160;   <span class="keywordflow">if</span> (!x) x = &amp;dummy;</div>
 <div class="line"><a name="l07360"></a><span class="lineno"> 7360</span>&#160;   <span class="keywordflow">if</span> (!y) y = &amp;dummy;</div>
 <div class="line"><a name="l07361"></a><span class="lineno"> 7361</span>&#160;   <span class="keywordflow">if</span> (!comp) comp = &amp;dummy;</div>
@@ -7453,8 +7437,8 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l07375"></a><span class="lineno"> 7375</span>&#160;   }</div>
 <div class="line"><a name="l07376"></a><span class="lineno"> 7376</span>&#160;   *y = stbi__get32be(s);</div>
 <div class="line"><a name="l07377"></a><span class="lineno"> 7377</span>&#160;   *x = stbi__get32be(s);</div>
-<div class="line"><a name="l07378"></a><span class="lineno"> 7378</span>&#160;   depth = stbi__get16be(s);</div>
-<div class="line"><a name="l07379"></a><span class="lineno"> 7379</span>&#160;   <span class="keywordflow">if</span> (depth != 8 &amp;&amp; depth != 16) {</div>
+<div class="line"><a name="l07378"></a><span class="lineno"> 7378</span>&#160;   <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> = stbi__get16be(s);</div>
+<div class="line"><a name="l07379"></a><span class="lineno"> 7379</span>&#160;   <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> != 8 &amp;&amp; <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> != 16) {</div>
 <div class="line"><a name="l07380"></a><span class="lineno"> 7380</span>&#160;       stbi__rewind( s );</div>
 <div class="line"><a name="l07381"></a><span class="lineno"> 7381</span>&#160;       <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l07382"></a><span class="lineno"> 7382</span>&#160;   }</div>
@@ -7468,7 +7452,7 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l07390"></a><span class="lineno"> 7390</span>&#160; </div>
 <div class="line"><a name="l07391"></a><span class="lineno"> 7391</span>&#160;<span class="keyword">static</span> <span class="keywordtype">int</span> stbi__psd_is16(stbi__context *s)</div>
 <div class="line"><a name="l07392"></a><span class="lineno"> 7392</span>&#160;{</div>
-<div class="line"><a name="l07393"></a><span class="lineno"> 7393</span>&#160;   <span class="keywordtype">int</span> channelCount, depth;</div>
+<div class="line"><a name="l07393"></a><span class="lineno"> 7393</span>&#160;   <span class="keywordtype">int</span> channelCount, <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a>;</div>
 <div class="line"><a name="l07394"></a><span class="lineno"> 7394</span>&#160;   <span class="keywordflow">if</span> (stbi__get32be(s) != 0x38425053) {</div>
 <div class="line"><a name="l07395"></a><span class="lineno"> 7395</span>&#160;       stbi__rewind( s );</div>
 <div class="line"><a name="l07396"></a><span class="lineno"> 7396</span>&#160;       <span class="keywordflow">return</span> 0;</div>
@@ -7485,8 +7469,8 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l07407"></a><span class="lineno"> 7407</span>&#160;   }</div>
 <div class="line"><a name="l07408"></a><span class="lineno"> 7408</span>&#160;   STBI_NOTUSED(stbi__get32be(s));</div>
 <div class="line"><a name="l07409"></a><span class="lineno"> 7409</span>&#160;   STBI_NOTUSED(stbi__get32be(s));</div>
-<div class="line"><a name="l07410"></a><span class="lineno"> 7410</span>&#160;   depth = stbi__get16be(s);</div>
-<div class="line"><a name="l07411"></a><span class="lineno"> 7411</span>&#160;   <span class="keywordflow">if</span> (depth != 16) {</div>
+<div class="line"><a name="l07410"></a><span class="lineno"> 7410</span>&#160;   <a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> = stbi__get16be(s);</div>
+<div class="line"><a name="l07411"></a><span class="lineno"> 7411</span>&#160;   <span class="keywordflow">if</span> (<a class="code" href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a> != 16) {</div>
 <div class="line"><a name="l07412"></a><span class="lineno"> 7412</span>&#160;       stbi__rewind( s );</div>
 <div class="line"><a name="l07413"></a><span class="lineno"> 7413</span>&#160;       <span class="keywordflow">return</span> 0;</div>
 <div class="line"><a name="l07414"></a><span class="lineno"> 7414</span>&#160;   }</div>
@@ -7806,10 +7790,10 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l07728"></a><span class="lineno"> 7728</span>&#160;}</div>
 <div class="line"><a name="l07729"></a><span class="lineno"> 7729</span>&#160;<span class="preprocessor">#endif </span><span class="comment">// !STBI_NO_STDIO</span></div>
 <div class="line"><a name="l07730"></a><span class="lineno"> 7730</span>&#160; </div>
-<div class="line"><a name="l07731"></a><span class="lineno"> 7731</span>&#160;STBIDEF <span class="keywordtype">int</span> stbi_info_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *comp)</div>
+<div class="line"><a name="l07731"></a><span class="lineno"> 7731</span>&#160;STBIDEF <span class="keywordtype">int</span> stbi_info_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>, <span class="keywordtype">int</span> *x, <span class="keywordtype">int</span> *y, <span class="keywordtype">int</span> *comp)</div>
 <div class="line"><a name="l07732"></a><span class="lineno"> 7732</span>&#160;{</div>
 <div class="line"><a name="l07733"></a><span class="lineno"> 7733</span>&#160;   stbi__context s;</div>
-<div class="line"><a name="l07734"></a><span class="lineno"> 7734</span>&#160;   stbi__start_mem(&amp;s,buffer,len);</div>
+<div class="line"><a name="l07734"></a><span class="lineno"> 7734</span>&#160;   stbi__start_mem(&amp;s,buffer,<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
 <div class="line"><a name="l07735"></a><span class="lineno"> 7735</span>&#160;   <span class="keywordflow">return</span> stbi__info_main(&amp;s,x,y,comp);</div>
 <div class="line"><a name="l07736"></a><span class="lineno"> 7736</span>&#160;}</div>
 <div class="line"><a name="l07737"></a><span class="lineno"> 7737</span>&#160; </div>
@@ -7820,10 +7804,10 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l07742"></a><span class="lineno"> 7742</span>&#160;   <span class="keywordflow">return</span> stbi__info_main(&amp;s,x,y,comp);</div>
 <div class="line"><a name="l07743"></a><span class="lineno"> 7743</span>&#160;}</div>
 <div class="line"><a name="l07744"></a><span class="lineno"> 7744</span>&#160; </div>
-<div class="line"><a name="l07745"></a><span class="lineno"> 7745</span>&#160;STBIDEF <span class="keywordtype">int</span> stbi_is_16_bit_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> len)</div>
+<div class="line"><a name="l07745"></a><span class="lineno"> 7745</span>&#160;STBIDEF <span class="keywordtype">int</span> stbi_is_16_bit_from_memory(stbi_uc <span class="keyword">const</span> *buffer, <span class="keywordtype">int</span> <a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>)</div>
 <div class="line"><a name="l07746"></a><span class="lineno"> 7746</span>&#160;{</div>
 <div class="line"><a name="l07747"></a><span class="lineno"> 7747</span>&#160;   stbi__context s;</div>
-<div class="line"><a name="l07748"></a><span class="lineno"> 7748</span>&#160;   stbi__start_mem(&amp;s,buffer,len);</div>
+<div class="line"><a name="l07748"></a><span class="lineno"> 7748</span>&#160;   stbi__start_mem(&amp;s,buffer,<a class="code" href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a>);</div>
 <div class="line"><a name="l07749"></a><span class="lineno"> 7749</span>&#160;   <span class="keywordflow">return</span> stbi__is_16_main(&amp;s);</div>
 <div class="line"><a name="l07750"></a><span class="lineno"> 7750</span>&#160;}</div>
 <div class="line"><a name="l07751"></a><span class="lineno"> 7751</span>&#160; </div>
@@ -8061,15 +8045,17 @@ $(document).ready(function(){initNavTree('stb__image_8h_source.html',''); initRe
 <div class="line"><a name="l07983"></a><span class="lineno"> 7983</span>&#160;<span class="comment">WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</span></div>
 <div class="line"><a name="l07984"></a><span class="lineno"> 7984</span>&#160;<span class="comment">------------------------------------------------------------------------------</span></div>
 <div class="line"><a name="l07985"></a><span class="lineno"> 7985</span>&#160;<span class="comment">*/</span></div>
+<div class="ttc" id="a_data_8h_html_adb1dbf691ca9751b21d4ab403146a6b1"><div class="ttname"><a href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a></div><div class="ttdeci">Type type(Data *data)</div><div class="ttdoc">Gets the type of the data.</div><div class="ttdef"><b>Definition:</b> Data.c:98</div></div>
+<div class="ttc" id="a_list_8h_html_a86d5d52dc56d8f55814ca44913b57f43"><div class="ttname"><a href="_list_8h.html#a86d5d52dc56d8f55814ca44913b57f43">len</a></div><div class="ttdeci">int len(List *L)</div><div class="ttdoc">Function to get the length of a list.</div><div class="ttdef"><b>Definition:</b> List.c:33</div></div>
+<div class="ttc" id="a_tree_8h_html_a3df7d5d6e4eb92eac6d3d51155f8df3e"><div class="ttname"><a href="_tree_8h.html#a3df7d5d6e4eb92eac6d3d51155f8df3e">height</a></div><div class="ttdeci">int height(Node *root)</div><div class="ttdoc">Function to get the height of a node.</div><div class="ttdef"><b>Definition:</b> Tree.c:38</div></div>
+<div class="ttc" id="a_tree_8h_html_ad27cc76d3737eed66f7b5320aac170db"><div class="ttname"><a href="_tree_8h.html#ad27cc76d3737eed66f7b5320aac170db">depth</a></div><div class="ttdeci">int depth(Node *root, Node *node)</div><div class="ttdoc">Function to get the depth of a node.</div><div class="ttdef"><b>Definition:</b> Tree.c:25</div></div>
+<div class="ttc" id="a_vector_8h_html_a367c80e4a5c6743c3b79d831f99a66f2"><div class="ttname"><a href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a></div><div class="ttdeci">int size(Vector *vector)</div><div class="ttdoc">Function to get the size of the vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:24</div></div>
+<div class="ttc" id="a_vector_8h_html_aedc11a5ecd0fac563528da44327addb9"><div class="ttname"><a href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a></div><div class="ttdeci">void clear(Vector *vector)</div><div class="ttdoc">Function to clear the vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:139</div></div>
 <div class="ttc" id="astructstbi__io__callbacks_html"><div class="ttname"><a href="structstbi__io__callbacks.html">stbi_io_callbacks</a></div><div class="ttdef"><b>Definition:</b> stb_image.h:411</div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>stb_image.h</b></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

@@ -1,8 +1,8 @@
 <map id="_L_Room" name="_L_Room">
-<area shape="rect" id="node1" title=" " alt="" coords="31,273,112,300"/>
-<area shape="rect" id="node2" href="$struct___collider.html" title=" " alt="" coords="5,184,84,211"/>
-<area shape="rect" id="node3" href="$struct___model.html" title=" " alt="" coords="109,184,178,211"/>
-<area shape="rect" id="node4" href="$struct___texture.html" title=" " alt="" coords="57,95,134,121"/>
-<area shape="rect" id="node5" href="$struct___mesh.html" title=" " alt="" coords="161,95,225,121"/>
-<area shape="rect" id="node6" href="$struct___vertex.html" title=" " alt="" coords="157,5,228,32"/>
+<area shape="rect" id="node1" title="Struct representing a L room." alt="" coords="31,273,112,300"/>
+<area shape="rect" id="node2" href="$struct___collider.html" title="Structure representing a collider." alt="" coords="5,184,84,211"/>
+<area shape="rect" id="node3" href="$struct___model.html" title="A Model class to represent a 3D object in the scene." alt="" coords="109,184,178,211"/>
+<area shape="rect" id="node4" href="$struct___texture.html" title="Represent a single texture in the engine. Can be used by multiple Objet, completely dissociated from ..." alt="" coords="57,95,134,121"/>
+<area shape="rect" id="node5" href="$struct___mesh.html" title="A Mesh class that hold data parsed from a file and converted ot OpenGL format." alt="" coords="161,95,225,121"/>
+<area shape="rect" id="node6" href="$struct___vertex.html" title="A Custom vertex struct we pass to OpenGL." alt="" coords="157,5,228,32"/>
 </map>

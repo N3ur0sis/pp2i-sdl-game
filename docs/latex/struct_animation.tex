@@ -2,7 +2,17 @@
 \label{struct_animation}\index{Animation@{Animation}}
 
 
-Collaboration diagram for Animation\+:\nopagebreak
+Structure representing a node in the skeleton.  
+
+
+
+
+{\ttfamily \#include $<$Animation.\+h$>$}
+
+
+
+Collaboration diagram for Animation\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,29 +22,72 @@ Collaboration diagram for Animation\+:\nopagebreak
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct_animation_a884ec7205b34f35c5abf137793bdb840}\label{struct_animation_a884ec7205b34f35c5abf137793bdb840}} 
-\mbox{\hyperlink{struct_node}{Node}} $\ast$ {\bfseries root\+\_\+node}
+\mbox{\hyperlink{struct_node}{Node}} $\ast$ \mbox{\hyperlink{struct_animation_a884ec7205b34f35c5abf137793bdb840}{root\+\_\+node}}
 \item 
-\mbox{\Hypertarget{struct_animation_ae1cf9a130c7310b571394d65f8db1ef8}\label{struct_animation_ae1cf9a130c7310b571394d65f8db1ef8}} 
-mat4 {\bfseries parent\+\_\+mat}
+mat4 \mbox{\hyperlink{struct_animation_ae1cf9a130c7310b571394d65f8db1ef8}{parent\+\_\+mat}}
 \item 
-\mbox{\Hypertarget{struct_animation_ab0617d93d740672159be4364236a9398}\label{struct_animation_ab0617d93d740672159be4364236a9398}} 
-mat4 $\ast$ {\bfseries bone\+\_\+mats}
+mat4 $\ast$ \mbox{\hyperlink{struct_animation_ab0617d93d740672159be4364236a9398}{bone\+\_\+mats}}
 \item 
-\mbox{\Hypertarget{struct_animation_a5b332d6af26ab732502587804f10891e}\label{struct_animation_a5b332d6af26ab732502587804f10891e}} 
-mat4 $\ast$ {\bfseries bone\+\_\+anim\+\_\+mats}
+mat4 $\ast$ \mbox{\hyperlink{struct_animation_a5b332d6af26ab732502587804f10891e}{bone\+\_\+anim\+\_\+mats}}
 \item 
-\mbox{\Hypertarget{struct_animation_a4066d7871f7764f7e4b6e51ae0b48738}\label{struct_animation_a4066d7871f7764f7e4b6e51ae0b48738}} 
-float {\bfseries anim\+\_\+dur}
+float \mbox{\hyperlink{struct_animation_a4066d7871f7764f7e4b6e51ae0b48738}{anim\+\_\+dur}}
 \item 
-\mbox{\Hypertarget{struct_animation_a507bb497bce2bcdd2f627996a4c822b4}\label{struct_animation_a507bb497bce2bcdd2f627996a4c822b4}} 
-float {\bfseries anim\+\_\+ticks}
+float \mbox{\hyperlink{struct_animation_a507bb497bce2bcdd2f627996a4c822b4}{anim\+\_\+ticks}}
 \item 
-\mbox{\Hypertarget{struct_animation_a5ac083a645d964373f022d03df4849c8}\label{struct_animation_a5ac083a645d964373f022d03df4849c8}} 
-char $\ast$ {\bfseries name}
+char $\ast$ \mbox{\hyperlink{struct_animation_a5ac083a645d964373f022d03df4849c8}{name}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Structure representing a node in the skeleton. 
+
+This structure represents a node in the skeleton. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct_animation_a4066d7871f7764f7e4b6e51ae0b48738}\label{struct_animation_a4066d7871f7764f7e4b6e51ae0b48738}} 
+\index{Animation@{Animation}!anim\_dur@{anim\_dur}}
+\index{anim\_dur@{anim\_dur}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{anim\_dur}{anim\_dur}}
+{\footnotesize\ttfamily float anim\+\_\+dur}
+
+Duration of the animation \mbox{\Hypertarget{struct_animation_a507bb497bce2bcdd2f627996a4c822b4}\label{struct_animation_a507bb497bce2bcdd2f627996a4c822b4}} 
+\index{Animation@{Animation}!anim\_ticks@{anim\_ticks}}
+\index{anim\_ticks@{anim\_ticks}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{anim\_ticks}{anim\_ticks}}
+{\footnotesize\ttfamily float anim\+\_\+ticks}
+
+Ticks per second of the animation \mbox{\Hypertarget{struct_animation_a5b332d6af26ab732502587804f10891e}\label{struct_animation_a5b332d6af26ab732502587804f10891e}} 
+\index{Animation@{Animation}!bone\_anim\_mats@{bone\_anim\_mats}}
+\index{bone\_anim\_mats@{bone\_anim\_mats}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{bone\_anim\_mats}{bone\_anim\_mats}}
+{\footnotesize\ttfamily mat4$\ast$ bone\+\_\+anim\+\_\+mats}
+
+Array of bone animation matrices \mbox{\Hypertarget{struct_animation_ab0617d93d740672159be4364236a9398}\label{struct_animation_ab0617d93d740672159be4364236a9398}} 
+\index{Animation@{Animation}!bone\_mats@{bone\_mats}}
+\index{bone\_mats@{bone\_mats}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{bone\_mats}{bone\_mats}}
+{\footnotesize\ttfamily mat4$\ast$ bone\+\_\+mats}
+
+Array of bone matrices \mbox{\Hypertarget{struct_animation_a5ac083a645d964373f022d03df4849c8}\label{struct_animation_a5ac083a645d964373f022d03df4849c8}} 
+\index{Animation@{Animation}!name@{name}}
+\index{name@{name}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily char$\ast$ name}
+
+Name of the animation \mbox{\Hypertarget{struct_animation_ae1cf9a130c7310b571394d65f8db1ef8}\label{struct_animation_ae1cf9a130c7310b571394d65f8db1ef8}} 
+\index{Animation@{Animation}!parent\_mat@{parent\_mat}}
+\index{parent\_mat@{parent\_mat}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{parent\_mat}{parent\_mat}}
+{\footnotesize\ttfamily mat4 parent\+\_\+mat}
+
+Parent transformation matrix \mbox{\Hypertarget{struct_animation_a884ec7205b34f35c5abf137793bdb840}\label{struct_animation_a884ec7205b34f35c5abf137793bdb840}} 
+\index{Animation@{Animation}!root\_node@{root\_node}}
+\index{root\_node@{root\_node}!Animation@{Animation}}
+\doxysubsubsection{\texorpdfstring{root\_node}{root\_node}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_node}{Node}}$\ast$ root\+\_\+node}
+
+Root node of the animation. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Animation.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_animation_8h}{Animation.\+h}}\end{DoxyCompactItemize}

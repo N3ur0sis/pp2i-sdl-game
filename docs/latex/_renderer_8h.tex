@@ -1,0 +1,130 @@
+\hypertarget{_renderer_8h}{}\doxysection{include/\+Renderer.h File Reference}
+\label{_renderer_8h}\index{include/Renderer.h@{include/Renderer.h}}
+
+
+Header file for the renderer component.  
+
+
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+ttf.\+h$>$}\newline
+{\ttfamily \#include $<$SDL2/\+SDL\+\_\+image.\+h$>$}\newline
+{\ttfamily \#include $<$glad/glad.\+h$>$}\newline
+{\ttfamily \#include $<$cglm/cglm.\+h$>$}\newline
+Include dependency graph for Renderer.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_renderer_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_renderer_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_renderer_8h_a7b0479806e14ea4f3d1a91f0df5c87b6}{Render\+Text}} (const char $\ast$message, SDL\+\_\+\+Color color, int x, int y, int \mbox{\hyperlink{_vector_8h_a367c80e4a5c6743c3b79d831f99a66f2}{size}}, int window\+Width, int window\+Height, GLuint shader\+Program)
+\begin{DoxyCompactList}\small\item\em Function to render text. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_renderer_8h_acd3accc3495d1a81fe82885560958f6e}{Render\+Image}} (const char $\ast$path, int x, int y, int window\+Width, int window\+Height, GLuint shader\+Program)
+\begin{DoxyCompactList}\small\item\em Function to render an image. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_renderer_8h_ae1cadd4e935f199cf45c4a292f14a3ac}{Render\+Square}} (int x, int y, int \mbox{\hyperlink{_vector_8h_a367c80e4a5c6743c3b79d831f99a66f2}{size}}, int window\+Width, int window\+Height, GLuint shader\+Program)
+\begin{DoxyCompactList}\small\item\em Function to render a square. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the renderer component. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_renderer_8h_acd3accc3495d1a81fe82885560958f6e}\label{_renderer_8h_acd3accc3495d1a81fe82885560958f6e}} 
+\index{Renderer.h@{Renderer.h}!RenderImage@{RenderImage}}
+\index{RenderImage@{RenderImage}!Renderer.h@{Renderer.h}}
+\doxysubsubsection{\texorpdfstring{RenderImage()}{RenderImage()}}
+{\footnotesize\ttfamily void Render\+Image (\begin{DoxyParamCaption}\item[{const char $\ast$}]{path,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{window\+Width,  }\item[{int}]{window\+Height,  }\item[{GLuint}]{shader\+Program }\end{DoxyParamCaption})}
+
+
+
+Function to render an image. 
+
+This function renders an image.
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Path to the image. \\
+\hline
+{\em x} & X position of the image. \\
+\hline
+{\em y} & Y position of the image. \\
+\hline
+{\em window\+Width} & Width of the window. \\
+\hline
+{\em window\+Height} & Height of the window. \\
+\hline
+{\em shader\+Program} & Shader program. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_renderer_8h_ae1cadd4e935f199cf45c4a292f14a3ac}\label{_renderer_8h_ae1cadd4e935f199cf45c4a292f14a3ac}} 
+\index{Renderer.h@{Renderer.h}!RenderSquare@{RenderSquare}}
+\index{RenderSquare@{RenderSquare}!Renderer.h@{Renderer.h}}
+\doxysubsubsection{\texorpdfstring{RenderSquare()}{RenderSquare()}}
+{\footnotesize\ttfamily void Render\+Square (\begin{DoxyParamCaption}\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{size,  }\item[{int}]{window\+Width,  }\item[{int}]{window\+Height,  }\item[{GLuint}]{shader\+Program }\end{DoxyParamCaption})}
+
+
+
+Function to render a square. 
+
+This function renders a square.
+
+
+\begin{DoxyParams}{Parameters}
+{\em x} & X position of the square. \\
+\hline
+{\em y} & Y position of the square. \\
+\hline
+{\em size} & Size of the square. \\
+\hline
+{\em window\+Width} & Width of the window. \\
+\hline
+{\em window\+Height} & Height of the window. \\
+\hline
+{\em shader\+Program} & Shader program. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_renderer_8h_a7b0479806e14ea4f3d1a91f0df5c87b6}\label{_renderer_8h_a7b0479806e14ea4f3d1a91f0df5c87b6}} 
+\index{Renderer.h@{Renderer.h}!RenderText@{RenderText}}
+\index{RenderText@{RenderText}!Renderer.h@{Renderer.h}}
+\doxysubsubsection{\texorpdfstring{RenderText()}{RenderText()}}
+{\footnotesize\ttfamily void Render\+Text (\begin{DoxyParamCaption}\item[{const char $\ast$}]{message,  }\item[{SDL\+\_\+\+Color}]{color,  }\item[{int}]{x,  }\item[{int}]{y,  }\item[{int}]{size,  }\item[{int}]{window\+Width,  }\item[{int}]{window\+Height,  }\item[{GLuint}]{shader\+Program }\end{DoxyParamCaption})}
+
+
+
+Function to render text. 
+
+This function renders text.
+
+
+\begin{DoxyParams}{Parameters}
+{\em message} & Message to render. \\
+\hline
+{\em color} & Color of the text. \\
+\hline
+{\em x} & X position of the text. \\
+\hline
+{\em y} & Y position of the text. \\
+\hline
+{\em size} & Size of the text. \\
+\hline
+{\em window\+Width} & Width of the window. \\
+\hline
+{\em window\+Height} & Height of the window. \\
+\hline
+{\em shader\+Program} & Shader program. \\
+\hline
+\end{DoxyParams}

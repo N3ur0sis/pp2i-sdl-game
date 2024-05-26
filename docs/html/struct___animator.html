@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('struct___animator.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,6 +59,7 @@ $(document).ready(function(){initNavTree('struct___animator.html',''); initResiz
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
@@ -87,39 +67,72 @@ $(document).ready(function(){initNavTree('struct___animator.html',''); initResiz
 <div class="title">_Animator Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Structure representing an animator.  
+ <a href="struct___animator.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_animator_8h_source.html">Animator.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for _Animator:</div>
 <div class="dyncontent">
 <div class="center"><img src="struct___animator__coll__graph.png" border="0" usemap="#a___animator_coll__map" alt="Collaboration graph"/></div>
 <map name="a___animator_coll__map" id="a___animator_coll__map">
-<area shape="rect" title=" " alt="" coords="5,273,95,300"/>
-<area shape="rect" href="struct_animation.html" title=" " alt="" coords="5,184,95,211"/>
-<area shape="rect" href="struct_node.html" title=" " alt="" coords="22,95,78,121"/>
-<area shape="rect" href="struct___data.html" title=" " alt="" coords="125,5,185,32"/>
-<area shape="rect" href="struct___vector.html" title=" " alt="" coords="184,95,255,121"/>
+<area shape="rect" title="Structure representing an animator." alt="" coords="5,273,95,300"/>
+<area shape="rect" href="struct_animation.html" title="Structure representing a node in the skeleton." alt="" coords="5,184,95,211"/>
+<area shape="rect" href="struct_node.html" title="Struct representing a node in a tree." alt="" coords="22,95,78,121"/>
+<area shape="rect" href="struct___data.html" title="Structure representing a data." alt="" coords="125,5,185,32"/>
+<area shape="rect" href="struct___vector.html" title="Struct representing a vector." alt="" coords="184,95,255,121"/>
 </map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:aa90acb9db19df13dd0f33bb67f9fa67a"><td class="memItemLeft" align="right" valign="top"><a id="aa90acb9db19df13dd0f33bb67f9fa67a"></a>
-<a class="el" href="struct_animation.html">Animation</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>currentAnimation</b></td></tr>
+<tr class="memitem:aa90acb9db19df13dd0f33bb67f9fa67a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct_animation.html">Animation</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___animator.html#aa90acb9db19df13dd0f33bb67f9fa67a">currentAnimation</a></td></tr>
 <tr class="separator:aa90acb9db19df13dd0f33bb67f9fa67a"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab34ed04ed22a0a0e5a00559b927cb4bc"><td class="memItemLeft" align="right" valign="top"><a id="ab34ed04ed22a0a0e5a00559b927cb4bc"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>playTime</b></td></tr>
+<tr class="memitem:ab34ed04ed22a0a0e5a00559b927cb4bc"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct___animator.html#ab34ed04ed22a0a0e5a00559b927cb4bc">playTime</a></td></tr>
 <tr class="separator:ab34ed04ed22a0a0e5a00559b927cb4bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Structure representing an animator. </p>
+<p>This structure represents an animator. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a id="aa90acb9db19df13dd0f33bb67f9fa67a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa90acb9db19df13dd0f33bb67f9fa67a">&#9670;&nbsp;</a></span>currentAnimation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct_animation.html">Animation</a>* currentAnimation</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Current animation </p>
+
+</div>
+</div>
+<a id="ab34ed04ed22a0a0e5a00559b927cb4bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab34ed04ed22a0a0e5a00559b927cb4bc">&#9670;&nbsp;</a></span>playTime</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float playTime</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p><a class="el" href="struct_time.html" title="Structure for managing time-related information in the application.">Time</a> of the animation </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/<a class="el" href="_animator_8h_source.html">Animator.h</a></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="struct___animator.html">_Animator</a></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

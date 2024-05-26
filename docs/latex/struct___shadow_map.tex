@@ -2,7 +2,17 @@
 \label{struct___shadow_map}\index{\_ShadowMap@{\_ShadowMap}}
 
 
-Collaboration diagram for \+\_\+\+Shadow\+Map\+:\nopagebreak
+Struct representing a shadow map.  
+
+
+
+
+{\ttfamily \#include $<$Shadow\+Map.\+h$>$}
+
+
+
+Collaboration diagram for \+\_\+\+Shadow\+Map\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,20 +22,48 @@ Collaboration diagram for \+\_\+\+Shadow\+Map\+:\nopagebreak
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct___shadow_map_ac81a44aca8800c7383c1ce0e7458a6be}\label{struct___shadow_map_ac81a44aca8800c7383c1ce0e7458a6be}} 
-GLuint {\bfseries depth\+Map\+FBO}
+GLuint \mbox{\hyperlink{struct___shadow_map_ac81a44aca8800c7383c1ce0e7458a6be}{depth\+Map\+FBO}}
 \item 
-\mbox{\Hypertarget{struct___shadow_map_ab220e4f5b0a3807e3d675c4f64e01f25}\label{struct___shadow_map_ab220e4f5b0a3807e3d675c4f64e01f25}} 
-GLuint {\bfseries depth\+Map}
+GLuint \mbox{\hyperlink{struct___shadow_map_ab220e4f5b0a3807e3d675c4f64e01f25}{depth\+Map}}
 \item 
-\mbox{\Hypertarget{struct___shadow_map_a5ac0912556a9fc7a1cebb31518c7c38c}\label{struct___shadow_map_a5ac0912556a9fc7a1cebb31518c7c38c}} 
-mat4 {\bfseries depth\+Matrix}
+mat4 \mbox{\hyperlink{struct___shadow_map_a5ac0912556a9fc7a1cebb31518c7c38c}{depth\+Matrix}}
 \item 
-\mbox{\Hypertarget{struct___shadow_map_afbf970c61a30b847c84d9c15ba9b449e}\label{struct___shadow_map_afbf970c61a30b847c84d9c15ba9b449e}} 
-\mbox{\hyperlink{struct___shader}{Shader}} $\ast$ {\bfseries shadow\+Map\+Shader}
+\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$ \mbox{\hyperlink{struct___shadow_map_afbf970c61a30b847c84d9c15ba9b449e}{shadow\+Map\+Shader}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Struct representing a shadow map. 
+
+This struct represents a shadow map. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct___shadow_map_ab220e4f5b0a3807e3d675c4f64e01f25}\label{struct___shadow_map_ab220e4f5b0a3807e3d675c4f64e01f25}} 
+\index{\_ShadowMap@{\_ShadowMap}!depthMap@{depthMap}}
+\index{depthMap@{depthMap}!\_ShadowMap@{\_ShadowMap}}
+\doxysubsubsection{\texorpdfstring{depthMap}{depthMap}}
+{\footnotesize\ttfamily GLuint depth\+Map}
+
+Depth map. \mbox{\Hypertarget{struct___shadow_map_ac81a44aca8800c7383c1ce0e7458a6be}\label{struct___shadow_map_ac81a44aca8800c7383c1ce0e7458a6be}} 
+\index{\_ShadowMap@{\_ShadowMap}!depthMapFBO@{depthMapFBO}}
+\index{depthMapFBO@{depthMapFBO}!\_ShadowMap@{\_ShadowMap}}
+\doxysubsubsection{\texorpdfstring{depthMapFBO}{depthMapFBO}}
+{\footnotesize\ttfamily GLuint depth\+Map\+FBO}
+
+Framebuffer object for the depth map. \mbox{\Hypertarget{struct___shadow_map_a5ac0912556a9fc7a1cebb31518c7c38c}\label{struct___shadow_map_a5ac0912556a9fc7a1cebb31518c7c38c}} 
+\index{\_ShadowMap@{\_ShadowMap}!depthMatrix@{depthMatrix}}
+\index{depthMatrix@{depthMatrix}!\_ShadowMap@{\_ShadowMap}}
+\doxysubsubsection{\texorpdfstring{depthMatrix}{depthMatrix}}
+{\footnotesize\ttfamily mat4 depth\+Matrix}
+
+Depth matrix. \mbox{\Hypertarget{struct___shadow_map_afbf970c61a30b847c84d9c15ba9b449e}\label{struct___shadow_map_afbf970c61a30b847c84d9c15ba9b449e}} 
+\index{\_ShadowMap@{\_ShadowMap}!shadowMapShader@{shadowMapShader}}
+\index{shadowMapShader@{shadowMapShader}!\_ShadowMap@{\_ShadowMap}}
+\doxysubsubsection{\texorpdfstring{shadowMapShader}{shadowMapShader}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}}$\ast$ shadow\+Map\+Shader}
+
+Shader for the shadow map. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Shadow\+Map.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_shadow_map_8h}{Shadow\+Map.\+h}}\end{DoxyCompactItemize}
