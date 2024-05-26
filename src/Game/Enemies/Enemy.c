@@ -195,7 +195,7 @@ Entity* create_golemPurple(Scene* scene,float x,float y,float z,float scale){
     enemyComponent->detectionRange = 20.0f;
     enemyComponent->attackRange = 3.0f;
     enemyComponent->movementSpeed = 3.0f;
-    enemyComponent->attackDamage = 10.0f;
+    enemyComponent->attackDamage = 5.0f;
     enemyComponent->isAttacking = false;
     enemyComponent->isAlive = true;
     enemyComponent->health = 100.0f;

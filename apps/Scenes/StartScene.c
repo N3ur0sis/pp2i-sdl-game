@@ -29,11 +29,7 @@ void startStartScene(Scene* scene, GameState* gameState) {
     UseShaders(scene->shader);
     /* Load and compile textShader */
     scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
-    /* Create a scene camera */
-    scene->camera = camera_create(0, 100, -100, gameState->g_WindowWidth, gameState->g_WindowHeight);
-    glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
-    /* Create a skybox */
-    scene->skybox = SkyboxCreate();
+
 
     /* Enemy Entity */
     Entity* golem = create_golemPurple(scene,0.0f,0.1f,0.0f,0.5f);
@@ -133,6 +129,15 @@ void startStartScene(Scene* scene, GameState* gameState) {
     inventory = gameState->inventory;
     InventoryAddObjects(2, inventory, Object_createFromId(1));
     InventoryAddObjects(1, inventory, Object_createFromId(2));
+
+    /* Create a scene camera */
+    scene->camera = camera_create(0, 100, -100, gameState->g_WindowWidth, gameState->g_WindowHeight);
+    glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
+
+
+    /* Create a skybox */
+    scene->skybox = SkyboxCreate();
+
 }
  
 void updateStartScene(Scene* scene, GameState* gameState) {
@@ -174,7 +179,8 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             ((Model*)getComponent(chestOpenEntity, COMPONENT_RENDERABLE))->isRenderable = false;
             ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->isRenderable = true;
             ((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->isRenderable = false;
-            gameState->playerHealth = 1000.0f;
+            float max_health = gameState->max_health;
+            gameState->playerHealth = max_health;
             gameState->isPlayerDead = false;
             ChangeSceneEvent(gameState->nextSceneIndex);
             gameState->nextSceneIndex = 0;
@@ -184,6 +190,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
         }
     }
 
+        drawHUD(scene, gameState);
         Model* playerModel = (Model*)getComponent(playerEntity, COMPONENT_RENDERABLE);
         Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
         RigidBody* playerRigidbody = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);

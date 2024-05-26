@@ -4,6 +4,7 @@
 #include <Animator.h>
 #include <Entity.h>
 #include <Scene.h>
+#include <Player.h>
 
 typedef struct _EnemyComponent {
     vec3 direction;
