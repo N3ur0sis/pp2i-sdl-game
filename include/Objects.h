@@ -13,5 +13,9 @@ typedef struct _Object {
 
 
 Object* Object_create(char* name, char* description, int id);
+Object* Object_createFromId(int id);
 void printObject(int id, int nb);
 char* checkIdObject(int id);
+char* nameFromId(int id);
+char* descriptionFromId(int id);
+int costFromId(int id);

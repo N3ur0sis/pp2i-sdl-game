@@ -21,6 +21,7 @@ SceneManager* SceneManagerInit() {
     manager->gameState.isForestDungeonDone = false;
     manager->gameState.pauseMenu = NULL;
     manager->gameState.restarting = false;
+    manager->gameState.money = 1000;
     
     return manager;
 }

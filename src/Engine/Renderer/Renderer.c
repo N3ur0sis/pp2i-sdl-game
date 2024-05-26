@@ -141,3 +141,48 @@ void RenderImage(const char* path, int x, int y, int windowWidth, int windowHeig
 
     SDL_FreeSurface(sFont);
 }
+
+
+
+void RenderSquare(int x, int y, int size, int windowWidth, int windowHeight, GLuint shaderProgram) {
+    GLfloat vertices[6][4] = {
+        { x, y + size, 0.0f, 0.0f },
+        { x, y, 0.0f, 1.0f },
+        { x + size, y, 1.0f, 1.0f },
+
+        { x, y + size, 0.0f, 0.0f },
+        { x + size, y, 1.0f, 1.0f },
+        { x + size, y + size, 1.0f, 0.0f }
+    };
+
+
+    GLuint VAO, VBO;
+    glGenVertexArrays(1, &VAO);
+    glGenBuffers(1, &VBO);
+    glBindVertexArray(VAO);
+
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_DYNAMIC_DRAW);
+
+    glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)0);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 4 * sizeof(GLfloat), (GLvoid*)(2 * sizeof(GLfloat)));
+    glEnableVertexAttribArray(1);
+
+    glBindBuffer(GL_ARRAY_BUFFER, 0);
+    glBindVertexArray(0);
+
+    glUseProgram(shaderProgram);
+
+    mat4 projection;
+    glm_ortho(0.0f, (float)windowWidth, 0.0f, (float)windowHeight, -1.0f, 1.0f, projection);
+    GLint projLoc = glGetUniformLocation(shaderProgram, "projection");
+    glUniformMatrix4fv(projLoc, 1, GL_FALSE, (const GLfloat*)projection);
+
+    glBindVertexArray(VAO);
+    glDrawArrays(GL_TRIANGLES, 0, 6);
+    glBindVertexArray(0);
+
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+}
