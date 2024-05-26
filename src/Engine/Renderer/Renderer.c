@@ -2,7 +2,7 @@
 
 void RenderText(const char* message, SDL_Color color, int x, int y, int size, int windowWidth, int windowHeight, GLuint shaderProgram) {
 
-    TTF_Font* font = TTF_OpenFont("assets/fonts/Monocraft.ttf", size);
+    TTF_Font* font = TTF_OpenFont("assets/fonts/ArbutusSlab-Regular.ttf", size);
     if (!font) {
         printf("Failed to load font: %s\n", TTF_GetError());
         return;
@@ -17,7 +17,7 @@ void RenderText(const char* message, SDL_Color color, int x, int y, int size, in
 
     glPixelStorei(GL_UNPACK_ROW_LENGTH, sFont->pitch / sFont->format->BytesPerPixel);
 
-    GLuint texture;
+    GLuint texture; 
     glGenTextures(1, &texture);
     glBindTexture(GL_TEXTURE_2D, texture);
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, sFont->w, sFont->h, 0, GL_BGRA, GL_UNSIGNED_BYTE, sFont->pixels);

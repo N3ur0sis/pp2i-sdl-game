@@ -32,7 +32,7 @@ int main(void){
     sceneManager->gameState.pauseMenu = menu;
 
     /* Set Default Current Scene */
-    sceneManager->gameState.currentSceneIndex = 0;
+    sceneManager->gameState.currentSceneIndex = 2;
     SceneManagerSetCurrentScene(sceneManager, sceneManager->gameState.currentSceneIndex);
 
     /* Set Default Camera Position */
@@ -58,8 +58,8 @@ int main(void){
         
         /* Game Logic */
         if (sceneManager->gameState.mainMenuOpen) {
-            RenderText("WELCOME TO THE GAME", (SDL_Color){0,0,0,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 9 * (&sceneManager->gameState)->g_WindowHeight / 10, 50, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
-            RenderText("PRESS ENTER TO START", (SDL_Color){0,0,0,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 5 * (&sceneManager->gameState)->g_WindowHeight / 10, 40, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
+            RenderText("WELCOME TO THE GAME", (SDL_Color){255,255,255,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 9 * (&sceneManager->gameState)->g_WindowHeight / 10, 50, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
+            RenderText("PRESS ENTER TO START", (SDL_Color){255,255,255,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 5 * (&sceneManager->gameState)->g_WindowHeight / 10, 40, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
         } else {
             if (game->isPaused) {
                     RenderText("MENU", (SDL_Color){0,0,0,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 9 * (&sceneManager->gameState)->g_WindowHeight / 10, 50, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);

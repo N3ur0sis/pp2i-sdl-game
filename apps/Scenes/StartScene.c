@@ -237,9 +237,9 @@ void updateStartScene(Scene* scene, GameState* gameState) {
 
 
         if (y < -29.25f) {
-            ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 1.1f;
+            ((RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY))->velocity[1] = 1.1f;
         } else {
-            ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[1] = 0.1f;
+            ((RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY))->velocity[1] = 0.1f;
         }
         
 
