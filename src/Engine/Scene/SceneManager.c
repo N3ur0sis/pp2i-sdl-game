@@ -23,6 +23,7 @@ SceneManager* SceneManagerInit() {
     manager->gameState.restarting = false;
     manager->gameState.mainMenuOpen = true;
     manager->gameState.money = 1000;
+    manager->gameState.indexFountain = 0;
     
     return manager;
 }

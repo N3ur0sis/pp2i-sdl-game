@@ -131,6 +131,68 @@ void startMainScene(Scene* scene, GameState* gameState) {
         Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f, 0.1f, 500.0f);
         addComponent(lightEntity, COMPONENT_LIGHT, light);
     }
+
+    Entity* fontaine = createEntity(scene);
+    if (fontaine) {
+        vec3 fontainePos = {-334.34, 6.60, 93.65};
+        Model* fontaineModel0 = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(fontaineModel0,"assets/models/Fontaine/Fontaine0.obj");
+        addComponent(fontaine, COMPONENT_RENDERABLE, fontaineModel0);
+        glm_vec3_copy(fontainePos,fontaineModel0->position);
+        glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModel0->scale);
+        fontaineModel0->isRenderable = false;
+
+        Model* fontaineModel1 = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(fontaineModel1,"assets/models/Fontaine/Fontaine1.obj");
+        addComponent(fontaine, COMPONENT_RENDERABLE, fontaineModel1);
+        glm_vec3_copy(fontainePos,fontaineModel1->position);
+        glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModel1->scale);
+        fontaineModel1->isRenderable = false;
+
+        Model* fontaineModel2 = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(fontaineModel2,"assets/models/Fontaine/Fontaine2.obj");
+        addComponent(fontaine, COMPONENT_RENDERABLE, fontaineModel2);
+        glm_vec3_copy(fontainePos,fontaineModel2->position);
+        glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModel2->scale);
+        fontaineModel2->isRenderable = false;
+
+        Model* fontaineModel3 = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(fontaineModel3,"assets/models/Fontaine/Fontaine3.obj");
+        addComponent(fontaine, COMPONENT_RENDERABLE, fontaineModel3);
+        glm_vec3_copy(fontainePos,fontaineModel3->position);
+        glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModel3->scale);
+        fontaineModel3->isRenderable = false;
+
+        Model* fontaineModel4 = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(fontaineModel4,"assets/models/Fontaine/Fontaine4.obj");
+        addComponent(fontaine, COMPONENT_RENDERABLE, fontaineModel4);
+        glm_vec3_copy(fontainePos,fontaineModel4->position);
+        glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModel4->scale);
+        fontaineModel4->isRenderable = false;
+
+        switch(gameState->indexFountain) {
+            case 0:
+                fontaineModel0->isRenderable = true;
+                break;
+            case 1:
+                fontaineModel1->isRenderable = true;
+                break;
+            case 2:
+                fontaineModel2->isRenderable = true;
+                break;
+            case 3:
+                fontaineModel3->isRenderable = true;
+                break;
+            case 4:
+                fontaineModel4->isRenderable = true;
+                break;  
+            default:
+                break;
+        }
+    }
+
+
+
 }
 
 
