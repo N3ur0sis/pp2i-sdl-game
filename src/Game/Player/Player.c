@@ -323,7 +323,7 @@ void damagePlayer(GameState* gamestate, int damage){
 		gamestate->playerHealth = 0;
 		return;
 	}
-	//qgamestate->playerHealth -= damage;
+	gamestate->playerHealth -= damage;
 }
 
 void playSoundPlayer(Entity* player,GameState* gamestate){
@@ -339,4 +339,27 @@ void playSoundPlayer(Entity* player,GameState* gamestate){
 	if (strcmp(playerAnimator->currentAnimation->name, "playerAttackAnimation") != 0) {
         playerComponent->hasPlayedAttackSound = false;
     }
+}
+
+
+void drawHUD(Scene* scene, GameState* gamestate) {
+    float nb_coeur_max = gamestate->max_health;
+    float health = gamestate->playerHealth;
+    int nb_coeur = health / 10;
+    float reste = health - nb_coeur * 10;
+    int i ;
+    for (i = 0; i < nb_coeur; i++) {
+        RenderImage("assets/images/Entire_heart.png", gamestate->g_WindowWidth / 45 + i * 50, 14 * gamestate->g_WindowHeight / 15 - 10 , gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+    }
+	if (reste != 0) {
+		RenderImage("assets/images/Half_heart.png", gamestate->g_WindowWidth / 45 + i * 50, 14 * gamestate->g_WindowHeight / 15 - 10, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+		i++;
+	}
+	for (; i < nb_coeur_max / 10; i++) {
+		RenderImage("assets/images/Empty_heart.png", gamestate->g_WindowWidth / 45 + i * 50, 14 * gamestate->g_WindowHeight / 15 - 10, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+	}
+	char money[100];
+	sprintf(money, "%d", gamestate->money);
+	RenderText(money, (SDL_Color){255,255,255,0}, gamestate->g_WindowWidth / 45 + 70, 13 * gamestate->g_WindowHeight / 15 + 18, 30, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+	RenderImage("assets/images/sushi.png", gamestate->g_WindowWidth / 45, 13 * gamestate->g_WindowHeight / 15 - 10, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
 }

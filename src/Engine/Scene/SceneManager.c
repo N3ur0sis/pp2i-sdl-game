@@ -10,7 +10,8 @@ SceneManager* SceneManagerInit() {
     /* TODO: Load GameState from Save File*/
     manager->gameState.enemyIsAttacking = false;
     manager->gameState.playerIsAttacking = false; 
-    manager->gameState.playerHealth = 100.0f;
+    manager->gameState.max_health = 60.0f;
+    manager->gameState.playerHealth = manager->gameState.max_health;
     manager->gameState.inventory = InventoryCreate(500);
     manager->gameState.marchantInventory = InventoryCreate(500);
     manager->gameState.g_WindowWidth = 1280;

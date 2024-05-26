@@ -7,6 +7,7 @@ typedef struct GameState {
     bool enemyIsAttacking;
     bool playerIsAttacking;
     float playerHealth;
+    float max_health;
     Inventory* inventory;
     Inventory* marchantInventory;
     int g_WindowWidth;
