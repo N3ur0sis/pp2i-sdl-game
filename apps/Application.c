@@ -1,3 +1,8 @@
+/**
+ * @file Application.c
+ * @brief Entry point of the program.
+*/
+
 #include <Engine.h>
 #include <System.h>
 
@@ -28,7 +33,7 @@ int main(void){
     INIT_SCENE(mainScene, sceneManager, startMainScene, updateMainScene, unloadStartScene);
 
     /* Initialize Menu */
-    Menu* menu = MenuPauseInit();
+    Menu* menu = MenuPauseInit(game);
     sceneManager->gameState.pauseMenu = menu;
 
     /* Set Default Current Scene */

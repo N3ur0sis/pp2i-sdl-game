@@ -12,7 +12,7 @@
  * This function initializes the pause menu.
  * 
  */
-Menu* MenuPauseInit(){
+Menu* MenuPauseInit(Application* game){
     Menu* menu = malloc(sizeof(Menu));
     menu->title = "Menu";
     char* options[6] = {"Resume", "Restart", "Save", "Load", "Settings", "Quit"};
@@ -22,6 +22,24 @@ Menu* MenuPauseInit(){
     }
     menu->numOptions = 6;
     menu->selectedOption = 0;
+    menu->parentMenu = NULL;
+    menu->isSettings = false;
+    menu->game = game;
+
+    Menu* settingsMenu = malloc(sizeof(Menu));
+    settingsMenu->title = "Settings";
+    char* settingsOptions[2] = {"Fullscreen", "Back"};
+    settingsMenu->options = malloc(2 * sizeof(char*));
+    for (int i = 0; i < 2; i++){
+        settingsMenu->options[i] = settingsOptions[i];
+    }
+    settingsMenu->numOptions = 2;
+    settingsMenu->selectedOption = 0;
+    settingsMenu->parentMenu = menu;
+    settingsMenu->isSettings = true;
+    settingsMenu->game = game;
+
+    menu->SettingsMenu = settingsMenu;
 
     return menu;
 }
@@ -37,6 +55,8 @@ Menu* MenuPauseInit(){
  */
 void MenuPauseReset(Menu* menu){
     menu->selectedOption = 0;
+    menu->SettingsMenu->selectedOption = 0;
+    menu->isSettings = false;
 }
 
 /**
@@ -47,9 +67,16 @@ void MenuPauseReset(Menu* menu){
  * @param menu Pointer to the menu.
  */
 void MenuPauseUp(Menu* menu){
-    menu->selectedOption--;
-    if (menu->selectedOption < 0){
-        menu->selectedOption = menu->numOptions - 1;
+    if (menu->isSettings){
+        menu->SettingsMenu->selectedOption--;
+        if (menu->SettingsMenu->selectedOption < 0){
+            menu->SettingsMenu->selectedOption = menu->SettingsMenu->numOptions - 1;
+        }
+    } else {
+        menu->selectedOption--;
+        if (menu->selectedOption < 0){
+            menu->selectedOption = menu->numOptions - 1;
+        }
     }
 }
 
@@ -61,9 +88,16 @@ void MenuPauseUp(Menu* menu){
  * @param menu Pointer to the menu.
  */
 void MenuPauseDown(Menu* menu){
-    menu->selectedOption++;
-    if (menu->selectedOption >= menu->numOptions){
-        menu->selectedOption = 0;
+    if (menu->isSettings){
+        menu->SettingsMenu->selectedOption++;
+        if (menu->SettingsMenu->selectedOption >= menu->SettingsMenu->numOptions){
+            menu->SettingsMenu->selectedOption = 0;
+        }
+    } else {
+        menu->selectedOption++;
+        if (menu->selectedOption >= menu->numOptions){
+            menu->selectedOption = 0;
+        }
     }
 }
 
@@ -78,6 +112,23 @@ void MenuPauseDown(Menu* menu){
  * @param isPaused Pointer to the paused state flag.
  */
 void MenuPauseSelect(Menu* menu, GameState* gameState, bool* running, bool* isPaused){
+    if (menu->isSettings){
+        if (menu->SettingsMenu->selectedOption == 0){
+            gameState->fullscreen = !gameState->fullscreen;
+            if (SDL_SetWindowFullscreen(menu->game->window->m_window, gameState->fullscreen ? SDL_WINDOW_FULLSCREEN : 0) != 0) {
+                fprintf(stderr, "Error toggling fullscreen: %s\n", SDL_GetError());
+            } else {
+                int w, h;
+                SDL_GetWindowSize(menu->game->window, &w, &h);
+                gameState->g_WindowWidth = w;
+                gameState->g_WindowHeight = h;
+            }
+
+        } else if (menu->SettingsMenu->selectedOption == 1){
+            menu->isSettings = false;
+        }
+        return;
+    }
     if (menu->selectedOption == 0){
         *isPaused = false;
         menu->selectedOption = 0;
@@ -91,7 +142,7 @@ void MenuPauseSelect(Menu* menu, GameState* gameState, bool* running, bool* isPa
     } else if (menu->selectedOption == 3){
         // Load game
     } else if (menu->selectedOption == 4){
-        // Settings
+        menu->isSettings = true;
     } else if (menu->selectedOption == 5){
         *running = false;
     }
@@ -110,17 +161,29 @@ void MenuPauseSelect(Menu* menu, GameState* gameState, bool* running, bool* isPa
 void MenuPauseDraw(Application* game, GameState* gameState, Shader* shaderProgram, Menu* menu){
     SDL_Color color = {0, 0, 0, 0};
     SDL_Color gold = {255, 215, 0, 0};
-    
-    RenderText(menu->title, color, gameState->g_WindowWidth / 2, 9 * gameState->g_WindowHeight / 10, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
+    //RenderText(menu->title, color, gameState->g_WindowWidth / 2, 9 * gameState->g_WindowHeight / 10, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
 
-    for (int i = 0; i < menu->numOptions; i++){
-        if (i == menu->selectedOption){
-            char* selectedOption = malloc(strlen(menu->options[i]) + 4);
-            strcpy(selectedOption, "> ");
-            strcat(selectedOption, menu->options[i]);
-            RenderText(selectedOption, gold, gameState->g_WindowWidth / 2, (7 - i) * gameState->g_WindowHeight / 10, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
-        } else {
-            RenderText(menu->options[i], color, gameState->g_WindowWidth / 2, (7 - i) * gameState->g_WindowHeight / 10, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
+    if (menu->isSettings){
+        for (int i = 0; i < menu->SettingsMenu->numOptions; i++){
+            if (i == menu->SettingsMenu->selectedOption){
+                char* selectedOption = malloc(strlen(menu->SettingsMenu->options[i]) + 4);
+                strcpy(selectedOption, "> ");
+                strcat(selectedOption, menu->SettingsMenu->options[i]);
+                RenderText(selectedOption, gold, gameState->g_WindowWidth / 2, (7 - i) * gameState->g_WindowHeight / 10, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
+            } else {
+                RenderText(menu->SettingsMenu->options[i], color, gameState->g_WindowWidth / 2, (7 - i) * gameState->g_WindowHeight / 10, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
+            }
+        }
+    } else {
+        for (int i = 0; i < menu->numOptions; i++){
+            if (i == menu->selectedOption){
+                char* selectedOption = malloc(strlen(menu->options[i]) + 4);
+                strcpy(selectedOption, "> ");
+                strcat(selectedOption, menu->options[i]);
+                RenderText(selectedOption, gold, gameState->g_WindowWidth / 2, (7 - i) * gameState->g_WindowHeight / 10, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
+            } else {
+                RenderText(menu->options[i], color, gameState->g_WindowWidth / 2, (7 - i) * gameState->g_WindowHeight / 10, 30, gameState->g_WindowWidth, gameState->g_WindowHeight, shaderProgram->m_program);
+            }
         }
     }
 
