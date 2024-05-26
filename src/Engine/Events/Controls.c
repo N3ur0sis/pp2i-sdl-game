@@ -31,7 +31,7 @@ static void logSDLError(const char* msg) {
  * @param gameState Pointer to the current game state.
  * @param sceneManager Pointer to the scene manager.
  */
-void processInput(SDL_Event* e, bool* running, bool* isPaused, GameState* gameState, SceneManager* sceneManager) {
+void processInput(SDL_Event* e, bool* running,bool* isPaused, GameState* gameState, SceneManager* sceneManager) {
     switch (e->type) {
         case SDL_QUIT:
             if (gameState->mainMenuOpen) {
@@ -68,8 +68,6 @@ void processInput(SDL_Event* e, bool* running, bool* isPaused, GameState* gameSt
             mousePos[1] = e->motion.y;
             break;
         case SDL_MOUSEBUTTONDOWN:
-			handleMouseButtonEvent(*e);
-			break;
         case SDL_MOUSEBUTTONUP:
             handleMouseButtonEvent(*e);
             break;

@@ -33,7 +33,6 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
     glm_vec3_sub(playerPos, enemyPos, enemyComponent->direction);
     float enemyDist = glm_vec3_norm(enemyComponent->direction);
     glm_vec3_normalize(enemyComponent->direction);
-                printf("Enemy health = %f\n", enemyComponent->health);
     float rotTarget = 0.0f;
     if (enemyDist < enemyComponent->detectionRange) {
         float omega = acos(glm_dot((vec3){0, 0, 1}, enemyComponent->direction));
@@ -57,9 +56,7 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
             // Check if the player's attack animation has just started
             Animator* playerAnimator = (Animator*)getComponent(player, COMPONENT_ANIMATOR);
             if (playerAnimator->playTime == 0.0f) {
-                // Reduce enemy health
                 enemyComponent->health -= playerComponent->attackDamage;
-                printf("Enemy health = %f\n", enemyComponent->health);
                 enemyAnimator->playTime = 0.0f;
                 enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemHitAnimation");
 

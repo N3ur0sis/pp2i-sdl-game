@@ -104,7 +104,7 @@ void updatePlayerAnimator(Entity* playerEntity, GameState* gameState) {
     Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
     RigidBody* playerRigidbody = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
 	PlayerComponent* playerComponent = (PlayerComponent*)getComponent(playerEntity, COMPONENT_PLAYER);
-
+	playSoundPlayer(playerEntity,gameState);
 	if(playerComponent->hasWeapon && playerComponent->isAttacking){
 		playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation");
 	}else{
@@ -324,4 +324,19 @@ void damagePlayer(GameState* gamestate, int damage){
 		return;
 	}
 	//qgamestate->playerHealth -= damage;
+}
+
+void playSoundPlayer(Entity* player,GameState* gamestate){
+	PlayerComponent* playerComponent = (PlayerComponent*)getComponent(player, COMPONENT_PLAYER);
+	Animator* playerAnimator = (Animator*)getComponent(player, COMPONENT_ANIMATOR);
+	Mix_Chunk *sound;
+	if (strcmp(playerAnimator->currentAnimation->name,"playerAttackAnimation")==0&&playerComponent->isAttacking && !playerComponent->hasPlayedAttackSound){
+		sound = Mix_LoadWAV("assets/sound/swing.wav");
+		Mix_VolumeChunk(sound, MIX_MAX_VOLUME / 5);
+		Mix_PlayChannel(-1, sound, 0);
+		playerComponent->hasPlayedAttackSound = true;
+	}
+	if (strcmp(playerAnimator->currentAnimation->name, "playerAttackAnimation") != 0) {
+        playerComponent->hasPlayedAttackSound = false;
+    }
 }
