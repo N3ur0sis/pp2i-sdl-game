@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_entity_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,40 +59,55 @@ $(document).ready(function(){initNavTree('_entity_8h_source.html',''); initResiz
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Entity.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once </span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;Component.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#define MAX_COMPONENTS 20</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno"><a class="line" href="struct___entity.html">    7</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___entity.html">_Entity</a> {</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    <span class="keywordtype">int</span> id;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordtype">int</span> componentCount;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <a class="code" href="struct___component.html">Component</a> components[MAX_COMPONENTS];</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;} <a class="code" href="struct___entity.html">Entity</a>;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keywordtype">void</span> addComponent(<a class="code" href="struct___entity.html">Entity</a>* entity, ComponentType type, <span class="keywordtype">void</span>* data); </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keywordtype">void</span>* getComponent(<a class="code" href="struct___entity.html">Entity</a>* entity, ComponentType type);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<a class="code" href="struct_animation.html">Animation</a>* getAnimationComponent(<a class="code" href="struct___entity.html">Entity</a>* entity, <span class="keyword">const</span> <span class="keywordtype">char</span>* animationName);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keywordtype">float</span> getDist(<a class="code" href="struct___model.html">Model</a>* object1, <a class="code" href="struct___model.html">Model</a>* object2);</div>
-<div class="ttc" id="astruct___component_html"><div class="ttname"><a href="struct___component.html">_Component</a></div><div class="ttdef"><b>Definition:</b> Component.h:22</div></div>
-<div class="ttc" id="astruct___entity_html"><div class="ttname"><a href="struct___entity.html">_Entity</a></div><div class="ttdef"><b>Definition:</b> Entity.h:7</div></div>
+<a href="_entity_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once </span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_component_8h.html">Component.h</a>&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno"><a class="line" href="_entity_8h.html#a6d8c910a1fdb6d4762a05f7250e64322">   10</a></span>&#160;<span class="preprocessor">#define MAX_COMPONENTS 20   </span></div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct___entity.html">   18</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___entity.html">_Entity</a> {</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct___entity.html#a7441ef0865bcb3db9b8064dd7375c1ea">   19</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct___entity.html#a7441ef0865bcb3db9b8064dd7375c1ea">id</a>;                                 </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="struct___entity.html#ad3197c4bdc32ec58b866a9bc6fc59bd1">   20</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct___entity.html#ad3197c4bdc32ec58b866a9bc6fc59bd1">componentCount</a>;                     </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="struct___entity.html#ade8ff28e57c8ea1c567663410a8f93dd">   21</a></span>&#160;    <a class="code" href="struct___component.html">Component</a> <a class="code" href="struct___entity.html#ade8ff28e57c8ea1c567663410a8f93dd">components</a>[<a class="code" href="_entity_8h.html#a6d8c910a1fdb6d4762a05f7250e64322">MAX_COMPONENTS</a>];   </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="_entity_8h.html#a88bccc76704ed1a036c3500da8c42bcc">   22</a></span>&#160;} <a class="code" href="_entity_8h.html#a88bccc76704ed1a036c3500da8c42bcc">Entity</a>;</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="_entity_8h.html#ae251b5d7e06c671429712d81c52a2437">   33</a></span>&#160;<span class="keywordtype">void</span> <a class="code" href="_entity_8h.html#ae251b5d7e06c671429712d81c52a2437">addComponent</a>(<a class="code" href="struct___entity.html">Entity</a>* entity, <a class="code" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0">ComponentType</a> <a class="code" href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a>, <span class="keywordtype">void</span>* data); </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">void</span>* <a class="code" href="_entity_8h.html#acdde8d7bea7c39ec0faacaa4e522900d">getComponent</a>(<a class="code" href="struct___entity.html">Entity</a>* entity, <a class="code" href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0">ComponentType</a> <a class="code" href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a>);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;<a class="code" href="struct_animation.html">Animation</a>* <a class="code" href="_entity_8h.html#aa687384edb683ce81ecc80ca9d75a53d">getAnimationComponent</a>(<a class="code" href="struct___entity.html">Entity</a>* entity, <span class="keyword">const</span> <span class="keywordtype">char</span>* animationName);</div>
+<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">float</span> <a class="code" href="_entity_8h.html#a8c3c9c6eeee145b181f6d256ab333516">getDist</a>(<a class="code" href="struct___model.html">Model</a>* object1, <a class="code" href="struct___model.html">Model</a>* object2);</div>
+<div class="ttc" id="a_component_8h_html"><div class="ttname"><a href="_component_8h.html">Component.h</a></div><div class="ttdoc">Component header file.</div></div>
+<div class="ttc" id="a_component_8h_html_a81f78fc173dedefe5a049c0aa3eed2c0"><div class="ttname"><a href="_component_8h.html#a81f78fc173dedefe5a049c0aa3eed2c0">ComponentType</a></div><div class="ttdeci">ComponentType</div><div class="ttdoc">Enum representing the type of a component.</div><div class="ttdef"><b>Definition:</b> Component.h:17</div></div>
+<div class="ttc" id="a_data_8h_html_adb1dbf691ca9751b21d4ab403146a6b1"><div class="ttname"><a href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a></div><div class="ttdeci">Type type(Data *data)</div><div class="ttdoc">Gets the type of the data.</div><div class="ttdef"><b>Definition:</b> Data.c:98</div></div>
+<div class="ttc" id="a_entity_8h_html_a6d8c910a1fdb6d4762a05f7250e64322"><div class="ttname"><a href="_entity_8h.html#a6d8c910a1fdb6d4762a05f7250e64322">MAX_COMPONENTS</a></div><div class="ttdeci">#define MAX_COMPONENTS</div><div class="ttdef"><b>Definition:</b> Entity.h:10</div></div>
+<div class="ttc" id="a_entity_8h_html_a88bccc76704ed1a036c3500da8c42bcc"><div class="ttname"><a href="_entity_8h.html#a88bccc76704ed1a036c3500da8c42bcc">Entity</a></div><div class="ttdeci">struct _Entity Entity</div><div class="ttdoc">Struct representing an entity.</div></div>
+<div class="ttc" id="a_entity_8h_html_a8c3c9c6eeee145b181f6d256ab333516"><div class="ttname"><a href="_entity_8h.html#a8c3c9c6eeee145b181f6d256ab333516">getDist</a></div><div class="ttdeci">float getDist(Model *object1, Model *object2)</div><div class="ttdoc">Function to get the distance between two entities.</div><div class="ttdef"><b>Definition:</b> Entity.c:35</div></div>
+<div class="ttc" id="a_entity_8h_html_aa687384edb683ce81ecc80ca9d75a53d"><div class="ttname"><a href="_entity_8h.html#aa687384edb683ce81ecc80ca9d75a53d">getAnimationComponent</a></div><div class="ttdeci">Animation * getAnimationComponent(Entity *entity, const char *animationName)</div><div class="ttdoc">Function to get the animation component from an entity.</div><div class="ttdef"><b>Definition:</b> Entity.c:22</div></div>
+<div class="ttc" id="a_entity_8h_html_acdde8d7bea7c39ec0faacaa4e522900d"><div class="ttname"><a href="_entity_8h.html#acdde8d7bea7c39ec0faacaa4e522900d">getComponent</a></div><div class="ttdeci">void * getComponent(Entity *entity, ComponentType type)</div><div class="ttdoc">Function to get a component from an entity.</div><div class="ttdef"><b>Definition:</b> Entity.c:12</div></div>
+<div class="ttc" id="a_entity_8h_html_ae251b5d7e06c671429712d81c52a2437"><div class="ttname"><a href="_entity_8h.html#ae251b5d7e06c671429712d81c52a2437">addComponent</a></div><div class="ttdeci">void addComponent(Entity *entity, ComponentType type, void *data)</div><div class="ttdoc">Function to add a component to an entity.</div></div>
+<div class="ttc" id="astruct___component_html"><div class="ttname"><a href="struct___component.html">_Component</a></div><div class="ttdoc">Structure representing a component.</div><div class="ttdef"><b>Definition:</b> Component.h:37</div></div>
+<div class="ttc" id="astruct___entity_html"><div class="ttname"><a href="struct___entity.html">_Entity</a></div><div class="ttdoc">Struct representing an entity.</div><div class="ttdef"><b>Definition:</b> Entity.h:18</div></div>
+<div class="ttc" id="astruct___entity_html_a7441ef0865bcb3db9b8064dd7375c1ea"><div class="ttname"><a href="struct___entity.html#a7441ef0865bcb3db9b8064dd7375c1ea">_Entity::id</a></div><div class="ttdeci">int id</div><div class="ttdef"><b>Definition:</b> Entity.h:19</div></div>
+<div class="ttc" id="astruct___entity_html_ad3197c4bdc32ec58b866a9bc6fc59bd1"><div class="ttname"><a href="struct___entity.html#ad3197c4bdc32ec58b866a9bc6fc59bd1">_Entity::componentCount</a></div><div class="ttdeci">int componentCount</div><div class="ttdef"><b>Definition:</b> Entity.h:20</div></div>
+<div class="ttc" id="astruct___entity_html_ade8ff28e57c8ea1c567663410a8f93dd"><div class="ttname"><a href="struct___entity.html#ade8ff28e57c8ea1c567663410a8f93dd">_Entity::components</a></div><div class="ttdeci">Component components[MAX_COMPONENTS]</div><div class="ttdef"><b>Definition:</b> Entity.h:21</div></div>
 <div class="ttc" id="astruct___model_html"><div class="ttname"><a href="struct___model.html">_Model</a></div><div class="ttdef"><b>Definition:</b> Model.h:29</div></div>
-<div class="ttc" id="astruct_animation_html"><div class="ttname"><a href="struct_animation.html">Animation</a></div><div class="ttdef"><b>Definition:</b> Animation.h:4</div></div>
+<div class="ttc" id="astruct_animation_html"><div class="ttname"><a href="struct_animation.html">Animation</a></div><div class="ttdoc">Structure representing a node in the skeleton.</div><div class="ttdef"><b>Definition:</b> Animation.h:16</div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>Entity.h</b></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

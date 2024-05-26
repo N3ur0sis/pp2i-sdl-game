@@ -1,0 +1,101 @@
+\hypertarget{_dungeon_scene_8h}{}\doxysection{include/\+Dungeon\+Scene.h File Reference}
+\label{_dungeon_scene_8h}\index{include/DungeonScene.h@{include/DungeonScene.h}}
+
+
+Header file for the dungeon scene.  
+
+
+{\ttfamily \#include $<$Scene.\+h$>$}\newline
+{\ttfamily \#include $<$Player.\+h$>$}\newline
+{\ttfamily \#include $<$Game\+State.\+h$>$}\newline
+{\ttfamily \#include $<$cglm/cglm.\+h$>$}\newline
+{\ttfamily \#include $<$Dungeon.\+h$>$}\newline
+{\ttfamily \#include $<$Enemy.\+h$>$}\newline
+Include dependency graph for Dungeon\+Scene.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_dungeon_scene_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_dungeon_scene_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_dungeon_scene_8h_a087a04de025692236b114ff99f417c2f}{Dungeon\+Main\+Scene}} (\mbox{\hyperlink{struct___scene}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State)
+\begin{DoxyCompactList}\small\item\em Function to create the dungeon scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_scene_8h_a177a3583df7cd38959a3a3d79e5fd5a0}{update\+Dungeon\+Scene}} (\mbox{\hyperlink{struct___scene}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State)
+\begin{DoxyCompactList}\small\item\em Function to update the dungeon scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_dungeon_scene_8h_af795dc5963822b49b4ecb6d7bb5c8bb5}{unload\+Dungeon\+Scene}} (\mbox{\hyperlink{struct___scene}{Scene}} $\ast$scene)
+\begin{DoxyCompactList}\small\item\em Function to unload the dungeon scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the dungeon scene. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_dungeon_scene_8h_a087a04de025692236b114ff99f417c2f}\label{_dungeon_scene_8h_a087a04de025692236b114ff99f417c2f}} 
+\index{DungeonScene.h@{DungeonScene.h}!DungeonMainScene@{DungeonMainScene}}
+\index{DungeonMainScene@{DungeonMainScene}!DungeonScene.h@{DungeonScene.h}}
+\doxysubsubsection{\texorpdfstring{DungeonMainScene()}{DungeonMainScene()}}
+{\footnotesize\ttfamily void Dungeon\+Main\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___scene}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State }\end{DoxyParamCaption})}
+
+
+
+Function to create the dungeon scene. 
+
+This function creates the dungeon scene.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em game\+State} & Pointer to the game state. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_scene_8h_af795dc5963822b49b4ecb6d7bb5c8bb5}\label{_dungeon_scene_8h_af795dc5963822b49b4ecb6d7bb5c8bb5}} 
+\index{DungeonScene.h@{DungeonScene.h}!unloadDungeonScene@{unloadDungeonScene}}
+\index{unloadDungeonScene@{unloadDungeonScene}!DungeonScene.h@{DungeonScene.h}}
+\doxysubsubsection{\texorpdfstring{unloadDungeonScene()}{unloadDungeonScene()}}
+{\footnotesize\ttfamily void unload\+Dungeon\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___scene}{Scene}} $\ast$}]{scene }\end{DoxyParamCaption})}
+
+
+
+Function to unload the dungeon scene. 
+
+This function unloads the dungeon scene.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_dungeon_scene_8h_a177a3583df7cd38959a3a3d79e5fd5a0}\label{_dungeon_scene_8h_a177a3583df7cd38959a3a3d79e5fd5a0}} 
+\index{DungeonScene.h@{DungeonScene.h}!updateDungeonScene@{updateDungeonScene}}
+\index{updateDungeonScene@{updateDungeonScene}!DungeonScene.h@{DungeonScene.h}}
+\doxysubsubsection{\texorpdfstring{updateDungeonScene()}{updateDungeonScene()}}
+{\footnotesize\ttfamily void update\+Dungeon\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___scene}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State }\end{DoxyParamCaption})}
+
+
+
+Function to update the dungeon scene. 
+
+This function updates the dungeon scene.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em game\+State} & Pointer to the game state. \\
+\hline
+\end{DoxyParams}

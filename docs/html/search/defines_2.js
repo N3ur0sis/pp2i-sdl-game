@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['nb_5fkeys_172',['NB_KEYS',['../_controls_8h.html#ae8ddcff73f96cca59675cd1d10769634',1,'Controls.h']]]
+  ['max_5fcomponents_736',['MAX_COMPONENTS',['../_entity_8h.html#a6d8c910a1fdb6d4762a05f7250e64322',1,'Entity.h']]],
+  ['maxcollider_737',['MAXCOLLIDER',['../_collider_8h.html#aadd6169cec56f2160d5621151269fdab',1,'Collider.h']]]
 ];

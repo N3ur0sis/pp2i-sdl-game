@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_animation_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,42 +59,62 @@ $(document).ready(function(){initNavTree('_animation_8h_source.html',''); initRe
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Animation.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;Model.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="struct_animation.html">    4</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_animation.html">Animation</a> {</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <a class="code" href="struct_node.html">Node</a>* root_node;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    mat4 parent_mat;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;    mat4* bone_mats;</div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;    mat4* bone_anim_mats;</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <span class="keywordtype">float</span> anim_dur;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordtype">float</span> anim_ticks;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordtype">char</span> * name;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;} <a class="code" href="struct_animation.html">Animation</a>;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<a class="code" href="struct_animation.html">Animation</a>* AnimationCreate(<span class="keywordtype">char</span>* path, <a class="code" href="struct___model.html">Model</a>* model, <span class="keywordtype">char</span>* name);</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keywordtype">void</span> CalculateBoneTransformation(<a class="code" href="struct_node.html">Node</a>* node, <span class="keywordtype">float</span> anim_time, mat4 parent_mat, mat4* bones,mat4* bone_anim_mats);</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<a class="code" href="struct_node.html">Node</a>* NodeFind(<a class="code" href="struct_node.html">Node</a>* root, <span class="keyword">const</span> <span class="keywordtype">char</span>* name);</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keywordtype">int</span> NodeImport(<span class="keyword">const</span> <span class="keyword">struct</span> aiNode* ai_node, <a class="code" href="struct_node.html">Node</a>** skel_node, <span class="keywordtype">size_t</span> bone_count, <span class="keywordtype">char</span> bone_names[][256]);</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;<span class="keywordtype">void</span> NodeDelete(<a class="code" href="struct_node.html">Node</a>* node);</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<span class="keywordtype">void</span> AnimationDelete(<a class="code" href="struct_animation.html">Animation</a>* animation);</div>
+<a href="_animation_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;Model.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct_animation.html">   16</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct_animation.html">Animation</a> {</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="struct_animation.html#a884ec7205b34f35c5abf137793bdb840">   17</a></span>&#160;    <a class="code" href="struct_node.html">Node</a>* <a class="code" href="struct_animation.html#a884ec7205b34f35c5abf137793bdb840">root_node</a>;    </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct_animation.html#ae1cf9a130c7310b571394d65f8db1ef8">   18</a></span>&#160;    mat4 <a class="code" href="struct_animation.html#ae1cf9a130c7310b571394d65f8db1ef8">parent_mat</a>;    </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct_animation.html#ab0617d93d740672159be4364236a9398">   19</a></span>&#160;    mat4* <a class="code" href="struct_animation.html#ab0617d93d740672159be4364236a9398">bone_mats</a>;    </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="struct_animation.html#a5b332d6af26ab732502587804f10891e">   20</a></span>&#160;    mat4* <a class="code" href="struct_animation.html#a5b332d6af26ab732502587804f10891e">bone_anim_mats</a>;   </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="struct_animation.html#a4066d7871f7764f7e4b6e51ae0b48738">   21</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="struct_animation.html#a4066d7871f7764f7e4b6e51ae0b48738">anim_dur</a>;     </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct_animation.html#a507bb497bce2bcdd2f627996a4c822b4">   22</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="struct_animation.html#a507bb497bce2bcdd2f627996a4c822b4">anim_ticks</a>;   </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="struct_animation.html#a5ac083a645d964373f022d03df4849c8">   23</a></span>&#160;    <span class="keywordtype">char</span> * <a class="code" href="struct_animation.html#a5ac083a645d964373f022d03df4849c8">name</a>;        </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="_animation_8h.html#ade6a90df50ad3e4adaea9aebc4096ba8">   24</a></span>&#160;} <a class="code" href="_animation_8h.html#ade6a90df50ad3e4adaea9aebc4096ba8">Animation</a>;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<a class="code" href="struct_animation.html">Animation</a>* <a class="code" href="_animation_8h.html#a89bef044de34155e47dc1315f96267f8">AnimationCreate</a>(<span class="keywordtype">char</span>* path, <a class="code" href="struct___model.html">Model</a>* model, <span class="keywordtype">char</span>* name);</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_animation_8h.html#a942398e7323612a16e821629d747b4ad">CalculateBoneTransformation</a>(<a class="code" href="struct_node.html">Node</a>* node, <span class="keywordtype">float</span> anim_time, mat4 parent_mat, mat4* bones,mat4* bone_anim_mats);</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<a class="code" href="struct_node.html">Node</a>* <a class="code" href="_animation_8h.html#a660baae95ad8a879ff5fec882a91b3b9">NodeFind</a>(<a class="code" href="struct_node.html">Node</a>* root, <span class="keyword">const</span> <span class="keywordtype">char</span>* name);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160;<span class="keywordtype">int</span> <a class="code" href="_animation_8h.html#a4bfb51ca43005b2b25011ab9ca4d4837">NodeImport</a>(<span class="keyword">const</span> <span class="keyword">struct</span> aiNode* ai_node, <a class="code" href="struct_node.html">Node</a>** skel_node, <span class="keywordtype">size_t</span> bone_count, <span class="keywordtype">char</span> bone_names[][256]);</div>
+<div class="line"><a name="l00072"></a><span class="lineno">   72</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_animation_8h.html#a3227c34e982071dfe1aa8c9eb7fd071e">NodeDelete</a>(<a class="code" href="struct_node.html">Node</a>* node);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_animation_8h.html#a4cf0c6be8ad434c9b3d9c5efd0295078">AnimationDelete</a>(<a class="code" href="struct_animation.html">Animation</a>* animation);</div>
+<div class="ttc" id="a_animation_8h_html_a3227c34e982071dfe1aa8c9eb7fd071e"><div class="ttname"><a href="_animation_8h.html#a3227c34e982071dfe1aa8c9eb7fd071e">NodeDelete</a></div><div class="ttdeci">void NodeDelete(Node *node)</div><div class="ttdoc">Deletes a node.</div><div class="ttdef"><b>Definition:</b> Animation.c:214</div></div>
+<div class="ttc" id="a_animation_8h_html_a4bfb51ca43005b2b25011ab9ca4d4837"><div class="ttname"><a href="_animation_8h.html#a4bfb51ca43005b2b25011ab9ca4d4837">NodeImport</a></div><div class="ttdeci">int NodeImport(const struct aiNode *ai_node, Node **skel_node, size_t bone_count, char bone_names[][256])</div><div class="ttdoc">Imports a node from an assimp node.</div><div class="ttdef"><b>Definition:</b> Animation.c:75</div></div>
+<div class="ttc" id="a_animation_8h_html_a4cf0c6be8ad434c9b3d9c5efd0295078"><div class="ttname"><a href="_animation_8h.html#a4cf0c6be8ad434c9b3d9c5efd0295078">AnimationDelete</a></div><div class="ttdeci">void AnimationDelete(Animation *animation)</div><div class="ttdoc">Deletes an animation.</div><div class="ttdef"><b>Definition:</b> Animation.c:228</div></div>
+<div class="ttc" id="a_animation_8h_html_a660baae95ad8a879ff5fec882a91b3b9"><div class="ttname"><a href="_animation_8h.html#a660baae95ad8a879ff5fec882a91b3b9">NodeFind</a></div><div class="ttdeci">Node * NodeFind(Node *root, const char *name)</div><div class="ttdoc">Finds a node in the skeleton.</div><div class="ttdef"><b>Definition:</b> Animation.c:62</div></div>
+<div class="ttc" id="a_animation_8h_html_a89bef044de34155e47dc1315f96267f8"><div class="ttname"><a href="_animation_8h.html#a89bef044de34155e47dc1315f96267f8">AnimationCreate</a></div><div class="ttdeci">Animation * AnimationCreate(char *path, Model *model, char *name)</div><div class="ttdoc">Creates a new Animation instance.</div><div class="ttdef"><b>Definition:</b> Animation.c:4</div></div>
+<div class="ttc" id="a_animation_8h_html_a942398e7323612a16e821629d747b4ad"><div class="ttname"><a href="_animation_8h.html#a942398e7323612a16e821629d747b4ad">CalculateBoneTransformation</a></div><div class="ttdeci">void CalculateBoneTransformation(Node *node, float anim_time, mat4 parent_mat, mat4 *bones, mat4 *bone_anim_mats)</div><div class="ttdoc">Calculates the bone transformation.</div><div class="ttdef"><b>Definition:</b> Animation.c:124</div></div>
+<div class="ttc" id="a_animation_8h_html_ade6a90df50ad3e4adaea9aebc4096ba8"><div class="ttname"><a href="_animation_8h.html#ade6a90df50ad3e4adaea9aebc4096ba8">Animation</a></div><div class="ttdeci">struct Animation Animation</div><div class="ttdoc">Structure representing a node in the skeleton.</div></div>
 <div class="ttc" id="astruct___model_html"><div class="ttname"><a href="struct___model.html">_Model</a></div><div class="ttdef"><b>Definition:</b> Model.h:29</div></div>
-<div class="ttc" id="astruct_animation_html"><div class="ttname"><a href="struct_animation.html">Animation</a></div><div class="ttdef"><b>Definition:</b> Animation.h:4</div></div>
+<div class="ttc" id="astruct_animation_html"><div class="ttname"><a href="struct_animation.html">Animation</a></div><div class="ttdoc">Structure representing a node in the skeleton.</div><div class="ttdef"><b>Definition:</b> Animation.h:16</div></div>
+<div class="ttc" id="astruct_animation_html_a4066d7871f7764f7e4b6e51ae0b48738"><div class="ttname"><a href="struct_animation.html#a4066d7871f7764f7e4b6e51ae0b48738">Animation::anim_dur</a></div><div class="ttdeci">float anim_dur</div><div class="ttdef"><b>Definition:</b> Animation.h:21</div></div>
+<div class="ttc" id="astruct_animation_html_a507bb497bce2bcdd2f627996a4c822b4"><div class="ttname"><a href="struct_animation.html#a507bb497bce2bcdd2f627996a4c822b4">Animation::anim_ticks</a></div><div class="ttdeci">float anim_ticks</div><div class="ttdef"><b>Definition:</b> Animation.h:22</div></div>
+<div class="ttc" id="astruct_animation_html_a5ac083a645d964373f022d03df4849c8"><div class="ttname"><a href="struct_animation.html#a5ac083a645d964373f022d03df4849c8">Animation::name</a></div><div class="ttdeci">char * name</div><div class="ttdef"><b>Definition:</b> Animation.h:23</div></div>
+<div class="ttc" id="astruct_animation_html_a5b332d6af26ab732502587804f10891e"><div class="ttname"><a href="struct_animation.html#a5b332d6af26ab732502587804f10891e">Animation::bone_anim_mats</a></div><div class="ttdeci">mat4 * bone_anim_mats</div><div class="ttdef"><b>Definition:</b> Animation.h:20</div></div>
+<div class="ttc" id="astruct_animation_html_a884ec7205b34f35c5abf137793bdb840"><div class="ttname"><a href="struct_animation.html#a884ec7205b34f35c5abf137793bdb840">Animation::root_node</a></div><div class="ttdeci">Node * root_node</div><div class="ttdef"><b>Definition:</b> Animation.h:17</div></div>
+<div class="ttc" id="astruct_animation_html_ab0617d93d740672159be4364236a9398"><div class="ttname"><a href="struct_animation.html#ab0617d93d740672159be4364236a9398">Animation::bone_mats</a></div><div class="ttdeci">mat4 * bone_mats</div><div class="ttdef"><b>Definition:</b> Animation.h:19</div></div>
+<div class="ttc" id="astruct_animation_html_ae1cf9a130c7310b571394d65f8db1ef8"><div class="ttname"><a href="struct_animation.html#ae1cf9a130c7310b571394d65f8db1ef8">Animation::parent_mat</a></div><div class="ttdeci">mat4 parent_mat</div><div class="ttdef"><b>Definition:</b> Animation.h:18</div></div>
 <div class="ttc" id="astruct_node_html"><div class="ttname"><a href="struct_node.html">Node</a></div><div class="ttdef"><b>Definition:</b> Tree.h:15</div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>Animation.h</b></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

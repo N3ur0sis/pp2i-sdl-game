@@ -1,0 +1,115 @@
+\hypertarget{_camera_8h}{}\doxysection{include/\+Camera.h File Reference}
+\label{_camera_8h}\index{include/Camera.h@{include/Camera.h}}
+
+
+\mbox{\hyperlink{struct_camera}{Camera}} header file.  
+
+
+{\ttfamily \#include $<$cglm/cglm.\+h$>$}\newline
+{\ttfamily \#include $<$cglm/call.\+h$>$}\newline
+Include dependency graph for Camera.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=246pt]{_camera_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_camera_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_camera}{Camera}}
+\begin{DoxyCompactList}\small\item\em Structure representing a camera. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_camera}{Camera}} $\ast$ \mbox{\hyperlink{_camera_8h_a82adf08298fa6fbc28ceca9a4d0f71b1}{camera\+\_\+create}} (float posX, float posY, float posZ, float width, float height)
+\begin{DoxyCompactList}\small\item\em Creates a new \mbox{\hyperlink{struct_camera}{Camera}} instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_camera_8h_a1b713cadfed497b03e04df9dad7e4977}{get\+View\+Matrix}} (\mbox{\hyperlink{struct_camera}{Camera}} $\ast$camera, vec4 $\ast$view)
+\begin{DoxyCompactList}\small\item\em Gets the view matrix of the camera. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_camera_8h_a75f6f3d7f56b4567ca49240310632191}{update\+Camera\+Vectors}} (\mbox{\hyperlink{struct_camera}{Camera}} $\ast$camera)
+\begin{DoxyCompactList}\small\item\em Updates the camera vectors. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_camera_8h_a4d1a16aaae1257d2ebf591bd68170f8d}\label{_camera_8h_a4d1a16aaae1257d2ebf591bd68170f8d}} 
+void {\bfseries pan\+Camera} (\mbox{\hyperlink{struct_camera}{Camera}} $\ast$camera)
+\item 
+\mbox{\Hypertarget{_camera_8h_a8333938c4b30759f263959f1623b94c8}\label{_camera_8h_a8333938c4b30759f263959f1623b94c8}} 
+void {\bfseries camera\+Control} (\mbox{\hyperlink{struct_camera}{Camera}} $\ast$camera)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\mbox{\hyperlink{struct_camera}{Camera}} header file. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_camera_8h_a82adf08298fa6fbc28ceca9a4d0f71b1}\label{_camera_8h_a82adf08298fa6fbc28ceca9a4d0f71b1}} 
+\index{Camera.h@{Camera.h}!camera\_create@{camera\_create}}
+\index{camera\_create@{camera\_create}!Camera.h@{Camera.h}}
+\doxysubsubsection{\texorpdfstring{camera\_create()}{camera\_create()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_camera}{Camera}}$\ast$ camera\+\_\+create (\begin{DoxyParamCaption}\item[{float}]{posX,  }\item[{float}]{posY,  }\item[{float}]{posZ,  }\item[{float}]{width,  }\item[{float}]{height }\end{DoxyParamCaption})}
+
+
+
+Creates a new \mbox{\hyperlink{struct_camera}{Camera}} instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em posX} & The x position of the camera. \\
+\hline
+{\em posY} & The y position of the camera. \\
+\hline
+{\em posZ} & The z position of the camera. \\
+\hline
+{\em width} & The width of the camera. \\
+\hline
+{\em height} & The height of the camera. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the created \mbox{\hyperlink{struct_camera}{Camera}} instance or NULL on failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_camera_8h_a1b713cadfed497b03e04df9dad7e4977}\label{_camera_8h_a1b713cadfed497b03e04df9dad7e4977}} 
+\index{Camera.h@{Camera.h}!getViewMatrix@{getViewMatrix}}
+\index{getViewMatrix@{getViewMatrix}!Camera.h@{Camera.h}}
+\doxysubsubsection{\texorpdfstring{getViewMatrix()}{getViewMatrix()}}
+{\footnotesize\ttfamily void get\+View\+Matrix (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_camera}{Camera}} $\ast$}]{camera,  }\item[{vec4 $\ast$}]{view }\end{DoxyParamCaption})}
+
+
+
+Gets the view matrix of the camera. 
+
+This function gets the view matrix of the camera.
+
+
+\begin{DoxyParams}{Parameters}
+{\em camera} & The camera to get the view matrix from. \\
+\hline
+{\em view} & The view matrix. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_camera_8h_a75f6f3d7f56b4567ca49240310632191}\label{_camera_8h_a75f6f3d7f56b4567ca49240310632191}} 
+\index{Camera.h@{Camera.h}!updateCameraVectors@{updateCameraVectors}}
+\index{updateCameraVectors@{updateCameraVectors}!Camera.h@{Camera.h}}
+\doxysubsubsection{\texorpdfstring{updateCameraVectors()}{updateCameraVectors()}}
+{\footnotesize\ttfamily void update\+Camera\+Vectors (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_camera}{Camera}} $\ast$}]{camera }\end{DoxyParamCaption})}
+
+
+
+Updates the camera vectors. 
+
+This function updates the camera vectors.
+
+
+\begin{DoxyParams}{Parameters}
+{\em camera} & The camera to update. \\
+\hline
+\end{DoxyParams}

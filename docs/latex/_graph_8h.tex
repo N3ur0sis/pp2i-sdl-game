@@ -1,0 +1,176 @@
+\hypertarget{_graph_8h}{}\doxysection{include/\+Graph.h File Reference}
+\label{_graph_8h}\index{include/Graph.h@{include/Graph.h}}
+
+
+Header file for the graph component.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Data.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Vector.\+h\char`\"{}}\newline
+Include dependency graph for Graph.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_graph_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___graph}{\+\_\+\+Graph}}
+\begin{DoxyCompactList}\small\item\em Struct representing a graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_graph_8h_aed604341452d2fc0ff36c83947820958}\label{_graph_8h_aed604341452d2fc0ff36c83947820958}} 
+typedef struct \mbox{\hyperlink{struct___graph}{\+\_\+\+Graph}} {\bfseries Graph}
+\item 
+\mbox{\Hypertarget{_graph_8h_aaa99c0766395c8c2a88946185b5c5683}\label{_graph_8h_aaa99c0766395c8c2a88946185b5c5683}} 
+typedef struct \mbox{\hyperlink{struct___data}{\+\_\+\+Data}} {\bfseries Data}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct___graph}{Graph}} $\ast$ \mbox{\hyperlink{_graph_8h_a9d7957df73e20800bbb3efd23cd0b5f4}{create\+Graph}} (Type \mbox{\hyperlink{_data_8h_adb1dbf691ca9751b21d4ab403146a6b1}{type}})
+\begin{DoxyCompactList}\small\item\em Function to create a graph. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_graph_8h_ac03522fc77777642ee0ad5f0f9b1267e}{size\+Graph}} (\mbox{\hyperlink{struct___graph}{Graph}} $\ast$graph)
+\begin{DoxyCompactList}\small\item\em Function to get the size of the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_graph_8h_af20c4a1288fae497627bb40b4d5ff522}{add\+Vertex}} (\mbox{\hyperlink{struct___graph}{Graph}} $\ast$graph, \mbox{\hyperlink{struct___data}{Data}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Function to add a vertex to the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_graph_8h_a4f2d59a96732077d4e23cb4a283aebd1}{add\+Edge}} (\mbox{\hyperlink{struct___graph}{Graph}} $\ast$graph, int vertex1, int vertex2)
+\begin{DoxyCompactList}\small\item\em Function to add an edge to the graph. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_graph_8h_aaecf07d7ff9114ec316bf890e741a288}{empty\+Graph}} (\mbox{\hyperlink{struct___graph}{Graph}} $\ast$graph)
+\begin{DoxyCompactList}\small\item\em Function to empty the graph. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_graph_8h_a37f75376c71b6f8035f3fc31de8034ab}{destroy\+Graph}} (\mbox{\hyperlink{struct___graph}{Graph}} $\ast$graph)
+\begin{DoxyCompactList}\small\item\em Function to destroy the graph. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the graph component. 
+
+\begin{DoxyAuthor}{Author}
+VD 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_graph_8h_a4f2d59a96732077d4e23cb4a283aebd1}\label{_graph_8h_a4f2d59a96732077d4e23cb4a283aebd1}} 
+\index{Graph.h@{Graph.h}!addEdge@{addEdge}}
+\index{addEdge@{addEdge}!Graph.h@{Graph.h}}
+\doxysubsubsection{\texorpdfstring{addEdge()}{addEdge()}}
+{\footnotesize\ttfamily void add\+Edge (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___graph}{Graph}} $\ast$}]{graph,  }\item[{int}]{vertex1,  }\item[{int}]{vertex2 }\end{DoxyParamCaption})}
+
+
+
+Function to add an edge to the graph. 
+
+This function adds an edge to the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & Pointer to the graph. \\
+\hline
+{\em vertex1} & Index of the first vertex. \\
+\hline
+{\em vertex2} & Index of the second vertex. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_graph_8h_af20c4a1288fae497627bb40b4d5ff522}\label{_graph_8h_af20c4a1288fae497627bb40b4d5ff522}} 
+\index{Graph.h@{Graph.h}!addVertex@{addVertex}}
+\index{addVertex@{addVertex}!Graph.h@{Graph.h}}
+\doxysubsubsection{\texorpdfstring{addVertex()}{addVertex()}}
+{\footnotesize\ttfamily void add\+Vertex (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___graph}{Graph}} $\ast$}]{graph,  }\item[{\mbox{\hyperlink{struct___data}{Data}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Function to add a vertex to the graph. 
+
+This function adds a vertex to the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & Pointer to the graph. \\
+\hline
+{\em data} & Pointer to the data. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_graph_8h_a9d7957df73e20800bbb3efd23cd0b5f4}\label{_graph_8h_a9d7957df73e20800bbb3efd23cd0b5f4}} 
+\index{Graph.h@{Graph.h}!createGraph@{createGraph}}
+\index{createGraph@{createGraph}!Graph.h@{Graph.h}}
+\doxysubsubsection{\texorpdfstring{createGraph()}{createGraph()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct___graph}{Graph}}$\ast$ create\+Graph (\begin{DoxyParamCaption}\item[{Type}]{type }\end{DoxyParamCaption})}
+
+
+
+Function to create a graph. 
+
+This function creates a graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & Type of the graph. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the graph. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_graph_8h_a37f75376c71b6f8035f3fc31de8034ab}\label{_graph_8h_a37f75376c71b6f8035f3fc31de8034ab}} 
+\index{Graph.h@{Graph.h}!destroyGraph@{destroyGraph}}
+\index{destroyGraph@{destroyGraph}!Graph.h@{Graph.h}}
+\doxysubsubsection{\texorpdfstring{destroyGraph()}{destroyGraph()}}
+{\footnotesize\ttfamily void destroy\+Graph (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___graph}{Graph}} $\ast$}]{graph }\end{DoxyParamCaption})}
+
+
+
+Function to destroy the graph. 
+
+This function destroys the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & Pointer to the graph. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_graph_8h_aaecf07d7ff9114ec316bf890e741a288}\label{_graph_8h_aaecf07d7ff9114ec316bf890e741a288}} 
+\index{Graph.h@{Graph.h}!emptyGraph@{emptyGraph}}
+\index{emptyGraph@{emptyGraph}!Graph.h@{Graph.h}}
+\doxysubsubsection{\texorpdfstring{emptyGraph()}{emptyGraph()}}
+{\footnotesize\ttfamily bool empty\+Graph (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___graph}{Graph}} $\ast$}]{graph }\end{DoxyParamCaption})}
+
+
+
+Function to empty the graph. 
+
+This function empties the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & Pointer to the graph. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Boolean value indicating if the graph is empty. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_graph_8h_ac03522fc77777642ee0ad5f0f9b1267e}\label{_graph_8h_ac03522fc77777642ee0ad5f0f9b1267e}} 
+\index{Graph.h@{Graph.h}!sizeGraph@{sizeGraph}}
+\index{sizeGraph@{sizeGraph}!Graph.h@{Graph.h}}
+\doxysubsubsection{\texorpdfstring{sizeGraph()}{sizeGraph()}}
+{\footnotesize\ttfamily int size\+Graph (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___graph}{Graph}} $\ast$}]{graph }\end{DoxyParamCaption})}
+
+
+
+Function to get the size of the graph. 
+
+This function gets the size of the graph.
+
+
+\begin{DoxyParams}{Parameters}
+{\em graph} & Pointer to the graph. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Size of the graph. 
+\end{DoxyReturn}

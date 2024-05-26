@@ -1,0 +1,199 @@
+\hypertarget{_component_8h}{}\doxysection{include/\+Component.h File Reference}
+\label{_component_8h}\index{include/Component.h@{include/Component.h}}
+
+
+Component header file.  
+
+
+{\ttfamily \#include $<$Animator.\+h$>$}\newline
+{\ttfamily \#include $<$Light.\+h$>$}\newline
+{\ttfamily \#include $<$Collider.\+h$>$}\newline
+Include dependency graph for Component.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_component_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_component_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___component}{\+\_\+\+Component}}
+\begin{DoxyCompactList}\small\item\em Structure representing a component. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_attachment_component}{Attachment\+Component}}
+\begin{DoxyCompactList}\small\item\em Structure representing an attachment component. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}}
+\begin{DoxyCompactList}\small\item\em Structure representing a rigid body. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct___player_component}{\+\_\+\+Player\+Component}}
+\begin{DoxyCompactList}\small\item\em Structure representing a player component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct___component}{\+\_\+\+Component}} \mbox{\hyperlink{_component_8h_a0c1de350b13167ef4cc600b05051a97b}{Component}}
+\begin{DoxyCompactList}\small\item\em Structure representing a component. \end{DoxyCompactList}\item 
+typedef struct \mbox{\hyperlink{struct___player_component}{\+\_\+\+Player\+Component}} \mbox{\hyperlink{_component_8h_ae3963143aedf5ade35e2e29eb9f4ca94}{Player\+Component}}
+\begin{DoxyCompactList}\small\item\em Structure representing a player component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0}{Component\+Type}} \{ \newline
+\mbox{\hyperlink{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0ad4f06f3feea8892f48bd311ad076f519}{COMPONENT\+\_\+\+RENDERABLE}}
+, \mbox{\hyperlink{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0aada375d253f4a5bcd43c7aab26e069db}{COMPONENT\+\_\+\+ANIMATION}}
+, \mbox{\hyperlink{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0a9df82abbcf32267068ea65aa958e6d77}{COMPONENT\+\_\+\+ANIMATOR}}
+, \mbox{\hyperlink{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0abb48118ff6812774ece52569a227b539}{COMPONENT\+\_\+\+COLLIDER}}
+, \newline
+\mbox{\hyperlink{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0a5164d6993347c8e1991f5fdbb0597d66}{COMPONENT\+\_\+\+LIGHT}}
+, \mbox{\hyperlink{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0aa61dc40a53dc72fa744a5e4d6e6bd8cc}{COMPONENT\+\_\+\+ATTACHMENT}}
+, \mbox{\hyperlink{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0ac7f143b8243c6759b486ea6c25105caf}{COMPONENT\+\_\+\+RIGIDBODY}}
+, \mbox{\hyperlink{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0a66ba433d6006e6b356e22a18e203d252}{COMPONENT\+\_\+\+DUNGEON}}
+, \newline
+\mbox{\hyperlink{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0ac41b7ff82ab09d798088ad45710992a7}{COMPONENT\+\_\+\+HEALTH}}
+, \mbox{\hyperlink{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0a78f292e68df49403e961c125ff4f02d9}{COMPONENT\+\_\+\+DAMAGE}}
+, \mbox{\hyperlink{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0ac7b658a36bcbc788d7988e9f3a476f95}{COMPONENT\+\_\+\+ENEMY}}
+, \mbox{\hyperlink{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0ac67a04c281a1135f4e01c7b6b5ae2f8b}{COMPONENT\+\_\+\+PLAYER}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enum representing the type of a component. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_component_8h_a112f2d2a9fe5e0d89e2b803c19849783}{Free\+Attachement\+Component}} (\mbox{\hyperlink{struct_attachment_component}{Attachment\+Component}} $\ast$\mbox{\hyperlink{struct_attachment_component}{Attachment\+Component}})
+\begin{DoxyCompactList}\small\item\em Free the attachment component. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_component_8h_a4ebd1f63014b429ead47b5bba39d431b}{Free\+Rigid\+Body}} (\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$rb)
+\begin{DoxyCompactList}\small\item\em Free the rigid body. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Component header file. 
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_component_8h_a0c1de350b13167ef4cc600b05051a97b}\label{_component_8h_a0c1de350b13167ef4cc600b05051a97b}} 
+\index{Component.h@{Component.h}!Component@{Component}}
+\index{Component@{Component}!Component.h@{Component.h}}
+\doxysubsubsection{\texorpdfstring{Component}{Component}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct___component}{\+\_\+\+Component}} \mbox{\hyperlink{_component_8h_a0c1de350b13167ef4cc600b05051a97b}{Component}}}
+
+
+
+Structure representing a component. 
+
+This structure represents a component. \mbox{\Hypertarget{_component_8h_ae3963143aedf5ade35e2e29eb9f4ca94}\label{_component_8h_ae3963143aedf5ade35e2e29eb9f4ca94}} 
+\index{Component.h@{Component.h}!PlayerComponent@{PlayerComponent}}
+\index{PlayerComponent@{PlayerComponent}!Component.h@{Component.h}}
+\doxysubsubsection{\texorpdfstring{PlayerComponent}{PlayerComponent}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct___player_component}{\+\_\+\+Player\+Component}} \mbox{\hyperlink{_component_8h_ae3963143aedf5ade35e2e29eb9f4ca94}{Player\+Component}}}
+
+
+
+Structure representing a player component. 
+
+This structure represents a player component. 
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0}\label{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0}} 
+\index{Component.h@{Component.h}!ComponentType@{ComponentType}}
+\index{ComponentType@{ComponentType}!Component.h@{Component.h}}
+\doxysubsubsection{\texorpdfstring{ComponentType}{ComponentType}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0}{Component\+Type}}}
+
+
+
+Enum representing the type of a component. 
+
+This enum represents the type of a component. \begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMPONENT\_RENDERABLE@{COMPONENT\_RENDERABLE}!Component.h@{Component.h}}\index{Component.h@{Component.h}!COMPONENT\_RENDERABLE@{COMPONENT\_RENDERABLE}}}\mbox{\Hypertarget{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0ad4f06f3feea8892f48bd311ad076f519}\label{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0ad4f06f3feea8892f48bd311ad076f519}} 
+COMPONENT\+\_\+\+RENDERABLE&Renderable component \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMPONENT\_ANIMATION@{COMPONENT\_ANIMATION}!Component.h@{Component.h}}\index{Component.h@{Component.h}!COMPONENT\_ANIMATION@{COMPONENT\_ANIMATION}}}\mbox{\Hypertarget{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0aada375d253f4a5bcd43c7aab26e069db}\label{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0aada375d253f4a5bcd43c7aab26e069db}} 
+COMPONENT\+\_\+\+ANIMATION&\mbox{\hyperlink{struct_animation}{Animation}} component \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMPONENT\_ANIMATOR@{COMPONENT\_ANIMATOR}!Component.h@{Component.h}}\index{Component.h@{Component.h}!COMPONENT\_ANIMATOR@{COMPONENT\_ANIMATOR}}}\mbox{\Hypertarget{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0a9df82abbcf32267068ea65aa958e6d77}\label{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0a9df82abbcf32267068ea65aa958e6d77}} 
+COMPONENT\+\_\+\+ANIMATOR&Animator component \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMPONENT\_COLLIDER@{COMPONENT\_COLLIDER}!Component.h@{Component.h}}\index{Component.h@{Component.h}!COMPONENT\_COLLIDER@{COMPONENT\_COLLIDER}}}\mbox{\Hypertarget{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0abb48118ff6812774ece52569a227b539}\label{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0abb48118ff6812774ece52569a227b539}} 
+COMPONENT\+\_\+\+COLLIDER&Collider component \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMPONENT\_LIGHT@{COMPONENT\_LIGHT}!Component.h@{Component.h}}\index{Component.h@{Component.h}!COMPONENT\_LIGHT@{COMPONENT\_LIGHT}}}\mbox{\Hypertarget{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0a5164d6993347c8e1991f5fdbb0597d66}\label{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0a5164d6993347c8e1991f5fdbb0597d66}} 
+COMPONENT\+\_\+\+LIGHT&Light component \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMPONENT\_ATTACHMENT@{COMPONENT\_ATTACHMENT}!Component.h@{Component.h}}\index{Component.h@{Component.h}!COMPONENT\_ATTACHMENT@{COMPONENT\_ATTACHMENT}}}\mbox{\Hypertarget{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0aa61dc40a53dc72fa744a5e4d6e6bd8cc}\label{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0aa61dc40a53dc72fa744a5e4d6e6bd8cc}} 
+COMPONENT\+\_\+\+ATTACHMENT&Attachment component \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMPONENT\_RIGIDBODY@{COMPONENT\_RIGIDBODY}!Component.h@{Component.h}}\index{Component.h@{Component.h}!COMPONENT\_RIGIDBODY@{COMPONENT\_RIGIDBODY}}}\mbox{\Hypertarget{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0ac7f143b8243c6759b486ea6c25105caf}\label{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0ac7f143b8243c6759b486ea6c25105caf}} 
+COMPONENT\+\_\+\+RIGIDBODY&\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} component \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMPONENT\_DUNGEON@{COMPONENT\_DUNGEON}!Component.h@{Component.h}}\index{Component.h@{Component.h}!COMPONENT\_DUNGEON@{COMPONENT\_DUNGEON}}}\mbox{\Hypertarget{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0a66ba433d6006e6b356e22a18e203d252}\label{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0a66ba433d6006e6b356e22a18e203d252}} 
+COMPONENT\+\_\+\+DUNGEON&Dungeon component \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMPONENT\_HEALTH@{COMPONENT\_HEALTH}!Component.h@{Component.h}}\index{Component.h@{Component.h}!COMPONENT\_HEALTH@{COMPONENT\_HEALTH}}}\mbox{\Hypertarget{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0ac41b7ff82ab09d798088ad45710992a7}\label{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0ac41b7ff82ab09d798088ad45710992a7}} 
+COMPONENT\+\_\+\+HEALTH&Health component \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMPONENT\_DAMAGE@{COMPONENT\_DAMAGE}!Component.h@{Component.h}}\index{Component.h@{Component.h}!COMPONENT\_DAMAGE@{COMPONENT\_DAMAGE}}}\mbox{\Hypertarget{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0a78f292e68df49403e961c125ff4f02d9}\label{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0a78f292e68df49403e961c125ff4f02d9}} 
+COMPONENT\+\_\+\+DAMAGE&Damage component \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMPONENT\_ENEMY@{COMPONENT\_ENEMY}!Component.h@{Component.h}}\index{Component.h@{Component.h}!COMPONENT\_ENEMY@{COMPONENT\_ENEMY}}}\mbox{\Hypertarget{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0ac7b658a36bcbc788d7988e9f3a476f95}\label{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0ac7b658a36bcbc788d7988e9f3a476f95}} 
+COMPONENT\+\_\+\+ENEMY&Enemy component \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{COMPONENT\_PLAYER@{COMPONENT\_PLAYER}!Component.h@{Component.h}}\index{Component.h@{Component.h}!COMPONENT\_PLAYER@{COMPONENT\_PLAYER}}}\mbox{\Hypertarget{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0ac67a04c281a1135f4e01c7b6b5ae2f8b}\label{_component_8h_a81f78fc173dedefe5a049c0aa3eed2c0ac67a04c281a1135f4e01c7b6b5ae2f8b}} 
+COMPONENT\+\_\+\+PLAYER&Player component \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_component_8h_a112f2d2a9fe5e0d89e2b803c19849783}\label{_component_8h_a112f2d2a9fe5e0d89e2b803c19849783}} 
+\index{Component.h@{Component.h}!FreeAttachementComponent@{FreeAttachementComponent}}
+\index{FreeAttachementComponent@{FreeAttachementComponent}!Component.h@{Component.h}}
+\doxysubsubsection{\texorpdfstring{FreeAttachementComponent()}{FreeAttachementComponent()}}
+{\footnotesize\ttfamily void Free\+Attachement\+Component (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_attachment_component}{Attachment\+Component}} $\ast$}]{Attachment\+Component }\end{DoxyParamCaption})}
+
+
+
+Free the attachment component. 
+
+This function frees the attachment component.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{struct_attachment_component}{Attachment\+Component}}} & The attachment component to free. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_component_8h_a4ebd1f63014b429ead47b5bba39d431b}\label{_component_8h_a4ebd1f63014b429ead47b5bba39d431b}} 
+\index{Component.h@{Component.h}!FreeRigidBody@{FreeRigidBody}}
+\index{FreeRigidBody@{FreeRigidBody}!Component.h@{Component.h}}
+\doxysubsubsection{\texorpdfstring{FreeRigidBody()}{FreeRigidBody()}}
+{\footnotesize\ttfamily void Free\+Rigid\+Body (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}} $\ast$}]{rb }\end{DoxyParamCaption})}
+
+
+
+Free the rigid body. 
+
+This function frees the rigid body.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \mbox{\hyperlink{struct_rigid_body}{Rigid\+Body}}} & The rigid body to free. \\
+\hline
+\end{DoxyParams}

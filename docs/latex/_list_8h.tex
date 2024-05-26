@@ -1,0 +1,183 @@
+\hypertarget{_list_8h}{}\doxysection{include/\+List.h File Reference}
+\label{_list_8h}\index{include/List.h@{include/List.h}}
+
+
+Header file for the list component.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}stdio.\+h\char`\"{}}\newline
+Include dependency graph for List.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=202pt]{_list_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_list_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___list}{\+\_\+\+List}}
+\begin{DoxyCompactList}\small\item\em Struct representing a list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct___list}{\+\_\+\+List}} \mbox{\hyperlink{_list_8h_af415aadeab887feeda9d2e42371a40b0}{List}}
+\begin{DoxyCompactList}\small\item\em Struct representing a list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_list_8h_af415aadeab887feeda9d2e42371a40b0}{List}} $\ast$ \mbox{\hyperlink{_list_8h_adb8513a6a0ceed270ce7503992efa5c1}{create\+\_\+list}} (int val, \mbox{\hyperlink{_list_8h_af415aadeab887feeda9d2e42371a40b0}{List}} $\ast$next)
+\begin{DoxyCompactList}\small\item\em Function to create a list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_list_8h_a575af8957695d8955bbfa1177c224582}{free\+\_\+list}} (\mbox{\hyperlink{_list_8h_af415aadeab887feeda9d2e42371a40b0}{List}} $\ast$Liste)
+\begin{DoxyCompactList}\small\item\em Function to free a list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_list_8h_a049cc720f9a83061aabc0ba54d52d967}{printL}} (\mbox{\hyperlink{_list_8h_af415aadeab887feeda9d2e42371a40b0}{List}} $\ast$L)
+\begin{DoxyCompactList}\small\item\em Function to print a list. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{_list_8h_a86d5d52dc56d8f55814ca44913b57f43}{len}} (\mbox{\hyperlink{_list_8h_af415aadeab887feeda9d2e42371a40b0}{List}} $\ast$L)
+\begin{DoxyCompactList}\small\item\em Function to get the length of a list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_list_8h_a78817069427ea6a35185a1654d5f41d7}{append}} (\mbox{\hyperlink{_list_8h_af415aadeab887feeda9d2e42371a40b0}{List}} $\ast$$\ast$head, int value)
+\begin{DoxyCompactList}\small\item\em Function to append a value to a list. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_list_8h_a4d7ecf3a39373b087f5cf35976e9c360}{remove\+Last}} (\mbox{\hyperlink{_list_8h_af415aadeab887feeda9d2e42371a40b0}{List}} $\ast$$\ast$head)
+\begin{DoxyCompactList}\small\item\em Function to remove the last element of a list. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the list component. 
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_list_8h_af415aadeab887feeda9d2e42371a40b0}\label{_list_8h_af415aadeab887feeda9d2e42371a40b0}} 
+\index{List.h@{List.h}!List@{List}}
+\index{List@{List}!List.h@{List.h}}
+\doxysubsubsection{\texorpdfstring{List}{List}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct___list}{\+\_\+\+List}} \mbox{\hyperlink{_list_8h_af415aadeab887feeda9d2e42371a40b0}{List}}}
+
+
+
+Struct representing a list. 
+
+This struct represents a list. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_list_8h_a78817069427ea6a35185a1654d5f41d7}\label{_list_8h_a78817069427ea6a35185a1654d5f41d7}} 
+\index{List.h@{List.h}!append@{append}}
+\index{append@{append}!List.h@{List.h}}
+\doxysubsubsection{\texorpdfstring{append()}{append()}}
+{\footnotesize\ttfamily void append (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_list_8h_af415aadeab887feeda9d2e42371a40b0}{List}} $\ast$$\ast$}]{head,  }\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Function to append a value to a list. 
+
+This function appends a value to a list.
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & Pointer to the head of the list. \\
+\hline
+{\em value} & Value to append. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_list_8h_adb8513a6a0ceed270ce7503992efa5c1}\label{_list_8h_adb8513a6a0ceed270ce7503992efa5c1}} 
+\index{List.h@{List.h}!create\_list@{create\_list}}
+\index{create\_list@{create\_list}!List.h@{List.h}}
+\doxysubsubsection{\texorpdfstring{create\_list()}{create\_list()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_list_8h_af415aadeab887feeda9d2e42371a40b0}{List}}$\ast$ create\+\_\+list (\begin{DoxyParamCaption}\item[{int}]{val,  }\item[{\mbox{\hyperlink{_list_8h_af415aadeab887feeda9d2e42371a40b0}{List}} $\ast$}]{next }\end{DoxyParamCaption})}
+
+
+
+Function to create a list. 
+
+This function creates a list.
+
+
+\begin{DoxyParams}{Parameters}
+{\em val} & Value of the list. \\
+\hline
+{\em next} & Pointer to the next element of the list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the list. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_list_8h_a575af8957695d8955bbfa1177c224582}\label{_list_8h_a575af8957695d8955bbfa1177c224582}} 
+\index{List.h@{List.h}!free\_list@{free\_list}}
+\index{free\_list@{free\_list}!List.h@{List.h}}
+\doxysubsubsection{\texorpdfstring{free\_list()}{free\_list()}}
+{\footnotesize\ttfamily void free\+\_\+list (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_list_8h_af415aadeab887feeda9d2e42371a40b0}{List}} $\ast$}]{Liste }\end{DoxyParamCaption})}
+
+
+
+Function to free a list. 
+
+This function frees a list.
+
+
+\begin{DoxyParams}{Parameters}
+{\em Liste} & Pointer to the list. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_list_8h_a86d5d52dc56d8f55814ca44913b57f43}\label{_list_8h_a86d5d52dc56d8f55814ca44913b57f43}} 
+\index{List.h@{List.h}!len@{len}}
+\index{len@{len}!List.h@{List.h}}
+\doxysubsubsection{\texorpdfstring{len()}{len()}}
+{\footnotesize\ttfamily int len (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_list_8h_af415aadeab887feeda9d2e42371a40b0}{List}} $\ast$}]{L }\end{DoxyParamCaption})}
+
+
+
+Function to get the length of a list. 
+
+This function gets the length of a list.
+
+
+\begin{DoxyParams}{Parameters}
+{\em L} & Pointer to the list. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Length of the list. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_list_8h_a049cc720f9a83061aabc0ba54d52d967}\label{_list_8h_a049cc720f9a83061aabc0ba54d52d967}} 
+\index{List.h@{List.h}!printL@{printL}}
+\index{printL@{printL}!List.h@{List.h}}
+\doxysubsubsection{\texorpdfstring{printL()}{printL()}}
+{\footnotesize\ttfamily void printL (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_list_8h_af415aadeab887feeda9d2e42371a40b0}{List}} $\ast$}]{L }\end{DoxyParamCaption})}
+
+
+
+Function to print a list. 
+
+This function prints a list.
+
+
+\begin{DoxyParams}{Parameters}
+{\em L} & Pointer to the list. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_list_8h_a4d7ecf3a39373b087f5cf35976e9c360}\label{_list_8h_a4d7ecf3a39373b087f5cf35976e9c360}} 
+\index{List.h@{List.h}!removeLast@{removeLast}}
+\index{removeLast@{removeLast}!List.h@{List.h}}
+\doxysubsubsection{\texorpdfstring{removeLast()}{removeLast()}}
+{\footnotesize\ttfamily void remove\+Last (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_list_8h_af415aadeab887feeda9d2e42371a40b0}{List}} $\ast$$\ast$}]{head }\end{DoxyParamCaption})}
+
+
+
+Function to remove the last element of a list. 
+
+This function removes the last element of a list.
+
+
+\begin{DoxyParams}{Parameters}
+{\em head} & Pointer to the head of the list. \\
+\hline
+\end{DoxyParams}

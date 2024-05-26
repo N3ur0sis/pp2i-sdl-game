@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('struct_attachment_component.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,6 +59,7 @@ $(document).ready(function(){initNavTree('struct_attachment_component.html','');
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
@@ -87,56 +67,145 @@ $(document).ready(function(){initNavTree('struct_attachment_component.html','');
 <div class="title">AttachmentComponent Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Structure representing an attachment component.  
+ <a href="struct_attachment_component.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_component_8h_source.html">Component.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for AttachmentComponent:</div>
 <div class="dyncontent">
 <div class="center"><img src="struct_attachment_component__coll__graph.png" border="0" usemap="#a_attachment_component_coll__map" alt="Collaboration graph"/></div>
 <map name="a_attachment_component_coll__map" id="a_attachment_component_coll__map">
-<area shape="rect" title=" " alt="" coords="41,363,214,389"/>
-<area shape="rect" href="struct___animator.html" title=" " alt="" coords="12,273,101,300"/>
-<area shape="rect" href="struct_animation.html" title=" " alt="" coords="5,184,95,211"/>
+<area shape="rect" title="Structure representing an attachment component." alt="" coords="41,363,214,389"/>
+<area shape="rect" href="struct___animator.html" title="Structure representing an animator." alt="" coords="12,273,101,300"/>
+<area shape="rect" href="struct_animation.html" title="Structure representing a node in the skeleton." alt="" coords="5,184,95,211"/>
 <area shape="rect" href="struct_node.html" title=" " alt="" coords="9,95,65,121"/>
-<area shape="rect" href="struct___data.html" title=" " alt="" coords="112,5,172,32"/>
+<area shape="rect" href="struct___data.html" title="Structure representing a data." alt="" coords="112,5,172,32"/>
 <area shape="rect" href="struct___vector.html" title=" " alt="" coords="171,95,241,121"/>
 <area shape="rect" href="struct___model.html" title=" " alt="" coords="167,273,237,300"/>
 <area shape="rect" href="struct___texture.html" title=" " alt="" coords="163,184,241,211"/>
-<area shape="rect" href="struct___mesh.html" title=" " alt="" coords="269,184,333,211"/>
-<area shape="rect" href="struct___vertex.html" title=" " alt="" coords="265,95,336,121"/>
+<area shape="rect" href="struct___mesh.html" title="A Mesh class that hold data parsed from a file and converted ot OpenGL format." alt="" coords="269,184,333,211"/>
+<area shape="rect" href="struct___vertex.html" title="A Custom vertex struct we pass to OpenGL." alt="" coords="265,95,336,121"/>
 </map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a4076915344191ee0afc43213c5f9c420"><td class="memItemLeft" align="right" valign="top"><a id="a4076915344191ee0afc43213c5f9c420"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>boneIndex</b></td></tr>
+<tr class="memitem:a4076915344191ee0afc43213c5f9c420"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_attachment_component.html#a4076915344191ee0afc43213c5f9c420">boneIndex</a></td></tr>
 <tr class="separator:a4076915344191ee0afc43213c5f9c420"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3207d761f88057b57052276900e1b7bf"><td class="memItemLeft" align="right" valign="top"><a id="a3207d761f88057b57052276900e1b7bf"></a>
-<a class="el" href="struct___model.html">Model</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>parentModel</b></td></tr>
+<tr class="memitem:a3207d761f88057b57052276900e1b7bf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct___model.html">Model</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_attachment_component.html#a3207d761f88057b57052276900e1b7bf">parentModel</a></td></tr>
 <tr class="separator:a3207d761f88057b57052276900e1b7bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59b8e7228fab7a54caf3225619cb4e1b"><td class="memItemLeft" align="right" valign="top"><a id="a59b8e7228fab7a54caf3225619cb4e1b"></a>
-<a class="el" href="struct___animator.html">Animator</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>parentAnimator</b></td></tr>
+<tr class="memitem:a59b8e7228fab7a54caf3225619cb4e1b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_animator_8h.html#a1bbcffa3fb13b0aa9d5c9cc90b5a307f">Animator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_attachment_component.html#a59b8e7228fab7a54caf3225619cb4e1b">parentAnimator</a></td></tr>
 <tr class="separator:a59b8e7228fab7a54caf3225619cb4e1b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aac3bfb24f0bc5f27fb04f48e7cc29429"><td class="memItemLeft" align="right" valign="top"><a id="aac3bfb24f0bc5f27fb04f48e7cc29429"></a>
-vec3&#160;</td><td class="memItemRight" valign="bottom"><b>offsetPosition</b></td></tr>
+<tr class="memitem:aac3bfb24f0bc5f27fb04f48e7cc29429"><td class="memItemLeft" align="right" valign="top">vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_attachment_component.html#aac3bfb24f0bc5f27fb04f48e7cc29429">offsetPosition</a></td></tr>
 <tr class="separator:aac3bfb24f0bc5f27fb04f48e7cc29429"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7388b200bc2c3eeebb1b652dc742f1b1"><td class="memItemLeft" align="right" valign="top"><a id="a7388b200bc2c3eeebb1b652dc742f1b1"></a>
-vec3&#160;</td><td class="memItemRight" valign="bottom"><b>offsetRotation</b></td></tr>
+<tr class="memitem:a7388b200bc2c3eeebb1b652dc742f1b1"><td class="memItemLeft" align="right" valign="top">vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_attachment_component.html#a7388b200bc2c3eeebb1b652dc742f1b1">offsetRotation</a></td></tr>
 <tr class="separator:a7388b200bc2c3eeebb1b652dc742f1b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f874ebb5be4d83850a59cafb779506e"><td class="memItemLeft" align="right" valign="top"><a id="a1f874ebb5be4d83850a59cafb779506e"></a>
-vec3&#160;</td><td class="memItemRight" valign="bottom"><b>offsetScale</b></td></tr>
+<tr class="memitem:a1f874ebb5be4d83850a59cafb779506e"><td class="memItemLeft" align="right" valign="top">vec3&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_attachment_component.html#a1f874ebb5be4d83850a59cafb779506e">offsetScale</a></td></tr>
 <tr class="separator:a1f874ebb5be4d83850a59cafb779506e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Structure representing an attachment component. </p>
+<p>This structure represents an attachment component. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a id="a4076915344191ee0afc43213c5f9c420"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4076915344191ee0afc43213c5f9c420">&#9670;&nbsp;</a></span>boneIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int boneIndex</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Index of the bone to which the model is attached </p>
+
+</div>
+</div>
+<a id="aac3bfb24f0bc5f27fb04f48e7cc29429"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aac3bfb24f0bc5f27fb04f48e7cc29429">&#9670;&nbsp;</a></span>offsetPosition</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vec3 offsetPosition</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Offset position relative to the bone </p>
+
+</div>
+</div>
+<a id="a7388b200bc2c3eeebb1b652dc742f1b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a7388b200bc2c3eeebb1b652dc742f1b1">&#9670;&nbsp;</a></span>offsetRotation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vec3 offsetRotation</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Offset rotation relative to the bone </p>
+
+</div>
+</div>
+<a id="a1f874ebb5be4d83850a59cafb779506e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1f874ebb5be4d83850a59cafb779506e">&#9670;&nbsp;</a></span>offsetScale</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">vec3 offsetScale</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Offset scale relative to the bone </p>
+
+</div>
+</div>
+<a id="a59b8e7228fab7a54caf3225619cb4e1b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a59b8e7228fab7a54caf3225619cb4e1b">&#9670;&nbsp;</a></span>parentAnimator</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_animator_8h.html#a1bbcffa3fb13b0aa9d5c9cc90b5a307f">Animator</a>* parentAnimator</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Parent animator </p>
+
+</div>
+</div>
+<a id="a3207d761f88057b57052276900e1b7bf"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3207d761f88057b57052276900e1b7bf">&#9670;&nbsp;</a></span>parentModel</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct___model.html">Model</a>* parentModel</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Parent model </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/<a class="el" href="_component_8h_source.html">Component.h</a></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="struct_attachment_component.html">AttachmentComponent</a></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

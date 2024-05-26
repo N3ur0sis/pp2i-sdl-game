@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_inventory_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,47 +59,64 @@ $(document).ready(function(){initNavTree('_inventory_8h_source.html',''); initRe
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Inventory.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;Objects.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;Renderer.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">// #include &lt;Controls.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160; </div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno"><a class="line" href="struct___inventory.html">    8</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___inventory.html">_Inventory</a> {</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;    <a class="code" href="struct___object.html">Object</a>** objects;</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    <span class="keywordtype">int</span> size;</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;    <span class="keywordtype">int</span> capacity;</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;    <span class="keywordtype">bool</span> isOpened;</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;} <a class="code" href="struct___inventory.html">Inventory</a>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;<a class="code" href="struct___inventory.html">Inventory</a>* InventoryCreate(<span class="keywordtype">int</span> capacity);</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;<span class="keywordtype">void</span> InventoryAddObject(<a class="code" href="struct___inventory.html">Inventory</a>* inventory, <a class="code" href="struct___object.html">Object</a>* <span class="keywordtype">object</span>);</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">void</span> InventoryRemoveObject(<a class="code" href="struct___inventory.html">Inventory</a>* inventory, <a class="code" href="struct___object.html">Object</a> <span class="keywordtype">object</span>);</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;<span class="keywordtype">void</span> InventoryPrint(<a class="code" href="struct___inventory.html">Inventory</a>* inventory, <span class="keywordtype">float</span> window_width, <span class="keywordtype">float</span> window_height, GLuint shader, <span class="keywordtype">float</span> offset_x, <span class="keywordtype">float</span> offset_y);</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<span class="keywordtype">int</span> InventoryPrintTrade(<a class="code" href="struct___inventory.html">Inventory</a>* inventory, <span class="keywordtype">float</span> window_width, <span class="keywordtype">float</span> window_height, GLuint shader, <span class="keywordtype">float</span> offset_x, <span class="keywordtype">float</span> offset_y, <span class="keywordtype">int</span> mouse_x, <span class="keywordtype">int</span> mouse_y);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">void</span> freeInventory(<a class="code" href="struct___inventory.html">Inventory</a>* inventory);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">bool</span> MouseOnCase(<span class="keywordtype">int</span> x_square, <span class="keywordtype">int</span> y_square, <span class="keywordtype">int</span> mouse_x, <span class="keywordtype">int</span> mouse_y);</div>
-<div class="ttc" id="astruct___inventory_html"><div class="ttname"><a href="struct___inventory.html">_Inventory</a></div><div class="ttdef"><b>Definition:</b> Inventory.h:8</div></div>
+<a href="_inventory_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;Objects.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;Renderer.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="comment">// #include &lt;Controls.h&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160; </div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160; </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct___inventory.html">   18</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___inventory.html">_Inventory</a> {</div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct___inventory.html#a7a74f1687ae74dbee7e7787c3deff1b8">   19</a></span>&#160;    <a class="code" href="struct___object.html">Object</a>** <a class="code" href="struct___inventory.html#a7a74f1687ae74dbee7e7787c3deff1b8">objects</a>;       </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="struct___inventory.html#a439227feff9d7f55384e8780cfc2eb82">   20</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct___inventory.html#a439227feff9d7f55384e8780cfc2eb82">size</a>;               </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="struct___inventory.html#adbe66a087ac3fd4a5b0566f64ca2d12b">   21</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct___inventory.html#adbe66a087ac3fd4a5b0566f64ca2d12b">capacity</a>;           </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct___inventory.html#aa1332d7c42ebc20f5228cf4c8f3bff10">   22</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct___inventory.html#aa1332d7c42ebc20f5228cf4c8f3bff10">isOpened</a>;          </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="_inventory_8h.html#a2253bf64ac4ce6a9c1d6f39c0b0d32a3">   23</a></span>&#160;} <a class="code" href="_inventory_8h.html#a2253bf64ac4ce6a9c1d6f39c0b0d32a3">Inventory</a>;</div>
+<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<a class="code" href="struct___inventory.html">Inventory</a>* <a class="code" href="_inventory_8h.html#a2da02d88df02b12e3291c1cfed3cf6a6">InventoryCreate</a>(<span class="keywordtype">int</span> capacity);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_inventory_8h.html#af624f04ed7939611a4f3077a9a9ed3ed">InventoryAddObjects</a>(<span class="keywordtype">int</span> nb, <a class="code" href="struct___inventory.html">Inventory</a>* inventory, <a class="code" href="struct___object.html">Object</a>* <span class="keywordtype">object</span>);</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="_inventory_8h.html#a1cffe42a22158a26b032ed3cb46d7e8f">InventoryRemoveObject</a>(<a class="code" href="struct___inventory.html">Inventory</a>* inventory, <span class="keywordtype">int</span> <span class="keywordtype">id</span>);</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160; </div>
+<div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_inventory_8h.html#accee10470969c8f5fa8536b23aeeda40">InventoryPrint</a>(<a class="code" href="struct___inventory.html">Inventory</a>* inventory, <span class="keywordtype">float</span> window_width, <span class="keywordtype">float</span> window_height, GLuint shader, <span class="keywordtype">float</span> offset_x, <span class="keywordtype">float</span> offset_y);</div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160; </div>
+<div class="line"><a name="l00087"></a><span class="lineno">   87</span>&#160;<span class="keywordtype">int</span> <a class="code" href="_inventory_8h.html#a41232017109b6a261c02abbd3388dff1">InventoryPrintTrade</a>(<a class="code" href="struct___inventory.html">Inventory</a>* inventory, <span class="keywordtype">float</span> window_width, <span class="keywordtype">float</span> window_height, GLuint shader, <span class="keywordtype">float</span> offset_x, <span class="keywordtype">float</span> offset_y, <span class="keywordtype">int</span> mouse_x, <span class="keywordtype">int</span> mouse_y, <span class="keywordtype">bool</span>* hasClicked, <span class="keywordtype">bool</span> isClickingMarchand);</div>
+<div class="line"><a name="l00088"></a><span class="lineno">   88</span>&#160; </div>
+<div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_inventory_8h.html#a7dadfd30e12f99e7b07b47fcad5c18f4">freeInventory</a>(<a class="code" href="struct___inventory.html">Inventory</a>* inventory);</div>
+<div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="_inventory_8h.html#a417e5d6ff87e154cd332499736334424">MouseOnCase</a>(<span class="keywordtype">int</span> x_square, <span class="keywordtype">int</span> y_square, <span class="keywordtype">int</span> mouse_x, <span class="keywordtype">int</span> mouse_y);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00118"></a><span class="lineno">  118</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_inventory_8h.html#a4fc7690d29cacb6160e0ba9b32a6de0d">printInventorySimple</a>(<a class="code" href="struct___inventory.html">Inventory</a>* inventory);</div>
+<div class="ttc" id="a_inventory_8h_html_a1cffe42a22158a26b032ed3cb46d7e8f"><div class="ttname"><a href="_inventory_8h.html#a1cffe42a22158a26b032ed3cb46d7e8f">InventoryRemoveObject</a></div><div class="ttdeci">bool InventoryRemoveObject(Inventory *inventory, int id)</div><div class="ttdoc">Function to remove an object from the inventory.</div><div class="ttdef"><b>Definition:</b> Inventory.c:27</div></div>
+<div class="ttc" id="a_inventory_8h_html_a2253bf64ac4ce6a9c1d6f39c0b0d32a3"><div class="ttname"><a href="_inventory_8h.html#a2253bf64ac4ce6a9c1d6f39c0b0d32a3">Inventory</a></div><div class="ttdeci">struct _Inventory Inventory</div><div class="ttdoc">Struct representing an inventory.</div></div>
+<div class="ttc" id="a_inventory_8h_html_a2da02d88df02b12e3291c1cfed3cf6a6"><div class="ttname"><a href="_inventory_8h.html#a2da02d88df02b12e3291c1cfed3cf6a6">InventoryCreate</a></div><div class="ttdeci">Inventory * InventoryCreate(int capacity)</div><div class="ttdoc">Function to create an inventory.</div><div class="ttdef"><b>Definition:</b> Inventory.c:5</div></div>
+<div class="ttc" id="a_inventory_8h_html_a41232017109b6a261c02abbd3388dff1"><div class="ttname"><a href="_inventory_8h.html#a41232017109b6a261c02abbd3388dff1">InventoryPrintTrade</a></div><div class="ttdeci">int InventoryPrintTrade(Inventory *inventory, float window_width, float window_height, GLuint shader, float offset_x, float offset_y, int mouse_x, int mouse_y, bool *hasClicked, bool isClickingMarchand)</div><div class="ttdoc">Function to print the inventory of the trade.</div><div class="ttdef"><b>Definition:</b> Inventory.c:97</div></div>
+<div class="ttc" id="a_inventory_8h_html_a417e5d6ff87e154cd332499736334424"><div class="ttname"><a href="_inventory_8h.html#a417e5d6ff87e154cd332499736334424">MouseOnCase</a></div><div class="ttdeci">bool MouseOnCase(int x_square, int y_square, int mouse_x, int mouse_y)</div><div class="ttdoc">Function to check if the mouse is on a case.</div><div class="ttdef"><b>Definition:</b> Inventory.c:140</div></div>
+<div class="ttc" id="a_inventory_8h_html_a4fc7690d29cacb6160e0ba9b32a6de0d"><div class="ttname"><a href="_inventory_8h.html#a4fc7690d29cacb6160e0ba9b32a6de0d">printInventorySimple</a></div><div class="ttdeci">void printInventorySimple(Inventory *inventory)</div><div class="ttdoc">Function to print the inventory.</div><div class="ttdef"><b>Definition:</b> Inventory.c:149</div></div>
+<div class="ttc" id="a_inventory_8h_html_a7dadfd30e12f99e7b07b47fcad5c18f4"><div class="ttname"><a href="_inventory_8h.html#a7dadfd30e12f99e7b07b47fcad5c18f4">freeInventory</a></div><div class="ttdeci">void freeInventory(Inventory *inventory)</div><div class="ttdoc">Function to free the inventory.</div><div class="ttdef"><b>Definition:</b> Inventory.c:54</div></div>
+<div class="ttc" id="a_inventory_8h_html_accee10470969c8f5fa8536b23aeeda40"><div class="ttname"><a href="_inventory_8h.html#accee10470969c8f5fa8536b23aeeda40">InventoryPrint</a></div><div class="ttdeci">void InventoryPrint(Inventory *inventory, float window_width, float window_height, GLuint shader, float offset_x, float offset_y)</div><div class="ttdoc">Function to print the inventory.</div><div class="ttdef"><b>Definition:</b> Inventory.c:67</div></div>
+<div class="ttc" id="a_inventory_8h_html_af624f04ed7939611a4f3077a9a9ed3ed"><div class="ttname"><a href="_inventory_8h.html#af624f04ed7939611a4f3077a9a9ed3ed">InventoryAddObjects</a></div><div class="ttdeci">void InventoryAddObjects(int nb, Inventory *inventory, Object *object)</div><div class="ttdoc">Function to add an object to the inventory.</div><div class="ttdef"><b>Definition:</b> Inventory.c:16</div></div>
+<div class="ttc" id="astruct___inventory_html"><div class="ttname"><a href="struct___inventory.html">_Inventory</a></div><div class="ttdoc">Struct representing an inventory.</div><div class="ttdef"><b>Definition:</b> Inventory.h:18</div></div>
+<div class="ttc" id="astruct___inventory_html_a439227feff9d7f55384e8780cfc2eb82"><div class="ttname"><a href="struct___inventory.html#a439227feff9d7f55384e8780cfc2eb82">_Inventory::size</a></div><div class="ttdeci">int size</div><div class="ttdef"><b>Definition:</b> Inventory.h:20</div></div>
+<div class="ttc" id="astruct___inventory_html_a7a74f1687ae74dbee7e7787c3deff1b8"><div class="ttname"><a href="struct___inventory.html#a7a74f1687ae74dbee7e7787c3deff1b8">_Inventory::objects</a></div><div class="ttdeci">Object ** objects</div><div class="ttdef"><b>Definition:</b> Inventory.h:19</div></div>
+<div class="ttc" id="astruct___inventory_html_aa1332d7c42ebc20f5228cf4c8f3bff10"><div class="ttname"><a href="struct___inventory.html#aa1332d7c42ebc20f5228cf4c8f3bff10">_Inventory::isOpened</a></div><div class="ttdeci">bool isOpened</div><div class="ttdef"><b>Definition:</b> Inventory.h:22</div></div>
+<div class="ttc" id="astruct___inventory_html_adbe66a087ac3fd4a5b0566f64ca2d12b"><div class="ttname"><a href="struct___inventory.html#adbe66a087ac3fd4a5b0566f64ca2d12b">_Inventory::capacity</a></div><div class="ttdeci">int capacity</div><div class="ttdef"><b>Definition:</b> Inventory.h:21</div></div>
 <div class="ttc" id="astruct___object_html"><div class="ttname"><a href="struct___object.html">_Object</a></div><div class="ttdef"><b>Definition:</b> Objects.h:7</div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>Inventory.h</b></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

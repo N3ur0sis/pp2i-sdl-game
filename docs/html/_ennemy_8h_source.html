@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_ennemy_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,36 +59,50 @@ $(document).ready(function(){initNavTree('_ennemy_8h_source.html',''); initResiz
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Ennemy.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160; </div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;Model.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;Animator.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;Entity.h&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;Scene.h&gt;</span></div>
+<a href="_ennemy_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<a class="code" href="struct___entity.html">Entity</a> *create_golem(<a class="code" href="struct___scene.html">Scene</a>* scene,<span class="keywordtype">float</span> x,<span class="keywordtype">float</span> y,<span class="keywordtype">float</span> z,<span class="keywordtype">float</span> scale);</div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<a class="code" href="struct___entity.html">Entity</a>* create_golemBlue(<a class="code" href="struct___scene.html">Scene</a>* scene,<span class="keywordtype">float</span> x,<span class="keywordtype">float</span> y,<span class="keywordtype">float</span> z,<span class="keywordtype">float</span> scale);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<a class="code" href="struct___entity.html">Entity</a>* create_golemPurple(<a class="code" href="struct___scene.html">Scene</a>* scene,<span class="keywordtype">float</span> x,<span class="keywordtype">float</span> y,<span class="keywordtype">float</span> z,<span class="keywordtype">float</span> scale);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keywordtype">void</span> golemLogic(<a class="code" href="struct___scene.html">Scene</a>* scene,<a class="code" href="struct_game_state.html">GameState</a>* gameState,<a class="code" href="struct___entity.html">Entity</a>* golem,<a class="code" href="struct___entity.html">Entity</a>* player);</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;Model.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_animator_8h.html">Animator.h</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_entity_8h.html">Entity.h</a>&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;Scene.h&gt;</span></div>
 <div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<a class="code" href="struct___entity.html">Entity</a>* create_gobelin(<a class="code" href="struct___scene.html">Scene</a>* scene,<span class="keywordtype">float</span> x,<span class="keywordtype">float</span> y,<span class="keywordtype">float</span> z,<span class="keywordtype">float</span> scale);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<a class="code" href="struct___entity.html">Entity</a>* create_skeleton(<a class="code" href="struct___scene.html">Scene</a>* scene,<span class="keywordtype">float</span> x,<span class="keywordtype">float</span> y,<span class="keywordtype">float</span> z,<span class="keywordtype">float</span> scale);</div>
-<div class="ttc" id="astruct___entity_html"><div class="ttname"><a href="struct___entity.html">_Entity</a></div><div class="ttdef"><b>Definition:</b> Entity.h:7</div></div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<a class="code" href="struct___entity.html">Entity</a> *<a class="code" href="_ennemy_8h.html#a8335475d9ba17b935313f61bc2eeb9d4">create_golem</a>(<a class="code" href="struct___scene.html">Scene</a>* scene,<span class="keywordtype">float</span> x,<span class="keywordtype">float</span> y,<span class="keywordtype">float</span> z,<span class="keywordtype">float</span> scale);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<a class="code" href="struct___entity.html">Entity</a>* <a class="code" href="_ennemy_8h.html#a22660e87de9c5732972430ed490e339f">create_golemBlue</a>(<a class="code" href="struct___scene.html">Scene</a>* scene,<span class="keywordtype">float</span> x,<span class="keywordtype">float</span> y,<span class="keywordtype">float</span> z,<span class="keywordtype">float</span> scale);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<a class="code" href="struct___entity.html">Entity</a>* <a class="code" href="_ennemy_8h.html#a1ae9387a33d38641b5a12df1ebedb8ad">create_golemPurple</a>(<a class="code" href="struct___scene.html">Scene</a>* scene,<span class="keywordtype">float</span> x,<span class="keywordtype">float</span> y,<span class="keywordtype">float</span> z,<span class="keywordtype">float</span> scale);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00065"></a><span class="lineno">   65</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_ennemy_8h.html#a2de3683b7ea85c8bcaf4d4dec03cffdf">golemLogic</a>(<a class="code" href="struct___scene.html">Scene</a>* scene,<a class="code" href="struct_game_state.html">GameState</a>* gameState,<a class="code" href="struct___entity.html">Entity</a>* golem,<a class="code" href="struct___entity.html">Entity</a>* player);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<a class="code" href="struct___entity.html">Entity</a>* <a class="code" href="_ennemy_8h.html#acf500b1a396361c096ab9dc4975c1f74">create_gobelin</a>(<a class="code" href="struct___scene.html">Scene</a>* scene,<span class="keywordtype">float</span> x,<span class="keywordtype">float</span> y,<span class="keywordtype">float</span> z,<span class="keywordtype">float</span> scale);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;<a class="code" href="struct___entity.html">Entity</a>* <a class="code" href="_ennemy_8h.html#a47b4d9b5eb3dcda905fd9bf754e588aa">create_skeleton</a>(<a class="code" href="struct___scene.html">Scene</a>* scene,<span class="keywordtype">float</span> x,<span class="keywordtype">float</span> y,<span class="keywordtype">float</span> z,<span class="keywordtype">float</span> scale);</div>
+<div class="ttc" id="a_animator_8h_html"><div class="ttname"><a href="_animator_8h.html">Animator.h</a></div><div class="ttdoc">Animator header file.</div></div>
+<div class="ttc" id="a_ennemy_8h_html_a1ae9387a33d38641b5a12df1ebedb8ad"><div class="ttname"><a href="_ennemy_8h.html#a1ae9387a33d38641b5a12df1ebedb8ad">create_golemPurple</a></div><div class="ttdeci">Entity * create_golemPurple(Scene *scene, float x, float y, float z, float scale)</div><div class="ttdoc">Function to create a purple golem.</div><div class="ttdef"><b>Definition:</b> Enemy.c:169</div></div>
+<div class="ttc" id="a_ennemy_8h_html_a22660e87de9c5732972430ed490e339f"><div class="ttname"><a href="_ennemy_8h.html#a22660e87de9c5732972430ed490e339f">create_golemBlue</a></div><div class="ttdeci">Entity * create_golemBlue(Scene *scene, float x, float y, float z, float scale)</div><div class="ttdoc">Function to create a blue golem.</div><div class="ttdef"><b>Definition:</b> Enemy.c:141</div></div>
+<div class="ttc" id="a_ennemy_8h_html_a2de3683b7ea85c8bcaf4d4dec03cffdf"><div class="ttname"><a href="_ennemy_8h.html#a2de3683b7ea85c8bcaf4d4dec03cffdf">golemLogic</a></div><div class="ttdeci">void golemLogic(Scene *scene, GameState *gameState, Entity *golem, Entity *player)</div><div class="ttdoc">Function to handle the logic of the golem.</div><div class="ttdef"><b>Definition:</b> Enemy.c:208</div></div>
+<div class="ttc" id="a_ennemy_8h_html_a47b4d9b5eb3dcda905fd9bf754e588aa"><div class="ttname"><a href="_ennemy_8h.html#a47b4d9b5eb3dcda905fd9bf754e588aa">create_skeleton</a></div><div class="ttdeci">Entity * create_skeleton(Scene *scene, float x, float y, float z, float scale)</div><div class="ttdoc">Function to create a skeleton.</div><div class="ttdef"><b>Definition:</b> Enemy.c:287</div></div>
+<div class="ttc" id="a_ennemy_8h_html_a8335475d9ba17b935313f61bc2eeb9d4"><div class="ttname"><a href="_ennemy_8h.html#a8335475d9ba17b935313f61bc2eeb9d4">create_golem</a></div><div class="ttdeci">Entity * create_golem(Scene *scene, float x, float y, float z, float scale)</div><div class="ttdoc">Function to create a golem.</div><div class="ttdef"><b>Definition:</b> Enemy.c:101</div></div>
+<div class="ttc" id="a_ennemy_8h_html_acf500b1a396361c096ab9dc4975c1f74"><div class="ttname"><a href="_ennemy_8h.html#acf500b1a396361c096ab9dc4975c1f74">create_gobelin</a></div><div class="ttdeci">Entity * create_gobelin(Scene *scene, float x, float y, float z, float scale)</div><div class="ttdoc">Function to create a gobelin.</div><div class="ttdef"><b>Definition:</b> Enemy.c:258</div></div>
+<div class="ttc" id="a_entity_8h_html"><div class="ttname"><a href="_entity_8h.html">Entity.h</a></div><div class="ttdoc">Header file for the entity component.</div></div>
+<div class="ttc" id="astruct___entity_html"><div class="ttname"><a href="struct___entity.html">_Entity</a></div><div class="ttdoc">Struct representing an entity.</div><div class="ttdef"><b>Definition:</b> Entity.h:18</div></div>
 <div class="ttc" id="astruct___scene_html"><div class="ttname"><a href="struct___scene.html">_Scene</a></div><div class="ttdef"><b>Definition:</b> Scene.h:16</div></div>
-<div class="ttc" id="astruct_game_state_html"><div class="ttname"><a href="struct_game_state.html">GameState</a></div><div class="ttdef"><b>Definition:</b> GameState.h:6</div></div>
+<div class="ttc" id="astruct_game_state_html"><div class="ttname"><a href="struct_game_state.html">GameState</a></div><div class="ttdoc">Struct representing the game state.</div><div class="ttdef"><b>Definition:</b> GameState.h:17</div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>Ennemy.h</b></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

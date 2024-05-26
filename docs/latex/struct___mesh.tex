@@ -2,7 +2,17 @@
 \label{struct___mesh}\index{\_Mesh@{\_Mesh}}
 
 
-Collaboration diagram for \+\_\+\+Mesh\+:\nopagebreak
+A Mesh class that hold data parsed from a file and converted ot Open\+GL format.  
+
+
+
+
+{\ttfamily \#include $<$Mesh.\+h$>$}
+
+
+
+Collaboration diagram for \+\_\+\+Mesh\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,20 +22,16 @@ Collaboration diagram for \+\_\+\+Mesh\+:\nopagebreak
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct___mesh_aa184fcb106f77d0014446ed6844db369}\label{struct___mesh_aa184fcb106f77d0014446ed6844db369}} 
-\mbox{\hyperlink{struct___vertex}{Vertex}} $\ast$ {\bfseries vertices}
+\mbox{\hyperlink{_mesh_8h_a4bd172f8dd0e9405b88e151f44852233}{Vertex}} $\ast$ \mbox{\hyperlink{struct___mesh_aa184fcb106f77d0014446ed6844db369}{vertices}}
 \item 
-\mbox{\Hypertarget{struct___mesh_a025069ad0f0bcb1a4980c97e344afeef}\label{struct___mesh_a025069ad0f0bcb1a4980c97e344afeef}} 
-unsigned int $\ast$ {\bfseries indices}
+unsigned int $\ast$ \mbox{\hyperlink{struct___mesh_a025069ad0f0bcb1a4980c97e344afeef}{indices}}
 \item 
 \mbox{\Hypertarget{struct___mesh_aa99b64d2034275df31585f96c591d284}\label{struct___mesh_aa99b64d2034275df31585f96c591d284}} 
 size\+\_\+t {\bfseries vertex\+Count}
 \item 
-\mbox{\Hypertarget{struct___mesh_a3deaf47c614fe69f7ad03dbe8d7db984}\label{struct___mesh_a3deaf47c614fe69f7ad03dbe8d7db984}} 
-size\+\_\+t {\bfseries indice\+Count}
+size\+\_\+t \mbox{\hyperlink{struct___mesh_a3deaf47c614fe69f7ad03dbe8d7db984}{indice\+Count}}
 \item 
-\mbox{\Hypertarget{struct___mesh_aa0992f502bbd5e7935affb3ba6b66073}\label{struct___mesh_aa0992f502bbd5e7935affb3ba6b66073}} 
-size\+\_\+t {\bfseries mat\+ID}
+size\+\_\+t \mbox{\hyperlink{struct___mesh_aa0992f502bbd5e7935affb3ba6b66073}{mat\+ID}}
 \item 
 \mbox{\Hypertarget{struct___mesh_ac1d5b7753fa970a884f00bdcb78eff87}\label{struct___mesh_ac1d5b7753fa970a884f00bdcb78eff87}} 
 GLuint {\bfseries VAO}
@@ -33,14 +39,50 @@ GLuint {\bfseries VAO}
 \mbox{\Hypertarget{struct___mesh_a753494ab2fd64c9abe9384b082ea8c48}\label{struct___mesh_a753494ab2fd64c9abe9384b082ea8c48}} 
 GLuint {\bfseries VBO}
 \item 
-\mbox{\Hypertarget{struct___mesh_a58ec40b0f92d4d214dc0b627e8597f0c}\label{struct___mesh_a58ec40b0f92d4d214dc0b627e8597f0c}} 
-GLuint {\bfseries EBO}
+GLuint \mbox{\hyperlink{struct___mesh_a58ec40b0f92d4d214dc0b627e8597f0c}{EBO}}
 \item 
 \mbox{\Hypertarget{struct___mesh_a9108ae9e65144163fff25ca82e092075}\label{struct___mesh_a9108ae9e65144163fff25ca82e092075}} 
 struct ai\+AABB {\bfseries aabb}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+A Mesh class that hold data parsed from a file and converted ot Open\+GL format. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct___mesh_a58ec40b0f92d4d214dc0b627e8597f0c}\label{struct___mesh_a58ec40b0f92d4d214dc0b627e8597f0c}} 
+\index{\_Mesh@{\_Mesh}!EBO@{EBO}}
+\index{EBO@{EBO}!\_Mesh@{\_Mesh}}
+\doxysubsubsection{\texorpdfstring{EBO}{EBO}}
+{\footnotesize\ttfamily GLuint EBO}
+
+GL Buffers to store vertex and indices and organise them in a VAO \mbox{\Hypertarget{struct___mesh_a3deaf47c614fe69f7ad03dbe8d7db984}\label{struct___mesh_a3deaf47c614fe69f7ad03dbe8d7db984}} 
+\index{\_Mesh@{\_Mesh}!indiceCount@{indiceCount}}
+\index{indiceCount@{indiceCount}!\_Mesh@{\_Mesh}}
+\doxysubsubsection{\texorpdfstring{indiceCount}{indiceCount}}
+{\footnotesize\ttfamily size\+\_\+t indice\+Count}
+
+Numbers of vertex and indices of the mesh, used to know the size of the arrays \mbox{\Hypertarget{struct___mesh_a025069ad0f0bcb1a4980c97e344afeef}\label{struct___mesh_a025069ad0f0bcb1a4980c97e344afeef}} 
+\index{\_Mesh@{\_Mesh}!indices@{indices}}
+\index{indices@{indices}!\_Mesh@{\_Mesh}}
+\doxysubsubsection{\texorpdfstring{indices}{indices}}
+{\footnotesize\ttfamily unsigned int$\ast$ indices}
+
+Arrays of indices to indicate wich vertices goes in each face \mbox{\Hypertarget{struct___mesh_aa0992f502bbd5e7935affb3ba6b66073}\label{struct___mesh_aa0992f502bbd5e7935affb3ba6b66073}} 
+\index{\_Mesh@{\_Mesh}!matID@{matID}}
+\index{matID@{matID}!\_Mesh@{\_Mesh}}
+\doxysubsubsection{\texorpdfstring{matID}{matID}}
+{\footnotesize\ttfamily size\+\_\+t mat\+ID}
+
+ID of the materials for this mesh in the arrays of materials available in the model \mbox{\Hypertarget{struct___mesh_aa184fcb106f77d0014446ed6844db369}\label{struct___mesh_aa184fcb106f77d0014446ed6844db369}} 
+\index{\_Mesh@{\_Mesh}!vertices@{vertices}}
+\index{vertices@{vertices}!\_Mesh@{\_Mesh}}
+\doxysubsubsection{\texorpdfstring{vertices}{vertices}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_mesh_8h_a4bd172f8dd0e9405b88e151f44852233}{Vertex}}$\ast$ vertices}
+
+Arrays of vertex each contains posiiton, uvs and normals ~\newline
+ 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Mesh.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_mesh_8h}{Mesh.\+h}}\end{DoxyCompactItemize}

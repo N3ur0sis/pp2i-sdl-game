@@ -1,6 +1,9 @@
 <map id="GameState" name="GameState">
-<area shape="rect" id="node1" title=" " alt="" coords="45,199,140,225"/>
-<area shape="rect" id="node2" href="$struct___menu.html" title="Struct representing a menu." alt="" coords="5,95,71,121"/>
-<area shape="rect" id="node3" href="$struct___inventory.html" title=" " alt="" coords="103,95,194,121"/>
-<area shape="rect" id="node4" href="$struct___object.html" title=" " alt="" coords="113,5,184,32"/>
+<area shape="rect" id="node1" title="Struct representing the game state." alt="" coords="153,291,248,317"/>
+<area shape="rect" id="node2" href="$struct___menu.html" title="Struct representing a menu." alt="" coords="59,185,124,212"/>
+<area shape="rect" id="node3" href="$struct___application.html" title="Represents the main Engine structure." alt="" coords="40,95,143,121"/>
+<area shape="rect" id="node4" href="$struct___window.html" title="A Window class that handles the SDL_Window holding the application and the OpenGL context associated ..." alt="" coords="5,5,87,32"/>
+<area shape="rect" id="node5" href="$struct_time.html" title="Structure for managing time&#45;related information in the application." alt="" coords="111,5,165,32"/>
+<area shape="rect" id="node6" href="$struct___inventory.html" title="Struct representing an inventory." alt="" coords="266,185,357,212"/>
+<area shape="rect" id="node7" href="$struct___object.html" title=" " alt="" coords="276,95,347,121"/>
 </map>

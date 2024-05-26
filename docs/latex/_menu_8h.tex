@@ -1,0 +1,184 @@
+\hypertarget{_menu_8h}{}\doxysection{include/\+Menu.h File Reference}
+\label{_menu_8h}\index{include/Menu.h@{include/Menu.h}}
+
+
+Header file for the pause menu.  
+
+
+{\ttfamily \#include $<$Engine.\+h$>$}\newline
+Include dependency graph for Menu.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_menu_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=314pt]{_menu_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___menu}{\+\_\+\+Menu}}
+\begin{DoxyCompactList}\small\item\em Struct representing a menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct___menu}{\+\_\+\+Menu}} \mbox{\hyperlink{_menu_8h_a32b117bdcab14c698680f109ffc06ab7}{Menu}}
+\begin{DoxyCompactList}\small\item\em Struct representing a menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct___menu}{Menu}} $\ast$ \mbox{\hyperlink{_menu_8h_a00ad0b16c0d8abf5235c6923157ccb24}{Menu\+Pause\+Init}} ()
+\begin{DoxyCompactList}\small\item\em Initializes the pause menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_menu_8h_ad6dcd55e61b3574147e4dd48cab0fbcd}{Menu\+Pause\+Reset}} (\mbox{\hyperlink{struct___menu}{Menu}} $\ast$menu)
+\begin{DoxyCompactList}\small\item\em Updates the pause menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_menu_8h_a0ecaccfb6f87238683db89951bb21c34}{Menu\+Pause\+Up}} (\mbox{\hyperlink{struct___menu}{Menu}} $\ast$menu)
+\begin{DoxyCompactList}\small\item\em Moves the selection up in the pause menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_menu_8h_a236f0b9bf58c725e227ddf25ac3d3c34}{Menu\+Pause\+Down}} (\mbox{\hyperlink{struct___menu}{Menu}} $\ast$menu)
+\begin{DoxyCompactList}\small\item\em Moves the selection down in the pause menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_menu_8h_ad27b30c13fd7919bf4be82fe4ead735d}{Menu\+Pause\+Select}} (\mbox{\hyperlink{struct___menu}{Menu}} $\ast$menu, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, bool $\ast$running, bool $\ast$is\+Paused)
+\begin{DoxyCompactList}\small\item\em Selects an option in the pause menu. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_menu_8h_a9501ff32965c14e8e9df2396336423ed}{Menu\+Pause\+Draw}} (\mbox{\hyperlink{_engine_8h_a71931feb51e2f53ba9cc5bc3bd9e30d5}{Application}} $\ast$game, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State, \mbox{\hyperlink{struct___shader}{Shader}} $\ast$shader\+Program, \mbox{\hyperlink{struct___menu}{Menu}} $\ast$menu)
+\begin{DoxyCompactList}\small\item\em Draws the pause menu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the pause menu. 
+
+\begin{DoxyAuthor}{Author}
+VD 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_menu_8h_a32b117bdcab14c698680f109ffc06ab7}\label{_menu_8h_a32b117bdcab14c698680f109ffc06ab7}} 
+\index{Menu.h@{Menu.h}!Menu@{Menu}}
+\index{Menu@{Menu}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{Menu}{Menu}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct___menu}{\+\_\+\+Menu}} \mbox{\hyperlink{struct___menu}{Menu}}}
+
+
+
+Struct representing a menu. 
+
+This struct represents a menu. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_menu_8h_a236f0b9bf58c725e227ddf25ac3d3c34}\label{_menu_8h_a236f0b9bf58c725e227ddf25ac3d3c34}} 
+\index{Menu.h@{Menu.h}!MenuPauseDown@{MenuPauseDown}}
+\index{MenuPauseDown@{MenuPauseDown}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{MenuPauseDown()}{MenuPauseDown()}}
+{\footnotesize\ttfamily void Menu\+Pause\+Down (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___menu}{Menu}} $\ast$}]{menu }\end{DoxyParamCaption})}
+
+
+
+Moves the selection down in the pause menu. 
+
+This function moves the selection down in the pause menu.
+
+
+\begin{DoxyParams}{Parameters}
+{\em menu} & Pointer to the menu. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_menu_8h_a9501ff32965c14e8e9df2396336423ed}\label{_menu_8h_a9501ff32965c14e8e9df2396336423ed}} 
+\index{Menu.h@{Menu.h}!MenuPauseDraw@{MenuPauseDraw}}
+\index{MenuPauseDraw@{MenuPauseDraw}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{MenuPauseDraw()}{MenuPauseDraw()}}
+{\footnotesize\ttfamily void Menu\+Pause\+Draw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_engine_8h_a71931feb51e2f53ba9cc5bc3bd9e30d5}{Application}} $\ast$}]{game,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{\mbox{\hyperlink{struct___shader}{Shader}} $\ast$}]{shader\+Program,  }\item[{\mbox{\hyperlink{struct___menu}{Menu}} $\ast$}]{menu }\end{DoxyParamCaption})}
+
+
+
+Draws the pause menu. 
+
+This function draws the pause menu.
+
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Pointer to the application. \\
+\hline
+{\em game\+State} & Pointer to the game state. \\
+\hline
+{\em shader\+Program} & Pointer to the shader program. \\
+\hline
+{\em menu} & Pointer to the menu. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_menu_8h_a00ad0b16c0d8abf5235c6923157ccb24}\label{_menu_8h_a00ad0b16c0d8abf5235c6923157ccb24}} 
+\index{Menu.h@{Menu.h}!MenuPauseInit@{MenuPauseInit}}
+\index{MenuPauseInit@{MenuPauseInit}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{MenuPauseInit()}{MenuPauseInit()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct___menu}{Menu}}$\ast$ Menu\+Pause\+Init (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Initializes the pause menu. 
+
+This function initializes the pause menu. \mbox{\Hypertarget{_menu_8h_ad6dcd55e61b3574147e4dd48cab0fbcd}\label{_menu_8h_ad6dcd55e61b3574147e4dd48cab0fbcd}} 
+\index{Menu.h@{Menu.h}!MenuPauseReset@{MenuPauseReset}}
+\index{MenuPauseReset@{MenuPauseReset}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{MenuPauseReset()}{MenuPauseReset()}}
+{\footnotesize\ttfamily void Menu\+Pause\+Reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___menu}{Menu}} $\ast$}]{menu }\end{DoxyParamCaption})}
+
+
+
+Updates the pause menu. 
+
+This function updates the pause menu.
+
+
+\begin{DoxyParams}{Parameters}
+{\em game} & Pointer to the application. \\
+\hline
+{\em game\+State} & Pointer to the game state. \\
+\hline
+{\em menu} & Pointer to the menu. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_menu_8h_ad27b30c13fd7919bf4be82fe4ead735d}\label{_menu_8h_ad27b30c13fd7919bf4be82fe4ead735d}} 
+\index{Menu.h@{Menu.h}!MenuPauseSelect@{MenuPauseSelect}}
+\index{MenuPauseSelect@{MenuPauseSelect}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{MenuPauseSelect()}{MenuPauseSelect()}}
+{\footnotesize\ttfamily void Menu\+Pause\+Select (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___menu}{Menu}} $\ast$}]{menu,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State,  }\item[{bool $\ast$}]{running,  }\item[{bool $\ast$}]{is\+Paused }\end{DoxyParamCaption})}
+
+
+
+Selects an option in the pause menu. 
+
+This function selects an option in the pause menu.
+
+
+\begin{DoxyParams}{Parameters}
+{\em menu} & Pointer to the menu. \\
+\hline
+{\em game\+State} & Pointer to the game state. \\
+\hline
+{\em running} & Pointer to the running state flag. \\
+\hline
+{\em is\+Paused} & Pointer to the paused state flag. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_menu_8h_a0ecaccfb6f87238683db89951bb21c34}\label{_menu_8h_a0ecaccfb6f87238683db89951bb21c34}} 
+\index{Menu.h@{Menu.h}!MenuPauseUp@{MenuPauseUp}}
+\index{MenuPauseUp@{MenuPauseUp}!Menu.h@{Menu.h}}
+\doxysubsubsection{\texorpdfstring{MenuPauseUp()}{MenuPauseUp()}}
+{\footnotesize\ttfamily void Menu\+Pause\+Up (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___menu}{Menu}} $\ast$}]{menu }\end{DoxyParamCaption})}
+
+
+
+Moves the selection up in the pause menu. 
+
+This function moves the selection up in the pause menu.
+
+
+\begin{DoxyParams}{Parameters}
+{\em menu} & Pointer to the menu. \\
+\hline
+\end{DoxyParams}

@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_forest_scene_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,32 +59,41 @@ $(document).ready(function(){initNavTree('_forest_scene_8h_source.html',''); ini
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">ForestScene.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;Scene.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="preprocessor">#include &lt;Player.h&gt;</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;GameState.h&gt;</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;cglm/cglm.h&gt;</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &lt;Ennemy.h&gt;</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#define FLAMEDIST 2.0f</span></div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="keywordtype">void</span> ForestMainScene(<a class="code" href="struct___scene.html">Scene</a>* scene, <a class="code" href="struct_game_state.html">GameState</a>* gameState);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keywordtype">void</span> updateForestScene(<a class="code" href="struct___scene.html">Scene</a>* scene, <a class="code" href="struct_game_state.html">GameState</a>* gameState);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keywordtype">void</span> unloadForestScene(<a class="code" href="struct___scene.html">Scene</a>* scene);</div>
+<a href="_forest_scene_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;Scene.h&gt;</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;Player.h&gt;</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_game_state_8h.html">GameState.h</a>&gt;</span></div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;cglm/cglm.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_ennemy_8h.html">Ennemy.h</a>&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#define FLAMEDIST 2.0f</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160; </div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_forest_scene_8h.html#afe4a85d1d0afa9baa78a5fdaea74524a">ForestMainScene</a>(<a class="code" href="struct___scene.html">Scene</a>* scene, <a class="code" href="struct_game_state.html">GameState</a>* gameState);</div>
+<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_forest_scene_8h.html#a6bd57e3d9977698912c5fc7a7e834fda">updateForestScene</a>(<a class="code" href="struct___scene.html">Scene</a>* scene, <a class="code" href="struct_game_state.html">GameState</a>* gameState);</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_forest_scene_8h.html#a5e7ef8a62581cd2d716142fbf5560f82">unloadForestScene</a>(<a class="code" href="struct___scene.html">Scene</a>* scene);</div>
+<div class="ttc" id="a_ennemy_8h_html"><div class="ttname"><a href="_ennemy_8h.html">Ennemy.h</a></div><div class="ttdoc">Header file for the enemy component.</div></div>
+<div class="ttc" id="a_forest_scene_8h_html_a5e7ef8a62581cd2d716142fbf5560f82"><div class="ttname"><a href="_forest_scene_8h.html#a5e7ef8a62581cd2d716142fbf5560f82">unloadForestScene</a></div><div class="ttdeci">void unloadForestScene(Scene *scene)</div><div class="ttdoc">Function to unload the forest scene.</div><div class="ttdef"><b>Definition:</b> ForestScene.c:320</div></div>
+<div class="ttc" id="a_forest_scene_8h_html_a6bd57e3d9977698912c5fc7a7e834fda"><div class="ttname"><a href="_forest_scene_8h.html#a6bd57e3d9977698912c5fc7a7e834fda">updateForestScene</a></div><div class="ttdeci">void updateForestScene(Scene *scene, GameState *gameState)</div><div class="ttdoc">Function to update the forest scene.</div><div class="ttdef"><b>Definition:</b> ForestScene.c:207</div></div>
+<div class="ttc" id="a_forest_scene_8h_html_afe4a85d1d0afa9baa78a5fdaea74524a"><div class="ttname"><a href="_forest_scene_8h.html#afe4a85d1d0afa9baa78a5fdaea74524a">ForestMainScene</a></div><div class="ttdeci">void ForestMainScene(Scene *scene, GameState *gameState)</div><div class="ttdoc">Function to create the forest scene.</div><div class="ttdef"><b>Definition:</b> ForestScene.c:20</div></div>
+<div class="ttc" id="a_game_state_8h_html"><div class="ttname"><a href="_game_state_8h.html">GameState.h</a></div><div class="ttdoc">Header file for the game state.</div></div>
 <div class="ttc" id="astruct___scene_html"><div class="ttname"><a href="struct___scene.html">_Scene</a></div><div class="ttdef"><b>Definition:</b> Scene.h:16</div></div>
-<div class="ttc" id="astruct_game_state_html"><div class="ttname"><a href="struct_game_state.html">GameState</a></div><div class="ttdef"><b>Definition:</b> GameState.h:6</div></div>
+<div class="ttc" id="astruct_game_state_html"><div class="ttname"><a href="struct_game_state.html">GameState</a></div><div class="ttdoc">Struct representing the game state.</div><div class="ttdef"><b>Definition:</b> GameState.h:17</div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>ForestScene.h</b></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

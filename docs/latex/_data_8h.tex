@@ -1,0 +1,231 @@
+\hypertarget{_data_8h}{}\doxysection{include/\+Data.h File Reference}
+\label{_data_8h}\index{include/Data.h@{include/Data.h}}
+
+
+Data header file.  
+
+
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Vector.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Type.\+h\char`\"{}}\newline
+Include dependency graph for Data.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_data_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=276pt]{_data_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___data}{\+\_\+\+Data}}
+\begin{DoxyCompactList}\small\item\em Structure representing a data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_data_8h_aaa99c0766395c8c2a88946185b5c5683}\label{_data_8h_aaa99c0766395c8c2a88946185b5c5683}} 
+typedef struct \mbox{\hyperlink{struct___data}{\+\_\+\+Data}} {\bfseries Data}
+\item 
+\mbox{\Hypertarget{_data_8h_ab77952ba65ecab25409ab9188e1d3019}\label{_data_8h_ab77952ba65ecab25409ab9188e1d3019}} 
+typedef struct \mbox{\hyperlink{struct___vector}{\+\_\+\+Vector}} {\bfseries Vector}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct___data}{Data}} $\ast$ \mbox{\hyperlink{_data_8h_a66c467e8f17860621e4741b915a4861e}{create\+Int\+Data}} (int value)
+\begin{DoxyCompactList}\small\item\em Creates a new Data instance of type int. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct___data}{Data}} $\ast$ \mbox{\hyperlink{_data_8h_a6aa0a7fd4376c6b05e06c0cd675e5f53}{create\+Float\+Data}} (float value)
+\begin{DoxyCompactList}\small\item\em Creates a new Data instance of type float. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct___data}{Data}} $\ast$ \mbox{\hyperlink{_data_8h_ab6a3efcbd0f40622eda8ecc701b7bbe1}{create\+String\+Data}} (char $\ast$value)
+\begin{DoxyCompactList}\small\item\em Creates a new Data instance of type string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct___data}{Data}} $\ast$ \mbox{\hyperlink{_data_8h_a070612a8981edf43ceb988a1c411cacb}{create\+Vector\+Data}} (\mbox{\hyperlink{struct___vector}{Vector}} $\ast$value)
+\begin{DoxyCompactList}\small\item\em Creates a new Data instance of type vector. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{_data_8h_a86189b23ca3895d05b372f1ec3992687}{equals\+Data}} (\mbox{\hyperlink{struct___data}{Data}} $\ast$data1, \mbox{\hyperlink{struct___data}{Data}} $\ast$data2)
+\begin{DoxyCompactList}\small\item\em Verifies if two Data instances are equal. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_data_8h_aa93a2de38166de7c533baf99acb831b8}{print\+Data}} (\mbox{\hyperlink{struct___data}{Data}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Prints the data. \end{DoxyCompactList}\item 
+void $\ast$ \mbox{\hyperlink{_data_8h_a1f07448fba5744c51855cecdb4733cec}{get\+Value}} (\mbox{\hyperlink{struct___data}{Data}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Gets the value of the data. \end{DoxyCompactList}\item 
+Type \mbox{\hyperlink{_data_8h_adb1dbf691ca9751b21d4ab403146a6b1}{type}} (\mbox{\hyperlink{struct___data}{Data}} $\ast$data)
+\begin{DoxyCompactList}\small\item\em Gets the type of the data. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Data header file. 
+
+\begin{DoxyAuthor}{Author}
+VD 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_data_8h_a6aa0a7fd4376c6b05e06c0cd675e5f53}\label{_data_8h_a6aa0a7fd4376c6b05e06c0cd675e5f53}} 
+\index{Data.h@{Data.h}!createFloatData@{createFloatData}}
+\index{createFloatData@{createFloatData}!Data.h@{Data.h}}
+\doxysubsubsection{\texorpdfstring{createFloatData()}{createFloatData()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct___data}{Data}}$\ast$ create\+Float\+Data (\begin{DoxyParamCaption}\item[{float}]{value }\end{DoxyParamCaption})}
+
+
+
+Creates a new Data instance of type float. 
+
+This function creates a new Data instance of type float.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value of the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the created Data instance or NULL on failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_data_8h_a66c467e8f17860621e4741b915a4861e}\label{_data_8h_a66c467e8f17860621e4741b915a4861e}} 
+\index{Data.h@{Data.h}!createIntData@{createIntData}}
+\index{createIntData@{createIntData}!Data.h@{Data.h}}
+\doxysubsubsection{\texorpdfstring{createIntData()}{createIntData()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct___data}{Data}}$\ast$ create\+Int\+Data (\begin{DoxyParamCaption}\item[{int}]{value }\end{DoxyParamCaption})}
+
+
+
+Creates a new Data instance of type int. 
+
+This function creates a new Data instance of type int.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value of the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the created Data instance or NULL on failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_data_8h_ab6a3efcbd0f40622eda8ecc701b7bbe1}\label{_data_8h_ab6a3efcbd0f40622eda8ecc701b7bbe1}} 
+\index{Data.h@{Data.h}!createStringData@{createStringData}}
+\index{createStringData@{createStringData}!Data.h@{Data.h}}
+\doxysubsubsection{\texorpdfstring{createStringData()}{createStringData()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct___data}{Data}}$\ast$ create\+String\+Data (\begin{DoxyParamCaption}\item[{char $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Creates a new Data instance of type string. 
+
+This function creates a new Data instance of type string.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value of the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the created Data instance or NULL on failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_data_8h_a070612a8981edf43ceb988a1c411cacb}\label{_data_8h_a070612a8981edf43ceb988a1c411cacb}} 
+\index{Data.h@{Data.h}!createVectorData@{createVectorData}}
+\index{createVectorData@{createVectorData}!Data.h@{Data.h}}
+\doxysubsubsection{\texorpdfstring{createVectorData()}{createVectorData()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct___data}{Data}}$\ast$ create\+Vector\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___vector}{Vector}} $\ast$}]{value }\end{DoxyParamCaption})}
+
+
+
+Creates a new Data instance of type vector. 
+
+This function creates a new Data instance of type vector.
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & The value of the data. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the created Data instance or NULL on failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_data_8h_a86189b23ca3895d05b372f1ec3992687}\label{_data_8h_a86189b23ca3895d05b372f1ec3992687}} 
+\index{Data.h@{Data.h}!equalsData@{equalsData}}
+\index{equalsData@{equalsData}!Data.h@{Data.h}}
+\doxysubsubsection{\texorpdfstring{equalsData()}{equalsData()}}
+{\footnotesize\ttfamily bool equals\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___data}{Data}} $\ast$}]{data1,  }\item[{\mbox{\hyperlink{struct___data}{Data}} $\ast$}]{data2 }\end{DoxyParamCaption})}
+
+
+
+Verifies if two Data instances are equal. 
+
+This function verifies if two Data instances are equal.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data1} & The first Data instance. \\
+\hline
+{\em data2} & The second Data instance. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+true if the Data instances are equal, false otherwise. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_data_8h_a1f07448fba5744c51855cecdb4733cec}\label{_data_8h_a1f07448fba5744c51855cecdb4733cec}} 
+\index{Data.h@{Data.h}!getValue@{getValue}}
+\index{getValue@{getValue}!Data.h@{Data.h}}
+\doxysubsubsection{\texorpdfstring{getValue()}{getValue()}}
+{\footnotesize\ttfamily void$\ast$ get\+Value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___data}{Data}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Gets the value of the data. 
+
+This function gets the value of the data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to get the value from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the value of the data. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_data_8h_aa93a2de38166de7c533baf99acb831b8}\label{_data_8h_aa93a2de38166de7c533baf99acb831b8}} 
+\index{Data.h@{Data.h}!printData@{printData}}
+\index{printData@{printData}!Data.h@{Data.h}}
+\doxysubsubsection{\texorpdfstring{printData()}{printData()}}
+{\footnotesize\ttfamily void print\+Data (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___data}{Data}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Prints the data. 
+
+This function prints the data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to print. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_data_8h_adb1dbf691ca9751b21d4ab403146a6b1}\label{_data_8h_adb1dbf691ca9751b21d4ab403146a6b1}} 
+\index{Data.h@{Data.h}!type@{type}}
+\index{type@{type}!Data.h@{Data.h}}
+\doxysubsubsection{\texorpdfstring{type()}{type()}}
+{\footnotesize\ttfamily Type type (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct___data}{Data}} $\ast$}]{data }\end{DoxyParamCaption})}
+
+
+
+Gets the type of the data. 
+
+This function gets the type of the data.
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data to get the type from. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The type of the data. 
+\end{DoxyReturn}

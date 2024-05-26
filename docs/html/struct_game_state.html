@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('struct_game_state.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,6 +59,7 @@ $(document).ready(function(){initNavTree('struct_game_state.html',''); initResiz
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
@@ -87,77 +67,346 @@ $(document).ready(function(){initNavTree('struct_game_state.html',''); initResiz
 <div class="title">GameState Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Struct representing the game state.  
+ <a href="struct_game_state.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_game_state_8h_source.html">GameState.h</a>&gt;</code></p>
 <div class="dynheader">
 Collaboration diagram for GameState:</div>
 <div class="dyncontent">
 <div class="center"><img src="struct_game_state__coll__graph.png" border="0" usemap="#a_game_state_coll__map" alt="Collaboration graph"/></div>
 <map name="a_game_state_coll__map" id="a_game_state_coll__map">
-<area shape="rect" title=" " alt="" coords="45,199,140,225"/>
-<area shape="rect" href="struct___menu.html" title="Struct representing a menu." alt="" coords="5,95,71,121"/>
-<area shape="rect" href="struct___inventory.html" title=" " alt="" coords="103,95,194,121"/>
-<area shape="rect" href="struct___object.html" title=" " alt="" coords="113,5,184,32"/>
+<area shape="rect" title="Struct representing the game state." alt="" coords="153,291,248,317"/>
+<area shape="rect" href="struct___menu.html" title="Struct representing a menu." alt="" coords="59,185,124,212"/>
+<area shape="rect" href="struct___application.html" title="Represents the main Engine structure." alt="" coords="40,95,143,121"/>
+<area shape="rect" href="struct___window.html" title="A Window class that handles the SDL_Window holding the application and the OpenGL context associated ..." alt="" coords="5,5,87,32"/>
+<area shape="rect" href="struct_time.html" title="Structure for managing time&#45;related information in the application." alt="" coords="111,5,165,32"/>
+<area shape="rect" href="struct___inventory.html" title="Struct representing an inventory." alt="" coords="266,185,357,212"/>
+<area shape="rect" href="struct___object.html" title=" " alt="" coords="276,95,347,121"/>
 </map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<center><span class="legend">[<a href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:a15658a5133d709eb9d50b54e7514adac"><td class="memItemLeft" align="right" valign="top"><a id="a15658a5133d709eb9d50b54e7514adac"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>enemyIsAttacking</b></td></tr>
+<tr class="memitem:a15658a5133d709eb9d50b54e7514adac"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#a15658a5133d709eb9d50b54e7514adac">enemyIsAttacking</a></td></tr>
 <tr class="separator:a15658a5133d709eb9d50b54e7514adac"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa7b2f9aabe9788ec2c5202408aa751ae"><td class="memItemLeft" align="right" valign="top"><a id="aa7b2f9aabe9788ec2c5202408aa751ae"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>playerIsAttacking</b></td></tr>
+<tr class="memitem:aa7b2f9aabe9788ec2c5202408aa751ae"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#aa7b2f9aabe9788ec2c5202408aa751ae">playerIsAttacking</a></td></tr>
 <tr class="separator:aa7b2f9aabe9788ec2c5202408aa751ae"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a187ba493bb2ea51fa5a4226e11d3c90e"><td class="memItemLeft" align="right" valign="top"><a id="a187ba493bb2ea51fa5a4226e11d3c90e"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>playerHealth</b></td></tr>
+<tr class="memitem:a187ba493bb2ea51fa5a4226e11d3c90e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#a187ba493bb2ea51fa5a4226e11d3c90e">playerHealth</a></td></tr>
 <tr class="separator:a187ba493bb2ea51fa5a4226e11d3c90e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae077c9247ee2900bd0a7f5528b73f150"><td class="memItemLeft" align="right" valign="top"><a id="ae077c9247ee2900bd0a7f5528b73f150"></a>
-<a class="el" href="struct___inventory.html">Inventory</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>inventory</b></td></tr>
+<tr class="memitem:ae077c9247ee2900bd0a7f5528b73f150"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_inventory_8h.html#a2253bf64ac4ce6a9c1d6f39c0b0d32a3">Inventory</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#ae077c9247ee2900bd0a7f5528b73f150">inventory</a></td></tr>
 <tr class="separator:ae077c9247ee2900bd0a7f5528b73f150"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad79f5a2af5b2db64c68cb21430a3043d"><td class="memItemLeft" align="right" valign="top"><a id="ad79f5a2af5b2db64c68cb21430a3043d"></a>
-<a class="el" href="struct___inventory.html">Inventory</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>marchantInventory</b></td></tr>
+<tr class="memitem:ad79f5a2af5b2db64c68cb21430a3043d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="_inventory_8h.html#a2253bf64ac4ce6a9c1d6f39c0b0d32a3">Inventory</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#ad79f5a2af5b2db64c68cb21430a3043d">marchantInventory</a></td></tr>
 <tr class="separator:ad79f5a2af5b2db64c68cb21430a3043d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afefc47fa71c9486ae2663c35ffe6f298"><td class="memItemLeft" align="right" valign="top"><a id="afefc47fa71c9486ae2663c35ffe6f298"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>g_WindowWidth</b></td></tr>
+<tr class="memitem:afefc47fa71c9486ae2663c35ffe6f298"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#afefc47fa71c9486ae2663c35ffe6f298">g_WindowWidth</a></td></tr>
 <tr class="separator:afefc47fa71c9486ae2663c35ffe6f298"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a82255a1238b10f6626acc81f1507cc17"><td class="memItemLeft" align="right" valign="top"><a id="a82255a1238b10f6626acc81f1507cc17"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>g_WindowHeight</b></td></tr>
+<tr class="memitem:a82255a1238b10f6626acc81f1507cc17"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#a82255a1238b10f6626acc81f1507cc17">g_WindowHeight</a></td></tr>
 <tr class="separator:a82255a1238b10f6626acc81f1507cc17"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa97ebe391336718344762e15209e9b01"><td class="memItemLeft" align="right" valign="top"><a id="aa97ebe391336718344762e15209e9b01"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isPlayerDead</b></td></tr>
+<tr class="memitem:aa97ebe391336718344762e15209e9b01"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#aa97ebe391336718344762e15209e9b01">isPlayerDead</a></td></tr>
 <tr class="separator:aa97ebe391336718344762e15209e9b01"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62c6e41c69b2beb6d39dcae6b3b96df0"><td class="memItemLeft" align="right" valign="top"><a id="a62c6e41c69b2beb6d39dcae6b3b96df0"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>nextSceneIndex</b></td></tr>
+<tr class="memitem:a62c6e41c69b2beb6d39dcae6b3b96df0"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#a62c6e41c69b2beb6d39dcae6b3b96df0">nextSceneIndex</a></td></tr>
 <tr class="separator:a62c6e41c69b2beb6d39dcae6b3b96df0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15fc03f737b4b6d8a73c849d8d026a87"><td class="memItemLeft" align="right" valign="top"><a id="a15fc03f737b4b6d8a73c849d8d026a87"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>currentSceneIndex</b></td></tr>
+<tr class="memitem:a15fc03f737b4b6d8a73c849d8d026a87"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#a15fc03f737b4b6d8a73c849d8d026a87">currentSceneIndex</a></td></tr>
 <tr class="separator:a15fc03f737b4b6d8a73c849d8d026a87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad791dc07789aea9da4fdaf320128af45"><td class="memItemLeft" align="right" valign="top"><a id="ad791dc07789aea9da4fdaf320128af45"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>previousSceneIndex</b></td></tr>
+<tr class="memitem:ad791dc07789aea9da4fdaf320128af45"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#ad791dc07789aea9da4fdaf320128af45">previousSceneIndex</a></td></tr>
 <tr class="separator:ad791dc07789aea9da4fdaf320128af45"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a857502cff71d45019163294ccc1779d5"><td class="memItemLeft" align="right" valign="top"><a id="a857502cff71d45019163294ccc1779d5"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>change</b></td></tr>
+<tr class="memitem:a857502cff71d45019163294ccc1779d5"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#a857502cff71d45019163294ccc1779d5">change</a></td></tr>
 <tr class="separator:a857502cff71d45019163294ccc1779d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a495f8c1124aa64aa97e1a0dc69215868"><td class="memItemLeft" align="right" valign="top"><a id="a495f8c1124aa64aa97e1a0dc69215868"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>isForestDungeonDone</b></td></tr>
+<tr class="memitem:a495f8c1124aa64aa97e1a0dc69215868"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#a495f8c1124aa64aa97e1a0dc69215868">isForestDungeonDone</a></td></tr>
 <tr class="separator:a495f8c1124aa64aa97e1a0dc69215868"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c51740b74fdd89a23f9bf668ed07c9f"><td class="memItemLeft" align="right" valign="top"><a id="a4c51740b74fdd89a23f9bf668ed07c9f"></a>
-<a class="el" href="struct___menu.html">Menu</a> *&#160;</td><td class="memItemRight" valign="bottom"><b>pauseMenu</b></td></tr>
+<tr class="memitem:a4c51740b74fdd89a23f9bf668ed07c9f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="struct___menu.html">Menu</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#a4c51740b74fdd89a23f9bf668ed07c9f">pauseMenu</a></td></tr>
 <tr class="separator:a4c51740b74fdd89a23f9bf668ed07c9f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a45f726b4d2ef2c1577480c0722bf74c2"><td class="memItemLeft" align="right" valign="top"><a id="a45f726b4d2ef2c1577480c0722bf74c2"></a>
-bool&#160;</td><td class="memItemRight" valign="bottom"><b>restarting</b></td></tr>
+<tr class="memitem:a45f726b4d2ef2c1577480c0722bf74c2"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#a45f726b4d2ef2c1577480c0722bf74c2">restarting</a></td></tr>
 <tr class="separator:a45f726b4d2ef2c1577480c0722bf74c2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a25bd836d21da946eed2e5fae493ab7b1"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#a25bd836d21da946eed2e5fae493ab7b1">mainMenuOpen</a></td></tr>
+<tr class="separator:a25bd836d21da946eed2e5fae493ab7b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acc0b64212bc67a1e415d25c147961df5"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#acc0b64212bc67a1e415d25c147961df5">money</a></td></tr>
+<tr class="separator:acc0b64212bc67a1e415d25c147961df5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a9147cb82d1cbeefadd62beb9e6910b"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_game_state.html#a5a9147cb82d1cbeefadd62beb9e6910b">fullscreen</a></td></tr>
+<tr class="separator:a5a9147cb82d1cbeefadd62beb9e6910b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Struct representing the game state. </p>
+<p>This struct represents the game state. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a id="a857502cff71d45019163294ccc1779d5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a857502cff71d45019163294ccc1779d5">&#9670;&nbsp;</a></span>change</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool change</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Boolean flag indicating if the scene is changing. </p>
+
+</div>
+</div>
+<a id="a15fc03f737b4b6d8a73c849d8d026a87"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15fc03f737b4b6d8a73c849d8d026a87">&#9670;&nbsp;</a></span>currentSceneIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int currentSceneIndex</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Index of the current scene. </p>
+
+</div>
+</div>
+<a id="a15658a5133d709eb9d50b54e7514adac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a15658a5133d709eb9d50b54e7514adac">&#9670;&nbsp;</a></span>enemyIsAttacking</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool enemyIsAttacking</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Boolean flag indicating if the enemy is attacking. </p>
+
+</div>
+</div>
+<a id="a5a9147cb82d1cbeefadd62beb9e6910b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5a9147cb82d1cbeefadd62beb9e6910b">&#9670;&nbsp;</a></span>fullscreen</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool fullscreen</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Boolean flag indicating if the game is in fullscreen mode. </p>
+
+</div>
+</div>
+<a id="a82255a1238b10f6626acc81f1507cc17"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a82255a1238b10f6626acc81f1507cc17">&#9670;&nbsp;</a></span>g_WindowHeight</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int g_WindowHeight</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Height of the window. </p>
+
+</div>
+</div>
+<a id="afefc47fa71c9486ae2663c35ffe6f298"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afefc47fa71c9486ae2663c35ffe6f298">&#9670;&nbsp;</a></span>g_WindowWidth</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int g_WindowWidth</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Width of the window. </p>
+
+</div>
+</div>
+<a id="ae077c9247ee2900bd0a7f5528b73f150"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae077c9247ee2900bd0a7f5528b73f150">&#9670;&nbsp;</a></span>inventory</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_inventory_8h.html#a2253bf64ac4ce6a9c1d6f39c0b0d32a3">Inventory</a>* inventory</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pointer to the player's inventory. </p>
+
+</div>
+</div>
+<a id="a495f8c1124aa64aa97e1a0dc69215868"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a495f8c1124aa64aa97e1a0dc69215868">&#9670;&nbsp;</a></span>isForestDungeonDone</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isForestDungeonDone</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Boolean flag indicating if the forest dungeon is done. </p>
+
+</div>
+</div>
+<a id="aa97ebe391336718344762e15209e9b01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa97ebe391336718344762e15209e9b01">&#9670;&nbsp;</a></span>isPlayerDead</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool isPlayerDead</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Boolean flag indicating if the player is dead. </p>
+
+</div>
+</div>
+<a id="a25bd836d21da946eed2e5fae493ab7b1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a25bd836d21da946eed2e5fae493ab7b1">&#9670;&nbsp;</a></span>mainMenuOpen</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool mainMenuOpen</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Boolean flag indicating if the main menu is open. </p>
+
+</div>
+</div>
+<a id="ad79f5a2af5b2db64c68cb21430a3043d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad79f5a2af5b2db64c68cb21430a3043d">&#9670;&nbsp;</a></span>marchantInventory</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="_inventory_8h.html#a2253bf64ac4ce6a9c1d6f39c0b0d32a3">Inventory</a>* marchantInventory</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pointer to the marchant's inventory. </p>
+
+</div>
+</div>
+<a id="acc0b64212bc67a1e415d25c147961df5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acc0b64212bc67a1e415d25c147961df5">&#9670;&nbsp;</a></span>money</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int money</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Money of the player. </p>
+
+</div>
+</div>
+<a id="a62c6e41c69b2beb6d39dcae6b3b96df0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a62c6e41c69b2beb6d39dcae6b3b96df0">&#9670;&nbsp;</a></span>nextSceneIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int nextSceneIndex</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Index of the next scene. </p>
+
+</div>
+</div>
+<a id="a4c51740b74fdd89a23f9bf668ed07c9f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4c51740b74fdd89a23f9bf668ed07c9f">&#9670;&nbsp;</a></span>pauseMenu</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="struct___menu.html">Menu</a>* pauseMenu</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Pointer to the pause menu. </p>
+
+</div>
+</div>
+<a id="a187ba493bb2ea51fa5a4226e11d3c90e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a187ba493bb2ea51fa5a4226e11d3c90e">&#9670;&nbsp;</a></span>playerHealth</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">float playerHealth</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Health of the player. </p>
+
+</div>
+</div>
+<a id="aa7b2f9aabe9788ec2c5202408aa751ae"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa7b2f9aabe9788ec2c5202408aa751ae">&#9670;&nbsp;</a></span>playerIsAttacking</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool playerIsAttacking</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Boolean flag indicating if the player is attacking. </p>
+
+</div>
+</div>
+<a id="ad791dc07789aea9da4fdaf320128af45"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad791dc07789aea9da4fdaf320128af45">&#9670;&nbsp;</a></span>previousSceneIndex</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int previousSceneIndex</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Index of the previous scene. </p>
+
+</div>
+</div>
+<a id="a45f726b4d2ef2c1577480c0722bf74c2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a45f726b4d2ef2c1577480c0722bf74c2">&#9670;&nbsp;</a></span>restarting</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool restarting</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Boolean flag indicating if the game is restarting. </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/<a class="el" href="_game_state_8h_source.html">GameState.h</a></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="struct_game_state.html">GameState</a></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

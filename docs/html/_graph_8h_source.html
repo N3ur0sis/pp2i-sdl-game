@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_graph_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,58 +59,68 @@ $(document).ready(function(){initNavTree('_graph_8h_source.html',''); initResiza
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Graph.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by Victor Davillé on 19/02/2024.</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef PP2I_GRAPH_H</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define PP2I_GRAPH_H</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &quot;Data.h&quot;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &quot;Vector.h&quot;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160; </div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___graph.html">_Graph</a> <a class="code" href="struct___graph.html">Graph</a>;</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___data.html">_Data</a> <a class="code" href="struct___data.html">Data</a>;</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160; </div>
-<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct___graph.html">   16</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct___graph.html">_Graph</a> {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <a class="code" href="struct___vector.html">Vector</a>** adjacencyList;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">int</span> size;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    Type type;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <a class="code" href="struct___vector.html">Vector</a>* data;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;};</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160; </div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;<a class="code" href="struct___graph.html">Graph</a>* createGraph(Type type);</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160; </div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;<span class="keywordtype">int</span> sizeGraph(<a class="code" href="struct___graph.html">Graph</a>* graph);</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;<span class="keywordtype">void</span> addVertex(<a class="code" href="struct___graph.html">Graph</a>* graph, <a class="code" href="struct___data.html">Data</a>* data);</div>
+<a href="_graph_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#ifndef PP2I_GRAPH_H</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define PP2I_GRAPH_H</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_data_8h.html">Data.h</a>&quot;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;Vector.h&quot;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___graph.html">_Graph</a> <a class="code" href="struct___graph.html">Graph</a>;</div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___data.html">_Data</a> <a class="code" href="struct___data.html">Data</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="struct___graph.html">   23</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct___graph.html">_Graph</a> {</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="struct___graph.html#abef60b0ebad3ebf3c7cdc4cbf5c9492f">   24</a></span>&#160;    <a class="code" href="struct___vector.html">Vector</a>** <a class="code" href="struct___graph.html#abef60b0ebad3ebf3c7cdc4cbf5c9492f">adjacencyList</a>; </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="struct___graph.html#a439227feff9d7f55384e8780cfc2eb82">   25</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct___graph.html#a439227feff9d7f55384e8780cfc2eb82">size</a>;               </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="struct___graph.html#ab6f4e6d3fde00ce906e46494f60dfe7a">   26</a></span>&#160;    Type <a class="code" href="struct___graph.html#ab6f4e6d3fde00ce906e46494f60dfe7a">type</a>;              </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="struct___graph.html#a1800e2599debfe61afc90e0cbd00c547">   27</a></span>&#160;    <a class="code" href="struct___vector.html">Vector</a>* <a class="code" href="struct___graph.html#a1800e2599debfe61afc90e0cbd00c547">data</a>;           </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
 <div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;<span class="keywordtype">void</span> addEdge(<a class="code" href="struct___graph.html">Graph</a>* graph, <span class="keywordtype">int</span> vertex1, <span class="keywordtype">int</span> vertex2);</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160; </div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;<span class="keywordtype">bool</span> emptyGraph(<a class="code" href="struct___graph.html">Graph</a>* graph);</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160; </div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">void</span> destroyGraph(<a class="code" href="struct___graph.html">Graph</a>* graph);</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160; </div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;<span class="preprocessor">#endif </span><span class="comment">//PP2I_GRAPH_H</span></div>
-<div class="ttc" id="astruct___data_html"><div class="ttname"><a href="struct___data.html">_Data</a></div><div class="ttdef"><b>Definition:</b> Data.h:17</div></div>
-<div class="ttc" id="astruct___graph_html"><div class="ttname"><a href="struct___graph.html">_Graph</a></div><div class="ttdef"><b>Definition:</b> Graph.h:16</div></div>
+<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<a class="code" href="struct___graph.html">Graph</a>* <a class="code" href="_graph_8h.html#a9d7957df73e20800bbb3efd23cd0b5f4">createGraph</a>(Type <a class="code" href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a>);</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">int</span> <a class="code" href="_graph_8h.html#ac03522fc77777642ee0ad5f0f9b1267e">sizeGraph</a>(<a class="code" href="struct___graph.html">Graph</a>* graph);</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_graph_8h.html#af20c4a1288fae497627bb40b4d5ff522">addVertex</a>(<a class="code" href="struct___graph.html">Graph</a>* graph, <a class="code" href="struct___data.html">Data</a>* data);</div>
+<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_graph_8h.html#a4f2d59a96732077d4e23cb4a283aebd1">addEdge</a>(<a class="code" href="struct___graph.html">Graph</a>* graph, <span class="keywordtype">int</span> vertex1, <span class="keywordtype">int</span> vertex2);</div>
+<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="_graph_8h.html#aaecf07d7ff9114ec316bf890e741a288">emptyGraph</a>(<a class="code" href="struct___graph.html">Graph</a>* graph);</div>
+<div class="line"><a name="l00081"></a><span class="lineno">   81</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_graph_8h.html#a37f75376c71b6f8035f3fc31de8034ab">destroyGraph</a>(<a class="code" href="struct___graph.html">Graph</a>* graph);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00091"></a><span class="lineno">   91</span>&#160;<span class="preprocessor">#endif </span><span class="comment">//PP2I_GRAPH_H</span></div>
+<div class="ttc" id="a_data_8h_html"><div class="ttname"><a href="_data_8h.html">Data.h</a></div><div class="ttdoc">Data header file.</div></div>
+<div class="ttc" id="a_data_8h_html_adb1dbf691ca9751b21d4ab403146a6b1"><div class="ttname"><a href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a></div><div class="ttdeci">Type type(Data *data)</div><div class="ttdoc">Gets the type of the data.</div><div class="ttdef"><b>Definition:</b> Data.c:98</div></div>
+<div class="ttc" id="a_graph_8h_html_a37f75376c71b6f8035f3fc31de8034ab"><div class="ttname"><a href="_graph_8h.html#a37f75376c71b6f8035f3fc31de8034ab">destroyGraph</a></div><div class="ttdeci">void destroyGraph(Graph *graph)</div><div class="ttdoc">Function to destroy the graph.</div><div class="ttdef"><b>Definition:</b> Graph.c:53</div></div>
+<div class="ttc" id="a_graph_8h_html_a4f2d59a96732077d4e23cb4a283aebd1"><div class="ttname"><a href="_graph_8h.html#a4f2d59a96732077d4e23cb4a283aebd1">addEdge</a></div><div class="ttdeci">void addEdge(Graph *graph, int vertex1, int vertex2)</div><div class="ttdoc">Function to add an edge to the graph.</div><div class="ttdef"><b>Definition:</b> Graph.c:37</div></div>
+<div class="ttc" id="a_graph_8h_html_a9d7957df73e20800bbb3efd23cd0b5f4"><div class="ttname"><a href="_graph_8h.html#a9d7957df73e20800bbb3efd23cd0b5f4">createGraph</a></div><div class="ttdeci">Graph * createGraph(Type type)</div><div class="ttdoc">Function to create a graph.</div><div class="ttdef"><b>Definition:</b> Graph.c:7</div></div>
+<div class="ttc" id="a_graph_8h_html_aaecf07d7ff9114ec316bf890e741a288"><div class="ttname"><a href="_graph_8h.html#aaecf07d7ff9114ec316bf890e741a288">emptyGraph</a></div><div class="ttdeci">bool emptyGraph(Graph *graph)</div><div class="ttdoc">Function to empty the graph.</div><div class="ttdef"><b>Definition:</b> Graph.c:46</div></div>
+<div class="ttc" id="a_graph_8h_html_ac03522fc77777642ee0ad5f0f9b1267e"><div class="ttname"><a href="_graph_8h.html#ac03522fc77777642ee0ad5f0f9b1267e">sizeGraph</a></div><div class="ttdeci">int sizeGraph(Graph *graph)</div><div class="ttdoc">Function to get the size of the graph.</div><div class="ttdef"><b>Definition:</b> Graph.c:24</div></div>
+<div class="ttc" id="a_graph_8h_html_af20c4a1288fae497627bb40b4d5ff522"><div class="ttname"><a href="_graph_8h.html#af20c4a1288fae497627bb40b4d5ff522">addVertex</a></div><div class="ttdeci">void addVertex(Graph *graph, Data *data)</div><div class="ttdoc">Function to add a vertex to the graph.</div><div class="ttdef"><b>Definition:</b> Graph.c:28</div></div>
+<div class="ttc" id="astruct___data_html"><div class="ttname"><a href="struct___data.html">_Data</a></div><div class="ttdoc">Structure representing a data.</div><div class="ttdef"><b>Definition:</b> Data.h:25</div></div>
+<div class="ttc" id="astruct___graph_html"><div class="ttname"><a href="struct___graph.html">_Graph</a></div><div class="ttdoc">Struct representing a graph.</div><div class="ttdef"><b>Definition:</b> Graph.h:23</div></div>
+<div class="ttc" id="astruct___graph_html_a1800e2599debfe61afc90e0cbd00c547"><div class="ttname"><a href="struct___graph.html#a1800e2599debfe61afc90e0cbd00c547">_Graph::data</a></div><div class="ttdeci">Vector * data</div><div class="ttdef"><b>Definition:</b> Graph.h:27</div></div>
+<div class="ttc" id="astruct___graph_html_a439227feff9d7f55384e8780cfc2eb82"><div class="ttname"><a href="struct___graph.html#a439227feff9d7f55384e8780cfc2eb82">_Graph::size</a></div><div class="ttdeci">int size</div><div class="ttdef"><b>Definition:</b> Graph.h:25</div></div>
+<div class="ttc" id="astruct___graph_html_ab6f4e6d3fde00ce906e46494f60dfe7a"><div class="ttname"><a href="struct___graph.html#ab6f4e6d3fde00ce906e46494f60dfe7a">_Graph::type</a></div><div class="ttdeci">Type type</div><div class="ttdef"><b>Definition:</b> Graph.h:26</div></div>
+<div class="ttc" id="astruct___graph_html_abef60b0ebad3ebf3c7cdc4cbf5c9492f"><div class="ttname"><a href="struct___graph.html#abef60b0ebad3ebf3c7cdc4cbf5c9492f">_Graph::adjacencyList</a></div><div class="ttdeci">Vector ** adjacencyList</div><div class="ttdef"><b>Definition:</b> Graph.h:24</div></div>
 <div class="ttc" id="astruct___vector_html"><div class="ttname"><a href="struct___vector.html">_Vector</a></div><div class="ttdef"><b>Definition:</b> Vector.h:18</div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>Graph.h</b></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>
