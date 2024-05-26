@@ -18,8 +18,8 @@ bool isBarrierDestroyed;
 int click_counter = 0 ;
 Inventory* inventory;
 Inventory* marchantInventory;
-Uint32 textDisplayStartTime = 0;
-const Uint32 enemyHitTextDisplayDuration = 5000; // ms
+Uint32 timeOfHit;
+const Uint32 enemyHitTextDisplayDuration = 750; // ms
 
 void startStartScene(Scene* scene, GameState* gameState) {
     checkpoint_sword = false;
@@ -150,6 +150,16 @@ void updateStartScene(Scene* scene, GameState* gameState) {
     float x = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[0];
     float y = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[2];
     checkDead(gameState);
+
+    if(isDamageShown){
+        isDamageShown = false;
+        timeOfHit = SDL_GetTicks();
+        }
+
+
+    if(SDL_GetTicks() - timeOfHit < enemyHitTextDisplayDuration){
+        RenderText("-10", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2 - 50, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+    }
 
 
     if (gameState->isPlayerDead) {
