@@ -16,7 +16,6 @@ struct  _Room
     bool isCompleted;
     int nb_enemy;
     int id_enemy[NB_ENEMY];
-
 };
 typedef struct _L_Room {
     Model* model;

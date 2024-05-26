@@ -343,6 +343,7 @@ void initializeLRooms(Dungeon *dj) {
 void LoadRoom(Scene* scene, Model* player, Dungeon* dj,RigidBody* body, Collider* collider,GameState* gameState) {
     printf("Changement de salle du type : %d\n",dj->rooms[dj->current_room].id);
     printf("On vient du %c\n",dj->direction);
+    SDL_Color color_black = {0, 0, 0, 0};
     char d1;
     switch (dj->direction){
         case 'S': 
@@ -391,8 +392,8 @@ void LoadRoom(Scene* scene, Model* player, Dungeon* dj,RigidBody* body, Collider
                 for (int i =0;i<dj->nb_rooms;i++){
                 if (dj->adj[dj->current_room][i]!='O'){
                     dj->previous_direction = dj->direction;
-                    dj->previous_room = dj->current_room;
-                    dj->current_room = i;
+                dj->previous_room = dj->current_room;
+                dj->current_room = i;
                     dj->direction = d1;
                     dj->change = true;
                     player->isBusy = true;
@@ -471,7 +472,7 @@ void Affiche(Dungeon *dj){
         else if (dj->rooms[i].id==7){
             id7++;
         }
-     printf("Le type de la salle %d est %d et son id est %d et a %d ennemis : id %d et %d\n",i,dj->rooms[i].type,dj->rooms[i].id,dj->rooms[i].nb_enemy,dj->rooms[i].id_enemy[0],dj->rooms[i].id_enemy[1]);
+     printf("Le type de la salle %d est %d et son id est %d et a %d enemy : id %d et %d\n",i,dj->rooms[i].type,dj->rooms[i].id,dj->rooms[i].nb_enemy,dj->rooms[i].id_enemy[0],dj->rooms[i].id_enemy[1]);
 
 
     }
@@ -863,7 +864,7 @@ void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
             chestModel = (Model*)keyBossChest->components[0].data;
             vec3 ChestDir;
             glm_vec3_sub( playerModel->position, ChestPosition, ChestDir);
-            if (glm_vec3_norm(ChestDir)<1.5f){
+            if (glm_vec3_norm(ChestDir)<1.0f){
                 RenderText("Appuyer sur E pour ouvrir", color_white, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                 if (getKeyState(SDLK_e)){
                     dj->rooms[dj->current_room].isCompleted = true;
@@ -1051,7 +1052,7 @@ void LogicRoom3C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     float Door2Dist = glm_vec3_norm(Door2Dir);
     float Door3Dist = glm_vec3_norm(Door3Dir);
     float Door4Dist = glm_vec3_norm(Door4Dir);
-    if (getKeyState(SDLK_o)){
+    if (!getKeyState(SDLK_o)){
         printf("S : %f, N : %f, E : %f, W : %f\n",Door1Dist,Door2Dist,Door3Dist,Door4Dist);
     }
     if (Door1Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime&&dir_used[1] ){
@@ -1133,7 +1134,7 @@ void LogicRoom4C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     float Door2Dist = glm_vec3_norm(Door2Dir);
     float Door3Dist = glm_vec3_norm(Door3Dir);
     float Door4Dist = glm_vec3_norm(Door4Dir);
-    if (getKeyState(SDLK_o)){
+    if (!getKeyState(SDLK_o)){
         printf("S : %f, N : %f, E : %f, W : %f\n",Door1Dist,Door2Dist,Door3Dist,Door4Dist);
     }
     if (Door1Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
@@ -1524,7 +1525,7 @@ void setTypeRoom(Dungeon* dj){
                 dj->rooms[i].id_enemy[1] = 6 + (dj->nb_enemy+1);
                 dj->nb_enemy+=2;
                 dj->rooms[i].nb_enemy = 2;
-                printf("id ennemi salle %d = %d %d\n",i,dj->rooms[i].id_enemy[0],dj->rooms[i].id_enemy[1]);
+                printf("id ennmy salle %d = %d %d\n",i,dj->rooms[i].id_enemy[0],dj->rooms[i].id_enemy[1]);
             }
             else if (dj->nb_enemy<NB_ENEMY){
                 dj->rooms[i].id_enemy[0] = 6 + dj->nb_enemy;
@@ -1535,7 +1536,7 @@ void setTypeRoom(Dungeon* dj){
                 dj->rooms[i].type = -1;
             }
         }
-        printf("id ennemi salle %d = %d %d\n",i,dj->rooms[i].id_enemy[0],dj->rooms[i].id_enemy[1]);
+        printf("id ennmy salle %d = %d %d\n",i,dj->rooms[i].id_enemy[0],dj->rooms[i].id_enemy[1]);
         }
      }
         

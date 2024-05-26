@@ -9,7 +9,7 @@
 #include <string.h>
 #include <GameState.h>
 #include <Scene.h>
-
+#include <Controls.h>
 #define NB_ROOM_MAX 15
 #define NB_ROOM_MIN 10
 #define MIN_DOOR 1

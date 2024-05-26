@@ -31,34 +31,12 @@ static void logSDLError(const char* msg) {
  * @param gameState Pointer to the current game state.
  * @param sceneManager Pointer to the scene manager.
  */
-void processInput(SDL_Event* e, bool* running, bool* isPaused, GameState* gameState, SceneManager* sceneManager) {
+void processInput(SDL_Event* e, bool* running,bool* isPaused, GameState* gameState, SceneManager* sceneManager) {
     switch (e->type) {
         case SDL_QUIT:
             *running = false;
             break;
         case SDL_KEYDOWN:
-			/*Handle pause menu input*/
-			if (e->key.keysym.sym == SDLK_ESCAPE){
-				*isPaused = !*isPaused;
-				if (*isPaused) {
-					gameState->settingsNum = 0;
-				}
-			} else if (e->key.keysym.sym == SDLK_DOWN && *isPaused){
-				gameState->settingsNum++;
-			} else if (e->key.keysym.sym == SDLK_UP && *isPaused){
-				gameState->settingsNum--;
-			} else if (e->key.keysym.sym == SDLK_RETURN && *isPaused){
-				if (gameState->settingsNum == 0){
-					*isPaused = false;
-				} else if (gameState->settingsNum == 1){
-					gameState->isPlayerDead = true;
-					*isPaused = false;
-					keyState[SDLK_r] = 1;
-					gameState->restarting = true;
-				} else if (gameState->settingsNum == 2){
-					*running = false;
-				}
-			}
             handleKeyBoardEventDown(*e);
             break;
         case SDL_KEYUP:
@@ -69,8 +47,6 @@ void processInput(SDL_Event* e, bool* running, bool* isPaused, GameState* gameSt
             mousePos[1] = e->motion.y;
             break;
         case SDL_MOUSEBUTTONDOWN:
-			handleMouseButtonEvent(*e);
-			break;
         case SDL_MOUSEBUTTONUP:
             handleMouseButtonEvent(*e);
             break;

@@ -28,6 +28,7 @@ int main(void){
     INIT_SCENE(mainScene, sceneManager, startMainScene, updateMainScene, unloadStartScene);
 
     /* Set Default Current Scene */
+    sceneManager->gameState.currentSceneIndex = 2;
     SceneManagerSetCurrentScene(sceneManager, sceneManager->gameState.currentSceneIndex);
 
     Uint32 last = SDL_GetTicks();
