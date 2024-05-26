@@ -166,9 +166,9 @@ void updateStartScene(Scene* scene, GameState* gameState) {
         timeOfHit = SDL_GetTicks();
         }
 
-
     if(SDL_GetTicks() - timeOfHit < enemyHitTextDisplayDuration){
-        RenderText("-10", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 2 - 50, 50, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        RenderText("-10", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 45 + 140, 13 * gameState->g_WindowHeight / 15 + 20, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        
     }
 
 
