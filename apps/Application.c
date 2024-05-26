@@ -27,6 +27,10 @@ int main(void){
     INIT_SCENE(forestScene, sceneManager, ForestMainScene, updateForestScene, unloadStartScene);
     INIT_SCENE(mainScene, sceneManager, startMainScene, updateMainScene, unloadStartScene);
 
+    /* Initialize Menu */
+    Menu* menu = MenuPauseInit();
+    sceneManager->gameState.pauseMenu = menu;
+
     /* Set Default Current Scene */
     sceneManager->gameState.currentSceneIndex = 2;
     SceneManagerSetCurrentScene(sceneManager, sceneManager->gameState.currentSceneIndex);
@@ -47,10 +51,8 @@ int main(void){
         
         if (game->isPaused) {
                 RenderText("MENU", (SDL_Color){0,0,0,0}, (&sceneManager->gameState)->g_WindowWidth / 2, 9 * (&sceneManager->gameState)->g_WindowHeight / 10, 50, (&sceneManager->gameState)->g_WindowWidth, (&sceneManager->gameState)->g_WindowHeight, sceneManager->scenes[sceneManager->currentSceneIndex]->textShader->m_program);
-                MenuPauseDraw(game, &sceneManager->gameState, &sceneManager->scenes[sceneManager->currentSceneIndex]->textShader);
+                MenuPauseDraw(game, &sceneManager->gameState, &sceneManager->scenes[sceneManager->currentSceneIndex]->textShader, sceneManager->gameState.pauseMenu);
         }else{
-
-
         physicsSystem(sceneManager->scenes[sceneManager->currentSceneIndex]);
         SceneManagerUpdateCurrentScene(sceneManager);
         cameraControl(sceneManager->scenes[sceneManager->currentSceneIndex]->camera);

@@ -37,6 +37,19 @@ void processInput(SDL_Event* e, bool* running,bool* isPaused, GameState* gameSta
             *running = false;
             break;
         case SDL_KEYDOWN:
+			/*Handle pause menu input*/
+			if (e->key.keysym.sym == SDLK_ESCAPE){
+				*isPaused = !*isPaused;
+                MenuPauseReset(gameState->pauseMenu);
+            } else if(*isPaused){
+                if (e->key.keysym.sym == SDLK_DOWN) {
+                    MenuPauseDown(gameState->pauseMenu);
+                } else if (e->key.keysym.sym == SDLK_UP) {
+                    MenuPauseUp(gameState->pauseMenu);
+                } else if (e->key.keysym.sym == SDLK_RETURN) {
+                    MenuPauseSelect(gameState->pauseMenu, gameState, running, isPaused);
+                }
+            }
             handleKeyBoardEventDown(*e);
             break;
         case SDL_KEYUP:

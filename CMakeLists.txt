@@ -54,4 +54,23 @@ target_link_libraries(${PROJECT_NAME} cglm -lm  -fsanitize=address)
 target_link_libraries(${PROJECT_NAME} ccd -fsanitize=address)
 target_link_libraries(${PROJECT_NAME} glad -fsanitize=address)
 
+# Enable testing
+enable_testing()
 
+set(CUNIT_INCLUDE_DIRS "/usr/include/CUnit")
+set(CUNIT_LIBRARIES "/usr/lib/x86_64-linux-gnu/libcunit.so")
+
+# Add all test files under the test directory
+file(GLOB_RECURSE TEST_SOURCES "tests/*.c")
+file(GLOB_RECURSE DATA_STRUCTURES "apps/DataStructures/*.c")
+
+# Add the test executable
+add_executable(run_tests ${TEST_SOURCES} ${SOURCES} ${DATA_STRUCTURES})
+
+# Add the include directories for the CUnit library
+target_include_directories(run_tests PRIVATE ${CUNIT_INCLUDE_DIRS} include ${SDL2_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIR} ${FREETYPE_INCLUDE_DIRS} ${ASSIMP_INCLUDE_DIR} libs/cglm/include libs/ccd/include libs/glad/include libs/assimp/include)
+
+# Link the test executable with the CUnit library and the project library
+target_link_libraries(run_tests ${CUNIT_LIBRARIES} ${SDL2_LIBRARIES} ${FREETYPE_LIBRARIES} ${OPENGL_LIBRARIES} cglm -lm ccd glad assimp -fsanitize=address -lSDL2_ttf -lSDL2_image -lSDL2_mixer)
+
+add_test(NAME run_tests COMMAND run_tests)

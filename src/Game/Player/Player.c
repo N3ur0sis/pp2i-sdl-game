@@ -87,8 +87,8 @@ void playerMovement(Entity* player, float deltaTime, Camera* camera){
 	mat4 id;
     glm_translate_make(id,((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->velocity);
     glm_aabb_transform(((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBoxReference[0],id,((Collider*)getComponent(player, COMPONENT_COLLIDER))->boundingBox[0]);
-	moveCameraPlayer(camera, ((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->velocity, deltaTime);
 	}
+	moveCameraPlayer(camera, ((Model*)getComponent(player, COMPONENT_RENDERABLE))->position,((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY))->velocity, deltaTime);
 }
 
 /**
@@ -240,6 +240,11 @@ Entity* create_player(Scene*  scene,float x,float y,float z){
     playerComponent->isAttacking = false;
     playerComponent->isAlive = true;
     playerComponent->hasWeapon = false;
+    playerComponent->maxHealth = 100.0f;
+    playerComponent->currentHealth = 100.0f;
+    playerComponent->attackDamage = 30.0f;
+    playerComponent->attackRange = 2.0f;
+
     	addComponent(playerEntity, COMPONENT_PLAYER, playerComponent);
 
         addComponent(playerEntity, COMPONENT_RENDERABLE, playerModel);
@@ -318,5 +323,5 @@ void damagePlayer(GameState* gamestate, int damage){
 		gamestate->playerHealth = 0;
 		return;
 	}
-	gamestate->playerHealth -= damage;
+	//qgamestate->playerHealth -= damage;
 }

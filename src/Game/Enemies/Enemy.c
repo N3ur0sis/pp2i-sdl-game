@@ -20,7 +20,7 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
     Animator* enemyAnimator = (Animator*)getComponent(enemy, COMPONENT_ANIMATOR);
 
     if (!enemyComponent->isAlive) {
-        enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemDeathAnimation");
+        enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemDyingAnimation");
         return;
     }
 
@@ -33,7 +33,7 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
     glm_vec3_sub(playerPos, enemyPos, enemyComponent->direction);
     float enemyDist = glm_vec3_norm(enemyComponent->direction);
     glm_vec3_normalize(enemyComponent->direction);
-
+                printf("Enemy health = %f\n", enemyComponent->health);
     float rotTarget = 0.0f;
     if (enemyDist < enemyComponent->detectionRange) {
         float omega = acos(glm_dot((vec3){0, 0, 1}, enemyComponent->direction));
@@ -50,6 +50,28 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
             targetAngleDeg += 360;
         }
         rotTarget = glm_lerp(currentAngleDeg, targetAngleDeg, 0.1f);
+
+        // Check if the player is attacking and in range
+        PlayerComponent* playerComponent = (PlayerComponent*)getComponent(player, COMPONENT_PLAYER);
+        if (playerComponent->isAttacking && enemyDist < playerComponent->attackRange) {
+            // Check if the player's attack animation has just started
+            Animator* playerAnimator = (Animator*)getComponent(player, COMPONENT_ANIMATOR);
+            if (playerAnimator->playTime == 0.0f) {
+                // Reduce enemy health
+                enemyComponent->health -= playerComponent->attackDamage;
+                printf("Enemy health = %f\n", enemyComponent->health);
+                enemyAnimator->playTime = 0.0f;
+                enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemHitAnimation");
+
+                // Check if the enemy is dead
+                if (enemyComponent->health <= 0.0f) {
+                    enemyComponent->isAlive = false;
+                    enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemDyingAnimation");
+                    enemyAnimator->playTime = 0.0f;
+                    return;
+                }
+            }
+        }
 
         if (enemyDist < enemyComponent->attackRange) {
             if (!enemyComponent->isAttacking) {
@@ -112,6 +134,8 @@ Entity* create_golem(Scene* scene,float x,float y,float z,float scale){
     enemyComponent->attackDamage = 10.0f;
     enemyComponent->isAttacking = false;
     enemyComponent->isAlive = true;
+    enemyComponent->takeDamage = false;
+    enemyComponent->health = 100.0f;
     addComponent(enemy, COMPONENT_ENEMY, enemyComponent);
     }
     return enemy;
@@ -177,6 +201,7 @@ Entity* create_golemPurple(Scene* scene,float x,float y,float z,float scale){
     enemyComponent->attackDamage = 10.0f;
     enemyComponent->isAttacking = false;
     enemyComponent->isAlive = true;
+    enemyComponent->health = 100.0f;
     addComponent(enemy, COMPONENT_ENEMY, enemyComponent);
     }
     return enemy;
@@ -184,53 +209,53 @@ Entity* create_golemPurple(Scene* scene,float x,float y,float z,float scale){
 
 
 void golemLogic(Scene* scene, GameState* gameState, Entity* golem, Entity* player) {
-    float rotTarget = 0.0f;
-    vec3 enemyDir;
-    Model* golemModel = (Model*)getComponent(golem, COMPONENT_RENDERABLE);
-    Model* playerModel = (Model*)getComponent(player, COMPONENT_RENDERABLE);
-    Collider* playerCollider = (Collider*)getComponent(player,COMPONENT_COLLIDER);
-    Animator* golemAnimator = (Animator*)getComponent(golem, COMPONENT_ANIMATOR);
-    glm_vec3_sub(playerModel->position, golemModel->position, enemyDir);
-    float enemyDist = glm_vec3_norm(enemyDir);
-    glm_vec3_normalize(enemyDir);
-    if (enemyDir[0]!=.0f || enemyDir[1]!=.0f || enemyDir[2]!=.0f) {
-        float omega = acos(glm_dot((vec3){0, 0, 1}, enemyDir));
-        if (enemyDir[0] < 0) {
-            omega = -omega;
-        }
-        float currentAngleDeg = glm_deg(golemModel->rotation[1]);
-        float targetAngleDeg = glm_deg(omega);
-        while (targetAngleDeg - currentAngleDeg > 180) {
-            targetAngleDeg -= 360;
-        }
-        while (targetAngleDeg - currentAngleDeg < -180) {
-            targetAngleDeg += 360;
-        }
-        rotTarget = glm_lerp(currentAngleDeg, targetAngleDeg, 0.1f);
-    }
-    if (enemyDist < 2.0f) {
-        if (!gameState->enemyIsAttacking) {
-            gameState->enemyIsAttacking = true;
-            golemAnimator->playTime = 0.0f;
-            golemAnimator->currentAnimation = (Animation*)getAnimationComponent(golem, "golemPunchAnimation");
-        }
-        if (golemAnimator->playTime > golemAnimator->currentAnimation->anim_dur - 10) {
-            gameState->playerHealth -= 10.0f;
-            golemAnimator->playTime = 0.0f;
-            gameState->enemyIsAttacking = false;
-        }
-        golemModel->rotation[1] = glm_rad(rotTarget);
-    } else if (enemyDist < 15.0f) {
-            golemModel->rotation[1] = glm_rad(rotTarget);
-            gameState->enemyIsAttacking = false;
-            golemAnimator->currentAnimation = (Animation*)getAnimationComponent(golem, "golemWalkingAnimation");
-            glm_vec3_scale(enemyDir, 2 * scene->deltaTime, enemyDir);
-            glm_vec3_add(golemModel->position, enemyDir, golemModel->position);
-        }
-     else {
-        gameState->enemyIsAttacking = false;
-        golemAnimator->currentAnimation = (Animation*)getAnimationComponent(golem, "golemIdleAnimation");
-    }
+    // float rotTarget = 0.0f;
+    // vec3 enemyDir;
+    // Model* golemModel = (Model*)getComponent(golem, COMPONENT_RENDERABLE);
+    // Model* playerModel = (Model*)getComponent(player, COMPONENT_RENDERABLE);
+    // Collider* playerCollider = (Collider*)getComponent(player,COMPONENT_COLLIDER);
+    // Animator* golemAnimator = (Animator*)getComponent(golem, COMPONENT_ANIMATOR);
+    // glm_vec3_sub(playerModel->position, golemModel->position, enemyDir);
+    // float enemyDist = glm_vec3_norm(enemyDir);
+    // glm_vec3_normalize(enemyDir);
+    // if (enemyDir[0]!=.0f || enemyDir[1]!=.0f || enemyDir[2]!=.0f) {
+    //     float omega = acos(glm_dot((vec3){0, 0, 1}, enemyDir));
+    //     if (enemyDir[0] < 0) {
+    //         omega = -omega;
+    //     }
+    //     float currentAngleDeg = glm_deg(golemModel->rotation[1]);
+    //     float targetAngleDeg = glm_deg(omega);
+    //     while (targetAngleDeg - currentAngleDeg > 180) {
+    //         targetAngleDeg -= 360;
+    //     }
+    //     while (targetAngleDeg - currentAngleDeg < -180) {
+    //         targetAngleDeg += 360;
+    //     }
+    //     rotTarget = glm_lerp(currentAngleDeg, targetAngleDeg, 0.1f);
+    // }
+    // if (enemyDist < 2.0f) {
+    //     if (!gameState->enemyIsAttacking) {
+    //         gameState->enemyIsAttacking = true;
+    //         golemAnimator->playTime = 0.0f;
+    //         golemAnimator->currentAnimation = (Animation*)getAnimationComponent(golem, "golemPunchAnimation");
+    //     }
+    //     if (golemAnimator->playTime > golemAnimator->currentAnimation->anim_dur - 10) {
+    //         gameState->playerHealth -= 10.0f;
+    //         golemAnimator->playTime = 0.0f;
+    //         gameState->enemyIsAttacking = false;
+    //     }
+    //     golemModel->rotation[1] = glm_rad(rotTarget);
+    // } else if (enemyDist < 15.0f) {
+    //         golemModel->rotation[1] = glm_rad(rotTarget);
+    //         gameState->enemyIsAttacking = false;
+    //         golemAnimator->currentAnimation = (Animation*)getAnimationComponent(golem, "golemWalkingAnimation");
+    //         glm_vec3_scale(enemyDir, 2 * scene->deltaTime, enemyDir);
+    //         glm_vec3_add(golemModel->position, enemyDir, golemModel->position);
+    //     }
+    //  else {
+    //     gameState->enemyIsAttacking = false;
+    //     golemAnimator->currentAnimation = (Animation*)getAnimationComponent(golem, "golemIdleAnimation");
+    // }
 }
 
 Entity* create_gobelin(Scene* scene,float x,float y,float z,float scale){

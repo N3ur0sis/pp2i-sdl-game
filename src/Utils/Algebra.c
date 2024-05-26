@@ -1,13 +1,33 @@
+/*
+* @file Algebra.c
+* @brief Implementations of algebra functions.
+*
+* This file contains the implementations of algebra functions.
+*/
 #include <Algebra.h>
 
-
+/**
+ * @brief Converts an assimp vector to a glm vector.
+ * 
+ * This function converts an assimp vector to a glm vector.
+ * 
+ * @param vec The glm vector.
+ * @param ai_vec The assimp vector.
+ */
 void AssimpVec3(vec3 vec, struct aiVector3D ai_vec) {
     vec[0] = ai_vec.x;
     vec[1] = ai_vec.y;
     vec[2] = ai_vec.z;
 }
 
-
+/**
+ * @brief Converts an assimp quaternion to a glm quaternion.
+ * 
+ * This function converts an assimp quaternion to a glm quaternion.
+ * 
+ * @param q The glm quaternion.
+ * @param ai_q The assimp quaternion.
+ */
 void AssimpQuat(versor q, struct aiQuaternion ai_q) {
     q[0] = ai_q.x;
     q[1] = ai_q.y;
@@ -15,6 +35,14 @@ void AssimpQuat(versor q, struct aiQuaternion ai_q) {
     q[3] = ai_q.w;
 }
 
+/**
+ * @brief Converts an assimp matrix to a glm matrix.
+ * 
+ * This function converts an assimp matrix to a glm matrix.
+ * 
+ * @param mat The glm matrix.
+ * @param ai_mat The assimp matrix.
+ */
 void AssimpMat4(mat4 mat, struct aiMatrix4x4 ai_mat) {
     mat[0][0] = ai_mat.a1;
     mat[0][1] = ai_mat.b1;

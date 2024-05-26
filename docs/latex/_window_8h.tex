@@ -1,0 +1,119 @@
+\hypertarget{_window_8h}{}\doxysection{include/\+Window.h File Reference}
+\label{_window_8h}\index{include/Window.h@{include/Window.h}}
+
+
+Window management functions and definitions for the application.  
+
+
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+Include dependency graph for Window.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=182pt]{_window_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_window_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___window}{\+\_\+\+Window}}
+\begin{DoxyCompactList}\small\item\em A Window class that handles the SDL\+\_\+\+Window holding the application and the Open\+GL context associated with it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_window_8h_a9788f345bcc9fad5c1151094d0db3ef8}\label{_window_8h_a9788f345bcc9fad5c1151094d0db3ef8}} 
+typedef struct \mbox{\hyperlink{struct___window}{\+\_\+\+Window}} \mbox{\hyperlink{_window_8h_a9788f345bcc9fad5c1151094d0db3ef8}{Window}}
+\begin{DoxyCompactList}\small\item\em A Window class that handles the SDL\+\_\+\+Window holding the application and the Open\+GL context associated with it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_window_8h_a9788f345bcc9fad5c1151094d0db3ef8}{Window}} $\ast$ \mbox{\hyperlink{_window_8h_a6c083741a6bdfd983d56522e8e2c79c8}{Window\+Create}} (int width, int height, const char $\ast$title)
+\begin{DoxyCompactList}\small\item\em Creates a new Window instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_window_8h_ab75938776df794fb02fb07f6d061dd96}{Window\+Delete}} (\mbox{\hyperlink{_window_8h_a9788f345bcc9fad5c1151094d0db3ef8}{Window}} $\ast$window)
+\begin{DoxyCompactList}\small\item\em Deletes a Window instance. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Window management functions and definitions for the application. 
+
+\begin{DoxyAuthor}{Author}
+Aymeric ROBERT 
+\end{DoxyAuthor}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_window_8h_a6c083741a6bdfd983d56522e8e2c79c8}\label{_window_8h_a6c083741a6bdfd983d56522e8e2c79c8}} 
+\index{Window.h@{Window.h}!WindowCreate@{WindowCreate}}
+\index{WindowCreate@{WindowCreate}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{WindowCreate()}{WindowCreate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_window_8h_a9788f345bcc9fad5c1151094d0db3ef8}{Window}}$\ast$ Window\+Create (\begin{DoxyParamCaption}\item[{int}]{width,  }\item[{int}]{height,  }\item[{const char $\ast$}]{title }\end{DoxyParamCaption})}
+
+
+
+Creates a new Window instance. 
+
+This function initializes SDL and creates an Open\+GL context for the specified window. It also sets some attributes for the window and context.
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & Initial width of the window. \\
+\hline
+{\em height} & Initial height of the window. \\
+\hline
+{\em title} & Title of the window, displayed on the screen. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the created Window instance or NULL on failure. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+This window struct is mainly used to get the current width and height of the window.
+\end{DoxyNote}
+This function initializes SDL and creates an Open\+GL context for the specified window. It also sets some attributes for the window and context.
+
+
+\begin{DoxyParams}{Parameters}
+{\em width} & Initial width of the window. \\
+\hline
+{\em height} & Initial height of the window. \\
+\hline
+{\em title} & Title of the window, displayed on the screen. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the created Window instance or NULL on failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_window_8h_ab75938776df794fb02fb07f6d061dd96}\label{_window_8h_ab75938776df794fb02fb07f6d061dd96}} 
+\index{Window.h@{Window.h}!WindowDelete@{WindowDelete}}
+\index{WindowDelete@{WindowDelete}!Window.h@{Window.h}}
+\doxysubsubsection{\texorpdfstring{WindowDelete()}{WindowDelete()}}
+{\footnotesize\ttfamily void Window\+Delete (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_window_8h_a9788f345bcc9fad5c1151094d0db3ef8}{Window}} $\ast$}]{window }\end{DoxyParamCaption})}
+
+
+
+Deletes a Window instance. 
+
+This function deletes the Open\+GL context and the specified window.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & Pointer to the Window instance to delete. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+The object given in the parameter must have been created with the constructor before calling this function.
+\end{DoxyNote}
+This function deletes the Open\+GL context and the specified window.
+
+
+\begin{DoxyParams}{Parameters}
+{\em window} & Pointer to the Window instance to delete. \\
+\hline
+\end{DoxyParams}
