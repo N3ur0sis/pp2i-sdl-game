@@ -43,7 +43,6 @@ void startStartScene(Scene* scene, GameState* gameState) {
 
     /* Player Entity */
     Entity* playerEntity = create_player(scene,28.0f,0.1f,7.0f);
-
     /* Sword Entity */
     Entity* swordEntity = createEntity(scene);
     if (swordEntity != NULL) {
@@ -204,7 +203,11 @@ void updateStartScene(Scene* scene, GameState* gameState) {
         
     }
 
-
+    if (getKeyState(SDLK_h)){
+        if (InventoryRemoveObject(inventory,1)){
+            gameState->playerHealth+=10;
+        }
+    }
     if (gameState->isPlayerDead) {
         *isBusy = true;
         if (!gameState->restarting) {
