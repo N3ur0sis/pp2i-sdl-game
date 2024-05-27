@@ -122,6 +122,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(falaisestart, COMPONENT_RENDERABLE, falaisestartModel);
         compute_center_of_volume(falaisestartModel);
     }
+
     Entity* main = createEntity(scene);
     if (main != NULL) {
         Model* mainModel = (Model*)calloc(1, sizeof(Model));
@@ -129,7 +130,6 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(main, COMPONENT_RENDERABLE, mainModel);
         compute_center_of_volume(mainModel);
     }
-
     
     /* Light Entity */
     Entity* fontaine = createEntity(scene);
@@ -174,9 +174,15 @@ void startMainScene(Scene* scene, GameState* gameState) {
 
         Collider* fontaineCol = ColliderCreate("assets/models/Fontaine/col.obj");
     }
+    Entity* ground = createEntity(scene);
+    if (ground != NULL) {
+        Model* groundModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(groundModel, "assets/models/main/ground.obj");
+        addComponent(ground, COMPONENT_RENDERABLE, groundModel);
+    }
     Entity* lightEntity = createEntity(scene);
     if (lightEntity != NULL) {
-        Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f, 0.1f, 500.0f);
+        Light* light = LightCreate(scene->shader, (vec4){-330, 10.0, 102.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f, 0.1f, 500.0f);
         addComponent(lightEntity, COMPONENT_LIGHT, light);
     }
 
