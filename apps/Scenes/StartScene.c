@@ -133,6 +133,16 @@ void startStartScene(Scene* scene, GameState* gameState) {
     inventory = gameState->inventory;
     InventoryAddObjects(2, inventory, Object_createFromId(1));
     InventoryAddObjects(1, inventory, Object_createFromId(2));
+
+    Entity* arrow = createEntity(scene);
+    if (arrow){
+        Model* arrowModel = (Model*)calloc(1,sizeof(Model));
+        ModelCreate(arrowModel,"assets/models/Objet/Arrow/arrow.obj");
+        arrowModel->isRenderable = false;
+        glm_vec3_copy((vec3){10.0f, 10.0f, 10.0f}, arrowModel->scale);
+        arrowModel->rotation[1] = glm_rad(-90.0f);
+        addComponent(arrow, COMPONENT_RENDERABLE, arrowModel);
+    }
 }
  
 void updateStartScene(Scene* scene, GameState* gameState) {
@@ -143,7 +153,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
     Entity* chestEntity = &scene->entities[5];
     Entity* chestOpenEntity = &scene->entities[6];
     Entity* startBarrierEntity = &scene->entities[7];
-
+    Entity* arrowEntity = &scene->entities[9];
 
     Uint32 currentTime = SDL_GetTicks();
     bool* isBusy = &((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy;
@@ -214,10 +224,38 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             playerMovement(playerEntity, scene->deltaTime, scene->camera);
         }
 
-            
+        Model* arrowModel = (Model*)getComponent(arrowEntity, COMPONENT_RENDERABLE);
+        if (getKeyState(SDLK_g)&&!arrowModel->isRenderable){
+            glm_vec3_copy(playerModel->position,arrowModel->position);
+            glm_vec3_add(arrowModel->position,(vec3){0.0f,2.0f,0.0f},arrowModel->position);
+            arrowModel->rotation[1] = playerModel->rotation[1]-glm_rad(90.0f);
+            arrowModel->isRenderable = true;
+        }
+        if (arrowModel->isRenderable){
+            arrowModel->position[0] += cosf(arrowModel->rotation[1])/10;
+            arrowModel->position[2] -= sinf(arrowModel->rotation[1])/10;
+            vec3 arrowDir;
+            glm_vec3_sub(playerModel->position,arrowModel->position,arrowDir);
+            if (glm_vec3_norm(arrowDir)>20.0f){
+                arrowModel->isRenderable = false;
+            }
+            for (int i =0;i<scene->numEntities;i++){
+                Entity* entity = &scene->entities[i];
+                EnemyComponent* ennemy = (EnemyComponent*)getComponent(entity,COMPONENT_ENEMY);
+                Model* ennemyModel = (Model*)getComponent(entity,COMPONENT_RENDERABLE);
+                if (ennemy&&ennemyModel->isRenderable){
+                    glm_vec3_sub(ennemyModel->position,arrowModel->position,arrowDir);
+                    if (glm_vec3_norm(arrowDir)<2.5f){
+                        ennemy->health-=playerComponent->attackDamage;
+                        arrowModel->isRenderable = false;
+                        printf("%f\n",ennemy->health);
+                }
+            }
+        }}
+        
+    
 
         if(checkpoint_sword){
-
             updateEnemy(enemy,playerEntity,scene,gameState,scene->deltaTime);
 
         }

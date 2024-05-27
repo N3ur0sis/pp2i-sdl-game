@@ -171,7 +171,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModelnext->scale);
         fontaineModelnext->isRenderable = false;
         addComponent(fontaine, COMPONENT_RENDERABLE, fontaineModelnext);
-
+    
         Collider* fontaineCol = ColliderCreate("assets/models/Fontaine/col.obj");
     }
     Entity* ground = createEntity(scene);
@@ -186,7 +186,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(lightEntity, COMPONENT_LIGHT, light);
     }
 
-
+    
 
 }
 

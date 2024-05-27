@@ -18,7 +18,7 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
     EnemyComponent* enemyComponent = (EnemyComponent*)getComponent(enemy, COMPONENT_ENEMY);
     Model* enemyModel = (Model*)getComponent(enemy, COMPONENT_RENDERABLE);
     Animator* enemyAnimator = (Animator*)getComponent(enemy, COMPONENT_ANIMATOR);
-
+    printf("%f\n",enemyComponent->health);
     if (!enemyComponent->isAlive) {
         enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemDyingAnimation");
         if(enemyAnimator->playTime>3000.f){
@@ -63,6 +63,9 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
                 enemyAnimator->playTime = 0.0f;
                 enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemHitAnimation");
 
+            }
+        }
+
                 // Check if the enemy is dead
                 if (enemyComponent->health <= 0.0f) {
                     enemyComponent->isAlive = false;
@@ -70,9 +73,6 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
                     enemyAnimator->playTime = 0.0f;
                     return;
                 }
-            }
-        }
-
         if (enemyDist < enemyComponent->attackRange) {
             if (!enemyComponent->isAttacking) {
                 enemyComponent->isAttacking = true;
