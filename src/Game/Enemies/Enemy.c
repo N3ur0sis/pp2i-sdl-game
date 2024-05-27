@@ -2,6 +2,7 @@
 
 
 bool isDamageShown = false;
+bool damageSent = false;
 void initializeEnemyComponent(Entity* enemy, float detectionRange, float attackRange, float movementSpeed, float attackDamage) {
     EnemyComponent* enemyComponent = (EnemyComponent*)calloc(1, sizeof(EnemyComponent));
     glm_vec3_zero(enemyComponent->direction);
@@ -21,6 +22,9 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
 
     if (!enemyComponent->isAlive) {
         enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemDyingAnimation");
+        if (enemyAnimator->playTime > enemyAnimator->currentAnimation->anim_dur - 10) {
+            enemyModel->isRenderable = false;
+        }
         return;
     }
 
@@ -52,10 +56,11 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
 
         // Check if the player is attacking and in range
         PlayerComponent* playerComponent = (PlayerComponent*)getComponent(player, COMPONENT_PLAYER);
+        Animator* playerAnimator = (Animator*)getComponent(player, COMPONENT_ANIMATOR);
         if (playerComponent->isAttacking && enemyDist < playerComponent->attackRange) {
-            // Check if the player's attack animation has just started
-            Animator* playerAnimator = (Animator*)getComponent(player, COMPONENT_ANIMATOR);
-            if (playerAnimator->playTime == 0.0f) {
+            // Trigger enemy hit animation in the middle of the player's attack animation
+            if (playerAnimator->playTime >= playerAnimator->currentAnimation->anim_dur * 0.5f &&
+                playerAnimator->playTime < playerAnimator->currentAnimation->anim_dur * 0.5f + deltaTime) {
                 enemyComponent->health -= playerComponent->attackDamage;
                 enemyAnimator->playTime = 0.0f;
                 enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemHitAnimation");
@@ -69,19 +74,30 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
                 }
             }
         }
-
+        printf("%f\n", enemyComponent->attackCooldown);
         if (enemyDist < enemyComponent->attackRange) {
+            // Implement attack cooldown
             if (!enemyComponent->isAttacking) {
+                if(enemyComponent->attackCooldown == 0.0f){
+
                 enemyComponent->isAttacking = true;
                 enemyAnimator->playTime = 0.0f;
+                damageSent = false;
                 enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemPunchAnimation");
+                // Set a cooldown timer
+                enemyComponent->attackCooldown = ((Animation*)getAnimationComponent(enemy, "golemPunchAnimation"))->anim_dur / 1000  + 1.0f;  // Set cooldown duration here
+                }
             }
-            if (enemyAnimator->playTime > enemyAnimator->currentAnimation->anim_dur - 10) {
+            if (enemyAnimator->playTime > ((Animation*)getAnimationComponent(enemy, "golemPunchAnimation"))->anim_dur / 2 && !damageSent) {
                 damagePlayer(gameState, enemyComponent->attackDamage);
                 isDamageShown = true;
-                printf("L'ennemi frappe\n");
-                enemyAnimator->playTime = 0.0f;
+                damageSent = true;
+            }
+            if (enemyComponent->attackCooldown < 1) {
                 enemyComponent->isAttacking = false;
+                enemyAnimator->playTime = 0.0f;
+                enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemIdleAnimation");
+
             }
         } else {
             enemyComponent->isAttacking = false;
@@ -93,6 +109,14 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
     } else {
         enemyComponent->isAttacking = false;
         enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemIdleAnimation");
+    }
+
+    // Decrement attack cooldown
+    if (enemyComponent->attackCooldown > 0.0f) {
+        enemyComponent->attackCooldown -= deltaTime;
+        if (enemyComponent->attackCooldown < 0.0f) {
+            enemyComponent->attackCooldown = 0.0f;
+        }
     }
 
     enemyModel->rotation[1] = glm_rad(rotTarget);
