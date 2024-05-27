@@ -2,7 +2,8 @@
 
 
 bool is_tabingMain = false;
-
+bool isInsertingGem = false;
+bool pressingE = false;
 
 
 void startMainScene(Scene* scene, GameState* gameState) {
@@ -13,13 +14,15 @@ void startMainScene(Scene* scene, GameState* gameState) {
     /* Create a scene camera */
     scene->camera = camera_create(-119.46, 34.06, 93.99, gameState->g_WindowWidth, gameState->g_WindowHeight);
     scene->camera->Yaw = 180.0f;
+    scene->camera->Pitch = -20.0f;
     glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
     /* Create a skybox */
     scene->skybox = SkyboxCreate();
     float x;float y;float z;float rot;
     switch (gameState->previousSceneIndex){
         case 0://Start
-            x = -145.0f; y = 6.6f; z =94.0f;rot = 90.0f;
+            // x = -145.0f; y = 6.6f; z =94.0f;rot = 90.0f;
+            x = -330.0f; y = 6.6f; z =90.0f;rot = 90.0f;
             break;
         case 2://Foret
             x = -327.0f; y = 6.6f; z =288.5f; rot = 180.0f;
@@ -131,14 +134,63 @@ void startMainScene(Scene* scene, GameState* gameState) {
         Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f, 0.1f, 500.0f);
         addComponent(lightEntity, COMPONENT_LIGHT, light);
     }
+
+
+    Entity* foutainEntity = createEntity(scene);
+    if (foutainEntity != NULL) {
+        Model* foutainEntityModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(foutainEntityModel, "assets/models/Fontaine/Fontaine1.obj");
+        addComponent(foutainEntity, COMPONENT_RENDERABLE, foutainEntityModel);
+        compute_center_of_volume(foutainEntityModel);
+
+        ((Model*)getComponent(foutainEntity, COMPONENT_RENDERABLE))->position[0] = -334.0;
+        ((Model*)getComponent(foutainEntity, COMPONENT_RENDERABLE))->position[1] = 6.600000;
+        ((Model*)getComponent(foutainEntity, COMPONENT_RENDERABLE))->position[2] = 93.8;
+
+
+        Collider* foutainEntityCollider = ColliderCreate("assets/models/Fontaine/Fontaine1.obj");
+        glm_translate_make(foutainEntityCollider->transformMatrix, (vec3){-334.0f, 6.6f, 93.8f});
+        UpdateCollider(foutainEntityCollider);
+        addComponent(foutainEntity, COMPONENT_COLLIDER, foutainEntityCollider);
+    }
+
+
+    Entity* firstGemEntity = createEntity(scene);
+    if (firstGemEntity != NULL) {
+        Model* firstGemModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(firstGemModel, "assets/models/Gem/BlueGem.obj");
+        addComponent(firstGemEntity, COMPONENT_RENDERABLE, firstGemModel);
+        compute_center_of_volume(firstGemModel);
+
+        ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->position[0] = -329.0;
+        ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->position[1] = 7.3;
+        ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->position[2] = 93.693069;
+        ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->isRenderable = false;
+
+    }
+    
+    
+
+
+    gameState->hasBlueGem = true;
 }
 
 
 
 void updateMainScene(Scene* scene, GameState* gameState) {
+    Camera* camera =scene->camera; 
     Entity* playerEntity = &scene->entities[0];
+    Entity* gem = &scene->entities[12];
+
+
     Model* playerModel = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE));
-        if (getKeyState(SDLK_p)){
+    Model* gemModel = ((Model*)getComponent(gem, COMPONENT_RENDERABLE));
+
+    float x = playerModel->position[0];
+    float y = playerModel->position[1];
+    float z = playerModel->position[2];
+    
+    if (getKeyState(SDLK_p)){
         printf("Le joueur est en %f, %f, %f\n",playerModel->position[0],playerModel->position[1],playerModel->position[2]);
     }
     for (int i = 2;i<NBPARTMAP+1;i++){
@@ -155,7 +207,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     }
 
     Entity* swordEntity = &scene->entities[1];
-    Inventory* inventory = &gameState->inventory;
+    Inventory* inventory = gameState->inventory;
     bool* isBusy = &((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy;
     checkDead(gameState);
     if (gameState->isPlayerDead) {
@@ -182,22 +234,22 @@ void updateMainScene(Scene* scene, GameState* gameState) {
         RigidBody* playerRigidbody = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
 
 
-        // if (getKeyState(TAB) && !is_tabingMain) {
-        //     is_tabingMain = true;
-        //     if (inventory->isOpened) {
-        //         inventory->isOpened = false;
-        //         *isBusy = false;
-        //     } else {
-        //         inventory->isOpened = true;
-        //         *isBusy = true;
-        //     }
-        // } else if (!getKeyState(TAB)) {
-        //     is_tabingMain = false;
-        // }
+        if (getKeyState(TAB) && !is_tabingMain) {
+            is_tabingMain = true;
+            if (inventory->isOpened) {
+                inventory->isOpened = false;
+                *isBusy = false;
+            } else {
+                inventory->isOpened = true;
+                *isBusy = true;
+            }
+        } else if (!getKeyState(TAB)) {
+            is_tabingMain = false;
+        }
 
-        // if (inventory->isOpened) {
-        //     InventoryPrint(inventory, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
-        // }
+        if (inventory->isOpened) {
+            InventoryPrint(inventory, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program, 0, 0);
+        }
         playerMovement(playerEntity, scene->deltaTime, scene->camera);
     }   
 
@@ -218,6 +270,29 @@ void updateMainScene(Scene* scene, GameState* gameState) {
         gameState->nextSceneIndex = 0;
         gameState->previousSceneIndex = 3;
     }
+
+
+    if (canInsertBlueGem(x,z)) {
+        if (gameState->hasBlueGem){
+            RenderText("Appuyez sur E pour insérer la gemme", (SDL_Color){255, 255, 255, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+            if (getKeyState(SDLK_e) && !isInsertingGem){
+                isInsertingGem = true;
+                gameState->hasBlueGem = false;
+                gemModel->isRenderable = true;
+            }
+        }
+    }
+    if (gemModel->isRenderable){
+        if (gemModel->position[0]<-331.848541f) {
+            playerModel->isBusy = false;
+        }
+        else{
+            // glm_vec3_copy((vec3){-320.0f,10.0f,85.0f},camera->Position);
+            // camera->Yaw = 90.0f;
+            gemModel->position[0]-=0.01f;
+            playerModel->isBusy = true;
+        }
+    }
 }
 
 
@@ -236,4 +311,11 @@ void unloadMainScene(Scene* scene){
     }
 
     scene->numEntities = 0;
+}
+
+bool canInsertBlueGem(float x, float y) {
+    if (x  < -329.2 && x > -330.94 && y > 91.6 && y < 95.2 ) {
+        return true;
+    }
+    return false;
 }
