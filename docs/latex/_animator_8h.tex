@@ -1,0 +1,122 @@
+\hypertarget{_animator_8h}{}\doxysection{include/\+Animator.h File Reference}
+\label{_animator_8h}\index{include/Animator.h@{include/Animator.h}}
+
+
+Animator header file.  
+
+
+{\ttfamily \#include $<$Animation.\+h$>$}\newline
+Include dependency graph for Animator.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_animator_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_animator_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___animator}{\+\_\+\+Animator}}
+\begin{DoxyCompactList}\small\item\em Structure representing an animator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct___animator}{\+\_\+\+Animator}} \mbox{\hyperlink{_animator_8h_a1bbcffa3fb13b0aa9d5c9cc90b5a307f}{Animator}}
+\begin{DoxyCompactList}\small\item\em Structure representing an animator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{_animator_8h_a1bbcffa3fb13b0aa9d5c9cc90b5a307f}{Animator}} $\ast$ \mbox{\hyperlink{_animator_8h_a0fed7d739ce73d715d7b7a34bdb55b08}{Animator\+Create}} (\mbox{\hyperlink{struct_animation}{Animation}} $\ast$animation)
+\begin{DoxyCompactList}\small\item\em Creates a new Animator instance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_animator_8h_a4641a8d7041b3278745eea35df48cb38}{Animator\+On\+Update}} (\mbox{\hyperlink{_animator_8h_a1bbcffa3fb13b0aa9d5c9cc90b5a307f}{Animator}} $\ast$animator, \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$model, \mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$shader, float delta\+Time)
+\begin{DoxyCompactList}\small\item\em Updates the animator. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_animator_8h_acf11d732666a003c2d9955ca2ecb44d5}{Free\+Animator}} (\mbox{\hyperlink{_animator_8h_a1bbcffa3fb13b0aa9d5c9cc90b5a307f}{Animator}} $\ast$animator)
+\begin{DoxyCompactList}\small\item\em Frees the animator. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Animator header file. 
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_animator_8h_a1bbcffa3fb13b0aa9d5c9cc90b5a307f}\label{_animator_8h_a1bbcffa3fb13b0aa9d5c9cc90b5a307f}} 
+\index{Animator.h@{Animator.h}!Animator@{Animator}}
+\index{Animator@{Animator}!Animator.h@{Animator.h}}
+\doxysubsubsection{\texorpdfstring{Animator}{Animator}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct___animator}{\+\_\+\+Animator}} \mbox{\hyperlink{_animator_8h_a1bbcffa3fb13b0aa9d5c9cc90b5a307f}{Animator}}}
+
+
+
+Structure representing an animator. 
+
+This structure represents an animator. 
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_animator_8h_a0fed7d739ce73d715d7b7a34bdb55b08}\label{_animator_8h_a0fed7d739ce73d715d7b7a34bdb55b08}} 
+\index{Animator.h@{Animator.h}!AnimatorCreate@{AnimatorCreate}}
+\index{AnimatorCreate@{AnimatorCreate}!Animator.h@{Animator.h}}
+\doxysubsubsection{\texorpdfstring{AnimatorCreate()}{AnimatorCreate()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_animator_8h_a1bbcffa3fb13b0aa9d5c9cc90b5a307f}{Animator}}$\ast$ Animator\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_animation}{Animation}} $\ast$}]{animation }\end{DoxyParamCaption})}
+
+
+
+Creates a new Animator instance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em animation} & The animation to animate. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Pointer to the created Animator instance or NULL on failure. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_animator_8h_a4641a8d7041b3278745eea35df48cb38}\label{_animator_8h_a4641a8d7041b3278745eea35df48cb38}} 
+\index{Animator.h@{Animator.h}!AnimatorOnUpdate@{AnimatorOnUpdate}}
+\index{AnimatorOnUpdate@{AnimatorOnUpdate}!Animator.h@{Animator.h}}
+\doxysubsubsection{\texorpdfstring{AnimatorOnUpdate()}{AnimatorOnUpdate()}}
+{\footnotesize\ttfamily void Animator\+On\+Update (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_animator_8h_a1bbcffa3fb13b0aa9d5c9cc90b5a307f}{Animator}} $\ast$}]{animator,  }\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{model,  }\item[{\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$}]{shader,  }\item[{float}]{delta\+Time }\end{DoxyParamCaption})}
+
+
+
+Updates the animator. 
+
+This function updates the animator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em animator} & The animator to update. \\
+\hline
+{\em model} & The model to animate. \\
+\hline
+{\em shader} & The shader to use. \\
+\hline
+{\em delta\+Time} & The time since the last frame. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_animator_8h_acf11d732666a003c2d9955ca2ecb44d5}\label{_animator_8h_acf11d732666a003c2d9955ca2ecb44d5}} 
+\index{Animator.h@{Animator.h}!FreeAnimator@{FreeAnimator}}
+\index{FreeAnimator@{FreeAnimator}!Animator.h@{Animator.h}}
+\doxysubsubsection{\texorpdfstring{FreeAnimator()}{FreeAnimator()}}
+{\footnotesize\ttfamily void Free\+Animator (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_animator_8h_a1bbcffa3fb13b0aa9d5c9cc90b5a307f}{Animator}} $\ast$}]{animator }\end{DoxyParamCaption})}
+
+
+
+Frees the animator. 
+
+This function frees the animator.
+
+
+\begin{DoxyParams}{Parameters}
+{\em animator} & The animator to free. \\
+\hline
+\end{DoxyParams}

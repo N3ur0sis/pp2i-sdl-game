@@ -1,34 +1,89 @@
 \hypertarget{struct__shader_locations}{}\doxysection{\+\_\+shader\+Locations Struct Reference}
 \label{struct__shader_locations}\index{\_shaderLocations@{\_shaderLocations}}
+
+
+Struct for storing shader uniform locations.  
+
+
+
+
+{\ttfamily \#include $<$Shader.\+h$>$}
+
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct__shader_locations_ae3e9d97ab19212b0995aa9a13c0a6653}\label{struct__shader_locations_ae3e9d97ab19212b0995aa9a13c0a6653}} 
-GLuint {\bfseries View}
+GLuint \mbox{\hyperlink{struct__shader_locations_ae3e9d97ab19212b0995aa9a13c0a6653}{View}}
 \item 
-\mbox{\Hypertarget{struct__shader_locations_a617c126f048f1ad333567d11b3b20fd0}\label{struct__shader_locations_a617c126f048f1ad333567d11b3b20fd0}} 
-GLuint {\bfseries Projection}
+GLuint \mbox{\hyperlink{struct__shader_locations_a617c126f048f1ad333567d11b3b20fd0}{Projection}}
 \item 
-\mbox{\Hypertarget{struct__shader_locations_a2287577114d46dc8f11ed794b1ea165f}\label{struct__shader_locations_a2287577114d46dc8f11ed794b1ea165f}} 
-GLuint {\bfseries Model}
+GLuint \mbox{\hyperlink{struct__shader_locations_a2287577114d46dc8f11ed794b1ea165f}{Model}}
 \item 
-\mbox{\Hypertarget{struct__shader_locations_a8df0fe1bf67a381ee97aac182c1812bc}\label{struct__shader_locations_a8df0fe1bf67a381ee97aac182c1812bc}} 
-GLuint {\bfseries light\+Position}
+GLuint \mbox{\hyperlink{struct__shader_locations_a8df0fe1bf67a381ee97aac182c1812bc}{light\+Position}}
 \item 
-\mbox{\Hypertarget{struct__shader_locations_aebcc511a41afc71aacc7c7fd2c8b49e1}\label{struct__shader_locations_aebcc511a41afc71aacc7c7fd2c8b49e1}} 
-GLuint {\bfseries light\+Intensity}
+GLuint \mbox{\hyperlink{struct__shader_locations_aebcc511a41afc71aacc7c7fd2c8b49e1}{light\+Intensity}}
 \item 
-\mbox{\Hypertarget{struct__shader_locations_ae78db648469573ba609491bafa6af192}\label{struct__shader_locations_ae78db648469573ba609491bafa6af192}} 
-GLuint {\bfseries light\+Attenuation}
+GLuint \mbox{\hyperlink{struct__shader_locations_ae78db648469573ba609491bafa6af192}{light\+Attenuation}}
 \item 
-\mbox{\Hypertarget{struct__shader_locations_a154dd7248b88a6bcda7fcbaaf8686660}\label{struct__shader_locations_a154dd7248b88a6bcda7fcbaaf8686660}} 
-GLuint {\bfseries light\+Ambienbt\+Coef}
+GLuint \mbox{\hyperlink{struct__shader_locations_a154dd7248b88a6bcda7fcbaaf8686660}{light\+Ambienbt\+Coef}}
 \item 
-\mbox{\Hypertarget{struct__shader_locations_a81dabde4964d0cf9f81fee6deabcbeb7}\label{struct__shader_locations_a81dabde4964d0cf9f81fee6deabcbeb7}} 
-GLuint {\bfseries camera\+Position}
+GLuint \mbox{\hyperlink{struct__shader_locations_a81dabde4964d0cf9f81fee6deabcbeb7}{camera\+Position}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Struct for storing shader uniform locations. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct__shader_locations_a81dabde4964d0cf9f81fee6deabcbeb7}\label{struct__shader_locations_a81dabde4964d0cf9f81fee6deabcbeb7}} 
+\index{\_shaderLocations@{\_shaderLocations}!cameraPosition@{cameraPosition}}
+\index{cameraPosition@{cameraPosition}!\_shaderLocations@{\_shaderLocations}}
+\doxysubsubsection{\texorpdfstring{cameraPosition}{cameraPosition}}
+{\footnotesize\ttfamily GLuint camera\+Position}
+
+Location of the camera position uniform \mbox{\Hypertarget{struct__shader_locations_a154dd7248b88a6bcda7fcbaaf8686660}\label{struct__shader_locations_a154dd7248b88a6bcda7fcbaaf8686660}} 
+\index{\_shaderLocations@{\_shaderLocations}!lightAmbienbtCoef@{lightAmbienbtCoef}}
+\index{lightAmbienbtCoef@{lightAmbienbtCoef}!\_shaderLocations@{\_shaderLocations}}
+\doxysubsubsection{\texorpdfstring{lightAmbienbtCoef}{lightAmbienbtCoef}}
+{\footnotesize\ttfamily GLuint light\+Ambienbt\+Coef}
+
+Location of the light ambient coefficient uniform \mbox{\Hypertarget{struct__shader_locations_ae78db648469573ba609491bafa6af192}\label{struct__shader_locations_ae78db648469573ba609491bafa6af192}} 
+\index{\_shaderLocations@{\_shaderLocations}!lightAttenuation@{lightAttenuation}}
+\index{lightAttenuation@{lightAttenuation}!\_shaderLocations@{\_shaderLocations}}
+\doxysubsubsection{\texorpdfstring{lightAttenuation}{lightAttenuation}}
+{\footnotesize\ttfamily GLuint light\+Attenuation}
+
+Location of the light attenuation uniform \mbox{\Hypertarget{struct__shader_locations_aebcc511a41afc71aacc7c7fd2c8b49e1}\label{struct__shader_locations_aebcc511a41afc71aacc7c7fd2c8b49e1}} 
+\index{\_shaderLocations@{\_shaderLocations}!lightIntensity@{lightIntensity}}
+\index{lightIntensity@{lightIntensity}!\_shaderLocations@{\_shaderLocations}}
+\doxysubsubsection{\texorpdfstring{lightIntensity}{lightIntensity}}
+{\footnotesize\ttfamily GLuint light\+Intensity}
+
+Location of the light intensity uniform \mbox{\Hypertarget{struct__shader_locations_a8df0fe1bf67a381ee97aac182c1812bc}\label{struct__shader_locations_a8df0fe1bf67a381ee97aac182c1812bc}} 
+\index{\_shaderLocations@{\_shaderLocations}!lightPosition@{lightPosition}}
+\index{lightPosition@{lightPosition}!\_shaderLocations@{\_shaderLocations}}
+\doxysubsubsection{\texorpdfstring{lightPosition}{lightPosition}}
+{\footnotesize\ttfamily GLuint light\+Position}
+
+Location of the light position uniform \mbox{\Hypertarget{struct__shader_locations_a2287577114d46dc8f11ed794b1ea165f}\label{struct__shader_locations_a2287577114d46dc8f11ed794b1ea165f}} 
+\index{\_shaderLocations@{\_shaderLocations}!Model@{Model}}
+\index{Model@{Model}!\_shaderLocations@{\_shaderLocations}}
+\doxysubsubsection{\texorpdfstring{Model}{Model}}
+{\footnotesize\ttfamily GLuint \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}}}
+
+Location of the model matrix uniform \mbox{\Hypertarget{struct__shader_locations_a617c126f048f1ad333567d11b3b20fd0}\label{struct__shader_locations_a617c126f048f1ad333567d11b3b20fd0}} 
+\index{\_shaderLocations@{\_shaderLocations}!Projection@{Projection}}
+\index{Projection@{Projection}!\_shaderLocations@{\_shaderLocations}}
+\doxysubsubsection{\texorpdfstring{Projection}{Projection}}
+{\footnotesize\ttfamily GLuint Projection}
+
+Location of the projection matrix uniform \mbox{\Hypertarget{struct__shader_locations_ae3e9d97ab19212b0995aa9a13c0a6653}\label{struct__shader_locations_ae3e9d97ab19212b0995aa9a13c0a6653}} 
+\index{\_shaderLocations@{\_shaderLocations}!View@{View}}
+\index{View@{View}!\_shaderLocations@{\_shaderLocations}}
+\doxysubsubsection{\texorpdfstring{View}{View}}
+{\footnotesize\ttfamily GLuint View}
+
+Location of the view matrix uniform 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Shader.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_shader_8h}{Shader.\+h}}\end{DoxyCompactItemize}

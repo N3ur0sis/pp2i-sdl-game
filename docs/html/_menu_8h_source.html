@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_menu_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,51 +59,66 @@ $(document).ready(function(){initNavTree('_menu_8h_source.html',''); initResizab
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Menu.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">/*</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">* Menu.h</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">* Header file for the pause menu.</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="comment">* Authors: VD</span></div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="comment">*/</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
+<a href="_menu_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#pragma once</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_engine_8h.html">Engine.h</a>&gt;</span></div>
 <div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
 <div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct___menu.html">   16</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___menu.html">_Menu</a> {</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;    <span class="keywordtype">char</span>* title;</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;    <span class="keywordtype">int</span> numOptions;</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <span class="keywordtype">char</span>** options;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">int</span> selectedOption;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;} <a class="code" href="struct___menu.html">Menu</a>;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<a class="code" href="struct___menu.html">Menu</a>* MenuPauseInit();</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;<span class="keywordtype">void</span> MenuPauseReset(<a class="code" href="struct___menu.html">Menu</a>* menu);</div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> MenuPauseUp(<a class="code" href="struct___menu.html">Menu</a>* menu);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">void</span> MenuPauseDown(<a class="code" href="struct___menu.html">Menu</a>* menu);</div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
-<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keywordtype">void</span> MenuPauseSelect(<a class="code" href="struct___menu.html">Menu</a>* menu, <a class="code" href="struct_game_state.html">GameState</a>* gameState, <span class="keywordtype">bool</span>* running, <span class="keywordtype">bool</span>* isPaused);</div>
-<div class="line"><a name="l00071"></a><span class="lineno">   71</span>&#160; </div>
-<div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;<span class="keywordtype">void</span> MenuPauseDraw(<a class="code" href="struct___application.html">Application</a>* game, <a class="code" href="struct_game_state.html">GameState</a>* gameState, <a class="code" href="struct___shader.html">Shader</a>* shaderProgram, <a class="code" href="struct___menu.html">Menu</a>* menu);</div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="struct___menu.html#af06d911bb9e05f491ef3da520d03796c">   17</a></span>&#160;    <span class="keywordtype">char</span>* <a class="code" href="struct___menu.html#af06d911bb9e05f491ef3da520d03796c">title</a>;        </div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct___menu.html#aa3174b58130e22f99a2289148aac2bc7">   18</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct___menu.html#aa3174b58130e22f99a2289148aac2bc7">numOptions</a>;     </div>
+<div class="line"><a name="l00019"></a><span class="lineno"><a class="line" href="struct___menu.html#afefe8f715b91a6c68097ec7503dd6020">   19</a></span>&#160;    <span class="keywordtype">char</span>** <a class="code" href="struct___menu.html#afefe8f715b91a6c68097ec7503dd6020">options</a>;     </div>
+<div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="struct___menu.html#a4d4b64d77e8e94c0269a555600d585b1">   20</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct___menu.html#a4d4b64d77e8e94c0269a555600d585b1">selectedOption</a>; </div>
+<div class="line"><a name="l00021"></a><span class="lineno"><a class="line" href="struct___menu.html#a44b8a07482934b38165c392258af70ab">   21</a></span>&#160;    <a class="code" href="struct___menu.html">Menu</a>* <a class="code" href="struct___menu.html#a44b8a07482934b38165c392258af70ab">SettingsMenu</a>; </div>
+<div class="line"><a name="l00022"></a><span class="lineno"><a class="line" href="struct___menu.html#a47d867ea7ce2905963436869e8d2cb03">   22</a></span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="struct___menu.html#a47d867ea7ce2905963436869e8d2cb03">isSettings</a>;    </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="struct___menu.html#af153fe0e8d7a80232bc537bd3d99d14a">   23</a></span>&#160;    <a class="code" href="struct___menu.html">Menu</a>* <a class="code" href="struct___menu.html#af153fe0e8d7a80232bc537bd3d99d14a">parentMenu</a>;   </div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="struct___menu.html#aae94167b0f1813763475f0b60e95a34f">   24</a></span>&#160;    <a class="code" href="struct___application.html">Application</a>* <a class="code" href="struct___menu.html#aae94167b0f1813763475f0b60e95a34f">game</a>;  </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="_menu_8h.html#a32b117bdcab14c698680f109ffc06ab7">   25</a></span>&#160;} <a class="code" href="_menu_8h.html#a32b117bdcab14c698680f109ffc06ab7">Menu</a>;</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00033"></a><span class="lineno"><a class="line" href="_menu_8h.html#a00ad0b16c0d8abf5235c6923157ccb24">   33</a></span>&#160;<a class="code" href="struct___menu.html">Menu</a>* <a class="code" href="_menu_8h.html#a00ad0b16c0d8abf5235c6923157ccb24">MenuPauseInit</a>();</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_menu_8h.html#ad6dcd55e61b3574147e4dd48cab0fbcd">MenuPauseReset</a>(<a class="code" href="struct___menu.html">Menu</a>* menu);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160; </div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_menu_8h.html#a0ecaccfb6f87238683db89951bb21c34">MenuPauseUp</a>(<a class="code" href="struct___menu.html">Menu</a>* menu);</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
+<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_menu_8h.html#a236f0b9bf58c725e227ddf25ac3d3c34">MenuPauseDown</a>(<a class="code" href="struct___menu.html">Menu</a>* menu);</div>
+<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160; </div>
+<div class="line"><a name="l00074"></a><span class="lineno">   74</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_menu_8h.html#ad27b30c13fd7919bf4be82fe4ead735d">MenuPauseSelect</a>(<a class="code" href="struct___menu.html">Menu</a>* menu, <a class="code" href="struct_game_state.html">GameState</a>* gameState, <span class="keywordtype">bool</span>* running, <span class="keywordtype">bool</span>* isPaused);</div>
+<div class="line"><a name="l00075"></a><span class="lineno">   75</span>&#160; </div>
+<div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_menu_8h.html#a9501ff32965c14e8e9df2396336423ed">MenuPauseDraw</a>(<a class="code" href="struct___application.html">Application</a>* game, <a class="code" href="struct_game_state.html">GameState</a>* gameState, <a class="code" href="struct___shader.html">Shader</a>* shaderProgram, <a class="code" href="struct___menu.html">Menu</a>* menu);</div>
 <div class="ttc" id="a_engine_8h_html"><div class="ttname"><a href="_engine_8h.html">Engine.h</a></div><div class="ttdoc">Engine initialization and management functions. Include this file to implement the engine and start c...</div></div>
+<div class="ttc" id="a_menu_8h_html_a00ad0b16c0d8abf5235c6923157ccb24"><div class="ttname"><a href="_menu_8h.html#a00ad0b16c0d8abf5235c6923157ccb24">MenuPauseInit</a></div><div class="ttdeci">Menu * MenuPauseInit()</div><div class="ttdoc">Initializes the pause menu.</div></div>
+<div class="ttc" id="a_menu_8h_html_a0ecaccfb6f87238683db89951bb21c34"><div class="ttname"><a href="_menu_8h.html#a0ecaccfb6f87238683db89951bb21c34">MenuPauseUp</a></div><div class="ttdeci">void MenuPauseUp(Menu *menu)</div><div class="ttdoc">Moves the selection up in the pause menu.</div><div class="ttdef"><b>Definition:</b> Menu.c:69</div></div>
+<div class="ttc" id="a_menu_8h_html_a236f0b9bf58c725e227ddf25ac3d3c34"><div class="ttname"><a href="_menu_8h.html#a236f0b9bf58c725e227ddf25ac3d3c34">MenuPauseDown</a></div><div class="ttdeci">void MenuPauseDown(Menu *menu)</div><div class="ttdoc">Moves the selection down in the pause menu.</div><div class="ttdef"><b>Definition:</b> Menu.c:90</div></div>
+<div class="ttc" id="a_menu_8h_html_a32b117bdcab14c698680f109ffc06ab7"><div class="ttname"><a href="_menu_8h.html#a32b117bdcab14c698680f109ffc06ab7">Menu</a></div><div class="ttdeci">struct _Menu Menu</div><div class="ttdoc">Struct representing a menu.</div></div>
+<div class="ttc" id="a_menu_8h_html_a9501ff32965c14e8e9df2396336423ed"><div class="ttname"><a href="_menu_8h.html#a9501ff32965c14e8e9df2396336423ed">MenuPauseDraw</a></div><div class="ttdeci">void MenuPauseDraw(Application *game, GameState *gameState, Shader *shaderProgram, Menu *menu)</div><div class="ttdoc">Draws the pause menu.</div><div class="ttdef"><b>Definition:</b> Menu.c:161</div></div>
+<div class="ttc" id="a_menu_8h_html_ad27b30c13fd7919bf4be82fe4ead735d"><div class="ttname"><a href="_menu_8h.html#ad27b30c13fd7919bf4be82fe4ead735d">MenuPauseSelect</a></div><div class="ttdeci">void MenuPauseSelect(Menu *menu, GameState *gameState, bool *running, bool *isPaused)</div><div class="ttdoc">Selects an option in the pause menu.</div><div class="ttdef"><b>Definition:</b> Menu.c:114</div></div>
+<div class="ttc" id="a_menu_8h_html_ad6dcd55e61b3574147e4dd48cab0fbcd"><div class="ttname"><a href="_menu_8h.html#ad6dcd55e61b3574147e4dd48cab0fbcd">MenuPauseReset</a></div><div class="ttdeci">void MenuPauseReset(Menu *menu)</div><div class="ttdoc">Updates the pause menu.</div><div class="ttdef"><b>Definition:</b> Menu.c:56</div></div>
 <div class="ttc" id="astruct___application_html"><div class="ttname"><a href="struct___application.html">_Application</a></div><div class="ttdoc">Represents the main Engine structure.</div><div class="ttdef"><b>Definition:</b> Engine.h:23</div></div>
 <div class="ttc" id="astruct___menu_html"><div class="ttname"><a href="struct___menu.html">_Menu</a></div><div class="ttdoc">Struct representing a menu.</div><div class="ttdef"><b>Definition:</b> Menu.h:16</div></div>
-<div class="ttc" id="astruct___shader_html"><div class="ttname"><a href="struct___shader.html">_Shader</a></div><div class="ttdef"><b>Definition:</b> Shader.h:19</div></div>
-<div class="ttc" id="astruct_game_state_html"><div class="ttname"><a href="struct_game_state.html">GameState</a></div><div class="ttdef"><b>Definition:</b> GameState.h:6</div></div>
+<div class="ttc" id="astruct___menu_html_a44b8a07482934b38165c392258af70ab"><div class="ttname"><a href="struct___menu.html#a44b8a07482934b38165c392258af70ab">_Menu::SettingsMenu</a></div><div class="ttdeci">Menu * SettingsMenu</div><div class="ttdef"><b>Definition:</b> Menu.h:21</div></div>
+<div class="ttc" id="astruct___menu_html_a47d867ea7ce2905963436869e8d2cb03"><div class="ttname"><a href="struct___menu.html#a47d867ea7ce2905963436869e8d2cb03">_Menu::isSettings</a></div><div class="ttdeci">bool isSettings</div><div class="ttdef"><b>Definition:</b> Menu.h:22</div></div>
+<div class="ttc" id="astruct___menu_html_a4d4b64d77e8e94c0269a555600d585b1"><div class="ttname"><a href="struct___menu.html#a4d4b64d77e8e94c0269a555600d585b1">_Menu::selectedOption</a></div><div class="ttdeci">int selectedOption</div><div class="ttdef"><b>Definition:</b> Menu.h:20</div></div>
+<div class="ttc" id="astruct___menu_html_aa3174b58130e22f99a2289148aac2bc7"><div class="ttname"><a href="struct___menu.html#aa3174b58130e22f99a2289148aac2bc7">_Menu::numOptions</a></div><div class="ttdeci">int numOptions</div><div class="ttdef"><b>Definition:</b> Menu.h:18</div></div>
+<div class="ttc" id="astruct___menu_html_aae94167b0f1813763475f0b60e95a34f"><div class="ttname"><a href="struct___menu.html#aae94167b0f1813763475f0b60e95a34f">_Menu::game</a></div><div class="ttdeci">Application * game</div><div class="ttdef"><b>Definition:</b> Menu.h:24</div></div>
+<div class="ttc" id="astruct___menu_html_af06d911bb9e05f491ef3da520d03796c"><div class="ttname"><a href="struct___menu.html#af06d911bb9e05f491ef3da520d03796c">_Menu::title</a></div><div class="ttdeci">char * title</div><div class="ttdef"><b>Definition:</b> Menu.h:17</div></div>
+<div class="ttc" id="astruct___menu_html_af153fe0e8d7a80232bc537bd3d99d14a"><div class="ttname"><a href="struct___menu.html#af153fe0e8d7a80232bc537bd3d99d14a">_Menu::parentMenu</a></div><div class="ttdeci">Menu * parentMenu</div><div class="ttdef"><b>Definition:</b> Menu.h:23</div></div>
+<div class="ttc" id="astruct___menu_html_afefe8f715b91a6c68097ec7503dd6020"><div class="ttname"><a href="struct___menu.html#afefe8f715b91a6c68097ec7503dd6020">_Menu::options</a></div><div class="ttdeci">char ** options</div><div class="ttdef"><b>Definition:</b> Menu.h:19</div></div>
+<div class="ttc" id="astruct___shader_html"><div class="ttname"><a href="struct___shader.html">_Shader</a></div><div class="ttdoc">Struct for storing shader program.</div><div class="ttdef"><b>Definition:</b> Shader.h:30</div></div>
+<div class="ttc" id="astruct_game_state_html"><div class="ttname"><a href="struct_game_state.html">GameState</a></div><div class="ttdoc">Struct representing the game state.</div><div class="ttdef"><b>Definition:</b> GameState.h:17</div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>Menu.h</b></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

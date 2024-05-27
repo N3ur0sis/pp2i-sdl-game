@@ -10,7 +10,8 @@ SceneManager* SceneManagerInit() {
     /* TODO: Load GameState from Save File*/
     manager->gameState.enemyIsAttacking = false;
     manager->gameState.playerIsAttacking = false; 
-    manager->gameState.playerHealth = 100.0f;
+    manager->gameState.max_health = 60.0f;
+    manager->gameState.playerHealth = manager->gameState.max_health;
     manager->gameState.inventory = InventoryCreate(500);
     manager->gameState.marchantInventory = InventoryCreate(500);
     manager->gameState.g_WindowWidth = 1280;
@@ -18,12 +19,16 @@ SceneManager* SceneManagerInit() {
     manager->gameState.isPlayerDead = false;
     manager->gameState.change = false;
     manager->gameState.nextSceneIndex = -1;
+    manager->gameState.isChestOpen = false;
     manager->gameState.isForestDungeonDone = false;
+    manager->gameState.hasBlueGem = false;
+    manager->gameState.hasGreenGem = false;
+    manager->gameState.indexFountain = 0;
     manager->gameState.pauseMenu = NULL;
     manager->gameState.restarting = false;
     manager->gameState.mainMenuOpen = true;
     manager->gameState.money = 1000;
-    manager->gameState.indexFountain = 0;
+    manager->gameState.fullscreen = false;
     
     return manager;
 }

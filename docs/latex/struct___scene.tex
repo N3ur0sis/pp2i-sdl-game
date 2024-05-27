@@ -2,7 +2,17 @@
 \label{struct___scene}\index{\_Scene@{\_Scene}}
 
 
-Collaboration diagram for \+\_\+\+Scene\+:\nopagebreak
+Struct representing a scene.  
+
+
+
+
+{\ttfamily \#include $<$Scene.\+h$>$}
+
+
+
+Collaboration diagram for \+\_\+\+Scene\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,38 +22,96 @@ Collaboration diagram for \+\_\+\+Scene\+:\nopagebreak
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct___scene_ac7373354f9cc35f76804c73d4c98781c}\label{struct___scene_ac7373354f9cc35f76804c73d4c98781c}} 
-\mbox{\hyperlink{struct___shader}{Shader}} $\ast$ {\bfseries shader}
+\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$ \mbox{\hyperlink{struct___scene_ac7373354f9cc35f76804c73d4c98781c}{shader}}
 \item 
-\mbox{\Hypertarget{struct___scene_ac645287a71cda3bd20148ff4ad7148d6}\label{struct___scene_ac645287a71cda3bd20148ff4ad7148d6}} 
-\mbox{\hyperlink{struct___shader}{Shader}} $\ast$ {\bfseries text\+Shader}
+\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$ \mbox{\hyperlink{struct___scene_ac645287a71cda3bd20148ff4ad7148d6}{text\+Shader}}
 \item 
-\mbox{\Hypertarget{struct___scene_ae5251e4985e93c7c118a676960c1fe45}\label{struct___scene_ae5251e4985e93c7c118a676960c1fe45}} 
-\mbox{\hyperlink{struct___skybox}{Skybox}} $\ast$ {\bfseries skybox}
+\mbox{\hyperlink{_skybox_8h_a64f80fadb2002a97d914b02b1031e26b}{Skybox}} $\ast$ \mbox{\hyperlink{struct___scene_ae5251e4985e93c7c118a676960c1fe45}{skybox}}
 \item 
-\mbox{\Hypertarget{struct___scene_af95833c961e5bd20dcd54e1d46a03c0b}\label{struct___scene_af95833c961e5bd20dcd54e1d46a03c0b}} 
-\mbox{\hyperlink{struct_camera}{Camera}} $\ast$ {\bfseries camera}
+\mbox{\hyperlink{struct_camera}{Camera}} $\ast$ \mbox{\hyperlink{struct___scene_af95833c961e5bd20dcd54e1d46a03c0b}{camera}}
 \item 
-\mbox{\Hypertarget{struct___scene_a0ce2e0da6b7dd1987dfda048dc37970b}\label{struct___scene_a0ce2e0da6b7dd1987dfda048dc37970b}} 
-\mbox{\hyperlink{struct___entity}{Entity}} {\bfseries entities} \mbox{[}MAX\+\_\+\+ENTITIES\mbox{]}
+\mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} \mbox{\hyperlink{struct___scene_a0ce2e0da6b7dd1987dfda048dc37970b}{entities}} \mbox{[}\mbox{\hyperlink{_scene_8h_a0b7e155f796ed5e7b49b0f44867135ee}{MAX\+\_\+\+ENTITIES}}\mbox{]}
 \item 
-\mbox{\Hypertarget{struct___scene_aa8c3ad14b5d7e0dc9f27b23460fb1d0c}\label{struct___scene_aa8c3ad14b5d7e0dc9f27b23460fb1d0c}} 
-int {\bfseries num\+Entities}
+int \mbox{\hyperlink{struct___scene_aa8c3ad14b5d7e0dc9f27b23460fb1d0c}{num\+Entities}}
 \item 
-\mbox{\Hypertarget{struct___scene_a1a61318ed6aa02b4ff346e7eb8f68891}\label{struct___scene_a1a61318ed6aa02b4ff346e7eb8f68891}} 
-float {\bfseries delta\+Time}
+float \mbox{\hyperlink{struct___scene_a1a61318ed6aa02b4ff346e7eb8f68891}{delta\+Time}}
 \item 
-\mbox{\Hypertarget{struct___scene_a85fe68eb9bb90662b7be96a8887ee2c4}\label{struct___scene_a85fe68eb9bb90662b7be96a8887ee2c4}} 
-void($\ast$ {\bfseries start} )(struct \mbox{\hyperlink{struct___scene}{\+\_\+\+Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State)
+void($\ast$ \mbox{\hyperlink{struct___scene_a85fe68eb9bb90662b7be96a8887ee2c4}{start}} )(struct \mbox{\hyperlink{struct___scene}{\+\_\+\+Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State)
 \item 
-\mbox{\Hypertarget{struct___scene_a7c7bda639e1e172a3eaff9a6e04c201c}\label{struct___scene_a7c7bda639e1e172a3eaff9a6e04c201c}} 
-void($\ast$ {\bfseries update} )(struct \mbox{\hyperlink{struct___scene}{\+\_\+\+Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State)
+void($\ast$ \mbox{\hyperlink{struct___scene_a7c7bda639e1e172a3eaff9a6e04c201c}{update}} )(struct \mbox{\hyperlink{struct___scene}{\+\_\+\+Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State)
 \item 
-\mbox{\Hypertarget{struct___scene_a1c41fb00eb5ef4cb4553326de5e89ae2}\label{struct___scene_a1c41fb00eb5ef4cb4553326de5e89ae2}} 
-void($\ast$ {\bfseries unload} )(struct \+\_\+cene $\ast$scene)
+void($\ast$ \mbox{\hyperlink{struct___scene_ac5ff5b31992b896aaf845f3e7b6c5a8e}{unload}} )(struct \mbox{\hyperlink{struct___scene}{\+\_\+\+Scene}} $\ast$scene)
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Struct representing a scene. 
+
+This struct represents a scene. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct___scene_af95833c961e5bd20dcd54e1d46a03c0b}\label{struct___scene_af95833c961e5bd20dcd54e1d46a03c0b}} 
+\index{\_Scene@{\_Scene}!camera@{camera}}
+\index{camera@{camera}!\_Scene@{\_Scene}}
+\doxysubsubsection{\texorpdfstring{camera}{camera}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_camera}{Camera}}$\ast$ camera}
+
+\mbox{\hyperlink{struct_camera}{Camera}} of the scene. \mbox{\Hypertarget{struct___scene_a1a61318ed6aa02b4ff346e7eb8f68891}\label{struct___scene_a1a61318ed6aa02b4ff346e7eb8f68891}} 
+\index{\_Scene@{\_Scene}!deltaTime@{deltaTime}}
+\index{deltaTime@{deltaTime}!\_Scene@{\_Scene}}
+\doxysubsubsection{\texorpdfstring{deltaTime}{deltaTime}}
+{\footnotesize\ttfamily float delta\+Time}
+
+Delta time of the scene. \mbox{\Hypertarget{struct___scene_a0ce2e0da6b7dd1987dfda048dc37970b}\label{struct___scene_a0ce2e0da6b7dd1987dfda048dc37970b}} 
+\index{\_Scene@{\_Scene}!entities@{entities}}
+\index{entities@{entities}!\_Scene@{\_Scene}}
+\doxysubsubsection{\texorpdfstring{entities}{entities}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_entity_8h_a88bccc76704ed1a036c3500da8c42bcc}{Entity}} entities\mbox{[}\mbox{\hyperlink{_scene_8h_a0b7e155f796ed5e7b49b0f44867135ee}{MAX\+\_\+\+ENTITIES}}\mbox{]}}
+
+Array of entities. \mbox{\Hypertarget{struct___scene_aa8c3ad14b5d7e0dc9f27b23460fb1d0c}\label{struct___scene_aa8c3ad14b5d7e0dc9f27b23460fb1d0c}} 
+\index{\_Scene@{\_Scene}!numEntities@{numEntities}}
+\index{numEntities@{numEntities}!\_Scene@{\_Scene}}
+\doxysubsubsection{\texorpdfstring{numEntities}{numEntities}}
+{\footnotesize\ttfamily int num\+Entities}
+
+Number of entities. \mbox{\Hypertarget{struct___scene_ac7373354f9cc35f76804c73d4c98781c}\label{struct___scene_ac7373354f9cc35f76804c73d4c98781c}} 
+\index{\_Scene@{\_Scene}!shader@{shader}}
+\index{shader@{shader}!\_Scene@{\_Scene}}
+\doxysubsubsection{\texorpdfstring{shader}{shader}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}}$\ast$ shader}
+
+Shader of the scene. \mbox{\Hypertarget{struct___scene_ae5251e4985e93c7c118a676960c1fe45}\label{struct___scene_ae5251e4985e93c7c118a676960c1fe45}} 
+\index{\_Scene@{\_Scene}!skybox@{skybox}}
+\index{skybox@{skybox}!\_Scene@{\_Scene}}
+\doxysubsubsection{\texorpdfstring{skybox}{skybox}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_skybox_8h_a64f80fadb2002a97d914b02b1031e26b}{Skybox}}$\ast$ skybox}
+
+Skybox of the scene. \mbox{\Hypertarget{struct___scene_a85fe68eb9bb90662b7be96a8887ee2c4}\label{struct___scene_a85fe68eb9bb90662b7be96a8887ee2c4}} 
+\index{\_Scene@{\_Scene}!start@{start}}
+\index{start@{start}!\_Scene@{\_Scene}}
+\doxysubsubsection{\texorpdfstring{start}{start}}
+{\footnotesize\ttfamily void($\ast$ start) (struct \mbox{\hyperlink{struct___scene}{\+\_\+\+Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State)}
+
+Start function of the scene. \mbox{\Hypertarget{struct___scene_ac645287a71cda3bd20148ff4ad7148d6}\label{struct___scene_ac645287a71cda3bd20148ff4ad7148d6}} 
+\index{\_Scene@{\_Scene}!textShader@{textShader}}
+\index{textShader@{textShader}!\_Scene@{\_Scene}}
+\doxysubsubsection{\texorpdfstring{textShader}{textShader}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}}$\ast$ text\+Shader}
+
+Text shader of the scene. \mbox{\Hypertarget{struct___scene_ac5ff5b31992b896aaf845f3e7b6c5a8e}\label{struct___scene_ac5ff5b31992b896aaf845f3e7b6c5a8e}} 
+\index{\_Scene@{\_Scene}!unload@{unload}}
+\index{unload@{unload}!\_Scene@{\_Scene}}
+\doxysubsubsection{\texorpdfstring{unload}{unload}}
+{\footnotesize\ttfamily void($\ast$ unload) (struct \mbox{\hyperlink{struct___scene}{\+\_\+\+Scene}} $\ast$scene)}
+
+Unload function of the scene. \mbox{\Hypertarget{struct___scene_a7c7bda639e1e172a3eaff9a6e04c201c}\label{struct___scene_a7c7bda639e1e172a3eaff9a6e04c201c}} 
+\index{\_Scene@{\_Scene}!update@{update}}
+\index{update@{update}!\_Scene@{\_Scene}}
+\doxysubsubsection{\texorpdfstring{update}{update}}
+{\footnotesize\ttfamily void($\ast$ update) (struct \mbox{\hyperlink{struct___scene}{\+\_\+\+Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State)}
+
+Update function of the scene. 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Scene.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_scene_8h}{Scene.\+h}}\end{DoxyCompactItemize}

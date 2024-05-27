@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_animator_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,34 +59,45 @@ $(document).ready(function(){initNavTree('_animator_8h_source.html',''); initRes
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Animator.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#pragma once</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#include &lt;Animation.h&gt;</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160; </div>
-<div class="line"><a name="l00004"></a><span class="lineno"><a class="line" href="struct___animator.html">    4</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___animator.html">_Animator</a>{</div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;    <a class="code" href="struct_animation.html">Animation</a>* currentAnimation;</div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;    <span class="keywordtype">float</span> playTime;</div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;}<a class="code" href="struct___animator.html">Animator</a>;</div>
+<a href="_animator_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#pragma once</span></div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#include &lt;<a class="code" href="_animation_8h.html">Animation.h</a>&gt;</span></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160; </div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<a class="code" href="struct___animator.html">Animator</a>* AnimatorCreate(<a class="code" href="struct_animation.html">Animation</a>* animation);</div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="keywordtype">void</span> AnimatorOnUpdate(<a class="code" href="struct___animator.html">Animator</a>* animator, <a class="code" href="struct___model.html">Model</a>* model,<a class="code" href="struct___shader.html">Shader</a>* shader, <span class="keywordtype">float</span> deltaTime);</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="keywordtype">void</span> FreeAnimator(<a class="code" href="struct___animator.html">Animator</a>* animator);</div>
-<div class="ttc" id="astruct___animator_html"><div class="ttname"><a href="struct___animator.html">_Animator</a></div><div class="ttdef"><b>Definition:</b> Animator.h:4</div></div>
-<div class="ttc" id="astruct___model_html"><div class="ttname"><a href="struct___model.html">_Model</a></div><div class="ttdef"><b>Definition:</b> Model.h:29</div></div>
-<div class="ttc" id="astruct___shader_html"><div class="ttname"><a href="struct___shader.html">_Shader</a></div><div class="ttdef"><b>Definition:</b> Shader.h:19</div></div>
-<div class="ttc" id="astruct_animation_html"><div class="ttname"><a href="struct_animation.html">Animation</a></div><div class="ttdef"><b>Definition:</b> Animation.h:4</div></div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="struct___animator.html">   14</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___animator.html">_Animator</a>{</div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="struct___animator.html#aa90acb9db19df13dd0f33bb67f9fa67a">   15</a></span>&#160;    <a class="code" href="struct_animation.html">Animation</a>* <a class="code" href="struct___animator.html#aa90acb9db19df13dd0f33bb67f9fa67a">currentAnimation</a>;    </div>
+<div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="struct___animator.html#ab34ed04ed22a0a0e5a00559b927cb4bc">   16</a></span>&#160;    <span class="keywordtype">float</span> <a class="code" href="struct___animator.html#ab34ed04ed22a0a0e5a00559b927cb4bc">playTime</a>;                 </div>
+<div class="line"><a name="l00017"></a><span class="lineno"><a class="line" href="_animator_8h.html#a1bbcffa3fb13b0aa9d5c9cc90b5a307f">   17</a></span>&#160;}<a class="code" href="_animator_8h.html#a1bbcffa3fb13b0aa9d5c9cc90b5a307f">Animator</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160; </div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<a class="code" href="struct___animator.html">Animator</a>* <a class="code" href="_animator_8h.html#a0fed7d739ce73d715d7b7a34bdb55b08">AnimatorCreate</a>(<a class="code" href="struct_animation.html">Animation</a>* animation);</div>
+<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_animator_8h.html#a4641a8d7041b3278745eea35df48cb38">AnimatorOnUpdate</a>(<a class="code" href="struct___animator.html">Animator</a>* animator, <a class="code" href="struct___model.html">Model</a>* model,<a class="code" href="struct___shader.html">Shader</a>* shader, <span class="keywordtype">float</span> deltaTime);</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_animator_8h.html#acf11d732666a003c2d9955ca2ecb44d5">FreeAnimator</a>(<a class="code" href="struct___animator.html">Animator</a>* animator);</div>
+<div class="ttc" id="a_animation_8h_html"><div class="ttname"><a href="_animation_8h.html">Animation.h</a></div><div class="ttdoc">Implementations of animation functions.</div></div>
+<div class="ttc" id="a_animator_8h_html_a0fed7d739ce73d715d7b7a34bdb55b08"><div class="ttname"><a href="_animator_8h.html#a0fed7d739ce73d715d7b7a34bdb55b08">AnimatorCreate</a></div><div class="ttdeci">Animator * AnimatorCreate(Animation *animation)</div><div class="ttdoc">Creates a new Animator instance.</div><div class="ttdef"><b>Definition:</b> Animator.c:3</div></div>
+<div class="ttc" id="a_animator_8h_html_a1bbcffa3fb13b0aa9d5c9cc90b5a307f"><div class="ttname"><a href="_animator_8h.html#a1bbcffa3fb13b0aa9d5c9cc90b5a307f">Animator</a></div><div class="ttdeci">struct _Animator Animator</div><div class="ttdoc">Structure representing an animator.</div></div>
+<div class="ttc" id="a_animator_8h_html_a4641a8d7041b3278745eea35df48cb38"><div class="ttname"><a href="_animator_8h.html#a4641a8d7041b3278745eea35df48cb38">AnimatorOnUpdate</a></div><div class="ttdeci">void AnimatorOnUpdate(Animator *animator, Model *model, Shader *shader, float deltaTime)</div><div class="ttdoc">Updates the animator.</div><div class="ttdef"><b>Definition:</b> Animator.c:10</div></div>
+<div class="ttc" id="a_animator_8h_html_acf11d732666a003c2d9955ca2ecb44d5"><div class="ttname"><a href="_animator_8h.html#acf11d732666a003c2d9955ca2ecb44d5">FreeAnimator</a></div><div class="ttdeci">void FreeAnimator(Animator *animator)</div><div class="ttdoc">Frees the animator.</div><div class="ttdef"><b>Definition:</b> Animator.c:23</div></div>
+<div class="ttc" id="astruct___animator_html"><div class="ttname"><a href="struct___animator.html">_Animator</a></div><div class="ttdoc">Structure representing an animator.</div><div class="ttdef"><b>Definition:</b> Animator.h:14</div></div>
+<div class="ttc" id="astruct___animator_html_aa90acb9db19df13dd0f33bb67f9fa67a"><div class="ttname"><a href="struct___animator.html#aa90acb9db19df13dd0f33bb67f9fa67a">_Animator::currentAnimation</a></div><div class="ttdeci">Animation * currentAnimation</div><div class="ttdef"><b>Definition:</b> Animator.h:15</div></div>
+<div class="ttc" id="astruct___animator_html_ab34ed04ed22a0a0e5a00559b927cb4bc"><div class="ttname"><a href="struct___animator.html#ab34ed04ed22a0a0e5a00559b927cb4bc">_Animator::playTime</a></div><div class="ttdeci">float playTime</div><div class="ttdef"><b>Definition:</b> Animator.h:16</div></div>
+<div class="ttc" id="astruct___model_html"><div class="ttname"><a href="struct___model.html">_Model</a></div><div class="ttdoc">A Model class to represent a 3D object in the scene.</div><div class="ttdef"><b>Definition:</b> Model.h:37</div></div>
+<div class="ttc" id="astruct___shader_html"><div class="ttname"><a href="struct___shader.html">_Shader</a></div><div class="ttdoc">Struct for storing shader program.</div><div class="ttdef"><b>Definition:</b> Shader.h:30</div></div>
+<div class="ttc" id="astruct_animation_html"><div class="ttname"><a href="struct_animation.html">Animation</a></div><div class="ttdoc">Structure representing a node in the skeleton.</div><div class="ttdef"><b>Definition:</b> Animation.h:16</div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>Animator.h</b></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

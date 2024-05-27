@@ -14,10 +14,14 @@
  * 
  */
 typedef struct _Menu {
-    char* title;
-    int numOptions;
-    char** options;
-    int selectedOption;
+    char* title;        /**< Title of the menu. */
+    int numOptions;     /**< Number of options in the menu. */
+    char** options;     /**< Array of options in the menu. */
+    int selectedOption; /**< Index of the selected option. */
+    Menu* SettingsMenu; /**< Pointer to the settings menu. */
+    bool isSettings;    /**< Boolean flag indicating if the settings menu is active. */
+    Menu* parentMenu;   /**< Pointer to the parent menu. */
+    Application* game;  /**< Pointer to the application. */
 } Menu;
 
 /**

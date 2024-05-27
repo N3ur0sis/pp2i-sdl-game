@@ -1,0 +1,105 @@
+\hypertarget{_textures_8h}{}\doxysection{include/\+Textures.h File Reference}
+\label{_textures_8h}\index{include/Textures.h@{include/Textures.h}}
+
+
+Header file for the Textures module.  
+
+
+{\ttfamily \#include $<$glad/glad.\+h$>$}\newline
+Include dependency graph for Textures.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=185pt]{_textures_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_textures_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___texture}{\+\_\+\+Texture}}
+\begin{DoxyCompactList}\small\item\em Represent a single texture in the engine. Can be used by multiple Objet, completely dissociated from any Model, this class is just the reuslt of loading an image into a buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef struct \mbox{\hyperlink{struct___texture}{\+\_\+\+Texture}} \mbox{\hyperlink{_textures_8h_a0f34ff9a2bbd56e076a7bcdf99d39a71}{Texture}}
+\begin{DoxyCompactList}\small\item\em Represent a single texture in the engine. Can be used by multiple Objet, completely dissociated from any Model, this class is just the reuslt of loading an image into a buffer. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+GLuint \mbox{\hyperlink{_textures_8h_af2f1f496d01219006a8f24916a3d07ac}{Texture\+Load}} (const char $\ast$texture\+Path)
+\begin{DoxyCompactList}\small\item\em Load a texture from a file. \end{DoxyCompactList}\item 
+GLuint \mbox{\hyperlink{_textures_8h_a9672685786301f9809b32bb80ca2e13a}{Cube\+Map\+Load}} (char $\ast$$\ast$faces)
+\begin{DoxyCompactList}\small\item\em Load a cubemap texture. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the Textures module. 
+
+
+
+\doxysubsection{Typedef Documentation}
+\mbox{\Hypertarget{_textures_8h_a0f34ff9a2bbd56e076a7bcdf99d39a71}\label{_textures_8h_a0f34ff9a2bbd56e076a7bcdf99d39a71}} 
+\index{Textures.h@{Textures.h}!Texture@{Texture}}
+\index{Texture@{Texture}!Textures.h@{Textures.h}}
+\doxysubsubsection{\texorpdfstring{Texture}{Texture}}
+{\footnotesize\ttfamily typedef struct \mbox{\hyperlink{struct___texture}{\+\_\+\+Texture}} \mbox{\hyperlink{_textures_8h_a0f34ff9a2bbd56e076a7bcdf99d39a71}{Texture}}}
+
+
+
+Represent a single texture in the engine. Can be used by multiple Objet, completely dissociated from any Model, this class is just the reuslt of loading an image into a buffer. 
+
+\begin{DoxyNote}{Note}
+It uses the default texture unit, hence it is not necessary to specify the uniform value on the shader. 
+\end{DoxyNote}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_textures_8h_a9672685786301f9809b32bb80ca2e13a}\label{_textures_8h_a9672685786301f9809b32bb80ca2e13a}} 
+\index{Textures.h@{Textures.h}!CubeMapLoad@{CubeMapLoad}}
+\index{CubeMapLoad@{CubeMapLoad}!Textures.h@{Textures.h}}
+\doxysubsubsection{\texorpdfstring{CubeMapLoad()}{CubeMapLoad()}}
+{\footnotesize\ttfamily GLuint Cube\+Map\+Load (\begin{DoxyParamCaption}\item[{char $\ast$$\ast$}]{faces }\end{DoxyParamCaption})}
+
+
+
+Load a cubemap texture. 
+
+This function loads a cubemap texture.
+
+
+\begin{DoxyParams}{Parameters}
+{\em faces} & Array of faces. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+GLuint ID of the cubemap texture. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_textures_8h_af2f1f496d01219006a8f24916a3d07ac}\label{_textures_8h_af2f1f496d01219006a8f24916a3d07ac}} 
+\index{Textures.h@{Textures.h}!TextureLoad@{TextureLoad}}
+\index{TextureLoad@{TextureLoad}!Textures.h@{Textures.h}}
+\doxysubsubsection{\texorpdfstring{TextureLoad()}{TextureLoad()}}
+{\footnotesize\ttfamily GLuint Texture\+Load (\begin{DoxyParamCaption}\item[{const char $\ast$}]{texture\+Path }\end{DoxyParamCaption})}
+
+
+
+Load a texture from a file. 
+
+This function loads a texture from a file.
+
+
+\begin{DoxyParams}{Parameters}
+{\em texture\+Path} & Path to the texture file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+GLuint ID of the texture. 
+\end{DoxyReturn}

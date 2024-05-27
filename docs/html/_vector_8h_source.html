@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('_vector_8h_source.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,84 +59,109 @@ $(document).ready(function(){initNavTree('_vector_8h_source.html',''); initResiz
 </iframe>
 </div>
 
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
 <div class="header">
   <div class="headertitle">
 <div class="title">Vector.h</div>  </div>
 </div><!--header-->
 <div class="contents">
-<div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="comment">// Created by Victor Davillé on 19/02/2024.</span></div>
-<div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;<span class="comment">//</span></div>
-<div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160; </div>
-<div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#ifndef PP2I_VECTOR_H</span></div>
-<div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#define PP2I_VECTOR_H</span></div>
-<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160; </div>
-<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
-<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;glad/glad.h&gt;</span></div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &quot;Data.h&quot;</span></div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &quot;Type.h&quot;</span></div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160; </div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___vector.html">_Vector</a> <a class="code" href="struct___vector.html">Vector</a>;</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___data.html">_Data</a> <a class="code" href="struct___data.html">Data</a>;</div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160; </div>
-<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="struct___vector.html">   18</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct___vector.html">_Vector</a> {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;    <a class="code" href="struct___data.html">Data</a>** data;</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;    <span class="keywordtype">int</span> size;</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;    <span class="keywordtype">int</span> capacity;</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;    Type type;</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;};</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160; </div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<a class="code" href="struct___vector.html">Vector</a>* createVector(Type type);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160; </div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;<span class="keywordtype">int</span> size(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160; </div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;<span class="keywordtype">int</span> capacity(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160; </div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;<span class="keywordtype">void</span> resize(<a class="code" href="struct___vector.html">Vector</a>* vector, <span class="keywordtype">int</span> size, <a class="code" href="struct___data.html">Data</a>* data);</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160; </div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;<span class="keywordtype">bool</span> empty(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160; </div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;<span class="keywordtype">void</span> reserve(<a class="code" href="struct___vector.html">Vector</a>* vector, <span class="keywordtype">int</span> capacity);</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160; </div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;<span class="keywordtype">void</span> shrink_to_fit(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160; </div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;<a class="code" href="struct___data.html">Data</a>* operator_index(<a class="code" href="struct___vector.html">Vector</a>* vector, <span class="keywordtype">int</span> index);</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160; </div>
-<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;<span class="keywordtype">void</span> push_back(<a class="code" href="struct___vector.html">Vector</a>* vector, <a class="code" href="struct___data.html">Data</a>* data);</div>
-<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160; </div>
-<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> pop_back(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
-<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160; </div>
-<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;<span class="keywordtype">void</span> insert(<a class="code" href="struct___vector.html">Vector</a>* vector, <span class="keywordtype">int</span> index, <a class="code" href="struct___data.html">Data</a>* data);</div>
-<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160; </div>
-<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;<span class="keywordtype">void</span> erase(<a class="code" href="struct___vector.html">Vector</a>* vector, <span class="keywordtype">int</span> index);</div>
-<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160; </div>
-<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;<span class="keywordtype">void</span> clear(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
-<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160; </div>
-<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;<span class="keywordtype">bool</span> equalsVector(<a class="code" href="struct___vector.html">Vector</a>* vector1, <a class="code" href="struct___vector.html">Vector</a>* vector2);</div>
-<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160; </div>
-<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;<span class="keywordtype">int</span> numElements(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
-<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160; </div>
-<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;GLfloat* toVertices(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
-<div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160; </div>
-<div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;GLuint* toIndices(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
-<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160; </div>
-<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;<span class="keywordtype">void</span> printVector(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
-<div class="line"><a name="l00060"></a><span class="lineno">   60</span>&#160; </div>
-<div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;<span class="keywordtype">void</span> destroyVector(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
-<div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160; </div>
-<div class="line"><a name="l00063"></a><span class="lineno">   63</span>&#160;<span class="preprocessor">#endif </span><span class="comment">//PP2I_VECTOR_H</span></div>
-<div class="ttc" id="astruct___data_html"><div class="ttname"><a href="struct___data.html">_Data</a></div><div class="ttdef"><b>Definition:</b> Data.h:17</div></div>
-<div class="ttc" id="astruct___vector_html"><div class="ttname"><a href="struct___vector.html">_Vector</a></div><div class="ttdef"><b>Definition:</b> Vector.h:18</div></div>
+<a href="_vector_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160; </div>
+<div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="preprocessor">#ifndef PP2I_VECTOR_H</span></div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#define PP2I_VECTOR_H</span></div>
+<div class="line"><a name="l00009"></a><span class="lineno">    9</span>&#160; </div>
+<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;<span class="preprocessor">#include &lt;stdlib.h&gt;</span></div>
+<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;<span class="preprocessor">#include &lt;stdio.h&gt;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="preprocessor">#include &lt;stdbool.h&gt;</span></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;<span class="preprocessor">#include &lt;glad/glad.h&gt;</span></div>
+<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_data_8h.html">Data.h</a>&quot;</span></div>
+<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="_type_8h.html">Type.h</a>&quot;</span></div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___vector.html">_Vector</a> <a class="code" href="struct___vector.html">Vector</a>;</div>
+<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span><a class="code" href="struct___data.html">_Data</a> <a class="code" href="struct___data.html">Data</a>;</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160; </div>
+<div class="line"><a name="l00023"></a><span class="lineno"><a class="line" href="struct___vector.html">   23</a></span>&#160;<span class="keyword">struct </span><a class="code" href="struct___vector.html">_Vector</a> {</div>
+<div class="line"><a name="l00024"></a><span class="lineno"><a class="line" href="struct___vector.html#a0a94cbd93e78868f5fc0dc80d5dc972b">   24</a></span>&#160;    <a class="code" href="struct___data.html">Data</a>** <a class="code" href="struct___vector.html#a0a94cbd93e78868f5fc0dc80d5dc972b">data</a>;        </div>
+<div class="line"><a name="l00025"></a><span class="lineno"><a class="line" href="struct___vector.html#a439227feff9d7f55384e8780cfc2eb82">   25</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct___vector.html#a439227feff9d7f55384e8780cfc2eb82">size</a>;       </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="struct___vector.html#adbe66a087ac3fd4a5b0566f64ca2d12b">   26</a></span>&#160;    <span class="keywordtype">int</span> <a class="code" href="struct___vector.html#adbe66a087ac3fd4a5b0566f64ca2d12b">capacity</a>;   </div>
+<div class="line"><a name="l00027"></a><span class="lineno"><a class="line" href="struct___vector.html#ab6f4e6d3fde00ce906e46494f60dfe7a">   27</a></span>&#160;    <a class="code" href="_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7">Type</a> <a class="code" href="struct___vector.html#ab6f4e6d3fde00ce906e46494f60dfe7a">type</a>;    </div>
+<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;};</div>
+<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160; </div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;<a class="code" href="struct___vector.html">Vector</a>* <a class="code" href="_vector_8h.html#a01314b55a327a1a93d951c40c254940b">createVector</a>(<a class="code" href="_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7">Type</a> <a class="code" href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a>);</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160; </div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;<span class="keywordtype">int</span> <a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160; </div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">int</span> <a class="code" href="_vector_8h.html#a9bdb60f2a3a54b8e278c4d40cf553fdd">capacity</a>(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
+<div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160; </div>
+<div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_vector_8h.html#a9ce46318e8920df893b3ad587d1234fd">resize</a>(<a class="code" href="struct___vector.html">Vector</a>* vector, <span class="keywordtype">int</span> <a class="code" href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a>, <a class="code" href="struct___data.html">Data</a>* data);</div>
+<div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160; </div>
+<div class="line"><a name="l00079"></a><span class="lineno">   79</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="_vector_8h.html#a5f2e14078107c9ba4fa7dcfa3a84e8e4">empty</a>(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
+<div class="line"><a name="l00080"></a><span class="lineno">   80</span>&#160; </div>
+<div class="line"><a name="l00089"></a><span class="lineno">   89</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_vector_8h.html#a84b046a0652361656c6203a29c578b8c">reserve</a>(<a class="code" href="struct___vector.html">Vector</a>* vector, <span class="keywordtype">int</span> <a class="code" href="_vector_8h.html#a9bdb60f2a3a54b8e278c4d40cf553fdd">capacity</a>);</div>
+<div class="line"><a name="l00090"></a><span class="lineno">   90</span>&#160; </div>
+<div class="line"><a name="l00098"></a><span class="lineno">   98</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_vector_8h.html#abf29dd81d5baefe2bf8a46ee613a5a5c">shrink_to_fit</a>(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
+<div class="line"><a name="l00099"></a><span class="lineno">   99</span>&#160; </div>
+<div class="line"><a name="l00109"></a><span class="lineno">  109</span>&#160;<a class="code" href="struct___data.html">Data</a>* <a class="code" href="_vector_8h.html#a85dfb0845707d8469963b4a6cc74a216">operator_index</a>(<a class="code" href="struct___vector.html">Vector</a>* vector, <span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00110"></a><span class="lineno">  110</span>&#160; </div>
+<div class="line"><a name="l00119"></a><span class="lineno">  119</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_vector_8h.html#a9043554d0039fc8a0eb6875b26862ca1">push_back</a>(<a class="code" href="struct___vector.html">Vector</a>* vector, <a class="code" href="struct___data.html">Data</a>* data);</div>
+<div class="line"><a name="l00120"></a><span class="lineno">  120</span>&#160; </div>
+<div class="line"><a name="l00128"></a><span class="lineno">  128</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_vector_8h.html#a608f81a7d33f7db22d55f00eeb820db2">pop_back</a>(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
+<div class="line"><a name="l00129"></a><span class="lineno">  129</span>&#160; </div>
+<div class="line"><a name="l00139"></a><span class="lineno">  139</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_vector_8h.html#aa876563225848a42cf72014afdc25ea8">insert</a>(<a class="code" href="struct___vector.html">Vector</a>* vector, <span class="keywordtype">int</span> index, <a class="code" href="struct___data.html">Data</a>* data);</div>
+<div class="line"><a name="l00140"></a><span class="lineno">  140</span>&#160; </div>
+<div class="line"><a name="l00149"></a><span class="lineno">  149</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_vector_8h.html#a9b13365fbfe3b6a3fe7f1050ed4b3936">erase</a>(<a class="code" href="struct___vector.html">Vector</a>* vector, <span class="keywordtype">int</span> index);</div>
+<div class="line"><a name="l00150"></a><span class="lineno">  150</span>&#160; </div>
+<div class="line"><a name="l00158"></a><span class="lineno">  158</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a>(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
+<div class="line"><a name="l00159"></a><span class="lineno">  159</span>&#160; </div>
+<div class="line"><a name="l00169"></a><span class="lineno">  169</span>&#160;<span class="keywordtype">bool</span> <a class="code" href="_vector_8h.html#ae9b3d0b47b2131d8fc7e2bf2973ec24a">equalsVector</a>(<a class="code" href="struct___vector.html">Vector</a>* vector1, <a class="code" href="struct___vector.html">Vector</a>* vector2);</div>
+<div class="line"><a name="l00170"></a><span class="lineno">  170</span>&#160; </div>
+<div class="line"><a name="l00179"></a><span class="lineno">  179</span>&#160;<span class="keywordtype">int</span> <a class="code" href="_vector_8h.html#a45843b7d1ea88314568175fb3a389891">numElements</a>(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
+<div class="line"><a name="l00180"></a><span class="lineno">  180</span>&#160; </div>
+<div class="line"><a name="l00189"></a><span class="lineno">  189</span>&#160;GLfloat* <a class="code" href="_vector_8h.html#a502250a44170baa14bc4cf76b10cd08e">toVertices</a>(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
+<div class="line"><a name="l00190"></a><span class="lineno">  190</span>&#160; </div>
+<div class="line"><a name="l00199"></a><span class="lineno">  199</span>&#160;GLuint* <a class="code" href="_vector_8h.html#a83c0fd973e41351061f6a4e3d8d04978">toIndices</a>(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
+<div class="line"><a name="l00200"></a><span class="lineno">  200</span>&#160; </div>
+<div class="line"><a name="l00208"></a><span class="lineno">  208</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_vector_8h.html#a6d21e1b273901077c82da93ed70eb785">printVector</a>(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
+<div class="line"><a name="l00209"></a><span class="lineno">  209</span>&#160; </div>
+<div class="line"><a name="l00217"></a><span class="lineno">  217</span>&#160;<span class="keywordtype">void</span> <a class="code" href="_vector_8h.html#a47570451fa092448feba659faf3939b3">destroyVector</a>(<a class="code" href="struct___vector.html">Vector</a>* vector);</div>
+<div class="line"><a name="l00218"></a><span class="lineno">  218</span>&#160; </div>
+<div class="line"><a name="l00219"></a><span class="lineno">  219</span>&#160;<span class="preprocessor">#endif </span><span class="comment">//PP2I_VECTOR_H</span></div>
+<div class="ttc" id="a_data_8h_html"><div class="ttname"><a href="_data_8h.html">Data.h</a></div><div class="ttdoc">Data header file.</div></div>
+<div class="ttc" id="a_data_8h_html_adb1dbf691ca9751b21d4ab403146a6b1"><div class="ttname"><a href="_data_8h.html#adb1dbf691ca9751b21d4ab403146a6b1">type</a></div><div class="ttdeci">Type type(Data *data)</div><div class="ttdoc">Gets the type of the data.</div><div class="ttdef"><b>Definition:</b> Data.c:98</div></div>
+<div class="ttc" id="a_type_8h_html"><div class="ttname"><a href="_type_8h.html">Type.h</a></div><div class="ttdoc">Header file for the type.</div></div>
+<div class="ttc" id="a_type_8h_html_a1d1cfd8ffb84e947f82999c682b666a7"><div class="ttname"><a href="_type_8h.html#a1d1cfd8ffb84e947f82999c682b666a7">Type</a></div><div class="ttdeci">Type</div><div class="ttdoc">Enum representing the type.</div><div class="ttdef"><b>Definition:</b> Type.h:15</div></div>
+<div class="ttc" id="a_vector_8h_html_a01314b55a327a1a93d951c40c254940b"><div class="ttname"><a href="_vector_8h.html#a01314b55a327a1a93d951c40c254940b">createVector</a></div><div class="ttdeci">Vector * createVector(Type type)</div><div class="ttdoc">Function to create a vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:7</div></div>
+<div class="ttc" id="a_vector_8h_html_a367c80e4a5c6743c3b79d831f99a66f2"><div class="ttname"><a href="_vector_8h.html#a367c80e4a5c6743c3b79d831f99a66f2">size</a></div><div class="ttdeci">int size(Vector *vector)</div><div class="ttdoc">Function to get the size of the vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:24</div></div>
+<div class="ttc" id="a_vector_8h_html_a45843b7d1ea88314568175fb3a389891"><div class="ttname"><a href="_vector_8h.html#a45843b7d1ea88314568175fb3a389891">numElements</a></div><div class="ttdeci">int numElements(Vector *vector)</div><div class="ttdoc">Function to get the number of elements in the vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:162</div></div>
+<div class="ttc" id="a_vector_8h_html_a47570451fa092448feba659faf3939b3"><div class="ttname"><a href="_vector_8h.html#a47570451fa092448feba659faf3939b3">destroyVector</a></div><div class="ttdeci">void destroyVector(Vector *vector)</div><div class="ttdoc">Function to destroy the vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:205</div></div>
+<div class="ttc" id="a_vector_8h_html_a502250a44170baa14bc4cf76b10cd08e"><div class="ttname"><a href="_vector_8h.html#a502250a44170baa14bc4cf76b10cd08e">toVertices</a></div><div class="ttdeci">GLfloat * toVertices(Vector *vector)</div><div class="ttdoc">Function to convert a vector to vertices.</div><div class="ttdef"><b>Definition:</b> Vector.c:173</div></div>
+<div class="ttc" id="a_vector_8h_html_a5f2e14078107c9ba4fa7dcfa3a84e8e4"><div class="ttname"><a href="_vector_8h.html#a5f2e14078107c9ba4fa7dcfa3a84e8e4">empty</a></div><div class="ttdeci">bool empty(Vector *vector)</div><div class="ttdoc">Function to check if the vector is empty.</div><div class="ttdef"><b>Definition:</b> Vector.c:46</div></div>
+<div class="ttc" id="a_vector_8h_html_a608f81a7d33f7db22d55f00eeb820db2"><div class="ttname"><a href="_vector_8h.html#a608f81a7d33f7db22d55f00eeb820db2">pop_back</a></div><div class="ttdeci">void pop_back(Vector *vector)</div><div class="ttdoc">Function to remove data from the end of the vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:93</div></div>
+<div class="ttc" id="a_vector_8h_html_a6d21e1b273901077c82da93ed70eb785"><div class="ttname"><a href="_vector_8h.html#a6d21e1b273901077c82da93ed70eb785">printVector</a></div><div class="ttdeci">void printVector(Vector *vector)</div><div class="ttdoc">Function to print the vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:155</div></div>
+<div class="ttc" id="a_vector_8h_html_a83c0fd973e41351061f6a4e3d8d04978"><div class="ttname"><a href="_vector_8h.html#a83c0fd973e41351061f6a4e3d8d04978">toIndices</a></div><div class="ttdeci">GLuint * toIndices(Vector *vector)</div><div class="ttdoc">Function to convert a vector to indices.</div><div class="ttdef"><b>Definition:</b> Vector.c:189</div></div>
+<div class="ttc" id="a_vector_8h_html_a84b046a0652361656c6203a29c578b8c"><div class="ttname"><a href="_vector_8h.html#a84b046a0652361656c6203a29c578b8c">reserve</a></div><div class="ttdeci">void reserve(Vector *vector, int capacity)</div><div class="ttdoc">Function to reserve space in the vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:53</div></div>
+<div class="ttc" id="a_vector_8h_html_a85dfb0845707d8469963b4a6cc74a216"><div class="ttname"><a href="_vector_8h.html#a85dfb0845707d8469963b4a6cc74a216">operator_index</a></div><div class="ttdeci">Data * operator_index(Vector *vector, int index)</div><div class="ttdoc">Function to get the data at an index.</div><div class="ttdef"><b>Definition:</b> Vector.c:69</div></div>
+<div class="ttc" id="a_vector_8h_html_a9043554d0039fc8a0eb6875b26862ca1"><div class="ttname"><a href="_vector_8h.html#a9043554d0039fc8a0eb6875b26862ca1">push_back</a></div><div class="ttdeci">void push_back(Vector *vector, Data *data)</div><div class="ttdoc">Function to add data to the end of the vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:77</div></div>
+<div class="ttc" id="a_vector_8h_html_a9b13365fbfe3b6a3fe7f1050ed4b3936"><div class="ttname"><a href="_vector_8h.html#a9b13365fbfe3b6a3fe7f1050ed4b3936">erase</a></div><div class="ttdeci">void erase(Vector *vector, int index)</div><div class="ttdoc">Function to erase data at an index.</div><div class="ttdef"><b>Definition:</b> Vector.c:128</div></div>
+<div class="ttc" id="a_vector_8h_html_a9bdb60f2a3a54b8e278c4d40cf553fdd"><div class="ttname"><a href="_vector_8h.html#a9bdb60f2a3a54b8e278c4d40cf553fdd">capacity</a></div><div class="ttdeci">int capacity(Vector *vector)</div><div class="ttdoc">Function to get the capacity of the vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:28</div></div>
+<div class="ttc" id="a_vector_8h_html_a9ce46318e8920df893b3ad587d1234fd"><div class="ttname"><a href="_vector_8h.html#a9ce46318e8920df893b3ad587d1234fd">resize</a></div><div class="ttdeci">void resize(Vector *vector, int size, Data *data)</div><div class="ttdoc">Function to resize the vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:32</div></div>
+<div class="ttc" id="a_vector_8h_html_aa876563225848a42cf72014afdc25ea8"><div class="ttname"><a href="_vector_8h.html#aa876563225848a42cf72014afdc25ea8">insert</a></div><div class="ttdeci">void insert(Vector *vector, int index, Data *data)</div><div class="ttdoc">Function to insert data at an index.</div><div class="ttdef"><b>Definition:</b> Vector.c:101</div></div>
+<div class="ttc" id="a_vector_8h_html_abf29dd81d5baefe2bf8a46ee613a5a5c"><div class="ttname"><a href="_vector_8h.html#abf29dd81d5baefe2bf8a46ee613a5a5c">shrink_to_fit</a></div><div class="ttdeci">void shrink_to_fit(Vector *vector)</div><div class="ttdoc">Function to shrink the vector to fit the size.</div><div class="ttdef"><b>Definition:</b> Vector.c:64</div></div>
+<div class="ttc" id="a_vector_8h_html_ae9b3d0b47b2131d8fc7e2bf2973ec24a"><div class="ttname"><a href="_vector_8h.html#ae9b3d0b47b2131d8fc7e2bf2973ec24a">equalsVector</a></div><div class="ttdeci">bool equalsVector(Vector *vector1, Vector *vector2)</div><div class="ttdoc">Function to check if two vectors are equal.</div><div class="ttdef"><b>Definition:</b> Vector.c:143</div></div>
+<div class="ttc" id="a_vector_8h_html_aedc11a5ecd0fac563528da44327addb9"><div class="ttname"><a href="_vector_8h.html#aedc11a5ecd0fac563528da44327addb9">clear</a></div><div class="ttdeci">void clear(Vector *vector)</div><div class="ttdoc">Function to clear the vector.</div><div class="ttdef"><b>Definition:</b> Vector.c:139</div></div>
+<div class="ttc" id="astruct___data_html"><div class="ttname"><a href="struct___data.html">_Data</a></div><div class="ttdoc">Structure representing a data.</div><div class="ttdef"><b>Definition:</b> Data.h:25</div></div>
+<div class="ttc" id="astruct___vector_html"><div class="ttname"><a href="struct___vector.html">_Vector</a></div><div class="ttdoc">Struct representing a vector.</div><div class="ttdef"><b>Definition:</b> Vector.h:23</div></div>
+<div class="ttc" id="astruct___vector_html_a0a94cbd93e78868f5fc0dc80d5dc972b"><div class="ttname"><a href="struct___vector.html#a0a94cbd93e78868f5fc0dc80d5dc972b">_Vector::data</a></div><div class="ttdeci">Data ** data</div><div class="ttdef"><b>Definition:</b> Vector.h:24</div></div>
+<div class="ttc" id="astruct___vector_html_a439227feff9d7f55384e8780cfc2eb82"><div class="ttname"><a href="struct___vector.html#a439227feff9d7f55384e8780cfc2eb82">_Vector::size</a></div><div class="ttdeci">int size</div><div class="ttdef"><b>Definition:</b> Vector.h:25</div></div>
+<div class="ttc" id="astruct___vector_html_ab6f4e6d3fde00ce906e46494f60dfe7a"><div class="ttname"><a href="struct___vector.html#ab6f4e6d3fde00ce906e46494f60dfe7a">_Vector::type</a></div><div class="ttdeci">Type type</div><div class="ttdef"><b>Definition:</b> Vector.h:27</div></div>
+<div class="ttc" id="astruct___vector_html_adbe66a087ac3fd4a5b0566f64ca2d12b"><div class="ttname"><a href="struct___vector.html#adbe66a087ac3fd4a5b0566f64ca2d12b">_Vector::capacity</a></div><div class="ttdeci">int capacity</div><div class="ttdef"><b>Definition:</b> Vector.h:26</div></div>
 </div><!-- fragment --></div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li><li class="navelem"><b>Vector.h</b></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

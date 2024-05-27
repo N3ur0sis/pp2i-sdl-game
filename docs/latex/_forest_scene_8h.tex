@@ -1,0 +1,105 @@
+\hypertarget{_forest_scene_8h}{}\doxysection{include/\+Forest\+Scene.h File Reference}
+\label{_forest_scene_8h}\index{include/ForestScene.h@{include/ForestScene.h}}
+
+
+Header file for the forest scene.  
+
+
+{\ttfamily \#include $<$Scene.\+h$>$}\newline
+{\ttfamily \#include $<$Player.\+h$>$}\newline
+{\ttfamily \#include $<$Game\+State.\+h$>$}\newline
+{\ttfamily \#include $<$cglm/cglm.\+h$>$}\newline
+{\ttfamily \#include $<$Ennemy.\+h$>$}\newline
+Include dependency graph for Forest\+Scene.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_forest_scene_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{_forest_scene_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_forest_scene_8h_a818f1f045de07fe92e72bc4c42bbf530}\label{_forest_scene_8h_a818f1f045de07fe92e72bc4c42bbf530}} 
+\#define {\bfseries FLAMEDIST}~2.\+0f
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_forest_scene_8h_afe4a85d1d0afa9baa78a5fdaea74524a}{Forest\+Main\+Scene}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State)
+\begin{DoxyCompactList}\small\item\em Function to create the forest scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_forest_scene_8h_a6bd57e3d9977698912c5fc7a7e834fda}{update\+Forest\+Scene}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene, \mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$game\+State)
+\begin{DoxyCompactList}\small\item\em Function to update the forest scene. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_forest_scene_8h_a5e7ef8a62581cd2d716142fbf5560f82}{unload\+Forest\+Scene}} (\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$scene)
+\begin{DoxyCompactList}\small\item\em Function to unload the forest scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the forest scene. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_forest_scene_8h_afe4a85d1d0afa9baa78a5fdaea74524a}\label{_forest_scene_8h_afe4a85d1d0afa9baa78a5fdaea74524a}} 
+\index{ForestScene.h@{ForestScene.h}!ForestMainScene@{ForestMainScene}}
+\index{ForestMainScene@{ForestMainScene}!ForestScene.h@{ForestScene.h}}
+\doxysubsubsection{\texorpdfstring{ForestMainScene()}{ForestMainScene()}}
+{\footnotesize\ttfamily void Forest\+Main\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State }\end{DoxyParamCaption})}
+
+
+
+Function to create the forest scene. 
+
+This function creates the forest scene.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em game\+State} & Pointer to the game state. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_forest_scene_8h_a5e7ef8a62581cd2d716142fbf5560f82}\label{_forest_scene_8h_a5e7ef8a62581cd2d716142fbf5560f82}} 
+\index{ForestScene.h@{ForestScene.h}!unloadForestScene@{unloadForestScene}}
+\index{unloadForestScene@{unloadForestScene}!ForestScene.h@{ForestScene.h}}
+\doxysubsubsection{\texorpdfstring{unloadForestScene()}{unloadForestScene()}}
+{\footnotesize\ttfamily void unload\+Forest\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene }\end{DoxyParamCaption})}
+
+
+
+Function to unload the forest scene. 
+
+This function unloads the forest scene.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_forest_scene_8h_a6bd57e3d9977698912c5fc7a7e834fda}\label{_forest_scene_8h_a6bd57e3d9977698912c5fc7a7e834fda}} 
+\index{ForestScene.h@{ForestScene.h}!updateForestScene@{updateForestScene}}
+\index{updateForestScene@{updateForestScene}!ForestScene.h@{ForestScene.h}}
+\doxysubsubsection{\texorpdfstring{updateForestScene()}{updateForestScene()}}
+{\footnotesize\ttfamily void update\+Forest\+Scene (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_scene_8h_afb6a0fc8b17a0d7674228341a3cb529e}{Scene}} $\ast$}]{scene,  }\item[{\mbox{\hyperlink{struct_game_state}{Game\+State}} $\ast$}]{game\+State }\end{DoxyParamCaption})}
+
+
+
+Function to update the forest scene. 
+
+This function updates the forest scene.
+
+
+\begin{DoxyParams}{Parameters}
+{\em scene} & Pointer to the scene. \\
+\hline
+{\em game\+State} & Pointer to the game state. \\
+\hline
+\end{DoxyParams}

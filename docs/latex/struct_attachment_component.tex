@@ -2,7 +2,17 @@
 \label{struct_attachment_component}\index{AttachmentComponent@{AttachmentComponent}}
 
 
-Collaboration diagram for Attachment\+Component\+:\nopagebreak
+Structure representing an attachment component.  
+
+
+
+
+{\ttfamily \#include $<$Component.\+h$>$}
+
+
+
+Collaboration diagram for Attachment\+Component\+:
+\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -12,26 +22,64 @@ Collaboration diagram for Attachment\+Component\+:\nopagebreak
 \doxysubsection*{Data Fields}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{struct_attachment_component_a4076915344191ee0afc43213c5f9c420}\label{struct_attachment_component_a4076915344191ee0afc43213c5f9c420}} 
-int {\bfseries bone\+Index}
+int \mbox{\hyperlink{struct_attachment_component_a4076915344191ee0afc43213c5f9c420}{bone\+Index}}
 \item 
-\mbox{\Hypertarget{struct_attachment_component_a3207d761f88057b57052276900e1b7bf}\label{struct_attachment_component_a3207d761f88057b57052276900e1b7bf}} 
-\mbox{\hyperlink{struct___model}{Model}} $\ast$ {\bfseries parent\+Model}
+\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$ \mbox{\hyperlink{struct_attachment_component_a3207d761f88057b57052276900e1b7bf}{parent\+Model}}
 \item 
-\mbox{\Hypertarget{struct_attachment_component_a59b8e7228fab7a54caf3225619cb4e1b}\label{struct_attachment_component_a59b8e7228fab7a54caf3225619cb4e1b}} 
-\mbox{\hyperlink{struct___animator}{Animator}} $\ast$ {\bfseries parent\+Animator}
+\mbox{\hyperlink{_animator_8h_a1bbcffa3fb13b0aa9d5c9cc90b5a307f}{Animator}} $\ast$ \mbox{\hyperlink{struct_attachment_component_a59b8e7228fab7a54caf3225619cb4e1b}{parent\+Animator}}
 \item 
-\mbox{\Hypertarget{struct_attachment_component_aac3bfb24f0bc5f27fb04f48e7cc29429}\label{struct_attachment_component_aac3bfb24f0bc5f27fb04f48e7cc29429}} 
-vec3 {\bfseries offset\+Position}
+vec3 \mbox{\hyperlink{struct_attachment_component_aac3bfb24f0bc5f27fb04f48e7cc29429}{offset\+Position}}
 \item 
-\mbox{\Hypertarget{struct_attachment_component_a7388b200bc2c3eeebb1b652dc742f1b1}\label{struct_attachment_component_a7388b200bc2c3eeebb1b652dc742f1b1}} 
-vec3 {\bfseries offset\+Rotation}
+vec3 \mbox{\hyperlink{struct_attachment_component_a7388b200bc2c3eeebb1b652dc742f1b1}{offset\+Rotation}}
 \item 
-\mbox{\Hypertarget{struct_attachment_component_a1f874ebb5be4d83850a59cafb779506e}\label{struct_attachment_component_a1f874ebb5be4d83850a59cafb779506e}} 
-vec3 {\bfseries offset\+Scale}
+vec3 \mbox{\hyperlink{struct_attachment_component_a1f874ebb5be4d83850a59cafb779506e}{offset\+Scale}}
 \end{DoxyCompactItemize}
 
 
+\doxysubsection{Detailed Description}
+Structure representing an attachment component. 
+
+This structure represents an attachment component. 
+
+\doxysubsection{Field Documentation}
+\mbox{\Hypertarget{struct_attachment_component_a4076915344191ee0afc43213c5f9c420}\label{struct_attachment_component_a4076915344191ee0afc43213c5f9c420}} 
+\index{AttachmentComponent@{AttachmentComponent}!boneIndex@{boneIndex}}
+\index{boneIndex@{boneIndex}!AttachmentComponent@{AttachmentComponent}}
+\doxysubsubsection{\texorpdfstring{boneIndex}{boneIndex}}
+{\footnotesize\ttfamily int bone\+Index}
+
+Index of the bone to which the model is attached \mbox{\Hypertarget{struct_attachment_component_aac3bfb24f0bc5f27fb04f48e7cc29429}\label{struct_attachment_component_aac3bfb24f0bc5f27fb04f48e7cc29429}} 
+\index{AttachmentComponent@{AttachmentComponent}!offsetPosition@{offsetPosition}}
+\index{offsetPosition@{offsetPosition}!AttachmentComponent@{AttachmentComponent}}
+\doxysubsubsection{\texorpdfstring{offsetPosition}{offsetPosition}}
+{\footnotesize\ttfamily vec3 offset\+Position}
+
+Offset position relative to the bone \mbox{\Hypertarget{struct_attachment_component_a7388b200bc2c3eeebb1b652dc742f1b1}\label{struct_attachment_component_a7388b200bc2c3eeebb1b652dc742f1b1}} 
+\index{AttachmentComponent@{AttachmentComponent}!offsetRotation@{offsetRotation}}
+\index{offsetRotation@{offsetRotation}!AttachmentComponent@{AttachmentComponent}}
+\doxysubsubsection{\texorpdfstring{offsetRotation}{offsetRotation}}
+{\footnotesize\ttfamily vec3 offset\+Rotation}
+
+Offset rotation relative to the bone \mbox{\Hypertarget{struct_attachment_component_a1f874ebb5be4d83850a59cafb779506e}\label{struct_attachment_component_a1f874ebb5be4d83850a59cafb779506e}} 
+\index{AttachmentComponent@{AttachmentComponent}!offsetScale@{offsetScale}}
+\index{offsetScale@{offsetScale}!AttachmentComponent@{AttachmentComponent}}
+\doxysubsubsection{\texorpdfstring{offsetScale}{offsetScale}}
+{\footnotesize\ttfamily vec3 offset\+Scale}
+
+Offset scale relative to the bone \mbox{\Hypertarget{struct_attachment_component_a59b8e7228fab7a54caf3225619cb4e1b}\label{struct_attachment_component_a59b8e7228fab7a54caf3225619cb4e1b}} 
+\index{AttachmentComponent@{AttachmentComponent}!parentAnimator@{parentAnimator}}
+\index{parentAnimator@{parentAnimator}!AttachmentComponent@{AttachmentComponent}}
+\doxysubsubsection{\texorpdfstring{parentAnimator}{parentAnimator}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_animator_8h_a1bbcffa3fb13b0aa9d5c9cc90b5a307f}{Animator}}$\ast$ parent\+Animator}
+
+Parent animator \mbox{\Hypertarget{struct_attachment_component_a3207d761f88057b57052276900e1b7bf}\label{struct_attachment_component_a3207d761f88057b57052276900e1b7bf}} 
+\index{AttachmentComponent@{AttachmentComponent}!parentModel@{parentModel}}
+\index{parentModel@{parentModel}!AttachmentComponent@{AttachmentComponent}}
+\doxysubsubsection{\texorpdfstring{parentModel}{parentModel}}
+{\footnotesize\ttfamily \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}}$\ast$ parent\+Model}
+
+Parent model 
+
 The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-include/Component.\+h\end{DoxyCompactItemize}
+include/\mbox{\hyperlink{_component_8h}{Component.\+h}}\end{DoxyCompactItemize}

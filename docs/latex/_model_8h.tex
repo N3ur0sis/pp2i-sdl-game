@@ -1,0 +1,219 @@
+\hypertarget{_model_8h}{}\doxysection{include/\+Model.h File Reference}
+\label{_model_8h}\index{include/Model.h@{include/Model.h}}
+
+
+Header file for the model component.  
+
+
+{\ttfamily \#include $<$SDL2/\+SDL.\+h$>$}\newline
+{\ttfamily \#include $<$Mesh.\+h$>$}\newline
+{\ttfamily \#include $<$Shader.\+h$>$}\newline
+{\ttfamily \#include $<$Camera.\+h$>$}\newline
+{\ttfamily \#include $<$Textures.\+h$>$}\newline
+{\ttfamily \#include $<$Algebra.\+h$>$}\newline
+Include dependency graph for Model.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_model_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{_model_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsection*{Data Structures}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct___node}{\+\_\+\+Node}}
+\begin{DoxyCompactList}\small\item\em Struct representing a node. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct___model}{\+\_\+\+Model}}
+\begin{DoxyCompactList}\small\item\em A Model class to represent a 3D object in the scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_model_8h_a8ff62746a396b270606ff04818b7e4ac}\label{_model_8h_a8ff62746a396b270606ff04818b7e4ac}} 
+typedef struct \mbox{\hyperlink{struct___node}{\+\_\+\+Node}} \mbox{\hyperlink{_model_8h_a8ff62746a396b270606ff04818b7e4ac}{Node}}
+\begin{DoxyCompactList}\small\item\em Struct representing a node. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_model_8h_adacbf403997656ebd33c2b6e6eef8892}\label{_model_8h_adacbf403997656ebd33c2b6e6eef8892}} 
+typedef struct \mbox{\hyperlink{struct___model}{\+\_\+\+Model}} \mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}}
+\begin{DoxyCompactList}\small\item\em A Model class to represent a 3D object in the scene. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+const struct ai\+Scene $\ast$ \mbox{\hyperlink{_model_8h_af6a8668e57a9caba99ce6e876ac4dd58}{Model\+Load}} (char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Import a model from a file using assimp library. Flags for importation can be configured. ~\newline
+ \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_model_8h_ab2aa4eeb32e1a9fd6f1978a33f9c18fd}{Model\+Create}} (\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$model, char $\ast$path)
+\begin{DoxyCompactList}\small\item\em Organize the assimp model data format to a format usable by Open\+GL. Calls the Model\+Load function to load the data from the file, calls Mesh\+Create to convert each Mesh data and load them to GL buffers and process every material found. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_model_8h_ad281e92e8c195abdf14375c5d07e2706}{Model\+Draw}} (\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$model, \mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$shader, \mbox{\hyperlink{struct_camera}{Camera}} $\ast$camera, mat4 custom\+Model\+Matrix)
+\begin{DoxyCompactList}\small\item\em Render the Model with Draw\+Element using VAO and EBO. Calculate a Model Matrix and link it to the shader. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_model_8h_a67de6a1f42fa0cd63878b2642720e2f3}{Model\+Matrix\+Calculate}} (vec3 position, vec3 rotation, vec3 scale, \mbox{\hyperlink{struct_camera}{Camera}} $\ast$camera, \mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$sahder, mat4 model\+Matrix)
+\begin{DoxyCompactList}\small\item\em Auxiliar function of the rendering process. It calculates based on a positon rotation and scale vector a transformation matrix to \char`\"{}move\char`\"{} our model vefore rendering. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_model_8h_a8a340265af203f8152293e735b624924}{Model\+Free}} (\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$model)
+\begin{DoxyCompactList}\small\item\em Free the memory allocated for the model object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{_model_8h_a143bb9fb2c1f6bfe8caff7153e25c2f4}{Model\+Animate}} (\mbox{\hyperlink{struct_node}{Node}} $\ast$node, float anim\+\_\+time, mat4 parent\+\_\+mat, mat4 $\ast$bones, mat4 $\ast$bone\+\_\+anim\+\_\+mats)
+\begin{DoxyCompactList}\small\item\em Function to animate the model. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{_model_8h_a36ffc1f566102b4ce9736094806e58f5}\label{_model_8h_a36ffc1f566102b4ce9736094806e58f5}} 
+void {\bfseries Model\+Draw\+Attached} (\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$model, \mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$shader, \mbox{\hyperlink{struct_camera}{Camera}} $\ast$camera)
+\item 
+void \mbox{\hyperlink{_model_8h_ab6382c420c501a7421a583668dffc088}{compute\+\_\+center\+\_\+of\+\_\+volume}} (\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$model)
+\begin{DoxyCompactList}\small\item\em Function to compute the center of volume of the model. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Header file for the model component. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_model_8h_ab6382c420c501a7421a583668dffc088}\label{_model_8h_ab6382c420c501a7421a583668dffc088}} 
+\index{Model.h@{Model.h}!compute\_center\_of\_volume@{compute\_center\_of\_volume}}
+\index{compute\_center\_of\_volume@{compute\_center\_of\_volume}!Model.h@{Model.h}}
+\doxysubsubsection{\texorpdfstring{compute\_center\_of\_volume()}{compute\_center\_of\_volume()}}
+{\footnotesize\ttfamily void compute\+\_\+center\+\_\+of\+\_\+volume (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{model }\end{DoxyParamCaption})}
+
+
+
+Function to compute the center of volume of the model. 
+
+This function computes the center of volume of the model.
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & Pointer to the model. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_model_8h_a143bb9fb2c1f6bfe8caff7153e25c2f4}\label{_model_8h_a143bb9fb2c1f6bfe8caff7153e25c2f4}} 
+\index{Model.h@{Model.h}!ModelAnimate@{ModelAnimate}}
+\index{ModelAnimate@{ModelAnimate}!Model.h@{Model.h}}
+\doxysubsubsection{\texorpdfstring{ModelAnimate()}{ModelAnimate()}}
+{\footnotesize\ttfamily void Model\+Animate (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_node}{Node}} $\ast$}]{node,  }\item[{float}]{anim\+\_\+time,  }\item[{mat4}]{parent\+\_\+mat,  }\item[{mat4 $\ast$}]{bones,  }\item[{mat4 $\ast$}]{bone\+\_\+anim\+\_\+mats }\end{DoxyParamCaption})}
+
+
+
+Function to animate the model. 
+
+This function animates the model.
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & Pointer to the node. \\
+\hline
+{\em anim\+\_\+time} & \mbox{\hyperlink{struct_time}{Time}} of the animation. \\
+\hline
+{\em parent\+\_\+mat} & Parent matrix. \\
+\hline
+{\em bones} & Array of bones. \\
+\hline
+{\em bone\+\_\+anim\+\_\+mats} & Array of bone animation matrices. \\
+\hline
+\end{DoxyParams}
+Uncomment the following if you want to use scale animation mat4 s\+\_\+node; glm\+\_\+mat4\+\_\+identity(s\+\_\+node); if(node-\/$>$sca\+\_\+keys\+\_\+count$>$0) \{ size\+\_\+t p\+\_\+key = 0; size\+\_\+t n\+\_\+key = 0; for(size\+\_\+t i=0; i$<$node-\/$>$sca\+\_\+keys\+\_\+count-\/1; ++i) \{ p\+\_\+key = i; n\+\_\+key = i+1; if(node-\/$>$sca\+\_\+key\+\_\+times\mbox{[}n\+\_\+key\mbox{]}$>$=anim\+\_\+time) break; \} float t\+\_\+tot = node-\/$>$sca\+\_\+key\+\_\+times\mbox{[}n\+\_\+key\mbox{]} -\/ node-\/$>$sca\+\_\+key\+\_\+times\mbox{[}p\+\_\+key\mbox{]}; float t = (anim\+\_\+time -\/ node-\/$>$sca\+\_\+key\+\_\+times\mbox{[}p\+\_\+key\mbox{]}) / t\+\_\+tot; vec3 vi, vf; glm\+\_\+vec3\+\_\+dup(node-\/$>$sca\+\_\+keys\mbox{[}p\+\_\+key\mbox{]}, vi); glm\+\_\+vec3\+\_\+dup(node-\/$>$sca\+\_\+keys\mbox{[}n\+\_\+key\mbox{]}, vf); vec3 lerp0, lerp1, lerp; glm\+\_\+vec3\+\_\+scale(vi, 1.\+0f-\/t, lerp0); glm\+\_\+vec3\+\_\+scale(vf, t, lerp1); glm\+\_\+vec3\+\_\+add(lerp0, lerp1, lerp); glm\+\_\+translate(t\+\_\+node, (vec3)\{lerp\mbox{[}0\mbox{]}, lerp\mbox{[}1\mbox{]}, lerp\mbox{[}2\mbox{]}\}); \}\mbox{\Hypertarget{_model_8h_ab2aa4eeb32e1a9fd6f1978a33f9c18fd}\label{_model_8h_ab2aa4eeb32e1a9fd6f1978a33f9c18fd}} 
+\index{Model.h@{Model.h}!ModelCreate@{ModelCreate}}
+\index{ModelCreate@{ModelCreate}!Model.h@{Model.h}}
+\doxysubsubsection{\texorpdfstring{ModelCreate()}{ModelCreate()}}
+{\footnotesize\ttfamily void Model\+Create (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{model,  }\item[{char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Organize the assimp model data format to a format usable by Open\+GL. Calls the Model\+Load function to load the data from the file, calls Mesh\+Create to convert each Mesh data and load them to GL buffers and process every material found. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Relative path of the model from the executable file. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Model struct in usable format for Open\+GL. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+\mbox{\hyperlink{struct_animation}{Animation}} should be load here as well as other texture type like Specular or Normal. 
+\end{DoxyNote}
+\mbox{\Hypertarget{_model_8h_ad281e92e8c195abdf14375c5d07e2706}\label{_model_8h_ad281e92e8c195abdf14375c5d07e2706}} 
+\index{Model.h@{Model.h}!ModelDraw@{ModelDraw}}
+\index{ModelDraw@{ModelDraw}!Model.h@{Model.h}}
+\doxysubsubsection{\texorpdfstring{ModelDraw()}{ModelDraw()}}
+{\footnotesize\ttfamily void Model\+Draw (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{model,  }\item[{\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$}]{shader,  }\item[{\mbox{\hyperlink{struct_camera}{Camera}} $\ast$}]{camera,  }\item[{mat4}]{custom\+Model\+Matrix }\end{DoxyParamCaption})}
+
+
+
+Render the Model with Draw\+Element using VAO and EBO. Calculate a Model Matrix and link it to the shader. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & A model the we want to draw. \\
+\hline
+{\em shader} & The shader we want to give the Model Matrix to. \\
+\hline
+{\em camera} & The camera that will show the model. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nothing, act on the render pipeline. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_model_8h_a8a340265af203f8152293e735b624924}\label{_model_8h_a8a340265af203f8152293e735b624924}} 
+\index{Model.h@{Model.h}!ModelFree@{ModelFree}}
+\index{ModelFree@{ModelFree}!Model.h@{Model.h}}
+\doxysubsubsection{\texorpdfstring{ModelFree()}{ModelFree()}}
+{\footnotesize\ttfamily void Model\+Free (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{_model_8h_adacbf403997656ebd33c2b6e6eef8892}{Model}} $\ast$}]{model }\end{DoxyParamCaption})}
+
+
+
+Free the memory allocated for the model object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & A model object to be freed. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{_model_8h_af6a8668e57a9caba99ce6e876ac4dd58}\label{_model_8h_af6a8668e57a9caba99ce6e876ac4dd58}} 
+\index{Model.h@{Model.h}!ModelLoad@{ModelLoad}}
+\index{ModelLoad@{ModelLoad}!Model.h@{Model.h}}
+\doxysubsubsection{\texorpdfstring{ModelLoad()}{ModelLoad()}}
+{\footnotesize\ttfamily const struct ai\+Scene$\ast$ Model\+Load (\begin{DoxyParamCaption}\item[{char $\ast$}]{path }\end{DoxyParamCaption})}
+
+
+
+Import a model from a file using assimp library. Flags for importation can be configured. ~\newline
+ 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path} & Relative path of the model from the executable file \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A scene struct that contains all the data of the model in the format of assimp 
+\end{DoxyReturn}
+\mbox{\Hypertarget{_model_8h_a67de6a1f42fa0cd63878b2642720e2f3}\label{_model_8h_a67de6a1f42fa0cd63878b2642720e2f3}} 
+\index{Model.h@{Model.h}!ModelMatrixCalculate@{ModelMatrixCalculate}}
+\index{ModelMatrixCalculate@{ModelMatrixCalculate}!Model.h@{Model.h}}
+\doxysubsubsection{\texorpdfstring{ModelMatrixCalculate()}{ModelMatrixCalculate()}}
+{\footnotesize\ttfamily void Model\+Matrix\+Calculate (\begin{DoxyParamCaption}\item[{vec3}]{position,  }\item[{vec3}]{rotation,  }\item[{vec3}]{scale,  }\item[{\mbox{\hyperlink{struct_camera}{Camera}} $\ast$}]{camera,  }\item[{\mbox{\hyperlink{_shader_8h_a22a7a4fe4f498b60b8a6986249bdf1e6}{Shader}} $\ast$}]{sahder,  }\item[{mat4}]{model\+Matrix }\end{DoxyParamCaption})}
+
+
+
+Auxiliar function of the rendering process. It calculates based on a positon rotation and scale vector a transformation matrix to \char`\"{}move\char`\"{} our model vefore rendering. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em position} & The target position of the model \\
+\hline
+{\em rotation} & The target rotation of the model \\
+\hline
+{\em scale} & The target scale of the model \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Nothing, act on the shaders. 
+\end{DoxyReturn}
+\begin{DoxyNote}{Note}
+The Projection and View matrices should not be send from here since it does not nessecary change on every frame. 
+\end{DoxyNote}
+The model matrix, commbination of Translation, Rotation and Scaling. Transform are applied in the order, scale, rotation and translate

@@ -9,10 +9,6 @@
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
-<link href="navtree.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="resize.js"></script>
-<script type="text/javascript" src="navtreedata.js"></script>
-<script type="text/javascript" src="navtree.js"></script>
 <link href="search/search.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="search/searchdata.js"></script>
 <script type="text/javascript" src="search/search.js"></script>
@@ -49,23 +45,6 @@ $(function() {
 });
 /* @license-end */</script>
 <div id="main-nav"></div>
-</div><!-- top -->
-<div id="side-nav" class="ui-resizable side-nav-resizable">
-  <div id="nav-tree">
-    <div id="nav-tree-contents">
-      <div id="nav-sync" class="sync"></div>
-    </div>
-  </div>
-  <div id="splitbar" style="-moz-user-select:none;" 
-       class="ui-resizable-handle">
-  </div>
-</div>
-<script type="text/javascript">
-/* @license magnet:?xt=urn:btih:cf05388f2679ee054f2beb29a391d25f4e673ac3&amp;dn=gpl-2.0.txt GPL-v2 */
-$(document).ready(function(){initNavTree('struct__shader_locations.html',''); initResizable(); });
-/* @license-end */
-</script>
-<div id="doc-content">
 <!-- window showing the filter options -->
 <div id="MSearchSelectWindow"
      onmouseover="return searchBox.OnSearchSelectShow()"
@@ -80,6 +59,7 @@ $(document).ready(function(){initNavTree('struct__shader_locations.html',''); in
 </iframe>
 </div>
 
+</div><!-- top -->
 <div class="header">
   <div class="summary">
 <a href="#pub-attribs">Data Fields</a>  </div>
@@ -87,45 +67,161 @@ $(document).ready(function(){initNavTree('struct__shader_locations.html',''); in
 <div class="title">_shaderLocations Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Struct for storing shader uniform locations.  
+ <a href="struct__shader_locations.html#details">More...</a></p>
+
+<p><code>#include &lt;<a class="el" href="_shader_8h_source.html">Shader.h</a>&gt;</code></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Data Fields</h2></td></tr>
-<tr class="memitem:ae3e9d97ab19212b0995aa9a13c0a6653"><td class="memItemLeft" align="right" valign="top"><a id="ae3e9d97ab19212b0995aa9a13c0a6653"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>View</b></td></tr>
+<tr class="memitem:ae3e9d97ab19212b0995aa9a13c0a6653"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__shader_locations.html#ae3e9d97ab19212b0995aa9a13c0a6653">View</a></td></tr>
 <tr class="separator:ae3e9d97ab19212b0995aa9a13c0a6653"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a617c126f048f1ad333567d11b3b20fd0"><td class="memItemLeft" align="right" valign="top"><a id="a617c126f048f1ad333567d11b3b20fd0"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>Projection</b></td></tr>
+<tr class="memitem:a617c126f048f1ad333567d11b3b20fd0"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__shader_locations.html#a617c126f048f1ad333567d11b3b20fd0">Projection</a></td></tr>
 <tr class="separator:a617c126f048f1ad333567d11b3b20fd0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2287577114d46dc8f11ed794b1ea165f"><td class="memItemLeft" align="right" valign="top"><a id="a2287577114d46dc8f11ed794b1ea165f"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>Model</b></td></tr>
+<tr class="memitem:a2287577114d46dc8f11ed794b1ea165f"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__shader_locations.html#a2287577114d46dc8f11ed794b1ea165f">Model</a></td></tr>
 <tr class="separator:a2287577114d46dc8f11ed794b1ea165f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8df0fe1bf67a381ee97aac182c1812bc"><td class="memItemLeft" align="right" valign="top"><a id="a8df0fe1bf67a381ee97aac182c1812bc"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>lightPosition</b></td></tr>
+<tr class="memitem:a8df0fe1bf67a381ee97aac182c1812bc"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__shader_locations.html#a8df0fe1bf67a381ee97aac182c1812bc">lightPosition</a></td></tr>
 <tr class="separator:a8df0fe1bf67a381ee97aac182c1812bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aebcc511a41afc71aacc7c7fd2c8b49e1"><td class="memItemLeft" align="right" valign="top"><a id="aebcc511a41afc71aacc7c7fd2c8b49e1"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>lightIntensity</b></td></tr>
+<tr class="memitem:aebcc511a41afc71aacc7c7fd2c8b49e1"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__shader_locations.html#aebcc511a41afc71aacc7c7fd2c8b49e1">lightIntensity</a></td></tr>
 <tr class="separator:aebcc511a41afc71aacc7c7fd2c8b49e1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae78db648469573ba609491bafa6af192"><td class="memItemLeft" align="right" valign="top"><a id="ae78db648469573ba609491bafa6af192"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>lightAttenuation</b></td></tr>
+<tr class="memitem:ae78db648469573ba609491bafa6af192"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__shader_locations.html#ae78db648469573ba609491bafa6af192">lightAttenuation</a></td></tr>
 <tr class="separator:ae78db648469573ba609491bafa6af192"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a154dd7248b88a6bcda7fcbaaf8686660"><td class="memItemLeft" align="right" valign="top"><a id="a154dd7248b88a6bcda7fcbaaf8686660"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>lightAmbienbtCoef</b></td></tr>
+<tr class="memitem:a154dd7248b88a6bcda7fcbaaf8686660"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__shader_locations.html#a154dd7248b88a6bcda7fcbaaf8686660">lightAmbienbtCoef</a></td></tr>
 <tr class="separator:a154dd7248b88a6bcda7fcbaaf8686660"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a81dabde4964d0cf9f81fee6deabcbeb7"><td class="memItemLeft" align="right" valign="top"><a id="a81dabde4964d0cf9f81fee6deabcbeb7"></a>
-GLuint&#160;</td><td class="memItemRight" valign="bottom"><b>cameraPosition</b></td></tr>
+<tr class="memitem:a81dabde4964d0cf9f81fee6deabcbeb7"><td class="memItemLeft" align="right" valign="top">GLuint&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct__shader_locations.html#a81dabde4964d0cf9f81fee6deabcbeb7">cameraPosition</a></td></tr>
 <tr class="separator:a81dabde4964d0cf9f81fee6deabcbeb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Struct for storing shader uniform locations. </p>
+</div><h2 class="groupheader">Field Documentation</h2>
+<a id="a81dabde4964d0cf9f81fee6deabcbeb7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a81dabde4964d0cf9f81fee6deabcbeb7">&#9670;&nbsp;</a></span>cameraPosition</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint cameraPosition</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Location of the camera position uniform </p>
+
+</div>
+</div>
+<a id="a154dd7248b88a6bcda7fcbaaf8686660"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a154dd7248b88a6bcda7fcbaaf8686660">&#9670;&nbsp;</a></span>lightAmbienbtCoef</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint lightAmbienbtCoef</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Location of the light ambient coefficient uniform </p>
+
+</div>
+</div>
+<a id="ae78db648469573ba609491bafa6af192"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae78db648469573ba609491bafa6af192">&#9670;&nbsp;</a></span>lightAttenuation</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint lightAttenuation</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Location of the light attenuation uniform </p>
+
+</div>
+</div>
+<a id="aebcc511a41afc71aacc7c7fd2c8b49e1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebcc511a41afc71aacc7c7fd2c8b49e1">&#9670;&nbsp;</a></span>lightIntensity</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint lightIntensity</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Location of the light intensity uniform </p>
+
+</div>
+</div>
+<a id="a8df0fe1bf67a381ee97aac182c1812bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8df0fe1bf67a381ee97aac182c1812bc">&#9670;&nbsp;</a></span>lightPosition</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint lightPosition</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Location of the light position uniform </p>
+
+</div>
+</div>
+<a id="a2287577114d46dc8f11ed794b1ea165f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2287577114d46dc8f11ed794b1ea165f">&#9670;&nbsp;</a></span>Model</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint <a class="el" href="_model_8h.html#adacbf403997656ebd33c2b6e6eef8892">Model</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Location of the model matrix uniform </p>
+
+</div>
+</div>
+<a id="a617c126f048f1ad333567d11b3b20fd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a617c126f048f1ad333567d11b3b20fd0">&#9670;&nbsp;</a></span>Projection</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint Projection</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Location of the projection matrix uniform </p>
+
+</div>
+</div>
+<a id="ae3e9d97ab19212b0995aa9a13c0a6653"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae3e9d97ab19212b0995aa9a13c0a6653">&#9670;&nbsp;</a></span>View</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">GLuint View</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Location of the view matrix uniform </p>
+
+</div>
+</div>
 <hr/>The documentation for this struct was generated from the following file:<ul>
 <li>include/<a class="el" href="_shader_8h_source.html">Shader.h</a></li>
 </ul>
 </div><!-- contents -->
-</div><!-- doc-content -->
 <!-- start footer part -->
-<div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
-  <ul>
-    <li class="navelem"><a class="el" href="struct__shader_locations.html">_shaderLocations</a></li>
-    <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1 </li>
-  </ul>
-</div>
+<hr class="footer"/><address class="footer"><small>
+Generated by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.1
+</small></address>
 </body>
 </html>

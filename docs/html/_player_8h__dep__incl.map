@@ -1,0 +1,11 @@
+<map id="include/Player.h" name="include/Player.h">
+<area shape="rect" id="node1" title="Header file for the player component." alt="" coords="500,5,625,32"/>
+<area shape="rect" id="node2" href="$_player_8c.html" title="Implementation of the player component." alt="" coords="5,80,189,107"/>
+<area shape="rect" id="node3" href="$_dungeon_scene_8h.html" title="Header file for the dungeon scene." alt="" coords="214,80,397,107"/>
+<area shape="rect" id="node4" href="$_application_8c.html" title="Entry point of the program." alt="" coords="492,229,633,256"/>
+<area shape="rect" id="node6" href="$_forest_scene_8h.html" title="Header file for the forest scene." alt="" coords="481,155,645,181"/>
+<area shape="rect" id="node7" href="$_main_scene_8h.html" title="Header file for the main scene." alt="" coords="669,155,825,181"/>
+<area shape="rect" id="node8" href="$_marchand_8h.html" title="Header file for the marchand component." alt="" coords="717,80,867,107"/>
+<area shape="rect" id="node9" href="$_start_scene_8h.html" title="Header file for the start scene." alt="" coords="849,155,1004,181"/>
+<area shape="rect" id="node5" href="$_dungeon_scene_8c.html" title="Implementation of the dungeon scene." alt="" coords="190,155,405,181"/>
+</map>

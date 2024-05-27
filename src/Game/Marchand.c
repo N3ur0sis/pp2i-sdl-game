@@ -89,7 +89,7 @@ void talkToMarchandStart(float window_width, float window_height, GLuint shader,
 }
 
 
-void talkToMarchandMain(Inventory* inventory, Inventory* marchantInventory, float window_width, float window_height, GLuint shader, int* click_counter, bool* is_clicking, bool* isBusy, int* money) {
+void talkToMarchandMain(Inventory* inventory, Inventory* marchantInventory, float window_width, float window_height, GLuint shader, int* click_counter, bool* is_clicking, bool* isBusy, int* money, bool* hasTorch) {
     SDL_Color color_black = {0, 0, 0, 0};
     SDL_Color color_white = {255, 255, 255, 0};
     switch (*click_counter) {
@@ -122,7 +122,7 @@ void talkToMarchandMain(Inventory* inventory, Inventory* marchantInventory, floa
         }
         break;
     case 2:
-        tradingWithMarchand(inventory, marchantInventory, window_width, window_height, shader, click_counter, is_clicking, isBusy, money);
+        tradingWithMarchand(inventory, marchantInventory, window_width, window_height, shader, click_counter, is_clicking, isBusy, money, hasTorch);
         if (getKeyState(SDLK_f) && !*is_clicking) {
             (*click_counter) = 0;
             *isBusy = false;
@@ -139,7 +139,7 @@ void talkToMarchandMain(Inventory* inventory, Inventory* marchantInventory, floa
 
 
 
-void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, float window_width, float window_height, GLuint shader,int* click_counter, bool* is_clicking, bool* isBusy, int* money) {
+void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, float window_width, float window_height, GLuint shader,int* click_counter, bool* is_clicking, bool* isBusy, int* money, bool* hasBoughtTorch) {
     SDL_Color color_black = {0, 0, 0, 0};
     SDL_Color color_white = {255, 255, 255, 0};
     SDL_Color color_yellow = {255, 215, 0, 255};
@@ -192,6 +192,9 @@ void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, flo
                     if (isPResent) {
                         InventoryAddObjects(1, inventory, Object_createFromId(currentIdObject));
                         *money -= costFromId(currentIdObject);
+                        if (currentIdObject == 3) {
+                            *hasBoughtTorch = true;
+                        }
                     } 
                     clickAction = true;
                 } else if (!getMouseButtonState(1)) {

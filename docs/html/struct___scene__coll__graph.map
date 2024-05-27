@@ -1,9 +1,9 @@
 <map id="_Scene" name="_Scene">
-<area shape="rect" id="node1" title=" " alt="" coords="185,276,253,303"/>
-<area shape="rect" id="node2" href="$struct___shader.html" title=" " alt="" coords="35,95,110,121"/>
-<area shape="rect" id="node7" href="$struct___skybox.html" title=" " alt="" coords="124,185,200,212"/>
-<area shape="rect" id="node3" href="$struct__shader_locations.html" title=" " alt="" coords="5,5,140,32"/>
-<area shape="rect" id="node4" href="$struct_camera.html" title=" " alt="" coords="224,185,297,212"/>
-<area shape="rect" id="node5" href="$struct___entity.html" title=" " alt="" coords="322,185,389,212"/>
-<area shape="rect" id="node6" href="$struct___component.html" title=" " alt="" coords="303,95,407,121"/>
+<area shape="rect" id="node1" title="Struct representing a scene." alt="" coords="185,276,253,303"/>
+<area shape="rect" id="node2" href="$struct___shader.html" title="Struct for storing shader program." alt="" coords="35,95,110,121"/>
+<area shape="rect" id="node7" href="$struct___skybox.html" title="Struct representing a skybox." alt="" coords="124,185,200,212"/>
+<area shape="rect" id="node3" href="$struct__shader_locations.html" title="Struct for storing shader uniform locations." alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node4" href="$struct_camera.html" title="Structure representing a camera." alt="" coords="224,185,297,212"/>
+<area shape="rect" id="node5" href="$struct___entity.html" title="Struct representing an entity." alt="" coords="322,185,389,212"/>
+<area shape="rect" id="node6" href="$struct___component.html" title="Structure representing a component." alt="" coords="303,95,407,121"/>
 </map>

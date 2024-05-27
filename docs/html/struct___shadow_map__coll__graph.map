@@ -1,5 +1,5 @@
 <map id="_ShadowMap" name="_ShadowMap">
-<area shape="rect" id="node1" title=" " alt="" coords="19,184,127,211"/>
-<area shape="rect" id="node2" href="$struct___shader.html" title=" " alt="" coords="35,95,110,121"/>
-<area shape="rect" id="node3" href="$struct__shader_locations.html" title=" " alt="" coords="5,5,140,32"/>
+<area shape="rect" id="node1" title="Struct representing a shadow map." alt="" coords="19,184,127,211"/>
+<area shape="rect" id="node2" href="$struct___shader.html" title="Struct for storing shader program." alt="" coords="35,95,110,121"/>
+<area shape="rect" id="node3" href="$struct__shader_locations.html" title="Struct for storing shader uniform locations." alt="" coords="5,5,140,32"/>
 </map>
