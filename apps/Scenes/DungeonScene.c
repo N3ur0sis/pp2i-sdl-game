@@ -106,6 +106,7 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
     }
 
     /*BOSS Entity*/
+    Entity* golem = create_golemPurple(scene,0.0f,0.1f,0.0f,0.5f);
     
 }
 
@@ -117,6 +118,9 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
     RigidBody* body = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
     Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
     Collider* playerCollider = (Collider*)getComponent(playerEntity, COMPONENT_COLLIDER);
+    if (getKeyState(SDLK_p)){
+        printf("Player Position : %f %f\n",playerModel->position[0],playerModel->position[2]);
+    }
     if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation"))){
             playerAnimator->playTime = 0.0f;
         }
