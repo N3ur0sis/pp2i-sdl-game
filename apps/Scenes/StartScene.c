@@ -31,14 +31,14 @@ void startStartScene(Scene* scene, GameState* gameState) {
     scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
 
     /* Create a scene camera */
-    scene->camera = camera_create(20, 22, -30, gameState->g_WindowWidth, gameState->g_WindowHeight);
+    scene->camera = camera_create(0, 0, 0, gameState->g_WindowWidth, gameState->g_WindowHeight);
     
     glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
     /* Create a skybox */
     scene->skybox = SkyboxCreate();
 
     /* Enemy Entity */
-    Entity* golem = create_golemPurple(scene,0.0f,0.1f,0.0f,0.5f);
+    Entity* golem = create_golemPurple(scene,3.0f,0.1f,-10.0f,0.5f);
 
     /* Player Entity */
     Entity* playerEntity = create_player(scene,28.0f,0.1f,7.0f);
@@ -144,6 +144,9 @@ void startStartScene(Scene* scene, GameState* gameState) {
     /* Create a skybox */
     scene->skybox = SkyboxCreate();
 
+    
+                        checkpoint_sword = true;
+
 }
  
 void updateStartScene(Scene* scene, GameState* gameState) {
@@ -214,7 +217,6 @@ void updateStartScene(Scene* scene, GameState* gameState) {
 
 
         /* Game Logic */
-
         if (getKeyState(TAB) && !is_tabingStart) {
             is_tabingStart = true;
             if (inventory->isOpened) {
@@ -239,6 +241,9 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             
 
         if(checkpoint_sword){
+                                        ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))->isRenderable = true;
+                        enemyModel->isRenderable = true;
+                        playerComponent->hasWeapon = true;
 
             updateEnemy(enemy,playerEntity,scene,gameState,scene->deltaTime);
 
