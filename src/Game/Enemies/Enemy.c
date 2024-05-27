@@ -58,23 +58,25 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
         PlayerComponent* playerComponent = (PlayerComponent*)getComponent(player, COMPONENT_PLAYER);
         Animator* playerAnimator = (Animator*)getComponent(player, COMPONENT_ANIMATOR);
         if (playerComponent->isAttacking && enemyDist < playerComponent->attackRange) {
+            printf("player is in range\n");
+            enemyComponent->health -= playerComponent->attackDamage;
             // Trigger enemy hit animation in the middle of the player's attack animation
-            if (playerAnimator->playTime >= playerAnimator->currentAnimation->anim_dur * 0.5f &&
-                playerAnimator->playTime < playerAnimator->currentAnimation->anim_dur * 0.5f + deltaTime) {
-                enemyComponent->health -= playerComponent->attackDamage;
+            // if (playerAnimator->playTime >= playerAnimator->currentAnimation->anim_dur / 4 &&
+            //     playerAnimator->playTime < playerAnimator->currentAnimation->anim_dur / 4 + deltaTime) {
+            //     enemyComponent->health -= playerComponent->attackDamage;
+            //     enemyAnimator->playTime = 0.0f;
+            //     printf("%f\n", enemyComponent->health);
+            //     enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemHitAnimation");
+            //     printf("%f\n", enemyComponent->health);
+            //     // Check if the enemy is dead
+            if (enemyComponent->health <= 0.0f) {
+                enemyComponent->isAlive = false;
+                enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemDyingAnimation");
                 enemyAnimator->playTime = 0.0f;
-                enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemHitAnimation");
-
-                // Check if the enemy is dead
-                if (enemyComponent->health <= 0.0f) {
-                    enemyComponent->isAlive = false;
-                    enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemDyingAnimation");
-                    enemyAnimator->playTime = 0.0f;
-                    return;
-                }
+                return;
             }
         }
-        printf("%f\n", enemyComponent->attackCooldown);
+        // printf("%f\n", enemyComponent->attackCooldown);
         if (enemyDist < enemyComponent->attackRange) {
             // Implement attack cooldown
             if (!enemyComponent->isAttacking) {
@@ -223,7 +225,7 @@ Entity* create_golemPurple(Scene* scene,float x,float y,float z,float scale){
     enemyComponent->attackDamage = 5.0f;
     enemyComponent->isAttacking = false;
     enemyComponent->isAlive = true;
-    enemyComponent->health = 100.0f;
+    enemyComponent->health = 10.0f;
     addComponent(enemy, COMPONENT_ENEMY, enemyComponent);
     }
     return enemy;

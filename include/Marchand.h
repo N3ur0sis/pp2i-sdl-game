@@ -53,7 +53,7 @@ void talkToMarchandStart(float window_width, float window_height, GLuint shader,
  * @param isBusy Pointer to the busy state.
  * @param money Pointer to the money of the player.
 */
-void talkToMarchandMain(Inventory* inventory, Inventory* marchantInventory, float window_width, float window_height, GLuint shader, int* click_counter, bool* is_clicking, bool* isBusy, int* money);
+void talkToMarchandMain(Inventory* inventory, Inventory* marchantInventory, float window_width, float window_height, GLuint shader, int* click_counter, bool* is_clicking, bool* isBusy, int* money, bool* hasBoughtTorch);
 
 /**
  * @brief Function to trade with the marchand.
@@ -70,7 +70,7 @@ void talkToMarchandMain(Inventory* inventory, Inventory* marchantInventory, floa
  * @param isBusy Pointer to the busy state.
  * @param money Pointer to the money of the player.
 */
-void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, float window_width, float window_height, GLuint shader,int* click_counter, bool* is_clicking, bool* isBusy, int* money);
+void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, float window_width, float window_height, GLuint shader,int* click_counter, bool* is_clicking, bool* isBusy, int* money, bool* hasBoughtTorch);
 
 /**
  * @brief Function to check if the player wants to trade.

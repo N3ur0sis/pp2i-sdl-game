@@ -14,7 +14,8 @@ Checkpoint currentCheckpoint = CHECKPOINT_START;
 bool checkpoint_sword;
 bool is_clicking = false;
 bool is_tabingStart = false;
-bool isBarrierDestroyed;
+bool is_BarrierDestroyed;
+bool is_GemTaken = false;
 int click_counter = 0 ;
 Inventory* inventory;
 Inventory* marchantInventory;
@@ -23,7 +24,7 @@ const Uint32 enemyHitTextDisplayDuration = 750; // ms
 
 void startStartScene(Scene* scene, GameState* gameState) {
     checkpoint_sword = false;
-    isBarrierDestroyed = false;
+    is_BarrierDestroyed = false;
     /* Load and compile shaders */
     scene->shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
     UseShaders(scene->shader);
@@ -125,6 +126,24 @@ void startStartScene(Scene* scene, GameState* gameState) {
 
     }
 
+    Entity* blueGemEntity = createEntity(scene);
+    if (blueGemEntity != NULL) {
+        Model* blueGemModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(blueGemModel, "assets/models/Gem/BlueGem.obj");
+        addComponent(blueGemEntity, COMPONENT_RENDERABLE, blueGemModel);
+        compute_center_of_volume(blueGemModel);
+
+        ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position[0] = -322.0;
+        ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position[1] = 10.3;
+        ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position[2] = 93.8;
+        ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->isRenderable = false;
+        
+        glm_vec3_copy((vec3){2.0f,2.0f,2.0}, ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->scale);
+    }
+    ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->isRenderable = false;
+
+
+
     Entity* Marchand = createMarchand(scene, (vec3){-15.0f,0.1f,-10.0f}, (vec3){2.0f, 2.0f, 2.0f}, (vec3){0.0f, 3.14f, 0.0f});
     marchantInventory = gameState->marchantInventory;
     InventoryAddObjects(10, marchantInventory, Object_createFromId(1));
@@ -156,8 +175,9 @@ void updateStartScene(Scene* scene, GameState* gameState) {
     Entity* chestEntity = &scene->entities[5];
     Entity* chestOpenEntity = &scene->entities[6];
     Entity* startBarrierEntity = &scene->entities[7];
+    Entity* blueGemEntity = &scene->entities[8];
 
-
+    
     Uint32 currentTime = SDL_GetTicks();
     bool* isBusy = &((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy;
     float x = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[0];
@@ -185,7 +205,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             *isBusy = false;
             checkpoint_sword = false;
             is_clicking = false;
-            isBarrierDestroyed = false;
+            is_BarrierDestroyed = false;
             click_counter = 0 ;
             is_tabingStart = false;
             ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))->isRenderable = false;
@@ -248,9 +268,31 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             updateEnemy(enemy,playerEntity,scene,gameState,scene->deltaTime);
 
         }
+
+        if (checkpoint_sword && !(enemyModel->isRenderable) && !is_GemTaken) {
+            glm_vec3_copy(((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->position,((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position);
+            ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position[1] = 1.5;
+            ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->isRenderable = true;
+
+        }
         
 
-        if (x < -37.25 && y <-13.85 && y > -17.5 && !isBarrierDestroyed) {
+        if (checkpoint_sword && !(enemyModel->isRenderable) && (!is_GemTaken)) {
+            ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->rotation[1] += 0.01;
+            float dist_joueur_gem = sqrt(pow(playerModel->position[0] - ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position[0], 2) + pow(playerModel->position[2] - ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position[2], 2));
+            if (dist_joueur_gem < 1.0f) {
+                ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->isRenderable = false;
+                is_GemTaken = true;
+                gameState->hasBlueGem = true;
+            }
+        }
+
+
+
+
+
+
+        if (x < -37.25 && y <-13.85 && y > -17.5 && !is_BarrierDestroyed && checkpoint_sword) {
             if (getMouseButtonState(1)) {
                 ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->isRenderable = false;
                 glm_translate_make(((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->transformMatrix, (vec3){1000.0f, 1000.0f, 1000.0f});
@@ -258,7 +300,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
                     glm_aabb_transform(((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBoxReference[k],((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->transformMatrix,((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBox[k]);
                 }
                 // glm_aabb_transform(((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBoxReference[0],((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->transformMatrix,((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBox[0]);
-                isBarrierDestroyed = true;
+                is_BarrierDestroyed = true;
             }
         }
 
@@ -268,7 +310,9 @@ void updateStartScene(Scene* scene, GameState* gameState) {
         } else {
             ((RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY))->velocity[1] = 0.1f;
         }
-        
+        if (getKeyState(SDLK_p)){
+        printf("Le joueur est en %f, %f, %f\n",playerModel->position[0],playerModel->position[1],playerModel->position[2]);
+    }
 
         SDL_Color color_black = {0, 0, 0, 0};
         SDL_Color color_white = {255, 255, 255, 0};
@@ -369,9 +413,15 @@ void updateStartScene(Scene* scene, GameState* gameState) {
                 *isBusy = true;
             }
         } else if (x < -13.0f && x > -18.0f && y < -8.0f && y > -13.0f && *isBusy) {
-            talkToMarchandMain(inventory, marchantInventory ,gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program, &click_counter, &is_clicking, isBusy, &gameState->money);
+            talkToMarchandMain(inventory, marchantInventory ,gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program, &click_counter, &is_clicking, isBusy, &gameState->money, &gameState->hasBoughtTorch);
         }
 
+
+        if (x < -46.0f) {
+            gameState->nextSceneIndex = 3;
+            gameState->previousSceneIndex = 0;
+            ChangeSceneEvent(gameState->nextSceneIndex);
+        }
     
 }
 

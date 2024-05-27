@@ -220,7 +220,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(blueGemEntity, COMPONENT_RENDERABLE, blueGemModel);
         compute_center_of_volume(blueGemModel);
 
-        ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position[0] = -322.0;
+        ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position[0] = -323.5;
         ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position[1] = 9.3;
         ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position[2] = 93.8;
         ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->isRenderable = false;
@@ -245,7 +245,6 @@ void startMainScene(Scene* scene, GameState* gameState) {
     }
 
 
-    gameState->hasGreenGem = true;
 }
 
 

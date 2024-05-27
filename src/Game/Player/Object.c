@@ -34,7 +34,7 @@ char* checkIdObject(int id) {
             strcpy(path, "assets/images/Heart_Blue_1.png");
             break;
         case 3 :
-            strcpy(path, "assets/images/heart.png");
+            strcpy(path, "assets/images/ToolBarTorch.png");
             break;
         default :
             strcpy(path, "assets/images/Hearts_Blue_1.png");
@@ -121,7 +121,7 @@ char* pathToolBar(int id, bool bool1, bool bool2) {
             }
         case 2 :
             if (bool2) {
-                strcpy(path, "assets/images/ToolBarShield.png");
+                strcpy(path, "assets/images/ToolBarTorch.png");
                 break;
             } else {
                 strcpy(path, "");
