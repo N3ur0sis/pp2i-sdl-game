@@ -100,14 +100,10 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         Model* flame = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame, "assets/models/Foret/Flame.obj");
         if (!gameState->isForestDungeonDone){
-        //flame->isRenderable = false;
+        flame->isRenderable = false;
          }  
         glm_vec3_copy((vec3){50.5f,9.8f,112.0f},flame->position);
         addComponent(flame1, COMPONENT_RENDERABLE, flame);
-        /*
-        //Light* light = LightCreate(scene->shader, (vec4){50.5f,-100.8f,112.0f,0}, (vec3){1.0f, 0.8f, 0.0f }, 0.5f,  0.15f,0.1f,5.0f);
-        Light* light = LightCreate(scene->shader, (vec4){50.5f,-100.8f,112.0f,0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f, 0.1f, 500.0f);
-        addComponent(flame1, COMPONENT_LIGHT, light);*/
         
     }
     Entity* flame2 = createEntity(scene);
@@ -115,7 +111,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         Model* flame_2 = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame_2, "assets/models/Foret/Flame.obj");
         if (!gameState->isForestDungeonDone){
-        //flame_2->isRenderable = false;
+        flame_2->isRenderable = false;
          }  
         glm_vec3_copy((vec3){62.3f,9.8f,156.0f},flame_2->position);
         addComponent(flame2, COMPONENT_RENDERABLE, flame_2);
@@ -126,7 +122,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         Model* flame_3 = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame_3, "assets/models/Foret/Flame.obj");
         if (!gameState->isForestDungeonDone){
-        //flame_3->isRenderable = false;
+        flame_3->isRenderable = false;
          }  
         glm_vec3_copy((vec3){-59.0f,9.8f,146.50f},flame_3->position);
         addComponent(flame3, COMPONENT_RENDERABLE, flame_3);
@@ -147,7 +143,6 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     if (DungeonDoor){
         Model* DungeonDoorModel = (Model*)calloc(1, sizeof(Model));
         ModelCreate(DungeonDoorModel, "assets/models/Foret/DungeonForestDoor.obj");
-        //glm_vec3_copy((vec3){-6.7f,9.8f,169.0f},DungeonDoorModel->position);
         addComponent(DungeonDoor, COMPONENT_RENDERABLE, DungeonDoorModel);
         
     }/*
@@ -300,9 +295,9 @@ void updateForestScene(Scene* scene, GameState* gameState){
             glm_vec3_sub( playerModel->position, DonjonPosition, DonjonDir);
             float DonjonDist = glm_vec3_norm(DonjonDir);
             if (DonjonDist<1.0f&&getKeyState(SDLK_e)){
-                gameState->change = true;
                 gameState ->nextSceneIndex = 1;
                 gameState->previousSceneIndex = 2;
+                ChangeSceneEvent(gameState->nextSceneIndex);
         }}
         
     }
@@ -310,9 +305,9 @@ void updateForestScene(Scene* scene, GameState* gameState){
     vec3 mainDir;
     glm_vec3_sub(playerModel->position,mainPos,mainDir);
     if (glm_vec3_norm(mainDir)<3.0f){
-        gameState->change = true;
         gameState->nextSceneIndex = 3;
         gameState->previousSceneIndex = 2;
+        ChangeSceneEvent(gameState->nextSceneIndex);
     }
 
 }

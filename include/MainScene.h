@@ -7,7 +7,7 @@
 #include <Renderer.h>
 #include <Inventory.h>
 
-#define NBPARTMAP 8
+#define NBPARTMAP 9
 
 void startMainScene(Scene* scene, GameState* gameState);
 void updateMainScene(Scene* scene, GameState* gameState);

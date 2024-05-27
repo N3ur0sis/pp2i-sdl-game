@@ -72,6 +72,12 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(debut, COMPONENT_RENDERABLE, debutModel);
         compute_center_of_volume(debutModel);
         debutModel->isRenderable = false;
+
+        Collider* col = ColliderCreate("assets/models/main/col1obj.obj");
+        glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
+        UpdateCollider(col);
+        addComponent(debut, COMPONENT_COLLIDER, col);
+        
     }
     
     Entity* foret1 = createEntity(scene);
@@ -126,69 +132,52 @@ void startMainScene(Scene* scene, GameState* gameState) {
 
     
     /* Light Entity */
-    Entity* lightEntity = createEntity(scene);
-    if (lightEntity != NULL) {
-        Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f, 0.1f, 500.0f);
-        addComponent(lightEntity, COMPONENT_LIGHT, light);
-    }
-
     Entity* fontaine = createEntity(scene);
     if (fontaine) {
         vec3 fontainePos = {-334.34, 6.60, 93.65};
-        Model* fontaineModel0 = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(fontaineModel0,"assets/models/Fontaine/Fontaine0.obj");
-        addComponent(fontaine, COMPONENT_RENDERABLE, fontaineModel0);
-        glm_vec3_copy(fontainePos,fontaineModel0->position);
-        glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModel0->scale);
-        fontaineModel0->isRenderable = false;
-
-        Model* fontaineModel1 = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(fontaineModel1,"assets/models/Fontaine/Fontaine1.obj");
-        addComponent(fontaine, COMPONENT_RENDERABLE, fontaineModel1);
-        glm_vec3_copy(fontainePos,fontaineModel1->position);
-        glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModel1->scale);
-        fontaineModel1->isRenderable = false;
-
-        Model* fontaineModel2 = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(fontaineModel2,"assets/models/Fontaine/Fontaine2.obj");
-        addComponent(fontaine, COMPONENT_RENDERABLE, fontaineModel2);
-        glm_vec3_copy(fontainePos,fontaineModel2->position);
-        glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModel2->scale);
-        fontaineModel2->isRenderable = false;
-
-        Model* fontaineModel3 = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(fontaineModel3,"assets/models/Fontaine/Fontaine3.obj");
-        addComponent(fontaine, COMPONENT_RENDERABLE, fontaineModel3);
-        glm_vec3_copy(fontainePos,fontaineModel3->position);
-        glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModel3->scale);
-        fontaineModel3->isRenderable = false;
-
-        Model* fontaineModel4 = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(fontaineModel4,"assets/models/Fontaine/Fontaine4.obj");
-        addComponent(fontaine, COMPONENT_RENDERABLE, fontaineModel4);
-        glm_vec3_copy(fontainePos,fontaineModel4->position);
-        glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModel4->scale);
-        fontaineModel4->isRenderable = false;
+        Model* fontaineModelcurrent = (Model*)calloc(1, sizeof(Model));
+        Model* fontaineModelnext = (Model*)calloc(1, sizeof(Model));
+        compute_center_of_volume(fontaineModelcurrent);
+        compute_center_of_volume(fontaineModelnext);
 
         switch(gameState->indexFountain) {
             case 0:
-                fontaineModel0->isRenderable = true;
+                ModelCreate(fontaineModelcurrent,"assets/models/Fontaine/Fontaine0.obj");
+                ModelCreate(fontaineModelnext,"assets/models/Fontaine/Fontaine1.obj");
                 break;
             case 1:
-                fontaineModel1->isRenderable = true;
+                ModelCreate(fontaineModelcurrent,"assets/models/Fontaine/Fontaine1.obj");
+                ModelCreate(fontaineModelnext,"assets/models/Fontaine/Fontaine2.obj");
                 break;
             case 2:
-                fontaineModel2->isRenderable = true;
+                ModelCreate(fontaineModelcurrent,"assets/models/Fontaine/Fontaine2.obj");
+                ModelCreate(fontaineModelnext,"assets/models/Fontaine/Fontaine3.obj");
                 break;
             case 3:
-                fontaineModel3->isRenderable = true;
+                ModelCreate(fontaineModelcurrent,"assets/models/Fontaine/Fontaine3.obj");
+                ModelCreate(fontaineModelnext,"assets/models/Fontaine/Fontaine4.obj");
                 break;
             case 4:
-                fontaineModel4->isRenderable = true;
+                ModelCreate(fontaineModelcurrent,"assets/models/Fontaine/Fontaine4.obj");
+                ModelCreate(fontaineModelnext,"assets/models/Fontaine/Fontaine4.obj");
                 break;  
             default:
                 break;
         }
+        glm_vec3_copy(fontainePos,fontaineModelcurrent->position);
+        glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModelcurrent->scale);
+        addComponent(fontaine, COMPONENT_RENDERABLE, fontaineModelcurrent);
+        glm_vec3_copy(fontainePos,fontaineModelnext->position);
+        glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModelnext->scale);
+        fontaineModelnext->isRenderable = false;
+        addComponent(fontaine, COMPONENT_RENDERABLE, fontaineModelnext);
+
+        Collider* fontaineCol = ColliderCreate("assets/models/Fontaine/col.obj");
+    }
+    Entity* lightEntity = createEntity(scene);
+    if (lightEntity != NULL) {
+        Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f, 0.1f, 500.0f);
+        addComponent(lightEntity, COMPONENT_LIGHT, light);
     }
 
 
@@ -267,19 +256,18 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     vec3 forestDir;
     glm_vec3_sub(playerModel->position,forestPos,forestDir);
     if (glm_vec3_norm(forestDir)<5.0f){
-        gameState->change = true;
         gameState->nextSceneIndex = 2;
         gameState->previousSceneIndex = 3;
+        ChangeSceneEvent(gameState->nextSceneIndex);
     }
 
     vec3 startPos = {-139.040665, 6.600000, 94.000000};
     vec3 startDir;
     glm_vec3_sub(playerModel->position,startPos,startDir);
     if (glm_vec3_norm(startDir)<3.0f){
-        gameState->change = true;
         gameState->nextSceneIndex = 0;
-        gameState->previousSceneIndex = 3;
-    }
+        gameState->previousSceneIndex = 3;  
+        ChangeSceneEvent(gameState->nextSceneIndex);    }
 }
 
 
