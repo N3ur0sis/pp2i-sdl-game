@@ -104,3 +104,32 @@ int costFromId(int id) {
             return 0;
     }
 }
+
+
+char* pathToolBar(int id, bool bool1, bool bool2) {
+    const int MAX_PATH_LENGTH = 256;
+    char* path = (char*)malloc(MAX_PATH_LENGTH * sizeof(char));
+
+    switch (id) {
+        case 1 :
+            if (bool1) {
+                strcpy(path, "assets/images/ToolBarSword.png");
+                break;
+            } else {
+                strcpy(path, "");
+                break;
+            }
+        case 2 :
+            if (bool2) {
+                strcpy(path, "assets/images/ToolBarShield.png");
+                break;
+            } else {
+                strcpy(path, "");
+                break;
+            }
+        default :
+            strcpy(path, "");
+            break;
+    }
+    return path;
+}

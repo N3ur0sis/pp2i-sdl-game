@@ -10,6 +10,7 @@
 #include <unistd.h>
 #include <SceneManager.h>
 #include <Controls.h>
+#include <Objects.h>
 
 #define DAMAGE 50.0f        /**< Damage of the player. */
 #define ATTACK_RANGE 2.5f   /**< Attack range of the player. */

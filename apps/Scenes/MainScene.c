@@ -119,6 +119,10 @@ void startMainScene(Scene* scene, GameState* gameState) {
     //     addComponent(falaisestart, COMPONENT_RENDERABLE, falaisestartModel);
     //     compute_center_of_volume(falaisestartModel);
     // }
+
+
+    
+
     Entity* main = createEntity(scene);
     if (main != NULL) {
         Model* mainModel = (Model*)calloc(1, sizeof(Model));
@@ -129,15 +133,11 @@ void startMainScene(Scene* scene, GameState* gameState) {
 
     
 
-
-
     Entity* foutainEntity = createEntity(scene);
     if (foutainEntity) {
         vec3 fontainePos = {-334.0, 6.60, 93.8};
         Model* fontaineModelcurrent = (Model*)calloc(1, sizeof(Model));
         Model* fontaineModelnext = (Model*)calloc(1, sizeof(Model));
-        compute_center_of_volume(fontaineModelcurrent);
-        compute_center_of_volume(fontaineModelnext);
 
         switch(gameState->indexFountain) {
             case 0:
@@ -179,8 +179,11 @@ void startMainScene(Scene* scene, GameState* gameState) {
         glm_translate_make(fontaineCol->transformMatrix, (vec3){-334.0f, 6.6f, 93.8f});
         UpdateCollider(fontaineCol);
         addComponent(foutainEntity, COMPONENT_COLLIDER, fontaineCol);
+        compute_center_of_volume(fontaineModelcurrent);
+        compute_center_of_volume(fontaineModelnext);
+    }    
 
-    }       
+       
 
 
     // if (foutainEntity != NULL) {
@@ -210,25 +213,39 @@ void startMainScene(Scene* scene, GameState* gameState) {
     }
 
 
-    Entity* firstGemEntity = createEntity(scene);
-    if (firstGemEntity != NULL) {
-        Model* firstGemModel = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(firstGemModel, "assets/models/Gem/BlueGem.obj");
-        addComponent(firstGemEntity, COMPONENT_RENDERABLE, firstGemModel);
-        compute_center_of_volume(firstGemModel);
+    Entity* blueGemEntity = createEntity(scene);
+    if (blueGemEntity != NULL) {
+        Model* blueGemModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(blueGemModel, "assets/models/Gem/BlueGem.obj");
+        addComponent(blueGemEntity, COMPONENT_RENDERABLE, blueGemModel);
+        compute_center_of_volume(blueGemModel);
 
-        ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->position[0] = -322.0;
-        ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->position[1] = 9.3;
-        ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->position[2] = 93.8;
-        ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->isRenderable = false;
+        ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position[0] = -322.0;
+        ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position[1] = 9.3;
+        ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position[2] = 93.8;
+        ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->isRenderable = false;
         
-        glm_vec3_copy((vec3){2.0f,2.0f,2.0}, ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->scale);
+        glm_vec3_copy((vec3){2.0f,2.0f,2.0}, ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->scale);
     }
     
-    
+    Entity* greenGemEntity = createEntity(scene);
+    if (greenGemEntity != NULL) {
+        Model* greenGemModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(greenGemModel, "assets/models/Gem/GreenGem.obj");
+        addComponent(greenGemEntity, COMPONENT_RENDERABLE, greenGemModel);
+        compute_center_of_volume(greenGemModel);
+
+        ((Model*)getComponent(greenGemEntity, COMPONENT_RENDERABLE))->position[0] = -333.5f;
+        ((Model*)getComponent(greenGemEntity, COMPONENT_RENDERABLE))->position[1] = 9.3;
+        ((Model*)getComponent(greenGemEntity, COMPONENT_RENDERABLE))->position[2] = 105.4;
+        ((Model*)getComponent(greenGemEntity, COMPONENT_RENDERABLE))->isRenderable = false;
+        
+        glm_vec3_copy((vec3){2.0f,2.0f,2.0}, ((Model*)getComponent(greenGemEntity, COMPONENT_RENDERABLE))->scale);
+        greenGemModel->rotation[1] = glm_rad(90.0f);
+    }
 
 
-    gameState->hasBlueGem = true;
+    gameState->hasGreenGem = true;
 }
 
 
@@ -236,12 +253,14 @@ void startMainScene(Scene* scene, GameState* gameState) {
 void updateMainScene(Scene* scene, GameState* gameState) {
     Camera* camera =scene->camera; 
     Entity* playerEntity = &scene->entities[0];
-    Entity* gem = &scene->entities[7];
+    Entity* bluegem = &scene->entities[7];
+    Entity* greenGem = &scene->entities[8];
     Entity* foutain = &scene->entities[5];
 
     Model* playerModel = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE));
-    Model* gemModel = ((Model*)getComponent(gem, COMPONENT_RENDERABLE));
-
+    Model* blueGemModel = ((Model*)getComponent(bluegem, COMPONENT_RENDERABLE));
+    Model* greenGemModel = ((Model*)getComponent(greenGem, COMPONENT_RENDERABLE));
+    printf("green gem position : %f, %f, %f\n",greenGemModel->position[0],greenGemModel->position[1],greenGemModel->position[2]);
     float x = playerModel->position[0];
     float y = playerModel->position[1];
     float z = playerModel->position[2];
@@ -334,23 +353,50 @@ void updateMainScene(Scene* scene, GameState* gameState) {
             if (getKeyState(SDLK_e) && !isInsertingGem){
                 isInsertingGem = true;
                 gameState->hasBlueGem = false;
-                gemModel->isRenderable = true;
+                blueGemModel->isRenderable = true;
             }
         }
     }
-    if (gemModel->isRenderable){
-        if (gemModel->position[0]<-327.0) {
+    if (blueGemModel->isRenderable){
+        if (blueGemModel->position[0]<-327.0) {
             playerModel->isBusy = false;
-            gemModel->isRenderable = false;
+            blueGemModel->isRenderable = false;
             ((Model*)foutain->components[0].data)->isRenderable = false;
             ((Model*)foutain->components[1].data)->isRenderable = true;
             gameState->indexFountain++;
         }
         else{
-            gemModel->position[0]-=0.01f;
+            blueGemModel->position[0]-=0.01f;
             playerModel->isBusy = true;
         }
     }
+
+
+    if (canInsertGreenGem(x,z)) {
+        if (gameState->hasGreenGem){
+            RenderText("Appuyez sur E pour insérer la gemme", (SDL_Color){255, 255, 255, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+            if (getKeyState(SDLK_e) && !isInsertingGem){
+                isInsertingGem = true;
+                gameState->hasGreenGem = false;
+                greenGemModel->isRenderable = true;
+            }
+        }
+    }
+    if (greenGemModel->isRenderable){
+        if (greenGemModel->position[2]<100.8) {
+            playerModel->isBusy = false;
+            greenGemModel->isRenderable = false;
+            ((Model*)foutain->components[0].data)->isRenderable = false;
+            ((Model*)foutain->components[1].data)->isRenderable = true;
+            gameState->indexFountain++;
+        }
+        else{
+            greenGemModel->position[2]-=0.01f;
+            playerModel->isBusy = true;
+        }
+    }
+
+
 }
 
 
@@ -373,6 +419,14 @@ void unloadMainScene(Scene* scene){
 
 bool canInsertBlueGem(float x, float y) {
     if (x  < -322.5 && x > -326.5 && y > 90.5 && y < 97.0 ) {
+        return true;
+    }
+    return false;
+}
+
+
+bool canInsertGreenGem(float x, float y) {
+    if (x  < -330.5 && x > -337.5 && y > 102.5 && y < 105.0 ) {
         return true;
     }
     return false;

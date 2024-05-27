@@ -22,7 +22,8 @@ SceneManager* SceneManagerInit() {
     manager->gameState.isChestOpen = false;
     manager->gameState.isForestDungeonDone = false;
     manager->gameState.hasBlueGem = false;
-    manager->gameState.indexFountain = 0;
+    manager->gameState.hasGreenGem = false;
+    manager->gameState.indexFountain = 1;
     manager->gameState.pauseMenu = NULL;
     manager->gameState.restarting = false;
     manager->gameState.mainMenuOpen = true;

@@ -56,3 +56,15 @@ void unloadMainScene(Scene* scene);
  * @param y Y-coordinate of the position.
  */
 bool canInsertBlueGem(float x, float y);
+
+
+
+/**
+ * @brief Function to check if p;ayer can insert green gem (in terms of position).
+ * 
+ * This function creates the main scene.
+ * 
+ * @param x X-coordinate of the position.
+ * @param y Y-coordinate of the position.
+ */
+bool canInsertGreenGem(float x, float y);
