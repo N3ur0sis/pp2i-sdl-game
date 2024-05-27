@@ -22,7 +22,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
     switch (gameState->previousSceneIndex){
         case 0://Start
             // x = -145.0f; y = 6.6f; z =94.0f;rot = 90.0f;
-            x = -330.0f; y = 6.6f; z =90.0f;rot = 90.0f;
+            x = -325.0f; y = 6.6f; z =90.0f;rot = 90.0f;
             break;
         case 2://Foret
             x = -327.0f; y = 6.6f; z =288.5f; rot = 180.0f;
@@ -77,48 +77,48 @@ void startMainScene(Scene* scene, GameState* gameState) {
         debutModel->isRenderable = false;
     }
     
-    Entity* foret1 = createEntity(scene);
-    if (foret1 != NULL) {
-        Model* foret1Model = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(foret1Model, "assets/models/main/foret1.obj");
-        addComponent(foret1, COMPONENT_RENDERABLE, foret1Model);
-        compute_center_of_volume(foret1Model);
-        foret1Model->isRenderable = false;
-    }
+    // Entity* foret1 = createEntity(scene);
+    // if (foret1 != NULL) {
+    //     Model* foret1Model = (Model*)calloc(1, sizeof(Model));
+    //     ModelCreate(foret1Model, "assets/models/main/foret1.obj");
+    //     addComponent(foret1, COMPONENT_RENDERABLE, foret1Model);
+    //     compute_center_of_volume(foret1Model);
+    //     foret1Model->isRenderable = false;
+    // }
 
-    Entity* foret2 = createEntity(scene);
-    if (foret2 != NULL) {
-        Model* foret2Model = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(foret2Model, "assets/models/main/foret2.obj");
-        addComponent(foret2, COMPONENT_RENDERABLE, foret2Model);
-        compute_center_of_volume(foret2Model);
-        foret2Model->isRenderable = false;
-    }
+    // Entity* foret2 = createEntity(scene);
+    // if (foret2 != NULL) {
+    //     Model* foret2Model = (Model*)calloc(1, sizeof(Model));
+    //     ModelCreate(foret2Model, "assets/models/main/foret2.obj");
+    //     addComponent(foret2, COMPONENT_RENDERABLE, foret2Model);
+    //     compute_center_of_volume(foret2Model);
+    //     foret2Model->isRenderable = false;
+    // }
 
-    Entity* foret3 = createEntity(scene);
-    if (foret3 != NULL) {
-        Model* foret3Model = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(foret3Model, "assets/models/main/foret3.obj");
-        addComponent(foret3, COMPONENT_RENDERABLE, foret3Model);
-        compute_center_of_volume(foret3Model);
-        foret3Model->isRenderable = false;
-    }
+    // Entity* foret3 = createEntity(scene);
+    // if (foret3 != NULL) {
+    //     Model* foret3Model = (Model*)calloc(1, sizeof(Model));
+    //     ModelCreate(foret3Model, "assets/models/main/foret3.obj");
+    //     addComponent(foret3, COMPONENT_RENDERABLE, foret3Model);
+    //     compute_center_of_volume(foret3Model);
+    //     foret3Model->isRenderable = false;
+    // }
 
-    Entity* lake = createEntity(scene);
-    if (lake != NULL) {
-        Model* lakeModel = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(lakeModel, "assets/models/main/lake.obj");
-        addComponent(lake, COMPONENT_RENDERABLE, lakeModel);
-        compute_center_of_volume(lakeModel);
-        lakeModel->isRenderable = false;
-    }
-    Entity* falaisestart = createEntity(scene);
-    if (falaisestart != NULL) {
-        Model* falaisestartModel = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(falaisestartModel, "assets/models/main/falaisestart.obj");
-        addComponent(falaisestart, COMPONENT_RENDERABLE, falaisestartModel);
-        compute_center_of_volume(falaisestartModel);
-    }
+    // Entity* lake = createEntity(scene);
+    // if (lake != NULL) {
+    //     Model* lakeModel = (Model*)calloc(1, sizeof(Model));
+    //     ModelCreate(lakeModel, "assets/models/main/lake.obj");
+    //     addComponent(lake, COMPONENT_RENDERABLE, lakeModel);
+    //     compute_center_of_volume(lakeModel);
+    //     lakeModel->isRenderable = false;
+    // }
+    // Entity* falaisestart = createEntity(scene);
+    // if (falaisestart != NULL) {
+    //     Model* falaisestartModel = (Model*)calloc(1, sizeof(Model));
+    //     ModelCreate(falaisestartModel, "assets/models/main/falaisestart.obj");
+    //     addComponent(falaisestart, COMPONENT_RENDERABLE, falaisestartModel);
+    //     compute_center_of_volume(falaisestartModel);
+    // }
     Entity* main = createEntity(scene);
     if (main != NULL) {
         Model* mainModel = (Model*)calloc(1, sizeof(Model));
@@ -128,30 +128,85 @@ void startMainScene(Scene* scene, GameState* gameState) {
     }
 
     
+
+
+
+    Entity* foutainEntity = createEntity(scene);
+    if (foutainEntity) {
+        vec3 fontainePos = {-334.0, 6.60, 93.8};
+        Model* fontaineModelcurrent = (Model*)calloc(1, sizeof(Model));
+        Model* fontaineModelnext = (Model*)calloc(1, sizeof(Model));
+        compute_center_of_volume(fontaineModelcurrent);
+        compute_center_of_volume(fontaineModelnext);
+
+        switch(gameState->indexFountain) {
+            case 0:
+                ModelCreate(fontaineModelcurrent,"assets/models/Fontaine/Fontaine0.obj");
+                ModelCreate(fontaineModelnext,"assets/models/Fontaine/Fontaine1.obj");
+                break;
+            case 1:
+                ModelCreate(fontaineModelcurrent,"assets/models/Fontaine/Fontaine1.obj");
+                ModelCreate(fontaineModelnext,"assets/models/Fontaine/Fontaine2.obj");
+                break;
+            case 2:
+                ModelCreate(fontaineModelcurrent,"assets/models/Fontaine/Fontaine2.obj");
+                ModelCreate(fontaineModelnext,"assets/models/Fontaine/Fontaine3.obj");
+                break;
+            case 3:
+                ModelCreate(fontaineModelcurrent,"assets/models/Fontaine/Fontaine3.obj");
+                ModelCreate(fontaineModelnext,"assets/models/Fontaine/Fontaine4.obj");
+                break;
+            case 4:
+                ModelCreate(fontaineModelcurrent,"assets/models/Fontaine/Fontaine4.obj");
+                ModelCreate(fontaineModelnext,"assets/models/Fontaine/Fontaine4.obj");
+                break;  
+            default:
+                break;
+        }
+        glm_vec3_copy(fontainePos,fontaineModelcurrent->position);
+        glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModelcurrent->scale);
+        addComponent(foutainEntity, COMPONENT_RENDERABLE, fontaineModelcurrent);
+        glm_vec3_copy(fontainePos,fontaineModelnext->position);
+        glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModelnext->scale);
+        fontaineModelnext->isRenderable = false;
+        fontaineModelcurrent->rotation[1] = glm_rad(-90.0f);
+        fontaineModelnext->rotation[1] = glm_rad(-90.0f);
+        addComponent(foutainEntity, COMPONENT_RENDERABLE, fontaineModelnext);
+
+        Collider* fontaineCol = ColliderCreate("assets/models/Fontaine/col.obj");
+        glm_scale_make(fontaineCol->transformMatrix, (vec3){3.5f, 3.5f, 3.5f});
+        UpdateCollider(fontaineCol);
+        glm_translate_make(fontaineCol->transformMatrix, (vec3){-334.0f, 6.6f, 93.8f});
+        UpdateCollider(fontaineCol);
+        addComponent(foutainEntity, COMPONENT_COLLIDER, fontaineCol);
+
+    }       
+
+
+    // if (foutainEntity != NULL) {
+    //     Model* foutainEntityModel = (Model*)calloc(1, sizeof(Model));
+    //     ModelCreate(foutainEntityModel, "assets/models/Fontaine/Fontaine1.obj");
+    //     addComponent(foutainEntity, COMPONENT_RENDERABLE, foutainEntityModel);
+    //     compute_center_of_volume(foutainEntityModel);
+
+
+    //     ((Model*)getComponent(foutainEntity, COMPONENT_RENDERABLE))->rotation[1] = glm_rad(-90.0f);
+    //     glm_vec3_copy((vec3){3.5f,3.5f,3.5}, ((Model*)getComponent(foutainEntity, COMPONENT_RENDERABLE))->scale);
+
+
+    //     Collider* foutainEntityCollider = ColliderCreate("assets/models/Fontaine/Fontaine1.obj");
+    //     glm_translate_make(foutainEntityCollider->transformMatrix, (vec3){-334.0f, 6.6f, 93.8f});
+    //     glm_scale_make(foutainEntityCollider->transformMatrix, (vec3){3.5f, 3.5f, 3.5f});
+    //     UpdateCollider(foutainEntityCollider);
+    //     addComponent(foutainEntity, COMPONENT_COLLIDER, foutainEntityCollider);
+    // }
+
+
     /* Light Entity */
     Entity* lightEntity = createEntity(scene);
     if (lightEntity != NULL) {
         Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f, 0.1f, 500.0f);
         addComponent(lightEntity, COMPONENT_LIGHT, light);
-    }
-
-
-    Entity* foutainEntity = createEntity(scene);
-    if (foutainEntity != NULL) {
-        Model* foutainEntityModel = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(foutainEntityModel, "assets/models/Fontaine/Fontaine1.obj");
-        addComponent(foutainEntity, COMPONENT_RENDERABLE, foutainEntityModel);
-        compute_center_of_volume(foutainEntityModel);
-
-        ((Model*)getComponent(foutainEntity, COMPONENT_RENDERABLE))->position[0] = -334.0;
-        ((Model*)getComponent(foutainEntity, COMPONENT_RENDERABLE))->position[1] = 6.600000;
-        ((Model*)getComponent(foutainEntity, COMPONENT_RENDERABLE))->position[2] = 93.8;
-
-
-        Collider* foutainEntityCollider = ColliderCreate("assets/models/Fontaine/Fontaine1.obj");
-        glm_translate_make(foutainEntityCollider->transformMatrix, (vec3){-334.0f, 6.6f, 93.8f});
-        UpdateCollider(foutainEntityCollider);
-        addComponent(foutainEntity, COMPONENT_COLLIDER, foutainEntityCollider);
     }
 
 
@@ -162,11 +217,12 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(firstGemEntity, COMPONENT_RENDERABLE, firstGemModel);
         compute_center_of_volume(firstGemModel);
 
-        ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->position[0] = -329.0;
-        ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->position[1] = 7.3;
-        ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->position[2] = 93.693069;
+        ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->position[0] = -322.0;
+        ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->position[1] = 9.3;
+        ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->position[2] = 93.8;
         ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->isRenderable = false;
-
+        
+        glm_vec3_copy((vec3){2.0f,2.0f,2.0}, ((Model*)getComponent(firstGemEntity, COMPONENT_RENDERABLE))->scale);
     }
     
     
@@ -180,8 +236,8 @@ void startMainScene(Scene* scene, GameState* gameState) {
 void updateMainScene(Scene* scene, GameState* gameState) {
     Camera* camera =scene->camera; 
     Entity* playerEntity = &scene->entities[0];
-    Entity* gem = &scene->entities[12];
-
+    Entity* gem = &scene->entities[7];
+    Entity* foutain = &scene->entities[5];
 
     Model* playerModel = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE));
     Model* gemModel = ((Model*)getComponent(gem, COMPONENT_RENDERABLE));
@@ -283,12 +339,14 @@ void updateMainScene(Scene* scene, GameState* gameState) {
         }
     }
     if (gemModel->isRenderable){
-        if (gemModel->position[0]<-331.848541f) {
+        if (gemModel->position[0]<-327.0) {
             playerModel->isBusy = false;
+            gemModel->isRenderable = false;
+            ((Model*)foutain->components[0].data)->isRenderable = false;
+            ((Model*)foutain->components[1].data)->isRenderable = true;
+            gameState->indexFountain++;
         }
         else{
-            // glm_vec3_copy((vec3){-320.0f,10.0f,85.0f},camera->Position);
-            // camera->Yaw = 90.0f;
             gemModel->position[0]-=0.01f;
             playerModel->isBusy = true;
         }
@@ -314,7 +372,7 @@ void unloadMainScene(Scene* scene){
 }
 
 bool canInsertBlueGem(float x, float y) {
-    if (x  < -329.2 && x > -330.94 && y > 91.6 && y < 95.2 ) {
+    if (x  < -322.5 && x > -326.5 && y > 90.5 && y < 97.0 ) {
         return true;
     }
     return false;
