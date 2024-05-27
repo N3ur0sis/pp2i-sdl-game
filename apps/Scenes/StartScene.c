@@ -145,7 +145,7 @@ void startStartScene(Scene* scene, GameState* gameState) {
     scene->skybox = SkyboxCreate();
 
     
-                        checkpoint_sword = true;
+    // checkpoint_sword = true;
 
 }
  
