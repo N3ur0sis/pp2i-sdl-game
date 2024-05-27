@@ -63,6 +63,11 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(city, COMPONENT_RENDERABLE, cityModel);
         compute_center_of_volume(cityModel);
         cityModel->isRenderable = false;
+
+        Collider* col = ColliderCreate("assets/models/main/Col/cityCol.obj");
+        glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
+        UpdateCollider(col);
+        addComponent(city, COMPONENT_COLLIDER, col);
     }
 
     Entity* debut = createEntity(scene);
@@ -73,7 +78,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         compute_center_of_volume(debutModel);
         debutModel->isRenderable = false;
 
-        Collider* col = ColliderCreate("assets/models/main/col1obj.obj");
+        Collider* col = ColliderCreate("assets/models/main/Col/DebCol.obj");
         glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
         UpdateCollider(col);
         addComponent(debut, COMPONENT_COLLIDER, col);
@@ -87,6 +92,11 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(foret1, COMPONENT_RENDERABLE, foret1Model);
         compute_center_of_volume(foret1Model);
         foret1Model->isRenderable = false;
+
+        Collider* col = ColliderCreate("assets/models/main/Col/Foret1Col.obj");
+        glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
+        UpdateCollider(col);
+        addComponent(foret1, COMPONENT_COLLIDER, col);
     }
 
     Entity* foret2 = createEntity(scene);
@@ -96,6 +106,11 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(foret2, COMPONENT_RENDERABLE, foret2Model);
         compute_center_of_volume(foret2Model);
         foret2Model->isRenderable = false;
+
+        Collider* col = ColliderCreate("assets/models/main/Col/Foret2Col.obj");
+        glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
+        UpdateCollider(col);
+        addComponent(foret2, COMPONENT_COLLIDER, col);
     }
 
     Entity* foret3 = createEntity(scene);
@@ -105,6 +120,11 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(foret3, COMPONENT_RENDERABLE, foret3Model);
         compute_center_of_volume(foret3Model);
         foret3Model->isRenderable = false;
+
+        Collider* col = ColliderCreate("assets/models/main/Col/Foret3Col.obj");
+        glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
+        UpdateCollider(col);
+        addComponent(foret2, COMPONENT_COLLIDER, col);
     }
 
     Entity* lake = createEntity(scene);
@@ -114,6 +134,11 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(lake, COMPONENT_RENDERABLE, lakeModel);
         compute_center_of_volume(lakeModel);
         lakeModel->isRenderable = false;
+
+        Collider* col = ColliderCreate("assets/models/main/Col/lakeCol.obj");
+        glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
+        UpdateCollider(col);
+        addComponent(foret2, COMPONENT_COLLIDER, col);
     }
     Entity* falaisestart = createEntity(scene);
     if (falaisestart != NULL) {
@@ -129,6 +154,11 @@ void startMainScene(Scene* scene, GameState* gameState) {
         ModelCreate(mainModel, "assets/models/main/main.obj");
         addComponent(main, COMPONENT_RENDERABLE, mainModel);
         compute_center_of_volume(mainModel);
+
+        Collider* col = ColliderCreate("assets/models/main/Col/mainCol.obj");
+        glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
+        UpdateCollider(col);
+        addComponent(foret2, COMPONENT_COLLIDER, col);
     }
     
     /* Light Entity */
