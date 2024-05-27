@@ -269,7 +269,7 @@ void updateForestScene(Scene* scene, GameState* gameState){
             playerModel->isBusy = false;
         }
     }
-    if (flame1Model->isRenderable&&flame2Model->isRenderable&&flame3Model->isRenderable&&flame4Model->isRenderable){
+    if (flame1Model->isRenderable&&flame2Model->isRenderable&&flame3Model->isRenderable&&flame4Model->isRenderable && !gameState->isForestDungeonDone){
         int channel;
         Mix_Chunk *sound;
         if (dungeonDoorModel->isRenderable){

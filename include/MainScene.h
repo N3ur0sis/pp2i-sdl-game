@@ -12,7 +12,7 @@
 #include <Renderer.h>
 #include <Inventory.h>
 
-#define NBPARTMAP 4     /**< Number of parts of the map. */
+#define NBPARTMAP 8     /**< Number of parts of the map. */
 
 
 /**

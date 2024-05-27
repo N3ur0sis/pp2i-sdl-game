@@ -238,7 +238,6 @@ void updateStartScene(Scene* scene, GameState* gameState) {
         }
     }
 
-        drawHUD(scene, gameState);
         Model* playerModel = (Model*)getComponent(playerEntity, COMPONENT_RENDERABLE);
         Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
         RigidBody* playerRigidbody = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
@@ -308,7 +307,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
 
         }
 
-        if (checkpoint_sword && !(enemyModel->isRenderable) && !is_GemTaken) {
+        if (checkpoint_sword && !(enemyModel->isRenderable) && !is_GemTaken && !((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->isRenderable) {
             glm_vec3_copy(((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->position,((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position);
             ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position[1] = 1.5;
             ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->isRenderable = true;

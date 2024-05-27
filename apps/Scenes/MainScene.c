@@ -6,6 +6,18 @@ bool isInsertingGem = false;
 bool pressingE = false;
 
 
+/*Entity
+    Player
+    Sword
+    Map Part * 8
+    Fountain
+    Ground
+    Light
+    Blue Gem
+    Orange Gem
+
+*/
+
 void startMainScene(Scene* scene, GameState* gameState) {
     scene->shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
     UseShaders(scene->shader);
@@ -216,71 +228,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         compute_center_of_volume(fontaineModelnext);
     }    
 
-       
 
-
-    // if (foutainEntity != NULL) {
-    //     Model* foutainEntityModel = (Model*)calloc(1, sizeof(Model));
-    //     ModelCreate(foutainEntityModel, "assets/models/Fontaine/Fontaine1.obj");
-    //     addComponent(foutainEntity, COMPONENT_RENDERABLE, foutainEntityModel);
-    //     compute_center_of_volume(foutainEntityModel);
-
-
-    //     ((Model*)getComponent(foutainEntity, COMPONENT_RENDERABLE))->rotation[1] = glm_rad(-90.0f);
-    //     glm_vec3_copy((vec3){3.5f,3.5f,3.5}, ((Model*)getComponent(foutainEntity, COMPONENT_RENDERABLE))->scale);
-
-
-    //     Collider* foutainEntityCollider = ColliderCreate("assets/models/Fontaine/Fontaine1.obj");
-    //     glm_translate_make(foutainEntityCollider->transformMatrix, (vec3){-334.0f, 6.6f, 93.8f});
-    //     glm_scale_make(foutainEntityCollider->transformMatrix, (vec3){3.5f, 3.5f, 3.5f});
-    //     UpdateCollider(foutainEntityCollider);
-    //     addComponent(foutainEntity, COMPONENT_COLLIDER, foutainEntityCollider);
-    // }
-
-
-    /* Light Entity */
-    Entity* fontaine = createEntity(scene);
-    if (fontaine) {
-        vec3 fontainePos = {-334.34, 6.60, 93.65};
-        Model* fontaineModelcurrent = (Model*)calloc(1, sizeof(Model));
-        Model* fontaineModelnext = (Model*)calloc(1, sizeof(Model));
-        compute_center_of_volume(fontaineModelcurrent);
-        compute_center_of_volume(fontaineModelnext);
-
-        switch(gameState->indexFountain) {
-            case 0:
-                ModelCreate(fontaineModelcurrent,"assets/models/Fontaine/Fontaine0.obj");
-                ModelCreate(fontaineModelnext,"assets/models/Fontaine/Fontaine1.obj");
-                break;
-            case 1:
-                ModelCreate(fontaineModelcurrent,"assets/models/Fontaine/Fontaine1.obj");
-                ModelCreate(fontaineModelnext,"assets/models/Fontaine/Fontaine2.obj");
-                break;
-            case 2:
-                ModelCreate(fontaineModelcurrent,"assets/models/Fontaine/Fontaine2.obj");
-                ModelCreate(fontaineModelnext,"assets/models/Fontaine/Fontaine3.obj");
-                break;
-            case 3:
-                ModelCreate(fontaineModelcurrent,"assets/models/Fontaine/Fontaine3.obj");
-                ModelCreate(fontaineModelnext,"assets/models/Fontaine/Fontaine4.obj");
-                break;
-            case 4:
-                ModelCreate(fontaineModelcurrent,"assets/models/Fontaine/Fontaine4.obj");
-                ModelCreate(fontaineModelnext,"assets/models/Fontaine/Fontaine4.obj");
-                break;  
-            default:
-                break;
-        }
-        glm_vec3_copy(fontainePos,fontaineModelcurrent->position);
-        glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModelcurrent->scale);
-        addComponent(fontaine, COMPONENT_RENDERABLE, fontaineModelcurrent);
-        glm_vec3_copy(fontainePos,fontaineModelnext->position);
-        glm_vec3_copy((vec3){3.5,3.5,3.5},fontaineModelnext->scale);
-        fontaineModelnext->isRenderable = false;
-        addComponent(fontaine, COMPONENT_RENDERABLE, fontaineModelnext);
-    
-        Collider* fontaineCol = ColliderCreate("assets/models/Fontaine/col.obj");
-    }
     Entity* ground = createEntity(scene);
     if (ground != NULL) {
         Model* groundModel = (Model*)calloc(1, sizeof(Model));
@@ -333,9 +281,9 @@ void startMainScene(Scene* scene, GameState* gameState) {
 void updateMainScene(Scene* scene, GameState* gameState) {
     Camera* camera =scene->camera; 
     Entity* playerEntity = &scene->entities[0];
-    Entity* bluegem = &scene->entities[7];
-    Entity* greenGem = &scene->entities[8];
-    Entity* foutain = &scene->entities[5];
+    Entity* bluegem = &scene->entities[13];
+    Entity* greenGem = &scene->entities[14];
+    Entity* foutain = &scene->entities[10];
 
     Model* playerModel = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE));
     Model* blueGemModel = ((Model*)getComponent(bluegem, COMPONENT_RENDERABLE));

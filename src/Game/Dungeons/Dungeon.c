@@ -1105,6 +1105,7 @@ void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     SDL_Color color_white = {255, 255, 255, 0};
     Entity* player = &scene->entities[2];
     Model* playerModel = (Model*)getComponent(player,COMPONENT_RENDERABLE);
+    RigidBody* playerrb = (RigidBody*)getComponent(player,COMPONENT_RIGIDBODY);
     vec3 DoorPosition={0.0f,0.0f,0.0f};
     vec3 DoorDir;
     char d1 = dj->direction;
@@ -1116,10 +1117,9 @@ void LogicRoom1C(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
 
         }
         else{
-            chestModel = (Model*)keyBossChest->components[0].data;
-            vec3 ChestDir;
-            glm_vec3_sub( playerModel->position, ChestPosition, ChestDir);
-            if (glm_vec3_norm(ChestDir)<1.0f){
+            float x = playerModel->position[0];
+            float y = playerModel->position[1];
+            if (y < 1.f && y > -1.f && x < 1.08f && x > -1.0){
                 RenderText("Appuyer sur E pour ouvrir", color_white, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
                 if (getKeyState(SDLK_e)){
                     dj->rooms[dj->current_room].isCompleted = true;
@@ -1515,7 +1515,7 @@ void LogicRoom3T(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     }
     else if (!dir_used[1]){
         glmc_vec3_copy((vec3){0.0f,0.0f,7.5f},Door1Position);//N
-        glmc_vec3_copy((vec3){4.5f,0.0f,0.0f},Door2Position);//W
+        glmc_vec3_copy((vec3){7.5f,0.0f,0.0f},Door2Position);//W
         glmc_vec3_copy((vec3){-7.6f,0.0f,-0.25f},Door3Position);//E
         d1 = 'N';d2 = 'S';d3 = 'W';d4 = 'E';
     }
@@ -1540,7 +1540,7 @@ void LogicRoom3T(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     float Door2Dist = glm_vec3_norm(Door2Dir);
     float Door3Dist = glm_vec3_norm(Door3Dir);
 
-    if (Door1Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
+    if (Door1Dist<1.8f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d1){
                 if (i==dj->current_room){dj->quit = true;}
@@ -1554,7 +1554,7 @@ void LogicRoom3T(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
 
         dj->change = true;
     }
-    else if (Door2Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
+    else if (Door2Dist<1.8f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d3){
                 if (i==dj->current_room){dj->quit = true;}
@@ -1566,7 +1566,7 @@ void LogicRoom3T(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
             }
         }
         dj->change = true;
-    }else if (Door3Dist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
+    }else if (Door3Dist<1.8f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime){
         for (int i =0;i<dj->nb_rooms;i++){
             if (dj->adj[dj->current_room][i]==d4){
                 if (i==dj->current_room){dj->quit = true;}
@@ -1757,6 +1757,8 @@ void LogicRoom2I(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
  */
 void LogicRoomB(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
     Entity* player = &scene->entities[2];
+    Model* playerModel = ((Model*)getComponent(player, COMPONENT_RENDERABLE));
+    RigidBody* playerRb = ((RigidBody*)getComponent(player, COMPONENT_RIGIDBODY));
     vec3 DoorPosition={0.0f,0.0f,0.0f};
     vec3 DoorDir;
     char d1=dj->direction;
@@ -1778,6 +1780,33 @@ void LogicRoomB(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
             d1 = 'S';
             break;
     }
+    if (dj->rooms[dj->current_room].isCompleted){
+        Entity* gem = &scene->entities[5+NB_ENEMY+2];
+        Model* gemModel = ((Model*)getComponent(gem, COMPONENT_RENDERABLE));
+        if (!gameState->hasGreenGem&&!gemModel->isRenderable){
+            gemModel->isRenderable = true;
+        }
+        gemModel->rotation[1] += 0.01;
+        float dist_joueur_gem = sqrt(pow(playerModel->position[0] - gemModel->position[0], 2) + pow(playerModel->position[2] - gemModel->position[2], 2));
+        if (dist_joueur_gem < 1.0f) {
+            gemModel->isRenderable = false;
+            gameState->hasGreenGem = true;
+            playerModel->isBusy = true;
+        }
+        if (gameState->hasGreenGem){
+            playerModel->rotation[1] += 0.1;
+            playerRb->velocity[1] += 0.1;
+            if (playerRb->velocity[1] > 20.0f){
+                gameState->nextSceneIndex = 2;
+                gameState->previousSceneIndex = 1;
+                playerModel->isBusy = false;
+                gameState->isForestDungeonDone = true;
+                ChangeSceneEvent(gameState->nextSceneIndex);
+            }
+        }
+    }
+
+
     glm_vec3_sub( body->velocity, DoorPosition, DoorDir);
     float DoorDist = glm_vec3_norm(DoorDir);
     if ((DoorDist<1.5f&&getKeyState(SDLK_e)&&(SDL_GetTicks()-dj->lastRoomChangeTime)>=ChangeTime)){
