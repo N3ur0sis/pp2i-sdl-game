@@ -4,7 +4,8 @@
 bool is_tabingMain = false;
 bool isInsertingGem = false;
 bool pressingE = false;
-
+int click_counterMain = 0 ;
+bool is_clickingMain = false;
 
 /*Entity
     Player
