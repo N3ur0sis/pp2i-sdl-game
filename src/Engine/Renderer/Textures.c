@@ -39,6 +39,7 @@ GLuint TextureLoad(const char* texturePath){
 
 GLuint CubeMapLoad(char** faces)
 {
+    glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
     unsigned int textureID;
     glGenTextures(1, &textureID);
     glBindTexture(GL_TEXTURE_CUBE_MAP, textureID);
@@ -60,7 +61,6 @@ GLuint CubeMapLoad(char** faces)
             stbi_image_free(data);
         }
     }
-    glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
