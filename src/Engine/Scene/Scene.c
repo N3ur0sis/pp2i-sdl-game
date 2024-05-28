@@ -72,6 +72,8 @@ void* freeEntity(Entity* e){
     if(component.type == COMPONENT_PLAYER){
         free(component.data);
     }
+    if(component.type == COMPONENT_DUNGEON){
+        free(component.data);
     }
 }
 

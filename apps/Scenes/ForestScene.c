@@ -17,6 +17,7 @@ Entity of this scene (order of their index):
 */
 
 bool isPlaying;
+bool is_HealingForest = false;
 
 void ForestMainScene(Scene* scene, GameState* gameState){
     float x;
@@ -328,6 +329,12 @@ void updateForestScene(Scene* scene, GameState* gameState){
 
     Entity* skeleton13 = &scene->entities[24];
     updateEnemy(skeleton13, playerEntity, scene, gameState, scene->deltaTime);
+
+
+    Inventory* inventory = gameState->inventory;
+
+
+    heal(gameState,inventory, &is_HealingForest);
 
 
     if (!flame1Model->isRenderable){

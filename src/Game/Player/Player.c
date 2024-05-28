@@ -492,3 +492,15 @@ void drawHUD(Scene* scene, GameState* gamestate) {
 		// RenderImage("assets/images/Inventory_Slot_1.png", gamestate->g_WindowWidth / 2 + 100 * i, gamestate->g_WindowHeight / 2, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
 	}
 }
+
+
+void heal(GameState* gameState, Inventory* inventory, bool* is_Healing){
+	if (getKeyState(SDLK_h) && !*is_Healing){
+		*is_Healing = true;
+		if (InventoryRemoveObject(inventory,1)){
+			gameState->playerHealth = gameState->max_health;
+		}
+	} else if (!getKeyState(SDLK_h)){
+		*is_Healing = false;
+	}
+}

@@ -6,6 +6,7 @@ bool isInsertingGem = false;
 bool pressingE = false;
 int click_counterMain = 0 ;
 bool is_clickingMain = false;
+bool is_HealingMain = false;
 
 /*Entity
     Player
@@ -48,8 +49,6 @@ void startMainScene(Scene* scene, GameState* gameState) {
             
     }
     Entity* playerEntity = create_player(scene,x,y,z);
-    Model* playerModel = (Model*)calloc(1, sizeof(Model));
-    playerModel->rotation[1] = glm_rad(rot);
     
     /* Sword Entity */
     Entity* swordEntity = createEntity(scene);
@@ -331,6 +330,9 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     if (playerEntity) {
         Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
         RigidBody* playerRigidbody = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
+
+        
+        heal(gameState, inventory, &is_HealingMain);
 
 
         if (getKeyState(TAB) && !is_tabingMain) {
