@@ -16,7 +16,7 @@ void TempAudioImpl(void){
         fprintf(stderr, "SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
         return;
     }
-    Mix_Music *bgm = Mix_LoadMUS("assets/music/my-little-garden-of-eden-112845.mp3");
+    /*Mix_Music *bgm = Mix_LoadMUS("assets/music/my-little-garden-of-eden-112845.mp3");
     if (bgm == NULL) {
     fprintf(stderr, "Failed to load background music: %s\n", Mix_GetError());
     return;
@@ -26,5 +26,5 @@ void TempAudioImpl(void){
     fprintf(stderr, "SDL_mixer could not play music! SDL_mixer Error: %s\n", Mix_GetError());
     return;
     }
-    Mix_VolumeMusic(10); // 64=50% du volume
+    Mix_VolumeMusic(10); // 64=50% du volume*/  
 }

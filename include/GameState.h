@@ -17,6 +17,7 @@ typedef struct _Menu Menu;
 typedef struct GameState {
     bool enemyIsAttacking;          /**< Boolean flag indicating if the enemy is attacking. */
     bool playerIsAttacking;         /**< Boolean flag indicating if the player is attacking. */
+    float max_health;               /**< Maximum health of the player. */
     float playerHealth;             /**< Health of the player. */
     Inventory* inventory;           /**< Pointer to the player's inventory. */
     Inventory* marchantInventory;   /**< Pointer to the marchant's inventory. */

@@ -20,8 +20,6 @@ Inventory* inventory;
 Inventory* marchantInventory;
 Uint32 timeOfHit;
 const Uint32 enemyHitTextDisplayDuration = 750; // ms
-Uint32 timeOfHit;
-const Uint32 enemyHitTextDisplayDuration = 750; // ms
 
 void startStartScene(Scene* scene, GameState* gameState) {
     checkpoint_sword = false;
@@ -187,7 +185,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             isBarrierDestroyed = false;
             click_counter = 0 ;
             is_tabingStart = false;
-            ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))->isRenderable = false;
+            ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))-> isRenderable = false;
             ((Model*)getComponent(chestEntity, COMPONENT_RENDERABLE))->isRenderable = true;
             ((Model*)getComponent(chestOpenEntity, COMPONENT_RENDERABLE))->isRenderable = false;
             ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->isRenderable = true;

@@ -68,6 +68,9 @@ Entity* create_golemPurple(Scene* scene,float x,float y,float z,float scale);
  * @param golem Pointer to the golem entity.
  * @param player Pointer to the player entity.
  */
+
+Entity* create_skeleton(Scene* scene,float x,float y,float z,float scale);
+
 void golemLogic(Scene* scene,GameState* gameState,Entity* golem,Entity* player);
 
 /**
