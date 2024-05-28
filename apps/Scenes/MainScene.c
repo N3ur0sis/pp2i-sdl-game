@@ -10,7 +10,7 @@ bool is_clickingMain = false;
 /*Entity
     Player
     Sword
-    Map Part * 8
+    Map Part * 7
     Fountain
     Ground
     Light
@@ -95,7 +95,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         compute_center_of_volume(debutModel);
         debutModel->isRenderable = false;
 
-        Collider* col = ColliderCreate("assets/models/main/Col/DebCol.obj");
+        Collider* col = ColliderCreate("assets/models/main/Col/debutCol.obj");
         glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
         UpdateCollider(col);
         addComponent(debut, COMPONENT_COLLIDER, col);
@@ -110,7 +110,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         compute_center_of_volume(foret1Model);
         foret1Model->isRenderable = false;
 
-        Collider* col = ColliderCreate("assets/models/main/Col/Foret1Col.obj");
+        Collider* col = ColliderCreate("assets/models/main/Col/foret1Col.obj");
         glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
         UpdateCollider(col);
         addComponent(foret1, COMPONENT_COLLIDER, col);
@@ -124,7 +124,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         compute_center_of_volume(foret2Model);
         foret2Model->isRenderable = false;
 
-        Collider* col = ColliderCreate("assets/models/main/Col/Foret2Col.obj");
+        Collider* col = ColliderCreate("assets/models/main/Col/foret2Col.obj");
         glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
         UpdateCollider(col);
         addComponent(foret2, COMPONENT_COLLIDER, col);
@@ -138,10 +138,10 @@ void startMainScene(Scene* scene, GameState* gameState) {
         compute_center_of_volume(foret3Model);
         foret3Model->isRenderable = false;
 
-        Collider* col = ColliderCreate("assets/models/main/Col/Foret3Col.obj");
+        Collider* col = ColliderCreate("assets/models/main/Col/foret3Col.obj");
         glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
         UpdateCollider(col);
-        addComponent(foret2, COMPONENT_COLLIDER, col);
+        addComponent(foret3, COMPONENT_COLLIDER, col);
     }
 
     Entity* lake = createEntity(scene);
@@ -155,15 +155,9 @@ void startMainScene(Scene* scene, GameState* gameState) {
         Collider* col = ColliderCreate("assets/models/main/Col/lakeCol.obj");
         glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
         UpdateCollider(col);
-        addComponent(foret2, COMPONENT_COLLIDER, col);
+        addComponent(lake, COMPONENT_COLLIDER, col);
     }
-    Entity* falaisestart = createEntity(scene);
-    if (falaisestart != NULL) {
-        Model* falaisestartModel = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(falaisestartModel, "assets/models/main/falaisestart.obj");
-        addComponent(falaisestart, COMPONENT_RENDERABLE, falaisestartModel);
-        compute_center_of_volume(falaisestartModel);
-    }
+
 
     Entity* main = createEntity(scene);
     if (main != NULL) {
@@ -175,7 +169,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         Collider* col = ColliderCreate("assets/models/main/Col/mainCol.obj");
         glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
         UpdateCollider(col);
-        addComponent(foret2, COMPONENT_COLLIDER, col);
+        addComponent(main, COMPONENT_COLLIDER, col);
     }
 
     
@@ -286,9 +280,9 @@ void startMainScene(Scene* scene, GameState* gameState) {
 void updateMainScene(Scene* scene, GameState* gameState) {
     Camera* camera =scene->camera; 
     Entity* playerEntity = &scene->entities[0];
-    Entity* bluegem = &scene->entities[13];
-    Entity* greenGem = &scene->entities[14];
-    Entity* foutain = &scene->entities[10];
+    Entity* bluegem = &scene->entities[2+NBPARTMAP+3];
+    Entity* greenGem = &scene->entities[2+NBPARTMAP+4];
+    Entity* foutain = &scene->entities[2+NBPARTMAP];
 
     Model* playerModel = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE));
     Model* blueGemModel = ((Model*)getComponent(bluegem, COMPONENT_RENDERABLE));
