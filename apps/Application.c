@@ -14,11 +14,12 @@
 #include <DungeonScene.h>
 #include <Menu.h>
 
+
 /* Entry point of the program */
 int main(void){
 
     /* Initialize the Engine */
-    Application* game = ApplicationCreate(1920,1080,"GAME");
+    Application* game = ApplicationCreate(1280,720,"GAME");
 
     /*Initialize the Scene Manager*/
     SceneManager* sceneManager = SceneManagerInit();
@@ -40,15 +41,12 @@ int main(void){
     sceneManager->gameState.currentSceneIndex = 2;
     SceneManagerSetCurrentScene(sceneManager, sceneManager->gameState.currentSceneIndex);
 
-    /* Set Default Camera Position */
-    sceneManager->scenes[sceneManager->currentSceneIndex]->camera->Yaw = 130.0f;
-    sceneManager->scenes[sceneManager->currentSceneIndex]->camera->Pitch = -15.0f;
+
     SceneManagerUpdateCurrentScene(sceneManager);
     physicsSystem(sceneManager->scenes[sceneManager->currentSceneIndex]);
 
     Uint32 last = SDL_GetTicks();
     int nbframe;
-    SDL_SetWindowFullscreen(game->window->m_window, SDL_WINDOW_FULLSCREEN);
     /* Game Loop */
     while (game->running) {
         Uint64 current = SDL_GetTicks();    
@@ -84,7 +82,8 @@ int main(void){
     }
 
     /* Clean every resource allocated */
-
+    freeSceneManager(sceneManager);
     WindowDelete(game->window);
+    free(game->time);
     EngineQuit();
 }

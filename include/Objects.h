@@ -88,3 +88,7 @@ char* descriptionFromId(int id);
  * @return Cost of the object.
 */
 int costFromId(int id);
+
+
+
+char* pathToolBar(int id, bool bool1, bool bool2);

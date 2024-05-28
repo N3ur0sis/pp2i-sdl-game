@@ -1,8 +1,3 @@
-/**
- * @file DungeonScene.c
- * @brief Implementation of the dungeon scene.
-*/
-
 #include "DungeonScene.h"
 
 
@@ -16,16 +11,9 @@ Entity of this scene (order of their index):
     Chest
     Golem *NB_ENEMY
     BOSS
+    GEM
 */
 
-/**
- * @brief Function to create the dungeon scene.
- * 
- * This function creates the dungeon scene.
- * 
- * @param scene Pointer to the scene.
- * @param gameState Pointer to the game state.
- */
 void DungeonMainScene(Scene* scene, GameState* gameState) {
     /* Load and compile shaders */
     scene->shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
@@ -119,25 +107,37 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
     }
 
     /*BOSS Entity*/
-    
+    Entity* golem = create_golemPurple(scene,0.0f,0.1f,0.0f,2.0f);
+
+    Entity* GemEntity = createEntity(scene);
+    if (GemEntity != NULL) {
+        Model* GemEntityModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(GemEntityModel, "assets/models/Gem/GreenGem.obj");
+        addComponent(GemEntity, COMPONENT_RENDERABLE, GemEntityModel);
+        compute_center_of_volume(GemEntityModel);
+
+        ((Model*)getComponent(GemEntity, COMPONENT_RENDERABLE))->position[0] = -322.0;
+        ((Model*)getComponent(GemEntity, COMPONENT_RENDERABLE))->position[1] = 10.3;
+        ((Model*)getComponent(GemEntity, COMPONENT_RENDERABLE))->position[2] = 93.8;
+        ((Model*)getComponent(GemEntity, COMPONENT_RENDERABLE))->isRenderable = false;
+        
+        glm_vec3_copy((vec3){2.0f,2.0f,2.0}, ((Model*)getComponent(GemEntity, COMPONENT_RENDERABLE))->scale);
+    }
 }
 
-/**
- * @brief Function to update the dungeon scene.
- * 
- * This function updates the dungeon scene.
- * 
- * @param scene Pointer to the scene.
- * @param gameState Pointer to the game state.
- */
 void updateDungeonScene(Scene* scene, GameState* gameState) {
     Entity* playerEntity = &scene->entities[2];
     Entity* dungeon = &scene->entities[1];
+    Entity* gem = &scene->entities[5+NB_ENEMY+2];
+    Model* gemModel = ((Model*)getComponent(gem, COMPONENT_RENDERABLE));
     Dungeon* dj = (Dungeon*)getComponent(dungeon, COMPONENT_DUNGEON);
     Model* playerModel = (Model*)getComponent(playerEntity, COMPONENT_RENDERABLE);
     RigidBody* body = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
     Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
     Collider* playerCollider = (Collider*)getComponent(playerEntity, COMPONENT_COLLIDER);
+    if (getKeyState(SDLK_p)){
+        printf("Player Position : %f %f\n",playerModel->position[0],playerModel->position[2]);
+    }
     if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation"))){
             playerAnimator->playTime = 0.0f;
         }
@@ -146,12 +146,39 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
             Entity* enemy = NULL;
             if (dj->rooms[dj->current_room].type==3){  
                 for (int i =0;i<(dj->rooms[dj->current_room].nb_enemy);i++){
-                     entity= &scene->entities[dj->rooms[dj->current_room].id_enemy[i]];
+                    entity= &scene->entities[dj->rooms[dj->current_room].id_enemy[i]];
+                    EnemyComponent* enemyComponent = (EnemyComponent*)getComponent(entity, COMPONENT_ENEMY);
+                    Model* enemyModel = (Model*)getComponent(entity, COMPONENT_RENDERABLE);
+                    if (entity&&enemyComponent){
+                        if (enemyComponent->isAlive){
+                            enemy = entity;
+                            enemyModel->isRenderable = true;
+                        }
+                        updateEnemy(entity,playerEntity,scene,gameState,scene->deltaTime);
+                    }
                      
                 }
                 if (!enemy){
                     dj->rooms[dj->current_room].isCompleted = true;
                 }
+            }
+            else if (dj->rooms[dj->current_room].type==0){  
+                Entity* boss = &scene->entities[5+NB_ENEMY+1];
+                EnemyComponent* enemyComponent = (EnemyComponent*)getComponent(boss, COMPONENT_ENEMY);
+                Model* bossModel = (Model*)getComponent(boss, COMPONENT_RENDERABLE);
+                if (boss&&enemyComponent){
+                    if (enemyComponent->isAlive){
+                        bossModel->isRenderable = true;
+                    }
+                    updateEnemy(boss,playerEntity,scene,gameState,scene->deltaTime);
+                }
+                if (!enemyComponent->isAlive){
+                    dj->rooms[dj->current_room].isCompleted = true;
+                    glm_vec3_copy(bossModel->position,gemModel->position);
+                    gemModel->position[1]+=1.0f;
+                }
+
+
             }
         player_attack(playerEntity,enemy,gameState);
         playerMovement(playerEntity, scene->deltaTime, scene->camera);}
@@ -168,7 +195,7 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
         }
     }
     SDL_Color color_black = {0,0,0,0};
-    if ((playerModel->isBusy && dj->rooms[dj->current_room].type!=1 &&dj->rooms[dj->current_room].type!=2) ){
+    if ((playerModel->isBusy && dj->rooms[dj->current_room].type!=1 &&dj->rooms[dj->current_room].type!=2&&!gameState->hasGreenGem) ){
         RenderText("La porte est fermée... ", color_black, gameState->g_WindowWidth / 2 - 175, gameState->g_WindowHeight / 15 + 130, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         RenderText("Il me faudrait une clé pour l'ouvrir !", color_black, gameState->g_WindowWidth / 2 - 50, gameState->g_WindowHeight / 15 + 90, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         RenderImage("assets/images/dialog-box.png", gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
@@ -225,20 +252,16 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
                     ((Model*)Chest->components[0].data)->isRenderable = false;      
                 }
                 if (dj->rooms[dj->current_room].type!=3){
-                    Entity* golem = &scene->entities[6];
-                    (((Model*)getComponent(golem,COMPONENT_RENDERABLE)))->isRenderable = false;     
+                    for (int i = 6;i<6+NB_ENEMY;i++){
+                        Entity* golem = &scene->entities[i];
+                        (((Model*)getComponent(golem,COMPONENT_RENDERABLE)))->isRenderable = false;     
+
+                    }
                 }
             }
         }
 }
 
-/**
- * @brief Function to unload the dungeon scene.
- * 
- * This function unloads the dungeon scene.
- * 
- * @param scene Pointer to the scene.
- */
 void unloadDungeonScene(Scene* scene){
     DeleteShaders(scene->shader);
     DeleteShaders(scene->textShader);

@@ -448,6 +448,14 @@ void playSoundPlayer(Entity* player,GameState* gamestate){
 void drawHUD(Scene* scene, GameState* gamestate) {
     float nb_coeur_max = gamestate->max_health;
     float health = gamestate->playerHealth;
+	Inventory* inventory = gamestate->inventory;
+	int nb_potion = 0;
+	for (int i = 0; i < inventory->size; i++) {
+		Object* obj = inventory->objects[i];
+		if (obj->id==1){
+			nb_potion++;
+		}
+	}
     int nb_coeur = health / 10;
     float reste = health - nb_coeur * 10;
     int i ;
@@ -465,4 +473,22 @@ void drawHUD(Scene* scene, GameState* gamestate) {
 	sprintf(money, "%d", gamestate->money);
 	RenderText(money, (SDL_Color){255,255,255,0}, gamestate->g_WindowWidth / 45 + 70, 13 * gamestate->g_WindowHeight / 15 + 18, 30, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
 	RenderImage("assets/images/sushi.png", gamestate->g_WindowWidth / 45, 13 * gamestate->g_WindowHeight / 15 - 10, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+
+	char potion[100];
+	sprintf(potion, "%d", nb_potion);
+	RenderText(potion, (SDL_Color){255,255,255,0}, gamestate->g_WindowWidth / 45 + 70, 13 * gamestate->g_WindowHeight / 15 -25, 30, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+	RenderImage("assets/images/potion_red.png", gamestate->g_WindowWidth / 45, 13 * gamestate->g_WindowHeight / 15 - 10 - 43, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+	//RenderImage("assets/images/sushi.png", gamestate->g_WindowWidth / 45, 13 * gamestate->g_WindowHeight / 15 - 10, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+	for (int j = 0 ; j < 6; j++) {
+		if (gamestate->isChestOpen) {
+			char* path = pathToolBar(6-j, gamestate->isChestOpen, gamestate->hasBoughtTorch);
+			if ( strcmp(path, "") != 0) {
+				RenderImage(path, 44 * gamestate->g_WindowWidth / 45 - 10 - j * 75, 14 * gamestate->g_WindowHeight / 15 - 25 , gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+			}
+			free(path);
+			// RenderImage("assets/images/output-onlinepngtools2.png", 44 * gamestate->g_WindowWidth / 45 - 10 - j * 75, 14 * gamestate->g_WindowHeight / 15 - 25 , gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+		}
+		RenderImage("assets/images/Inventory_Slot_1.png", 44 * gamestate->g_WindowWidth / 45 - 10 - j * 75, 14 * gamestate->g_WindowHeight / 15 - 50 , gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+		// RenderImage("assets/images/Inventory_Slot_1.png", gamestate->g_WindowWidth / 2 + 100 * i, gamestate->g_WindowHeight / 2, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+	}
 }

@@ -28,7 +28,12 @@ typedef struct GameState {
     int currentSceneIndex;          /**< Index of the current scene. */
     int previousSceneIndex;         /**< Index of the previous scene. */
     bool change;                    /**< Boolean flag indicating if the scene is changing. */
+    bool isChestOpen;               /**< Boolean flag indicating if the chest is open. */
+    bool hasBoughtTorch;
     bool isForestDungeonDone;       /**< Boolean flag indicating if the forest dungeon is done. */
+    bool hasBlueGem;
+    bool hasGreenGem;
+    int indexFountain;
     Menu* pauseMenu;                /**< Pointer to the pause menu. */
     bool restarting;                /**< Boolean flag indicating if the game is restarting. */
     bool mainMenuOpen;              /**< Boolean flag indicating if the main menu is open. */

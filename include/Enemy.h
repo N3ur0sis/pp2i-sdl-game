@@ -28,6 +28,7 @@ typedef struct _EnemyComponent {
     bool isAlive;           /**< Boolean flag indicating if the enemy is alive. */
     float health;           /**< Health of the enemy. */
     bool takeDamage;        /**< Boolean flag indicating if the enemy is taking damage. */
+    float attackCooldown    /**< Cooldown timer to stop golem from attacking immediately */
 } EnemyComponent;
 
 /**

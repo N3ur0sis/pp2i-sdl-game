@@ -36,6 +36,40 @@ Entity* createMarchand(Scene* scene, vec3 position, vec3 scale, vec3 rotation) {
 }
 
 
+Entity* createCariolle(Scene* scene, vec3 position, vec3 scale, vec3 rotation) {
+    Entity* cariolleEntity = createEntity(scene);
+    if (cariolleEntity != NULL) {
+        Model* cariolle = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(cariolle, "assets/models/start/Cariolle.obj");
+        cariolle->isRenderable = true;
+        addComponent(cariolleEntity, COMPONENT_RENDERABLE, cariolle);
+
+        ((Model*)getComponent(cariolleEntity, COMPONENT_RENDERABLE))->position[0] = position[0];
+        ((Model*)getComponent(cariolleEntity, COMPONENT_RENDERABLE))->position[1] = position[1];
+        ((Model*)getComponent(cariolleEntity, COMPONENT_RENDERABLE))->position[2] = position[2];
+
+        ((Model*)getComponent(cariolleEntity, COMPONENT_RENDERABLE))->scale[0] = scale[0];
+        ((Model*)getComponent(cariolleEntity, COMPONENT_RENDERABLE))->scale[1] = scale[1];
+        ((Model*)getComponent(cariolleEntity, COMPONENT_RENDERABLE))->scale[2] = scale[2];
+
+        ((Model*)getComponent(cariolleEntity, COMPONENT_RENDERABLE))->rotation[0] = rotation[0];
+        ((Model*)getComponent(cariolleEntity, COMPONENT_RENDERABLE))->rotation[1] = rotation[1];
+        ((Model*)getComponent(cariolleEntity, COMPONENT_RENDERABLE))->rotation[2] = rotation[2]; 
+
+        
+
+        Collider* cariolleCollision = ColliderCreate("assets/models/start/Cariolle.obj");
+        glm_scale_make(cariolleCollision->transformMatrix, scale);
+        UpdateCollider(cariolleCollision);
+        glm_translate_make(cariolleCollision->transformMatrix, position);
+        UpdateCollider(cariolleCollision);
+        addComponent(cariolleEntity, COMPONENT_COLLIDER, cariolleCollision);
+    }
+    return cariolleEntity;
+
+}
+
+
 void talkToMarchandStart(float window_width, float window_height, GLuint shader, int* click_counter, bool* is_clicking, bool* isBusy) {
     SDL_Color color_black = {0, 0, 0, 0};
     SDL_Color color_white = {255, 255, 255, 0};
@@ -89,7 +123,7 @@ void talkToMarchandStart(float window_width, float window_height, GLuint shader,
 }
 
 
-void talkToMarchandMain(Inventory* inventory, Inventory* marchantInventory, float window_width, float window_height, GLuint shader, int* click_counter, bool* is_clicking, bool* isBusy, int* money) {
+void talkToMarchandMain(Inventory* inventory, Inventory* marchantInventory, float window_width, float window_height, GLuint shader, int* click_counter, bool* is_clicking, bool* isBusy, int* money, bool* hasTorch) {
     SDL_Color color_black = {0, 0, 0, 0};
     SDL_Color color_white = {255, 255, 255, 0};
     switch (*click_counter) {
@@ -122,7 +156,7 @@ void talkToMarchandMain(Inventory* inventory, Inventory* marchantInventory, floa
         }
         break;
     case 2:
-        tradingWithMarchand(inventory, marchantInventory, window_width, window_height, shader, click_counter, is_clicking, isBusy, money);
+        tradingWithMarchand(inventory, marchantInventory, window_width, window_height, shader, click_counter, is_clicking, isBusy, money, hasTorch);
         if (getKeyState(SDLK_f) && !*is_clicking) {
             (*click_counter) = 0;
             *isBusy = false;
@@ -139,7 +173,7 @@ void talkToMarchandMain(Inventory* inventory, Inventory* marchantInventory, floa
 
 
 
-void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, float window_width, float window_height, GLuint shader,int* click_counter, bool* is_clicking, bool* isBusy, int* money) {
+void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, float window_width, float window_height, GLuint shader,int* click_counter, bool* is_clicking, bool* isBusy, int* money, bool* hasBoughtTorch) {
     SDL_Color color_black = {0, 0, 0, 0};
     SDL_Color color_white = {255, 255, 255, 0};
     SDL_Color color_yellow = {255, 215, 0, 255};
@@ -192,6 +226,9 @@ void tradingWithMarchand(Inventory* inventory, Inventory* marchantInventory, flo
                     if (isPResent) {
                         InventoryAddObjects(1, inventory, Object_createFromId(currentIdObject));
                         *money -= costFromId(currentIdObject);
+                        if (currentIdObject == 3) {
+                            *hasBoughtTorch = true;
+                        }
                     } 
                     clickAction = true;
                 } else if (!getMouseButtonState(1)) {

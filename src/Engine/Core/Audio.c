@@ -26,5 +26,5 @@ void TempAudioImpl(void){
     fprintf(stderr, "SDL_mixer could not play music! SDL_mixer Error: %s\n", Mix_GetError());
     return;
     }
-    Mix_VolumeMusic(10); // 64=50% du volume*/  
+    Mix_VolumeMusic(0); // 64=50% du volume
 }

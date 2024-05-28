@@ -17,11 +17,10 @@ void freeScene(Scene* scene) {
     if (scene == NULL) return;
 
     DeleteShaders(scene->shader);
+    DeleteShaders(scene->textShader);
     SkyboxDelete(scene->skybox);
+    free(scene->camera);
 
-    if (scene->camera) {
-        free(scene->camera);
-    }
 
     for (int i = 0; i < scene->numEntities; i++) {
         freeEntity(&scene->entities[i]);
@@ -33,43 +32,46 @@ void freeScene(Scene* scene) {
 
 void* freeEntity(Entity* e){
     if (e == NULL) return;
-    printf("id = %d\n",e->id);
+    for (int i = 0; i < e->componentCount; i++)
+    {
     // Free each component, if it exists
-    void* component = getComponent(e, COMPONENT_RENDERABLE);
-    if (component){ 
-        ModelFree((Model*)component);
+    Component component = e->components[i];
+    if (component.type == COMPONENT_RENDERABLE){ 
+        ModelFree((Model*)component.data);
         printf("Model free\n");}
 
-    component = getComponent(e, COMPONENT_ANIMATION);
-    if (component){
-        AnimationDelete((Animation*)component);
+    if (component.type == COMPONENT_ANIMATION){
+        AnimationDelete((Animation*)component.data);
         printf("Animation free\n");}
 
-    component = getComponent(e, COMPONENT_ANIMATOR);
-    if (component){
-        FreeAnimator((Animator*)component);
+    if (component.type == COMPONENT_ANIMATOR){
+        FreeAnimator((Animator*)component.data);
         printf("Animator free\n");}
 
-    component = getComponent(e, COMPONENT_COLLIDER);
-    if (component){
-        FreeCollider((Collider*)component);
+    if (component.type == COMPONENT_COLLIDER){
+        FreeCollider((Collider*)component.data);
         printf("Collider free\n");}
 
-    component = getComponent(e, COMPONENT_LIGHT);
-    if (component){
-        free((Light*)component);
+    if (component.type == COMPONENT_LIGHT){
+        DeleteShaders(((Light*)component.data)->shadowMap->shadowMapShader);
+        free(((Light*)component.data)->shadowMap);
+        free((Light*)component.data);
         printf("Light free\n");}
 
-    component = getComponent(e, COMPONENT_ATTACHMENT);
-    if (component){
-        FreeAttachementComponent((AttachmentComponent*)component);
+    if (component.type == COMPONENT_ATTACHMENT){
+        FreeAttachementComponent((AttachmentComponent*)component.data);
         printf("Attached free\n");}
 
-    component = getComponent(e, COMPONENT_RIGIDBODY);
-    if (component){
-        FreeRigidBody((RigidBody*)component);
-        printf("Body free\n");}
-
-
+    if (component.type == COMPONENT_RIGIDBODY){
+        FreeRigidBody((RigidBody*)component.data);
+        printf("Body free\n");
+    }
+    if(component.type == COMPONENT_ENEMY){
+        free(component.data);
+    }
+    if(component.type == COMPONENT_PLAYER){
+        free(component.data);
+    }
+    }
 }
 

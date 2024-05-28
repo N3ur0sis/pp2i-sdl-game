@@ -11,6 +11,7 @@
 #include "Enemy.h"
 #include <Renderer.h>
 #include <Inventory.h>
+#include <Marchand.h>
 
 #define NBPARTMAP 8     /**< Number of parts of the map. */
 
@@ -43,3 +44,28 @@ void updateMainScene(Scene* scene, GameState* gameState);
  * @param scene Pointer to the scene.
  */
 void unloadMainScene(Scene* scene);
+
+
+
+
+/**
+ * @brief Function to check if p;ayer can insert blue gem (in terms of position).
+ * 
+ * This function creates the main scene.
+ * 
+ * @param x X-coordinate of the position.
+ * @param y Y-coordinate of the position.
+ */
+bool canInsertBlueGem(float x, float y);
+
+
+
+/**
+ * @brief Function to check if p;ayer can insert green gem (in terms of position).
+ * 
+ * This function creates the main scene.
+ * 
+ * @param x X-coordinate of the position.
+ * @param y Y-coordinate of the position.
+ */
+bool canInsertGreenGem(float x, float y);

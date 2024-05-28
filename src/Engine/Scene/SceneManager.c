@@ -19,7 +19,11 @@ SceneManager* SceneManagerInit() {
     manager->gameState.isPlayerDead = false;
     manager->gameState.change = false;
     manager->gameState.nextSceneIndex = -1;
+    manager->gameState.isChestOpen = false;
     manager->gameState.isForestDungeonDone = false;
+    manager->gameState.hasBlueGem = false;
+    manager->gameState.hasGreenGem = false;
+    manager->gameState.indexFountain = 0;
     manager->gameState.pauseMenu = NULL;
     manager->gameState.restarting = false;
     manager->gameState.mainMenuOpen = true;
@@ -63,5 +67,6 @@ void freeSceneManager(SceneManager* manager) {
 
 void SceneManagerUnloadCurrentScene(SceneManager* manager, int index) {
         manager->scenes[manager->currentSceneIndex]->unload(manager->scenes[manager->currentSceneIndex]);
+        manager->scenes[manager->currentSceneIndex] = NULL;
 }
 
