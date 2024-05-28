@@ -335,6 +335,13 @@ void updateMainScene(Scene* scene, GameState* gameState) {
         heal(gameState, inventory, &is_HealingMain);
 
 
+
+        updatePlayerAnimator(playerEntity,gameState);
+        if (!*isBusy) {
+            playerMovement(playerEntity, scene->deltaTime, scene->camera);
+        }
+
+
         if (getKeyState(TAB) && !is_tabingMain) {
             is_tabingMain = true;
             if (inventory->isOpened) {

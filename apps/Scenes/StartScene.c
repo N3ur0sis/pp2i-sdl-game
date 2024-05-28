@@ -149,19 +149,19 @@ void startStartScene(Scene* scene, GameState* gameState) {
     InventoryAddObjects(1, marchantInventory, Object_createFromId(4));
 
     
-    inventory = gameState->inventory;
-    InventoryAddObjects(2, inventory, Object_createFromId(1));
-    InventoryAddObjects(1, inventory, Object_createFromId(2));
+    // inventory = gameState->inventory;
+    // InventoryAddObjects(2, inventory, Object_createFromId(1));
+    // InventoryAddObjects(1, inventory, Object_createFromId(2));
 
-    Entity* arrow = createEntity(scene);
-    if (arrow){
-        Model* arrowModel = (Model*)calloc(1,sizeof(Model));
-        ModelCreate(arrowModel,"assets/models/Objet/Arrow/arrow.obj");
-        arrowModel->isRenderable = false;
-        glm_vec3_copy((vec3){10.0f, 10.0f, 10.0f}, arrowModel->scale);
-        arrowModel->rotation[1] = glm_rad(-90.0f);
-        addComponent(arrow, COMPONENT_RENDERABLE, arrowModel);
-    }
+    // Entity* arrow = createEntity(scene);
+    // if (arrow){
+    //     Model* arrowModel = (Model*)calloc(1,sizeof(Model));
+    //     ModelCreate(arrowModel,"assets/models/Objet/Arrow/arrow.obj");
+    //     arrowModel->isRenderable = false;
+    //     glm_vec3_copy((vec3){10.0f, 10.0f, 10.0f}, arrowModel->scale);
+    //     arrowModel->rotation[1] = glm_rad(-90.0f);
+    //     addComponent(arrow, COMPONENT_RENDERABLE, arrowModel);
+    // }
 
     /* Create a skybox */
     scene->skybox = SkyboxCreate();
@@ -179,12 +179,15 @@ void updateStartScene(Scene* scene, GameState* gameState) {
     Entity* chestOpenEntity = &scene->entities[6];
     Entity* startBarrierEntity = &scene->entities[7];
     Entity* blueGemEntity = &scene->entities[8];
-    Entity* arrowEntity = &scene->entities[9];
+    // Entity* arrowEntity = &scene->entities[9];
     
     Uint32 currentTime = SDL_GetTicks();
     bool* isBusy = &((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy;
     float x = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[0];
     float y = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->position[2];
+    Inventory* inventory = gameState->inventory;
+
+
     checkDead(gameState);
 
     if(isDamageShown){
@@ -264,44 +267,42 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             playerMovement(playerEntity, scene->deltaTime, scene->camera);
         }
 
-        Model* arrowModel = (Model*)getComponent(arrowEntity, COMPONENT_RENDERABLE);
-        if (getKeyState(SDLK_g)&&!arrowModel->isRenderable){
-            glm_vec3_copy(playerModel->position,arrowModel->position);
-            glm_vec3_add(arrowModel->position,(vec3){0.0f,2.0f,0.0f},arrowModel->position);
-            arrowModel->rotation[1] = playerModel->rotation[1]-glm_rad(90.0f);
-            arrowModel->isRenderable = true;
-        }
-        if (arrowModel->isRenderable){
-            arrowModel->position[0] += cosf(arrowModel->rotation[1])/10;
-            arrowModel->position[2] -= sinf(arrowModel->rotation[1])/10;
-            vec3 arrowDir;
-            glm_vec3_sub(playerModel->position,arrowModel->position,arrowDir);
-            if (glm_vec3_norm(arrowDir)>20.0f){
-                arrowModel->isRenderable = false;
-            }
-            for (int i =0;i<scene->numEntities;i++){
-                Entity* entity = &scene->entities[i];
-                EnemyComponent* ennemy = (EnemyComponent*)getComponent(entity,COMPONENT_ENEMY);
-                Model* ennemyModel = (Model*)getComponent(entity,COMPONENT_RENDERABLE);
-                if (ennemy&&ennemyModel->isRenderable){
-                    glm_vec3_sub(ennemyModel->position,arrowModel->position,arrowDir);
-                    if (glm_vec3_norm(arrowDir)<2.5f){
-                        ennemy->health-=playerComponent->attackDamage;
-                        arrowModel->isRenderable = false;
-                        printf("%f\n",ennemy->health);
-                }
-            }
-        }}
+        // Model* arrowModel = (Model*)getComponent(arrowEntity, COMPONENT_RENDERABLE);
+        // if (getKeyState(SDLK_g)&&!arrowModel->isRenderable){
+        //     glm_vec3_copy(playerModel->position,arrowModel->position);
+        //     glm_vec3_add(arrowModel->position,(vec3){0.0f,2.0f,0.0f},arrowModel->position);
+        //     arrowModel->rotation[1] = playerModel->rotation[1]-glm_rad(90.0f);
+        //     arrowModel->isRenderable = true;
+        // }
+        // if (arrowModel->isRenderable){
+        //     arrowModel->position[0] += cosf(arrowModel->rotation[1])/10;
+        //     arrowModel->position[2] -= sinf(arrowModel->rotation[1])/10;
+        //     vec3 arrowDir;
+        //     glm_vec3_sub(playerModel->position,arrowModel->position,arrowDir);
+        //     if (glm_vec3_norm(arrowDir)>20.0f){
+        //         arrowModel->isRenderable = false;
+        //     }
+        //     for (int i =0;i<scene->numEntities;i++){
+        //         Entity* entity = &scene->entities[i];
+        //         EnemyComponent* ennemy = (EnemyComponent*)getComponent(entity,COMPONENT_ENEMY);
+        //         Model* ennemyModel = (Model*)getComponent(entity,COMPONENT_RENDERABLE);
+        //         if (ennemy&&ennemyModel->isRenderable){
+        //             glm_vec3_sub(ennemyModel->position,arrowModel->position,arrowDir);
+        //             if (glm_vec3_norm(arrowDir)<2.5f){
+        //                 ennemy->health-=playerComponent->attackDamage;
+        //                 arrowModel->isRenderable = false;
+        //                 printf("%f\n",ennemy->health);
+        //         }
+        //     }
+        // }}
         
     
 
-        if(checkpoint_sword){
-                                        ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))->isRenderable = true;
-                        enemyModel->isRenderable = true;
-                        playerComponent->hasWeapon = true;
-
+        if(checkpoint_sword && enemyModel->isRenderable){
+            ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))->isRenderable = true;
+            enemyModel->isRenderable = true;
+            playerComponent->hasWeapon = true;
             updateEnemy(enemy,playerEntity,scene,gameState,scene->deltaTime);
-
         }
 
         if (checkpoint_sword && !(enemyModel->isRenderable) && !is_GemTaken && !((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->isRenderable) {
