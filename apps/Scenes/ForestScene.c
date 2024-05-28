@@ -215,7 +215,10 @@ void updateForestScene(Scene* scene, GameState* gameState){
     if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation"))){
         playerAnimator->playTime = 0.0f;
     }
-
+    updatePlayerAnimator(playerEntity,gameState);
+    if (!playerModel->isBusy) {
+        playerMovement(playerEntity, scene->deltaTime, scene->camera);
+    }
     /*Four flames logic */
     SDL_Color color_black = {0, 0, 0, 0};
     Entity* flame1 = &scene->entities[5];
