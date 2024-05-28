@@ -17,6 +17,7 @@ void freeScene(Scene* scene) {
     if (scene == NULL) return;
 
     DeleteShaders(scene->shader);
+    DeleteShaders(scene->textShader);
     SkyboxDelete(scene->skybox);
     free(scene->camera);
 
@@ -52,6 +53,8 @@ void* freeEntity(Entity* e){
         printf("Collider free\n");}
 
     if (component.type == COMPONENT_LIGHT){
+        DeleteShaders(((Light*)component.data)->shadowMap->shadowMapShader);
+        free(((Light*)component.data)->shadowMap);
         free((Light*)component.data);
         printf("Light free\n");}
 
@@ -62,6 +65,12 @@ void* freeEntity(Entity* e){
     if (component.type == COMPONENT_RIGIDBODY){
         FreeRigidBody((RigidBody*)component.data);
         printf("Body free\n");
+    }
+    if(component.type == COMPONENT_ENEMY){
+        free(component.data);
+    }
+    if(component.type == COMPONENT_PLAYER){
+        free(component.data);
     }
     }
 }

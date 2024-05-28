@@ -475,17 +475,5 @@ void updateStartScene(Scene* scene, GameState* gameState) {
 
 
 void unloadStartScene(Scene* scene){
-    DeleteShaders(scene->shader);
-    DeleteShaders(scene->textShader);
-    SkyboxDelete(scene->skybox);
-
-    if (scene->camera) {
-        free(scene->camera);
-    }
-
-    for (int i = 0; i < scene->numEntities; i++) {
-        freeEntity(&scene->entities[i]);
-    }
-
-    scene->numEntities = 0;
+    freeScene(scene);
 }

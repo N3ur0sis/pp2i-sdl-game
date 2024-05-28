@@ -84,6 +84,7 @@ void processInput(SDL_Event* e, bool* running,bool* isPaused, GameState* gameSta
         case CHANGE_SCENE_EVENT:
             if (sceneManager) {
                 HandleChangeScene(sceneManager);
+                free(e->user.data1);
             }
             break;
         default:
