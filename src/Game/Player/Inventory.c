@@ -25,7 +25,6 @@ void InventoryAddObjects(int nb, Inventory* inventory, Object* object) {
 
 
 bool InventoryRemoveObject(Inventory* inventory, int id) {
-    //Premier parcours pour vérifier si un objet de est bien présent dans l'inventaire
     bool isPresent = false;
     for (int i = 0; i < inventory->size; i++) {
         if (inventory->objects[i]->id == id) {
@@ -33,23 +32,29 @@ bool InventoryRemoveObject(Inventory* inventory, int id) {
             break;
         }
     }
-    //Si l'objet est présent, on crée un nouvel inventaire, on copie l'ancien sans l'objet en question et on remplace l'ancien par le nouveau
+
     if (isPresent) {
         bool found = false;
         Inventory* newInventory = InventoryCreate(inventory->capacity);
         for (int i = 0; i < inventory->size; i++) {
-            if (inventory->objects[i]->id != id || found) {
-                InventoryAddObjects(1, newInventory, inventory->objects[i]);
+            if ((inventory->objects)[i]->id != id || found) {
+                InventoryAddObjects(1, newInventory, Object_createFromId(inventory->objects[i]->id));
             } else {
                 found = true;
             }
         }
-        // Inventory* tmp = inventory;
-        *inventory = *newInventory;
-        // freeInventory(tmp);
+
+        inventory->objects = newInventory->objects;
+        inventory->size = newInventory->size;
+        inventory->capacity = newInventory->capacity;
+        
+
+
     }
+
     return isPresent;
 }
+
 
 void freeInventory(Inventory* inventory) {
     if (inventory != NULL) {
@@ -83,7 +88,7 @@ void InventoryPrint(Inventory* inventory, float window_width, float window_heigh
             char nb[12];
             sprintf(nb, "%d", nb_items);
             SDL_Color color_red = {255, 0, 0, 0};
-            RenderText(nb, color_red, offset_x + window_width / 2 - 56 + 69 *colonnes , offset_y + window_height / 3 + 172 - 69 * lignes, 15, window_width,window_height, shader);
+            RenderText(nb, color_red, offset_x + window_width / 2 - 50 + 69 *colonnes , offset_y + window_height / 3 + 172 - 69 * lignes, 15, window_width,window_height, shader);
             char* path = checkIdObject(i);
             RenderImage(path, offset_x + window_width / 2 -70 + 69 * colonnes  , offset_y + window_height / 3 + 165 - 68 * lignes , window_width, window_height, shader);
             free(path);
