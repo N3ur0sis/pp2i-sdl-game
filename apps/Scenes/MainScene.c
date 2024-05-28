@@ -397,6 +397,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
             ((Model*)foutain->components[0].data)->isRenderable = false;
             ((Model*)foutain->components[1].data)->isRenderable = true;
             gameState->indexFountain++;
+            isInsertingGem = false;
         }
         else{
             blueGemModel->position[0]-=0.01f;
