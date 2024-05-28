@@ -16,6 +16,7 @@ bool is_clicking = false;
 bool is_tabingStart = false;
 bool is_BarrierDestroyed;
 bool is_GemTaken = false;
+bool is_Healing = false;
 int click_counter = 0 ;
 Inventory* inventory;
 Inventory* marchantInventory;
@@ -203,11 +204,6 @@ void updateStartScene(Scene* scene, GameState* gameState) {
         
     }
 
-    if (getKeyState(SDLK_h)){
-        if (InventoryRemoveObject(inventory,1)){
-            gameState->playerHealth+=10;
-        }
-    }
     if (gameState->isPlayerDead) {
         *isBusy = true;
         if (!gameState->restarting) {
@@ -249,6 +245,18 @@ void updateStartScene(Scene* scene, GameState* gameState) {
 
 
         /* Game Logic */
+
+        if (getKeyState(SDLK_h) && !is_Healing){
+            is_Healing = true;
+            if (InventoryRemoveObject(inventory,1)){
+                gameState->playerHealth = gameState->max_health;
+            }
+        } else if (!getKeyState(SDLK_h)){
+            is_Healing = false;
+        }
+
+
+
         if (getKeyState(TAB) && !is_tabingStart) {
             is_tabingStart = true;
             if (inventory->isOpened) {

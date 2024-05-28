@@ -476,8 +476,8 @@ void drawHUD(Scene* scene, GameState* gamestate) {
 
 	char potion[100];
 	sprintf(potion, "%d", nb_potion);
-	RenderText(potion, (SDL_Color){255,255,255,0}, gamestate->g_WindowWidth / 45 + 70, 13 * gamestate->g_WindowHeight / 15 -15, 30, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
-	RenderImage("assets/images/sushi.png", gamestate->g_WindowWidth / 45, 13 * gamestate->g_WindowHeight / 15 - 10-33, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+	RenderText(potion, (SDL_Color){255,255,255,0}, gamestate->g_WindowWidth / 45 + 70, 13 * gamestate->g_WindowHeight / 15 -25, 30, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
+	RenderImage("assets/images/potion_red.png", gamestate->g_WindowWidth / 45, 13 * gamestate->g_WindowHeight / 15 - 10 - 43, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
 	//RenderImage("assets/images/sushi.png", gamestate->g_WindowWidth / 45, 13 * gamestate->g_WindowHeight / 15 - 10, gamestate->g_WindowWidth, gamestate->g_WindowHeight, scene->textShader->m_program);
 	for (int j = 0 ; j < 6; j++) {
 		if (gamestate->isChestOpen) {
