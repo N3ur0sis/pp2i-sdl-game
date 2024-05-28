@@ -277,7 +277,29 @@ void startMainScene(Scene* scene, GameState* gameState) {
 
     Entity* marchandEntity = createMarchand(scene, (vec3){-370.0f,6.6f, 225.0f}, (vec3){2.0f, 2.0f, 2.0f}, (vec3){0.0f, 1.57f, 0.0f});
     Entity* cariolleEntity = createCariolle(scene, (vec3){-370.0f,7.1f, 221.0f}, (vec3){.5f, .5f, .5f}, (vec3){0.0f, 0.0f, 0.0f});
+    Entity* goblin1 = create_gobelin(scene, -206.0f, 6.6f, 137.0f, 0.5f);
+    ((Model*)getComponent(goblin1, COMPONENT_RENDERABLE))->isRenderable = true;
 
+    Entity* goblin2 = create_gobelin(scene, -209.0f, 6.6f, 134.0f, 0.5f);
+    ((Model*)getComponent(goblin2, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* goblin3 = create_gobelin(scene, -210.0f, 6.6f, 136.0f, 0.5f);
+    ((Model*)getComponent(goblin3, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* goblin4 = create_gobelin(scene, -319.0f, 6.6f, 231.0f, 0.5f);
+    ((Model*)getComponent(goblin4, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* goblin5 = create_gobelin(scene, -282.0f, 6.6f, 215.0f, 0.5f);
+    ((Model*)getComponent(goblin5, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* goblin6 = create_gobelin(scene, -288.0f, 6.6f, 187.0f, 0.5f);
+    ((Model*)getComponent(goblin6, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* goblin7 = create_gobelin(scene, -319.0f, 6.6f, 174.0f, 0.5f);
+    ((Model*)getComponent(goblin7, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* goblin8 = create_gobelin(scene, -301.0f, 6.6f, 148.0f, 0.5f);
+    ((Model*)getComponent(goblin8, COMPONENT_RENDERABLE))->isRenderable = true;
 
 }
 
@@ -289,6 +311,29 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     Entity* bluegem = &scene->entities[13];
     Entity* greenGem = &scene->entities[14];
     Entity* foutain = &scene->entities[10];
+    Entity* gobelin1 = &scene->entities[17];
+    updateEnemy(gobelin1, playerEntity, scene, gameState, scene->deltaTime);
+    
+    Entity* gobelin2 = &scene->entities[18];
+    updateEnemy(gobelin2, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* gobelin3 = &scene->entities[19];
+    updateEnemy(gobelin3, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* gobelin4 = &scene->entities[20];
+    updateEnemy(gobelin4, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* gobelin5 = &scene->entities[21];
+    updateEnemy(gobelin5, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* gobelin6 = &scene->entities[22];
+    updateEnemy(gobelin6, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* gobelin7 = &scene->entities[23];
+    updateEnemy(gobelin7, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* gobelin8 = &scene->entities[24];
+    updateEnemy(gobelin8, playerEntity, scene, gameState, scene->deltaTime);
 
     Model* playerModel = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE));
     Model* blueGemModel = ((Model*)getComponent(bluegem, COMPONENT_RENDERABLE));
