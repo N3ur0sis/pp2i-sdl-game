@@ -70,7 +70,7 @@ void RenderText(const char* message, SDL_Color color, int x, int y, int size, in
 
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
-
+    glPixelStorei(GL_UNPACK_ROW_LENGTH, 0);
     TTF_CloseFont(font);
     SDL_FreeSurface(sFont);
 }
@@ -135,7 +135,7 @@ void RenderImage(const char* path, int x, int y, int windowWidth, int windowHeig
 
     glBindTexture(GL_TEXTURE_2D, 0);
     glDeleteTextures(1, &texture);
-
+    glPixelStorei(GL_UNPACK_ROW_LENGTH, sFont->pitch / sFont->format->BytesPerPixel);
     glDeleteVertexArrays(1, &VAO);
     glDeleteBuffers(1, &VBO);
 

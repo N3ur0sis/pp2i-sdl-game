@@ -33,11 +33,9 @@ void startStartScene(Scene* scene, GameState* gameState) {
     scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
 
     /* Create a scene camera */
-    scene->camera = camera_create(0, 0, 0, gameState->g_WindowWidth, gameState->g_WindowHeight);
+    scene->camera = camera_create(20, 22, -30, gameState->g_WindowWidth, gameState->g_WindowHeight);
     
     glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
-    /* Create a skybox */
-    scene->skybox = SkyboxCreate();
 
     /* Enemy Entity */
     Entity* golem = create_golemPurple(scene,3.0f,0.1f,-10.0f,0.5f);
@@ -164,11 +162,6 @@ void startStartScene(Scene* scene, GameState* gameState) {
         arrowModel->rotation[1] = glm_rad(-90.0f);
         addComponent(arrow, COMPONENT_RENDERABLE, arrowModel);
     }
-
-    /* Create a scene camera */
-    scene->camera = camera_create(0, 100, -100, gameState->g_WindowWidth, gameState->g_WindowHeight);
-    glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
-
 
     /* Create a skybox */
     scene->skybox = SkyboxCreate();
