@@ -8,6 +8,7 @@ Collider* ColliderCreate(char* path){
     for (unsigned int i = 0; i < scene->mNumMeshes; i++)
     {
         if(i>=MAXCOLLIDER){
+            printf("Maximum Collider reached\n");
             break;
         }
 

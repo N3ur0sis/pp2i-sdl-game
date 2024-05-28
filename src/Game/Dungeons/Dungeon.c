@@ -77,6 +77,7 @@ void freeDungeon(Dungeon *dj) {
     if (dj == NULL) {
         return;
     }
+    printf("je free\n");
     freeTypeRooms(dj);
     freeAdjacencyList(dj);
     freeRooms(dj);
@@ -112,6 +113,7 @@ void freeTypeRooms(Dungeon* dj){
     }
     free(dj->type_room);
     }
+    
 }
 
 /**

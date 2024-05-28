@@ -78,7 +78,7 @@ void startStartScene(Scene* scene, GameState* gameState) {
     /* Light Entity */
     Entity* lightEntity = createEntity(scene);
     if (lightEntity != NULL) {
-        Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f, 0.1f, 500.0f);
+        Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f, 0.1f, 500.0f,100.0f);
         addComponent(lightEntity, COMPONENT_LIGHT, light);
     }
 
