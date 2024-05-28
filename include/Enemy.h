@@ -69,6 +69,9 @@ Entity* create_golemPurple(Scene* scene,float x,float y,float z,float scale);
  * @param golem Pointer to the golem entity.
  * @param player Pointer to the player entity.
  */
+
+Entity* create_skeleton(Scene* scene,float x,float y,float z,float scale);
+
 void golemLogic(Scene* scene,GameState* gameState,Entity* golem,Entity* player);
 
 /**
@@ -96,4 +99,5 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
  * @param attackDamage Attack damage of the enemy.
  */
 void initializeEnemyComponent(Entity* enemy, float detectionRange, float attackRange, float movementSpeed, float attackDamage);
+extern bool isDamageShown;
 extern bool isDamageShown;

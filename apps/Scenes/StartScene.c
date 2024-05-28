@@ -210,7 +210,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             is_BarrierDestroyed = false;
             click_counter = 0 ;
             is_tabingStart = false;
-            ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))->isRenderable = false;
+            ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))-> isRenderable = false;
             ((Model*)getComponent(chestEntity, COMPONENT_RENDERABLE))->isRenderable = true;
             ((Model*)getComponent(chestOpenEntity, COMPONENT_RENDERABLE))->isRenderable = false;
             ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->isRenderable = true;

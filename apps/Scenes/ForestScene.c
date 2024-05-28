@@ -145,7 +145,57 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         ModelCreate(DungeonDoorModel, "assets/models/Foret/DungeonForestDoor.obj");
         addComponent(DungeonDoor, COMPONENT_RENDERABLE, DungeonDoorModel);
         
-    }/*
+    }
+    
+    /* Enemies */
+    Entity* golem = create_golemPurple(scene,3.0f,10.0f,42.0f,0.5f);
+    ((Model*)getComponent(golem, COMPONENT_RENDERABLE))->isRenderable = true;
+     Entity* skeleton0 = create_skeleton(scene,-33.0f,10.1f,60.0f,0.5f);
+     ((Model*)getComponent(skeleton0, COMPONENT_RENDERABLE))->isRenderable = true;
+    Entity* skeleton1 = create_skeleton(scene, -44.0f, 10.0f, 84.0f, 0.5f);
+    ((Model*)getComponent(skeleton1, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* skeleton2 = create_skeleton(scene, -56.0f, 10.0f, 87.0f, 0.5f);
+    ((Model*)getComponent(skeleton2, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* skeleton3 = create_skeleton(scene, -66.0f, 10.0f, 106.0f, 0.5f);
+    ((Model*)getComponent(skeleton3, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* skeleton4 = create_skeleton(scene, -56.0f, 10.0f, 118.0f, 0.5f);
+    ((Model*)getComponent(skeleton4, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* skeleton5 = create_skeleton(scene, -51.0f, 10.0f, 133.0f, 0.5f);
+    ((Model*)getComponent(skeleton5, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* skeleton6 = create_skeleton(scene, -29.0f, 10.0f, 150.0f, 0.5f);
+    ((Model*)getComponent(skeleton6, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* skeleton7 = create_skeleton(scene, -38.0f, 10.0f, 181.0f, 0.5f);
+    ((Model*)getComponent(skeleton7, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* skeleton8 = create_skeleton(scene, 46.0f, 10.0f, 151.0f, 0.5f);
+    ((Model*)getComponent(skeleton8, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* skeleton9 = create_skeleton(scene, 51.0f, 10.0f, 140.0f, 0.5f);
+    ((Model*)getComponent(skeleton9, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* skeleton10 = create_skeleton(scene, 48.0f, 10.0f, 123.0f, 0.5f);
+    ((Model*)getComponent(skeleton10, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* skeleton11 = create_skeleton(scene, 40.0f, 10.0f, 110.0f, 0.5f);
+    ((Model*)getComponent(skeleton11, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* skeleton12 = create_skeleton(scene, 36.0f, 10.0f, 85.0f, 0.5f);
+    ((Model*)getComponent(skeleton12, COMPONENT_RENDERABLE))->isRenderable = true;
+
+    Entity* skeleton13 = create_skeleton(scene, 30.0f, 10.0f, 49.0f, 0.5f);
+    ((Model*)getComponent(skeleton13, COMPONENT_RENDERABLE))->isRenderable = true;
+
+
+
+    
+
+    /*
     Entity* helmethornEntity = createEntity(scene);
     if (helmethornEntity != NULL) {
         Model* helmet = (Model*)calloc(1, sizeof(Model));
@@ -219,7 +269,7 @@ void updateForestScene(Scene* scene, GameState* gameState){
         }
     
     if (getKeyState(SDLK_p)){
-        printf("Player Position : %f %f\n",playerModel->position[0],playerModel->position[2]);
+        printf("Player Position : %f %f %f\n",playerModel->position[0],playerModel->position[1],playerModel->position[2]);
     }
     /*Four flames logic */
     SDL_Color color_black = {0, 0, 0, 0};
@@ -230,7 +280,54 @@ void updateForestScene(Scene* scene, GameState* gameState){
     Entity* flame3 = &scene->entities[7];
     Model* flame3Model = (Model*)getComponent(flame3, COMPONENT_RENDERABLE);
     Entity* flame4 = &scene->entities[8];
+    // entity[9] c'est la Door
     Model* flame4Model = (Model*)getComponent(flame4, COMPONENT_RENDERABLE);
+    Entity* golem = &scene->entities[10];
+    updateEnemy(golem,playerEntity,scene,gameState,scene->deltaTime);
+    Entity* skeleton0 = &scene->entities[11];
+    updateEnemy(skeleton0,playerEntity,scene,gameState,scene->deltaTime);
+    
+
+    Entity* skeleton1 = &scene->entities[12];
+    updateEnemy(skeleton1, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* skeleton2 = &scene->entities[13];
+    updateEnemy(skeleton2, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* skeleton3 = &scene->entities[14];
+    updateEnemy(skeleton3, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* skeleton4 = &scene->entities[15];
+    updateEnemy(skeleton4, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* skeleton5 = &scene->entities[16];
+    updateEnemy(skeleton5, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* skeleton6 = &scene->entities[17];
+    updateEnemy(skeleton6, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* skeleton7 = &scene->entities[18];
+    updateEnemy(skeleton7, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* skeleton8 = &scene->entities[19];
+    updateEnemy(skeleton8, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* skeleton9 = &scene->entities[20];
+    updateEnemy(skeleton9, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* skeleton10 = &scene->entities[21];
+    updateEnemy(skeleton10, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* skeleton11 = &scene->entities[22];
+    updateEnemy(skeleton11, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* skeleton12 = &scene->entities[23];
+    updateEnemy(skeleton12, playerEntity, scene, gameState, scene->deltaTime);
+
+    Entity* skeleton13 = &scene->entities[24];
+    updateEnemy(skeleton13, playerEntity, scene, gameState, scene->deltaTime);
+
+
     if (!flame1Model->isRenderable){
         float d1 = getDist(playerModel,flame1Model);
         if ((d1<FLAMEDIST&&getKeyState(SDLK_e))){
