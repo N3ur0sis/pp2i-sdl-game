@@ -341,7 +341,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
 
 
 
-        if (x < -37.25 && y <-13.85 && y > -17.5 && !is_BarrierDestroyed && checkpoint_sword) {
+        if (x < -37.25 && y <-13.85 && y > -17.5 && !is_BarrierDestroyed && checkpoint_sword && gameState->hasBlueGem) {
             if (getMouseButtonState(1)) {
                 ((Model*)getComponent(startBarrierEntity, COMPONENT_RENDERABLE))->isRenderable = false;
                 glm_translate_make(((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->transformMatrix, (vec3){1000.0f, 1000.0f, 1000.0f});
@@ -351,6 +351,9 @@ void updateStartScene(Scene* scene, GameState* gameState) {
                 // glm_aabb_transform(((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBoxReference[0],((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->transformMatrix,((Collider*)getComponent(startBarrierEntity, COMPONENT_COLLIDER))->boundingBox[0]);
                 is_BarrierDestroyed = true;
             }
+        } else if (x < -34.25 && y <-13.85 && y > -17.5 && !is_BarrierDestroyed && checkpoint_sword && !gameState->hasBlueGem) {
+            RenderText("Une aura magique protège cette barrière", (SDL_Color){255,255,255,0}, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+            RenderText("Vous devez présenter une gemme bleue pour passer", (SDL_Color){255,255,255,0}, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 +10 , 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         }
 
 
@@ -462,7 +465,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
                 *isBusy = true;
             }
         } else if (x < -13.0f && x > -18.0f && y < -8.0f && y > -13.0f && *isBusy) {
-            talkToMarchandMain(inventory, marchantInventory ,gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program, &click_counter, &is_clicking, isBusy, &gameState->money, &gameState->hasBoughtTorch);
+            talkToMarchandStart(gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program, &click_counter, &is_clicking, isBusy);
         }
 
 

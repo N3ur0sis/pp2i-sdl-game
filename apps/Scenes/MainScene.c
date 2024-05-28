@@ -24,17 +24,18 @@ void startMainScene(Scene* scene, GameState* gameState) {
     /* Load and compile textShader */
     scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
     /* Create a scene camera */
-    scene->camera = camera_create(-119.46, 34.06, 93.99, gameState->g_WindowWidth, gameState->g_WindowHeight);
+    // scene->camera = camera_create(-119.46, 34.06, 93.99, gameState->g_WindowWidth, gameState->g_WindowHeight);
+    scene->camera = camera_create(0, 0, 0, gameState->g_WindowWidth, gameState->g_WindowHeight);
     scene->camera->Yaw = 180.0f;
-    scene->camera->Pitch = -20.0f;
+    scene->camera->Pitch = -50.0f;
     glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
     /* Create a skybox */
     scene->skybox = SkyboxCreate();
     float x;float y;float z;float rot;
     switch (gameState->previousSceneIndex){
         case 0://Start
-            // x = -145.0f; y = 6.6f; z =94.0f;rot = 90.0f;
-            x = -325.0f; y = 6.6f; z =90.0f;rot = 90.0f;
+            x = -145.0f; y = 6.6f; z =94.0f;rot = 90.0f;
+            // x = -325.0f; y = 6.6f; z =90.0f;rot = 90.0f;
             break;
         case 2://Foret
             x = -327.0f; y = 6.6f; z =288.5f; rot = 180.0f;
@@ -273,6 +274,9 @@ void startMainScene(Scene* scene, GameState* gameState) {
         greenGemModel->rotation[1] = glm_rad(90.0f);
     }
 
+    Entity* marchandEntity = createMarchand(scene, (vec3){-370.0f,6.6f, 225.0f}, (vec3){2.0f, 2.0f, 2.0f}, (vec3){0.0f, 1.57f, 0.0f});
+    Entity* cariolleEntity = createCariolle(scene, (vec3){-370.0f,7.1f, 221.0f}, (vec3){.5f, .5f, .5f}, (vec3){0.0f, 0.0f, 0.0f});
+
 
 }
 
@@ -288,11 +292,11 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     Model* playerModel = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE));
     Model* blueGemModel = ((Model*)getComponent(bluegem, COMPONENT_RENDERABLE));
     Model* greenGemModel = ((Model*)getComponent(greenGem, COMPONENT_RENDERABLE));
-    printf("green gem position : %f, %f, %f\n",greenGemModel->position[0],greenGemModel->position[1],greenGemModel->position[2]);
+
+    // printf("green gem position : %f, %f, %f\n",greenGemModel->position[0],greenGemModel->position[1],greenGemModel->position[2]);
     float x = playerModel->position[0];
-    float y = playerModel->position[1];
-    float z = playerModel->position[2];
-    
+    float y = playerModel->position[2];
+    // float z = playerModel->position[2];
     if (getKeyState(SDLK_p)){
         printf("Le joueur est en %f, %f, %f\n",playerModel->position[0],playerModel->position[1],playerModel->position[2]);
     }
@@ -311,6 +315,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
 
     Entity* swordEntity = &scene->entities[1];
     Inventory* inventory = gameState->inventory;
+    Inventory* marchantInventory = gameState->marchantInventory;
     bool* isBusy = &((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy;
     checkDead(gameState);
     if (gameState->isPlayerDead) {
@@ -374,7 +379,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     }
 
 
-    if (canInsertBlueGem(x,z)) {
+    if (canInsertBlueGem(x,y)) {
         if (gameState->hasBlueGem){
             RenderText("Appuyez sur E pour insérer la gemme", (SDL_Color){255, 255, 255, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
             if (getKeyState(SDLK_e) && !isInsertingGem){
@@ -399,7 +404,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     }
 
 
-    if (canInsertGreenGem(x,z)) {
+    if (canInsertGreenGem(x,y)) {
         if (gameState->hasGreenGem){
             RenderText("Appuyez sur E pour insérer la gemme", (SDL_Color){255, 255, 255, 0}, gameState->g_WindowWidth / 2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
             if (getKeyState(SDLK_e) && !isInsertingGem){
@@ -424,6 +429,15 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     }
 
 
+    if (x < -367.0f && x > -372.75f && y < 228.5f && y > 220.5f && !*isBusy) {
+        printf("marchand\n");
+        RenderText("Appuyer sur E pour interagir", (SDL_Color){255,255,255,0}, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+        if (getKeyState(SDLK_e)) {
+            *isBusy = true;
+        }
+    } else if (x < -367.0f && x > -372.75f && y < 228.5f && y > 220.5f && *isBusy) {
+        talkToMarchandMain(inventory, marchantInventory ,gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program, &click_counterMain, &is_clickingMain, isBusy, &gameState->money, &gameState->hasBoughtTorch);
+    }
 }
 
 

@@ -11,6 +11,7 @@
 #include "Enemy.h"
 #include <Renderer.h>
 #include <Inventory.h>
+#include <Marchand.h>
 
 #define NBPARTMAP 8     /**< Number of parts of the map. */
 

@@ -25,6 +25,19 @@
 Entity* createMarchand(Scene* scene, vec3 position, vec3 scale, vec3 rotation);
 
 /**
+ * This function creates a cariolle.
+ * 
+ * @param scene Pointer to the scene.
+ * @param position Position of the marchand.
+ * @param scale Scale of the marchand.
+ * @param rotation Rotation of the marchand.
+ * @return Pointer to the marchand entity.
+*/
+Entity* createCariolle(Scene* scene, vec3 position, vec3 scale, vec3 rotation);
+
+
+
+/**
  * @brief Function when the player is talking to the marchand.
  * 
  * This function is called when the player is talking to the marchand.
