@@ -20,6 +20,8 @@ Inventory* inventory;
 Inventory* marchantInventory;
 Uint32 timeOfHit;
 const Uint32 enemyHitTextDisplayDuration = 750; // ms
+Uint32 timeOfHit;
+const Uint32 enemyHitTextDisplayDuration = 750; // ms
 
 void startStartScene(Scene* scene, GameState* gameState) {
     checkpoint_sword = false;

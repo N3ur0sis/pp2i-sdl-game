@@ -1,6 +1,5 @@
 #include "Enemy.h"
 
-
 bool isDamageShown = false;
 void initializeEnemyComponent(Entity* enemy, float detectionRange, float attackRange, float movementSpeed, float attackDamage) {
     EnemyComponent* enemyComponent = (EnemyComponent*)calloc(1, sizeof(EnemyComponent));
@@ -79,7 +78,6 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
             if (enemyAnimator->playTime > enemyAnimator->currentAnimation->anim_dur - 10) {
                 damagePlayer(gameState, enemyComponent->attackDamage);
                 isDamageShown = true;
-                printf("L'ennemi frappe\n");
                 enemyAnimator->playTime = 0.0f;
                 enemyComponent->isAttacking = false;
             }

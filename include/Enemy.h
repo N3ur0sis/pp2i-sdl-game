@@ -96,3 +96,4 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
  */
 void initializeEnemyComponent(Entity* enemy, float detectionRange, float attackRange, float movementSpeed, float attackDamage);
 extern bool isDamageShown;
+extern bool isDamageShown;
