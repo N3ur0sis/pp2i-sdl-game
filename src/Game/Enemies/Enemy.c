@@ -280,114 +280,45 @@ Entity* create_skeleton(Scene* scene, float x, float y, float z, float scale) {
     return enemy;
 }
 
-void golemLogic(Scene* scene, GameState* gameState, Entity* golem, Entity* player) {
-    // float rotTarget = 0.0f;
-    // vec3 enemyDir;
-    // Model* golemModel = (Model*)getComponent(golem, COMPONENT_RENDERABLE);
-    // Model* playerModel = (Model*)getComponent(player, COMPONENT_RENDERABLE);
-    // Collider* playerCollider = (Collider*)getComponent(player,COMPONENT_COLLIDER);
-    // Animator* golemAnimator = (Animator*)getComponent(golem, COMPONENT_ANIMATOR);
-    // glm_vec3_sub(playerModel->position, golemModel->position, enemyDir);
-    // float enemyDist = glm_vec3_norm(enemyDir);
-    // glm_vec3_normalize(enemyDir);
-    // if (enemyDir[0]!=.0f || enemyDir[1]!=.0f || enemyDir[2]!=.0f) {
-    //     float omega = acos(glm_dot((vec3){0, 0, 1}, enemyDir));
-    //     if (enemyDir[0] < 0) {
-    //         omega = -omega;
-    //     }
-    //     float currentAngleDeg = glm_deg(golemModel->rotation[1]);
-    //     float targetAngleDeg = glm_deg(omega);
-    //     while (targetAngleDeg - currentAngleDeg > 180) {
-    //         targetAngleDeg -= 360;
-    //     }
-    //     while (targetAngleDeg - currentAngleDeg < -180) {
-    //         targetAngleDeg += 360;
-    //     }
-    //     rotTarget = glm_lerp(currentAngleDeg, targetAngleDeg, 0.1f);
-    // }
-    // if (enemyDist < 2.0f) {
-    //     if (!gameState->enemyIsAttacking) {
-    //         gameState->enemyIsAttacking = true;
-    //         golemAnimator->playTime = 0.0f;
-    //         golemAnimator->currentAnimation = (Animation*)getAnimationComponent(golem, "PunchAnimation");
-    //     }
-    //     if (golemAnimator->playTime > golemAnimator->currentAnimation->anim_dur - 10) {
-    //         gameState->playerHealth -= 10.0f;
-    //         golemAnimator->playTime = 0.0f;
-    //         gameState->enemyIsAttacking = false;
-    //     }
-    //     golemModel->rotation[1] = glm_rad(rotTarget);
-    // } else if (enemyDist < 15.0f) {
-    //         golemModel->rotation[1] = glm_rad(rotTarget);
-    //         gameState->enemyIsAttacking = false;
-    //         golemAnimator->currentAnimation = (Animation*)getAnimationComponent(golem, "WalkingAnimation");
-    //         glm_vec3_scale(enemyDir, 2 * scene->deltaTime, enemyDir);
-    //         glm_vec3_add(golemModel->position, enemyDir, golemModel->position);
-    //     }
-    //  else {
-    //     gameState->enemyIsAttacking = false;
-    //     golemAnimator->currentAnimation = (Animation*)getAnimationComponent(golem, "IdleAnimation");
-    // }
-}
 
-
-
-Entity* create_gobelin(Scene* scene,float x,float y,float z,float scale){
+Entity* create_gobelin(Scene* scene, float x, float y, float z, float scale) {
     Entity* enemy = createEntity(scene);
     if (enemy != NULL) {
         Model* gobelin = (Model*)calloc(1, sizeof(Model));
         ModelCreate(gobelin, "assets/models/Gobelin/GobelinIdle.dae");
-        glm_vec3_copy((vec3){x,y,z}, gobelin->position);
-        glm_vec3_copy((vec3){scale,scale,scale}, gobelin->scale);
+        gobelin->isRenderable = false; // Set initial visibility
+        glm_vec3_copy((vec3){x, y, z}, gobelin->position);
+        glm_vec3_copy((vec3){scale, scale, scale}, gobelin->scale);
         addComponent(enemy, COMPONENT_RENDERABLE, gobelin);
 
         Animation* IdleAnimation = AnimationCreate("assets/models/Gobelin/GobelinIdle.dae", gobelin, "IdleAnimation");
         Animation* DyingAnimation = AnimationCreate("assets/models/Gobelin/GobelinDying.dae", gobelin, "DyingAnimation");
         Animation* HitAnimation = AnimationCreate("assets/models/Gobelin/GobelinHitting.dae", gobelin, "HitAnimation");
-        Animation* SpearAnimation = AnimationCreate("assets/models/Gobelin/GobelinSpear.dae", gobelin, "SpearAnimation");
-        Animation* SwordAnimation = AnimationCreate("assets/models/Gobelin/GobelinSword.dae", gobelin, "SwordAnimation");
+        //Animation* SpearAnimation = AnimationCreate("assets/models/Gobelin/GobelinSpear.dae", gobelin, "SpearAnimation");
+        Animation* PunchAnimation = AnimationCreate("assets/models/Gobelin/GobelinSword.dae", gobelin, "PunchAnimation"); //SwordAnimation
         Animation* WalkingAnimation = AnimationCreate("assets/models/Gobelin/Mutant Walking.dae", gobelin, "WalkingAnimation");
-        
+
         addComponent(enemy, COMPONENT_ANIMATION, IdleAnimation);
         addComponent(enemy, COMPONENT_ANIMATION, DyingAnimation);
         addComponent(enemy, COMPONENT_ANIMATION, HitAnimation);
-        addComponent(enemy, COMPONENT_ANIMATION, SpearAnimation);
-        addComponent(enemy, COMPONENT_ANIMATION, SwordAnimation);
+        //addComponent(enemy, COMPONENT_ANIMATION, SpearAnimation);
+        addComponent(enemy, COMPONENT_ANIMATION, PunchAnimation); //censé etre swordanimation
         addComponent(enemy, COMPONENT_ANIMATION, WalkingAnimation);
-        
+
         Animator* gobelinAnimator = AnimatorCreate(IdleAnimation);
         addComponent(enemy, COMPONENT_ANIMATOR, gobelinAnimator);
+
+        // Adding EnemyComponent
+        EnemyComponent* enemyComponent = (EnemyComponent*)calloc(1, sizeof(EnemyComponent));
+        glm_vec3_zero(enemyComponent->direction);
+        enemyComponent->detectionRange = 20.0f;
+        enemyComponent->attackRange = 3.0f;
+        enemyComponent->movementSpeed = 3.0f;
+        enemyComponent->attackDamage = 5.0f;
+        enemyComponent->isAttacking = false;
+        enemyComponent->isAlive = true;
+        enemyComponent->health = 100.0f;
+        addComponent(enemy, COMPONENT_ENEMY, enemyComponent);
     }
     return enemy;
 }
-
-
-
-// Entity* create_skeleton(Scene* scene,float x,float y,float z,float scale){
-//     Entity* enemy = createEntity(scene);
-//     if (enemy != NULL) {
-//         Model* skeleton = (Model*)calloc(1, sizeof(Model));
-//         ModelCreate(skeleton, "assets/models/Skeleton/Breathing Idle.dae");
-//         glm_vec3_copy((vec3){x,y,z}, skeleton->position);
-//         glm_vec3_copy((vec3){scale,scale,scale}, skeleton->scale);
-//         addComponent(enemy, COMPONENT_RENDERABLE, skeleton);
-
-//         Animation* IdleAnimation = AnimationCreate("assets/models/Skeleton/Breathing Idle.dae", skeleton, "IdleAnimation");
-//         Animation* DyingAnimation = AnimationCreate("assets/models/Skeleton/Dying.dae", skeleton, "DyingAnimation");
-//         Animation* HitAnimation = AnimationCreate("assets/models/Skeleton/Standing React Large From Front.dae", skeleton, "HitAnimation");
-//         Animation* SpearAnimation = AnimationCreate("assets/models/Skeleton/Bayonet Stab.dae", skeleton, "SpearAnimation");
-//         Animation* SwordAnimation = AnimationCreate("assets/models/Skeleton/Sword And Shield Slash.dae", skeleton, "SwordAnimation");
-//         Animation* WalkingAnimation = AnimationCreate("assets/models/Skeleton/Sword And Shield Walk.dae", skeleton, "WalkingAnimation");
-        
-//         addComponent(enemy, COMPONENT_ANIMATION, IdleAnimation);
-//         addComponent(enemy, COMPONENT_ANIMATION, DyingAnimation);
-//         addComponent(enemy, COMPONENT_ANIMATION, HitAnimation);
-//         addComponent(enemy, COMPONENT_ANIMATION, SpearAnimation);
-//         addComponent(enemy, COMPONENT_ANIMATION, SwordAnimation);
-//         addComponent(enemy, COMPONENT_ANIMATION, WalkingAnimation);
-        
-//         Animator* skeletonAnimator = AnimatorCreate(IdleAnimation);
-//         addComponent(enemy, COMPONENT_ANIMATOR, skeletonAnimator);
-//     }
-//     return enemy;
-// }
