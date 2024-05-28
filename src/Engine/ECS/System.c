@@ -1,6 +1,7 @@
 #include <System.h>
 
 void renderSystem(Scene* scene, GameState* gamestate) {
+    drawHUD(scene, gamestate);
     glEnable(GL_DEPTH_TEST);
 
     // Render shadow maps for each light
@@ -85,6 +86,7 @@ void renderSystem(Scene* scene, GameState* gamestate) {
             LightUpdate(scene->shader, light);
         }
     }
+    
 }
 
 

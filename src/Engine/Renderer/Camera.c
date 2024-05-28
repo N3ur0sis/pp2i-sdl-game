@@ -28,8 +28,8 @@ Camera* camera_create(float posX, float posY, float posZ, float width, float hei
     camera->WorldUp[0] = 0.0f;
     camera->WorldUp[1] = 0.1f;
     camera->WorldUp[2] = 0.0f;
-    camera->Yaw = 0.0f;
-    camera->Pitch = -50.0f;
+    camera->Yaw = 130.0f;
+    camera->Pitch = -15.0f;
     camera->MouseSensitivity = 0.1f;
     camera->MovementSpeed = 2.5f;
     camera->Zoom = 60.0f;
@@ -83,12 +83,12 @@ void updateCameraVectors(Camera* camera){
 
 void cameraControl(Camera* camera){
    
-    // //Zoom Camera
-    // float zpos = getMousePosition(4);
-    // float zoffset = zpos - getMousePosition(5);
-    // setMousePosition(5, zpos);
-    // vec3 velocityZ;
-    // glm_vec3_scale(camera->Front, zoffset*1.5f, velocityZ);
-    // glm_vec3_add(camera->Position, velocityZ, camera->Position);
+    //Zoom Camera
+    //  float zpos = getMousePosition(4);
+    //  float zoffset = zpos - getMousePosition(5);
+    //  setMousePosition(5, zpos);
+    //  vec3 velocityZ;
+    //  glm_vec3_scale(camera->Front, zoffset*1.5f, velocityZ);
+    //  glm_vec3_add(camera->Position, velocityZ, camera->Position);
     updateCameraVectors(camera);
 }

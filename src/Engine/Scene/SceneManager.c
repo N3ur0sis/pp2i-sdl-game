@@ -67,5 +67,6 @@ void freeSceneManager(SceneManager* manager) {
 
 void SceneManagerUnloadCurrentScene(SceneManager* manager, int index) {
         manager->scenes[manager->currentSceneIndex]->unload(manager->scenes[manager->currentSceneIndex]);
+        manager->scenes[manager->currentSceneIndex] = NULL;
 }
 

@@ -7,6 +7,17 @@ bool pressingE = false;
 int click_counterMain = 0 ;
 bool is_clickingMain = false;
 
+/*Entity
+    Player
+    Sword
+    Map Part * 8
+    Fountain
+    Ground
+    Light
+    Blue Gem
+    Orange Gem
+
+*/
 
 void startMainScene(Scene* scene, GameState* gameState) {
     scene->shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
@@ -69,6 +80,11 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(city, COMPONENT_RENDERABLE, cityModel);
         compute_center_of_volume(cityModel);
         cityModel->isRenderable = false;
+
+        Collider* col = ColliderCreate("assets/models/main/Col/cityCol.obj");
+        glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
+        UpdateCollider(col);
+        addComponent(city, COMPONENT_COLLIDER, col);
     }
 
     Entity* debut = createEntity(scene);
@@ -78,53 +94,76 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(debut, COMPONENT_RENDERABLE, debutModel);
         compute_center_of_volume(debutModel);
         debutModel->isRenderable = false;
+
+        Collider* col = ColliderCreate("assets/models/main/Col/DebCol.obj");
+        glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
+        UpdateCollider(col);
+        addComponent(debut, COMPONENT_COLLIDER, col);
+        
     }
     
-    // Entity* foret1 = createEntity(scene);
-    // if (foret1 != NULL) {
-    //     Model* foret1Model = (Model*)calloc(1, sizeof(Model));
-    //     ModelCreate(foret1Model, "assets/models/main/foret1.obj");
-    //     addComponent(foret1, COMPONENT_RENDERABLE, foret1Model);
-    //     compute_center_of_volume(foret1Model);
-    //     foret1Model->isRenderable = false;
-    // }
+    Entity* foret1 = createEntity(scene);
+    if (foret1 != NULL) {
+        Model* foret1Model = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(foret1Model, "assets/models/main/foret1.obj");
+        addComponent(foret1, COMPONENT_RENDERABLE, foret1Model);
+        compute_center_of_volume(foret1Model);
+        foret1Model->isRenderable = false;
 
-    // Entity* foret2 = createEntity(scene);
-    // if (foret2 != NULL) {
-    //     Model* foret2Model = (Model*)calloc(1, sizeof(Model));
-    //     ModelCreate(foret2Model, "assets/models/main/foret2.obj");
-    //     addComponent(foret2, COMPONENT_RENDERABLE, foret2Model);
-    //     compute_center_of_volume(foret2Model);
-    //     foret2Model->isRenderable = false;
-    // }
+        Collider* col = ColliderCreate("assets/models/main/Col/Foret1Col.obj");
+        glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
+        UpdateCollider(col);
+        addComponent(foret1, COMPONENT_COLLIDER, col);
+    }
 
-    // Entity* foret3 = createEntity(scene);
-    // if (foret3 != NULL) {
-    //     Model* foret3Model = (Model*)calloc(1, sizeof(Model));
-    //     ModelCreate(foret3Model, "assets/models/main/foret3.obj");
-    //     addComponent(foret3, COMPONENT_RENDERABLE, foret3Model);
-    //     compute_center_of_volume(foret3Model);
-    //     foret3Model->isRenderable = false;
-    // }
+    Entity* foret2 = createEntity(scene);
+    if (foret2 != NULL) {
+        Model* foret2Model = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(foret2Model, "assets/models/main/foret2.obj");
+        addComponent(foret2, COMPONENT_RENDERABLE, foret2Model);
+        compute_center_of_volume(foret2Model);
+        foret2Model->isRenderable = false;
 
-    // Entity* lake = createEntity(scene);
-    // if (lake != NULL) {
-    //     Model* lakeModel = (Model*)calloc(1, sizeof(Model));
-    //     ModelCreate(lakeModel, "assets/models/main/lake.obj");
-    //     addComponent(lake, COMPONENT_RENDERABLE, lakeModel);
-    //     compute_center_of_volume(lakeModel);
-    //     lakeModel->isRenderable = false;
-    // }
-    // Entity* falaisestart = createEntity(scene);
-    // if (falaisestart != NULL) {
-    //     Model* falaisestartModel = (Model*)calloc(1, sizeof(Model));
-    //     ModelCreate(falaisestartModel, "assets/models/main/falaisestart.obj");
-    //     addComponent(falaisestart, COMPONENT_RENDERABLE, falaisestartModel);
-    //     compute_center_of_volume(falaisestartModel);
-    // }
+        Collider* col = ColliderCreate("assets/models/main/Col/Foret2Col.obj");
+        glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
+        UpdateCollider(col);
+        addComponent(foret2, COMPONENT_COLLIDER, col);
+    }
 
+    Entity* foret3 = createEntity(scene);
+    if (foret3 != NULL) {
+        Model* foret3Model = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(foret3Model, "assets/models/main/foret3.obj");
+        addComponent(foret3, COMPONENT_RENDERABLE, foret3Model);
+        compute_center_of_volume(foret3Model);
+        foret3Model->isRenderable = false;
 
-    
+        Collider* col = ColliderCreate("assets/models/main/Col/Foret3Col.obj");
+        glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
+        UpdateCollider(col);
+        addComponent(foret2, COMPONENT_COLLIDER, col);
+    }
+
+    Entity* lake = createEntity(scene);
+    if (lake != NULL) {
+        Model* lakeModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(lakeModel, "assets/models/main/lake.obj");
+        addComponent(lake, COMPONENT_RENDERABLE, lakeModel);
+        compute_center_of_volume(lakeModel);
+        lakeModel->isRenderable = false;
+
+        Collider* col = ColliderCreate("assets/models/main/Col/lakeCol.obj");
+        glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
+        UpdateCollider(col);
+        addComponent(foret2, COMPONENT_COLLIDER, col);
+    }
+    Entity* falaisestart = createEntity(scene);
+    if (falaisestart != NULL) {
+        Model* falaisestartModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(falaisestartModel, "assets/models/main/falaisestart.obj");
+        addComponent(falaisestart, COMPONENT_RENDERABLE, falaisestartModel);
+        compute_center_of_volume(falaisestartModel);
+    }
 
     Entity* main = createEntity(scene);
     if (main != NULL) {
@@ -132,6 +171,11 @@ void startMainScene(Scene* scene, GameState* gameState) {
         ModelCreate(mainModel, "assets/models/main/main.obj");
         addComponent(main, COMPONENT_RENDERABLE, mainModel);
         compute_center_of_volume(mainModel);
+
+        Collider* col = ColliderCreate("assets/models/main/Col/mainCol.obj");
+        glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
+        UpdateCollider(col);
+        addComponent(foret2, COMPONENT_COLLIDER, col);
     }
 
     
@@ -186,32 +230,16 @@ void startMainScene(Scene* scene, GameState* gameState) {
         compute_center_of_volume(fontaineModelnext);
     }    
 
-       
 
-
-    // if (foutainEntity != NULL) {
-    //     Model* foutainEntityModel = (Model*)calloc(1, sizeof(Model));
-    //     ModelCreate(foutainEntityModel, "assets/models/Fontaine/Fontaine1.obj");
-    //     addComponent(foutainEntity, COMPONENT_RENDERABLE, foutainEntityModel);
-    //     compute_center_of_volume(foutainEntityModel);
-
-
-    //     ((Model*)getComponent(foutainEntity, COMPONENT_RENDERABLE))->rotation[1] = glm_rad(-90.0f);
-    //     glm_vec3_copy((vec3){3.5f,3.5f,3.5}, ((Model*)getComponent(foutainEntity, COMPONENT_RENDERABLE))->scale);
-
-
-    //     Collider* foutainEntityCollider = ColliderCreate("assets/models/Fontaine/Fontaine1.obj");
-    //     glm_translate_make(foutainEntityCollider->transformMatrix, (vec3){-334.0f, 6.6f, 93.8f});
-    //     glm_scale_make(foutainEntityCollider->transformMatrix, (vec3){3.5f, 3.5f, 3.5f});
-    //     UpdateCollider(foutainEntityCollider);
-    //     addComponent(foutainEntity, COMPONENT_COLLIDER, foutainEntityCollider);
-    // }
-
-
-    /* Light Entity */
+    Entity* ground = createEntity(scene);
+    if (ground != NULL) {
+        Model* groundModel = (Model*)calloc(1, sizeof(Model));
+        ModelCreate(groundModel, "assets/models/main/ground.obj");
+        addComponent(ground, COMPONENT_RENDERABLE, groundModel);
+    }
     Entity* lightEntity = createEntity(scene);
     if (lightEntity != NULL) {
-        Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f, 0.1f, 500.0f);
+        Light* light = LightCreate(scene->shader, (vec4){-330, 10.0, 102.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f, 0.1f, 500.0f);
         addComponent(lightEntity, COMPONENT_LIGHT, light);
     }
 
@@ -258,11 +286,9 @@ void startMainScene(Scene* scene, GameState* gameState) {
 void updateMainScene(Scene* scene, GameState* gameState) {
     Camera* camera =scene->camera; 
     Entity* playerEntity = &scene->entities[0];
-    Entity* foutain = &scene->entities[5];
-    Entity* bluegem = &scene->entities[7];
-    Entity* greenGem = &scene->entities[8];
-    // Entity* marchand = &scene->entities[9];
-    // Entity* cariolle = &scene->entities[10];
+    Entity* bluegem = &scene->entities[13];
+    Entity* greenGem = &scene->entities[14];
+    Entity* foutain = &scene->entities[10];
 
     Model* playerModel = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE));
     Model* blueGemModel = ((Model*)getComponent(bluegem, COMPONENT_RENDERABLE));
@@ -340,16 +366,15 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     vec3 forestDir;
     glm_vec3_sub(playerModel->position,forestPos,forestDir);
     if (glm_vec3_norm(forestDir)<5.0f){
-        gameState->change = true;
         gameState->nextSceneIndex = 2;
         gameState->previousSceneIndex = 3;
+        ChangeSceneEvent(gameState->nextSceneIndex);
     }
 
     vec3 startPos = {-139.040665, 6.600000, 94.000000};
     vec3 startDir;
     glm_vec3_sub(playerModel->position,startPos,startDir);
     if (glm_vec3_norm(startDir)<3.0f){
-        gameState->change = true;
         gameState->nextSceneIndex = 0;
         gameState->previousSceneIndex = 3;
     }
@@ -372,6 +397,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
             ((Model*)foutain->components[0].data)->isRenderable = false;
             ((Model*)foutain->components[1].data)->isRenderable = true;
             gameState->indexFountain++;
+            isInsertingGem = false;
         }
         else{
             blueGemModel->position[0]-=0.01f;

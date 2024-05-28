@@ -19,10 +19,9 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
     EnemyComponent* enemyComponent = (EnemyComponent*)getComponent(enemy, COMPONENT_ENEMY);
     Model* enemyModel = (Model*)getComponent(enemy, COMPONENT_RENDERABLE);
     Animator* enemyAnimator = (Animator*)getComponent(enemy, COMPONENT_ANIMATOR);
-
     if (!enemyComponent->isAlive) {
         enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "golemDyingAnimation");
-        if (enemyAnimator->playTime > enemyAnimator->currentAnimation->anim_dur - 10) {
+        if(enemyAnimator->playTime>3000.f){
             enemyModel->isRenderable = false;
         }
         return;

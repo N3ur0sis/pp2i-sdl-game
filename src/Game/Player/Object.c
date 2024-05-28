@@ -28,7 +28,7 @@ char* checkIdObject(int id) {
 
     switch (id) {
         case 1 :
-            strcpy(path, "assets/images/Heart_Orange_1.png");
+            strcpy(path, "assets/images/potion_red.png");
             break;
         case 2 : 
             strcpy(path, "assets/images/Heart_Blue_1.png");

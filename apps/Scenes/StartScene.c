@@ -16,6 +16,7 @@ bool is_clicking = false;
 bool is_tabingStart = false;
 bool is_BarrierDestroyed;
 bool is_GemTaken = false;
+bool is_Healing = false;
 int click_counter = 0 ;
 Inventory* inventory;
 Inventory* marchantInventory;
@@ -32,18 +33,15 @@ void startStartScene(Scene* scene, GameState* gameState) {
     scene->textShader = LoadShaders("assets/shaders/text.vs","assets/shaders/text.fs");
 
     /* Create a scene camera */
-    scene->camera = camera_create(0, 0, 0, gameState->g_WindowWidth, gameState->g_WindowHeight);
+    scene->camera = camera_create(20, 22, -30, gameState->g_WindowWidth, gameState->g_WindowHeight);
     
     glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
-    /* Create a skybox */
-    scene->skybox = SkyboxCreate();
 
     /* Enemy Entity */
     Entity* golem = create_golemPurple(scene,3.0f,0.1f,-10.0f,0.5f);
 
     /* Player Entity */
     Entity* playerEntity = create_player(scene,28.0f,0.1f,7.0f);
-
     /* Sword Entity */
     Entity* swordEntity = createEntity(scene);
     if (swordEntity != NULL) {
@@ -155,10 +153,15 @@ void startStartScene(Scene* scene, GameState* gameState) {
     InventoryAddObjects(2, inventory, Object_createFromId(1));
     InventoryAddObjects(1, inventory, Object_createFromId(2));
 
-    /* Create a scene camera */
-    scene->camera = camera_create(0, 100, -100, gameState->g_WindowWidth, gameState->g_WindowHeight);
-    glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
-
+    Entity* arrow = createEntity(scene);
+    if (arrow){
+        Model* arrowModel = (Model*)calloc(1,sizeof(Model));
+        ModelCreate(arrowModel,"assets/models/Objet/Arrow/arrow.obj");
+        arrowModel->isRenderable = false;
+        glm_vec3_copy((vec3){10.0f, 10.0f, 10.0f}, arrowModel->scale);
+        arrowModel->rotation[1] = glm_rad(-90.0f);
+        addComponent(arrow, COMPONENT_RENDERABLE, arrowModel);
+    }
 
     /* Create a skybox */
     scene->skybox = SkyboxCreate();
@@ -176,7 +179,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
     Entity* chestOpenEntity = &scene->entities[6];
     Entity* startBarrierEntity = &scene->entities[7];
     Entity* blueGemEntity = &scene->entities[8];
-
+    Entity* arrowEntity = &scene->entities[9];
     
     Uint32 currentTime = SDL_GetTicks();
     bool* isBusy = &((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE))->isBusy;
@@ -193,7 +196,6 @@ void updateStartScene(Scene* scene, GameState* gameState) {
         RenderText("-10", (SDL_Color){255, 0, 0, 0}, gameState->g_WindowWidth / 45 + 140, 13 * gameState->g_WindowHeight / 15 + 20, 25, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         
     }
-
 
     if (gameState->isPlayerDead) {
         *isBusy = true;
@@ -228,7 +230,6 @@ void updateStartScene(Scene* scene, GameState* gameState) {
         }
     }
 
-        drawHUD(scene, gameState);
         Model* playerModel = (Model*)getComponent(playerEntity, COMPONENT_RENDERABLE);
         Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
         RigidBody* playerRigidbody = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
@@ -237,6 +238,18 @@ void updateStartScene(Scene* scene, GameState* gameState) {
 
 
         /* Game Logic */
+
+        if (getKeyState(SDLK_h) && !is_Healing){
+            is_Healing = true;
+            if (InventoryRemoveObject(inventory,1)){
+                gameState->playerHealth = gameState->max_health;
+            }
+        } else if (!getKeyState(SDLK_h)){
+            is_Healing = false;
+        }
+
+
+
         if (getKeyState(TAB) && !is_tabingStart) {
             is_tabingStart = true;
             if (inventory->isOpened) {
@@ -258,7 +271,36 @@ void updateStartScene(Scene* scene, GameState* gameState) {
             playerMovement(playerEntity, scene->deltaTime, scene->camera);
         }
 
-            
+        Model* arrowModel = (Model*)getComponent(arrowEntity, COMPONENT_RENDERABLE);
+        if (getKeyState(SDLK_g)&&!arrowModel->isRenderable){
+            glm_vec3_copy(playerModel->position,arrowModel->position);
+            glm_vec3_add(arrowModel->position,(vec3){0.0f,2.0f,0.0f},arrowModel->position);
+            arrowModel->rotation[1] = playerModel->rotation[1]-glm_rad(90.0f);
+            arrowModel->isRenderable = true;
+        }
+        if (arrowModel->isRenderable){
+            arrowModel->position[0] += cosf(arrowModel->rotation[1])/10;
+            arrowModel->position[2] -= sinf(arrowModel->rotation[1])/10;
+            vec3 arrowDir;
+            glm_vec3_sub(playerModel->position,arrowModel->position,arrowDir);
+            if (glm_vec3_norm(arrowDir)>20.0f){
+                arrowModel->isRenderable = false;
+            }
+            for (int i =0;i<scene->numEntities;i++){
+                Entity* entity = &scene->entities[i];
+                EnemyComponent* ennemy = (EnemyComponent*)getComponent(entity,COMPONENT_ENEMY);
+                Model* ennemyModel = (Model*)getComponent(entity,COMPONENT_RENDERABLE);
+                if (ennemy&&ennemyModel->isRenderable){
+                    glm_vec3_sub(ennemyModel->position,arrowModel->position,arrowDir);
+                    if (glm_vec3_norm(arrowDir)<2.5f){
+                        ennemy->health-=playerComponent->attackDamage;
+                        arrowModel->isRenderable = false;
+                        printf("%f\n",ennemy->health);
+                }
+            }
+        }}
+        
+    
 
         if(checkpoint_sword){
                                         ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))->isRenderable = true;
@@ -269,7 +311,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
 
         }
 
-        if (checkpoint_sword && !(enemyModel->isRenderable) && !is_GemTaken) {
+        if (checkpoint_sword && !(enemyModel->isRenderable) && !is_GemTaken && !((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->isRenderable) {
             glm_vec3_copy(((Model*)getComponent(enemy, COMPONENT_RENDERABLE))->position,((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position);
             ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->position[1] = 1.5;
             ((Model*)getComponent(blueGemEntity, COMPONENT_RENDERABLE))->isRenderable = true;
@@ -433,17 +475,5 @@ void updateStartScene(Scene* scene, GameState* gameState) {
 
 
 void unloadStartScene(Scene* scene){
-    DeleteShaders(scene->shader);
-    DeleteShaders(scene->textShader);
-    SkyboxDelete(scene->skybox);
-
-    if (scene->camera) {
-        free(scene->camera);
-    }
-
-    for (int i = 0; i < scene->numEntities; i++) {
-        freeEntity(&scene->entities[i]);
-    }
-
-    scene->numEntities = 0;
+    freeScene(scene);
 }
