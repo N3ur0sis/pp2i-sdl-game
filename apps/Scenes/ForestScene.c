@@ -16,6 +16,7 @@ Entity of this scene (order of their index):
     Dungeon Door
 */
 
+bool isPlaying;
 
 void ForestMainScene(Scene* scene, GameState* gameState){
     float x;
@@ -100,7 +101,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         Model* flame = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame, "assets/models/Foret/Flame.obj");
         if (!gameState->isForestDungeonDone){
-        flame->isRenderable = false;
+        //flame->isRenderable = false;
          }  
         glm_vec3_copy((vec3){50.5f,9.8f,112.0f},flame->position);
         addComponent(flame1, COMPONENT_RENDERABLE, flame);
@@ -111,7 +112,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         Model* flame_2 = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame_2, "assets/models/Foret/Flame.obj");
         if (!gameState->isForestDungeonDone){
-        flame_2->isRenderable = false;
+        //flame_2->isRenderable = false;
          }  
         glm_vec3_copy((vec3){62.3f,9.8f,156.0f},flame_2->position);
         addComponent(flame2, COMPONENT_RENDERABLE, flame_2);
@@ -122,7 +123,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         Model* flame_3 = (Model*)calloc(1, sizeof(Model));
         ModelCreate(flame_3, "assets/models/Foret/Flame.obj");
         if (!gameState->isForestDungeonDone){
-        flame_3->isRenderable = false;
+        //flame_3->isRenderable = false;
          }  
         glm_vec3_copy((vec3){-59.0f,9.8f,146.50f},flame_3->position);
         addComponent(flame3, COMPONENT_RENDERABLE, flame_3);
@@ -195,7 +196,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
         addComponent(spearGobEntity, COMPONENT_ATTACHMENT, spearAttachment);
     }*/
     
-
+    isPlaying= false;
     
 
 }
@@ -214,13 +215,7 @@ void updateForestScene(Scene* scene, GameState* gameState){
     if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation"))){
         playerAnimator->playTime = 0.0f;
     }
-    if (!playerModel->isBusy){
-        playerMovement(playerEntity, scene->deltaTime, scene->camera);
-        }
-    
-    if (getKeyState(SDLK_p)){
-        printf("Player Position : %f %f\n",playerModel->position[0],playerModel->position[2]);
-    }
+
     /*Four flames logic */
     SDL_Color color_black = {0, 0, 0, 0};
     Entity* flame1 = &scene->entities[5];
@@ -233,32 +228,44 @@ void updateForestScene(Scene* scene, GameState* gameState){
     Model* flame4Model = (Model*)getComponent(flame4, COMPONENT_RENDERABLE);
     if (!flame1Model->isRenderable){
         float d1 = getDist(playerModel,flame1Model);
-        if ((d1<FLAMEDIST&&getKeyState(SDLK_e))){
-            flame1Model->isRenderable = true;
-            playerModel->isBusy = true;
+        if (d1<FLAMEDIST){
+            RenderText("Appuyer sur E pour interagir", (SDL_Color){255,255,255,0}, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+            if (getKeyState(SDLK_e)){
+                flame1Model->isRenderable = true;
+                playerModel->isBusy = true;
+            }
         }
     }
     if (!flame2Model->isRenderable){
         float d2 = getDist(playerModel,flame2Model);
-        if ((d2<FLAMEDIST&&getKeyState(SDLK_e))){
-            flame2Model->isRenderable = true;
-            playerModel->isBusy = true;  
+        if (d2<FLAMEDIST){
+            RenderText("Appuyer sur E pour interagir", (SDL_Color){255,255,255,0}, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+            if (getKeyState(SDLK_e)){
+                flame2Model->isRenderable = true;
+                playerModel->isBusy = true;  
+            }
         }
         
     }
     if (!flame3Model->isRenderable){
         float d3 = getDist(playerModel,flame3Model);
-        if ((d3<FLAMEDIST&&getKeyState(SDLK_e))){
-            flame3Model->isRenderable = true;
-            playerModel->isBusy = true;
+        if (d3<FLAMEDIST){
+            RenderText("Appuyer sur E pour interagir", (SDL_Color){255,255,255,0}, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+            if (getKeyState(SDLK_e)){
+                flame3Model->isRenderable = true;
+                playerModel->isBusy = true;
             
+            }
         }
     }
     if (!flame4Model->isRenderable){
          float d4 = getDist(playerModel,flame4Model);
-         if ((d4<FLAMEDIST&&getKeyState(SDLK_e))){
-            flame4Model->isRenderable = true;
-            playerModel->isBusy = true;
+         if (d4<FLAMEDIST){
+            RenderText("Appuyer sur E pour interagir", (SDL_Color){255,255,255,0}, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+            if (getKeyState(SDLK_e)){
+                flame4Model->isRenderable = true;
+                playerModel->isBusy = true;
+            }
             
         }
     }
@@ -273,20 +280,23 @@ void updateForestScene(Scene* scene, GameState* gameState){
         int channel;
         Mix_Chunk *sound;
         if (dungeonDoorModel->isRenderable){
-            if (dungeonDoorModel->position[1]>10.0f){
+            if (dungeonDoorModel->position[1]>5.0f){
                 Mix_HaltChannel(channel);
                 dungeonDoorModel->isRenderable = false;
                  playerModel->isBusy = false;
+                 isPlaying = false;
             }
             else{
-                sound = Mix_LoadWAV("assets/sound/hugedoor.wav");
-                Mix_VolumeChunk(sound, MIX_MAX_VOLUME / 4);
-                Mix_PlayChannel(-1, sound, 0);
-                channel = Mix_PlayChannel(-1, sound, 0);
-                glm_vec3_copy((vec3){-6.0f,30.0f,160.0f},camera->Position);
-                camera->Yaw = 90.0f;
-                dungeonDoorModel->position[1]+=0.01f;
-                playerModel->isBusy = true;
+                if (!isPlaying){
+                    sound = Mix_LoadWAV("assets/sound/hugedoor.wav");
+                    Mix_VolumeChunk(sound, MIX_MAX_VOLUME / 4);
+                    channel = Mix_PlayChannel(-1, sound, 0);
+                    isPlaying = true;
+                    playerModel->isBusy = true;
+                    glm_vec3_copy((vec3){-6.0f,30.0f,160.0f},camera->Position);
+                    camera->Yaw = 90.0f;
+                    updateCameraVectors(camera);
+                }  
             }
         }else{
             vec3 DonjonPosition ;
@@ -294,12 +304,17 @@ void updateForestScene(Scene* scene, GameState* gameState){
             glmc_vec3_copy((vec3){-7.4f,10.0f, 168.69f},DonjonPosition);
             glm_vec3_sub( playerModel->position, DonjonPosition, DonjonDir);
             float DonjonDist = glm_vec3_norm(DonjonDir);
-            if (DonjonDist<1.0f&&getKeyState(SDLK_e)){
+            if (DonjonDist<2.0f){
+                RenderText("Appuyer sur E pour entrer", (SDL_Color){255,255,255,0}, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
+                if (getKeyState(SDLK_e)){
                 gameState ->nextSceneIndex = 1;
                 gameState->previousSceneIndex = 2;
                 ChangeSceneEvent(gameState->nextSceneIndex);
-        }}
+        }}}
         
+    }
+    if (isPlaying){
+        dungeonDoorModel->position[1]+=0.01f;
     }
     vec3 mainPos= {-0.5, 10.1, 25.0};
     vec3 mainDir;
@@ -309,6 +324,7 @@ void updateForestScene(Scene* scene, GameState* gameState){
         gameState->previousSceneIndex = 2;
         ChangeSceneEvent(gameState->nextSceneIndex);
     }
+
 
 }
 

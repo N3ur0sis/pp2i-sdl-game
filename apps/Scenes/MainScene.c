@@ -288,13 +288,9 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     Model* blueGemModel = ((Model*)getComponent(bluegem, COMPONENT_RENDERABLE));
     Model* greenGemModel = ((Model*)getComponent(greenGem, COMPONENT_RENDERABLE));
 
-    // printf("green gem position : %f, %f, %f\n",greenGemModel->position[0],greenGemModel->position[1],greenGemModel->position[2]);
     float x = playerModel->position[0];
     float y = playerModel->position[2];
-    // float z = playerModel->position[2];
-    if (getKeyState(SDLK_p)){
-        printf("Le joueur est en %f, %f, %f\n",playerModel->position[0],playerModel->position[1],playerModel->position[2]);
-    }
+
     for (int i = 2;i<NBPARTMAP+1;i++){
         Entity* map = &scene->entities[i];
         Model* mapModel = ((Model*)getComponent(map, COMPONENT_RENDERABLE));
@@ -425,7 +421,6 @@ void updateMainScene(Scene* scene, GameState* gameState) {
 
 
     if (x < -367.0f && x > -372.75f && y < 228.5f && y > 220.5f && !*isBusy) {
-        printf("marchand\n");
         RenderText("Appuyer sur E pour interagir", (SDL_Color){255,255,255,0}, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         if (getKeyState(SDLK_e)) {
             *isBusy = true;
