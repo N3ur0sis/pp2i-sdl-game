@@ -295,10 +295,10 @@ void updateMainScene(Scene* scene, GameState* gameState) {
         Model* mapModel = ((Model*)getComponent(map, COMPONENT_RENDERABLE));
         vec3 mapDir;
         glm_vec3_sub(playerModel->position,mapModel->center,mapDir);
-        if (mapModel->isRenderable && glm_vec3_norm(mapDir)>=150.0f){
+        if (mapModel->isRenderable && glm_vec3_norm(mapDir)>=180.0f){
             mapModel->isRenderable = false;
         }
-        else if(!mapModel->isRenderable && glm_vec3_norm(mapDir)<150.0f){
+        else if(!mapModel->isRenderable && glm_vec3_norm(mapDir)<180.0f){
             mapModel->isRenderable = true;
         }
     }
@@ -333,6 +333,13 @@ void updateMainScene(Scene* scene, GameState* gameState) {
 
         
         heal(gameState, inventory, &is_HealingMain);
+
+
+
+        updatePlayerAnimator(playerEntity,gameState);
+        if (!*isBusy) {
+            playerMovement(playerEntity, scene->deltaTime, scene->camera);
+        }
 
 
         if (getKeyState(TAB) && !is_tabingMain) {
