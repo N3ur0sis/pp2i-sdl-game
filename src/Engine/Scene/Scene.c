@@ -69,7 +69,10 @@ void* freeEntity(Entity* e){
     if (component){
         FreeRigidBody((RigidBody*)component);
         printf("Body free\n");}
-
+    component = getComponent(e, COMPONENT_RIGIDBODY);
+    if (component){
+        FreeRigidBody((RigidBody*)component);
+        printf("Body free\n");}
 
 }
 

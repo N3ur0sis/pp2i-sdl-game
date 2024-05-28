@@ -58,39 +58,3 @@ void freeRoom(Room* room);
  */
 void freeLRoom(L_Room* l);
 
-/**
- * @brief Function to initialize a room.
- * 
- * This function initializes a room.
- * 
- * @param room Pointer to the room.
- */
-void initializeRoom(Room* room);
-
-/**
- * @brief Function to initialize a Boss room.
- * 
- * This function initializes a Boss room.
- * 
- * @param room Pointer to the room.
- */
-void initializeBossRoom(Room *room);
-
-/**
- * @brief Function to initialize a Loot room.
- * 
- * This function initializes a Loot room.
- * 
- * @param room Pointer to the room.
- */
-void initializeLootRoom(Room *room);
-
-/**
- * @brief Function to initialize a Fight room.
- * 
- * This function initializes a Fight room.
- * 
- * @param room Pointer to the room.
- */
-void initializeFightRoom(Room *room);
-
