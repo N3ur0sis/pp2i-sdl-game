@@ -51,7 +51,7 @@ void ForestMainScene(Scene* scene, GameState* gameState){
     /* Light Entity */
     Entity* lightEntity = createEntity(scene);
     if (lightEntity != NULL) {
-        Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, 1.8, 0}, (vec3){ 0.3f, 0.3f, 0.4f }, 0.0001f, 0.1f,-1000.0f,500.0f);
+        Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, 1.8, 0}, (vec3){ 0.3f, 0.3f, 0.4f }, 0.0001f, 0.1f,-1000.0f,500.0f,100.0f);
         addComponent(lightEntity, COMPONENT_LIGHT, light);
     }
 

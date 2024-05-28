@@ -31,4 +31,4 @@ typedef struct _ShadowMap{
  * @param farz Far z value.
  * @return Pointer to the shadow map.
  */
-ShadowMap* ShadowMapCreate(vec3 position, Shader* shader,float nearz, float farz);
+ShadowMap* ShadowMapCreate(vec3 position, Shader* shader,float nearz, float farz,float ortho);
