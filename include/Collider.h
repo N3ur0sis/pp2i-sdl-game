@@ -6,7 +6,7 @@
 #pragma once
 #include <Model.h>
 
-#define MAXCOLLIDER 2000    /**< Maximum number of colliders */
+#define MAXCOLLIDER 3000    /**< Maximum number of colliders */
 
 /**
  * @brief Structure representing a collider.

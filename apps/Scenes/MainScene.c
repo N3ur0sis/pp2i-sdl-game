@@ -6,11 +6,12 @@ bool isInsertingGem = false;
 bool pressingE = false;
 int click_counterMain = 0 ;
 bool is_clickingMain = false;
+bool is_HealingMain = false;
 
 /*Entity
     Player
     Sword
-    Map Part * 8
+    Map Part * 7
     Fountain
     Ground
     Light
@@ -48,8 +49,6 @@ void startMainScene(Scene* scene, GameState* gameState) {
             
     }
     Entity* playerEntity = create_player(scene,x,y,z);
-    Model* playerModel = (Model*)calloc(1, sizeof(Model));
-    playerModel->rotation[1] = glm_rad(rot);
     
     /* Sword Entity */
     Entity* swordEntity = createEntity(scene);
@@ -95,7 +94,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         compute_center_of_volume(debutModel);
         debutModel->isRenderable = false;
 
-        Collider* col = ColliderCreate("assets/models/main/Col/DebCol.obj");
+        Collider* col = ColliderCreate("assets/models/main/Col/debutCol.obj");
         glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
         UpdateCollider(col);
         addComponent(debut, COMPONENT_COLLIDER, col);
@@ -110,7 +109,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         compute_center_of_volume(foret1Model);
         foret1Model->isRenderable = false;
 
-        Collider* col = ColliderCreate("assets/models/main/Col/Foret1Col.obj");
+        Collider* col = ColliderCreate("assets/models/main/Col/foret1Col.obj");
         glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
         UpdateCollider(col);
         addComponent(foret1, COMPONENT_COLLIDER, col);
@@ -124,7 +123,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         compute_center_of_volume(foret2Model);
         foret2Model->isRenderable = false;
 
-        Collider* col = ColliderCreate("assets/models/main/Col/Foret2Col.obj");
+        Collider* col = ColliderCreate("assets/models/main/Col/foret2Col.obj");
         glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
         UpdateCollider(col);
         addComponent(foret2, COMPONENT_COLLIDER, col);
@@ -138,10 +137,10 @@ void startMainScene(Scene* scene, GameState* gameState) {
         compute_center_of_volume(foret3Model);
         foret3Model->isRenderable = false;
 
-        Collider* col = ColliderCreate("assets/models/main/Col/Foret3Col.obj");
+        Collider* col = ColliderCreate("assets/models/main/Col/foret3Col.obj");
         glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
         UpdateCollider(col);
-        addComponent(foret2, COMPONENT_COLLIDER, col);
+        addComponent(foret3, COMPONENT_COLLIDER, col);
     }
 
     Entity* lake = createEntity(scene);
@@ -155,15 +154,9 @@ void startMainScene(Scene* scene, GameState* gameState) {
         Collider* col = ColliderCreate("assets/models/main/Col/lakeCol.obj");
         glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
         UpdateCollider(col);
-        addComponent(foret2, COMPONENT_COLLIDER, col);
+        addComponent(lake, COMPONENT_COLLIDER, col);
     }
-    Entity* falaisestart = createEntity(scene);
-    if (falaisestart != NULL) {
-        Model* falaisestartModel = (Model*)calloc(1, sizeof(Model));
-        ModelCreate(falaisestartModel, "assets/models/main/falaisestart.obj");
-        addComponent(falaisestart, COMPONENT_RENDERABLE, falaisestartModel);
-        compute_center_of_volume(falaisestartModel);
-    }
+
 
     Entity* main = createEntity(scene);
     if (main != NULL) {
@@ -175,7 +168,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
         Collider* col = ColliderCreate("assets/models/main/Col/mainCol.obj");
         glm_translate_make(col->transformMatrix, (vec3){0.0f, -1.0f, 0.0f});
         UpdateCollider(col);
-        addComponent(foret2, COMPONENT_COLLIDER, col);
+        addComponent(main, COMPONENT_COLLIDER, col);
     }
 
     
@@ -239,7 +232,7 @@ void startMainScene(Scene* scene, GameState* gameState) {
     }
     Entity* lightEntity = createEntity(scene);
     if (lightEntity != NULL) {
-        Light* light = LightCreate(scene->shader, (vec4){-330, 10.0, 102.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f, 0.1f, 500.0f);
+        Light* light = LightCreate(scene->shader, (vec4){1, 10.0, -1.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f, -1000.1f, 1000.0f,1000.0f);
         addComponent(lightEntity, COMPONENT_LIGHT, light);
     }
 
@@ -339,22 +332,18 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     Model* blueGemModel = ((Model*)getComponent(bluegem, COMPONENT_RENDERABLE));
     Model* greenGemModel = ((Model*)getComponent(greenGem, COMPONENT_RENDERABLE));
 
-    // printf("green gem position : %f, %f, %f\n",greenGemModel->position[0],greenGemModel->position[1],greenGemModel->position[2]);
     float x = playerModel->position[0];
     float y = playerModel->position[2];
-    // float z = playerModel->position[2];
-    if (getKeyState(SDLK_p)){
-        printf("Le joueur est en %f, %f, %f\n",playerModel->position[0],playerModel->position[1],playerModel->position[2]);
-    }
+
     for (int i = 2;i<NBPARTMAP+1;i++){
         Entity* map = &scene->entities[i];
         Model* mapModel = ((Model*)getComponent(map, COMPONENT_RENDERABLE));
         vec3 mapDir;
         glm_vec3_sub(playerModel->position,mapModel->center,mapDir);
-        if (mapModel->isRenderable && glm_vec3_norm(mapDir)>=150.0f){
+        if (mapModel->isRenderable && glm_vec3_norm(mapDir)>=180.0f){
             mapModel->isRenderable = false;
         }
-        else if(!mapModel->isRenderable && glm_vec3_norm(mapDir)<150.0f){
+        else if(!mapModel->isRenderable && glm_vec3_norm(mapDir)<180.0f){
             mapModel->isRenderable = true;
         }
     }
@@ -386,6 +375,16 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     if (playerEntity) {
         Animator* playerAnimator = (Animator*)getComponent(playerEntity, COMPONENT_ANIMATOR);
         RigidBody* playerRigidbody = (RigidBody*)getComponent(playerEntity, COMPONENT_RIGIDBODY);
+
+        
+        heal(gameState, inventory, &is_HealingMain);
+
+
+
+        updatePlayerAnimator(playerEntity,gameState);
+        if (!*isBusy) {
+            playerMovement(playerEntity, scene->deltaTime, scene->camera);
+        }
 
 
         if (getKeyState(TAB) && !is_tabingMain) {
@@ -477,7 +476,6 @@ void updateMainScene(Scene* scene, GameState* gameState) {
 
 
     if (x < -367.0f && x > -372.75f && y < 228.5f && y > 220.5f && !*isBusy) {
-        printf("marchand\n");
         RenderText("Appuyer sur E pour interagir", (SDL_Color){255,255,255,0}, gameState->g_WindowWidth /2, gameState->g_WindowHeight / 15 + 50, 20, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program);
         if (getKeyState(SDLK_e)) {
             *isBusy = true;

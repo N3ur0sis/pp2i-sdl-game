@@ -14,8 +14,8 @@ SceneManager* SceneManagerInit() {
     manager->gameState.playerHealth = manager->gameState.max_health;
     manager->gameState.inventory = InventoryCreate(500);
     manager->gameState.marchantInventory = InventoryCreate(500);
-    manager->gameState.g_WindowWidth = 1280;
-    manager->gameState.g_WindowHeight = 720;
+    manager->gameState.g_WindowWidth = 1920;
+    manager->gameState.g_WindowHeight = 1080;
     manager->gameState.isPlayerDead = false;
     manager->gameState.change = false;
     manager->gameState.nextSceneIndex = -1;
@@ -27,7 +27,7 @@ SceneManager* SceneManagerInit() {
     manager->gameState.pauseMenu = NULL;
     manager->gameState.restarting = false;
     manager->gameState.mainMenuOpen = true;
-    manager->gameState.money = 1000;
+    manager->gameState.money = 0;
     manager->gameState.fullscreen = false;
     
     return manager;

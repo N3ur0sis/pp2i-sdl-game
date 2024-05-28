@@ -14,6 +14,9 @@ Entity of this scene (order of their index):
     GEM
 */
 
+bool is_HealingDungeon = false;
+
+
 void DungeonMainScene(Scene* scene, GameState* gameState) {
     /* Load and compile shaders */
     scene->shader = LoadShaders("assets/shaders/default.vs", "assets/shaders/default.fs");
@@ -30,7 +33,7 @@ void DungeonMainScene(Scene* scene, GameState* gameState) {
     /* Light Entity */
     Entity* lightEntity = createEntity(scene);
     if (lightEntity != NULL) {
-        Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f,0.1f,500.0f);
+        Light* light = LightCreate(scene->shader, (vec4){1.0, 1.0, -0.8, 0}, (vec3){0.5, 0.4, 0.2}, 1.0f, 0.9f,0.1f,500.0f,100.0f);
         addComponent(lightEntity, COMPONENT_LIGHT, light);
     }
 
@@ -138,6 +141,10 @@ void updateDungeonScene(Scene* scene, GameState* gameState) {
     if (getKeyState(SDLK_p)){
         printf("Player Position : %f %f\n",playerModel->position[0],playerModel->position[2]);
     }
+    Inventory* inventory = gameState->inventory;
+
+    heal(gameState, inventory, &is_HealingDungeon);
+
     if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)) || playerAnimator->currentAnimation == (Animation*)getAnimationComponent(playerEntity, "playerAttackAnimation"))){
             playerAnimator->playTime = 0.0f;
         }

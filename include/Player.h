@@ -162,3 +162,4 @@ void player_attack(Entity* player,Entity* enemy,GameState* gameState);
  */
 void playSoundPlayer(Entity* player,GameState* gamestate);
 void drawHUD(Scene* scene, GameState* gamestate);
+void heal(GameState* gameState, Inventory* inventory, bool* is_Healing);

@@ -1,6 +1,6 @@
 #include <ShadowMap.h>
 
-ShadowMap* ShadowMapCreate(vec3 position, Shader* shader,float nearz, float farz){
+ShadowMap* ShadowMapCreate(vec3 position, Shader* shader,float nearz, float farz,float ortho){
 
     ShadowMap* shadowMap = (ShadowMap*)calloc(1,sizeof(ShadowMap));
     shadowMap->shadowMapShader = LoadShaders("assets/shaders/shadowMap.vs", "assets/shaders/shadowMap.fs");
@@ -23,7 +23,7 @@ ShadowMap* ShadowMapCreate(vec3 position, Shader* shader,float nearz, float farz
     mat4 orthoProj, lightView;
     vec3 lighPos;
     glm_vec3_scale(position, 30.0f, lighPos);
-    glm_ortho(-100.0f, 100.0f, -100.0f, 100.0f, nearz,farz,orthoProj);
+    glm_ortho(-ortho, ortho, -ortho, ortho, nearz,farz,orthoProj);
     glm_lookat( lighPos, (vec3){0.0f,0.0f,0.0f},(vec3){0.0f,1.0f,0.0f}, lightView);
     glm_mat4_mul(orthoProj,lightView,shadowMap->depthMatrix);
 
