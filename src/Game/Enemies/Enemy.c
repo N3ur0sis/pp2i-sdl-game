@@ -20,9 +20,9 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
     Animator* enemyAnimator = (Animator*)getComponent(enemy, COMPONENT_ANIMATOR);
     if (!enemyComponent->isAlive) {
         enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "DyingAnimation");
-        if(enemyAnimator->playTime>3000.f){
+        if(enemyAnimator->playTime>=3000.f){
             enemyModel->isRenderable = false;
-            gameState->money += 10;
+            // gameState->money += 35;
         }
         return;
     }

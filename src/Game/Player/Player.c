@@ -126,12 +126,14 @@ void updatePlayerAnimator(Entity* playerEntity, GameState* gameState) {
 
 
     if(playerRigidbody->speed == 8.0f){
+		printf("speed : %f\n",playerRigidbody->speed);
         if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)))){
         	playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
     	}else{
 	   		playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerRunningAnimation");
     	}
     }else if(playerRigidbody->speed == 5.0f){
+		printf("speed : %f\n",playerRigidbody->speed);
         if(!((getKeyState(SDLK_z) || getKeyState(SDLK_d) || getKeyState(SDLK_q) || getKeyState(SDLK_s)))){
         	playerAnimator->currentAnimation = (Animation*)getAnimationComponent(playerEntity, "playerIdleAnimation");
     	}else{
