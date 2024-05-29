@@ -19,7 +19,7 @@
 int main(void){
 
     /* Initialize the Engine */
-    Application* game = ApplicationCreate(1280,720,"GAME");
+    Application* game = ApplicationCreate(1920,1080,"GAME");
 
     /*Initialize the Scene Manager*/
     SceneManager* sceneManager = SceneManagerInit();
@@ -38,7 +38,7 @@ int main(void){
     sceneManager->gameState.pauseMenu = menu;
 
     /* Set Default Current Scene */
-    sceneManager->gameState.currentSceneIndex = 0;
+    sceneManager->gameState.currentSceneIndex = 2;
     SceneManagerSetCurrentScene(sceneManager, sceneManager->gameState.currentSceneIndex);
 
 

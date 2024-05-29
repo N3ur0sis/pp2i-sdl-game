@@ -38,7 +38,7 @@ void startStartScene(Scene* scene, GameState* gameState) {
     glUniform3fv(scene->shader->m_locations.cameraPosition, 1, scene->camera->Position);
 
     /* Enemy Entity */
-    Entity* golem = create_golemPurple(scene,3.0f,0.1f,-10.0f,0.5f);
+    Entity* golem = create_golemBlue(scene,3.0f,0.1f,-10.0f,1.0f);
 
     /* Player Entity */
     Entity* playerEntity = create_player(scene,28.0f,0.1f,7.0f);

@@ -307,31 +307,30 @@ void updateMainScene(Scene* scene, GameState* gameState) {
     
     Camera* camera =scene->camera; 
     Entity* playerEntity = &scene->entities[0];
-    Entity* bluegem = &scene->entities[13];
-    Entity* greenGem = &scene->entities[14];
+    Entity* bluegem = &scene->entities[12];
+    Entity* greenGem = &scene->entities[13];
     Entity* foutain = &scene->entities[9];
-    Entity* gobelin1 = &scene->entities[16];
+    Entity* gobelin1 = &scene->entities[17];
     updateEnemy(gobelin1, playerEntity, scene, gameState, scene->deltaTime);
     
-    Entity* gobelin2 = &scene->entities[17];
+    Entity* gobelin2 = &scene->entities[18];
     updateEnemy(gobelin2, playerEntity, scene, gameState, scene->deltaTime);
 
-    Entity* gobelin3 = &scene->entities[18];
+    Entity* gobelin3 = &scene->entities[19];
     updateEnemy(gobelin3, playerEntity, scene, gameState, scene->deltaTime);
 
-    Entity* gobelin4 = &scene->entities[19];
+    Entity* gobelin4 = &scene->entities[20];
     updateEnemy(gobelin4, playerEntity, scene, gameState, scene->deltaTime);
 
-    Entity* gobelin5 = &scene->entities[20];
+    Entity* gobelin5 = &scene->entities[21];
     updateEnemy(gobelin5, playerEntity, scene, gameState, scene->deltaTime);
 
-    Entity* gobelin6 = &scene->entities[21];
+    Entity* gobelin6 = &scene->entities[22];
     updateEnemy(gobelin6, playerEntity, scene, gameState, scene->deltaTime);
-
-    Entity* gobelin7 = &scene->entities[22];
+    Entity* gobelin7 = &scene->entities[23];
     updateEnemy(gobelin7, playerEntity, scene, gameState, scene->deltaTime);
 
-    Entity* gobelin8 = &scene->entities[23];
+    Entity* gobelin8 = &scene->entities[16];
     updateEnemy(gobelin8, playerEntity, scene, gameState, scene->deltaTime);
 
     Model* playerModel = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE));
@@ -391,8 +390,8 @@ void updateMainScene(Scene* scene, GameState* gameState) {
 
 
         
+        updatePlayerAnimator(playerEntity,gameState);
         if (!*isBusy) {
-            updatePlayerAnimator(playerEntity,gameState);
             playerMovement(playerEntity, scene->deltaTime, scene->camera);
         }
 
@@ -413,8 +412,8 @@ void updateMainScene(Scene* scene, GameState* gameState) {
         if (inventory->isOpened) {
             InventoryPrint(inventory, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program, 0, 0);
         }
-        player_attack(playerEntity, gobelin1, gameState);
-        playerMovement(playerEntity, scene->deltaTime, scene->camera);
+        // player_attack(playerEntity, gobelin1, gameState);
+        // playerMovement(playerEntity, scene->deltaTime, scene->camera);
     }   
 
     vec3 forestPos= {-324.09, 6.60, 301.27};

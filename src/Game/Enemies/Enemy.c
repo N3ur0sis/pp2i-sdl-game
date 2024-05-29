@@ -86,7 +86,7 @@ void updateEnemy(Entity* enemy, Entity* player, Scene* scene, GameState* gameSta
                 damageSent = false;
                 enemyAnimator->currentAnimation = (Animation*)getAnimationComponent(enemy, "PunchAnimation");
                 // Set a cooldown timer
-                enemyComponent->attackCooldown = ((Animation*)getAnimationComponent(enemy, "PunchAnimation"))->anim_dur / 1000  + 1.0f;  // Set cooldown duration here
+                enemyComponent->attackCooldown = ((Animation*)getAnimationComponent(enemy, "PunchAnimation"))->anim_dur / 1000  + 3.0f;  // Set cooldown duration here
                 }
             }
             if (enemyAnimator->playTime > ((Animation*)getAnimationComponent(enemy, "PunchAnimation"))->anim_dur / 2 && !damageSent) {
@@ -183,7 +183,7 @@ Entity* create_golemBlue(Scene* scene,float x,float y,float z,float scale){
         addComponent(enemy, COMPONENT_RENDERABLE, golem);
 
         Animation* IdleAnimation = AnimationCreate("assets/models/GolemBleu/Mutant Breathing Idle.dae", golem, "IdleAnimation");
-        Animation* WalkingAnimation = AnimationCreate("assets/models/GolemBleu/Mutant Walking.dae", golem, "WalkingAnimation");
+        Animation* WalkingAnimation = AnimationCreate("assets/models/GolemBleu/Mutant Walking copy.dae", golem, "WalkingAnimation");
         Animation* PunchAnimation = AnimationCreate("assets/models/GolemBleu/Mutant Swiping.dae", golem, "PunchAnimation");
         Animation* HitAnimation = AnimationCreate("assets/models/GolemBleu/Mutant Hit.dae", golem, "HitAnimation");
         Animation* DyingAnimation = AnimationCreate("assets/models/GolemBleu/Mutant Dying.dae", golem, "DyingAnimation");
@@ -196,6 +196,19 @@ Entity* create_golemBlue(Scene* scene,float x,float y,float z,float scale){
 
         Animator* golemAnimator = AnimatorCreate(IdleAnimation);
         addComponent(enemy, COMPONENT_ANIMATOR, golemAnimator);
+
+
+        EnemyComponent* enemyComponent = (EnemyComponent*)calloc(1, sizeof(EnemyComponent));
+    glm_vec3_zero(enemyComponent->direction);
+    enemyComponent->detectionRange = 20.0f;
+    enemyComponent->attackRange = 3.0f;
+    enemyComponent->movementSpeed = 3.0f;
+    enemyComponent->attackDamage = 10.0f;
+    enemyComponent->isAttacking = false;
+    enemyComponent->isAlive = true;
+    enemyComponent->takeDamage = false;
+    enemyComponent->health = 100.0f;
+    addComponent(enemy, COMPONENT_ENEMY, enemyComponent);
 
     }
     return enemy;

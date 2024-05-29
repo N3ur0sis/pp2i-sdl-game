@@ -1802,7 +1802,7 @@ void LogicRoomB(Scene* scene,GameState* gameState,Dungeon*dj,RigidBody* body ){
                 gameState->nextSceneIndex = 2;
                 gameState->previousSceneIndex = 1;
                 playerModel->isBusy = false;
-                gameState->isForestDungeonDone = true;
+                // gameState->isForestDungeonDone = true;
                 ChangeSceneEvent(gameState->nextSceneIndex);
             }
         }

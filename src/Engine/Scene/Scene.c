@@ -26,7 +26,7 @@ void freeScene(Scene* scene) {
         freeEntity(&scene->entities[i]);
     }
 
-    free(scene);
+    // free(scene);
 }
 
 
@@ -72,7 +72,7 @@ void* freeEntity(Entity* e){
     if(component.type == COMPONENT_PLAYER){
         free(component.data);
     }
-    if(component.type == COMPONENT_DUNGEON){
-        free(component.data);
-    }}
+    // if(component.type == COMPONENT_DUNGEON){
+    //     free(component.data);
+    }
 }
