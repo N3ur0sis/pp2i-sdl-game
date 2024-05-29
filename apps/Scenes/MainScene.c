@@ -69,6 +69,11 @@ void startMainScene(Scene* scene, GameState* gameState) {
         addComponent(swordEntity, COMPONENT_ATTACHMENT, swordAttachment);
     }
 
+
+    ((PlayerComponent*)getComponent(playerEntity, COMPONENT_PLAYER))->hasWeapon = true ;
+    ((Model*)getComponent(swordEntity, COMPONENT_RENDERABLE))->isRenderable = true;
+
+
     /* Map Entity */
 
     /*City Part*/
@@ -299,38 +304,42 @@ void startMainScene(Scene* scene, GameState* gameState) {
 
 
 void updateMainScene(Scene* scene, GameState* gameState) {
+    
     Camera* camera =scene->camera; 
     Entity* playerEntity = &scene->entities[0];
     Entity* bluegem = &scene->entities[13];
     Entity* greenGem = &scene->entities[14];
-    Entity* foutain = &scene->entities[10];
-    Entity* gobelin1 = &scene->entities[17];
+    Entity* foutain = &scene->entities[9];
+    Entity* gobelin1 = &scene->entities[16];
     updateEnemy(gobelin1, playerEntity, scene, gameState, scene->deltaTime);
     
-    Entity* gobelin2 = &scene->entities[18];
+    Entity* gobelin2 = &scene->entities[17];
     updateEnemy(gobelin2, playerEntity, scene, gameState, scene->deltaTime);
 
-    Entity* gobelin3 = &scene->entities[19];
+    Entity* gobelin3 = &scene->entities[18];
     updateEnemy(gobelin3, playerEntity, scene, gameState, scene->deltaTime);
 
-    Entity* gobelin4 = &scene->entities[20];
+    Entity* gobelin4 = &scene->entities[19];
     updateEnemy(gobelin4, playerEntity, scene, gameState, scene->deltaTime);
 
-    Entity* gobelin5 = &scene->entities[21];
+    Entity* gobelin5 = &scene->entities[20];
     updateEnemy(gobelin5, playerEntity, scene, gameState, scene->deltaTime);
 
-    Entity* gobelin6 = &scene->entities[22];
+    Entity* gobelin6 = &scene->entities[21];
     updateEnemy(gobelin6, playerEntity, scene, gameState, scene->deltaTime);
 
-    Entity* gobelin7 = &scene->entities[23];
+    Entity* gobelin7 = &scene->entities[22];
     updateEnemy(gobelin7, playerEntity, scene, gameState, scene->deltaTime);
 
-    Entity* gobelin8 = &scene->entities[24];
+    Entity* gobelin8 = &scene->entities[23];
     updateEnemy(gobelin8, playerEntity, scene, gameState, scene->deltaTime);
 
     Model* playerModel = ((Model*)getComponent(playerEntity, COMPONENT_RENDERABLE));
     Model* blueGemModel = ((Model*)getComponent(bluegem, COMPONENT_RENDERABLE));
     Model* greenGemModel = ((Model*)getComponent(greenGem, COMPONENT_RENDERABLE));
+
+    
+
 
     float x = playerModel->position[0];
     float y = playerModel->position[2];
@@ -381,8 +390,9 @@ void updateMainScene(Scene* scene, GameState* gameState) {
 
 
 
-        updatePlayerAnimator(playerEntity,gameState);
+        
         if (!*isBusy) {
+            updatePlayerAnimator(playerEntity,gameState);
             playerMovement(playerEntity, scene->deltaTime, scene->camera);
         }
 
@@ -403,6 +413,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
         if (inventory->isOpened) {
             InventoryPrint(inventory, gameState->g_WindowWidth, gameState->g_WindowHeight, scene->textShader->m_program, 0, 0);
         }
+        player_attack(playerEntity, gobelin1, gameState);
         playerMovement(playerEntity, scene->deltaTime, scene->camera);
     }   
 
@@ -431,6 +442,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
                 isInsertingGem = true;
                 gameState->hasBlueGem = false;
                 blueGemModel->isRenderable = true;
+                *isBusy = true;
             }
         }
     }
@@ -444,7 +456,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
             isInsertingGem = false;
         }
         else{
-            blueGemModel->position[0]-=0.01f;
+            blueGemModel->position[0]-=0.03f;
             playerModel->isBusy = true;
         }
     }
@@ -457,6 +469,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
                 isInsertingGem = true;
                 gameState->hasGreenGem = false;
                 greenGemModel->isRenderable = true;
+                *isBusy = true;
             }
         }
     }
@@ -469,7 +482,7 @@ void updateMainScene(Scene* scene, GameState* gameState) {
             gameState->indexFountain++;
         }
         else{
-            greenGemModel->position[2]-=0.01f;
+            greenGemModel->position[2]-=0.03f;
             playerModel->isBusy = true;
         }
     }

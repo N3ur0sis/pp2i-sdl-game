@@ -76,4 +76,3 @@ void* freeEntity(Entity* e){
         free(component.data);
     }}
 }
-}

@@ -457,6 +457,7 @@ void updateStartScene(Scene* scene, GameState* gameState) {
 
 
         if (x < -46.0f) {
+            gameState->money = 60;
             gameState->nextSceneIndex = 3;
             gameState->previousSceneIndex = 0;
             ChangeSceneEvent(gameState->nextSceneIndex);
