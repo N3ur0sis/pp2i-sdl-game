@@ -72,7 +72,7 @@ If you have another OS : go on Linux.
 ## TODO List
 
 - [x] not abandon the project
-- [ ] remove some memory leaks (just kidding, i'll never do that)
+- [x] remove some memory leaks (just kidding, i'll never do that)
 - [x] Basic player movement
 - [x] Map creation (Blender) + Level design
 - [x] Dungeons procedural Generation
@@ -86,8 +86,8 @@ If you have another OS : go on Linux.
 - [x] Trading System
 - [x] Scene Manager
 - [x] Entity Component System
-- [ ] Finish the game
-- [ ] Find a name for the game
+- [x] Finish the game
+- [x] Find a name for the game
 
 ## Images
 
